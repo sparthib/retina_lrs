@@ -21,8 +21,8 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/code/raw_data/data_paths.config
-INPUT_FOLDER=$(awk -v index=$SLURM_ARRAY_TASK_ID '$1==index {print $3}' $CONFIG)
-sample=$(awk -v index=$SLURM_ARRAY_TASK_ID '$1==index {print $2}' $CONFIG)
+INPUT_FOLDER=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
+sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/fastqs
 mkdir -p $OUTPUT_FOLDER
 
