@@ -23,7 +23,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 CONFIG=/users/sparthib/retina_lrs/code/raw_data/data_paths.config
 INPUT_FOLDER=$(awk -v index=$SLURM_ARRAY_TASK_ID '$1==index {print $3}' $CONFIG)
 sample=$(awk -v index=$SLURM_ARRAY_TASK_ID '$1==index {print $2}' $CONFIG)
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/${sample}/post_guppy_fastq
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/fastqs
 mkdir -p $OUTPUT_FOLDER
 
 cd $INPUT_FOLDER
