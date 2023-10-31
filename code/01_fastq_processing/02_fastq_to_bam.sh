@@ -2,6 +2,7 @@
 
 #SBATCH -p shared
 #SBATCH --nodes=1
+#SBATCH --ntasks-per-node=8
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
