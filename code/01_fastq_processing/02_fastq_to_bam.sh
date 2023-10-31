@@ -32,7 +32,7 @@ mkdir -p $SAM_FOLDER
 mkdir -p $BAM_FOLDER
 
 cd ~/minimap2
-./minimap2 -ax splice -uf map-ont --secondary=no $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
+./minimap2 -ax splice -uf --secondary=no $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
 ml load samtools
 samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
