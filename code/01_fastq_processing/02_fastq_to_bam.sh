@@ -2,7 +2,8 @@
 
 #SBATCH -p shared
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=8
+#SBATCH --mem=20G
+#SBATCH -c=2
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -34,7 +35,7 @@ cd ~/minimap2
 ./minimap2 -ax splice -uf map-ont --secondary=no $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
 ml load samtools
-samtools view -bS -@ $SLURM_NTASKS_PER_NODE  ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
+samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
 samtools sort ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/${sample}_sorted.bam
 samtools index ${BAM_FOLDER}/${sample}_sorted.bam ${BAM_FOLDER}/${sample}_sorted.bam.bai
 samtools idxstats ${BAM_FOLDER}/${sample}_sorted.bam
