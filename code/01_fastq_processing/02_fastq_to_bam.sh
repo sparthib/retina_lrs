@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logsfastq2bam.%a.txt
 #SBATCH -e logs/fastq2bam%a.txt
-
+#SBATCH --array=1-4
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"

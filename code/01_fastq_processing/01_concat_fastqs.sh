@@ -6,8 +6,9 @@
 #SBATCH -c 2
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/concat_fqs.4.txt
-#SBATCH -e logs/concat_fqs.4.txt
+#SBATCH -o logs/concat_fqs.%a.txt
+#SBATCH -e logs/concat_fqs.%a.txt
+#SBATCH --array=1-4
 
 
 echo "**** Job starts ****"
@@ -20,10 +21,8 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-#INPUT_FOLDER=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
-#sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-sample=DG-WT-hRGC
-INPUT_FOLDER=/dcs04/hicks/data/globus/casey/230920_Casey/DG-WT-hRGCs/20230920_1343_3D_PAQ42790_791d991e/fastq_pass
+INPUT_FOLDER=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
+sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/fastqs
 mkdir -p $OUTPUT_FOLDER
 
