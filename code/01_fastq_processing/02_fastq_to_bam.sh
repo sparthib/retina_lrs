@@ -29,7 +29,7 @@ SAM_FOLDER=/dcs04/hicks/data/sparthib/casey/sams
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
 
 mkdir -p $SAM_FOLDER
-mdir -p $BAM_FOLDER
+mkdir -p $BAM_FOLDER
 
 cd ~/minimap2
 ./minimap2 -ax splice -uf map-ont --secondary=no $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
