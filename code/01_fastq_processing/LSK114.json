@@ -1,11 +1,7 @@
 {
-<<<<<<< HEAD
+
     "name": "LSK114",
     "description": "Uses LSK114 primers.",
-=======
-    "name": "10X 3'",
-    "description": "Uses 10X 3' primers.",
->>>>>>> d1d2285342abd638497b435366ff89874f3f6ca6
     "pipeline": [
         {
             "type": "poly",
@@ -22,9 +18,7 @@
     "silent": false,
     "exclude-unknowns": true,
     "error-rate": 0.25
-<<<<<<< HEAD
 }
 
-=======
 }
->>>>>>> d1d2285342abd638497b435366ff89874f3f6ca6
+
