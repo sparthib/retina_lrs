@@ -6,8 +6,8 @@
 #SBATCH -c 10
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/lib1_restrander_split.%a.txt
-#SBATCH -e logs/lib1_restrander_split.%a.txt
+#SBATCH -o logs/restrander.%a.txt
+#SBATCH -e logs/restrander.%a.txt
 #SBATCH --array=1-4
 
 
@@ -27,11 +27,7 @@ mkdir -p /users/sparthib/retina_lrs/code/01_fastq_processing/logs/restrander
 
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-INPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/fastqs
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-
-
 INPUT_FILE=/dcs04/hicks/data/sparthib/casey/fastqs/${sample}.fastq.gz
 OUTPUT_FILE=/dcs04/hicks/data/sparthib/casey/fastqs/restrander/${sample}.fastq.gz
 STATS_FILE=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/restrander/${sample}_stats.json
