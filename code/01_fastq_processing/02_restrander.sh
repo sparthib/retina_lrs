@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem-per-cpu=50G
+#SBATCH --mem=50G
 #SBATCH --job-name=restrander
 #SBATCH -c 10
 #SBATCH --mail-user=sparthi1@jhu.edu
