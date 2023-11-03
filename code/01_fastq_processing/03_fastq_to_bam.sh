@@ -2,8 +2,8 @@
 
 #SBATCH -p shared
 #SBATCH --nodes=1
-#SBATCH --mem=200G
-#SBATCH -c 15
+#SBATCH --mem=250G
+#SBATCH -c 25
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -32,7 +32,7 @@ mkdir -p $SAM_FOLDER
 mkdir -p $BAM_FOLDER
 
 cd ~/minimap2
-./minimap2 -ax splice -uf --secondary=no -t ${SLURM_CPUS_PER_TASK} $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
+./minimap2 -max map-ont -N 50 --secondary=no -t ${SLURM_CPUS_PER_TASK} $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
 ml load samtools
 samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
