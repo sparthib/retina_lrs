@@ -10,8 +10,8 @@
         },
         {
             "type": "primer",
-            "tso": "TTTCTGTTGGTGCTGATATTGC",
-            "rtp": " CTTCTATCTCGCTGTCCGTTCA",
+            "tso": "GAAGATAGAGCGACAGGCAAGT",
+            "rtp": "AAAGACAACCACGACTATAACGA",
             "report-artefacts": true
         }
     ],
