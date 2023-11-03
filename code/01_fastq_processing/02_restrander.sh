@@ -38,6 +38,7 @@ cd /users/sparthib/restrander
     $OUTPUT_FILE \
     config/LSK114.json \
         > $STATS_FILE
+        
 
 echo "Memory Utilized: "
 echo "**** Job ends ****"
