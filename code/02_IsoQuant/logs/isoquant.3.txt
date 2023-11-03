@@ -1,0 +1,22 @@
+**** Job starts ****
+2023-10-26 09:46:25
+**** JHPCE info ****
+User: sparthib
+Job id: 626184
+Job name: isoquant
+Node name: compute-057
+Task id: 3
+hRGC
+2023-10-26 09:46:54,248 - INFO - Running IsoQuant version 3.3.1
+2023-10-26 09:46:54,248 - WARNING - Output folder already exists, some files may be overwritten.
+2023-10-26 09:46:54,339 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
+2023-10-26 09:46:54,339 - INFO -  === IsoQuant pipeline started === 
+2023-10-26 09:46:54,343 - INFO - Converting gene annotation file to .db format (takes a while)...
+2023-10-26 09:55:48,409 - INFO - Gene database written to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/hRGC/GENCODE_GTF.gtf.db
+2023-10-26 09:55:48,410 - INFO - Provide this database next time to avoid excessive conversion
+2023-10-26 09:55:48,474 - INFO - Indexing reference
+2023-10-26 09:58:16,689 - INFO - Converting gene annotation file /dcs04/hicks/data/sparthib/casey/IsoQuant_output/hRGC/GENCODE_GTF.gtf.db to .bed format
+2023-10-26 10:00:23,891 - INFO - Gene database BED written to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/hRGC/GENCODE_GTF.gtf.bed
+2023-10-26 10:00:23,967 - INFO - Aligning /dcs04/hicks/data/sparthib/casey/fastqs/hRGC.fastq.gz to the reference, alignments will be saved to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/hRGC/OUT/aux/OUT_hRGC_5244aa_a800fb_1bbf93.bam
+2023-10-26 10:00:23,970 - INFO - Running minimap2 (takes a while)
+slurmstepd: error: *** JOB 626184 ON compute-057 CANCELLED AT 2023-10-29T18:51:01 ***

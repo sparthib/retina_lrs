@@ -1,0 +1,22 @@
+**** Job starts ****
+2023-10-26 09:46:13
+**** JHPCE info ****
+User: sparthib
+Job id: 626182
+Job name: isoquant
+Node name: compute-070
+Task id: 1
+EP1-BRN3B-RO
+2023-10-26 09:46:38,501 - INFO - Running IsoQuant version 3.3.1
+2023-10-26 09:46:38,502 - WARNING - Output folder already exists, some files may be overwritten.
+2023-10-26 09:46:38,599 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
+2023-10-26 09:46:38,599 - INFO -  === IsoQuant pipeline started === 
+2023-10-26 09:46:38,626 - INFO - Converting gene annotation file to .db format (takes a while)...
+2023-10-26 09:57:10,976 - INFO - Gene database written to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/EP1-BRN3B-RO/GENCODE_GTF.gtf.db
+2023-10-26 09:57:10,976 - INFO - Provide this database next time to avoid excessive conversion
+2023-10-26 09:57:11,041 - INFO - Indexing reference
+2023-10-26 09:59:52,505 - INFO - Converting gene annotation file /dcs04/hicks/data/sparthib/casey/IsoQuant_output/EP1-BRN3B-RO/GENCODE_GTF.gtf.db to .bed format
+2023-10-26 10:02:38,529 - INFO - Gene database BED written to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/EP1-BRN3B-RO/GENCODE_GTF.gtf.bed
+2023-10-26 10:02:38,671 - INFO - Aligning /dcs04/hicks/data/sparthib/casey/fastqs/EP1-BRN3B-RO.fastq.gz to the reference, alignments will be saved to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/EP1-BRN3B-RO/OUT/aux/OUT_EP1-BRN3B-RO_098db8_e212e4_71260d.bam
+2023-10-26 10:02:38,676 - INFO - Running minimap2 (takes a while)
+slurmstepd: error: *** JOB 626182 ON compute-070 CANCELLED AT 2023-10-29T18:50:41 ***
