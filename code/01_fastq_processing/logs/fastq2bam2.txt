@@ -1,0 +1,10 @@
+/var/spool/slurm/d/job669311/slurm_script: line 31: mdir: command not found
+[ERROR] failed to open file 'map-ont': No such file or directory
+Loading LIBD module for samtools/1.18
+[main_samview] fail to read the header from "/dcs04/hicks/data/sparthib/casey/sams/H9-BRN3B-RO.sam".
+[E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/casey/bams/H9-BRN3B-RO.bam" : No such file or directory
+samtools sort: can't open "/dcs04/hicks/data/sparthib/casey/bams/H9-BRN3B-RO.bam": No such file or directory
+[E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/casey/bams/H9-BRN3B-RO_sorted.bam" : No such file or directory
+samtools index: failed to open "/dcs04/hicks/data/sparthib/casey/bams/H9-BRN3B-RO_sorted.bam": No such file or directory
+[E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/casey/bams/H9-BRN3B-RO_sorted.bam" : No such file or directory
+samtools idxstats: failed to open "/dcs04/hicks/data/sparthib/casey/bams/H9-BRN3B-RO_sorted.bam": No such file or directory

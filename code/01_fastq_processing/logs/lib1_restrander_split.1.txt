@@ -1,0 +1,13 @@
+**** Job starts ****
+2023-11-02 13:49:08
+**** JHPCE info ****
+User: sparthib
+Job id: 708149
+Job name: restrander
+Node name: compute-062
+Task id: 1
+[33mError when parsing config file!
+Check that the path you entered was valid.
+[0mMemory Utilized: 
+**** Job ends ****
+2023-11-02 13:49:13

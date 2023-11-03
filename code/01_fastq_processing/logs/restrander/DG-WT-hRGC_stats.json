@@ -1,0 +1,15 @@
+{
+    "stats": {
+        "artefactStats": {
+            "RTP-RTP": 4277342,
+            "TSO-TSO": 841392,
+            "no artefact": 20548727
+        },
+        "strandStats": {
+            "+": 4575820,
+            "-": 8149752,
+            "?": 12941889
+        },
+        "totalReads": 25667461
+    }
+}
