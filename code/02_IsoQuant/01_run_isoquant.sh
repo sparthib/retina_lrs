@@ -2,8 +2,8 @@
 
 #SBATCH -p shared
 #SBATCH -p shared
-#SBATCH --mem=200G
-#SBATCH --cpus-per-task=10
+#SBATCH --mem=150G
+#SBATCH --cpus-per-task=20
 #SBATCH --job-name=isoquant
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -36,7 +36,7 @@ OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/IsoQuant_output/${sample}
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py --reference $REFERENCE_FASTA --data_type ont --genedb $REFERENCE_GTF --bam ${BAM_FOLDER}/${sample}_sorted.bam \
-  --output $OUTPUT_FOLDER --sqanti_output  --check_canonical --count_exons --clean_start \
+  --output $OUTPUT_FOLDER --sqanti_output  --check_canonical --count_exons --clean_start -t 20\
   --complete_genedb
   
   
