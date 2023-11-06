@@ -24,7 +24,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 source activate deeptools 
 
-BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams/hRGC_chr_21.bam
+BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams/hRGC_chr_21_sorted.bam
 TWOBIT_FILE=/dcs04/hicks/data/sparthib/GENCODE_FASTA.2bit
 
 computeGCBias -b $BAM_FOLDER --effectiveGenomeSize 2695000000 --genome $TWOBIT_FILE -l 200 -freq freq_test.txt --region 21 --biasPlot test_gc.png
