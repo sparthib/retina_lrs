@@ -7,8 +7,8 @@
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/computeGC_test.txt
-#SBATCH -e logs/computeGC_test.txt
+#SBATCH -o logs/computeGC_test.log
+#SBATCH -e logs/computeGC_test.log
 
 
 # /users/sparthib/.conda/envs/deeptools
