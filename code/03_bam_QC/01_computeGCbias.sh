@@ -26,8 +26,8 @@ source activate deeptools
 
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams/hRGC_chr_21.bam
 
-computeGCBias -b $BAM_FOLDER --effectiveGenomeSize 2695000000
-   --genome genome.2bit -l 200 -freq freq_test.txt
+computeGCBias -b $BAM_FOLDER --effectiveGenomeSize 2695000000 \
+   --genome genome.2bit -l 200 -freq freq_test.txt \
    --region 21 --biasPlot test_gc.png
 
 
