@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 
 #SBATCH -p shared
