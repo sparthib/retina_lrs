@@ -13,17 +13,12 @@ sample_num <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
 class(data_paths$Index)
 
+read_assignment_path <- paste0("/dcs04/hicks/data/sparthib/casey/IsoQuant_output/",
+                               data_paths$sample_name[sample_num],
+                               "OUT/OUT.read_assignments.tsv")
 
 ## LOAD ISOQUANT OUTPUT ###
-isoquant_read_assignments <- readr::read_tsv(here("dcs04",
-                                                  "hicks",
-                                                  "data",
-                                                  "sparthib",
-                                                  "casey",
-                                                  "IsoQuant_output",
-                                                  data_paths$sample_name[sample_num],
-                                                  "OUT",
-                                                  "OUT.read_assignments.tsv"),
+isoquant_read_assignments <- readr::read_tsv(read_assignment_path,
                                              skip = 2,
                                    col_names = TRUE)
 
