@@ -3,7 +3,7 @@
 #SBATCH -p shared
 #SBATCH --nodes=1
 #SBATCH --mem=50G
-#SBATCH -c 5
+#SBATCH -c 20
 #SBATCH --job-name=computeGCbias
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
