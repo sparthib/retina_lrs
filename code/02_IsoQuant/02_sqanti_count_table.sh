@@ -2,12 +2,12 @@
 
 #SBATCH -p shared
 #SBATCH --mem=25G
-#SBATCH --job-name=restrander
+#SBATCH --job-name=sqanti_count_table
 #SBATCH -c 10
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/restrander.%a.txt
-#SBATCH -e logs/restrander.%a.txt
+#SBATCH -o logs/sqanti_count_table.%a.txt
+#SBATCH -e logs/sqanti_count_table.%a.txt
 #SBATCH --array=1-4
 
 echo "**** Job starts ****"
