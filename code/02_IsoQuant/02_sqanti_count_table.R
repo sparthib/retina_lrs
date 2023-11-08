@@ -15,7 +15,7 @@ print(data_paths$sample_name[sample_num])
 
 read_assignment_path <- paste0("/dcs04/hicks/data/sparthib/casey/IsoQuant_output/",
                                data_paths$sample_name[sample_num],
-                               "/OUT/OUT.read_assignments.tsv")
+                               "/OUT/OUT.novel_vs_known.SQANTI-like.tsv")
 
 ## LOAD ISOQUANT OUTPUT ###
 isoquant_read_assignments <- readr::read_tsv(read_assignment_path,
@@ -23,7 +23,7 @@ isoquant_read_assignments <- readr::read_tsv(read_assignment_path,
                                    col_names = TRUE)
 
 print("assignment type")
-print(table(isoquant_read_assignments$assignment_type))
+print(table(isoquant_read_assignments$structural_category))
 print(table(isoquant_read_assignments$chrom))
 
 ## Reproducibility information
