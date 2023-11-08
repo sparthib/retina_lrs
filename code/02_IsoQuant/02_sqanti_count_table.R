@@ -11,7 +11,7 @@ data_paths <- read_csv(file = here("raw_data", "data_paths.csv") ,
 
 sample_num <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
-class(data_paths$Index)
+print(data_paths$sample_name[sample_num])
 
 read_assignment_path <- paste0("/dcs04/hicks/data/sparthib/casey/IsoQuant_output/",
                                data_paths$sample_name[sample_num],
