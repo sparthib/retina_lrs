@@ -19,7 +19,6 @@ read_assignment_path <- paste0("/dcs04/hicks/data/sparthib/casey/IsoQuant_output
 
 ## LOAD ISOQUANT OUTPUT ###
 isoquant_read_assignments <- readr::read_tsv(read_assignment_path,
-                                             skip = 2,
                                    col_names = TRUE)
 
 print("assignment type")
