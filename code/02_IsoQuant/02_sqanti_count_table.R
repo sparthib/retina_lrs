@@ -8,7 +8,6 @@ here()
 
 data_paths <- read_csv(file = here("raw_data", "data_paths.csv") , 
                      col_names = T)
-View(data_paths)
 
 sample_num <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
