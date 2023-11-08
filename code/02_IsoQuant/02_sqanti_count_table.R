@@ -2,6 +2,7 @@ library("readr")
 library("here")
 library("dplyr")
 library("sessioninfo")
+library("tidyr")
 
 here()
 ### LOAD READ BARCODE DATA ###
@@ -22,7 +23,7 @@ isoquant_read_assignments <- readr::read_tsv(read_assignment_path,
                                    col_names = TRUE)
 
 print("assignment type")
-print(table(isoquant_read_assignments$structural_category))
+print(table(isoquant_read_assignments$chr))
 
 add_info <- separate_wider_delim(isoquant_read_assignments, 
                            cols = additional_info, delim = ";", 
