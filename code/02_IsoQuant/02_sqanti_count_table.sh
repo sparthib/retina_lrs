@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=25G
+#SBATCH --mem=150G
 #SBATCH --job-name=sqanti_count_table
-#SBATCH -c 10
+#SBATCH -c 20
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/sqanti_count_table.%a.txt
