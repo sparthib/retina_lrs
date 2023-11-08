@@ -24,6 +24,7 @@ isoquant_read_assignments <- readr::read_tsv(read_assignment_path,
 
 print("assignment type")
 print(table(isoquant_read_assignments$assignment_type))
+print(table(isoquant_read_assignments$chrom))
 
 ## Reproducibility information
 print("Reproducibility information:")
