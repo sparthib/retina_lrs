@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=100G
+#SBATCH --mem=80G
 #SBATCH --job-name=pycoqc
-#SBATCH -c 20
+#SBATCH -c 10
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/pycoqc.%a.txt
