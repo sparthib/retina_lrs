@@ -33,7 +33,7 @@ source activate pycoqc
 
 cd /users/sparthib/pycoQC/pycoQC
 
-python pycoQC.py –f $guppy_summary_file –o $PYCOQC_OUTPUT/${sample}.html
+python3 pycoQC.py –f $guppy_summary_file –o $PYCOQC_OUTPUT/${sample}.html
 
 
 conda deactivate 
