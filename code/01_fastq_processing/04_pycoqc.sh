@@ -32,7 +32,8 @@ mkdir -p $PYCOQC_OUTPUT
 source activate pycoqc
 
 cd /users/sparthib/pycoQC/pycoQC
-./pycoQC.py –f $guppy_summary_file –o $PYCOQC_OUTPUT/${sample}.html
+
+python pycoQC.py –f $guppy_summary_file –o $PYCOQC_OUTPUT/${sample}.html
 
 
 conda deactivate 
