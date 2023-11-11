@@ -29,11 +29,11 @@ PYCOQC_OUTPUT=/dcs04/hicks/data/sparthib/casey/pyqoqc_outputs
 
 mkdir -p $PYCOQC_OUTPUT
 
-source activate pycoqc
+source activate pycoQC
 
-cd /users/sparthib/pycoQC/pycoQC
+cd /users/sparthib/pycoQC/
 
-python3 pycoQC.py –f $guppy_summary_file –o $PYCOQC_OUTPUT/${sample}.html
+pycoQC –f $guppy_summary_file –o $PYCOQC_OUTPUT/${sample}.html
 
 
 conda deactivate 
