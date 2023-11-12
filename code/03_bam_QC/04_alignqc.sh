@@ -30,8 +30,8 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf
 ALIGNQC_OUTPUT=/dcs04/hicks/data/sparthib/alignqc_output
 
-cd /users/sparthib/.local/lib/python3.10/site-packages/alignqc
-python alignqc.py analysis ${BAM_FOLDER}/${sample}_sorted.bam -g $REFERENCE_FASTA -t $REFERENCE_GTF --output_folder $ALIGNQC_OUTPUT/${sample}
+
+alignqc analysis ${BAM_FOLDER}/${sample}_sorted.bam -g $REFERENCE_FASTA -t $REFERENCE_GTF --output_folder $ALIGNQC_OUTPUT/${sample}
 
 conda deactivate 
 
