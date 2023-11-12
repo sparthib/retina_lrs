@@ -31,7 +31,6 @@ mkdir -p $PYCOQC_OUTPUT
 
 source activate pycoQC
 
-cd /users/sparthib/pycoQC/
 
 pycoQC –f $guppy_summary_file –o $PYCOQC_OUTPUT/${sample}.html
 
