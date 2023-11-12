@@ -21,7 +21,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 source activate alignqc
 
-cd /users/sparthib/.local/lib/python3.10/site-packages/
+
 
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
@@ -30,7 +30,8 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf
 ALIGNQC_OUTPUT=/dcs04/hicks/data/sparthib/alignqc_output
 
-alignqc analysis ${BAM_FOLDER}/${sample}_sorted.bam -g $REFERENCE_FASTA -t $REFERENCE_GTF --output_folder $ALIGNQC_OUTPUT/${sample}
+cd /users/sparthib/.local/lib/python3.10/site-packages/
+./alignqc analysis ${BAM_FOLDER}/${sample}_sorted.bam -g $REFERENCE_FASTA -t $REFERENCE_GTF --output_folder $ALIGNQC_OUTPUT/${sample}
 
 conda deactivate 
 
