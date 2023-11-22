@@ -7,8 +7,8 @@
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/fastq2bam.%a.txt
-#SBATCH -e logs/fastq2bam.%a.txt
+#SBATCH -o logs/bam_stats/fastq2bam.%a.txt
+#SBATCH -e logs/bam_stats/fastq2bam.%a.txt
 #SBATCH --array=1-4
 
 echo "**** Job starts ****"
@@ -38,8 +38,23 @@ ml load samtools
 samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
 samtools sort ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/${sample}_sorted.bam
 rm ${BAM_FOLDER}/${sample}.bam
-samtools index ${BAM_FOLDER}/${sample}_sorted.bam ${BAM_FOLDER}/${sample}_sorted.bam.bai
-samtools idxstats ${BAM_FOLDER}/${sample}_sorted.bam
+samtools index ${BAM_FOLDER}/${sample}_sorted.bam ${BAM_FOLDER}/${sample}_sorted.bam.bai 
+
+#index stats ${sample}_index_stats.txt
+samtools idxstats ${BAM_FOLDER}/${sample}_sorted.bam > ${sample}_index_stats.txt
+#bam stats ${sample}_bam_stats.txt
+echo "stats" > ${sample}_bam_stats.txt
+samtools stats ${BAM_FOLDER}/${sample}_sorted.bam > ${sample}_bam_stats.txt
+echo "flagstat" > ${sample}_bam_stats.txt
+samtools flagstat ${BAM_FOLDER}/${sample}_sorted.bam > ${sample}_bam_stats.txt
+
+echo "depth of coverage" > ${sample}_bam_stats.txt
+samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++;s+=$3}END{print s/c}' > ${sample}_bam_stats.txt
+
+echo "breadth of coverage" > ${sample}_bam_stats.txt
+samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}'
+
+
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
