@@ -22,7 +22,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-INPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/fastqs
+INPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 SAM_FOLDER=/dcs04/hicks/data/sparthib/casey/sams
