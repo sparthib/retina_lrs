@@ -25,7 +25,7 @@ if (length(opt$input.file)==1) {
 
 
 
-f <- FastqStreamer(fastqFile,readerBlockSize=1000) 
+f <- FastqStreamer(input.file,readerBlockSize=1000) 
 
 # we set up a while loop to call yield() function to
 # go through the file
