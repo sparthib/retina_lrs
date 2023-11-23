@@ -34,13 +34,13 @@ mkdir -p $BAM_FOLDER
 cd ~/minimap2
 
 #remove older sam version 
-rm ${SAM_FOLDER}/${sample}.sam
+# rm ${SAM_FOLDER}/${sample}.sam
 ./minimap2 -ax map-ont -N 50 --secondary=no -t ${SLURM_CPUS_PER_TASK} $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
 
 #remove older bam version
-rm ${BAM_FOLDER}/${sample}_sorted.bam
-rm ${BAM_FOLDER}/${sample}_sorted.bam.bai 
+# rm ${BAM_FOLDER}/${sample}_sorted.bam
+# rm ${BAM_FOLDER}/${sample}_sorted.bam.bai 
 ml load samtools
 
 samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
