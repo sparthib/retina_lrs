@@ -30,8 +30,9 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
-REFERENCE_GTF=/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf.gz
+REFERENCE_GTF=/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa.gz 
+
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/IsoQuant_output/${sample}
 mkdir -p $OUTPUT_FOLDER
 
