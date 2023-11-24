@@ -2,8 +2,8 @@
 
 #SBATCH -p shared
 #SBATCH -p shared
-#SBATCH --mem=150G
-#SBATCH --cpus-per-task=20
+#SBATCH --mem=25G
+#SBATCH --cpus-per-task=4
 #SBATCH --job-name=counts_tpm
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -23,5 +23,16 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
+IsoQuant_dir=/dcs04/hicks/data/sparthib/casey/IsoQuant_output/${sample}/OUT
+IsoQuant_tpm=$IsoQuant_dir/OUT.transcript_tpm.tsv
+IsoQuant_counts=$IsoQuant_dir/OUT.transcript_counts.tsv
 
-for 
+join -t $'\t' -1 1 -2 1 -o 1.1,1.2,2.2 <(sort -k1,1 IsoQuant_tpm) <(sort -k1,1 IsoQuant_counts) > $IsoQuant_dir/tpm_counts_data.tsv
+
+
+echo "**** Job ends ****"
+jobstats
+date +"%Y-%m-%d %T"
+
+
+
