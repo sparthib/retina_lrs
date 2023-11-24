@@ -28,7 +28,7 @@ IsoQuant_tpm=$IsoQuant_dir/OUT.transcript_tpm.tsv
 IsoQuant_counts=$IsoQuant_dir/OUT.transcript_counts.tsv
 
 rm $IsoQuant_dir/tpm_counts_data.tsv
-echo "id\ttpm\tcounts" > $IsoQuant_dir/tpm_counts_data.tsv
+echo "id  ttpm  tcounts" > $IsoQuant_dir/tpm_counts_data.tsv
 join -t $'\t' -1 1 -2 1 -o 1.1,1.2,2.2 <(sort -k1,1 $IsoQuant_tpm) <(sort -k1,1 $IsoQuant_counts) >> $IsoQuant_dir/tpm_counts_data.tsv
 
 
