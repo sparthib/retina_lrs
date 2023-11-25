@@ -28,7 +28,7 @@ IsoQuant_tpm=$IsoQuant_dir/OUT.transcript_tpm.tsv
 IsoQuant_counts=$IsoQuant_dir/OUT.transcript_counts.tsv
 lengths=/dcs04/hicks/data/sparthib/transcript_lengths_sorted.tsv
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/casey/diff_expression_data/transcript_lengths
-mkdir OUTPUT_DIR
+mkdir $OUTPUT_DIR
 
 
 rm $IsoQuant_dir/tpm_counts_data.tsv
