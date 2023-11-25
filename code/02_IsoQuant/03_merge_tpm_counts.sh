@@ -27,12 +27,14 @@ IsoQuant_dir=/dcs04/hicks/data/sparthib/casey/IsoQuant_output/${sample}/OUT
 IsoQuant_tpm=$IsoQuant_dir/OUT.transcript_tpm.tsv
 IsoQuant_counts=$IsoQuant_dir/OUT.transcript_counts.tsv
 lengths=/dcs04/hicks/data/sparthib/transcript_lengths.tsv
+OUTPUT_DIR=/dcs04/hicks/data/sparthib/casey/diff_expression_data
 
 rm $IsoQuant_dir/tpm_counts_data.tsv
 echo "id  tpm  counts" > $IsoQuant_dir/tpm_counts_data.tsv
 join -t $'\t' -1 1 -2 1 -o 1.1,1.2,2.2 <(sort -k1,1 $IsoQuant_tpm) <(sort -k1,1 $IsoQuant_counts) >> $IsoQuant_dir/tpm_counts_data.tsv
 
-join -t $'\t' -1 1 -2 1 $IsoQuant_dir/tpm_counts_data.tsv $lengths > $IsoQuant_dir/transcript_features.tsv
+sample=hRGC
+join -t $'\t' -1 1 -2 1 $IsoQuant_dir/tpm_counts_data.tsv $lengths > $OUTPUT_DIR/transcript_features.tsv
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
