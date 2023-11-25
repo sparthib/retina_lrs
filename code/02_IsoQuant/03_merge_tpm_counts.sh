@@ -39,8 +39,9 @@ join -t $'\t' -1 1 -2 1 -o 1.1,1.2,2.2 <(sort -k1,1 $IsoQuant_tpm) <(sort -k1,1 
 sort -t $'\t' -k1 $IsoQuant_dir/tpm_counts_data.tsv -o $IsoQuant_dir/tpm_counts_data_sorted.tsv
 
 # Sort counts.tsv based on id column
-sample=hRGC
-join -t $'\t' -1 1 -2 1 $IsoQuant_dir/tpm_counts_data_sorted.tsv $lengths > $OUTPUT_DIR/${sample}_transcript_features.tsv
+echo "tx_id tpm counts gene_id nexon  length" > $IsoQuant_dir/tpm_counts_data.tsv
+
+join -t $'\t' -1 1 -2 1 $IsoQuant_dir/tpm_counts_data_sorted.tsv $lengths >> $OUTPUT_DIR/${sample}_transcript_features.tsv
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
