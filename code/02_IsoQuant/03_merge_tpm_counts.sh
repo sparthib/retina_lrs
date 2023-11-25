@@ -26,15 +26,21 @@ sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 IsoQuant_dir=/dcs04/hicks/data/sparthib/casey/IsoQuant_output/${sample}/OUT
 IsoQuant_tpm=$IsoQuant_dir/OUT.transcript_tpm.tsv
 IsoQuant_counts=$IsoQuant_dir/OUT.transcript_counts.tsv
-lengths=/dcs04/hicks/data/sparthib/transcript_lengths.tsv
-OUTPUT_DIR=/dcs04/hicks/data/sparthib/casey/diff_expression_data
+lengths=/dcs04/hicks/data/sparthib/transcript_lengths_sorted.tsv
+OUTPUT_DIR=/dcs04/hicks/data/sparthib/casey/diff_expression_data/transcript_lengths
+mkdir OUTPUT_DIR
+
 
 rm $IsoQuant_dir/tpm_counts_data.tsv
 echo "id  tpm  counts" > $IsoQuant_dir/tpm_counts_data.tsv
+
 join -t $'\t' -1 1 -2 1 -o 1.1,1.2,2.2 <(sort -k1,1 $IsoQuant_tpm) <(sort -k1,1 $IsoQuant_counts) >> $IsoQuant_dir/tpm_counts_data.tsv
 
+sort -t $'\t' -k1 $IsoQuant_dir/tpm_counts_data.tsv -o $IsoQuant_dir/tpm_counts_data_sorted.tsv
+
+# Sort counts.tsv based on id column
 sample=hRGC
-join -t $'\t' -1 1 -2 1 $IsoQuant_dir/tpm_counts_data.tsv $lengths > $OUTPUT_DIR/transcript_features.tsv
+join -t $'\t' -1 1 -2 1 $IsoQuant_dir/tpm_counts_data_sorted.tsv.tsv $lengths > $OUTPUT_DIR/${sample}_transcript_features.tsv
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
