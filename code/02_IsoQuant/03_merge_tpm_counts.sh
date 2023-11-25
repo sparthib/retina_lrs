@@ -40,7 +40,7 @@ sort -t $'\t' -k1 $IsoQuant_dir/tpm_counts_data.tsv -o $IsoQuant_dir/tpm_counts_
 
 # Sort counts.tsv based on id column
 sample=hRGC
-join -t $'\t' -1 1 -2 1 $IsoQuant_dir/tpm_counts_data_sorted.tsv.tsv $lengths > $OUTPUT_DIR/${sample}_transcript_features.tsv
+join -t $'\t' -1 1 -2 1 $IsoQuant_dir/tpm_counts_data_sorted.tsv $lengths > $OUTPUT_DIR/${sample}_transcript_features.tsv
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
