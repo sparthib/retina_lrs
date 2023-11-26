@@ -38,7 +38,7 @@ nrow(tpm_counts)
 tx_length_counts <- merge(tpm_counts, transcript_lengths, by.x="#feature_id",
                           by.y="tx_id", all.x = TRUE)
 
-tx_length_counts$sample_name <- sample
+tx_length_counts$sample_name <- replicate(nrow(tx_length_counts), sample)
 
 # nrow(tx_length_counts)
 nrow(tx_length_counts)
