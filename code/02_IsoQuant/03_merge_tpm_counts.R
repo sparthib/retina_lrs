@@ -5,7 +5,7 @@ library(tidyr)
 library("sessioninfo")
 
 
-sample_num <- as.numeric(Sys.getenv(SLURM_ARRAY_TASK_ID))
+sample_num <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
 # colnames(transcript_lengths) = c("tx_id", "gene_id", "nexons", "length")
 # nrow(transcript_lengths)
