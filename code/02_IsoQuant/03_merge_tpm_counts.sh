@@ -22,7 +22,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 module load conda_R/4.3
 
-Rscript 03_merge_tpm_counts 
+Rscript 03_merge_tpm_counts.R
 
 
 echo "**** Job ends ****"
