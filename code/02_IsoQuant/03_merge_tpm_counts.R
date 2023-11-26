@@ -7,6 +7,7 @@ library("sessioninfo")
 
 sample_num <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
+
 # colnames(transcript_lengths) = c("tx_id", "gene_id", "nexons", "length")
 # nrow(transcript_lengths)
 # write_tsv(transcript_lengths, "/dcs04/hicks/data/sparthib/transcript_lengths_sorted.tsv",
@@ -14,7 +15,7 @@ sample_num <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
 config <- read_tsv("/users/sparthib/retina_lrs/config.tsv", col_names = TRUE)
 
-sample <- config[sample_num , 2]
+sample <- config$sample_name[sample_num]
 IsoQuant_dir <- paste0("/dcs04/hicks/data/sparthib/casey/IsoQuant_output/", sample,"/OUT")
 IsoQuant_tpm <- readr::read_tsv(paste0(IsoQuant_dir, "/OUT.transcript_tpm.tsv"),
                                 col_names = T)
