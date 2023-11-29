@@ -18,10 +18,6 @@ tbl_fread <-
   list.files("/dcs04/hicks/data/sparthib/casey/diff_expression_data/transcript_lengths",
              full.names=TRUE) |> map_df(~fread(.))
 
-  
-test_df <- read_tsv("/dcs04/hicks/data/sparthib/casey/diff_expression_data/transcript_lengths/DG-WT-hRGC_tx_length_counts.tsv")
-
-
 # library(GenomicFeatures)
 # gtf <- "/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf"
 # txdb <- makeTxDbFromGFF(gtf)

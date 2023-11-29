@@ -21,8 +21,15 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 source activate alignqc
 
-
-
+# python3 -m pip list
+# Package    Version
+# ---------- -------
+# AlignQC    2.0.5
+# pip        23.3
+# seq-tools  1.0.10
+# setuptools 68.0.0
+# wheel      0.41.2
+#Successfully installed AlignQC-2.0.5 seq-tools-1.0.10
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
 
