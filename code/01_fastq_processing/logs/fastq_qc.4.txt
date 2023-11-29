@@ -1,0 +1,10 @@
+**** Job starts ****
+2023-11-21 23:01:40
+**** JHPCE info ****
+User: sparthib
+Job id: 877117
+Job name: fastq_qc
+Node name: compute-113
+Task id: 4
+**** Job ends ****
+2023-11-22 07:04:15
