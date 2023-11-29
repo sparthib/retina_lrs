@@ -1,8 +1,8 @@
 **** Job starts ****
-2023-11-02 13:55:04
+2023-11-03 10:47:32
 **** JHPCE info ****
 User: sparthib
-Job id: 709288
+Job id: 716620
 Job name: restrander
 Node name: compute-147
 Task id: 2
@@ -302,4 +302,4 @@ Task id: 2
 [0m[32mFinished restranding!
 [0mMemory Utilized: 
 **** Job ends ****
-2023-11-02 19:00:58
+2023-11-03 16:05:37

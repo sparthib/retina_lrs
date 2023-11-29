@@ -1,0 +1,23 @@
+**** Job starts ****
+2023-11-12 08:20:06
+**** JHPCE info ****
+User: sparthib
+Job id: 784769
+Job name: pycoqc
+Node name: compute-069
+Task id: 1
+/var/spool/slurm/d/job784769/slurm_script: line 32: activate: No such file or directory
+Traceback (most recent call last):
+  File "/users/sparthib/.local/bin/pycoQC", line 33, in <module>
+    sys.exit(load_entry_point('pycoQC', 'console_scripts', 'pycoQC')())
+  File "/users/sparthib/.local/bin/pycoQC", line 22, in importlib_load_entry_point
+    for entry_point in distribution(dist_name).entry_points
+  File "/jhpce/shared/jhpce/core/conda/miniconda3-23.3.1/lib/python3.10/importlib/metadata/__init__.py", line 969, in distribution
+    return Distribution.from_name(distribution_name)
+  File "/jhpce/shared/jhpce/core/conda/miniconda3-23.3.1/lib/python3.10/importlib/metadata/__init__.py", line 548, in from_name
+    raise PackageNotFoundError(name)
+importlib.metadata.PackageNotFoundError: No package metadata was found for pycoQC
+usage: conda [-h] [--no-plugins] [-V] COMMAND ...
+conda: error: argument COMMAND: invalid choice: 'deactivate' (choose from 'clean', 'compare', 'config', 'create', 'info', 'init', 'install', 'list', 'notices', 'package', 'remove', 'uninstall', 'rename', 'run', 'search', 'update', 'upgrade', 'doctor', 'content-trust', 'env')
+**** Job ends ****
+2023-11-12 08:20:08

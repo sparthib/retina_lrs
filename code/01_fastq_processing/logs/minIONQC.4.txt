@@ -1,0 +1,18 @@
+Unloading conda_R/4.3
+Loading conda_R/4.3
+To install colorout use: remotes::install_github("jalvesaq/colorout")
+INFO [2023-11-12 16:06:54] Loading input file: /dcs04/hicks/data/globus/casey/230920_Casey/DG-WT-hRGCs/20230920_1343_3D_PAQ42790_791d991e/sequencing_summary_PAQ42790_791d991e_5ef7acc9.txt
+INFO [2023-11-12 16:07:30] PromethION flowcell detected
+INFO [2023-11-12 16:12:37] 20230920_1343_3D_PAQ42790_791d991e: creating output directory:/dcs04/hicks/data/sparthib/casey/minIONQC_outputs/DG-WT-hRGC/20230920_1343_3D_PAQ42790_791d991e
+INFO [2023-11-12 16:12:37] 20230920_1343_3D_PAQ42790_791d991e: summarising input file for flowcell
+INFO [2023-11-12 16:13:28] 20230920_1343_3D_PAQ42790_791d991e: plotting length histogram
+INFO [2023-11-12 16:14:10] 20230920_1343_3D_PAQ42790_791d991e: plotting mean Q score histogram
+INFO [2023-11-12 16:14:42] 20230920_1343_3D_PAQ42790_791d991e: plotting flowcell yield over time
+INFO [2023-11-12 16:17:28] 20230920_1343_3D_PAQ42790_791d991e: plotting flowcell yield by read length
+INFO [2023-11-12 16:21:31] 20230920_1343_3D_PAQ42790_791d991e: plotting sequence length over time
+INFO [2023-11-12 16:37:35] 20230920_1343_3D_PAQ42790_791d991e: plotting Q score over time
+INFO [2023-11-12 16:53:35] 20230920_1343_3D_PAQ42790_791d991e: plotting reads per hour
+INFO [2023-11-12 16:55:57] 20230920_1343_3D_PAQ42790_791d991e: plotting flowcell channels summary histograms
+INFO [2023-11-12 16:56:24] 20230920_1343_3D_PAQ42790_791d991e: plotting physical overview of output per channel
+**** Job ends ****
+2023-11-12 16:56:26

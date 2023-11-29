@@ -1,10 +1,10 @@
 **** Job starts ****
-2023-11-02 13:55:04
+2023-11-03 10:47:32
 **** JHPCE info ****
 User: sparthib
-Job id: 709287
+Job id: 716619
 Job name: restrander
-Node name: compute-143
+Node name: compute-070
 Task id: 1
 [32mRestrander initialised.
 [0m	Input file  :	/dcs04/hicks/data/sparthib/casey/fastqs/EP1-BRN3B-RO.fastq.gz
@@ -315,4 +315,4 @@ Task id: 1
 [0m[32mFinished restranding!
 [0mMemory Utilized: 
 **** Job ends ****
-2023-11-02 18:50:41
+2023-11-03 17:10:52
