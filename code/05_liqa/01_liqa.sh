@@ -30,8 +30,8 @@ REFERENCE_GTF=/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf
 STEP1_REFGENE=/dcs04/hicks/data/sparthib/LIQA_STEP_1.refgene
 STEP2_OUTPUT=/dcs04/hicks/data/sparthib/casey/liqa/step2_outputs
 STEP_3_OUTPUT=/dcs04/hicks/data/sparthib/casey/liqa/step3_outputs
-mkdir $STEP2_OUTPUT
-mkdir $STEP_3_OUTPUT
+mkdir -p $STEP2_OUTPUT
+mkdir -p $STEP_3_OUTPUT
 
 ##STEP 1 - preprocess GTF
 liqa -task refgene -ref $REFERENCE_GTF -format gtf -out $STEP1_REFGENE
