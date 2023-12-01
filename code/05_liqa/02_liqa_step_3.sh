@@ -18,7 +18,7 @@ echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
-source activate liqa
+source activate LIQA
 
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
