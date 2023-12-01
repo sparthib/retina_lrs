@@ -31,7 +31,7 @@ BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa 
 
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_output/$sample
-
+mkdir -p $OUTPUT_FOLDER
 salmon quant -t $REFERENCE_FASTA -a ${BAM_FOLDER}/${sample}_sorted.bam --libType A \
  -o $OUTPUT_FOLDER -p ${SLURM_CPUS_PER_TASK} --dumpEq --gcBias --posBias --ont
 
