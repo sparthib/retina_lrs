@@ -33,12 +33,13 @@ BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa.gz 
 
+
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/IsoQuant_output/${sample}
+rm -r $OUTPUT_FOLDER
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py --reference $REFERENCE_FASTA --data_type ont --genedb $REFERENCE_GTF --bam ${BAM_FOLDER}/${sample}_sorted.bam \
-  --output $OUTPUT_FOLDER --sqanti_output  --check_canonical --count_exons --clean_start -t ${SLURM_CPUS_PER_TASK} \
-  --complete_genedb
+  --output $OUTPUT_FOLDER --count_exons --clean_start -t ${SLURM_CPUS_PER_TASK} --complete_genedb
   
   
 conda deactivate
