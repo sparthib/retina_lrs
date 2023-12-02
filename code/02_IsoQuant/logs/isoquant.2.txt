@@ -1,22 +1,1019 @@
 **** Job starts ****
-2023-10-26 09:46:13
+2023-12-01 22:42:36
 **** JHPCE info ****
 User: sparthib
-Job id: 626183
+Job id: 967733
 Job name: isoquant
-Node name: compute-100
+Node name: compute-097
 Task id: 2
 H9-BRN3B-RO
-2023-10-26 09:46:40,836 - INFO - Running IsoQuant version 3.3.1
-2023-10-26 09:46:40,837 - WARNING - Output folder already exists, some files may be overwritten.
-2023-10-26 09:46:40,907 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
-2023-10-26 09:46:40,907 - INFO -  === IsoQuant pipeline started === 
-2023-10-26 09:46:40,950 - INFO - Converting gene annotation file to .db format (takes a while)...
-2023-10-26 09:56:04,774 - INFO - Gene database written to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/GENCODE_GTF.gtf.db
-2023-10-26 09:56:04,774 - INFO - Provide this database next time to avoid excessive conversion
-2023-10-26 09:56:04,816 - INFO - Indexing reference
-2023-10-26 09:58:48,784 - INFO - Converting gene annotation file /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/GENCODE_GTF.gtf.db to .bed format
-2023-10-26 10:00:41,845 - INFO - Gene database BED written to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/GENCODE_GTF.gtf.bed
-2023-10-26 10:00:41,994 - INFO - Aligning /dcs04/hicks/data/sparthib/casey/fastqs/H9-BRN3B-RO.fastq.gz to the reference, alignments will be saved to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT_H9-BRN3B-RO_f0a3f2_2a843b_3263c6.bam
-2023-10-26 10:00:42,010 - INFO - Running minimap2 (takes a while)
-slurmstepd: error: *** JOB 626183 ON compute-100 CANCELLED AT 2023-10-29T18:50:41 ***
+2023-12-01 22:42:39,459 - INFO - Running IsoQuant version 3.3.1
+2023-12-01 22:42:39,459 - WARNING - Output folder already exists, some files may be overwritten.
+2023-12-01 22:42:39,640 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
+2023-12-01 22:42:39,641 - INFO -  === IsoQuant pipeline started === 
+2023-12-01 22:42:39,654 - INFO - Converting gene annotation file to .db format (takes a while)...
+2023-12-01 22:51:58,051 - INFO - Gene database written to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/GENCODE_GTF.db
+2023-12-01 22:51:58,052 - INFO - Provide this database next time to avoid excessive conversion
+2023-12-01 22:51:58,108 - INFO - Loading gene database from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/GENCODE_GTF.db
+2023-12-01 22:51:58,114 - INFO - Loading reference genome from /dcs04/hicks/data/sparthib/GENCODE_FASTA.fa.gz
+2023-12-01 22:52:35,759 - INFO - Loading uncompressed reference from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/GENCODE_FASTA.fa
+2023-12-01 22:53:21,006 - INFO - Processing 1 sample
+2023-12-01 22:53:21,006 - INFO - Processing sample OUT
+2023-12-01 22:53:21,006 - INFO - Sample has 1 BAM file: /dcs04/hicks/data/sparthib/casey/bams/H9-BRN3B-RO_sorted.bam
+2023-12-01 22:53:21,020 - INFO - Collecting read alignments
+2023-12-01 22:53:21,585 - INFO - Processing chromosome chr9
+2023-12-01 22:53:21,591 - INFO - Processing chromosome chr13
+2023-12-01 22:53:21,626 - INFO - Processing chromosome chr17
+2023-12-01 22:53:21,626 - INFO - Processing chromosome chr12
+2023-12-01 22:53:21,626 - INFO - Processing chromosome chr3
+2023-12-01 22:53:21,657 - INFO - Processing chromosome chr5
+2023-12-01 22:53:21,667 - INFO - Processing chromosome chr15
+2023-12-01 22:53:21,679 - INFO - Processing chromosome chr11
+2023-12-01 22:53:21,685 - INFO - Processing chromosome chr1
+2023-12-01 22:53:21,689 - INFO - Processing chromosome chr2
+2023-12-01 22:53:21,690 - INFO - Processing chromosome chr7
+2023-12-01 22:53:21,700 - INFO - Processing chromosome chr20
+2023-12-01 22:53:21,701 - INFO - Processing chromosome chr16
+2023-12-01 22:53:21,705 - INFO - Processing chromosome chrX
+2023-12-01 22:53:21,709 - INFO - Processing chromosome chr10
+2023-12-01 22:53:21,709 - INFO - Processing chromosome chr8
+2023-12-01 22:53:21,712 - INFO - Processing chromosome chr14
+2023-12-01 22:53:21,713 - INFO - Processing chromosome chr18
+2023-12-01 22:53:21,717 - INFO - Processing chromosome chr4
+2023-12-01 22:53:21,719 - INFO - Processing chromosome chr6
+2023-12-02 00:30:10,169 - INFO - Finished processing chromosome chr20
+2023-12-02 00:30:13,251 - INFO - Processing chromosome chr19
+2023-12-02 00:41:08,445 - INFO - Finished processing chromosome chr18
+2023-12-02 00:41:10,773 - INFO - Processing chromosome chrY
+2023-12-02 00:50:26,146 - INFO - Finished processing chromosome chrY
+2023-12-02 00:50:26,443 - INFO - Processing chromosome chr22
+2023-12-02 00:54:31,648 - INFO - Finished processing chromosome chr15
+2023-12-02 00:54:34,895 - INFO - Processing chromosome chr21
+2023-12-02 00:59:40,185 - INFO - Finished processing chromosome chr14
+2023-12-02 00:59:43,816 - INFO - Processing chromosome KI270728.1
+2023-12-02 01:01:45,419 - INFO - Finished processing chromosome KI270728.1
+2023-12-02 01:01:45,672 - INFO - Processing chromosome KI270727.1
+2023-12-02 01:02:18,015 - INFO - Finished processing chromosome chr13
+2023-12-02 01:02:20,607 - INFO - Processing chromosome KI270442.1
+2023-12-02 01:02:29,260 - INFO - Finished processing chromosome KI270727.1
+2023-12-02 01:02:29,497 - INFO - Processing chromosome KI270729.1
+2023-12-02 01:02:33,459 - INFO - Finished processing chromosome KI270442.1
+2023-12-02 01:02:33,745 - INFO - Processing chromosome GL000225.1
+2023-12-02 01:02:41,635 - INFO - Finished processing chromosome KI270729.1
+2023-12-02 01:02:41,937 - INFO - Processing chromosome KI270743.1
+2023-12-02 01:02:45,667 - INFO - Finished processing chromosome GL000225.1
+2023-12-02 01:02:45,927 - INFO - Processing chromosome GL000008.2
+2023-12-02 01:02:57,296 - INFO - Finished processing chromosome KI270743.1
+2023-12-02 01:02:57,545 - INFO - Processing chromosome GL000009.2
+2023-12-02 01:03:03,303 - INFO - Finished processing chromosome GL000008.2
+2023-12-02 01:03:03,564 - INFO - Processing chromosome KI270747.1
+2023-12-02 01:03:04,748 - INFO - Finished processing chromosome GL000009.2
+2023-12-02 01:03:05,001 - INFO - Processing chromosome KI270722.1
+2023-12-02 01:03:11,756 - INFO - Finished processing chromosome KI270747.1
+2023-12-02 01:03:12,014 - INFO - Processing chromosome GL000194.1
+2023-12-02 01:03:22,487 - INFO - Finished processing chromosome KI270722.1
+2023-12-02 01:03:22,745 - INFO - Processing chromosome KI270742.1
+2023-12-02 01:03:25,127 - INFO - Finished processing chromosome GL000194.1
+2023-12-02 01:03:25,403 - INFO - Processing chromosome GL000205.2
+2023-12-02 01:03:28,694 - INFO - Finished processing chromosome KI270742.1
+2023-12-02 01:03:28,985 - INFO - Processing chromosome GL000195.1
+2023-12-02 01:03:33,385 - INFO - Finished processing chromosome GL000205.2
+2023-12-02 01:03:33,669 - INFO - Processing chromosome KI270736.1
+2023-12-02 01:03:37,271 - INFO - Finished processing chromosome GL000195.1
+2023-12-02 01:03:37,813 - INFO - Processing chromosome KI270733.1
+2023-12-02 01:03:41,415 - INFO - Finished processing chromosome KI270736.1
+2023-12-02 01:03:41,714 - INFO - Processing chromosome GL000224.1
+2023-12-02 01:03:52,572 - INFO - Finished processing chromosome GL000224.1
+2023-12-02 01:03:52,799 - INFO - Processing chromosome GL000219.1
+2023-12-02 01:04:10,286 - INFO - Finished processing chromosome GL000219.1
+2023-12-02 01:04:10,526 - INFO - Processing chromosome KI270719.1
+2023-12-02 01:04:22,456 - INFO - Finished processing chromosome KI270719.1
+2023-12-02 01:04:22,698 - INFO - Processing chromosome GL000216.2
+2023-12-02 01:04:29,540 - INFO - Finished processing chromosome GL000216.2
+2023-12-02 01:04:29,799 - INFO - Processing chromosome KI270712.1
+2023-12-02 01:04:47,365 - INFO - Finished processing chromosome KI270712.1
+2023-12-02 01:04:47,637 - INFO - Processing chromosome KI270706.1
+2023-12-02 01:05:03,201 - INFO - Finished processing chromosome KI270706.1
+2023-12-02 01:05:03,697 - INFO - Processing chromosome KI270725.1
+2023-12-02 01:05:16,749 - INFO - Finished processing chromosome KI270725.1
+2023-12-02 01:05:16,994 - INFO - Processing chromosome KI270744.1
+2023-12-02 01:05:24,645 - INFO - Finished processing chromosome KI270744.1
+2023-12-02 01:05:24,898 - INFO - Processing chromosome KI270734.1
+2023-12-02 01:05:41,494 - INFO - Finished processing chromosome KI270734.1
+2023-12-02 01:05:41,773 - INFO - Processing chromosome GL000213.1
+2023-12-02 01:05:56,342 - INFO - Finished processing chromosome GL000213.1
+2023-12-02 01:05:56,633 - INFO - Processing chromosome GL000220.1
+2023-12-02 01:09:17,048 - INFO - Finished processing chromosome chr16
+2023-12-02 01:09:20,333 - INFO - Processing chromosome KI270715.1
+2023-12-02 01:09:29,802 - INFO - Finished processing chromosome KI270715.1
+2023-12-02 01:09:30,177 - INFO - Processing chromosome GL000218.1
+2023-12-02 01:09:37,528 - INFO - Finished processing chromosome GL000218.1
+2023-12-02 01:09:37,790 - INFO - Processing chromosome KI270749.1
+2023-12-02 01:09:46,521 - INFO - Finished processing chromosome KI270749.1
+2023-12-02 01:09:46,914 - INFO - Processing chromosome KI270741.1
+2023-12-02 01:09:59,475 - INFO - Finished processing chromosome KI270741.1
+2023-12-02 01:09:59,713 - INFO - Processing chromosome GL000221.1
+2023-12-02 01:10:06,698 - INFO - Finished processing chromosome GL000221.1
+2023-12-02 01:10:06,949 - INFO - Processing chromosome KI270716.1
+2023-12-02 01:10:14,102 - INFO - Finished processing chromosome KI270716.1
+2023-12-02 01:10:14,354 - INFO - Processing chromosome KI270731.1
+2023-12-02 01:10:32,346 - INFO - Finished processing chromosome KI270731.1
+2023-12-02 01:10:32,594 - INFO - Processing chromosome KI270751.1
+2023-12-02 01:10:37,879 - INFO - Finished processing chromosome KI270751.1
+2023-12-02 01:10:38,247 - INFO - Processing chromosome KI270750.1
+2023-12-02 01:10:48,756 - INFO - Finished processing chromosome KI270750.1
+2023-12-02 01:10:48,999 - INFO - Processing chromosome KI270519.1
+2023-12-02 01:10:53,238 - INFO - Finished processing chromosome chr17
+2023-12-02 01:10:54,364 - INFO - Finished processing chromosome KI270519.1
+2023-12-02 01:10:54,635 - INFO - Processing chromosome GL000214.1
+2023-12-02 01:10:58,324 - INFO - Processing chromosome KI270708.1
+2023-12-02 01:11:01,563 - INFO - Finished processing chromosome GL000214.1
+2023-12-02 01:11:01,821 - INFO - Processing chromosome KI270730.1
+2023-12-02 01:11:09,031 - INFO - Finished processing chromosome KI270730.1
+2023-12-02 01:11:11,017 - INFO - Finished processing chromosome KI270708.1
+2023-12-02 01:11:21,406 - INFO - Processing chromosome KI270737.1
+2023-12-02 01:11:21,415 - INFO - Processing chromosome KI270438.1
+2023-12-02 01:11:25,901 - INFO - Finished processing chromosome KI270737.1
+2023-12-02 01:11:26,161 - INFO - Processing chromosome KI270721.1
+2023-12-02 01:11:31,789 - INFO - Finished processing chromosome KI270721.1
+2023-12-02 01:11:32,044 - INFO - Processing chromosome KI270738.1
+2023-12-02 01:11:33,767 - INFO - Finished processing chromosome KI270438.1
+2023-12-02 01:11:34,187 - INFO - Processing chromosome KI270748.1
+2023-12-02 01:11:37,912 - INFO - Finished processing chromosome KI270738.1
+2023-12-02 01:11:38,157 - INFO - Processing chromosome KI270435.1
+2023-12-02 01:11:42,571 - INFO - Finished processing chromosome KI270435.1
+2023-12-02 01:11:42,847 - INFO - Processing chromosome GL000208.1
+2023-12-02 01:11:45,021 - INFO - Finished processing chromosome KI270748.1
+2023-12-02 01:11:45,271 - INFO - Processing chromosome KI270538.1
+2023-12-02 01:11:46,674 - INFO - Finished processing chromosome GL000208.1
+2023-12-02 01:11:46,907 - INFO - Processing chromosome KI270756.1
+2023-12-02 01:11:47,738 - INFO - Finished processing chromosome KI270538.1
+2023-12-02 01:11:48,003 - INFO - Processing chromosome KI270739.1
+2023-12-02 01:11:51,285 - INFO - Finished processing chromosome KI270756.1
+2023-12-02 01:11:51,537 - INFO - Processing chromosome KI270757.1
+2023-12-02 01:11:53,932 - INFO - Finished processing chromosome KI270739.1
+2023-12-02 01:11:54,179 - INFO - Processing chromosome KI270709.1
+2023-12-02 01:11:54,548 - INFO - Finished processing chromosome KI270757.1
+2023-12-02 01:11:54,790 - INFO - Processing chromosome KI270746.1
+2023-12-02 01:11:56,963 - INFO - Finished processing chromosome KI270746.1
+2023-12-02 01:11:57,209 - INFO - Processing chromosome KI270753.1
+2023-12-02 01:11:57,877 - INFO - Finished processing chromosome KI270709.1
+2023-12-02 01:11:58,151 - INFO - Processing chromosome KI270589.1
+2023-12-02 01:12:00,760 - INFO - Finished processing chromosome KI270589.1
+2023-12-02 01:12:00,989 - INFO - Processing chromosome KI270726.1
+2023-12-02 01:12:02,791 - INFO - Finished processing chromosome KI270753.1
+2023-12-02 01:12:03,032 - INFO - Processing chromosome KI270735.1
+2023-12-02 01:12:03,409 - INFO - Finished processing chromosome KI270726.1
+2023-12-02 01:12:03,793 - INFO - Processing chromosome KI270711.1
+2023-12-02 01:12:05,122 - INFO - Finished processing chromosome KI270735.1
+2023-12-02 01:12:05,551 - INFO - Processing chromosome KI270745.1
+2023-12-02 01:12:05,717 - INFO - Finished processing chromosome KI270711.1
+2023-12-02 01:12:05,971 - INFO - Processing chromosome KI270714.1
+2023-12-02 01:12:06,880 - INFO - Finished processing chromosome KI270745.1
+2023-12-02 01:12:07,122 - INFO - Processing chromosome KI270732.1
+2023-12-02 01:12:08,160 - INFO - Finished processing chromosome KI270732.1
+2023-12-02 01:12:08,439 - INFO - Processing chromosome KI270713.1
+2023-12-02 01:12:09,555 - INFO - Finished processing chromosome KI270714.1
+2023-12-02 01:12:09,767 - INFO - Processing chromosome KI270754.1
+2023-12-02 01:12:10,187 - INFO - Finished processing chromosome KI270713.1
+2023-12-02 01:12:10,438 - INFO - Processing chromosome KI270710.1
+2023-12-02 01:12:11,693 - INFO - Finished processing chromosome KI270754.1
+2023-12-02 01:12:11,942 - INFO - Finished processing chromosome KI270710.1
+2023-12-02 01:12:11,948 - INFO - Processing chromosome KI270717.1
+2023-12-02 01:12:12,185 - INFO - Processing chromosome KI270724.1
+2023-12-02 01:12:13,102 - INFO - Finished processing chromosome KI270717.1
+2023-12-02 01:12:13,347 - INFO - Processing chromosome KI270720.1
+2023-12-02 01:12:15,297 - INFO - Finished processing chromosome KI270724.1
+2023-12-02 01:12:15,563 - INFO - Processing chromosome KI270723.1
+2023-12-02 01:12:16,198 - INFO - Finished processing chromosome KI270720.1
+2023-12-02 01:12:16,696 - INFO - Processing chromosome KI270718.1
+2023-12-02 01:12:50,046 - INFO - Finished processing chromosome KI270718.1
+2023-12-02 01:12:50,127 - INFO - Finished processing chromosome KI270723.1
+2023-12-02 01:12:51,304 - INFO - Processing chromosome KI270740.1
+2023-12-02 01:12:51,304 - INFO - Processing chromosome KI270317.1
+2023-12-02 01:12:52,890 - INFO - Finished processing chromosome KI270740.1
+2023-12-02 01:12:52,931 - INFO - Finished processing chromosome KI270317.1
+2023-12-02 01:12:53,226 - INFO - Processing chromosome KI270755.1
+2023-12-02 01:12:53,636 - INFO - Processing chromosome KI270707.1
+2023-12-02 01:12:56,225 - INFO - Finished processing chromosome KI270755.1
+2023-12-02 01:12:56,544 - INFO - Processing chromosome KI270579.1
+2023-12-02 01:12:57,130 - INFO - Finished processing chromosome KI270707.1
+2023-12-02 01:12:57,372 - INFO - Processing chromosome KI270752.1
+2023-12-02 01:12:57,747 - INFO - Finished processing chromosome KI270752.1
+2023-12-02 01:12:58,026 - INFO - Processing chromosome KI270512.1
+2023-12-02 01:12:58,676 - INFO - Finished processing chromosome KI270579.1
+2023-12-02 01:12:58,937 - INFO - Processing chromosome KI270322.1
+2023-12-02 01:12:59,378 - INFO - Finished processing chromosome KI270512.1
+2023-12-02 01:12:59,617 - INFO - Processing chromosome chrM
+2023-12-02 01:12:59,903 - INFO - Finished processing chromosome KI270322.1
+2023-12-02 01:13:00,131 - INFO - Processing chromosome GL000226.1
+2023-12-02 01:13:01,041 - INFO - Finished processing chromosome GL000226.1
+2023-12-02 01:13:01,303 - INFO - Processing chromosome KI270311.1
+2023-12-02 01:13:01,845 - INFO - Finished processing chromosome KI270311.1
+2023-12-02 01:13:02,365 - INFO - Processing chromosome KI270366.1
+2023-12-02 01:13:03,125 - INFO - Finished processing chromosome KI270366.1
+2023-12-02 01:13:03,349 - INFO - Processing chromosome KI270511.1
+2023-12-02 01:13:03,922 - INFO - Finished processing chromosome KI270511.1
+2023-12-02 01:13:04,155 - INFO - Processing chromosome KI270448.1
+2023-12-02 01:13:04,695 - INFO - Finished processing chromosome KI270448.1
+2023-12-02 01:13:04,930 - INFO - Processing chromosome KI270521.1
+2023-12-02 01:13:05,664 - INFO - Finished processing chromosome KI270521.1
+2023-12-02 01:13:05,942 - INFO - Processing chromosome KI270581.1
+2023-12-02 01:13:06,761 - INFO - Finished processing chromosome KI270581.1
+2023-12-02 01:13:07,026 - INFO - Processing chromosome KI270582.1
+2023-12-02 01:13:07,552 - INFO - Finished processing chromosome KI270582.1
+2023-12-02 01:13:07,777 - INFO - Processing chromosome KI270515.1
+2023-12-02 01:13:08,188 - INFO - Finished processing chromosome KI270515.1
+2023-12-02 01:13:08,443 - INFO - Processing chromosome KI270588.1
+2023-12-02 01:13:08,840 - INFO - Finished processing chromosome KI270588.1
+2023-12-02 01:13:09,094 - INFO - Processing chromosome KI270591.1
+2023-12-02 01:13:09,551 - INFO - Finished processing chromosome KI270591.1
+2023-12-02 01:13:09,793 - INFO - Processing chromosome KI270522.1
+2023-12-02 01:13:10,501 - INFO - Finished processing chromosome KI270522.1
+2023-12-02 01:13:10,742 - INFO - Processing chromosome KI270507.1
+2023-12-02 01:13:11,224 - INFO - Finished processing chromosome KI270507.1
+2023-12-02 01:13:11,460 - INFO - Processing chromosome KI270590.1
+2023-12-02 01:13:11,870 - INFO - Finished processing chromosome KI270590.1
+2023-12-02 01:13:12,115 - INFO - Processing chromosome KI270584.1
+2023-12-02 01:13:12,623 - INFO - Finished processing chromosome KI270584.1
+2023-12-02 01:13:12,857 - INFO - Processing chromosome KI270320.1
+2023-12-02 01:13:13,250 - INFO - Finished processing chromosome KI270320.1
+2023-12-02 01:13:13,679 - INFO - Processing chromosome KI270382.1
+2023-12-02 01:13:14,226 - INFO - Finished processing chromosome KI270382.1
+2023-12-02 01:13:14,468 - INFO - Processing chromosome KI270468.1
+2023-12-02 01:13:14,878 - INFO - Finished processing chromosome KI270468.1
+2023-12-02 01:13:15,108 - INFO - Processing chromosome KI270467.1
+2023-12-02 01:13:19,699 - INFO - Finished processing chromosome KI270467.1
+2023-12-02 01:13:20,026 - INFO - Processing chromosome KI270362.1
+2023-12-02 01:13:20,585 - INFO - Finished processing chromosome KI270362.1
+2023-12-02 01:13:20,914 - INFO - Processing chromosome KI270517.1
+2023-12-02 01:13:21,292 - INFO - Finished processing chromosome KI270517.1
+2023-12-02 01:13:21,514 - INFO - Processing chromosome KI270593.1
+2023-12-02 01:13:21,882 - INFO - Finished processing chromosome KI270593.1
+2023-12-02 01:13:22,132 - INFO - Processing chromosome KI270528.1
+2023-12-02 01:13:22,670 - INFO - Finished processing chromosome KI270528.1
+2023-12-02 01:13:23,058 - INFO - Processing chromosome KI270587.1
+2023-12-02 01:13:23,441 - INFO - Finished processing chromosome KI270587.1
+2023-12-02 01:13:23,694 - INFO - Processing chromosome KI270364.1
+2023-12-02 01:13:24,205 - INFO - Finished processing chromosome KI270364.1
+2023-12-02 01:13:24,451 - INFO - Processing chromosome KI270371.1
+2023-12-02 01:13:24,972 - INFO - Finished processing chromosome KI270371.1
+2023-12-02 01:13:25,221 - INFO - Processing chromosome KI270333.1
+2023-12-02 01:13:26,520 - INFO - Finished processing chromosome KI270333.1
+2023-12-02 01:13:26,764 - INFO - Processing chromosome KI270374.1
+2023-12-02 01:13:27,761 - INFO - Finished processing chromosome KI270374.1
+2023-12-02 01:13:28,208 - INFO - Processing chromosome KI270411.1
+2023-12-02 01:13:28,580 - INFO - Finished processing chromosome KI270411.1
+2023-12-02 01:13:28,831 - INFO - Processing chromosome KI270414.1
+2023-12-02 01:13:29,202 - INFO - Finished processing chromosome KI270414.1
+2023-12-02 01:13:29,458 - INFO - Processing chromosome KI270510.1
+2023-12-02 01:13:29,808 - INFO - Finished processing chromosome KI270510.1
+2023-12-02 01:13:30,023 - INFO - Processing chromosome KI270390.1
+2023-12-02 01:13:30,393 - INFO - Finished processing chromosome KI270390.1
+2023-12-02 01:13:30,647 - INFO - Processing chromosome KI270375.1
+2023-12-02 01:13:31,054 - INFO - Finished processing chromosome KI270375.1
+2023-12-02 01:13:31,291 - INFO - Processing chromosome KI270420.1
+2023-12-02 01:13:31,649 - INFO - Finished processing chromosome KI270420.1
+2023-12-02 01:13:32,020 - INFO - Processing chromosome KI270509.1
+2023-12-02 01:13:32,539 - INFO - Finished processing chromosome KI270509.1
+2023-12-02 01:13:32,763 - INFO - Processing chromosome KI270315.1
+2023-12-02 01:13:33,430 - INFO - Finished processing chromosome KI270315.1
+2023-12-02 01:13:33,816 - INFO - Processing chromosome KI270302.1
+2023-12-02 01:13:34,196 - INFO - Finished processing chromosome KI270302.1
+2023-12-02 01:13:34,449 - INFO - Processing chromosome KI270518.1
+2023-12-02 01:13:34,977 - INFO - Finished processing chromosome KI270518.1
+2023-12-02 01:13:35,231 - INFO - Processing chromosome KI270530.1
+2023-12-02 01:13:35,578 - INFO - Finished processing chromosome KI270530.1
+2023-12-02 01:13:35,816 - INFO - Processing chromosome KI270304.1
+2023-12-02 01:13:36,182 - INFO - Finished processing chromosome KI270304.1
+2023-12-02 01:13:36,440 - INFO - Processing chromosome KI270418.1
+2023-12-02 01:13:36,801 - INFO - Finished processing chromosome KI270418.1
+2023-12-02 01:13:37,045 - INFO - Processing chromosome KI270424.1
+2023-12-02 01:13:37,403 - INFO - Finished processing chromosome KI270424.1
+2023-12-02 01:13:37,664 - INFO - Processing chromosome KI270417.1
+2023-12-02 01:13:38,201 - INFO - Finished processing chromosome KI270417.1
+2023-12-02 01:13:38,465 - INFO - Processing chromosome KI270508.1
+2023-12-02 01:13:38,834 - INFO - Finished processing chromosome KI270508.1
+2023-12-02 01:13:39,086 - INFO - Processing chromosome KI270303.1
+2023-12-02 01:13:39,448 - INFO - Finished processing chromosome KI270303.1
+2023-12-02 01:13:39,706 - INFO - Processing chromosome KI270381.1
+2023-12-02 01:13:40,318 - INFO - Finished processing chromosome KI270381.1
+2023-12-02 01:13:40,565 - INFO - Processing chromosome KI270529.1
+2023-12-02 01:13:40,933 - INFO - Finished processing chromosome KI270529.1
+2023-12-02 01:13:41,172 - INFO - Processing chromosome KI270425.1
+2023-12-02 01:13:41,890 - INFO - Finished processing chromosome KI270425.1
+2023-12-02 01:13:42,141 - INFO - Processing chromosome KI270396.1
+2023-12-02 01:13:42,528 - INFO - Finished processing chromosome KI270396.1
+2023-12-02 01:13:42,781 - INFO - Processing chromosome KI270363.1
+2023-12-02 01:13:43,140 - INFO - Finished processing chromosome KI270363.1
+2023-12-02 01:13:43,384 - INFO - Processing chromosome KI270386.1
+2023-12-02 01:13:43,731 - INFO - Finished processing chromosome KI270386.1
+2023-12-02 01:13:43,952 - INFO - Processing chromosome KI270465.1
+2023-12-02 01:13:44,512 - INFO - Finished processing chromosome KI270465.1
+2023-12-02 01:13:44,921 - INFO - Processing chromosome KI270383.1
+2023-12-02 01:13:45,521 - INFO - Finished processing chromosome KI270383.1
+2023-12-02 01:13:45,794 - INFO - Processing chromosome KI270384.1
+2023-12-02 01:13:46,156 - INFO - Finished processing chromosome KI270384.1
+2023-12-02 01:13:46,429 - INFO - Processing chromosome KI270330.1
+2023-12-02 01:13:46,848 - INFO - Finished processing chromosome KI270330.1
+2023-12-02 01:13:47,098 - INFO - Processing chromosome KI270372.1
+2023-12-02 01:13:47,460 - INFO - Finished processing chromosome KI270372.1
+2023-12-02 01:13:47,694 - INFO - Processing chromosome KI270548.1
+2023-12-02 01:13:48,186 - INFO - Finished processing chromosome KI270548.1
+2023-12-02 01:13:48,449 - INFO - Processing chromosome KI270580.1
+2023-12-02 01:13:48,811 - INFO - Finished processing chromosome KI270580.1
+2023-12-02 01:13:49,060 - INFO - Processing chromosome KI270387.1
+2023-12-02 01:13:49,543 - INFO - Finished processing chromosome KI270387.1
+2023-12-02 01:13:49,758 - INFO - Processing chromosome KI270391.1
+2023-12-02 01:13:50,117 - INFO - Finished processing chromosome KI270391.1
+2023-12-02 01:13:50,341 - INFO - Processing chromosome KI270305.1
+2023-12-02 01:13:50,688 - INFO - Finished processing chromosome KI270305.1
+2023-12-02 01:13:51,042 - INFO - Processing chromosome KI270373.1
+2023-12-02 01:13:51,384 - INFO - Finished processing chromosome KI270373.1
+2023-12-02 01:13:51,640 - INFO - Processing chromosome KI270422.1
+2023-12-02 01:13:51,993 - INFO - Finished processing chromosome KI270422.1
+2023-12-02 01:13:52,224 - INFO - Processing chromosome KI270316.1
+2023-12-02 01:13:52,598 - INFO - Finished processing chromosome KI270316.1
+2023-12-02 01:13:52,845 - INFO - Processing chromosome KI270338.1
+2023-12-02 01:13:53,206 - INFO - Finished processing chromosome KI270338.1
+2023-12-02 01:13:53,452 - INFO - Processing chromosome KI270340.1
+2023-12-02 01:13:53,988 - INFO - Finished processing chromosome KI270340.1
+2023-12-02 01:13:54,259 - INFO - Processing chromosome KI270583.1
+2023-12-02 01:13:54,625 - INFO - Finished processing chromosome KI270583.1
+2023-12-02 01:13:54,837 - INFO - Processing chromosome KI270334.1
+2023-12-02 01:13:55,584 - INFO - Finished processing chromosome KI270334.1
+2023-12-02 01:13:55,826 - INFO - Processing chromosome KI270429.1
+2023-12-02 01:13:56,175 - INFO - Finished processing chromosome KI270429.1
+2023-12-02 01:13:56,409 - INFO - Processing chromosome KI270393.1
+2023-12-02 01:13:56,763 - INFO - Finished processing chromosome KI270393.1
+2023-12-02 01:13:57,099 - INFO - Processing chromosome KI270516.1
+2023-12-02 01:13:57,611 - INFO - Finished processing chromosome KI270516.1
+2023-12-02 01:13:57,851 - INFO - Processing chromosome KI270389.1
+2023-12-02 01:13:58,210 - INFO - Finished processing chromosome KI270389.1
+2023-12-02 01:13:58,456 - INFO - Processing chromosome KI270466.1
+2023-12-02 01:13:59,343 - INFO - Finished processing chromosome KI270466.1
+2023-12-02 01:13:59,583 - INFO - Processing chromosome KI270388.1
+2023-12-02 01:13:59,770 - INFO - Finished processing chromosome KI270388.1
+2023-12-02 01:14:00,052 - INFO - Processing chromosome KI270544.1
+2023-12-02 01:14:00,626 - INFO - Finished processing chromosome KI270544.1
+2023-12-02 01:14:00,869 - INFO - Processing chromosome KI270310.1
+2023-12-02 01:14:01,249 - INFO - Finished processing chromosome KI270310.1
+2023-12-02 01:14:01,500 - INFO - Processing chromosome KI270412.1
+2023-12-02 01:14:01,870 - INFO - Finished processing chromosome KI270412.1
+2023-12-02 01:14:02,251 - INFO - Processing chromosome KI270395.1
+2023-12-02 01:14:02,770 - INFO - Finished processing chromosome KI270395.1
+2023-12-02 01:14:03,019 - INFO - Processing chromosome KI270376.1
+2023-12-02 01:14:03,395 - INFO - Finished processing chromosome KI270376.1
+2023-12-02 01:14:03,645 - INFO - Processing chromosome KI270337.1
+2023-12-02 01:14:04,222 - INFO - Finished processing chromosome KI270337.1
+2023-12-02 01:14:04,459 - INFO - Processing chromosome KI270335.1
+2023-12-02 01:14:04,624 - INFO - Finished processing chromosome KI270335.1
+2023-12-02 01:14:04,921 - INFO - Processing chromosome KI270378.1
+2023-12-02 01:14:05,691 - INFO - Finished processing chromosome KI270378.1
+2023-12-02 01:14:05,965 - INFO - Processing chromosome KI270379.1
+2023-12-02 01:14:06,314 - INFO - Finished processing chromosome KI270379.1
+2023-12-02 01:14:06,572 - INFO - Processing chromosome KI270329.1
+2023-12-02 01:14:06,897 - INFO - Finished processing chromosome KI270329.1
+2023-12-02 01:14:07,278 - INFO - Processing chromosome KI270419.1
+2023-12-02 01:14:07,658 - INFO - Finished processing chromosome KI270419.1
+2023-12-02 01:14:07,961 - INFO - Processing chromosome KI270336.1
+2023-12-02 01:14:08,387 - INFO - Finished processing chromosome KI270336.1
+2023-12-02 01:14:08,634 - INFO - Processing chromosome KI270312.1
+2023-12-02 01:14:09,018 - INFO - Finished processing chromosome KI270312.1
+2023-12-02 01:14:09,263 - INFO - Processing chromosome KI270539.1
+2023-12-02 01:14:09,608 - INFO - Finished processing chromosome KI270539.1
+2023-12-02 01:14:09,844 - INFO - Processing chromosome KI270385.1
+2023-12-02 01:14:10,363 - INFO - Finished processing chromosome KI270385.1
+2023-12-02 01:14:10,611 - INFO - Processing chromosome KI270423.1
+2023-12-02 01:14:11,163 - INFO - Finished processing chromosome KI270423.1
+2023-12-02 01:14:11,401 - INFO - Processing chromosome KI270392.1
+2023-12-02 01:14:11,586 - INFO - Finished processing chromosome KI270392.1
+2023-12-02 01:14:11,815 - INFO - Processing chromosome KI270394.1
+2023-12-02 01:14:12,183 - INFO - Finished processing chromosome KI270394.1
+2023-12-02 01:20:36,505 - INFO - Finished processing chromosome GL000220.1
+2023-12-02 01:34:15,561 - INFO - Finished processing chromosome KI270733.1
+2023-12-02 01:34:23,052 - INFO - Finished processing chromosome chrM
+2023-12-02 01:43:34,206 - INFO - Finished processing chromosome chr9
+2023-12-02 01:45:55,662 - INFO - Finished processing chromosome chr22
+2023-12-02 02:01:55,451 - INFO - Finished processing chromosome chr19
+2023-12-02 02:09:14,037 - INFO - Finished processing chromosome chr10
+2023-12-02 02:12:10,764 - INFO - Finished processing chromosome chr12
+2023-12-02 02:13:05,668 - INFO - Finished processing chromosome chr21
+2023-12-02 02:17:25,236 - INFO - Finished processing chromosome chr8
+2023-12-02 02:20:09,120 - INFO - Finished processing chromosome chr11
+2023-12-02 02:24:55,595 - INFO - Finished processing chromosome chr7
+2023-12-02 02:26:55,041 - INFO - Finished processing chromosome chrX
+2023-12-02 02:39:51,789 - INFO - Finished processing chromosome chr6
+2023-12-02 02:41:17,082 - INFO - Finished processing chromosome chr5
+2023-12-02 02:46:06,580 - INFO - Finished processing chromosome chr4
+2023-12-02 02:57:02,386 - INFO - Finished processing chromosome chr3
+2023-12-02 03:54:48,178 - INFO - Finished processing chromosome chr2
+2023-12-02 03:57:03,157 - INFO - Finished processing chromosome chr1
+2023-12-02 03:58:49,455 - INFO - Resolving multimappers
+2023-12-02 03:59:15,727 - INFO - Finishing read assignment, total assignments 21589396, polyA percentage 48.0
+2023-12-02 03:59:23,476 - INFO - Read assignments files saved to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save*. 
+2023-12-02 03:59:23,476 - INFO - To keep these intermediate files for debug purposes use --keep_tmp flag
+2023-12-02 03:59:23,477 - INFO - Total alignments processed: 21589396, polyA tail detected in 10362830 (48.0%)
+2023-12-02 03:59:23,477 - INFO - Processing assigned reads OUT
+2023-12-02 03:59:23,754 - INFO - Processing chromosome chr1
+2023-12-02 03:59:23,755 - INFO - Processing chromosome chr2
+2023-12-02 03:59:23,756 - INFO - Processing chromosome chr4
+2023-12-02 03:59:23,756 - INFO - Processing chromosome chr3
+2023-12-02 03:59:23,757 - INFO - Processing chromosome chr5
+2023-12-02 03:59:23,757 - INFO - Processing chromosome chr6
+2023-12-02 03:59:23,757 - INFO - Processing chromosome chr7
+2023-12-02 03:59:23,757 - INFO - Processing chromosome chrX
+2023-12-02 03:59:23,758 - INFO - Processing chromosome chr8
+2023-12-02 03:59:23,764 - INFO - Processing chromosome chr9
+2023-12-02 03:59:23,766 - INFO - Processing chromosome chr11
+2023-12-02 03:59:23,767 - INFO - Processing chromosome chr10
+2023-12-02 03:59:23,767 - INFO - Processing chromosome chr12
+2023-12-02 03:59:23,767 - INFO - Processing chromosome chr13
+2023-12-02 03:59:23,767 - INFO - Processing chromosome chr14
+2023-12-02 03:59:23,769 - INFO - Processing chromosome chr15
+2023-12-02 03:59:23,769 - INFO - Processing chromosome chr16
+2023-12-02 03:59:23,769 - INFO - Processing chromosome chr17
+2023-12-02 03:59:23,773 - INFO - Processing chromosome chr18
+2023-12-02 03:59:23,784 - INFO - Processing chromosome chr20
+2023-12-02 03:59:26,507 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chrX
+2023-12-02 03:59:26,722 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr8
+2023-12-02 03:59:26,773 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr18
+2023-12-02 03:59:26,905 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr6
+2023-12-02 03:59:26,929 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr7
+2023-12-02 03:59:26,945 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr9
+2023-12-02 03:59:26,958 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr20
+2023-12-02 03:59:26,971 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr5
+2023-12-02 03:59:26,986 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr13
+2023-12-02 03:59:26,998 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr17
+2023-12-02 03:59:27,010 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr3
+2023-12-02 03:59:27,027 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr16
+2023-12-02 03:59:27,042 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr15
+2023-12-02 03:59:27,055 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr14
+2023-12-02 03:59:27,064 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr4
+2023-12-02 03:59:27,078 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr11
+2023-12-02 03:59:27,098 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr10
+2023-12-02 03:59:27,128 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr2
+2023-12-02 03:59:27,138 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr12
+2023-12-02 03:59:27,152 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr1
+2023-12-02 04:07:13,360 - INFO - Finished processing chromosome chr13
+2023-12-02 04:07:13,721 - INFO - Processing chromosome chr19
+2023-12-02 04:07:13,920 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr19
+2023-12-02 04:07:17,352 - INFO - Finished processing chromosome chr18
+2023-12-02 04:07:17,527 - INFO - Processing chromosome chrY
+2023-12-02 04:07:17,714 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chrY
+2023-12-02 04:07:38,198 - INFO - Finished processing chromosome chrY
+2023-12-02 04:07:38,381 - INFO - Processing chromosome chr22
+2023-12-02 04:07:38,590 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr22
+2023-12-02 04:08:00,642 - INFO - Finished processing chromosome chr20
+2023-12-02 04:08:01,352 - INFO - Processing chromosome chr21
+2023-12-02 04:08:01,531 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chr21
+2023-12-02 04:10:26,882 - INFO - Finished processing chromosome chr14
+2023-12-02 04:10:27,045 - INFO - Processing chromosome KI270728.1
+2023-12-02 04:10:27,214 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270728.1
+2023-12-02 04:10:28,154 - INFO - Finished processing chromosome KI270728.1
+2023-12-02 04:10:28,602 - INFO - Processing chromosome KI270727.1
+2023-12-02 04:10:28,761 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270727.1
+2023-12-02 04:10:29,841 - INFO - Finished processing chromosome KI270727.1
+2023-12-02 04:10:29,940 - INFO - Processing chromosome KI270442.1
+2023-12-02 04:10:30,175 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270442.1
+2023-12-02 04:10:32,067 - INFO - Finished processing chromosome KI270442.1
+2023-12-02 04:10:32,173 - INFO - Processing chromosome KI270729.1
+2023-12-02 04:10:32,432 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270729.1
+2023-12-02 04:10:33,285 - INFO - Finished processing chromosome KI270729.1
+2023-12-02 04:10:33,372 - INFO - Processing chromosome GL000225.1
+2023-12-02 04:10:33,580 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000225.1
+2023-12-02 04:10:34,092 - INFO - Finished processing chromosome GL000225.1
+2023-12-02 04:10:34,153 - INFO - Processing chromosome KI270743.1
+2023-12-02 04:10:34,322 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270743.1
+2023-12-02 04:10:34,921 - INFO - Finished processing chromosome KI270743.1
+2023-12-02 04:10:35,007 - INFO - Processing chromosome GL000008.2
+2023-12-02 04:10:35,189 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000008.2
+2023-12-02 04:10:36,229 - INFO - Finished processing chromosome GL000008.2
+2023-12-02 04:10:36,343 - INFO - Processing chromosome GL000009.2
+2023-12-02 04:10:36,549 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000009.2
+2023-12-02 04:10:37,139 - INFO - Finished processing chromosome GL000009.2
+2023-12-02 04:10:37,246 - INFO - Processing chromosome KI270747.1
+2023-12-02 04:10:37,465 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270747.1
+2023-12-02 04:10:37,796 - INFO - Finished processing chromosome KI270747.1
+2023-12-02 04:10:37,877 - INFO - Processing chromosome KI270722.1
+2023-12-02 04:10:38,115 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270722.1
+2023-12-02 04:10:38,728 - INFO - Finished processing chromosome KI270722.1
+2023-12-02 04:10:38,800 - INFO - Processing chromosome GL000194.1
+2023-12-02 04:10:38,963 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000194.1
+2023-12-02 04:10:39,794 - INFO - Finished processing chromosome GL000194.1
+2023-12-02 04:10:39,885 - INFO - Processing chromosome KI270742.1
+2023-12-02 04:10:40,089 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270742.1
+2023-12-02 04:10:40,536 - INFO - Finished processing chromosome KI270742.1
+2023-12-02 04:10:40,612 - INFO - Processing chromosome GL000205.2
+2023-12-02 04:10:40,778 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000205.2
+2023-12-02 04:10:41,180 - INFO - Finished processing chromosome GL000205.2
+2023-12-02 04:10:41,257 - INFO - Processing chromosome GL000195.1
+2023-12-02 04:10:41,478 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000195.1
+2023-12-02 04:10:42,035 - INFO - Finished processing chromosome GL000195.1
+2023-12-02 04:10:42,130 - INFO - Processing chromosome KI270736.1
+2023-12-02 04:10:42,284 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270736.1
+2023-12-02 04:10:43,075 - INFO - Finished processing chromosome KI270736.1
+2023-12-02 04:10:43,157 - INFO - Processing chromosome KI270733.1
+2023-12-02 04:10:43,283 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270733.1
+2023-12-02 04:12:10,253 - INFO - Finished processing chromosome KI270733.1
+2023-12-02 04:12:10,455 - INFO - Processing chromosome GL000224.1
+2023-12-02 04:12:10,624 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000224.1
+2023-12-02 04:12:11,119 - INFO - Finished processing chromosome GL000224.1
+2023-12-02 04:12:11,185 - INFO - Processing chromosome GL000219.1
+2023-12-02 04:12:11,340 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000219.1
+2023-12-02 04:12:11,913 - INFO - Finished processing chromosome GL000219.1
+2023-12-02 04:12:12,003 - INFO - Processing chromosome KI270719.1
+2023-12-02 04:12:12,214 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270719.1
+2023-12-02 04:12:12,564 - INFO - Finished processing chromosome KI270719.1
+2023-12-02 04:12:12,650 - INFO - Processing chromosome GL000216.2
+2023-12-02 04:12:12,846 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000216.2
+2023-12-02 04:12:13,608 - INFO - Finished processing chromosome GL000216.2
+2023-12-02 04:12:13,691 - INFO - Processing chromosome KI270712.1
+2023-12-02 04:12:13,823 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270712.1
+2023-12-02 04:12:14,187 - INFO - Finished processing chromosome KI270712.1
+2023-12-02 04:12:14,258 - INFO - Processing chromosome KI270706.1
+2023-12-02 04:12:14,463 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270706.1
+2023-12-02 04:12:14,944 - INFO - Finished processing chromosome KI270706.1
+2023-12-02 04:12:15,009 - INFO - Processing chromosome KI270725.1
+2023-12-02 04:12:15,178 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270725.1
+2023-12-02 04:12:15,939 - INFO - Finished processing chromosome KI270725.1
+2023-12-02 04:12:16,022 - INFO - Processing chromosome KI270744.1
+2023-12-02 04:12:16,221 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270744.1
+2023-12-02 04:12:16,756 - INFO - Finished processing chromosome KI270744.1
+2023-12-02 04:12:16,846 - INFO - Processing chromosome KI270734.1
+2023-12-02 04:12:17,024 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270734.1
+2023-12-02 04:12:17,681 - INFO - Finished processing chromosome KI270734.1
+2023-12-02 04:12:17,791 - INFO - Processing chromosome GL000213.1
+2023-12-02 04:12:17,964 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000213.1
+2023-12-02 04:12:18,562 - INFO - Finished processing chromosome GL000213.1
+2023-12-02 04:12:18,671 - INFO - Processing chromosome GL000220.1
+2023-12-02 04:12:18,878 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000220.1
+2023-12-02 04:12:20,053 - INFO - Finished processing chromosome GL000220.1
+2023-12-02 04:12:20,152 - INFO - Processing chromosome KI270715.1
+2023-12-02 04:12:20,302 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270715.1
+2023-12-02 04:12:20,597 - INFO - Finished processing chromosome KI270715.1
+2023-12-02 04:12:20,851 - INFO - Processing chromosome GL000218.1
+2023-12-02 04:12:20,961 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000218.1
+2023-12-02 04:12:21,336 - INFO - Finished processing chromosome GL000218.1
+2023-12-02 04:12:21,431 - INFO - Processing chromosome KI270749.1
+2023-12-02 04:12:21,613 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270749.1
+2023-12-02 04:12:21,935 - INFO - Finished processing chromosome KI270749.1
+2023-12-02 04:12:22,005 - INFO - Processing chromosome KI270741.1
+2023-12-02 04:12:22,175 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270741.1
+2023-12-02 04:12:22,542 - INFO - Finished processing chromosome KI270741.1
+2023-12-02 04:12:22,579 - INFO - Processing chromosome GL000221.1
+2023-12-02 04:12:22,773 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000221.1
+2023-12-02 04:12:23,153 - INFO - Finished processing chromosome GL000221.1
+2023-12-02 04:12:23,236 - INFO - Processing chromosome KI270716.1
+2023-12-02 04:12:23,416 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270716.1
+2023-12-02 04:12:23,730 - INFO - Finished processing chromosome KI270716.1
+2023-12-02 04:12:23,800 - INFO - Processing chromosome KI270731.1
+2023-12-02 04:12:23,975 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270731.1
+2023-12-02 04:12:24,682 - INFO - Finished processing chromosome KI270731.1
+2023-12-02 04:12:25,182 - INFO - Processing chromosome KI270751.1
+2023-12-02 04:12:25,334 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270751.1
+2023-12-02 04:12:25,740 - INFO - Finished processing chromosome KI270751.1
+2023-12-02 04:12:26,028 - INFO - Processing chromosome KI270750.1
+2023-12-02 04:12:26,211 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270750.1
+2023-12-02 04:12:26,567 - INFO - Finished processing chromosome KI270750.1
+2023-12-02 04:12:26,653 - INFO - Processing chromosome KI270519.1
+2023-12-02 04:12:26,826 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270519.1
+2023-12-02 04:12:27,388 - INFO - Finished processing chromosome KI270519.1
+2023-12-02 04:12:27,691 - INFO - Processing chromosome GL000214.1
+2023-12-02 04:12:27,816 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000214.1
+2023-12-02 04:12:28,276 - INFO - Finished processing chromosome GL000214.1
+2023-12-02 04:12:28,332 - INFO - Processing chromosome KI270708.1
+2023-12-02 04:12:28,570 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270708.1
+2023-12-02 04:12:28,902 - INFO - Finished processing chromosome KI270708.1
+2023-12-02 04:12:28,969 - INFO - Processing chromosome KI270730.1
+2023-12-02 04:12:29,201 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270730.1
+2023-12-02 04:12:29,836 - INFO - Finished processing chromosome KI270730.1
+2023-12-02 04:12:30,105 - INFO - Processing chromosome KI270438.1
+2023-12-02 04:12:30,301 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270438.1
+2023-12-02 04:12:32,806 - INFO - Finished processing chromosome KI270438.1
+2023-12-02 04:12:32,928 - INFO - Processing chromosome KI270737.1
+2023-12-02 04:12:33,096 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270737.1
+2023-12-02 04:12:33,382 - INFO - Finished processing chromosome KI270737.1
+2023-12-02 04:12:33,471 - INFO - Processing chromosome KI270721.1
+2023-12-02 04:12:33,668 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270721.1
+2023-12-02 04:12:34,466 - INFO - Finished processing chromosome KI270721.1
+2023-12-02 04:12:34,565 - INFO - Processing chromosome KI270738.1
+2023-12-02 04:12:34,728 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270738.1
+2023-12-02 04:12:35,075 - INFO - Finished processing chromosome KI270738.1
+2023-12-02 04:12:35,136 - INFO - Processing chromosome KI270748.1
+2023-12-02 04:12:35,172 - INFO - Finished processing chromosome chr15
+2023-12-02 04:12:35,319 - INFO - Processing chromosome KI270435.1
+2023-12-02 04:12:35,329 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270748.1
+2023-12-02 04:12:35,550 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270435.1
+2023-12-02 04:12:35,644 - INFO - Finished processing chromosome KI270748.1
+2023-12-02 04:12:35,745 - INFO - Processing chromosome GL000208.1
+2023-12-02 04:12:35,936 - INFO - Finished processing chromosome KI270435.1
+2023-12-02 04:12:35,947 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000208.1
+2023-12-02 04:12:36,008 - INFO - Processing chromosome KI270538.1
+2023-12-02 04:12:36,228 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270538.1
+2023-12-02 04:12:36,297 - INFO - Finished processing chromosome GL000208.1
+2023-12-02 04:12:36,372 - INFO - Processing chromosome KI270756.1
+2023-12-02 04:12:36,532 - INFO - Finished processing chromosome KI270538.1
+2023-12-02 04:12:36,562 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270756.1
+2023-12-02 04:12:36,585 - INFO - Processing chromosome KI270739.1
+2023-12-02 04:12:36,870 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270739.1
+2023-12-02 04:12:37,561 - INFO - Finished processing chromosome KI270756.1
+2023-12-02 04:12:37,634 - INFO - Processing chromosome KI270757.1
+2023-12-02 04:12:37,649 - INFO - Finished processing chromosome KI270739.1
+2023-12-02 04:12:37,732 - INFO - Processing chromosome KI270709.1
+2023-12-02 04:12:37,877 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270757.1
+2023-12-02 04:12:38,000 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270709.1
+2023-12-02 04:12:38,222 - INFO - Finished processing chromosome KI270757.1
+2023-12-02 04:12:38,303 - INFO - Processing chromosome KI270746.1
+2023-12-02 04:12:38,530 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270746.1
+2023-12-02 04:12:38,759 - INFO - Finished processing chromosome KI270709.1
+2023-12-02 04:12:39,098 - INFO - Processing chromosome KI270753.1
+2023-12-02 04:12:39,254 - INFO - Finished processing chromosome KI270746.1
+2023-12-02 04:12:39,330 - INFO - Processing chromosome KI270589.1
+2023-12-02 04:12:39,343 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270753.1
+2023-12-02 04:12:39,679 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270589.1
+2023-12-02 04:12:39,805 - INFO - Finished processing chromosome KI270753.1
+2023-12-02 04:12:39,855 - INFO - Processing chromosome KI270726.1
+2023-12-02 04:12:40,042 - INFO - Finished processing chromosome KI270589.1
+2023-12-02 04:12:40,122 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270726.1
+2023-12-02 04:12:40,140 - INFO - Processing chromosome KI270735.1
+2023-12-02 04:12:40,888 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270735.1
+2023-12-02 04:12:40,991 - INFO - Finished processing chromosome KI270726.1
+2023-12-02 04:12:41,058 - INFO - Processing chromosome KI270711.1
+2023-12-02 04:12:41,190 - INFO - Finished processing chromosome KI270735.1
+2023-12-02 04:12:41,246 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270711.1
+2023-12-02 04:12:41,271 - INFO - Processing chromosome KI270745.1
+2023-12-02 04:12:41,460 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270745.1
+2023-12-02 04:12:41,758 - INFO - Finished processing chromosome KI270711.1
+2023-12-02 04:12:41,836 - INFO - Processing chromosome KI270714.1
+2023-12-02 04:12:41,847 - INFO - Finished processing chromosome KI270745.1
+2023-12-02 04:12:41,908 - INFO - Processing chromosome KI270732.1
+2023-12-02 04:12:42,050 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270714.1
+2023-12-02 04:12:42,306 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270732.1
+2023-12-02 04:12:42,459 - INFO - Finished processing chromosome KI270714.1
+2023-12-02 04:12:42,577 - INFO - Processing chromosome KI270713.1
+2023-12-02 04:12:42,617 - INFO - Finished processing chromosome KI270732.1
+2023-12-02 04:12:42,668 - INFO - Processing chromosome KI270754.1
+2023-12-02 04:12:42,910 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270713.1
+2023-12-02 04:12:43,012 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270754.1
+2023-12-02 04:12:43,592 - INFO - Finished processing chromosome KI270713.1
+2023-12-02 04:12:43,626 - INFO - Finished processing chromosome KI270754.1
+2023-12-02 04:12:43,687 - INFO - Processing chromosome KI270710.1
+2023-12-02 04:12:43,701 - INFO - Processing chromosome KI270717.1
+2023-12-02 04:12:44,174 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270710.1
+2023-12-02 04:12:44,331 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270717.1
+2023-12-02 04:12:44,553 - INFO - Finished processing chromosome KI270710.1
+2023-12-02 04:12:44,630 - INFO - Finished processing chromosome KI270717.1
+2023-12-02 04:12:44,667 - INFO - Processing chromosome KI270724.1
+2023-12-02 04:12:44,717 - INFO - Processing chromosome KI270720.1
+2023-12-02 04:12:44,989 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270724.1
+2023-12-02 04:12:45,036 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270720.1
+2023-12-02 04:12:45,356 - INFO - Finished processing chromosome KI270724.1
+2023-12-02 04:12:45,379 - INFO - Finished processing chromosome KI270720.1
+2023-12-02 04:12:45,410 - INFO - Processing chromosome KI270723.1
+2023-12-02 04:12:45,445 - INFO - Processing chromosome KI270718.1
+2023-12-02 04:12:45,679 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270723.1
+2023-12-02 04:12:45,741 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270718.1
+2023-12-02 04:12:45,999 - INFO - Finished processing chromosome KI270723.1
+2023-12-02 04:12:46,025 - INFO - Finished processing chromosome KI270718.1
+2023-12-02 04:12:46,093 - INFO - Processing chromosome KI270317.1
+2023-12-02 04:12:46,107 - INFO - Processing chromosome KI270740.1
+2023-12-02 04:12:46,674 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270317.1
+2023-12-02 04:12:46,682 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270740.1
+2023-12-02 04:12:46,877 - INFO - Finished processing chromosome KI270740.1
+2023-12-02 04:12:46,902 - INFO - Finished processing chromosome KI270317.1
+2023-12-02 04:12:46,928 - INFO - Processing chromosome KI270755.1
+2023-12-02 04:12:46,949 - INFO - Processing chromosome KI270707.1
+2023-12-02 04:12:47,177 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270755.1
+2023-12-02 04:12:47,224 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270707.1
+2023-12-02 04:12:47,472 - INFO - Finished processing chromosome KI270755.1
+2023-12-02 04:12:47,498 - INFO - Finished processing chromosome KI270707.1
+2023-12-02 04:12:47,542 - INFO - Processing chromosome KI270579.1
+2023-12-02 04:12:47,568 - INFO - Processing chromosome KI270752.1
+2023-12-02 04:12:47,832 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270579.1
+2023-12-02 04:12:47,849 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270752.1
+2023-12-02 04:12:48,071 - INFO - Finished processing chromosome KI270752.1
+2023-12-02 04:12:48,087 - INFO - Finished processing chromosome KI270579.1
+2023-12-02 04:12:48,120 - INFO - Processing chromosome KI270512.1
+2023-12-02 04:12:48,141 - INFO - Processing chromosome KI270322.1
+2023-12-02 04:12:48,411 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270512.1
+2023-12-02 04:12:48,420 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270322.1
+2023-12-02 04:12:48,691 - INFO - Finished processing chromosome KI270322.1
+2023-12-02 04:12:48,707 - INFO - Finished processing chromosome KI270512.1
+2023-12-02 04:12:48,786 - INFO - Processing chromosome chrM
+2023-12-02 04:12:48,795 - INFO - Processing chromosome GL000226.1
+2023-12-02 04:12:49,038 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_GL000226.1
+2023-12-02 04:12:49,051 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_chrM
+2023-12-02 04:12:49,429 - INFO - Finished processing chromosome GL000226.1
+2023-12-02 04:12:49,543 - INFO - Processing chromosome KI270311.1
+2023-12-02 04:12:49,703 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270311.1
+2023-12-02 04:12:49,951 - INFO - Finished processing chromosome KI270311.1
+2023-12-02 04:12:50,006 - INFO - Processing chromosome KI270366.1
+2023-12-02 04:12:50,216 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270366.1
+2023-12-02 04:12:50,503 - INFO - Finished processing chromosome KI270366.1
+2023-12-02 04:12:50,560 - INFO - Processing chromosome KI270511.1
+2023-12-02 04:12:50,735 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270511.1
+2023-12-02 04:12:50,979 - INFO - Finished processing chromosome KI270511.1
+2023-12-02 04:12:51,043 - INFO - Processing chromosome KI270448.1
+2023-12-02 04:12:51,259 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270448.1
+2023-12-02 04:12:51,683 - INFO - Finished processing chromosome KI270448.1
+2023-12-02 04:12:51,762 - INFO - Processing chromosome KI270521.1
+2023-12-02 04:12:51,930 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270521.1
+2023-12-02 04:12:52,217 - INFO - Finished processing chromosome KI270521.1
+2023-12-02 04:12:52,272 - INFO - Processing chromosome KI270581.1
+2023-12-02 04:12:52,727 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270581.1
+2023-12-02 04:12:52,990 - INFO - Finished processing chromosome KI270581.1
+2023-12-02 04:12:53,294 - INFO - Processing chromosome KI270582.1
+2023-12-02 04:12:53,820 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270582.1
+2023-12-02 04:12:54,048 - INFO - Finished processing chromosome KI270582.1
+2023-12-02 04:12:54,105 - INFO - Processing chromosome KI270515.1
+2023-12-02 04:12:54,301 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270515.1
+2023-12-02 04:12:54,552 - INFO - Finished processing chromosome KI270515.1
+2023-12-02 04:12:54,622 - INFO - Processing chromosome KI270588.1
+2023-12-02 04:12:54,779 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270588.1
+2023-12-02 04:12:55,075 - INFO - Finished processing chromosome KI270588.1
+2023-12-02 04:12:55,143 - INFO - Processing chromosome KI270591.1
+2023-12-02 04:12:55,261 - INFO - Finished processing chromosome chr22
+2023-12-02 04:12:55,398 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270591.1
+2023-12-02 04:12:55,490 - INFO - Processing chromosome KI270522.1
+2023-12-02 04:12:55,765 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270522.1
+2023-12-02 04:12:55,786 - INFO - Finished processing chromosome KI270591.1
+2023-12-02 04:12:55,856 - INFO - Processing chromosome KI270507.1
+2023-12-02 04:12:56,088 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270507.1
+2023-12-02 04:12:56,088 - INFO - Finished processing chromosome KI270522.1
+2023-12-02 04:12:56,164 - INFO - Processing chromosome KI270590.1
+2023-12-02 04:12:56,352 - INFO - Finished processing chromosome KI270507.1
+2023-12-02 04:12:56,352 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270590.1
+2023-12-02 04:12:56,433 - INFO - Processing chromosome KI270584.1
+2023-12-02 04:12:56,905 - INFO - Finished processing chromosome KI270590.1
+2023-12-02 04:12:56,950 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270584.1
+2023-12-02 04:12:56,969 - INFO - Processing chromosome KI270320.1
+2023-12-02 04:12:57,131 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270320.1
+2023-12-02 04:12:57,196 - INFO - Finished processing chromosome KI270584.1
+2023-12-02 04:12:57,257 - INFO - Processing chromosome KI270382.1
+2023-12-02 04:12:57,353 - INFO - Finished processing chromosome KI270320.1
+2023-12-02 04:12:57,423 - INFO - Processing chromosome KI270468.1
+2023-12-02 04:12:57,477 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270382.1
+2023-12-02 04:12:57,667 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270468.1
+2023-12-02 04:12:57,771 - INFO - Finished processing chromosome KI270382.1
+2023-12-02 04:12:57,840 - INFO - Processing chromosome KI270467.1
+2023-12-02 04:12:57,919 - INFO - Finished processing chromosome KI270468.1
+2023-12-02 04:12:57,963 - INFO - Processing chromosome KI270362.1
+2023-12-02 04:12:58,015 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270467.1
+2023-12-02 04:12:58,304 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270362.1
+2023-12-02 04:12:59,116 - INFO - Finished processing chromosome KI270362.1
+2023-12-02 04:12:59,142 - INFO - Finished processing chromosome KI270467.1
+2023-12-02 04:12:59,155 - INFO - Finished processing chromosome chr21
+2023-12-02 04:12:59,168 - INFO - Processing chromosome KI270517.1
+2023-12-02 04:12:59,255 - INFO - Processing chromosome KI270593.1
+2023-12-02 04:12:59,394 - INFO - Processing chromosome KI270528.1
+2023-12-02 04:12:59,837 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270517.1
+2023-12-02 04:12:59,919 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270593.1
+2023-12-02 04:12:59,950 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270528.1
+2023-12-02 04:13:00,162 - INFO - Finished processing chromosome KI270517.1
+2023-12-02 04:13:00,227 - INFO - Finished processing chromosome KI270593.1
+2023-12-02 04:13:00,229 - INFO - Processing chromosome KI270587.1
+2023-12-02 04:13:00,256 - INFO - Finished processing chromosome KI270528.1
+2023-12-02 04:13:00,305 - INFO - Processing chromosome KI270364.1
+2023-12-02 04:13:00,318 - INFO - Processing chromosome KI270371.1
+2023-12-02 04:13:00,556 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270587.1
+2023-12-02 04:13:00,734 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270364.1
+2023-12-02 04:13:00,765 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270371.1
+2023-12-02 04:13:00,857 - INFO - Finished processing chromosome chr9
+2023-12-02 04:13:01,017 - INFO - Finished processing chromosome KI270587.1
+2023-12-02 04:13:01,073 - INFO - Processing chromosome KI270333.1
+2023-12-02 04:13:01,111 - INFO - Processing chromosome KI270374.1
+2023-12-02 04:13:01,141 - INFO - Finished processing chromosome KI270371.1
+2023-12-02 04:13:01,197 - INFO - Finished processing chromosome KI270364.1
+2023-12-02 04:13:01,199 - INFO - Processing chromosome KI270411.1
+2023-12-02 04:13:01,247 - INFO - Processing chromosome KI270414.1
+2023-12-02 04:13:01,455 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270333.1
+2023-12-02 04:13:01,513 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270374.1
+2023-12-02 04:13:01,599 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270411.1
+2023-12-02 04:13:01,623 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270414.1
+2023-12-02 04:13:01,793 - INFO - Finished processing chromosome KI270374.1
+2023-12-02 04:13:01,832 - INFO - Finished processing chromosome KI270333.1
+2023-12-02 04:13:01,834 - INFO - Processing chromosome KI270510.1
+2023-12-02 04:13:01,892 - INFO - Finished processing chromosome KI270411.1
+2023-12-02 04:13:01,908 - INFO - Finished processing chromosome KI270414.1
+2023-12-02 04:13:01,910 - INFO - Processing chromosome KI270390.1
+2023-12-02 04:13:01,953 - INFO - Processing chromosome KI270375.1
+2023-12-02 04:13:01,966 - INFO - Processing chromosome KI270420.1
+2023-12-02 04:13:02,155 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270510.1
+2023-12-02 04:13:02,298 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270390.1
+2023-12-02 04:13:02,345 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270375.1
+2023-12-02 04:13:02,364 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270420.1
+2023-12-02 04:13:02,558 - INFO - Finished processing chromosome KI270510.1
+2023-12-02 04:13:02,647 - INFO - Finished processing chromosome KI270390.1
+2023-12-02 04:13:02,648 - INFO - Processing chromosome KI270509.1
+2023-12-02 04:13:02,683 - INFO - Finished processing chromosome KI270420.1
+2023-12-02 04:13:02,709 - INFO - Finished processing chromosome KI270375.1
+2023-12-02 04:13:02,727 - INFO - Processing chromosome KI270315.1
+2023-12-02 04:13:02,755 - INFO - Processing chromosome KI270302.1
+2023-12-02 04:13:02,760 - INFO - Processing chromosome KI270518.1
+2023-12-02 04:13:02,975 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270509.1
+2023-12-02 04:13:03,140 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270315.1
+2023-12-02 04:13:03,209 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270302.1
+2023-12-02 04:13:03,225 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270518.1
+2023-12-02 04:13:03,394 - INFO - Finished processing chromosome KI270509.1
+2023-12-02 04:13:03,481 - INFO - Processing chromosome KI270530.1
+2023-12-02 04:13:03,485 - INFO - Finished processing chromosome KI270302.1
+2023-12-02 04:13:03,525 - INFO - Finished processing chromosome KI270315.1
+2023-12-02 04:13:03,556 - INFO - Finished processing chromosome KI270518.1
+2023-12-02 04:13:03,558 - INFO - Processing chromosome KI270304.1
+2023-12-02 04:13:03,569 - INFO - Processing chromosome KI270418.1
+2023-12-02 04:13:03,612 - INFO - Processing chromosome KI270424.1
+2023-12-02 04:13:04,027 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270530.1
+2023-12-02 04:13:04,260 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270304.1
+2023-12-02 04:13:04,326 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270418.1
+2023-12-02 04:13:04,370 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270424.1
+2023-12-02 04:13:04,992 - INFO - Finished processing chromosome KI270530.1
+2023-12-02 04:13:05,030 - INFO - Finished processing chromosome KI270304.1
+2023-12-02 04:13:05,061 - INFO - Finished processing chromosome KI270418.1
+2023-12-02 04:13:05,097 - INFO - Processing chromosome KI270417.1
+2023-12-02 04:13:05,122 - INFO - Finished processing chromosome KI270424.1
+2023-12-02 04:13:05,123 - INFO - Processing chromosome KI270508.1
+2023-12-02 04:13:05,135 - INFO - Processing chromosome KI270303.1
+2023-12-02 04:13:05,173 - INFO - Processing chromosome KI270381.1
+2023-12-02 04:13:05,929 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270417.1
+2023-12-02 04:13:06,078 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270508.1
+2023-12-02 04:13:06,251 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270303.1
+2023-12-02 04:13:06,376 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270381.1
+2023-12-02 04:13:06,573 - INFO - Finished processing chromosome KI270417.1
+2023-12-02 04:13:06,615 - INFO - Finished processing chromosome KI270508.1
+2023-12-02 04:13:06,632 - INFO - Processing chromosome KI270529.1
+2023-12-02 04:13:06,644 - INFO - Finished processing chromosome KI270303.1
+2023-12-02 04:13:06,904 - INFO - Finished processing chromosome KI270381.1
+2023-12-02 04:13:06,905 - INFO - Processing chromosome KI270425.1
+2023-12-02 04:13:06,945 - INFO - Processing chromosome KI270396.1
+2023-12-02 04:13:06,945 - INFO - Processing chromosome KI270363.1
+2023-12-02 04:13:07,227 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270529.1
+2023-12-02 04:13:07,358 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270425.1
+2023-12-02 04:13:07,393 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270396.1
+2023-12-02 04:13:07,406 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270363.1
+2023-12-02 04:13:07,836 - INFO - Finished processing chromosome KI270529.1
+2023-12-02 04:13:07,875 - INFO - Finished processing chromosome KI270425.1
+2023-12-02 04:13:07,888 - INFO - Processing chromosome KI270386.1
+2023-12-02 04:13:07,898 - INFO - Finished processing chromosome KI270363.1
+2023-12-02 04:13:07,948 - INFO - Finished processing chromosome KI270396.1
+2023-12-02 04:13:07,949 - INFO - Processing chromosome KI270465.1
+2023-12-02 04:13:07,954 - INFO - Processing chromosome KI270383.1
+2023-12-02 04:13:07,992 - INFO - Processing chromosome KI270384.1
+2023-12-02 04:13:08,166 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270386.1
+2023-12-02 04:13:08,494 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270465.1
+2023-12-02 04:13:08,512 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270383.1
+2023-12-02 04:13:08,536 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270384.1
+2023-12-02 04:13:08,672 - INFO - Finished processing chromosome KI270386.1
+2023-12-02 04:13:08,714 - INFO - Processing chromosome KI270330.1
+2023-12-02 04:13:08,770 - INFO - Finished processing chromosome KI270383.1
+2023-12-02 04:13:08,817 - INFO - Finished processing chromosome KI270384.1
+2023-12-02 04:13:08,834 - INFO - Finished processing chromosome KI270465.1
+2023-12-02 04:13:08,835 - INFO - Processing chromosome KI270372.1
+2023-12-02 04:13:08,887 - INFO - Processing chromosome KI270548.1
+2023-12-02 04:13:08,909 - INFO - Processing chromosome KI270580.1
+2023-12-02 04:13:09,053 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270330.1
+2023-12-02 04:13:09,287 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270372.1
+2023-12-02 04:13:09,350 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270548.1
+2023-12-02 04:13:09,713 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270580.1
+2023-12-02 04:13:09,833 - INFO - Finished processing chromosome KI270330.1
+2023-12-02 04:13:09,899 - INFO - Processing chromosome KI270387.1
+2023-12-02 04:13:09,977 - INFO - Finished processing chromosome KI270372.1
+2023-12-02 04:13:10,029 - INFO - Finished processing chromosome KI270580.1
+2023-12-02 04:13:10,031 - INFO - Processing chromosome KI270391.1
+2023-12-02 04:13:10,043 - INFO - Finished processing chromosome KI270548.1
+2023-12-02 04:13:10,103 - INFO - Processing chromosome KI270305.1
+2023-12-02 04:13:10,103 - INFO - Processing chromosome KI270373.1
+2023-12-02 04:13:10,236 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270387.1
+2023-12-02 04:13:10,551 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270391.1
+2023-12-02 04:13:10,625 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270373.1
+2023-12-02 04:13:10,665 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270305.1
+2023-12-02 04:13:10,789 - INFO - Finished processing chromosome KI270387.1
+2023-12-02 04:13:10,847 - INFO - Processing chromosome KI270422.1
+2023-12-02 04:13:11,015 - INFO - Finished processing chromosome KI270391.1
+2023-12-02 04:13:11,039 - INFO - Finished processing chromosome KI270373.1
+2023-12-02 04:13:11,068 - INFO - Finished processing chromosome KI270305.1
+2023-12-02 04:13:11,082 - INFO - Processing chromosome KI270316.1
+2023-12-02 04:13:11,094 - INFO - Processing chromosome KI270338.1
+2023-12-02 04:13:11,130 - INFO - Processing chromosome KI270340.1
+2023-12-02 04:13:11,172 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270422.1
+2023-12-02 04:13:11,541 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270316.1
+2023-12-02 04:13:11,564 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270338.1
+2023-12-02 04:13:11,582 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270340.1
+2023-12-02 04:13:11,612 - INFO - Finished processing chromosome KI270422.1
+2023-12-02 04:13:11,692 - INFO - Processing chromosome KI270583.1
+2023-12-02 04:13:11,851 - INFO - Finished processing chromosome KI270316.1
+2023-12-02 04:13:11,868 - INFO - Finished processing chromosome KI270338.1
+2023-12-02 04:13:11,907 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270583.1
+2023-12-02 04:13:11,907 - INFO - Finished processing chromosome KI270340.1
+2023-12-02 04:13:11,927 - INFO - Processing chromosome KI270334.1
+2023-12-02 04:13:11,940 - INFO - Processing chromosome KI270429.1
+2023-12-02 04:13:11,959 - INFO - Processing chromosome KI270393.1
+2023-12-02 04:13:12,318 - INFO - Finished processing chromosome KI270583.1
+2023-12-02 04:13:12,353 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270334.1
+2023-12-02 04:13:12,367 - INFO - Processing chromosome KI270516.1
+2023-12-02 04:13:12,390 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270429.1
+2023-12-02 04:13:12,398 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270393.1
+2023-12-02 04:13:12,792 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270516.1
+2023-12-02 04:13:12,840 - INFO - Finished processing chromosome KI270393.1
+2023-12-02 04:13:12,850 - INFO - Finished processing chromosome KI270429.1
+2023-12-02 04:13:12,873 - INFO - Finished processing chromosome KI270334.1
+2023-12-02 04:13:12,888 - INFO - Processing chromosome KI270389.1
+2023-12-02 04:13:12,909 - INFO - Processing chromosome KI270466.1
+2023-12-02 04:13:12,909 - INFO - Processing chromosome KI270388.1
+2023-12-02 04:13:13,053 - INFO - Finished processing chromosome KI270516.1
+2023-12-02 04:13:13,103 - INFO - Processing chromosome KI270544.1
+2023-12-02 04:13:13,292 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270389.1
+2023-12-02 04:13:13,330 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270466.1
+2023-12-02 04:13:13,347 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270388.1
+2023-12-02 04:13:13,492 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270544.1
+2023-12-02 04:13:13,993 - INFO - Finished processing chromosome KI270389.1
+2023-12-02 04:13:14,079 - INFO - Finished processing chromosome KI270388.1
+2023-12-02 04:13:14,092 - INFO - Finished processing chromosome KI270466.1
+2023-12-02 04:13:14,094 - INFO - Processing chromosome KI270310.1
+2023-12-02 04:13:14,165 - INFO - Processing chromosome KI270412.1
+2023-12-02 04:13:14,219 - INFO - Processing chromosome KI270395.1
+2023-12-02 04:13:14,238 - INFO - Finished processing chromosome KI270544.1
+2023-12-02 04:13:14,300 - INFO - Processing chromosome KI270376.1
+2023-12-02 04:13:14,957 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270310.1
+2023-12-02 04:13:15,433 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270412.1
+2023-12-02 04:13:16,028 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270395.1
+2023-12-02 04:13:16,101 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270376.1
+2023-12-02 04:13:16,309 - INFO - Finished processing chromosome KI270310.1
+2023-12-02 04:13:16,339 - INFO - Finished processing chromosome KI270412.1
+2023-12-02 04:13:16,397 - INFO - Processing chromosome KI270337.1
+2023-12-02 04:13:16,412 - INFO - Finished processing chromosome KI270376.1
+2023-12-02 04:13:16,435 - INFO - Processing chromosome KI270335.1
+2023-12-02 04:13:16,475 - INFO - Finished processing chromosome KI270395.1
+2023-12-02 04:13:16,476 - INFO - Processing chromosome KI270378.1
+2023-12-02 04:13:16,565 - INFO - Processing chromosome KI270379.1
+2023-12-02 04:13:16,976 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270337.1
+2023-12-02 04:13:17,307 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270335.1
+2023-12-02 04:13:17,354 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270378.1
+2023-12-02 04:13:17,430 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270379.1
+2023-12-02 04:13:17,618 - INFO - Finished processing chromosome KI270337.1
+2023-12-02 04:13:17,643 - INFO - Finished processing chromosome KI270335.1
+2023-12-02 04:13:17,683 - INFO - Finished processing chromosome KI270378.1
+2023-12-02 04:13:17,703 - INFO - Processing chromosome KI270329.1
+2023-12-02 04:13:17,722 - INFO - Finished processing chromosome KI270379.1
+2023-12-02 04:13:17,724 - INFO - Processing chromosome KI270419.1
+2023-12-02 04:13:17,855 - INFO - Processing chromosome KI270336.1
+2023-12-02 04:13:17,873 - INFO - Processing chromosome KI270312.1
+2023-12-02 04:13:18,434 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270329.1
+2023-12-02 04:13:18,459 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270419.1
+2023-12-02 04:13:18,552 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270336.1
+2023-12-02 04:13:18,664 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270312.1
+2023-12-02 04:13:19,088 - INFO - Finished processing chromosome KI270419.1
+2023-12-02 04:13:19,101 - INFO - Finished processing chromosome chrX
+2023-12-02 04:13:19,129 - INFO - Finished processing chromosome KI270329.1
+2023-12-02 04:13:19,174 - INFO - Finished processing chromosome KI270312.1
+2023-12-02 04:13:19,193 - INFO - Processing chromosome KI270539.1
+2023-12-02 04:13:19,250 - INFO - Finished processing chromosome KI270336.1
+2023-12-02 04:13:19,268 - INFO - Processing chromosome KI270385.1
+2023-12-02 04:13:19,372 - INFO - Processing chromosome KI270423.1
+2023-12-02 04:13:19,377 - INFO - Processing chromosome KI270392.1
+2023-12-02 04:13:19,385 - INFO - Processing chromosome KI270394.1
+2023-12-02 04:13:19,810 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270539.1
+2023-12-02 04:13:20,071 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270385.1
+2023-12-02 04:13:20,145 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270423.1
+2023-12-02 04:13:20,156 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270392.1
+2023-12-02 04:13:20,171 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/aux/OUT.save_KI270394.1
+2023-12-02 04:13:20,294 - INFO - Finished processing chromosome KI270539.1
+2023-12-02 04:13:20,384 - INFO - Finished processing chromosome KI270385.1
+2023-12-02 04:13:20,396 - INFO - Finished processing chromosome KI270423.1
+2023-12-02 04:13:20,404 - INFO - Finished processing chromosome KI270394.1
+2023-12-02 04:13:20,442 - INFO - Finished processing chromosome KI270392.1
+2023-12-02 04:13:21,418 - INFO - Finished processing chromosome chr17
+2023-12-02 04:13:30,064 - INFO - Finished processing chromosome chr16
+2023-12-02 04:15:18,976 - INFO - Finished processing chromosome chr10
+2023-12-02 04:15:58,532 - INFO - Finished processing chromosome chr4
+2023-12-02 04:16:17,029 - INFO - Finished processing chromosome chr7
+2023-12-02 04:16:22,537 - INFO - Finished processing chromosome chr8
+2023-12-02 04:16:46,476 - INFO - Finished processing chromosome chr19
+2023-12-02 04:17:03,290 - INFO - Finished processing chromosome chr5
+2023-12-02 04:17:05,130 - INFO - Finished processing chromosome chr12
+2023-12-02 04:17:44,768 - INFO - Finished processing chromosome chr6
+2023-12-02 04:18:21,419 - INFO - Finished processing chromosome chr11
+2023-12-02 04:18:30,052 - INFO - Finished processing chromosome chrM
+2023-12-02 04:20:22,005 - INFO - Finished processing chromosome chr3
+2023-12-02 04:22:52,283 - INFO - Finished processing chromosome chr1
+2023-12-02 04:23:14,573 - INFO - Finished processing chromosome chr2
+2023-12-02 04:23:32,350 - INFO - Transcript model file /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/OUT.transcript_models.gtf
+2023-12-02 04:23:36,573 - INFO - Extended annotation is saved to /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/OUT.extended_annotation.gtf
+2023-12-02 04:23:36,573 - INFO - Transcript model statistics
+2023-12-02 04:23:36,573 - INFO - known: 5357
+2023-12-02 04:24:26,960 - INFO - Gene counts are stored in /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/OUT.gene_counts.tsv
+2023-12-02 04:24:26,960 - INFO - Transcript counts are stored in /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/OUT.transcript_counts.tsv
+2023-12-02 04:24:26,960 - INFO - Read assignments are stored in /dcs04/hicks/data/sparthib/casey/IsoQuant_output/H9-BRN3B-RO/OUT/OUT.read_assignments.tsv
+2023-12-02 04:24:26,960 - INFO - Read assignment statistics
+2023-12-02 04:24:26,960 - INFO - ambiguous: 2087974
+2023-12-02 04:24:26,960 - INFO - inconsistent: 5239747
+2023-12-02 04:24:26,960 - INFO - intergenic: 2615299
+2023-12-02 04:24:26,960 - INFO - noninformative: 8032617
+2023-12-02 04:24:26,960 - INFO - unique: 3155168
+2023-12-02 04:24:26,960 - INFO - unique_minor_difference: 458591
+2023-12-02 04:24:56,230 - INFO - Processed sample OUT
+2023-12-02 04:24:56,230 - INFO - Processed 1 sample
+2023-12-02 04:24:56,230 - INFO -  === IsoQuant pipeline finished === 
+**** Job ends ****
+/var/spool/slurm/d/job967733/slurm_script: line 48: jobstats: command not found
+2023-12-02 04:24:57

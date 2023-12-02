@@ -1,0 +1,80 @@
+**** Job starts ****
+2023-11-07 21:07:13
+**** JHPCE info ****
+User: sparthib
+Job id: 732929
+Job name: sqanti_count_table
+Node name: compute-127
+Task id: 4
+Loading conda_R/4.3
+
+Currently Loaded Modules:
+  1) JHPCE_ROCKY9_DEFAULT_ENV   3) conda/3-23.3.1
+  2) JHPCE_tools/3.0            4) conda_R/4.3
+
+ 
+
+To install colorout use: remotes::install_github("jalvesaq/colorout")
+here() starts at /users/sparthib/retina_lrs
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+[1] "/users/sparthib/retina_lrs"
+Rows: 4 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): sample_name, path
+dbl (1): Index
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+[1] "DG-WT-hRGC"
+Rows: 33712568 Columns: 1
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): # Command line: /users/sparthib/.conda/envs/isoquant/bin/isoquant.p...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Warning message:
+One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat <- vroom(...)
+  problems(dat) 
+[1] "assignment type"
+< table of extent 0 >
+Warning message:
+Unknown or uninitialised column: `chr`. 
+Error in `separate_wider_delim()`:
+! Can't subset columns that don't exist.
+✖ Column `additional_info` doesn't exist.
+Backtrace:
+     ▆
+  1. ├─tidyr::separate_wider_delim(...)
+  2. │ └─tidyr:::map_unpack(...)
+  3. │   └─tidyselect::eval_select(...)
+  4. │     └─tidyselect:::eval_select_impl(...)
+  5. │       ├─tidyselect:::with_subscript_errors(...)
+  6. │       │ └─rlang::try_fetch(...)
+  7. │       │   └─base::withCallingHandlers(...)
+  8. │       └─tidyselect:::vars_select_eval(...)
+  9. │         └─tidyselect:::walk_data_tree(expr, data_mask, context_mask)
+ 10. │           └─tidyselect:::as_indices_sel_impl(...)
+ 11. │             └─tidyselect:::as_indices_impl(...)
+ 12. │               └─tidyselect:::chr_as_locations(x, vars, call = call, arg = arg)
+ 13. │                 └─vctrs::vec_as_location(...)
+ 14. └─vctrs (local) `<fn>`()
+ 15.   └─vctrs:::stop_subscript_oob(...)
+ 16.     └─vctrs:::stop_subscript(...)
+ 17.       └─rlang::abort(...)
+Execution halted
+**** Job ends ****
+2023-11-07 21:10:13
