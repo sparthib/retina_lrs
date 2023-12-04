@@ -4,7 +4,7 @@
 #SBATCH -p shared
 #SBATCH --mem=150G
 #SBATCH --cpus-per-task=20
-#SBATCH --job-name=salmon
+#SBATCH --job-name=index
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/index.txt
@@ -31,7 +31,7 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/$sample
 mkdir -p $OUTPUT_FOLDER
 
-salmon index -t $REFERENCE_FASTA -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index -k 100
+salmon index -t $REFERENCE_FASTA -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index -k 101
 
 conda deactivate
 
