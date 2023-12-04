@@ -33,7 +33,7 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/$sample
 mkdir -p $OUTPUT_FOLDER
 
-salmon quant -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index --libType A -r $FASTQ/$sample.fastq.gz  -o $OUTPUT_FOLDER --ont --validateMappings -p ${SLURM_CPUS_PER_TASK} 
+salmon quant -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index --libType A -r $FASTQ/$sample.fastq.gz  -o $OUTPUT_FOLDER --validateMappings -p ${SLURM_CPUS_PER_TASK} 
  
 conda deactivate
 
