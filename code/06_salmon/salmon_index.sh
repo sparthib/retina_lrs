@@ -31,7 +31,7 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/$sample
 mkdir -p $OUTPUT_FOLDER
 
-salmon index -t $REFERENCE_FASTA -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index -k 101
+salmon index -t $REFERENCE_FASTA -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index -k 31
 
 conda deactivate
 
