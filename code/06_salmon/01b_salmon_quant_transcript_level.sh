@@ -30,8 +30,8 @@ echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams_2
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_TRANSCRIPT_SEQs.fa   
 
-rm -r /dcs04/hicks/data/sparthib/casey/salmon_output
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_output/$sample
+
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/$sample
 mkdir -p $OUTPUT_FOLDER
 
 salmon quant -t $REFERENCE_FASTA --libType A -a $BAM_FOLDER/$sample.bam  -o $OUTPUT_FOLDER --ont --noErrorModel -p ${SLURM_CPUS_PER_TASK}  --gencode
