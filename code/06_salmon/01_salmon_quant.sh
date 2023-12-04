@@ -34,7 +34,7 @@ rm -r /dcs04/hicks/data/sparthib/casey/salmon_output
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_output/$sample
 mkdir -p $OUTPUT_FOLDER
 
-salmon quant -t $REFERENCE_FASTA --libType A -a reads.bam  -o $OUTPUT_FOLDER --ont --noErrorModel -p ${SLURM_CPUS_PER_TASK}  --gencode
+salmon quant -t $REFERENCE_FASTA --libType A -a $BAM_FOLDER/$sample.bam  -o $OUTPUT_FOLDER --ont --noErrorModel -p ${SLURM_CPUS_PER_TASK}  --gencode
  
 conda deactivate
 
