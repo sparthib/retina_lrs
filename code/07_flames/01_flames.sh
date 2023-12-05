@@ -34,7 +34,7 @@ OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/flames_output/$sample
 mkdir -p $OUTPUT_FOLDER
 
 
-~/flames/bulk_long_pipeline.py \
+~/flames/python/bulk_long_pipeline.py \
     --gff3 /dcs04/hicks/data/sparthib/GENCODE_GTF.gtf  \
     --genomefa $REFERENCE_FASTA \
     --outdir $OUTPUT_FOLDER \
