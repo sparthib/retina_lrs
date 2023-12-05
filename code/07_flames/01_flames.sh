@@ -29,14 +29,15 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa 
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz       
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/flames_output/$sample
+INPUT_FASTQ=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc/$sample.fastq.gz
 mkdir -p $OUTPUT_FOLDER
 
 
 ~/flames/python/bulk_long_pipeline.py \
-    --gff3 /dcs04/hicks/data/sparthib/GENCODE_GTF.gtf  \
-    --inbam $BAM_FOLDER/${sample}_sorted.bam \
+    -i $INPUT_FASTQ \
+    --gff3 /dcs04/hicks/data/sparthib/ENSEMBL_GTF.gtf.gz \
     --genomefa $REFERENCE_FASTA \
     --config_file /users/sparthib/retina_lrs/code/07_flames/config.json \
     --outdir $OUTPUT_FOLDER
