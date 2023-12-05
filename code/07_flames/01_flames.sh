@@ -4,11 +4,11 @@
 #SBATCH -p shared
 #SBATCH --mem=150G
 #SBATCH --cpus-per-task=20
-#SBATCH --job-name=salmon
+#SBATCH --job-name=flames
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/salmon.%a.txt
-#SBATCH -e logs/salmon.%a.txt
+#SBATCH -o logs/flames.%a.txt
+#SBATCH -e logs/flames.%a.txt
 #SBATCH --array=1-4
 
 #try running for all chromosomes
@@ -40,8 +40,6 @@ mkdir -p $OUTPUT_FOLDER
     --outdir $OUTPUT_FOLDER \
     --inbam $BAM_FOLDER/${sample}_sorted.bam
 
-# output data is in FLAMES_output
-ls FLAMES_output
 conda deactivate
 
 echo "**** Job ends ****"
