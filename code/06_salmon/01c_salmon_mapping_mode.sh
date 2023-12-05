@@ -3,7 +3,8 @@
 #SBATCH -p shared
 #SBATCH -p shared
 #SBATCH --mem=150G
-#SBATCH --cpus-per-task=20
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=8
 #SBATCH --job-name=salmon
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
