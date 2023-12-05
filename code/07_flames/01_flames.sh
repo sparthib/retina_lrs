@@ -2,7 +2,7 @@
 
 #SBATCH -p shared
 #SBATCH -p shared
-#SBATCH --mem=150G
+#SBATCH --mem=200G
 #SBATCH --cpus-per-task=20
 #SBATCH --job-name=flames
 #SBATCH --mail-user=sparthi1@jhu.edu
@@ -29,7 +29,7 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz       
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBL_DNA_PRIMARY.fa.gz 
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/flames_output/$sample
 INPUT_FASTQ=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc/$sample
 mkdir -p $OUTPUT_FOLDER
