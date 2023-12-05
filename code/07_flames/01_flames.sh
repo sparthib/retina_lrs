@@ -31,7 +31,7 @@ echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz       
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/flames_output/$sample
-INPUT_FASTQ=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc/$sample.fastq.gz
+INPUT_FASTQ=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc/$sample
 mkdir -p $OUTPUT_FOLDER
 
 
