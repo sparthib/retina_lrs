@@ -36,10 +36,11 @@ mkdir -p $OUTPUT_FOLDER
 
 ~/flames/python/bulk_long_pipeline.py \
     --gff3 /dcs04/hicks/data/sparthib/GENCODE_GTF.gtf  \
-    --config_file /users/sparthib/retina_lrs/code/07_flames/config.json \
+    --inbam $BAM_FOLDER/${sample}_sorted.bam \
     --genomefa $REFERENCE_FASTA \
-    --outdir $OUTPUT_FOLDER \
-    --inbam $BAM_FOLDER/${sample}_sorted.bam
+    --config_file /users/sparthib/retina_lrs/code/07_flames/config.json \
+    --outdir $OUTPUT_FOLDER
+   
 
 conda deactivate
 
