@@ -9,7 +9,7 @@
 #SBATCH -o logs/flames_realign.1.txt
 #SBATCH -e logs/flames_realign.1.txt
 # SBATCH --partition=gpu
-# SBATCH --gres=gpu:titanv:1
+# SBATCH --gres=gpu:tesa100:2
 #SBATCH --array=1
 
 
