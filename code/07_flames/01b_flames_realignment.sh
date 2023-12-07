@@ -29,7 +29,7 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=1 '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBL_DNA_PRIMARY.fa.gz 
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBL_DNA_PRIMARY.fa 
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/flames_output/$sample
 INPUT_FASTQ=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc/$sample
 mkdir -p $OUTPUT_FOLDER
