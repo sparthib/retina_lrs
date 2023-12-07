@@ -3,12 +3,13 @@
 #SBATCH -p shared
 #SBATCH -p shared
 #SBATCH --mem=200G
-#SBATCH --cpus-per-task=20
 #SBATCH --job-name=flames_realign
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flames_realign.1.txt
 #SBATCH -e logs/flames_realign.1.txt
+# SBATCH --partition=gpu
+# SBATCH --gres=gpu:titanv:1
 #SBATCH --array=1
 
 
