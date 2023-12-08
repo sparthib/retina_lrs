@@ -10,7 +10,7 @@
 #SBATCH -o logs/flames_realign.1.txt
 #SBATCH -e logs/flames_realign.1.txt
 #SBATCH --partition=gpu
-#SBATCH --gpus=4
+#SBATCH --gpus=3
 #SBATCH --array=1
 
 
