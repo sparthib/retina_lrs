@@ -3,14 +3,14 @@
 #SBATCH -p shared
 #SBATCH -p shared
 #SBATCH --mem=200G
-#SBATCH --cpus-per-gpu=20
+#SBATCH --cpus-per-gpu=25
 #SBATCH --job-name=flames_realign
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flames_realign.1.txt
 #SBATCH -e logs/flames_realign.1.txt
 #SBATCH --partition=gpu
-#SBATCH --gpus=3
+#SBATCH --gpus=2
 #SBATCH --array=1
 
 
