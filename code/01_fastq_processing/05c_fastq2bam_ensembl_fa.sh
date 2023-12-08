@@ -1,16 +1,20 @@
 #!/bin/bash
 
+#!/bin/bash
+
 #SBATCH -p shared
-#SBATCH --nodes=1
-#SBATCH --mem=250G
-#SBATCH -c 25
-#SBATCH --job-name=fastq2bam
+#SBATCH -p shared
+#SBATCH --mem=200G
+#SBATCH --cpus-per-gpu=20
+#SBATCH --job-name=flames_realign
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/bam_stats_3/fastq2bam.1.txt
-#SBATCH -e logs/bam_stats_3/fastq2bam.1.txt
+#SBATCH -o logs/bam_stats_3.%a.txt
+#SBATCH -e logs/bam_stats_3.%a.txt
+#SBATCH --partition=gpu
+#SBATCH --gpus=2
+#SBATCH --array=1-4
 
-#first try with one sample 
 
 ### trying using a different reference fasta file 
 echo "**** Job starts ****"
@@ -20,6 +24,7 @@ echo "User: ${USER}"
 echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
+echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 LOGS_FOLDER=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/bam_stats_3
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
