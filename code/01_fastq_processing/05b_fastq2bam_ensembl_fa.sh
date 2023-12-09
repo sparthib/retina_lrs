@@ -34,13 +34,10 @@ sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 SAM_FOLDER=/dcs04/hicks/data/sparthib/casey/sams_3
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams_3
 
-mkdir -p $SAM_FOLDER
-mkdir -p $BAM_FOLDER
-
 cd ~/minimap2
 
 #remove older sam version 
-./minimap2 -ax map-ont -N 50 --secondary=no -t ${SLURM_CPUS_PER_TASK} $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
+./minimap2 -ax map-ont -N 50 --secondary=no -t 40 $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
 ml load samtools
 
