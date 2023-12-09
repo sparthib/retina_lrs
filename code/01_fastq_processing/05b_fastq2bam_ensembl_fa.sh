@@ -30,7 +30,7 @@ LOGS_FOLDER=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/bam_stats_3
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 INPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa 
-sample=$(awk -v Index=1 '$1==Index {print $2}' $CONFIG)
+sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 SAM_FOLDER=/dcs04/hicks/data/sparthib/casey/sams_3
 BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams_3
 
