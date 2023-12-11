@@ -27,14 +27,14 @@ source activate salmon
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
-BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams_2
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_TRANSCRIPT_SEQs.fa   
+BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams_3
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa 
 
 
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/$sample
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/ensembl_fa/$sample
 mkdir -p $OUTPUT_FOLDER
 
-salmon quant -t $REFERENCE_FASTA --libType A -a $BAM_FOLDER/$sample.bam  -o $OUTPUT_FOLDER --ont --noErrorModel -p ${SLURM_CPUS_PER_TASK}  --gencode
+salmon quant -t $REFERENCE_FASTA --libType U -a $BAM_FOLDER/$sample.bam  -o $OUTPUT_FOLDER --ont --noErrorModel -p 10
  
 conda deactivate
 
