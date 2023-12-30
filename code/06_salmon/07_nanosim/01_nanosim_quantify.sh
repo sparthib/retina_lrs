@@ -3,7 +3,6 @@
 #SBATCH -p shared
 #SBATCH -p shared
 #SBATCH --mem=150G
-#SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
 #SBATCH --job-name=salmon
 #SBATCH --mail-user=sparthi1@jhu.edu
@@ -23,21 +22,23 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
-source activate salmon
+source activate nanosim
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
-FASTQ=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz  
+BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams_2
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_TRANSCRIPT_SEQs.fa   
 
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/$sample
+
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/nanosim_quant_output/$sample
 mkdir -p $OUTPUT_FOLDER
 
-salmon quant -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index \
---libType A -r $FASTQ/$sample.fastq.gz  \
---validateMappings -p ${SLURM_CPUS_PER_TASK} \
---dumpEq --useEM -o $OUTPUT_FOLDER 
+read_analysis.py quantify  -e trans -rt $REFERENCE_FASTA  -i READ [-rt REF_T] -ta $/dcs04/hicks/data/sparthib/casey/bams_2/${sample}_sorted.bam \
+                                  -o $OUTPUT_FOLDER -t ${SLURM_CPUS_PER_TASK} --normalize
+                                 
+                                 
+salmon quant -t $REFERENCE_FASTA --libType A -a $BAM_FOLDER/$sample.bam  -o $OUTPUT_FOLDER --ont --noErrorModel -p ${SLURM_CPUS_PER_TASK}  --gencode
  
 conda deactivate
 

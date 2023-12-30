@@ -41,7 +41,7 @@ mkdir -p $OUTPUT_FOLDER
     --inbam $OUTPUT_FOLDER/align2genome.bam \
     --gff3 /dcs04/hicks/data/sparthib/ENSEMBL_GTF.gtf \
     --genomefa $REFERENCE_FASTA \
-    --config_file /users/sparthib/retina_lrs/code/07_flames/config_step2.json \
+    --config_file /users/sparthib/retina_lrs/code/07_flames/config_step2_quantification.json \
     --outdir $OUTPUT_FOLDER
    
 

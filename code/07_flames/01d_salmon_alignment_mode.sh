@@ -23,6 +23,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
+
 source activate salmon
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
@@ -31,12 +32,10 @@ echo "${sample}"
 FASTQ=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz  
 
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/$sample
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level_01d/$sample
 mkdir -p $OUTPUT_FOLDER
 
-salmon quant -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index \
---libType A -r $FASTQ/$sample.fastq.gz  \
---validateMappings -p ${SLURM_CPUS_PER_TASK} \
+salmon quant -t transcripts.fa -l U -a aln.bam -o salmon_quant \
 --dumpEq --useEM -o $OUTPUT_FOLDER 
  
 conda deactivate
