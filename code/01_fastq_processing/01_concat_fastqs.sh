@@ -10,7 +10,6 @@
 #SBATCH -e logs/concat_fqs.%a.txt
 #SBATCH --array=1-4
 
-
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
 echo "**** JHPCE info ****"
@@ -23,8 +22,8 @@ echo "Node name: ${SLURMD_NODENAME}"
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 INPUT_FOLDER=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/fastqs
-mkdir -p $OUTPUT_FOLDER
+echo $sample
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs
 
 cd $INPUT_FOLDER
 cat *.fastq.gz > $OUTPUT_FOLDER/${sample}.fastq.gz
