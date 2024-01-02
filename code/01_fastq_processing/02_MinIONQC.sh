@@ -7,8 +7,8 @@
 #SBATCH --job-name=minIONQC
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/minIONQC.%a.txt
-#SBATCH -e logs/minIONQC.%a.txt
+#SBATCH -o logs/02_minIONQC/minIONQC.%a.txt
+#SBATCH -e logs/02_minIONQC/minIONQC.%a.txt
 #SBATCH --array=1-4
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
@@ -21,7 +21,7 @@ mkdir -p $minIONQC_OUTPUT
 
 module load conda_R/4.3
 
-Rscript 05_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
+Rscript 02_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
 
 
 echo "**** Job ends ****"
