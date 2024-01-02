@@ -2,8 +2,8 @@
 
 #SBATCH -p shared
 #SBATCH --nodes=1
-#SBATCH --mem=250G
-#SBATCH -c 10
+#SBATCH --mem=20G
+#SBATCH -c 5
 #SBATCH --job-name=minIONQC
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
