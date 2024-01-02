@@ -24,7 +24,6 @@ source activate nanofilt
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-echo "$sample"
 input_fastq=/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/${sample}.fastq.gz
 fastq_qc_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/${sample}.fastq.gz
 guppy_summary_file=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $4}' $CONFIG)
