@@ -1,0 +1,10 @@
+**** Job starts ****
+2023-12-30 12:29:46
+**** JHPCE info ****
+User: sparthib
+Job id: 1360066
+Job name: concat_fqs
+Node name: compute-106
+EP1-WT_ROs_D45
+**** Job ends ****
+2023-12-30 13:01:12

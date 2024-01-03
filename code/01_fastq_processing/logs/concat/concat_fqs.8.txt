@@ -1,10 +1,10 @@
 **** Job starts ****
-2023-10-24 21:29:15
+2023-12-30 12:29:47
 **** JHPCE info ****
 User: sparthib
-Job id: 578666
+Job id: 1360060
 Job name: concat_fqs
-Node name: compute-097
-Task id: 3
+Node name: compute-093
+YZ-15T_hRCG
 **** Job ends ****
-2023-10-24 22:11:18
+2023-12-30 13:02:31
