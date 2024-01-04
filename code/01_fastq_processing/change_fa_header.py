@@ -9,6 +9,6 @@ with open('/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v
             updated_lines.append(line)
 
 # Write the updated content back to the file
-with open('/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa, 'w') as file:
+with open('/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa', 'w') as file:
     file.writelines(updated_lines)
 
