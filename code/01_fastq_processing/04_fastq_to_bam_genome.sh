@@ -1,19 +1,15 @@
 #!/bin/bash
 
-#!/bin/bash
-
 #SBATCH -p shared
 #SBATCH --mem=200G
 #SBATCH -c 25
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/bam_stats_transcriptome_gencode/minimap_long.%a.txt
-#SBATCH -e logs/bam_stats_transcriptome_gencode/minimap_long.%a.txt
+#SBATCH -o logs/bam_stats_genome_gencode/minimap_log.%a.txt
+#SBATCH -e logs/bam_stats_genome_gencode/minimap_log.%a.txt
 #SBATCH --array=1-8
 
-
-### trying using a different reference fasta file 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
 echo "**** JHPCE info ****"
@@ -23,19 +19,28 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
-LOGS_FOLDER=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/bam_stats_transcriptome_gencode
+LOGS_FOLDER=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/bam_stats_genome_gencode
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 INPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
-SAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/04_sams/transcriptome/GENCODE
-BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE
+SAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/04_sams/genome/GENCODE
+BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE
 
+# mkdir -p $SAM_FOLDER
+# mkdir -p $BAM_FOLDER
+# 
 cd ~/minimap2
 
 #remove older sam version 
-./minimap2 -ax map-ont -N 50 --secondary=no -t 40 $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
+rm ${SAM_FOLDER}/${sample}.sam
+./minimap2 -ax map-ont -N 50 --secondary=no -t ${SLURM_CPUS_PER_TASK} $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
+
+
+# remove older bam version
+rm ${BAM_FOLDER}/${sample}_sorted.bam
+rm ${BAM_FOLDER}/${sample}_sorted.bam.bai
 
 ml load samtools
 
@@ -68,7 +73,6 @@ echo "raw depth output" >> ${sample}_depth_stats.txt
 samtools depth -a ${BAM_FOLDER}  >> ${sample}_depth_stats.txt
 
 echo "finished computing depth stats"
-
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
