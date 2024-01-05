@@ -5,7 +5,7 @@
 #SBATCH -p shared
 #SBATCH -p shared
 #SBATCH --mem=200G
-#SBATCH --cpus-per-gpu=20
+#SBATCH -c 20
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
