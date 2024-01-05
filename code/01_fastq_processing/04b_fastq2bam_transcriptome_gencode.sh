@@ -11,8 +11,6 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bam_stats_transcriptome_gencode/minimap_long.%a.txt
 #SBATCH -e logs/bam_stats_transcriptome_gencode/minimap_long.%a.txt
-#SBATCH --partition=gpu
-#SBATCH --gpus=2
 #SBATCH --array=1-8
 
 
