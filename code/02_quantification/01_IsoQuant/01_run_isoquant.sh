@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/isoquant.%a.txt
 #SBATCH -e logs/isoquant.%a.txt
-#SBATCH --array=1-4
+#SBATCH --array=1-8
 
 #try running for all chromosomes
 
@@ -26,20 +26,20 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 source activate isoquant 
 cd /users/sparthib/IsoQuant/
 
+
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
-BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
-REFERENCE_GTF=/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf.gz 
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/GENCODE_FASTA.fa.gz 
+BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE
+REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa
 
 
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/IsoQuant_output/${sample}
-rm -r $OUTPUT_FOLDER
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/${sample}
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py --reference $REFERENCE_FASTA --data_type ont --genedb $REFERENCE_GTF --bam ${BAM_FOLDER}/${sample}_sorted.bam \
-  --output $OUTPUT_FOLDER --count_exons --clean_start -t ${SLURM_CPUS_PER_TASK} --complete_genedb
+  --output $OUTPUT_FOLDER --count_exons -t ${SLURM_CPUS_PER_TASK} --complete_genedb
   
   
 conda deactivate
