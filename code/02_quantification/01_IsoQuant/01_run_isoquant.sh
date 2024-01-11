@@ -32,14 +32,14 @@ sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz
 
 
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/${sample}
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py --reference $REFERENCE_FASTA --data_type ont --genedb $REFERENCE_GTF --bam ${BAM_FOLDER}/${sample}_sorted.bam \
-  --output $OUTPUT_FOLDER --count_exons -t ${SLURM_CPUS_PER_TASK} --complete_genedb
+  --output $OUTPUT_FOLDER --clean_start --count_exons -t ${SLURM_CPUS_PER_TASK} --complete_genedb
   
   
 conda deactivate
