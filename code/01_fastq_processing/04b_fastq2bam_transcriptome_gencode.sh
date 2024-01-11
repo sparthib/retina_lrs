@@ -4,12 +4,12 @@
 
 #SBATCH -p shared
 #SBATCH --mem=200G
-#SBATCH -c 25
+#SBATCH -c 20
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/bam_stats_transcriptome_gencode/minimap_long.%a.txt
-#SBATCH -e logs/bam_stats_transcriptome_gencode/minimap_long.%a.txt
+#SBATCH -o logs/bam_stats_transcriptome_gencode/minimap_log.%a.txt
+#SBATCH -e logs/bam_stats_transcriptome_gencode/minimap_log.%a.txt
 #SBATCH --array=1-8
 
 
