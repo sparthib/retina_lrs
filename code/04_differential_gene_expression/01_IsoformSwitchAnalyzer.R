@@ -1,39 +1,44 @@
 library(IsoformSwitchAnalyzeR)
 
 
-salmonQuant <- importIsoformExpression(parentDir = "/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/ensembl_fa/",
+salmonQuant <- importIsoformExpression(parentDir = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/alignment_mode",
                                        addIsofomIdAsColumn = TRUE)
 
 head(salmonQuant$abundance, 2)
 head(salmonQuant$counts, 2)
 
+# nrow = 252669
 
 # Subset the data frame to remove rows where subset columns are all 0
 
-# columns_to_check <- c("DG-WT-hRGC", "EP1-BRN3B-RO",  "H9-BRN3B-RO" , "hRGC" )
-# zero_rows_counts <- rowSums(salmonQuant$counts[columns_to_check] == 0) == length(columns_to_check)
-# zero_rows_abundance <- rowSums(salmonQuant$abundance[columns_to_check] == 0) == length(columns_to_check)
-# 
-# salmon_counts_filtered <- salmonQuant$counts[!zero_rows_counts, ]
-# salmon_abundance_filtered <- salmonQuant$abundance[!zero_rows_abundance, ]
+columns_to_check <- c("DG-WT-hRGC", "EP1-BRN3B-RO", "EP1-WT_ROs_D45" , "H9-BRN3B-RO",
+                      "H9-CRX_ROs_D45","hRGC","YZ-15T_hRGC","YZ-3T_hRGC")
+zero_rows_counts <- rowSums(salmonQuant$counts[columns_to_check] == 0) == length(columns_to_check)
+zero_rows_abundance <- rowSums(salmonQuant$abundance[columns_to_check] == 0) == length(columns_to_check)
+
+salmon_counts_filtered <- salmonQuant$counts[!zero_rows_counts, ]
+salmon_abundance_filtered <- salmonQuant$abundance[!zero_rows_abundance, ]
+
+# 228128
 
 #design matrix
-myDesign  <- data.frame(sampleID = c("DG-WT-hRGC", "EP1-BRN3B-RO", "H9-BRN3B-RO" , "hRGC"),
-                        condition = c("RGC", "RO","RO", "RGC"),
+myDesign  <- data.frame(sampleID = c("DG-WT-hRGC", "EP1-BRN3B-RO", "EP1-WT_ROs_D45" , "H9-BRN3B-RO",
+                                     "H9-CRX_ROs_D45","hRGC","YZ-15T_hRGC","YZ-3T_hRGC"),
+                        condition = c("RGC", "RO","RO", "RO", 
+                                      "RO", "RGC", "RGC","RGC"),
                         stringsAsFactors = FALSE)
 
 aSwitchList <- importRdata(isoformCountMatrix   = salmonQuant$counts,
                            isoformRepExpression = salmonQuant$abundance,
                            designMatrix         = myDesign,
-                           isoformExonAnnoation = "/dcs04/hicks/data/sparthib/ENSEMBL_HAPLOTYPE.gtf",
-                           isoformNtFasta       = "/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa",
+                           isoformExonAnnoation = "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz",
+                           isoformNtFasta       = "/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa",
                            removeNonConvensionalChr = TRUE,
                            ignoreAfterBar = TRUE,
                            ignoreAfterPeriod = TRUE,
-                           showProgress = FALSE )
+                           showProgress = TRUE)
 
-NF1_SwitchList <- aSwitchList[[1]] |> dplyr::filter(gene_id == "NF1")
-head(NF1_SwitchList)
+
 
 ##### sva error #####
 # 18797 ( 10.03%) isoforms were removed since they were not expressed in any samples.
@@ -95,7 +100,7 @@ exampleSwitchListFiltered <- preFilter(
 NF1_SwitchList_post_filter <- exampleSwitchListFiltered[[1]] |> dplyr::filter(gene_id == "NF1")
 
 
-write.csv(NF1_SwitchList_post_filter, "/users/sparthib/retina_lrs/processed_data/dtu/NF1_pre_DEXSeq.csv")
+write.csv(NF1_SwitchList_post_filter, "/users/sparthib/retina_lrs/processed_data/dtu/NF1_pre_DEXSeq_Jan13.csv")
 ###### why DEXSeq #######
 # DEXSeq : Using DEXSeq (state-of-the art) to test for differential isoform usage. 
 # DEXSeq was originally designed for testing for differential exon usage but have 
@@ -131,20 +136,6 @@ exampleSwitchListAnalyzed[[1]]
 
 #write.csv(exampleSwitchListAnalyzed[[1]], "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/SwitchListAnalyzed_fdr_0.05_first_4.csv")
 
-exampleSwitchListAnalyzed_fdr_0.1 <- isoformSwitchTestDEXSeq(
-  switchAnalyzeRlist = exampleSwitchListFiltered,
-  reduceToSwitchingGenes=TRUE,
-  alpha = 0.1) #FDR cutoff = 0.1
-
-write.csv(exampleSwitchListAnalyzed_fdr_0.1[[1]], "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/SwitchListAnalyzed_fdr_0.1_first_4.csv")
-# nrow(exampleSwitchListAnalyzed_fdr_0.1[[1]])
-# [1] 6381
-
-
-exampleSwitchListAnalyzed_fdr_1 <- isoformSwitchTestDEXSeq(
-  switchAnalyzeRlist = exampleSwitchListFiltered,
-  reduceToSwitchingGenes=TRUE,
-  alpha = 1) #get FDR cutoff for all isoforms
 
 
 
@@ -193,12 +184,12 @@ exampleSwitchListAnalyzed_fdr_1 <- isoformSwitchTestDEXSeq(
 
 
 
-######## Plot TOP 20 DTU genes ########
+######## Plot TOP 50 DTU genes ########
 extractSwitchSummary(exampleSwitchListAnalyzed)
 
-top_genes <- extractTopSwitches(exampleSwitchListAnalyzed, n=20)$gene_name
+top_genes <- extractTopSwitches(exampleSwitchListAnalyzed, n=50)$gene_name
 
-pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/switch.pdf")
+pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/switch_Jan13.pdf")
 
 # /users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR
 
@@ -217,7 +208,7 @@ dev.off()
 
 
 ###NF1 plot 
-pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/NF1_switch.pdf")
+pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/NF1_switch_Jan13.pdf")
 NF1_plot <- switchPlot(
   exampleSwitchListFiltered,
   gene="NF1",
@@ -245,74 +236,5 @@ geneCountMatrix <- extractGeneExpression(
   extractCounts = TRUE # set to FALSE for abundances
 )
 
-write.csv(geneCountMatrix,"/users/sparthib/retina_lrs/processed_data/de/gene_counts_matrix.csv")
+write.csv(geneCountMatrix,"/users/sparthib/retina_lrs/processed_data/de/gene_counts_matrix_Jan13.csv")
 
-
-library(edgeR)
-group <- c("RGC","RO","RO","RGC")
-y <- DGEList(counts=geneCountMatrix[,2:6],
-             group= factor(group) )
-
-y$samples
-####filtering y
-head(y$counts)
-head(cpm(y))
-apply(y$counts, 2, sum). #total gene count per sample
-
-# DG-WT-hRGC EP1-BRN3B-RO  H9-BRN3B-RO         hRGC 
-# 14037916     14306372     13396847     18937403 
-#dim(y)
-# 33091     4
-keep <- rowSums(cpm(y)>10) >= 2
-#only keeping a gene if it has a cpm of 10 or greater for at least two samples.
-# https://web.stanford.edu/class/bios221/labs/rnaseq/lab_4_rnaseq.html
-
-
-y_new <- y[keep,]
-dim(y_new)
-
-y_new$samples$lib.size <- colSums(y_new$counts)
-y_new$samples
-
-y_new <- calcNormFactors(y_new)
-
-pdf("/users/sparthib/retina_lrs/plots/de/edgeR_plotmds_first4.pdf")
-plotMDS(y_new, method="bcv", col=as.numeric(y_new$samples$group))
-legend("bottomleft", as.character(unique(y_new$samples$group)), col=1:3, pch=20)
-dev.off()
-
-
-####fit GLM estimates of dispersion 
-
-design.mat <- model.matrix(~ 0 + y_new$samples$group)
-colnames(design.mat) <- levels(y_new$samples$group)
-y2 <- estimateGLMCommonDisp(y_new,design.mat)
-y2 <- estimateGLMTrendedDisp(y2,design.mat, method="power")
-# You can change method to "auto", "bin.spline", "power", "spline", "bin.loess".
-# The default is "auto" which chooses "bin.spline" when > 200 tags and "power" otherwise.
-y2 <- estimateGLMTagwiseDisp(y2,design.mat)
-
-pdf("/users/sparthib/retina_lrs/plots/de/edgeR_plotBCV_first4.pdf")
-plotBCV(y2)
-dev.off()
-
-
-et <- exactTest(y2)
-topTags(et, n = 10 )
-
-test <- as.data.frame(et)
-
-write.table(test, file='/users/sparthib/retina_lrs/processed_data/de/DE_edgeR_cpm_filter_10_glm_dispersion.tsv', quote=FALSE, sep='\t')
-
-
-test[test$gene_name == "BSG",]
-
-
-DIR=/dcs04/hicks/data/sparthib/casey/bams/DG-WT-hRGC
-# 
-# coolbox add XAxis - \
-# add BAMCov $DIR/DG-WT-hRGC_sorted.bam - \
-# add Title "bam" - \
-# goto "chr19:562360-572228" - \
-# plot /users/sparthib/retina_lrs/plots/coverage/tmp/test_coolbox_BSG.jpg
-# 
