@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/concat/concat_fqs.%a.txt
 #SBATCH -e logs/concat/concat_fqs.%a.txt
-#SBATCH --array=1-8
+#SBATCH --array=9-12
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"

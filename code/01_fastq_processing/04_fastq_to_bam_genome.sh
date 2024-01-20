@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bam_stats_genome_gencode/minimap_log.%a.txt
 #SBATCH -e logs/bam_stats_genome_gencode/minimap_log.%a.txt
-#SBATCH --array=1-8
+#SBATCH --array=9-12
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
