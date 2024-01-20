@@ -3,7 +3,7 @@
 #SBATCH -p shared
 #SBATCH --mem=100G
 #SBATCH -c 20
-#SBATCH --job-name=fastq2bam
+#SBATCH --job-name=split_bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bam_stats_genome_gencode/split_bams/split.%a.txt
