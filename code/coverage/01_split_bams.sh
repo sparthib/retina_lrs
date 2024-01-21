@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=100G
-#SBATCH -c 20
+#SBATCH --mem=50G
+#SBATCH -c 10
 #SBATCH --job-name=split_bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -29,7 +29,7 @@ echo "$sample"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE
 INPUT_BAM=$BAM_FOLDER/${sample}_sorted.bam
 OUTPUT_BAMS=$BAM_FOLDER/${sample}
-mkdir -p OUTPUT_BAMS
+mkdir -p $OUTPUT_BAMS
 
 
 ml load samtools
