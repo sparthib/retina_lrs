@@ -63,7 +63,7 @@ declare -a chr_List=(
                 )
 for chr_num in ${chr_List[@]}
   do
-    samtools view $INPUT_BAM $chr_num -b > $OUTPUT_BAMS/$sample/${chr_num}.bam
+    samtools view $INPUT_BAM $chr_num -b > $OUTPUT_BAMS/${chr_num}.bam
     
     echo "flagstat" > ${LOGS_FOLDER}/${sample}_${chr_num}_bam_flagstat.txt
     samtools flagstat $OUTPUT_BAMS/$sample/${chr_num}.bam >> ${LOGS_FOLDER}/${sample}_${chr_num}_bam_flagstat.txt
