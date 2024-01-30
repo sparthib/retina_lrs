@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/salmon.%a.txt
 #SBATCH -e logs/salmon.%a.txt
-#SBATCH --array=1-8
+#SBATCH --array=9-12
 
 #try running for all chromosomes
 
