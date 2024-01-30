@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/02_minIONQC/minIONQC.%a.txt
 #SBATCH -e logs/02_minIONQC/minIONQC.%a.txt
-#SBATCH --array=9-12
+#SBATCH --array=1-12
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
