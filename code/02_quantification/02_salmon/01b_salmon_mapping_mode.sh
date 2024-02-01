@@ -2,15 +2,15 @@
 
 #SBATCH -p shared
 #SBATCH -p shared
-#SBATCH --mem=150G
+#SBATCH --mem=100G
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
 #SBATCH --job-name=salmon
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/salmon.%a.txt
-#SBATCH -e logs/salmon.%a.txt
-#SBATCH --array=1-4
+#SBATCH -o logs/mapping.%a.txt
+#SBATCH -e logs/mapping.%a.txt
+#SBATCH --array=1-12
 
 #try running for all chromosomes
 
@@ -28,13 +28,13 @@ source activate salmon
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
-FASTQ=/dcs04/hicks/data/sparthib/casey/fastqs_post_qc
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/ENSEMBLE_CDNA.fa.gz  
-
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/casey/salmon_outputs_transcript_level/$sample
+FASTQ=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs
+salmon_index=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/transcripts/index
+gentrome_folder=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/gentrome/
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/mapping_mode/$sample
 mkdir -p $OUTPUT_FOLDER
 
-salmon quant -i /dcs04/hicks/data/sparthib/ENSEMBLE_CDNA_salmon_transcript_index \
+salmon quant -i $salmon_index \
 --libType A -r $FASTQ/$sample.fastq.gz  \
 --validateMappings -p ${SLURM_CPUS_PER_TASK} \
 --dumpEq --useEM -o $OUTPUT_FOLDER 

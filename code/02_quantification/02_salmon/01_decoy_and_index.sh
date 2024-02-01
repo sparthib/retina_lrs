@@ -40,7 +40,7 @@ salmon_index=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/tran
 salmon index -t $gentrome_folder/gentrome.fa -d $decoy_location/decoys.txt \
           -i $salmon_index  -p 12  --gencode
           
-conda deactivate salmon
+conda deactivate 
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
