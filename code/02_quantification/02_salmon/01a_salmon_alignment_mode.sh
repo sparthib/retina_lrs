@@ -2,14 +2,14 @@
 
 #SBATCH -p shared
 #SBATCH -p shared
-#SBATCH --mem=100G
+#SBATCH --mem=10G
 #SBATCH --cpus-per-task=10
 #SBATCH --job-name=salmon
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/salmon.%a.txt
 #SBATCH -e logs/salmon.%a.txt
-#SBATCH --array=9-12
+#SBATCH --array=1-12
 
 #try running for all chromosomes
 
@@ -32,9 +32,10 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/genc
 
 
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/alignment_mode/$sample
+rm -r $OUTPUT_FOLDER
 mkdir -p $OUTPUT_FOLDER
 
-salmon quant -t $REFERENCE_FASTA --libType U -a $BAM_FOLDER/$sample.bam  -o $OUTPUT_FOLDER --ont --noErrorModel -p 10
+salmon quant -t $REFERENCE_FASTA --libType U -a $BAM_FOLDER/$sample.bam  -o $OUTPUT_FOLDER --ont -p 10
  
 conda deactivate
 
