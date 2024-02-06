@@ -11,7 +11,6 @@
 #SBATCH -e logs/salmon.%a.txt
 #SBATCH --array=1-12
 
-#try running for all chromosomes
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"

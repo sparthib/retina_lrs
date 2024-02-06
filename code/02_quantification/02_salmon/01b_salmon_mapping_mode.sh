@@ -2,7 +2,7 @@
 
 #SBATCH -p shared
 #SBATCH -p shared
-#SBATCH --mem=100G
+#SBATCH --mem=20G
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
 #SBATCH --job-name=salmon

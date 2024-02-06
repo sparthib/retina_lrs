@@ -231,6 +231,7 @@ switch_vs_degs_RGC_vs_ROD209 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(condition_1 == "RGC" & condition_2 == "RO_D209") |>
   dplyr::filter(abs(dIF)> 0.5 & abs(gene_log2_fold_change) < 2)
 
+
 write_tsv(switch_vs_degs_RGC_vs_ROD209 ,
           file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
 
@@ -240,7 +241,7 @@ switch_vs_degs_RGC_vs_ROD45 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(condition_1 == "RGC" & condition_2 == "RO_D45") |>
   dplyr::filter(abs(dIF)> 0.5 & abs(gene_log2_fold_change) < 2)
 write_tsv(switch_vs_degs_RGC_vs_ROD45,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/switch_vs_degs_RGC_vs_ROD45.tsv")
 
 
 
@@ -248,23 +249,23 @@ switch_vs_degs_ROD209_vs_ROD45 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(condition_1 == "RO_D209" & condition_2 == "RO_D45") |>
   dplyr::filter(abs(dIF)> 0.5 & abs(gene_log2_fold_change) < 2)
 write_tsv(switch_vs_degs_ROD209_vs_ROD45,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/switch_vs_degs_ROD209_vs_ROD45.tsv")
 
 
 
 ########## MICROEXONS ###############
 
 
-exons <- as.data.frame(DEXSeq_SwitchList$exons)
-
-micro_exons <- exons |> dplyr::filter(width <= 27)
-
-nrow(micro_exons)
-# 1122
-
-Switched_genes <- DEXSeq_SwitchList$isoformFeatures |> 
-  dplyr::filter(isoform_switch_q_value < 0.05 & color=abs(dIF) > 0.1 )
-
+# exons <- as.data.frame(DEXSeq_SwitchList$exons)
+# 
+# micro_exons <- exons |> dplyr::filter(width <= 27)
+# 
+# nrow(micro_exons)
+# # 1122
+# 
+# Switched_genes <- DEXSeq_SwitchList$isoformFeatures |> 
+#   dplyr::filter(isoform_switch_q_value < 0.05 & color=abs(dIF) > 0.1 )
+# 
 
 
 
@@ -273,7 +274,7 @@ Switched_genes <- DEXSeq_SwitchList$isoformFeatures |>
 zero_qvals <- DEXSeq_SwitchList$isoformFeatures |> 
   dplyr::filter(isoform_switch_q_value == 0 )
 
-pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/qval_hist.pdf")
+pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/alignment_mode/qval_hist.pdf")
 p <- hist(DEXSeq_SwitchList$isoformFeatures$isoform_switch_q_value,
           col = "skyblue", main = "Histogram of Q Values",
           breaks = 100, xlab = "Q Vals")
