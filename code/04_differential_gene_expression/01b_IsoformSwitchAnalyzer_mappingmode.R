@@ -1,8 +1,15 @@
 library(IsoformSwitchAnalyzeR)
 library(tximeta)
 library(readr)
-library(sessioninfo)
 
+# 
+# salmonDf <- prepareSalmonFileDataFrame("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/mapping_mode")
+# 
+# salmonDf$condition <- c("RGC", "RO_D209", "RO_D45", "RO_D209" ,"RO_D45",
+#                         "RGC", "RGC", "RGC" )
+# 
+# # salmonDf
+# 
 # # names condition
 # # 1     DG-WT-hRGC       RGC
 # # 2   EP1-BRN3B-RO   RO_D209
@@ -14,7 +21,7 @@ library(sessioninfo)
 # # 8           hRGC       RGC
 
 
-salmonQuant <- importIsoformExpression(parentDir = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/alignment_mode",
+salmonQuant <- importIsoformExpression(parentDir = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/mapping_mode",
                                        addIsofomIdAsColumn = TRUE)
 
 # Step 3 of 3: Normalizing abundance values (not counts) via edgeR...
@@ -32,14 +39,14 @@ myDesign  <- data.frame(sampleID = c("DG-WT-hRGC", "EP1-BRN3B-RO", "EP1-WT_ROs_D
 
 
 SwitchList <- importRdata(isoformCountMatrix   = salmonQuant$counts,
-                          isoformRepExpression = salmonQuant$abundance,
-                          designMatrix         = myDesign,
-                          isoformExonAnnoation = "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz",
-                          isoformNtFasta       = "/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa",
-                          removeNonConvensionalChr = TRUE,
-                          ignoreAfterBar = TRUE,
-                          ignoreAfterPeriod = TRUE,
-                          showProgress = TRUE)
+                               isoformRepExpression = salmonQuant$abundance,
+                               designMatrix         = myDesign,
+                               isoformExonAnnoation = "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz",
+                               isoformNtFasta       = "/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa",
+                               removeNonConvensionalChr = TRUE,
+                               ignoreAfterBar = TRUE,
+                               ignoreAfterPeriod = TRUE,
+                               showProgress = TRUE)
 
 
 # 
@@ -53,8 +60,8 @@ SwitchList <- importRdata(isoformCountMatrix   = salmonQuant$counts,
 #                     If you have quantified with Salmon this could be normal since it as default only keep one copy of identical sequnces (can be prevented using the --keepDuplicates option)
 #                     We strongly encurage you to go back and figure out why this is the case.
 #                     
-
-
+                    
+                    
 #### FILTER BASED ON SINGLE ISOFORM GENES AND GENE COUNTS ####
 SwitchListFiltered <- preFilter(
   switchAnalyzeRlist = SwitchList,
@@ -63,6 +70,7 @@ SwitchListFiltered <- preFilter(
   removeSingleIsoformGenes = TRUE
 )
 
+# The filtering removed 44601 ( 46.5% of ) transcripts. There is now 51310 isoforms left
 
 #### DEXSeq SwitchList ####
 
@@ -74,21 +82,21 @@ DEXSeq_SwitchList <- isoformSwitchTestDEXSeq(switchAnalyzeRlist = SwitchListFilt
 
 DEXSeq_SwitchList$isoformFeatures$neg_log_10_q <- -log10(DEXSeq_SwitchList$isoformFeatures$isoform_switch_q_value)
 write_tsv(DEXSeq_SwitchList$isoformFeatures,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/DEXSeqSwitchList_Feb4.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/DEXSeqSwitchList_Feb4.tsv")
 
 
 write_tsv(DEXSeq_SwitchList$isoformCountMatrix,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/isoform_counts.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/isoform_counts.tsv")
 
 write_tsv(DEXSeq_SwitchList$isoformRepExpression,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/isoform_abundance.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/isoform_abundance.tsv")
 
 
 top_genes <- extractTopSwitches(DEXSeq_SwitchList, n=500, 
                                 alpha = 0.05,
                                 dIFcutoff = 0.1)
 write_tsv(top_genes,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/top_genes.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/top_genes.tsv")
 
 
 
@@ -100,7 +108,7 @@ top_genes_RGC_vs_ROD209 <- top_genes |>
 
 
 
-pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/alignment_mode/switch_RGC_vs_ROD209.pdf")
+pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/mapping_mode/switch_RGC_vs_ROD209.pdf")
 
 for(gene_name in top_genes_RGC_vs_ROD209$gene_name){
   plot <- switchPlot(
@@ -121,7 +129,7 @@ top_genes_RGC_vs_RO_D45 <- top_genes |>
   dplyr::filter(condition_1 =="RGC" & condition_2 == "RO_D45")
 
 
-pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/alignment_mode/switch_RGC_vs_ROD45.pdf")
+pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/mapping_mode/switch_RGC_vs_ROD45.pdf")
 for(gene_name in top_genes_RGC_vs_RO_D45$gene_name){
   plot <- switchPlot(
     DEXSeq_SwitchList,
@@ -141,7 +149,7 @@ top_genes_RO_D209_vs_RO_D45 <- top_genes |>
   dplyr::filter(condition_1 =="RO_D209" & condition_2 == "RO_D45")
 
 
-pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/alignment_mode/switch_RO_D209_vs_D45.pdf")
+pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/mapping_mode/switch_RO_D209_vs_D45.pdf")
 for(gene_name in top_genes_RO_D209_vs_RO_D45$gene_name){
   plot <- switchPlot(
     DEXSeq_SwitchList,
@@ -158,7 +166,7 @@ dev.off()
 
 ## Volcano Plots ##
 
-pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/alignment_mode/isoform_volcano.pdf")
+pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/mapping_mode/isoform_volcano.pdf")
 
 p <- ggplot(data=DEXSeq_SwitchList$isoformFeatures, aes(x=dIF, y=-log10(isoform_switch_q_value))) +
   geom_point(
@@ -185,7 +193,7 @@ Volcano_df_RGC_vs_ROD209 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(isoform_switch_q_value < 0.05 & dIF > 0.1)
 
 write_tsv(Volcano_df_RGC_vs_ROD209,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/RGC_vs_ROD209_switches.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/RGC_vs_ROD209_switches.tsv")
 
 
 
@@ -193,7 +201,7 @@ Volcano_df_RGC_vs_ROD45 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(condition_1 == "RGC" & condition_2 == "RO_D45") |>
   dplyr::filter(isoform_switch_q_value < 0.05 & dIF > 0.1)
 write_tsv(Volcano_df_RGC_vs_ROD45,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/RGC_vs_ROD45_switches.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/RGC_vs_ROD45_switches.tsv")
 
 
 
@@ -202,13 +210,13 @@ Volcano_df_ROD209_vs_ROD45 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(isoform_switch_q_value < 0.05 & dIF > 0.1)
 
 write_tsv(Volcano_df_ROD209_vs_ROD45,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/ROD209_vs_ROD45_switches.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/ROD209_vs_ROD45_switches.tsv")
 
 
 
 
 ####.SWITCH VS GENE CHANGES ####
-pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/alignment_mode/switch_vs_degs.pdf")
+pdf("/users/sparthib/retina_lrs/plots/de/switch_analyzer/mapping_mode/switch_vs_degs.pdf")
 s <- ggplot(data=DEXSeq_SwitchList$isoformFeatures, aes(x=gene_log2_fold_change, y=dIF)) +
   geom_point(
     aes( color=abs(dIF) > 0.1 & isoform_switch_q_value < 0.05 ), # default cutoff
@@ -232,7 +240,7 @@ switch_vs_degs_RGC_vs_ROD209 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(abs(dIF)> 0.5 & abs(gene_log2_fold_change) < 2)
 
 write_tsv(switch_vs_degs_RGC_vs_ROD209 ,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
 
 
 
@@ -240,7 +248,7 @@ switch_vs_degs_RGC_vs_ROD45 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(condition_1 == "RGC" & condition_2 == "RO_D45") |>
   dplyr::filter(abs(dIF)> 0.5 & abs(gene_log2_fold_change) < 2)
 write_tsv(switch_vs_degs_RGC_vs_ROD45,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
 
 
 
@@ -248,7 +256,7 @@ switch_vs_degs_ROD209_vs_ROD45 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(condition_1 == "RO_D209" & condition_2 == "RO_D45") |>
   dplyr::filter(abs(dIF)> 0.5 & abs(gene_log2_fold_change) < 2)
 write_tsv(switch_vs_degs_ROD209_vs_ROD45,
-          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
+          file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_mapping_mode/switch_vs_degs_RGC_vs_ROD209.tsv")
 
 
 
@@ -281,26 +289,6 @@ print(p)
 dev.off()
 
 
-
-
-
-
-
-########  GENES ########
-
-SwitchList_gene_expression[[1]]$gene_name <- SwitchList_gene_expression[[1]]$gene_id
-
-geneCountMatrix <- extractGeneExpression(
-  SwitchList_gene_expression,
-  extractCounts = TRUE # set to FALSE for abundances
-)
-
-
-
-write.csv(geneCountMatrix,"/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode/gene_counts_matrix_Jan13.csv")
-
-
-session_info()
 
 
 
