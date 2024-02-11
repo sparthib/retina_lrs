@@ -8,8 +8,8 @@
 #SBATCH --job-name=highqualbam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/MAPQ_filtered/GENCODE_transcriptome/mapq_filter.%a.txt
-#SBATCH -e logs/MAPQ_filtered/GENCODE_transcriptome/mapq_filter.%a.txt
+#SBATCH -o logs/MAPQ_filtered/GENCODE_transcriptome/supplementary_filter.%a.txt
+#SBATCH -e logs/MAPQ_filtered/GENCODE_transcriptome/supplementary_filter.%a.txt
 #SBATCH --array=1-12
 
 echo "**** Job starts ****"
