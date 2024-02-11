@@ -24,6 +24,8 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 LOGS_FOLDER=/users/sparthib/retina_lrs/code/03_bam_QC/logs/MAPQ_filtered/GENCODE_transcriptome
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE
+sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
+echo "$sample"
 
 
 
