@@ -35,7 +35,7 @@ ml load samtools
 
 # samtools view -q 30 ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/MAPQ_filtered/${sample}.bam
 mkdir -p ${BAM_FOLDER}/supplementary_filtered/
-samtools view -F 2048 ${BAM_FOLDER}/MAPQ_filtered/${sample}.bam ${BAM_FOLDER}/supplementary_filtered/${sample}.bam
+samtools view -F 2048 ${BAM_FOLDER}/MAPQ_filtered/${sample}_sorted.bam ${BAM_FOLDER}/supplementary_filtered/${sample}.bam
 samtools sort ${BAM_FOLDER}/supplementary_filtered/${sample}.bam -o ${BAM_FOLDER}/supplementary_filtered/${sample}_sorted.bam
 samtools index ${BAM_FOLDER}/supplementary_filtered/${sample}_sorted.bam ${BAM_FOLDER}/supplementary_filtered/${sample}_sorted.bam.bai
 
