@@ -10,7 +10,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bam_stats_transcriptome_gencode_splice/minimap_log.%a.txt
 #SBATCH -e logs/bam_stats_transcriptome_gencode_splice/minimap_log.%a.txt
-#SBATCH --array= 1,2,3,4,5,6,11,12
+#SBATCH --array=1,2,3,4,5,6,11,12
 
 
 echo "**** Job starts ****"
