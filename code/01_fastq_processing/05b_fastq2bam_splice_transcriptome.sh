@@ -34,7 +34,7 @@ BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE_s
 cd ~/minimap2
 
 #remove older sam version 
-./minimap2 -ax splice -k14 -y --secondary=no -t 50 $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
+./minimap2 -ax splice -y --secondary=no -t 50 $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
 
 
