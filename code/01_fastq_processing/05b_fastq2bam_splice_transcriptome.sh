@@ -65,8 +65,8 @@ samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++;s+=$3}END{prin
 echo "breadth of coverage" >> ${sample}_depth_stats.txt
 samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
 
-echo "raw depth output" >> ${sample}_depth_stats.txt
-samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
+# echo "raw depth output" >> ${sample}_depth_stats.txt
+# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
 
 echo "finished computing depth stats"
 
