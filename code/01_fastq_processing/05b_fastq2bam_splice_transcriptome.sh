@@ -40,7 +40,7 @@ cd ~/minimap2
 
 ml load samtools
 
-samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
+samtools view -h -bS -q 30 -F  ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
 samtools sort ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/${sample}_sorted.bam
 # rm ${BAM_FOLDER}/${sample}.bam
 samtools index ${BAM_FOLDER}/${sample}_sorted.bam ${BAM_FOLDER}/${sample}_sorted.bam.bai
