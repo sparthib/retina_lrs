@@ -26,11 +26,11 @@ source activate salmon
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
-BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE
+BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/supplementary_filtered
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa
 
 
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/alignment_mode/$sample
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/alignment_mode/primary_only_mapq_30/$sample
 rm -r $OUTPUT_FOLDER
 mkdir -p $OUTPUT_FOLDER
 
