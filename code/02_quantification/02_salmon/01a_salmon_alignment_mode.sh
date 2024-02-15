@@ -10,6 +10,7 @@
 #SBATCH -o logs/salmon.%a.txt
 #SBATCH -e logs/salmon.%a.txt
 #SBATCH --array=1-12
+#SBATCH -t 4-00:00:00
 
 
 echo "**** Job starts ****"
