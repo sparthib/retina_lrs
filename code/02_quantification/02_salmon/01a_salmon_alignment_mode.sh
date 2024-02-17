@@ -2,7 +2,7 @@
 
 #SBATCH -p shared
 #SBATCH -p shared
-#SBATCH --mem=70G
+#SBATCH --mem=40G
 #SBATCH --cpus-per-task=15
 #SBATCH --job-name=salmon
 #SBATCH --mail-user=sparthi1@jhu.edu
