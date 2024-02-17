@@ -1,0 +1,10 @@
+**** Job starts ****
+2024-01-20 13:57:01
+**** JHPCE info ****
+User: sparthib
+Job id: 1661033
+Job name: concat_fqs
+Node name: compute-106
+H9-hRGC_1
+**** Job ends ****
+2024-01-20 14:01:54

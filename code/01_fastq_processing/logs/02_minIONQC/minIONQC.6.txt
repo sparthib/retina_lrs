@@ -1,14 +1,13 @@
 Loading conda_R/4.3
-To install colorout use: remotes::install_github("jalvesaq/colorout")
-INFO [2024-01-02 12:23:36] Loading input file: /dcs04/hicks/data/sparthib/casey_round_2/input_fastqs/EP1-WT_ROs_D45/20231024_1154_2D_PAO15628_c869f74a/sequencing_summary_PAO15628_c869f74a_e729a411.txt
-INFO [2024-01-02 12:24:44] PromethION flowcell detected
-INFO [2024-01-02 12:32:57] 20231024_1154_2D_PAO15628_c869f74a: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/EP1-WT_ROs_D45/20231024_1154_2D_PAO15628_c869f74a
-INFO [2024-01-02 12:32:57] 20231024_1154_2D_PAO15628_c869f74a: summarising input file for flowcell
-INFO [2024-01-02 12:34:18] 20231024_1154_2D_PAO15628_c869f74a: plotting length histogram
-INFO [2024-01-02 12:35:25] 20231024_1154_2D_PAO15628_c869f74a: plotting mean Q score histogram
-INFO [2024-01-02 12:36:21] 20231024_1154_2D_PAO15628_c869f74a: plotting flowcell yield over time
-INFO [2024-01-02 12:45:06] 20231024_1154_2D_PAO15628_c869f74a: plotting flowcell yield by read length
-/var/spool/slurm/d/job1377456/slurm_script: line 24: 1668504 Killed                  Rscript 02_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
+INFO [2024-01-30 09:42:41] Loading input file: /dcs04/hicks/data/sparthib/casey_round_2/input_fastqs/EP1-WT_ROs_D45/20231024_1154_2D_PAO15628_c869f74a/sequencing_summary_PAO15628_c869f74a_e729a411.txt
+INFO [2024-01-30 09:44:04] PromethION flowcell detected
+INFO [2024-01-30 09:51:13] 20231024_1154_2D_PAO15628_c869f74a: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/EP1-WT_ROs_D45/20231024_1154_2D_PAO15628_c869f74a
+INFO [2024-01-30 09:51:13] 20231024_1154_2D_PAO15628_c869f74a: summarising input file for flowcell
+INFO [2024-01-30 09:52:23] 20231024_1154_2D_PAO15628_c869f74a: plotting length histogram
+INFO [2024-01-30 09:53:30] 20231024_1154_2D_PAO15628_c869f74a: plotting mean Q score histogram
+INFO [2024-01-30 09:54:16] 20231024_1154_2D_PAO15628_c869f74a: plotting flowcell yield over time
+INFO [2024-01-30 10:04:59] 20231024_1154_2D_PAO15628_c869f74a: plotting flowcell yield by read length
+/var/spool/slurm/d/job1807599/slurm_script: line 24: 610380 Killed                  Rscript 02_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
 **** Job ends ****
-2024-01-02 12:53:46
-slurmstepd: error: Detected 1 oom-kill event(s) in StepId=1377456.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
+2024-01-30 10:11:32
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=1807599.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.

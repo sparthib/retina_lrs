@@ -1,0 +1,16 @@
+Loading conda_R/4.3
+INFO [2024-01-30 09:42:41] Loading input file: /dcs04/hicks/data/sparthib/CK_01052024/H9-FT_1/20240105_1426_3F_PAQ22795_78b6b06f/sequencing_summary_PAQ22795_78b6b06f_a879ca2b.txt
+INFO [2024-01-30 09:43:25] PromethION flowcell detected
+INFO [2024-01-30 09:48:20] 20240105_1426_3F_PAQ22795_78b6b06f: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/H9-FT_1/20240105_1426_3F_PAQ22795_78b6b06f
+INFO [2024-01-30 09:48:20] 20240105_1426_3F_PAQ22795_78b6b06f: summarising input file for flowcell
+INFO [2024-01-30 09:49:15] 20240105_1426_3F_PAQ22795_78b6b06f: plotting length histogram
+INFO [2024-01-30 09:50:06] 20240105_1426_3F_PAQ22795_78b6b06f: plotting mean Q score histogram
+INFO [2024-01-30 09:50:41] 20240105_1426_3F_PAQ22795_78b6b06f: plotting flowcell yield over time
+INFO [2024-01-30 09:53:28] 20240105_1426_3F_PAQ22795_78b6b06f: plotting flowcell yield by read length
+INFO [2024-01-30 09:57:56] 20240105_1426_3F_PAQ22795_78b6b06f: plotting sequence length over time
+INFO [2024-01-30 10:17:44] 20240105_1426_3F_PAQ22795_78b6b06f: plotting Q score over time
+INFO [2024-01-30 10:37:46] 20240105_1426_3F_PAQ22795_78b6b06f: plotting reads per hour
+INFO [2024-01-30 10:41:50] 20240105_1426_3F_PAQ22795_78b6b06f: plotting flowcell channels summary histograms
+INFO [2024-01-30 10:46:10] 20240105_1426_3F_PAQ22795_78b6b06f: plotting physical overview of output per channel
+**** Job ends ****
+2024-01-30 10:46:22
