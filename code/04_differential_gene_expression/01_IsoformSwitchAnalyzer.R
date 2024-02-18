@@ -1,5 +1,5 @@
 library(IsoformSwitchAnalyzeR)
-?library(tximeta)
+library(tximeta)
 library(readr)
 library(sessioninfo)
 
@@ -252,8 +252,7 @@ write_tsv(switch_vs_degs_ROD209_vs_ROD45,
 
 exons <- as.data.frame(DEXSeq_SwitchList$exons)
 
-micro_exons <- exons |> dplyr::filter(width <= 27)
-
+microexons <- exons |> dplyr::filter(width <= 27)
 
 
 #all microexons found in all genes that are expressed in the samples. 
