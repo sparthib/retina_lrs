@@ -13,7 +13,6 @@
 #SBATCH --array=9-12
 
 
-### trying using a different reference fasta file 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
 echo "**** JHPCE info ****"
@@ -36,6 +35,9 @@ cd ~/minimap2
 
 #remove older sam version 
 ./minimap2 -ax map-ont -N 50 --secondary=no -t 40 $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
+
+
+
 
 ml load samtools
 
@@ -65,7 +67,7 @@ echo "breadth of coverage" >> ${sample}_depth_stats.txt
 samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
 
 echo "raw depth output" >> ${sample}_depth_stats.txt
-samtools depth -a ${BAM_FOLDER}  >> ${sample}_depth_stats.txt
+samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
 
 echo "finished computing depth stats"
 

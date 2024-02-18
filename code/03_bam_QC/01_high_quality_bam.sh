@@ -11,7 +11,7 @@
 #SBATCH -o logs/MAPQ_filtered/GENCODE_genome/supplementary_filter.%a.txt
 #SBATCH -e logs/MAPQ_filtered/GENCODE_genome/supplementary_filter.%a.txt
 #SBATCH --array=1-8
-
+#SBATCH -t 4-00:00:00
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
 echo "**** JHPCE info ****"

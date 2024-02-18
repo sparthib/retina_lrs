@@ -38,6 +38,11 @@ cd ~/minimap2
 #remove older sam version 
 ./minimap2 -ax map-ont -N 50 --secondary=no -t ${SLURM_CPUS_PER_TASK} $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
+###https://labs.epi2me.io/how-to-align/#:~:text=Minimap2,-We%20advise%20using
+## If working with cDNA use the -x splice preset instead eg.
+### minimap2 -a -x splice ref.fa query-cDNA.fq > alignment-cDNA.sam
+
+
 ml load samtools
 
 samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
