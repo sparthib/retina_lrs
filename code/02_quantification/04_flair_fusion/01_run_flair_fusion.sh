@@ -31,7 +31,7 @@ REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.c
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa
 # python ./makeShortAnno.py $REFERENCE_GTF
 
-SHORT_GTF= /users/sparthib/FLAIR-fusion/gencode.v44.chr_patch_hapl_scaff.annotation-short.gtf
+SHORT_GTF= /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation-short.gtf
 FLAIRPY_PATH=/users/sparthib/flair-2.0.0/flair.py
 OUTPUT_PATH=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair_fusion/$sample
 mkdir $OUTPUT_PATH
