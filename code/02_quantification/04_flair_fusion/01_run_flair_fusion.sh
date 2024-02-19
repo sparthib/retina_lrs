@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=200G
+#SBATCH --mem=150G
 #SBATCH -c 20
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/bam_stats_genome_gencode/minimap_log.%a.txt
-#SBATCH -e logs/bam_stats_genome_gencode/minimap_log.%a.txt
+#SBATCH -o logs/flair_fusion.%a.txt
+#SBATCH -e logs/flair_fusion.%a.txt
 #SBATCH --array=1
 
 echo "**** Job starts ****"
@@ -31,7 +31,12 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.
 
 SHORT_GTF= /users/sparthib/FLAIR-fusion/gencode.v44.chr_patch_hapl_scaff.annotation-short.gtf
 FLAIRPY_PATH=/users/sparthib/flair-2.0.0/flair.py
+OUTPUT_PATH=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair_fusion/$sample
+mkdir $OUTPUT_PATH
 #test it on just one fastq file for now 
 python3 ./19-03-2021-fasta-to-fusions-pipe.py -r ${INPUT_FOLDER}/${sample}.fastq.gz \
 -f $FLAIRPY_PATH -g $REFERENCE_FASTA -t $REFERENCE_GTF \
--a $SHORT_GTF
+-a $SHORT_GTF -o $OUTPUT_PATH
+
+echo "**** Job ends ****"
+date +"%Y-%m-%d %T"
