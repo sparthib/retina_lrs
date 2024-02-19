@@ -24,10 +24,9 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 INPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 
-### FLAIR-Fusion 
 source activate flair
 
-REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf
+REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/flair_short.gtf
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa
 # python ./makeShortAnno.py $REFERENCE_GTF
 
