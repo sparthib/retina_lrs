@@ -26,17 +26,19 @@ sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 
 ### FLAIR-Fusion 
 source activate flair
-ml load minima
+
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa
 # python ./makeShortAnno.py $REFERENCE_GTF
 
-SHORT_GTF= /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation-short.gtf
+SHORT_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation-short.gtf
 FLAIRPY_PATH=/users/sparthib/flair-2.0.0/flair.py
+FASTA_TO_FUSION=/users/sparthib/FLAIR-fusion/19-03-2021-fasta-to-fusions-pipe.py
 OUTPUT_PATH=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair_fusion/$sample
+rm -r $OUTPUT_PATH
 mkdir $OUTPUT_PATH
 #test it on just one fastq file for now 
-python3 ./19-03-2021-fasta-to-fusions-pipe.py -r ${INPUT_FOLDER}/${sample}.fastq.gz \
+python3 $FASTA_TO_FUSION -r ${INPUT_FOLDER}/${sample}.fastq.gz \
 -f $FLAIRPY_PATH -g $REFERENCE_FASTA -t $REFERENCE_GTF \
 -a $SHORT_GTF -o $OUTPUT_PATH
 
