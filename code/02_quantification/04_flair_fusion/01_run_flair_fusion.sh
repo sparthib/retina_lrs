@@ -3,7 +3,7 @@
 #SBATCH -p shared
 #SBATCH --mem=150G
 #SBATCH -c 20
-#SBATCH --job-name=fastq2bam
+#SBATCH --job-name=flair_align
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flair_fusion.%a.txt
@@ -25,6 +25,8 @@ INPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 
 ### FLAIR-Fusion 
+source activate flair
+ml load minima
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa
 # python ./makeShortAnno.py $REFERENCE_GTF
