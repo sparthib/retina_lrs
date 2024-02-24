@@ -69,6 +69,54 @@ SwitchListFiltered <- preFilter(
 DEXSeq_SwitchList <- isoformSwitchTestDEXSeq(switchAnalyzeRlist = SwitchListFiltered,  
                                              reduceToSwitchingGenes=TRUE)
 
+########  CHANGE GENE ID AND GENE NAME COLUMN ########
+
+require("biomaRt")
+mart <- useMart("ENSEMBL_MART_ENSEMBL")
+mart <- useDataset("hsapiens_gene_ensembl", mart)
+
+
+
+annotLookup <- getBM(
+  mart=mart,
+  attributes=c( "ensembl_gene_id",
+                "ensembl_transcript_id",
+                "hgnc_symbol"),
+  filter="ensembl_transcript_id",
+  values=DEXSeq_SwitchList$isoformFeatures$isoform_id,
+  uniqueRows=TRUE)
+
+
+
+
+non_biomart_isoform_id <- c("ENST00000611903", 
+                            "ENST00000396103",
+                            "ENST00000232219")
+non_biomart_gene_id <- c("ENSG00000117643",
+                         "ENSG00000056487",
+                         "ENSG00000114115")
+non_biomart_gene_symbol <- c("MAN1C1",
+                             "PHF21B",
+                             "RBP1")
+non_biomart <- tibble(non_biomart_gene_id, 
+                      non_biomart_isoform_id, 
+                      non_biomart_gene_symbol)
+colnames(non_biomart) <- colnames(annotLookup)
+
+annotLookup <- rbind(annotLookup, non_biomart)
+annotLookup  <- unique(annotLookup)
+
+DEXSeq_SwitchList$isoformFeatures <- DEXSeq_SwitchList$isoformFeatures |> 
+  dplyr::left_join(annotLookup, by = c("isoform_id" = "ensembl_transcript_id")) |>
+  dplyr::mutate(
+    gene_id = ifelse(!is.na(ensembl_gene_id), ensembl_gene_id, gene_id),
+    gene_name = ifelse(!is.na(hgnc_symbol), hgnc_symbol, gene_name)
+  ) |>
+  dplyr::select(-ensembl_gene_id, -hgnc_symbol)
+
+
+
+
 #FDR cutoff = 0.05 by default
 
 output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/salmon_alignment_mode_high_mapq/"
@@ -276,7 +324,6 @@ write_tsv(microexons_DTU_isoforms, paste0(output_data_dir, "microexons/microexon
 
 
 
-########  GENES ########
 
 
 geneCountMatrix <- extractGeneExpression(
