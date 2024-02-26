@@ -1,5 +1,5 @@
-library(RCAS)
-
+library('RCAS')
+library('BSgenome.Hsapiens.UCSC.hg38')
 # queryRegions <- importBed("/dcs04/hicks/data/sparthib/retina_lrs/05b_beds/EP1-BRN3B-RO_sorted.bed")
 # gff <- importGtf(filePath = "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf")
 
