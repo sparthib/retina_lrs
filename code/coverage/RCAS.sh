@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=50G
+#SBATCH --mem=150G
 #SBATCH --cpus-per-task=10
 #SBATCH --job-name=test_RCAS
 #SBATCH --mail-user=sparthi1@jhu.edu
