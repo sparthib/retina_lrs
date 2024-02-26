@@ -24,7 +24,7 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 
 module load conda_R/4.3.x
-Rscript 01_test_bambu.R $SAMPLE
+Rscript 01_test_bambu.R $sample
 
 echo "**** Job ends ****"
 date
