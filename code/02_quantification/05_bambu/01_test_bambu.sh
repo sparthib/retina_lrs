@@ -22,6 +22,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
+mkdir -p /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/$sample
 
 module load conda_R/4.3.x
 Rscript 01_test_bambu.R $sample

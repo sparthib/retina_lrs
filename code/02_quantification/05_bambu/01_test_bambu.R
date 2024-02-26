@@ -8,6 +8,7 @@ gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.ch
 
 se_output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/", sample)
 
+
 bambuAnnotations <- prepareAnnotations(gtf.file)
 se <- bambu(reads = test.bam, 
             annotations = bambuAnnotations,
