@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/liqa.%a.txt
 #SBATCH -e logs/liqa.%a.txt
-#SBATCH --array=1-4
+#SBATCH --array=1
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
@@ -25,8 +25,8 @@ source activate LIQA
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
-BAM_FOLDER=/dcs04/hicks/data/sparthib/casey/bams
-REFERENCE_GTF=/dcs04/hicks/data/sparthib/GENCODE_GTF.gtf
+BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE/MAPQ_FILTERED
+REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf
 STEP1_REFGENE=/dcs04/hicks/data/sparthib/LIQA_STEP_1.refgene
 STEP2_OUTPUT=/dcs04/hicks/data/sparthib/casey/liqa/step2_outputs
 STEP_3_OUTPUT=/dcs04/hicks/data/sparthib/casey/liqa/step3_outputs
