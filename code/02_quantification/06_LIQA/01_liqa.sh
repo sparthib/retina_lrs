@@ -10,6 +10,7 @@
 #SBATCH -o logs/liqa.%a.txt
 #SBATCH -e logs/liqa.%a.txt
 #SBATCH --array=1
+#SBATCH -t 4-00:00:00
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
