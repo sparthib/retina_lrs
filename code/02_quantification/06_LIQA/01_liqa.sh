@@ -27,9 +27,11 @@ sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE/MAPQ_FILTERED
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf
-STEP1_REFGENE=/dcs04/hicks/data/sparthib/LIQA_STEP_1.refgene
-STEP2_OUTPUT=/dcs04/hicks/data/sparthib/casey/liqa/step2_outputs
-STEP_3_OUTPUT=/dcs04/hicks/data/sparthib/casey/liqa/step3_outputs
+STEP1_REFGENE=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/LIQA/LIQA_STEP_1.refgene
+STEP2_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/LIQA/step2_outputs
+STEP_3_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/LIQA/step3_outputs
+
+mkdir -p $STEP1_REFGENE
 mkdir -p $STEP2_OUTPUT
 mkdir -p $STEP_3_OUTPUT
 
