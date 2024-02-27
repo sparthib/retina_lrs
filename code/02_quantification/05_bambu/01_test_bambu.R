@@ -2,7 +2,7 @@ library(bambu)
 library(BiocFileCache)
 
 sample  <- commandArgs(trailingOnly = TRUE)
-test.bam <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE/MAPQ_FILTERED/", sample, "_sorted.bam")
+test.bam <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE/MAPQ_FILTERED/", "EP1-BRN3B-RO", "_sorted.bam")
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
 gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf"
 
@@ -39,10 +39,11 @@ se.discoveryOnly <- bambu(reads = test.bam,
                           annotations = bambuAnnotations,
                           genome = fa.file,
                           quant = FALSE,
-                          NDR = 1,
-                          ncore = 17,
-                          rcOutDir = se_output_dir)
+                          NDR = 1)
                           
+
+se.discoveryOnly <- bambu(reads = c("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/EP1-BRN3B-RO/2f37f84c40dda1_2f37f84c40dda1.rds"),
+                                 annotations = bambuAnnotations, genome = fa.file)
                           
 writeBambuOutput(se.discoveryOnly, 
                  path = "/users/sparthib/retina_lrs/processed_data/bambu",
