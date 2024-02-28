@@ -38,7 +38,7 @@ mkdir -p $STEP2_OUTPUT
 mkdir -p $STEP_3_OUTPUT
 
 ##STEP 1 - preprocess GTF
-liqa -task refgene -ref $REFERENCE_GTF -format gtf -out $STEP1_REFGENE
+liqa -task refgene -ref $REFERENCE_GTF -format gtf -out $STEP1_REFGENE/step1.refgene
 
 ##STEP 2 - quantify isoform expression 
 
