@@ -33,6 +33,7 @@ STEP2_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/LIQA/step2_
 STEP_3_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/LIQA/step3_outputs
 
 mkdir -p $STEP1_OUTPUT
+touch $STEP1_OUTPUT/step1.refgene
 mkdir -p $STEP2_OUTPUT
 mkdir -p $STEP_3_OUTPUT
 
