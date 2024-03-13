@@ -2,7 +2,7 @@ library(bambu)
 library(BiocFileCache)
 
 sample  <- commandArgs(trailingOnly = TRUE)
-bam <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/", "H9-hRGC_1.bam", "_sorted.bam")
+bam <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/", "H9-hRGC_1", "_sorted.bam")
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
 gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf"
 
