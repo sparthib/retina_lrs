@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=150G
-#SBATCH --cpus-per-task=20
+#SBATCH --mem=30G
+#SBATCH --cpus-per-task=10
 #SBATCH --job-name=test_bambu
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -21,11 +21,10 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 mkdir -p /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/$sample
 
 module load conda_R/4.3.x
-Rscript 01_test_bambu.R $sample
+Rscript 01_test_bambu.R 
 
 echo "**** Job ends ****"
 date
