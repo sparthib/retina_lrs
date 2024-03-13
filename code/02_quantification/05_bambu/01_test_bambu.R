@@ -23,7 +23,7 @@ se.discoveryOnly <- bambu(reads = test.bam,
 
 writeBambuOutput(se.discoveryOnly, 
                  path = "/users/sparthib/retina_lrs/processed_data/bambu",
-                 prefix = "test_mar_8")
+                 prefix = "test_mar_13")
 
 annotations.filtered <- se.discoveryOnly[(!is.na(mcols(newAnnotations)$NDR) & mcols(newAnnotations)$NDR <
                                           0.1) | is.na(mcols(newAnnotations)$NDR)]
