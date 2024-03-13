@@ -14,7 +14,7 @@ bambuAnnotations <- prepareAnnotations(gtf.file)
 bfc <- BiocFileCache(se_output_dir, ask = FALSE)
 info <- bfcinfo(bfc)
 
-se.discoveryOnly <- bambu(reads = test.bam,
+se.discoveryOnly <- bambu(reads = bam,
                           annotations = bambuAnnotations,
                           genome = fa.file,
                           quant = FALSE,
