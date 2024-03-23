@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bam_stats_genome_gencode_splice/minimap_log.%a.txt
 #SBATCH -e logs/bam_stats_genome_gencode_splice/minimap_log.%a.txt
-#SBATCH --array=1,2,3,4,5,6,7,10
+#SBATCH --array=7
 #SBATCH -t 7-00:00:00
 
 
