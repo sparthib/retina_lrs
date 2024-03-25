@@ -9,6 +9,7 @@
 #SBATCH -o logs/flair_fusion.%a.txt
 #SBATCH -e logs/flair_fusion.%a.txt
 #SBATCH --array=1
+#SBATCH -t 7-00:00:00
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
