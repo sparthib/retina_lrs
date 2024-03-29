@@ -1,34 +1,66 @@
 library(bambu)
 library(BiocFileCache)
+library(readr)
+library(sessioninfo)
+library(dplyr)
 
-sample  <- commandArgs(trailingOnly = TRUE)
-bam <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/", "H9-hRGC_1", "_sorted.bam")
+# gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf"
+# bambuAnnotations <- prepareAnnotations(gtf.file)
+# saveRDS(bambuAnnotations, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/annotations.rds")
+
+annotation <- readRDS("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/annotations.rds")
+
+sample_config <- read_tsv(file ="/users/sparthib/retina_lrs/config.tsv")
+
+sample_config <- sample_config |> dplyr::select(-c(1))
+colnames(sample_config) <- c("sample_name", "fastq_path", "summary_stats_path")
+## create list of bam file paths for all samples 
+samples <- sample_config$sample_name
+samples <- c(samples, "H9-FT_1","H9-FT_2","H9-hRGC_1","H9-hRGC_2" )
+bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/"
+
+
+input_names <- c()
+ for(i in samples){ 
+  input_names <- c(input_names, paste0(bam_dir, i, "_sorted.bam"))
+  }
+
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
-gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf"
-
-se_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/H9-hRGC_1"
+se_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/"
 
 
-bambuAnnotations <- prepareAnnotations(gtf.file)
-
-bfc <- BiocFileCache(se_output_dir, ask = FALSE)
-info <- bfcinfo(bfc)
-
-se.discoveryOnly <- bambu(reads = bam,
-                          annotations = bambuAnnotations,
+se_discoveryOnly_multisample <- bambu(reads = input_names,
+                          annotations = annotation,
                           genome = fa.file,
                           quant = FALSE,
                           NDR = 1)
+
+
+writeBambuOutput(se_discoveryOnly_multisample, 
+                 path = se_output_dir,
+                 prefix = "multi_sample_mar_29")
+
+sessioninfo::session_info()
                           
 
-writeBambuOutput(se.discoveryOnly, 
-                 path = "/users/sparthib/retina_lrs/processed_data/bambu",
-                 prefix = "test_mar_13")
+# annotations.filtered <- se.discoveryOnly[(!is.na(mcols(se.discoveryOnly)$NDR) & mcols(se.discoveryOnly)$NDR <
+#                                           0.1) | is.na(mcols(se.discoveryOnly)$NDR)]
+# 
+# 
+# se.NDR_1 <- bambu(reads = bam, annotations = annotations.filtered, genome = fa.file,
+#                   NDR = 1, discovery = FALSE)
 
-annotations.filtered <- se.discoveryOnly[(!is.na(mcols(newAnnotations)$NDR) & mcols(newAnnotations)$NDR <
-                                          0.1) | is.na(mcols(newAnnotations)$NDR)]
 
 
+
+
+# se.discoveryOnly <- bambu(reads = c("test_rc.rds"),
+#                           annotations = bambuAnnotations, genome = fa.file)
+# 
+# annotations.filtered <- se.discoveryOnly[(!is.na(mcols(newAnnotations)$NDR) & mcols(newAnnotations)$NDR <
+#                                           0.1) | is.na(mcols(newAnnotations)$NDR)]
+# 
+# 
 
 # $warnings
 # $warnings[[1]]
