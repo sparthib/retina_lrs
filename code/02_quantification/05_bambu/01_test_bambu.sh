@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=50G
-#SBATCH --cpus-per-task=10
+#SBATCH --mem=250G
+#SBATCH --cpus-per-task=20
 #SBATCH --job-name=test_bambu
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
