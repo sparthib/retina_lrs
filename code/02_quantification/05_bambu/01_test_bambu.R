@@ -15,8 +15,8 @@ sample_config <- read_tsv(file ="/users/sparthib/retina_lrs/config.tsv")
 sample_config <- sample_config |> dplyr::select(-c(1))
 colnames(sample_config) <- c("sample_name", "fastq_path", "summary_stats_path")
 ## create list of bam file paths for all samples 
-samples <- sample_config$sample_name
-samples <- c(samples, "H9-FT_1","H9-FT_2","H9-hRGC_1","H9-hRGC_2" )
+samples <- sample_config$sample_name[11]
+# samples <- c(samples, "H9-FT_1","H9-FT_2","H9-hRGC_1","H9-hRGC_2" )
 bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/"
 
 
