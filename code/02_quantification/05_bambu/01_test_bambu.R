@@ -20,16 +20,12 @@ samples <- sample_config$sample_name[11]
 bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/"
 
 
-input_names <- c()
- for(i in samples){ 
-  input_names <- c(input_names, paste0(bam_dir, i, "_sorted.bam"))
-  }
 
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
 se_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/"
 
 
-se_discoveryOnly_multisample <- bambu(reads = input_names,
+se_discoveryOnly_H9_hRGC <- bambu(reads = paste0(bam_dir,"H9-hRGC_1_sorted.bam"),
                           annotations = annotation,
                           genome = fa.file,
                           quant = FALSE,
@@ -38,7 +34,7 @@ se_discoveryOnly_multisample <- bambu(reads = input_names,
 
 writeBambuOutput(se_discoveryOnly_multisample, 
                  path = se_output_dir,
-                 prefix = "multi_sample_mar_29")
+                 prefix = "H9_hRGC_1_")
 
 sessioninfo::session_info()
                           
