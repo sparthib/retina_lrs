@@ -8,15 +8,15 @@ library(dplyr)
 # bambuAnnotations <- prepareAnnotations(gtf.file)
 # saveRDS(bambuAnnotations, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/annotations.rds")
 
+task_id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
+
 annotation <- readRDS("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/annotations.rds")
 
-sample_config <- read_tsv(file ="/users/sparthib/retina_lrs/config.tsv")
+# sample_config <- read_tsv(file ="/users/sparthib/retina_lrs/config.tsv")
 
-sample_config <- sample_config |> dplyr::select(-c(1))
-colnames(sample_config) <- c("sample_name", "fastq_path", "summary_stats_path")
-## create list of bam file paths for all samples 
-samples <- sample_config$sample_name[11]
-# samples <- c(samples, "H9-FT_1","H9-FT_2","H9-hRGC_1","H9-hRGC_2" )
+samples <- c("EP1-BRN3B-RO", "H9-BRN3B-RO", "hRGC", "DG-WT-hRGC",
+             "H9-CRX_ROs_D45", "EP1-WT_ROs_D45", "YZ-3T_hRGC",
+             "YZ-15T_hRGC", "H9-FT_1","H9-FT_2", "H9-hRGC_1", "H9-hRGC_2")
 bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/"
 
 
@@ -25,43 +25,14 @@ fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.geno
 se_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/"
 
 
-se_discoveryOnly_H9_hRGC <- bambu(reads = paste0(bam_dir,"H9-hRGC_1_sorted.bam"),
-                          annotations = annotation,
-                          genome = fa.file,
-                          quant = FALSE,
-                          NDR = 1)
+se_quantOnly <- bambu(reads = paste0(bam_dir, samples[task_id], "_sorted.bam"),
+                                  annotations = annotation,
+                                  genome = fa.file,
+                                  quant = TRUE)
 
-
-writeBambuOutput(se_discoveryOnly_multisample, 
+writeBambuOutput(se_quantOnly, 
                  path = se_output_dir,
-                 prefix = "H9_hRGC_1_")
+                 prefix = samples[task_id])
 
 sessioninfo::session_info()
                           
-
-# annotations.filtered <- se.discoveryOnly[(!is.na(mcols(se.discoveryOnly)$NDR) & mcols(se.discoveryOnly)$NDR <
-#                                           0.1) | is.na(mcols(se.discoveryOnly)$NDR)]
-# 
-# 
-# se.NDR_1 <- bambu(reads = bam, annotations = annotations.filtered, genome = fa.file,
-#                   NDR = 1, discovery = FALSE)
-
-
-
-
-
-# se.discoveryOnly <- bambu(reads = c("test_rc.rds"),
-#                           annotations = bambuAnnotations, genome = fa.file)
-# 
-# annotations.filtered <- se.discoveryOnly[(!is.na(mcols(newAnnotations)$NDR) & mcols(newAnnotations)$NDR <
-#                                           0.1) | is.na(mcols(newAnnotations)$NDR)]
-# 
-# 
-
-# $warnings
-# $warnings[[1]]
-# [1] "not all chromosomes present in reference annotations, annotations might be incomplete. Please compare objects on the same reference"
-# [2] "25701 reads are mapped outside the provided genomic regions. These reads will be dropped. Check you are using the same genome used for the alignment"
-# [3] "No aligned spliced reads detected!Bambu expects spliced reads. If this is intended, see Documentation on how to handle single-exon transcripts"
-
-
