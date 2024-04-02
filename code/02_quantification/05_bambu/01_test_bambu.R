@@ -22,7 +22,7 @@ bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/
 
 
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
-se_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/"
+se_output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/", samples[task_id], "/")
 
 
 se_quantOnly <- bambu(reads = paste0(bam_dir, samples[task_id], "_sorted.bam"),
