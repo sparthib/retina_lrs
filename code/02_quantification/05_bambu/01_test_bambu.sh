@@ -7,8 +7,8 @@
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH --array=1-12
-#SBATCH -o logs/bambu_quant.a.txt
-#SBATCH -e logs/bambu_quant.a.txt
+#SBATCH -o logs/bambu_quant.%a.txt
+#SBATCH -e logs/bambu_quant.%a.txt
 
 
 
