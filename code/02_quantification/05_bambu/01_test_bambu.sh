@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=200G
+#SBATCH --mem=300G
 #SBATCH -c 25
 #SBATCH --job-name=test_bambu
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/bambu_quant.%a.txt
-#SBATCH -e logs/bambu_quant.%a.txt
+#SBATCH -o logs/bambu_novel.txt
+#SBATCH -e logs/bambu_novel.txt
 #SBATCH --time=7-00:00:00
 
 
@@ -25,7 +25,7 @@ sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 # mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/$sample
 
 module load conda_R/4.3.x
-Rscript 01_test_bambu.R $sample
+Rscript 01_test_bambu.R 
 
 echo "**** Job ends ****"
 date

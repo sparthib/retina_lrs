@@ -16,7 +16,7 @@ se_output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification
 
 samples <- c("EP1-BRN3B-RO", "H9-BRN3B-RO", "hRGC", "DG-WT-hRGC",
                           "H9-CRX_ROs_D45", "EP1-WT_ROs_D45", "YZ-3T_hRGC",
-                          "YZ-15T_hRGC", "H9-FT_1","H9-FT_2", "H9-hRGC_1", "H9-hRGC_2")
+                          "YZ-15T_hRGC", "H9-FT_1","H9-FT_2", "H9-hRGC_2")
 
 for (sample in samples){ 
   print(sample)
