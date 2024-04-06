@@ -34,7 +34,7 @@ for chr in chr{1..22} chrX chrY chrM
 do
     echo "Processing $chr"
     samtools view -b $bam $chr > ${output}/${sample}_${chr}.bam
-    samtools index ${output}/${sample}_${chr}.bam
+    samtools index ${output}/${sample}_${chr}.bam ${output}/${sample}_${chr}.bam.bai
 done
 
 echo "**** Job ends ****"
