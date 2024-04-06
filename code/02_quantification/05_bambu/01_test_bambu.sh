@@ -9,6 +9,7 @@
 #SBATCH --array=1-12
 #SBATCH -o logs/bambu_quant.%a.txt
 #SBATCH -e logs/bambu_quant.%a.txt
+#SBATCH --time=7-00:00:00
 
 
 
@@ -23,10 +24,10 @@ echo "Array job ID: ${SLURM_ARRAY_JOB_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/$sample
+# mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/$sample
 
 module load conda_R/4.3.x
-Rscript 01_test_bambu.R 
+Rscript 01_test_bambu.R $sample
 
 echo "**** Job ends ****"
 date
