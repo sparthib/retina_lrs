@@ -2,11 +2,10 @@
 
 #SBATCH -p shared
 #SBATCH --mem=200G
-#SBATCH -c 20
+#SBATCH -c 25
 #SBATCH --job-name=test_bambu
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH --array=1-12
 #SBATCH -o logs/bambu_quant.%a.txt
 #SBATCH -e logs/bambu_quant.%a.txt
 #SBATCH --time=7-00:00:00
@@ -20,7 +19,6 @@ echo "User: ${USER}"
 echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
-echo "Array job ID: ${SLURM_ARRAY_JOB_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
