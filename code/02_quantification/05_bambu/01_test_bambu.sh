@@ -2,15 +2,13 @@
 
 #SBATCH -p shared
 #SBATCH --mem=250G
-#SBATCH -c 25
+#SBATCH -c 20
 #SBATCH --job-name=test_bambu
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bambu_novel.txt
 #SBATCH -e logs/bambu_novel.txt
 #SBATCH --time=7-00:00:00
-
-
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
