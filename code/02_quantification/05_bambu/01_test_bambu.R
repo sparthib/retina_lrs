@@ -17,8 +17,6 @@ bam_dir <- paste0(bam_dir, sample, "_chromosome_level/")
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
 
 
-
-
 for (chr in c(1:22, "X", "Y", "M")){ 
   se_output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/", sample, "/")
   print(sample)
