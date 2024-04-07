@@ -9,6 +9,7 @@
 #SBATCH -o logs/bambu_quant.txt
 #SBATCH -e logs/bambu_quant.txt
 #SBATCH --time=7-00:00:00
+#SBATCH --array=1-12
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
@@ -17,6 +18,7 @@ echo "User: ${USER}"
 echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
+echp "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
