@@ -6,8 +6,8 @@
 #SBATCH --job-name=test_bambu
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/bambu_quant.txt
-#SBATCH -e logs/bambu_quant.txt
+#SBATCH -o logs/bambu_quant.%a.txt
+#SBATCH -e logs/bambu_quant.%a.txt
 #SBATCH --time=7-00:00:00
 #SBATCH --array=1-12
 
