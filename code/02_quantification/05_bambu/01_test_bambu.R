@@ -25,7 +25,7 @@ for (chr in c(1:22, "X", "Y", "M")){
   se_quant_chr_sample <- bambu(reads = paste0(bam_dir, sample, "_chr",chr, ".bam"),
                      annotations = annotation,
                      genome = fa.file,
-                     quant = FALSE, NDR = 1)
+                     quant = TRUE)
   
   writeBambuOutput(se_quant_chr_sample, 
                    path = se_output_dir,
