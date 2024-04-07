@@ -18,10 +18,11 @@ fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.geno
 
 
 for (chr in c(1:22, "X", "Y", "M")){ 
+  # ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/EP1-BRN3B-RO_chromosome_level/EP1-BRN3B-RO_1.bam’
   se_output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/", sample, "/")
   print(sample)
   print(chr)
-  se_quant_chr_sample <- bambu(reads = paste0(bam_dir, sample, "_", chr, ".bam"),
+  se_quant_chr_sample <- bambu(reads = paste0(bam_dir, sample, "_chr",chr, ".bam"),
                      annotations = annotation,
                      genome = fa.file,
                      quant = FALSE, NDR = 1)
