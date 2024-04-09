@@ -22,11 +22,12 @@ echp "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-se_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/$sample
+se_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/$sample
 
 for chr in {1..22} X Y M 
 do
     echo "**** Processing chromosome $chr ****"
+    mkdir -p $se_output/chr$chr/
 done
 
 
