@@ -27,7 +27,6 @@ se_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/$sample
 for chr in {1..22} X Y M 
 do
     echo "**** Processing chromosome $chr ****"
-    mkdir -p $se_output/chr$chr
 done
 
 
