@@ -20,8 +20,6 @@ for (chr in c(1:22, "X", "Y", "M")){
   # ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/EP1-BRN3B-RO_chromosome_level/EP1-BRN3B-RO_1.bam’
   
   output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/", sample, "/", "chr",chr, "/")
-  
-  /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/EP1-BRN3B-RO/chr1
   print(sample)
   print(chr)
   se_read_class_chr_sample <- bambu(reads = paste0(bam_dir, sample, "_chr",chr, ".bam"),
