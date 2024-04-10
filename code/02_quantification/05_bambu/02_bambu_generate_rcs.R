@@ -19,7 +19,7 @@ extendedAnnotations <- bambu(reads = rds_files,
                              genome = fa.file, 
                              discovery = TRUE, 
                              quant = FALSE)
-writeToGTF(se.discoveryOnly, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/output.gtf")
+writeToGTF(extendedAnnotations, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/multisample_output.gtf")
 
 
 sessioninfo::session_info()
