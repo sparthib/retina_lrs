@@ -4,25 +4,23 @@ library(readr)
 library(sessioninfo)
 library(dplyr)
 
-# gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf"
-# bambuAnnotations <- prepareAnnotations(gtf.file)
-# saveRDS(bambuAnnotations, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/annotations.rds")
-
-sample <- commandArgs(trailingOnly = TRUE)
 
 annotation <- readRDS("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/annotations.rds")
 bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/"
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
 
+root_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/"
+files <- list.files(root_dir, recursive = TRUE, full.names = TRUE)
+rds_files <- files[grep("\\.rds$", files)]
 
-output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/", sample, "/")
-print(sample)
-se_quant_sample <- bambu(reads = paste0(bam_dir, sample, "_sorted.bam"),
-                               annotations = annotation,
-                               genome = fa.file,
-                          discovery = FALSE, 
-                         quant = FALSE, 
-                         rcOutDir = output_dir)
+
+extendedAnnotations <- bambu(reads = rds_files,
+                             annotations = annotation, 
+                             genome = fa.file, 
+                             discovery = TRUE, 
+                             quant = FALSE)
+writeToGTF(se.discoveryOnly, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/output.gtf")
+
 
 sessioninfo::session_info()
 
