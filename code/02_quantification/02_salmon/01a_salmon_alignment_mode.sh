@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/salmon.%a.txt
 #SBATCH -e logs/salmon.%a.txt
-#SBATCH --array=13-15
+#SBATCH --array=13
 #SBATCH -t 4-00:00:00
 
 
@@ -28,6 +28,7 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/sorted/primary_only_mapq_30
+/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/sorted/primary_over_30
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa
 
 
@@ -35,7 +36,7 @@ OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/ali
 rm -r $OUTPUT_FOLDER
 mkdir -p $OUTPUT_FOLDER
 
-salmon quant -t $REFERENCE_FASTA --libType U -a $BAM_FOLDER/$sample.bam  -o $OUTPUT_FOLDER --ont -p 10
+salmon quant -t $REFERENCE_FASTA --libType U -a $BAM_FOLDER/EP1-WT_hRO_2.bam  -o $OUTPUT_FOLDER --ont -p 10
  
 conda deactivate
 
