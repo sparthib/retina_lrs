@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/salmon.%a.txt
 #SBATCH -e logs/salmon.%a.txt
-#SBATCH --array=1-15
+#SBATCH --array=13-15
 #SBATCH -t 4-00:00:00
 
 
