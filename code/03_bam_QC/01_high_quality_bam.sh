@@ -8,9 +8,9 @@
 #SBATCH --job-name=highqualbam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/MAPQ_filtered/GENCODE_genome/supplementary_filter.%a.txt
-#SBATCH -e logs/MAPQ_filtered/GENCODE_genome/supplementary_filter.%a.txt
-#SBATCH --array=1-8
+#SBATCH -o logs/primary_over_30/transcriptome/log.%a.txt
+#SBATCH -e logs/primary_over_30/transcriptome/log.%a.txt
+#SBATCH --array=1-15
 #SBATCH -t 4-00:00:00
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
@@ -21,9 +21,9 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
-LOGS_FOLDER=/users/sparthib/retina_lrs/code/03_bam_QC/logs/MAPQ_filtered/GENCODE_genome
+LOGS_FOLDER=/users/sparthib/retina_lrs/code/03_bam_QC/logs/primary_over_30/transcriptome
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE/
+BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/sorted
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 
@@ -34,8 +34,8 @@ echo "$sample"
 ml load samtools
 
 # samtools view -q 30 ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/MAPQ_filtered/${sample}.bam
-mkdir -p ${BAM_FOLDER}/MAPQ_FILTERED/
-samtools view -q 30 ${BAM_FOLDER}/${sample}_sorted.bam -o ${BAM_FOLDER}/MAPQ_FILTERED/${sample}.bam
+mkdir -p ${BAM_FOLDER}/primary_over_30/
+samtools view -q 30 -F 0x800 ${BAM_FOLDER}/${sample}_sorted.bam -o ${BAM_FOLDER}/MAPQ_FILTERED/${sample}.bam
 samtools sort ${BAM_FOLDER}/MAPQ_FILTERED/${sample}.bam -o ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam
 samtools index ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam.bai
 
