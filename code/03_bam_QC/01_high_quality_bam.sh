@@ -33,35 +33,33 @@ echo "$sample"
 
 ml load samtools
 
-# samtools view -q 30 ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/MAPQ_filtered/${sample}.bam
+# samtools view -q 30 ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/primary_over_30/${sample}.bam
 mkdir -p ${BAM_FOLDER}/primary_over_30/
-samtools view -q 30 -F 0x800 ${BAM_FOLDER}/${sample}_sorted.bam -o ${BAM_FOLDER}/MAPQ_FILTERED/${sample}.bam
-samtools sort ${BAM_FOLDER}/MAPQ_FILTERED/${sample}.bam -o ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam
-samtools index ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam.bai
+samtools view -q 30 -F 0x800 ${BAM_FOLDER}/${sample}_sorted.bam -o ${BAM_FOLDER}/primary_over_30/${sample}.bam
+samtools sort ${BAM_FOLDER}/primary_over_30/${sample}.bam -o ${BAM_FOLDER}/primary_over_30/${sample}_sorted.bam
+samtools index ${BAM_FOLDER}/primary_over_30/${sample}_sorted.bam ${BAM_FOLDER}/primary_over_30/${sample}_sorted.bam.bai
 
 
 # echo "finished indexing bam"
 index stats ${sample}_primary_only_index_stats.txt
-samtools idxstats ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam > ${LOGS_FOLDER}/mapq_filtered_${sample}_index_stats.txt
+samtools idxstats ${BAM_FOLDER}/primary_over_30/${sample}_sorted.bam > ${LOGS_FOLDER}/primary_over_30_${sample}_index_stats.txt
 
-#bam stats ${sample}_bam.stats for plotting bam stats using plot-bamstats command in samtools
-samtools stats ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam > ${LOGS_FOLDER}/mapq_filtered_${sample}_bam.stats
 
 echo "finished computing stats for plotting"
 
 echo "flagstat" > ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
-samtools flagstat ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam >> ${LOGS_FOLDER}/mapq_filtered_${sample}_bam_flagstat.txt
+samtools flagstat ${BAM_FOLDER}/primary_over_30/${sample}_sorted.bam >> ${LOGS_FOLDER}/primary_over_30_${sample}_bam_flagstat.txt
 
 echo "finished computing flagstats: contains percentage mapped reads"
 
 echo "depth of coverage" > ${LOGS_FOLDER}/${sample}_depth_stats.txt
-samtools depth -a ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam  | awk '{c++;s+=$3}END{print s/c}' >> ${LOGS_FOLDER}/mapq_filtered_${sample}_depth_stats.txt
+samtools depth -a ${BAM_FOLDER}/primary_over_30/${sample}_sorted.bam  | awk '{c++;s+=$3}END{print s/c}' >> ${LOGS_FOLDER}/primary_over_30_${sample}_depth_stats.txt
 
 echo "breadth of coverage" >> ${sample}_depth_stats.txt
-samtools depth -a ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}' >> ${LOGS_FOLDER}/mapq_filtered_${sample}_depth_stats.txt
+samtools depth -a ${BAM_FOLDER}/primary_over_30/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}' >> ${LOGS_FOLDER}/primary_over_30_${sample}_depth_stats.txt
 
 echo "raw depth output" >> ${sample}_depth_stats.txt
-samtools depth -a ${BAM_FOLDER}/MAPQ_FILTERED/${sample}_sorted.bam  >> ${LOGS_FOLDER}/mapq_filtered_${sample}_depth_stats.txt
+samtools depth -a ${BAM_FOLDER}/primary_over_30/${sample}_sorted.bam  >> ${LOGS_FOLDER}/primary_over_30_${sample}_depth_stats.txt
 
 echo "finished computing depth stats"
 
