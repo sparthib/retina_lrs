@@ -24,15 +24,12 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 se_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/$sample
 
-for chr in {1..22} X Y M 
-do
-    echo "**** Processing chromosome $chr ****"
-    mkdir -p $se_output/chr$chr/
-done
+
+echo "**** Processing chromosome $sample ****"
 
 
 module load conda_R/4.3.x
-Rscript 01_test_bambu.R $sample
+Rscript 01_generate_sample_wise_read_class.R $sample
 
 echo "**** Job ends ****"
 date
