@@ -16,21 +16,16 @@ bam_dir <- paste0(bam_dir, sample, "_chromosome_level/")
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
 
 
-for (chr in c(1:22, "X", "Y", "M")){ 
-  # ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/EP1-BRN3B-RO_chromosome_level/EP1-BRN3B-RO_1.bam’
-  
-  output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/", sample, "/", "chr",chr, "/")
-  print(sample)
-  print(chr)
-  se_read_class_chr_sample <- bambu(reads = paste0(bam_dir, sample, "_chr",chr, ".bam"),
+
+output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/", sample, "/")
+print(sample)
+
+se_read_class <- bambu(reads = paste0(bam_dir, sample, "_sorted.bam"),
                      annotations = annotation,
                      genome = fa.file,
-                     discovery = FALSE, quant = FALSE, rcOutDir = output_dir)
-}
-  # writeBambuOutput(se_quant_chr_sample, 
-  #                  path = se_output_dir,
-  #                  prefix = sample)
-  # }
+                     discovery = FALSE, quant = FALSE, 
+                     rcOutDir = output_dir,
+                     lowMemory = TRUE)
+
 
 sessioninfo::session_info()
-                          
