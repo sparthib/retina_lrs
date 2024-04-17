@@ -1,15 +1,15 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=100G
-#SBATCH -c 10
+#SBATCH --mem=200G
+#SBATCH -c 20
 #SBATCH --job-name=test_bambu
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bambu_quant.%a.txt
 #SBATCH -e logs/bambu_quant.%a.txt
 #SBATCH --time=7-00:00:00
-#SBATCH --array=1-12
+#SBATCH --array=1-2
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
