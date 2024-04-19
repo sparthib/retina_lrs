@@ -30,10 +30,7 @@ ml load samtools
 cd $bam_dir
 echo "**** Processing sample $sample ****"
 
-
 samtools merge $bam_dir/${sample}.bam *.bam 
-bam_dir <- paste0(bam_dir, sample, "_chromosome_level/", sample, ".bam")
-
 
 echo "**** Job ends ****"
 date
