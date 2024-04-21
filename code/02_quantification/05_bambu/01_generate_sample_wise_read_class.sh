@@ -9,7 +9,7 @@
 #SBATCH -o logs/bambu_quant.%a.txt
 #SBATCH -e logs/bambu_quant.%a.txt
 #SBATCH --time=7-00:00:00
-#SBATCH --array=1-2
+#SBATCH --array=2
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
