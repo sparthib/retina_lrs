@@ -13,11 +13,11 @@ root_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_ou
 files <- list.files(root_dir, recursive = TRUE, full.names = TRUE)
 rds_files <- files[grep("\\.rds$", files)]
 
-extendedAnnotations <- bambu(reads = rds_files,
-                             annotations = annotation,
-                             genome = fa.file)
+se   <- bambu(reads = rds_files,
+              annotations = annotation,
+              genome = fa.file)
 
-writeToGTF(extendedAnnotations, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/multisample_output_apr_21.gtf")
+writeBambuOutput(se, path = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/")
 
 sessioninfo::session_info()
 # library(rtracklayer)
@@ -25,5 +25,6 @@ sessioninfo::session_info()
 # 
 # plotBambu(discovery_only, type = "heatmap")
 # 
+
 
 
