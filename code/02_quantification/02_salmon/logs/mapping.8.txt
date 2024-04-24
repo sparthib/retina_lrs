@@ -1,0 +1,28 @@
+**** Job starts ****
+2024-02-01 20:08:01
+**** JHPCE info ****
+User: sparthib
+Job id: 1892085
+Job name: salmon
+Node name: compute-057
+Task id: 8
+YZ-15T_hRGC
+mkdir: cannot create directory ‘/dcs04/hicks/data’: Permission denied
+Version Server Response: Not Found
+### salmon (selective-alignment-based) v1.10.2
+### [ program ] => salmon 
+### [ command ] => quant 
+### [ index ] => { /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/transcripts/index }
+### [ libType ] => { A }
+### [ unmatedReads ] => { /dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/YZ-15T_hRGC.fastq.gz }
+### [ validateMappings ] => { }
+### [ threads ] => { 20 }
+### [ dumpEq ] => { }
+### [ useEM ] => { }
+### [ output ] => { /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/mapping_mode/YZ-15T_hRGC }
+Exception : [boost::filesystem::create_directories: Permission denied [system:13]: "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/mapping_mode/YZ-15T_hRGC", "/dcs04/hicks/data"]
+salmon quant was invoked improperly.
+For usage information, try salmon quant --help
+Exiting.
+**** Job ends ****
+2024-02-01 20:08:06

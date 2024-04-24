@@ -1,0 +1,10 @@
+**** Job starts ****
+2024-04-10 10:48:20
+**** JHPCE info ****
+User: sparthib
+Job id: 4205632
+Job name: concat_fqs
+Node name: compute-124
+H9-BRN3B_hRO_2
+**** Job ends ****
+2024-04-10 11:07:55

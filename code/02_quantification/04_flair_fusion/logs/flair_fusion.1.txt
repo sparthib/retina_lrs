@@ -1,0 +1,70 @@
+**** Job starts ****
+2024-03-25 13:30:33
+**** JHPCE info ****
+User: sparthib
+Job id: 3316144
+Job name: flair_align
+Node name: compute-063
+Task id: 1
+[M::mm_idx_gen::112.968*1.76] collected minimizers
+[M::mm_idx_gen::158.534*2.36] sorted minimizers
+[M::main::158.535*2.36] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::166.124*2.30] mid_occ = 812
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 706
+[M::mm_idx_stat::168.958*2.27] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
+[M::worker_pipeline::7017.016*3.95] mapped 282435 sequences
+[M::worker_pipeline::13945.294*3.98] mapped 281079 sequences
+[M::worker_pipeline::20915.971*3.99] mapped 280364 sequences
+[M::worker_pipeline::27783.962*3.99] mapped 280431 sequences
+[M::worker_pipeline::34610.264*3.99] mapped 282298 sequences
+[M::worker_pipeline::41197.183*3.99] mapped 278914 sequences
+[M::worker_pipeline::48065.515*3.99] mapped 280275 sequences
+[M::worker_pipeline::54908.994*4.00] mapped 279789 sequences
+[M::worker_pipeline::61718.363*4.00] mapped 277951 sequences
+[M::worker_pipeline::68278.759*4.00] mapped 278264 sequences
+[M::worker_pipeline::74810.063*4.00] mapped 276860 sequences
+[M::worker_pipeline::81453.481*4.00] mapped 280966 sequences
+[M::worker_pipeline::88277.671*4.00] mapped 277974 sequences
+[M::worker_pipeline::95049.884*4.00] mapped 278741 sequences
+[M::worker_pipeline::101827.973*4.00] mapped 277592 sequences
+[M::worker_pipeline::108500.289*4.00] mapped 279125 sequences
+[M::worker_pipeline::115247.604*4.00] mapped 277035 sequences
+[M::worker_pipeline::122083.411*4.00] mapped 279885 sequences
+[M::worker_pipeline::128690.005*4.00] mapped 277234 sequences
+[M::worker_pipeline::135265.857*4.00] mapped 278006 sequences
+[M::worker_pipeline::141327.319*4.00] mapped 277883 sequences
+[M::worker_pipeline::147318.290*4.00] mapped 276631 sequences
+[M::worker_pipeline::153276.880*4.00] mapped 279406 sequences
+[M::worker_pipeline::158998.723*4.00] mapped 277861 sequences
+[M::worker_pipeline::164716.483*4.00] mapped 277079 sequences
+[M::worker_pipeline::170413.435*4.00] mapped 277447 sequences
+[M::worker_pipeline::176970.760*4.00] mapped 277366 sequences
+[M::worker_pipeline::182949.487*4.00] mapped 277111 sequences
+[M::worker_pipeline::189017.994*4.00] mapped 279507 sequences
+[M::worker_pipeline::195233.316*4.00] mapped 276560 sequences
+[M::worker_pipeline::201295.055*4.00] mapped 276555 sequences
+[M::worker_pipeline::207128.368*4.00] mapped 277724 sequences
+[M::worker_pipeline::213626.537*4.00] mapped 276069 sequences
+[M::worker_pipeline::219857.182*4.00] mapped 278089 sequences
+[M::worker_pipeline::225951.737*4.00] mapped 276095 sequences
+[M::worker_pipeline::231756.996*4.00] mapped 277027 sequences
+[M::worker_pipeline::237742.972*4.00] mapped 275604 sequences
+[M::worker_pipeline::243675.967*4.00] mapped 275919 sequences
+[M::worker_pipeline::249361.347*4.00] mapped 277913 sequences
+[M::worker_pipeline::255424.190*4.00] mapped 276070 sequences
+[M::worker_pipeline::261713.808*4.00] mapped 275602 sequences
+[M::worker_pipeline::267483.123*4.00] mapped 275984 sequences
+[M::worker_pipeline::273508.267*4.00] mapped 275900 sequences
+[M::worker_pipeline::279274.101*4.00] mapped 278068 sequences
+[M::worker_pipeline::285431.364*4.00] mapped 275722 sequences
+[M::worker_pipeline::291798.637*4.00] mapped 275659 sequences
+[M::worker_pipeline::297952.874*4.00] mapped 275931 sequences
+[M::worker_pipeline::303949.032*4.00] mapped 277238 sequences
+[M::worker_pipeline::309828.892*4.00] mapped 277599 sequences
+[M::worker_pipeline::315730.368*4.00] mapped 275761 sequences
+[M::worker_pipeline::321908.608*4.00] mapped 275325 sequences
+[M::worker_pipeline::328076.181*4.00] mapped 275620 sequences
+[M::worker_pipeline::334114.560*4.00] mapped 277737 sequences
+[M::worker_pipeline::340230.774*4.00] mapped 274837 sequences
+[M::worker_pipeline::346365.813*4.00] mapped 276202 sequences
+slurmstepd: error: *** JOB 3316144 ON compute-063 CANCELLED AT 2024-03-29T15:25:16 ***

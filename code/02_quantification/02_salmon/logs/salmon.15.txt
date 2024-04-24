@@ -1,0 +1,1122 @@
+**** Job starts ****
+2024-04-13 02:43:26
+**** JHPCE info ****
+User: sparthib
+Job id: 4407558
+Job name: salmon
+Node name: compute-124
+Task id: 15
+H9-CRX_hRO_2
+Version Server Response: Not Found
+# salmon (alignment-based) v1.10.2
+# [ program ] => salmon 
+# [ command ] => quant 
+# [ targets ] => { /dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa }
+# [ libType ] => { U }
+# [ alignments ] => { /dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/sorted/primary_over_30/H9-CRX_hRO_2.bam }
+# [ output ] => { /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/alignment_mode/primary_only_mapq_30/H9-CRX_hRO_2 }
+# [ ont ] => { }
+# [ threads ] => { 10 }
+Logs will be written to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/alignment_mode/primary_only_mapq_30/H9-CRX_hRO_2/logs
+[2024-04-13 02:43:27.238] [jointLog] [info] setting maxHashResizeThreads to 10
+[2024-04-13 02:43:27.238] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+Library format { type:single end, relative orientation:none, strandedness:unstranded }
+[2024-04-13 02:43:27.242] [jointLog] [info] numQuantThreads = 5
+parseThreads = 5
+Checking that provided alignment files have consistent headers . . . done
+Populating targets from aln = "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/sorted/primary_over_30/H9-CRX_hRO_2.bam", fasta = "/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa" . . .done
+
+
+
+
+[0;32mprocessed[0;31m 0 [0;32mreads in current round[0;0m[2024-04-13 02:43:30.502] [jointLog] [info] replaced 4 non-ACGT nucleotides with random nucleotides
+[2024-04-13 02:43:30.650] [jointLog] [warning] (in update()) CIGAR string for read [f7db4731-6756-443e-b4eb-3b010658ad74] seems inconsistent. It implied an error rate greater than 1: 1.31022 0.0184112 0.0177293
+[2024-04-13 02:43:30.650] [jointLog] [warning] (in update()) CIGAR string for read [025a5925-1b5f-41c4-a327-ec9cebdda586] seems inconsistent. It implied an error rate greater than 1: 1.05944 0.0149724 0.0106383
+[2024-04-13 02:43:30.929] [jointLog] [warning] (in update()) CIGAR string for read [5b890108-e5bf-4fd0-8bb5-ea3e1950c0d2] seems inconsistent. It implied an error rate greater than 1: 1.21258 0.00804649 0.0183281
+[2024-04-13 02:43:30.929] [jointLog] [warning] (in update()) CIGAR string for read [86b00c06-e60d-4b69-8ab3-3288a62fe676] seems inconsistent. It implied an error rate greater than 1: 1.01045 0.0147941 0.0287885
+[2024-04-13 02:43:30.929] [jointLog] [warning] (in update()) CIGAR string for read [1f87b72a-10b5-487a-8370-d2a35b474d40] seems inconsistent. It implied an error rate greater than 1: 1.03472 0.021827 0.0234438
+[2024-04-13 02:43:30.929] [jointLog] [warning] (in update()) CIGAR string for read [1cbdde51-cb7a-461b-99aa-c8f6605bf548] seems inconsistent. It implied an error rate greater than 1: 1.35625 0.0329489 0.0483251
+[2024-04-13 02:43:30.937] [jointLog] [warning] (in update()) CIGAR string for read [b331bd02-174b-48b3-aa59-0d725d4028f1] seems inconsistent. It implied an error rate greater than 1: 1.24867 0.234656 0.0145589
+[2024-04-13 02:43:30.938] [jointLog] [warning] read 92d172cb-f713-4c7b-a83a-da3b24dce2be (length 7064 - align length 4849) has no trained error model
+[2024-04-13 02:43:30.938] [jointLog] [warning] read 92d172cb-f713-4c7b-a83a-da3b24dce2be (length 7064) has no trained clipping model
+[2024-04-13 02:43:30.938] [jointLog] [warning] read 92d172cb-f713-4c7b-a83a-da3b24dce2be (length 7064) has no trained clipping model
+[2024-04-13 02:43:30.989] [jointLog] [warning] read c059984f-cf9f-48e0-a816-44bbaedfc8f6 (length 6450 - align length 6356) has no trained error model
+[2024-04-13 02:43:30.989] [jointLog] [warning] read c059984f-cf9f-48e0-a816-44bbaedfc8f6 (length 6450) has no trained clipping model
+[2024-04-13 02:43:30.989] [jointLog] [warning] read c059984f-cf9f-48e0-a816-44bbaedfc8f6 (length 6450) has no trained clipping model
+[2024-04-13 02:43:30.991] [jointLog] [warning] read e34df78d-9ddf-4e40-89b1-4e0e72a688b6 (length 9869 - align length 1944) has no trained error model
+[2024-04-13 02:43:30.991] [jointLog] [warning] read e34df78d-9ddf-4e40-89b1-4e0e72a688b6 (length 9869) has no trained clipping model
+[2024-04-13 02:43:30.991] [jointLog] [warning] read e34df78d-9ddf-4e40-89b1-4e0e72a688b6 (length 9869) has no trained clipping model
+[2024-04-13 02:43:30.992] [jointLog] [warning] read a9bf73e1-2162-4395-8f46-24e4b003edcd (length 15705 - align length 192) has no trained error model
+[2024-04-13 02:43:30.992] [jointLog] [warning] read a9bf73e1-2162-4395-8f46-24e4b003edcd (length 15705) has no trained clipping model
+[2024-04-13 02:43:30.992] [jointLog] [warning] read a9bf73e1-2162-4395-8f46-24e4b003edcd (length 15705) has no trained clipping model
+[2024-04-13 02:43:31.029] [jointLog] [warning] read 8fbe5577-f1df-4f0b-b2c7-772fa5907257 (length 5636 - align length 5534) has no trained error model
+[2024-04-13 02:43:31.035] [jointLog] [warning] read 1b076816-f41a-4804-8e64-728f85074584 (length 7324 - align length 2671) has no trained error model
+[2024-04-13 02:43:31.035] [jointLog] [warning] read 1b076816-f41a-4804-8e64-728f85074584 (length 7324) has no trained clipping model
+[2024-04-13 02:43:31.035] [jointLog] [warning] read 1b076816-f41a-4804-8e64-728f85074584 (length 7324) has no trained clipping model
+[2024-04-13 02:43:31.035] [jointLog] [warning] (in update()) CIGAR string for read [335814a2-24b0-41e7-b034-d40d802bc851] seems inconsistent. It implied an error rate greater than 1: 2.38302 0.0481283 0.0350564
+[2024-04-13 02:43:31.039] [jointLog] [warning] read 173f3616-2fad-4cf6-9ca4-76e20322ca0c (length 4994 - align length 3128) has no trained error model
+[2024-04-13 02:43:31.039] [jointLog] [warning] read 173f3616-2fad-4cf6-9ca4-76e20322ca0c (length 4994) has no trained clipping model
+[2024-04-13 02:43:31.039] [jointLog] [warning] read 173f3616-2fad-4cf6-9ca4-76e20322ca0c (length 4994) has no trained clipping model
+[2024-04-13 02:43:31.040] [jointLog] [warning] read 7d612d48-211a-4913-be02-523d2f45dc8f (length 11448 - align length 11278) has no trained error model
+[2024-04-13 02:43:31.040] [jointLog] [warning] read 7d612d48-211a-4913-be02-523d2f45dc8f (length 11448) has no trained clipping model
+[2024-04-13 02:43:31.040] [jointLog] [warning] read 7d612d48-211a-4913-be02-523d2f45dc8f (length 11448) has no trained clipping model
+[2024-04-13 02:43:31.040] [jointLog] [warning] read c54837d1-7fed-4a4d-9799-3f5092927c3d (length 10747 - align length 10580) has no trained error model
+[2024-04-13 02:43:31.040] [jointLog] [warning] read c54837d1-7fed-4a4d-9799-3f5092927c3d (length 10747) has no trained clipping model
+[2024-04-13 02:43:31.040] [jointLog] [warning] read c54837d1-7fed-4a4d-9799-3f5092927c3d (length 10747) has no trained clipping model
+[2024-04-13 02:43:31.043] [jointLog] [warning] (in update()) CIGAR string for read [cfe407ff-fa57-49ec-9432-a7ecb6b57a92] seems inconsistent. It implied an error rate greater than 1: 1.46884 0.0218409 0.0206708
+[2024-04-13 02:43:31.044] [jointLog] [warning] (in update()) CIGAR string for read [b32bf352-cd2f-4614-b6ef-8acc08a968bc] seems inconsistent. It implied an error rate greater than 1: 1.48141 0.0160031 0.0288837
+[2024-04-13 02:43:31.044] [jointLog] [warning] (in update()) CIGAR string for read [cd9f7fa1-5659-4dd8-9275-29df5dec8237] seems inconsistent. It implied an error rate greater than 1: 1.77573 0.0171504 0.0299033
+[2024-04-13 02:43:31.044] [jointLog] [warning] (in update()) CIGAR string for read [0f96eb7b-37c3-4da9-ba35-d7324140a7ee] seems inconsistent. It implied an error rate greater than 1: 2.2667 0.0368446 0.0864431
+[2024-04-13 02:43:31.044] [jointLog] [warning] (in update()) CIGAR string for read [71b3a8d4-e275-44be-9ece-327b54bb7036] seems inconsistent. It implied an error rate greater than 1: 1.48023 0.0227887 0.020085
+[2024-04-13 02:43:31.051] [jointLog] [warning] (in update()) CIGAR string for read [135a9130-fdb8-4582-bfbb-606a74f7512c] seems inconsistent. It implied an error rate greater than 1: 1.68922 0.0506466 0.00969828
+[2024-04-13 02:43:31.062] [jointLog] [warning] read 26c39a7e-8eff-4ef2-89ee-f59850ce11e8 (length 8993 - align length 8874) has no trained error model
+[2024-04-13 02:43:31.062] [jointLog] [warning] read 26c39a7e-8eff-4ef2-89ee-f59850ce11e8 (length 8993) has no trained clipping model
+[2024-04-13 02:43:31.062] [jointLog] [warning] read 26c39a7e-8eff-4ef2-89ee-f59850ce11e8 (length 8993) has no trained clipping model
+[2024-04-13 02:43:31.063] [jointLog] [warning] read 8bf6f6af-3043-4574-a0d8-249a966dccd6 (length 5358 - align length 5255) has no trained error model
+[2024-04-13 02:43:31.063] [jointLog] [warning] read f5b0e753-77a3-4c67-8e37-127be5e3aae1 (length 6043 - align length 5945) has no trained error model
+[2024-04-13 02:43:31.064] [jointLog] [warning] read 73aec0ad-822c-4ac1-a0f7-e75d37940077 (length 6381 - align length 6270) has no trained error model
+[2024-04-13 02:43:31.064] [jointLog] [warning] read 8a09189a-d661-4562-8bdb-6fc6f3976a63 (length 4811 - align length 4739) has no trained error model
+[2024-04-13 02:43:31.065] [jointLog] [warning] read d8191b47-0811-43fc-a79b-1af30cbfeaec (length 7849 - align length 2381) has no trained error model
+[2024-04-13 02:43:31.065] [jointLog] [warning] read d8191b47-0811-43fc-a79b-1af30cbfeaec (length 7849) has no trained clipping model
+[2024-04-13 02:43:31.065] [jointLog] [warning] read d8191b47-0811-43fc-a79b-1af30cbfeaec (length 7849) has no trained clipping model
+[2024-04-13 02:43:31.067] [jointLog] [warning] read 8c700341-a9f2-5fda-8425-d78eaabee674 (length 7566 - align length 7483) has no trained error model
+[2024-04-13 02:43:31.067] [jointLog] [warning] read 8c700341-a9f2-5fda-8425-d78eaabee674 (length 7566) has no trained clipping model
+[2024-04-13 02:43:31.067] [jointLog] [warning] read 8c700341-a9f2-5fda-8425-d78eaabee674 (length 7566) has no trained clipping model
+[2024-04-13 02:43:31.077] [jointLog] [warning] read 944c9433-7cd7-46ba-a4cd-5716040b8022 (length 13686 - align length 1567) has no trained error model
+[2024-04-13 02:43:31.077] [jointLog] [warning] read 944c9433-7cd7-46ba-a4cd-5716040b8022 (length 13686) has no trained clipping model
+[2024-04-13 02:43:31.077] [jointLog] [warning] read 944c9433-7cd7-46ba-a4cd-5716040b8022 (length 13686) has no trained clipping model
+[2024-04-13 02:43:31.077] [jointLog] [warning] read f0de1ee7-947d-4715-ad69-333172c17155 (length 7962 - align length 1543) has no trained error model
+[2024-04-13 02:43:31.077] [jointLog] [warning] read f0de1ee7-947d-4715-ad69-333172c17155 (length 7962) has no trained clipping model
+[2024-04-13 02:43:31.077] [jointLog] [warning] read f0de1ee7-947d-4715-ad69-333172c17155 (length 7962) has no trained clipping model
+[2024-04-13 02:43:31.078] [jointLog] [warning] read 93495310-4060-4eb7-9f5a-13d608e1ddf5 (length 5984 - align length 679) has no trained error model
+[2024-04-13 02:43:31.078] [jointLog] [warning] read 93495310-4060-4eb7-9f5a-13d608e1ddf5 (length 5984) has no trained clipping model
+[2024-04-13 02:43:31.078] [jointLog] [warning] read 93495310-4060-4eb7-9f5a-13d608e1ddf5 (length 5984) has no trained clipping model
+[2024-04-13 02:43:31.078] [jointLog] [warning] (in update()) CIGAR string for read [4acda955-d98f-42ad-8210-f16a546edbec] seems inconsistent. It implied an error rate greater than 1: 1.43712 0.0300535 0.0139975
+[2024-04-13 02:43:31.078] [jointLog] [warning] (in update()) CIGAR string for read [950e8daa-a67b-43e6-9743-bc1d833bd238] seems inconsistent. It implied an error rate greater than 1: 1.43569 0.0197287 0.0312372
+[2024-04-13 02:43:31.078] [jointLog] [warning] (in update()) CIGAR string for read [3f1f65a9-f84a-474f-9295-8c2f71fe7f3b] seems inconsistent. It implied an error rate greater than 1: 1.42882 0.00792988 0.0275459
+[2024-04-13 02:43:31.078] [jointLog] [warning] (in update()) CIGAR string for read [2c0cfa5a-a57d-444c-a817-b77cf260e77d] seems inconsistent. It implied an error rate greater than 1: 1.48428 0.00043535 0.0304745
+[2024-04-13 02:43:31.078] [jointLog] [warning] read a31ce349-99bb-4e30-bf49-5a7f7a37db8b (length 7130 - align length 4908) has no trained error model
+[2024-04-13 02:43:31.078] [jointLog] [warning] read a31ce349-99bb-4e30-bf49-5a7f7a37db8b (length 7130) has no trained clipping model
+[2024-04-13 02:43:31.078] [jointLog] [warning] read a31ce349-99bb-4e30-bf49-5a7f7a37db8b (length 7130) has no trained clipping model
+[2024-04-13 02:43:31.080] [jointLog] [warning] read 7abaf077-8547-4c17-bada-bd6f9d66052f (length 7074 - align length 6933) has no trained error model
+[2024-04-13 02:43:31.084] [jointLog] [warning] read 52218f52-d4d3-4263-8ab3-5c7d924a09cf (length 6263 - align length 5716) has no trained error model
+[2024-04-13 02:43:31.084] [jointLog] [warning] read 83428c12-c4c6-4e71-8936-f460779d3ea5 (length 11758 - align length 11414) has no trained error model
+[2024-04-13 02:43:31.084] [jointLog] [warning] read 83428c12-c4c6-4e71-8936-f460779d3ea5 (length 11758) has no trained clipping model
+[2024-04-13 02:43:31.084] [jointLog] [warning] read 83428c12-c4c6-4e71-8936-f460779d3ea5 (length 11758) has no trained clipping model
+[2024-04-13 02:43:31.087] [jointLog] [warning] read b8b3d410-6732-40ae-9762-e88f5d2be398 (length 6539 - align length 6426) has no trained error model
+[2024-04-13 02:43:31.087] [jointLog] [warning] read b8b3d410-6732-40ae-9762-e88f5d2be398 (length 6539) has no trained clipping model
+[2024-04-13 02:43:31.087] [jointLog] [warning] read b8b3d410-6732-40ae-9762-e88f5d2be398 (length 6539) has no trained clipping model
+[2024-04-13 02:43:31.088] [jointLog] [warning] read 7c6e224c-f69b-48b4-9044-10940a3343fd (length 7471 - align length 7353) has no trained error model
+[2024-04-13 02:43:31.088] [jointLog] [warning] read 7c6e224c-f69b-48b4-9044-10940a3343fd (length 7471) has no trained clipping model
+[2024-04-13 02:43:31.088] [jointLog] [warning] read 7c6e224c-f69b-48b4-9044-10940a3343fd (length 7471) has no trained clipping model
+[2024-04-13 02:43:31.094] [jointLog] [warning] read 2bd827ef-dac1-441c-a3bc-4fb1474431fd (length 7696 - align length 1882) has no trained error model
+[2024-04-13 02:43:31.094] [jointLog] [warning] read 2bd827ef-dac1-441c-a3bc-4fb1474431fd (length 7696) has no trained clipping model
+[2024-04-13 02:43:31.094] [jointLog] [warning] read 2bd827ef-dac1-441c-a3bc-4fb1474431fd (length 7696) has no trained clipping model
+[2024-04-13 02:43:31.104] [jointLog] [warning] read 13039ab9-6236-4dc3-8d9a-146d50568bc9 (length 5529 - align length 5417) has no trained error model
+[2024-04-13 02:43:31.104] [jointLog] [warning] read 13039ab9-6236-4dc3-8d9a-146d50568bc9 (length 5529) has no trained clipping model
+[2024-04-13 02:43:31.104] [jointLog] [warning] read 13039ab9-6236-4dc3-8d9a-146d50568bc9 (length 5529) has no trained clipping model
+[2024-04-13 02:43:31.105] [jointLog] [warning] read a9bc53a3-7563-4b9f-94e6-56dbe52e5586 (length 10264 - align length 964) has no trained error model
+[2024-04-13 02:43:31.105] [jointLog] [warning] read a9bc53a3-7563-4b9f-94e6-56dbe52e5586 (length 10264) has no trained clipping model
+[2024-04-13 02:43:31.105] [jointLog] [warning] read a9bc53a3-7563-4b9f-94e6-56dbe52e5586 (length 10264) has no trained clipping model
+[2024-04-13 02:43:31.105] [jointLog] [warning] read 6819085b-a4e3-42af-81bc-d0c1976ac008 (length 11879 - align length 11800) has no trained error model
+[2024-04-13 02:43:31.105] [jointLog] [warning] read 6819085b-a4e3-42af-81bc-d0c1976ac008 (length 11879) has no trained clipping model
+[2024-04-13 02:43:31.105] [jointLog] [warning] read 6819085b-a4e3-42af-81bc-d0c1976ac008 (length 11879) has no trained clipping model
+[2024-04-13 02:43:31.105] [jointLog] [warning] read 40677356-dafd-474e-b471-8960238d2569 (length 10203 - align length 10111) has no trained error model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read 8ebb50e4-6b09-46aa-ba09-5f0e05f72e12 (length 14926 - align length 14816) has no trained error model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read 8ebb50e4-6b09-46aa-ba09-5f0e05f72e12 (length 14926) has no trained clipping model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read 8ebb50e4-6b09-46aa-ba09-5f0e05f72e12 (length 14926) has no trained clipping model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read cee76c40-abd2-4947-a9bc-acf2a62b6dc1 (length 10170 - align length 10088) has no trained error model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read b78589ad-bc6b-4fa0-b2b9-023b02031eab (length 6874 - align length 6795) has no trained error model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read b78589ad-bc6b-4fa0-b2b9-023b02031eab (length 6874) has no trained clipping model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read b78589ad-bc6b-4fa0-b2b9-023b02031eab (length 6874) has no trained clipping model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read 1f612a79-9352-4481-a4cf-101e5c34ca69 (length 5863 - align length 5779) has no trained error model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read 1f612a79-9352-4481-a4cf-101e5c34ca69 (length 5863) has no trained clipping model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read 1f612a79-9352-4481-a4cf-101e5c34ca69 (length 5863) has no trained clipping model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read f98e90cc-bd32-4823-b430-aa91f0bd2f88 (length 13019 - align length 11864) has no trained error model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read f98e90cc-bd32-4823-b430-aa91f0bd2f88 (length 13019) has no trained clipping model
+[2024-04-13 02:43:31.106] [jointLog] [warning] read f98e90cc-bd32-4823-b430-aa91f0bd2f88 (length 13019) has no trained clipping model
+[2024-04-13 02:43:31.112] [jointLog] [warning] read 44f8fafc-21a3-4354-b560-c272c90540da (length 7214 - align length 5569) has no trained error model
+[2024-04-13 02:43:31.112] [jointLog] [warning] read 44f8fafc-21a3-4354-b560-c272c90540da (length 7214) has no trained clipping model
+[2024-04-13 02:43:31.112] [jointLog] [warning] read 44f8fafc-21a3-4354-b560-c272c90540da (length 7214) has no trained clipping model
+[2024-04-13 02:43:31.121] [jointLog] [warning] read 40a138cb-61cf-4598-8309-6eb0e27b4a87 (length 5908 - align length 5810) has no trained error model
+[2024-04-13 02:43:31.122] [jointLog] [warning] (in update()) CIGAR string for read [6cd04014-dc7f-45f0-8ddd-649cbf1355ca] seems inconsistent. It implied an error rate greater than 1: 1.21572 0.00152207 0.0365297
+[2024-04-13 02:43:31.122] [jointLog] [warning] read 5036e11d-b0dd-4402-a533-5609cab1f23e (length 14467 - align length 14353) has no trained error model
+[2024-04-13 02:43:31.122] [jointLog] [warning] read 5036e11d-b0dd-4402-a533-5609cab1f23e (length 14467) has no trained clipping model
+[2024-04-13 02:43:31.122] [jointLog] [warning] read 5036e11d-b0dd-4402-a533-5609cab1f23e (length 14467) has no trained clipping model
+[2024-04-13 02:43:31.123] [jointLog] [warning] read bddc6536-5d95-4300-a314-a454e6b22da7 (length 9360 - align length 6897) has no trained error model
+[2024-04-13 02:43:31.123] [jointLog] [warning] read bddc6536-5d95-4300-a314-a454e6b22da7 (length 9360) has no trained clipping model
+[2024-04-13 02:43:31.123] [jointLog] [warning] read bddc6536-5d95-4300-a314-a454e6b22da7 (length 9360) has no trained clipping model
+[2024-04-13 02:43:31.124] [jointLog] [warning] read b0ee69af-92ea-4e5c-ad07-9bc08d810e7b (length 11149 - align length 11026) has no trained error model
+[2024-04-13 02:43:31.124] [jointLog] [warning] read b0ee69af-92ea-4e5c-ad07-9bc08d810e7b (length 11149) has no trained clipping model
+[2024-04-13 02:43:31.124] [jointLog] [warning] read b0ee69af-92ea-4e5c-ad07-9bc08d810e7b (length 11149) has no trained clipping model
+[2024-04-13 02:43:31.126] [jointLog] [warning] read 9764367a-3a54-4c62-985c-bf8c2a8bbf23 (length 7599 - align length 7501) has no trained error model
+[2024-04-13 02:43:31.126] [jointLog] [warning] read 32568aea-42dd-4752-94c8-e4b35da1d2ed (length 8504 - align length 8382) has no trained error model
+[2024-04-13 02:43:31.126] [jointLog] [warning] read 32568aea-42dd-4752-94c8-e4b35da1d2ed (length 8504) has no trained clipping model
+[2024-04-13 02:43:31.126] [jointLog] [warning] read 32568aea-42dd-4752-94c8-e4b35da1d2ed (length 8504) has no trained clipping model
+[2024-04-13 02:43:31.126] [jointLog] [warning] read a7fddb49-1ef1-4b50-a228-df37e7f8d68e (length 8435 - align length 8321) has no trained error model
+[2024-04-13 02:43:31.126] [jointLog] [warning] read a7fddb49-1ef1-4b50-a228-df37e7f8d68e (length 8435) has no trained clipping model
+[2024-04-13 02:43:31.126] [jointLog] [warning] read a7fddb49-1ef1-4b50-a228-df37e7f8d68e (length 8435) has no trained clipping model
+[2024-04-13 02:43:31.128] [jointLog] [warning] read d05d1557-0db8-4f17-80dd-92062a5f935d (length 7864 - align length 7766) has no trained error model
+[2024-04-13 02:43:31.519] [jointLog] [warning] (in update()) CIGAR string for read [2c1dad17-017a-4076-b60a-0717f0c3f9a7] seems inconsistent. It implied an error rate greater than 1: 1.03828 0.0306193 0.0605428
+[2024-04-13 02:43:31.549] [jointLog] [warning] (in update()) CIGAR string for read [08701edc-b77d-4506-8112-c943d37bea61] seems inconsistent. It implied an error rate greater than 1: 1.36423 0.0324708 0.042618
+[2024-04-13 02:43:31.551] [jointLog] [warning] (in update()) CIGAR string for read [a74983a7-b97d-46f4-9fea-b94496304805] seems inconsistent. It implied an error rate greater than 1: 2.25345 0.163701 0.0344009
+[2024-04-13 02:43:31.552] [jointLog] [warning] (in update()) CIGAR string for read [027f242d-2964-4005-abc8-f5abb0a350d8] seems inconsistent. It implied an error rate greater than 1: 2.41121 0.0217391 0.0193237
+[2024-04-13 02:43:31.552] [jointLog] [warning] (in update()) CIGAR string for read [0887ecd3-3db6-499a-85cc-52deebe855aa] seems inconsistent. It implied an error rate greater than 1: 1.09979 0.0292056 0.0225857
+[2024-04-13 02:43:31.555] [jointLog] [warning] read 2d5d0a2e-bfca-4618-9bde-bb3babaf534c (length 6950 - align length 6871) has no trained error model
+[2024-04-13 02:43:31.555] [jointLog] [warning] read 2d5d0a2e-bfca-4618-9bde-bb3babaf534c (length 6950) has no trained clipping model
+[2024-04-13 02:43:31.555] [jointLog] [warning] read 2d5d0a2e-bfca-4618-9bde-bb3babaf534c (length 6950) has no trained clipping model
+[2024-04-13 02:43:31.557] [jointLog] [warning] read f3ec0aed-ceae-4976-a89f-ddab760c9825 (length 8536 - align length 8248) has no trained error model
+[2024-04-13 02:43:31.558] [jointLog] [warning] read cb6846fe-210d-47ff-9344-1a6d3dccab94 (length 7331 - align length 7233) has no trained error model
+[2024-04-13 02:43:31.559] [jointLog] [warning] read 6613d351-80e4-42b4-9789-7dbfa5c9c31d (length 7272 - align length 7160) has no trained error model
+[2024-04-13 02:43:31.559] [jointLog] [warning] read d79724c9-2c1e-4a30-8b7e-c4236d17f44b (length 7156 - align length 7058) has no trained error model
+[2024-04-13 02:43:31.563] [jointLog] [warning] (in update()) CIGAR string for read [71619908-f046-4abb-8348-d659f61ec53e] seems inconsistent. It implied an error rate greater than 1: 1.4204 0.149777 0.0254939
+[2024-04-13 02:43:31.564] [jointLog] [warning] (in update()) CIGAR string for read [7dbed903-ee85-4ae2-a2a3-2600aa7805eb] seems inconsistent. It implied an error rate greater than 1: 2.23279 0.0307317 0.02
+[2024-04-13 02:43:31.626] [jointLog] [warning] read dea16823-2ce6-4089-af33-75e2279be806 (length 7773 - align length 7659) has no trained error model
+[2024-04-13 02:43:31.626] [jointLog] [warning] read dea16823-2ce6-4089-af33-75e2279be806 (length 7773) has no trained clipping model
+[2024-04-13 02:43:31.626] [jointLog] [warning] read dea16823-2ce6-4089-af33-75e2279be806 (length 7773) has no trained clipping model
+[2024-04-13 02:43:31.627] [jointLog] [warning] (in update()) CIGAR string for read [cf54b139-8737-4eb6-97b4-e9c22af4d634] seems inconsistent. It implied an error rate greater than 1: 1.00126 0.0337995 0.503497
+[2024-04-13 02:43:31.644] [jointLog] [warning] read cf959cc4-abd3-4262-9927-afecc9204de5 (length 8997 - align length 8479) has no trained error model
+[2024-04-13 02:43:31.650] [jointLog] [warning] read 0b2335f3-51c7-4fa9-bc94-fb2c0ddf8283 (length 8639 - align length 4065) has no trained error model
+[2024-04-13 02:43:31.650] [jointLog] [warning] read 0b2335f3-51c7-4fa9-bc94-fb2c0ddf8283 (length 8639) has no trained clipping model
+[2024-04-13 02:43:31.650] [jointLog] [warning] read 0b2335f3-51c7-4fa9-bc94-fb2c0ddf8283 (length 8639) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read f5866a29-0897-43d2-a64c-13a1507407c8 (length 97 - align length 81) has no trained error model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read f5866a29-0897-43d2-a64c-13a1507407c8 (length 97) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read f5866a29-0897-43d2-a64c-13a1507407c8 (length 97) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read 9dc9d01d-26c9-40f5-81b6-64f0b435bdff (length 11549 - align length 286) has no trained error model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read 9dc9d01d-26c9-40f5-81b6-64f0b435bdff (length 11549) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read 9dc9d01d-26c9-40f5-81b6-64f0b435bdff (length 11549) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read f579d483-5727-47c8-8816-a37544c70c8a (length 11645 - align length 2796) has no trained error model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read f579d483-5727-47c8-8816-a37544c70c8a (length 11645) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read f579d483-5727-47c8-8816-a37544c70c8a (length 11645) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read 0f3f67d5-8108-4278-82d0-f3d8362e0c52 (length 10662 - align length 2715) has no trained error model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read 0f3f67d5-8108-4278-82d0-f3d8362e0c52 (length 10662) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read 0f3f67d5-8108-4278-82d0-f3d8362e0c52 (length 10662) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read d790c2e4-1ea9-4a81-be14-cdde85ea68c3 (length 11040 - align length 2746) has no trained error model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read d790c2e4-1ea9-4a81-be14-cdde85ea68c3 (length 11040) has no trained clipping model
+[2024-04-13 02:43:31.689] [jointLog] [warning] read d790c2e4-1ea9-4a81-be14-cdde85ea68c3 (length 11040) has no trained clipping model
+[2024-04-13 02:43:31.690] [jointLog] [warning] read 913b3a03-789b-4ec9-b070-8a8d582788fc (length 8298 - align length 286) has no trained error model
+[2024-04-13 02:43:31.690] [jointLog] [warning] read 913b3a03-789b-4ec9-b070-8a8d582788fc (length 8298) has no trained clipping model
+[2024-04-13 02:43:31.690] [jointLog] [warning] read 913b3a03-789b-4ec9-b070-8a8d582788fc (length 8298) has no trained clipping model
+[2024-04-13 02:43:31.691] [jointLog] [warning] read 6c17b0e7-b1d2-42b2-b285-d3d5fccdf853 (length 9755 - align length 284) has no trained error model
+[2024-04-13 02:43:31.691] [jointLog] [warning] read 6c17b0e7-b1d2-42b2-b285-d3d5fccdf853 (length 9755) has no trained clipping model
+[2024-04-13 02:43:31.691] [jointLog] [warning] read 6c17b0e7-b1d2-42b2-b285-d3d5fccdf853 (length 9755) has no trained clipping model
+[2024-04-13 02:43:31.698] [jointLog] [warning] read b82a3917-9fb1-4a20-909e-8915897988fe (length 8311 - align length 8122) has no trained error model
+[2024-04-13 02:43:31.698] [jointLog] [warning] read b82a3917-9fb1-4a20-909e-8915897988fe (length 8311) has no trained clipping model
+[2024-04-13 02:43:31.698] [jointLog] [warning] read b82a3917-9fb1-4a20-909e-8915897988fe (length 8311) has no trained clipping model
+[2024-04-13 02:43:32.192] [jointLog] [warning] read 822954a1-0fb7-5510-9376-c621180fce1a (length 9075 - align length 362) has no trained error model
+[2024-04-13 02:43:32.192] [jointLog] [warning] read 822954a1-0fb7-5510-9376-c621180fce1a (length 9075) has no trained clipping model
+[2024-04-13 02:43:32.192] [jointLog] [warning] read 822954a1-0fb7-5510-9376-c621180fce1a (length 9075) has no trained clipping model
+[2024-04-13 02:43:32.196] [jointLog] [warning] read 15b9b54a-5a12-43e1-8746-1082b1b5210a (length 8161 - align length 3611) has no trained error model
+[2024-04-13 02:43:32.196] [jointLog] [warning] read 15b9b54a-5a12-43e1-8746-1082b1b5210a (length 8161) has no trained clipping model
+[2024-04-13 02:43:32.196] [jointLog] [warning] read 15b9b54a-5a12-43e1-8746-1082b1b5210a (length 8161) has no trained clipping model
+[2024-04-13 02:43:32.247] [jointLog] [warning] (in update()) CIGAR string for read [cbae16eb-4c64-4219-979a-1b025db53e57] seems inconsistent. It implied an error rate greater than 1: 1.68644 0.0349391 0.0280572
+[2024-04-13 02:43:32.249] [jointLog] [warning] (in update()) CIGAR string for read [fd58e13c-a738-433b-8632-15050de1e7fb] seems inconsistent. It implied an error rate greater than 1: 1.19029 0.0229102 0.0464396
+[2024-04-13 02:43:32.250] [jointLog] [warning] read 1da3b7e5-282f-431b-bbc5-a85490fc7968 (length 11315 - align length 412) has no trained error model
+[2024-04-13 02:43:32.250] [jointLog] [warning] read 1da3b7e5-282f-431b-bbc5-a85490fc7968 (length 11315) has no trained clipping model
+[2024-04-13 02:43:32.250] [jointLog] [warning] read 1da3b7e5-282f-431b-bbc5-a85490fc7968 (length 11315) has no trained clipping model
+[2024-04-13 02:43:32.250] [jointLog] [warning] read d225ab36-b651-4226-a1ea-42a555dfcc77 (length 8895 - align length 146) has no trained error model
+[2024-04-13 02:43:32.250] [jointLog] [warning] read d225ab36-b651-4226-a1ea-42a555dfcc77 (length 8895) has no trained clipping model
+[2024-04-13 02:43:32.250] [jointLog] [warning] read d225ab36-b651-4226-a1ea-42a555dfcc77 (length 8895) has no trained clipping model
+[2024-04-13 02:43:32.251] [jointLog] [warning] read d66b0292-8e76-4f90-882f-6b21974b84e8 (length 10371 - align length 10155) has no trained error model
+[2024-04-13 02:43:32.251] [jointLog] [warning] read d66b0292-8e76-4f90-882f-6b21974b84e8 (length 10371) has no trained clipping model
+[2024-04-13 02:43:32.251] [jointLog] [warning] read d66b0292-8e76-4f90-882f-6b21974b84e8 (length 10371) has no trained clipping model
+[2024-04-13 02:43:32.251] [jointLog] [warning] read 09ad1d9b-2068-438f-96f3-12d2a7faa964 (length 10400 - align length 10191) has no trained error model
+[2024-04-13 02:43:32.251] [jointLog] [warning] read 09ad1d9b-2068-438f-96f3-12d2a7faa964 (length 10400) has no trained clipping model
+[2024-04-13 02:43:32.251] [jointLog] [warning] read 09ad1d9b-2068-438f-96f3-12d2a7faa964 (length 10400) has no trained clipping model
+[2024-04-13 02:43:32.292] [jointLog] [warning] read 8e637ecb-c345-5195-8041-38e5cd59601b (length 8960 - align length 7929) has no trained error model
+[2024-04-13 02:43:32.293] [jointLog] [warning] read b177def7-2fbe-4251-acd3-26d22c381e38 (length 8710 - align length 8603) has no trained error model
+[2024-04-13 02:43:32.293] [jointLog] [warning] read b177def7-2fbe-4251-acd3-26d22c381e38 (length 8710) has no trained clipping model
+[2024-04-13 02:43:32.293] [jointLog] [warning] read b177def7-2fbe-4251-acd3-26d22c381e38 (length 8710) has no trained clipping model
+[2024-04-13 02:43:32.293] [jointLog] [warning] read eb28e31a-24a8-4f76-a920-e8618b4f8a5b (length 17226 - align length 16784) has no trained error model
+[2024-04-13 02:43:32.293] [jointLog] [warning] read eb28e31a-24a8-4f76-a920-e8618b4f8a5b (length 17226) has no trained clipping model
+[2024-04-13 02:43:32.293] [jointLog] [warning] read eb28e31a-24a8-4f76-a920-e8618b4f8a5b (length 17226) has no trained clipping model
+[2024-04-13 02:43:32.294] [jointLog] [warning] read 81683c6e-45f8-4bb1-a2c9-202c3c69a7b5 (length 8695 - align length 8581) has no trained error model
+[2024-04-13 02:43:32.306] [jointLog] [warning] read fe763699-8338-4e62-b3a8-5f3c961664eb (length 9011) has no trained clipping model
+[2024-04-13 02:43:32.309] [jointLog] [warning] read a9cfd26f-2155-4295-9107-798897900401 (length 9920 - align length 869) has no trained error model
+[2024-04-13 02:43:32.309] [jointLog] [warning] read a9cfd26f-2155-4295-9107-798897900401 (length 9920) has no trained clipping model
+[2024-04-13 02:43:32.309] [jointLog] [warning] read a9cfd26f-2155-4295-9107-798897900401 (length 9920) has no trained clipping model
+[2024-04-13 02:43:32.310] [jointLog] [warning] (in update()) CIGAR string for read [4e064c42-3d51-4d5c-b952-a64bb1627467] seems inconsistent. It implied an error rate greater than 1: 2.03018 0.146774 0.0516129
+[2024-04-13 02:43:32.687] [jointLog] [warning] read e88238d4-2620-43b6-87bc-67021715ceb4 (length 9885 - align length 9076) has no trained error model
+[2024-04-13 02:43:32.690] [jointLog] [warning] read 4d9fb89f-7fe5-4643-9178-08db601b7b68 (length 8611 - align length 8075) has no trained error model
+[2024-04-13 02:43:32.690] [jointLog] [warning] (in update()) CIGAR string for read [55730113-8374-4db9-9975-6e1c27a2114f] seems inconsistent. It implied an error rate greater than 1: 1.22535 0.0158301 0.0366795
+[2024-04-13 02:43:32.691] [jointLog] [warning] (in update()) CIGAR string for read [e3bb3f5b-3f1f-4b1d-a1b2-318255d836d9] seems inconsistent. It implied an error rate greater than 1: 1.06037 0.0469417 0.0341394
+[2024-04-13 02:43:32.693] [jointLog] [warning] read 492e7236-dd9c-4a07-886a-a2257bfba92e (length 14756 - align length 80) has no trained error model
+[2024-04-13 02:43:32.693] [jointLog] [warning] read 492e7236-dd9c-4a07-886a-a2257bfba92e (length 14756) has no trained clipping model
+[2024-04-13 02:43:32.693] [jointLog] [warning] read 492e7236-dd9c-4a07-886a-a2257bfba92e (length 14756) has no trained clipping model
+[2024-04-13 02:43:32.713] [jointLog] [warning] read b0d8cc81-1f8f-4d09-b819-774fc13b0610 (length 7987 - align length 7891) has no trained error model
+[2024-04-13 02:43:33.209] [jointLog] [warning] read c136a5b6-8748-46a5-bf2e-d23a9b776d85 (length 10998 - align length 2281) has no trained error model
+[2024-04-13 02:43:33.209] [jointLog] [warning] read c136a5b6-8748-46a5-bf2e-d23a9b776d85 (length 10998) has no trained clipping model
+[2024-04-13 02:43:33.209] [jointLog] [warning] read c136a5b6-8748-46a5-bf2e-d23a9b776d85 (length 10998) has no trained clipping model
+[2024-04-13 02:43:33.487] [jointLog] [warning] read aebce2fa-ce50-45db-8566-aef0093d5c94 (length 8070 - align length 7957) has no trained error model
+[2024-04-13 02:43:33.487] [jointLog] [warning] read aebce2fa-ce50-45db-8566-aef0093d5c94 (length 8070) has no trained clipping model
+[2024-04-13 02:43:33.487] [jointLog] [warning] read aebce2fa-ce50-45db-8566-aef0093d5c94 (length 8070) has no trained clipping model
+[2024-04-13 02:43:33.495] [jointLog] [warning] (in update()) CIGAR string for read [dde1f5f5-4cbb-4497-b96e-8bc0219db30c] seems inconsistent. It implied an error rate greater than 1: 1.55134 0.020685 0.00508647
+[2024-04-13 02:43:33.496] [jointLog] [warning] read 8afad83c-c87a-4a36-9ad6-2dcb00022f82 (length 9709 - align length 9620) has no trained error model
+[2024-04-13 02:43:33.496] [jointLog] [warning] (in update()) CIGAR string for read [31995006-97b3-4393-9903-f868c7b2550d] seems inconsistent. It implied an error rate greater than 1: 1.84755 0.0274914 0.0257732
+[2024-04-13 02:43:33.496] [jointLog] [warning] (in update()) CIGAR string for read [b7bfba61-91d3-4582-a0b0-477780422ce0] seems inconsistent. It implied an error rate greater than 1: 1.66257 0.024893 0.153248
+[2024-04-13 02:43:33.512] [jointLog] [warning] (in update()) CIGAR string for read [f6b8ca02-4eae-4976-92ae-b8266c8bdcbe] seems inconsistent. It implied an error rate greater than 1: 1.07216 0.0179748 0.052127
+[2024-04-13 02:43:33.541] [jointLog] [warning] read 4bbc0642-3218-461a-b8f5-a42ce06aa934 (length 10813 - align length 1895) has no trained error model
+[2024-04-13 02:43:33.541] [jointLog] [warning] read 4bbc0642-3218-461a-b8f5-a42ce06aa934 (length 10813) has no trained clipping model
+[2024-04-13 02:43:33.541] [jointLog] [warning] read 4bbc0642-3218-461a-b8f5-a42ce06aa934 (length 10813) has no trained clipping model
+[2024-04-13 02:43:33.853] [jointLog] [warning] (in update()) CIGAR string for read [79c85a3a-d5a8-42c9-83a0-f7c226468b58] seems inconsistent. It implied an error rate greater than 1: 1.29017 0.0111178 0.0165264
+[2024-04-13 02:43:33.853] [jointLog] [warning] (in update()) CIGAR string for read [63756966-f9df-407b-b8e7-7c56014b6ce7] seems inconsistent. It implied an error rate greater than 1: 1.04524 0.037332 0.00547536
+[2024-04-13 02:43:33.856] [jointLog] [warning] (in update()) CIGAR string for read [750813b8-fcdc-46cf-9d6d-20cd174d719a] seems inconsistent. It implied an error rate greater than 1: 1.25436 0.0104368 0.00251256
+[2024-04-13 02:43:33.856] [jointLog] [warning] (in update()) CIGAR string for read [3f57f974-987e-45eb-98cf-7cf215cda8f1] seems inconsistent. It implied an error rate greater than 1: 1.00901 0.0253708 0.0210773
+[2024-04-13 02:43:33.856] [jointLog] [warning] (in update()) CIGAR string for read [e3706bdb-c369-4b0b-a48c-3c8e7e864cb2] seems inconsistent. It implied an error rate greater than 1: 1.48909 0.00390434 0.034163
+[2024-04-13 02:43:33.856] [jointLog] [warning] (in update()) CIGAR string for read [d0117363-0b86-4deb-9fe6-8acca3e6ceea] seems inconsistent. It implied an error rate greater than 1: 1.03902 0.0233756 0.022187
+[2024-04-13 02:43:33.856] [jointLog] [warning] (in update()) CIGAR string for read [c3f4f9de-f3e7-45e7-b352-4fbaa504ac9f] seems inconsistent. It implied an error rate greater than 1: 1.03946 0.0137579 0.0298742
+[2024-04-13 02:43:33.856] [jointLog] [warning] (in update()) CIGAR string for read [4f9e163c-93e2-4c7a-a501-4253833126a7] seems inconsistent. It implied an error rate greater than 1: 1.21459 0.331572 0.0211311
+[2024-04-13 02:43:33.890] [jointLog] [warning] read b1f36c49-66c8-49ba-a2da-d3b4d52ff54f (length 13457 - align length 537) has no trained error model
+[2024-04-13 02:43:33.890] [jointLog] [warning] read b1f36c49-66c8-49ba-a2da-d3b4d52ff54f (length 13457) has no trained clipping model
+[2024-04-13 02:43:33.890] [jointLog] [warning] read b1f36c49-66c8-49ba-a2da-d3b4d52ff54f (length 13457) has no trained clipping model
+[2024-04-13 02:43:33.894] [jointLog] [warning] read 7ceed448-7ac6-4d52-b055-838ca514b65a (length 10981 - align length 10873) has no trained error model
+[2024-04-13 02:43:33.948] [jointLog] [warning] (in update()) CIGAR string for read [62900088-4675-5b56-9816-97d3b6400d59] seems inconsistent. It implied an error rate greater than 1: 1.08379 0.116797 0.0207031
+[2024-04-13 02:43:33.948] [jointLog] [warning] (in update()) CIGAR string for read [95e76d12-ec29-48e4-9608-74ee21497398] seems inconsistent. It implied an error rate greater than 1: 1.10193 0.0996895 0.132115
+[2024-04-13 02:43:33.948] [jointLog] [warning] (in update()) CIGAR string for read [da30692f-342b-4ea3-98d7-7a830db7f53c] seems inconsistent. It implied an error rate greater than 1: 1.08886 0.0963065 0.138419
+[2024-04-13 02:43:33.948] [jointLog] [warning] (in update()) CIGAR string for read [38ef3d28-86f1-4b24-9d6e-a748581f0cab] seems inconsistent. It implied an error rate greater than 1: 1.08488 0.102756 0.0299213
+[2024-04-13 02:43:33.948] [jointLog] [warning] (in update()) CIGAR string for read [23198228-d3f9-5862-88bc-061f9432cb46] seems inconsistent. It implied an error rate greater than 1: 1.10383 0.109546 0.0312989
+[2024-04-13 02:43:33.948] [jointLog] [warning] (in update()) CIGAR string for read [c61aae97-a4da-4584-8a6a-18e8d7cb629d] seems inconsistent. It implied an error rate greater than 1: 1.08251 0.117172 0.0261237
+[2024-04-13 02:43:33.961] [jointLog] [warning] (in update()) CIGAR string for read [a7388cb6-5ecc-4e69-b696-c3e5aa35c0f9] seems inconsistent. It implied an error rate greater than 1: 1.01029 0.0180162 0.0163595
+[2024-04-13 02:43:33.961] [jointLog] [warning] read a4f77ae8-9d50-4896-ad8f-62255a027679 (length 9097 - align length 8956) has no trained error model
+[2024-04-13 02:43:33.961] [jointLog] [warning] read 1bb6b98d-f663-4888-906d-9e426967630e (length 9212 - align length 8760) has no trained error model
+[2024-04-13 02:43:34.009] [jointLog] [warning] read d5a5844d-8b03-43f9-8f64-4f6b1f93b617 (length 9590 - align length 261) has no trained error model
+[2024-04-13 02:43:34.009] [jointLog] [warning] read d5a5844d-8b03-43f9-8f64-4f6b1f93b617 (length 9590) has no trained clipping model
+[2024-04-13 02:43:34.009] [jointLog] [warning] read d5a5844d-8b03-43f9-8f64-4f6b1f93b617 (length 9590) has no trained clipping model
+[2024-04-13 02:43:34.011] [jointLog] [warning] (in update()) CIGAR string for read [bd326c87-ef20-4ad5-8b66-38e35a8dcb77] seems inconsistent. It implied an error rate greater than 1: 1.02691 0.038038 0.0690691
+[2024-04-13 02:43:34.631] [jointLog] [warning] (in update()) CIGAR string for read [0d50ed47-c7c4-48fa-ae9a-a2821bc39bc4] seems inconsistent. It implied an error rate greater than 1: 1.55533 0.0316049 0.0133333
+[2024-04-13 02:43:34.662] [jointLog] [warning] (in update()) CIGAR string for read [e53b488a-7a9f-43d4-b90a-6149d838f3cf] seems inconsistent. It implied an error rate greater than 1: 1.30192 0.0211187 0.0582192
+[2024-04-13 02:43:34.921] [jointLog] [warning] read f1e13fa6-329a-4a79-8838-9518959ad9c8 (length 9412 - align length 213) has no trained error model
+[2024-04-13 02:43:34.921] [jointLog] [warning] read f1e13fa6-329a-4a79-8838-9518959ad9c8 (length 9412) has no trained clipping model
+[2024-04-13 02:43:34.921] [jointLog] [warning] read f1e13fa6-329a-4a79-8838-9518959ad9c8 (length 9412) has no trained clipping model
+[2024-04-13 02:43:34.934] [jointLog] [warning] read 28ac3786-e549-4b90-b5f5-84eeb57c0551 (length 11914 - align length 349) has no trained error model
+[2024-04-13 02:43:34.934] [jointLog] [warning] read 28ac3786-e549-4b90-b5f5-84eeb57c0551 (length 11914) has no trained clipping model
+[2024-04-13 02:43:34.934] [jointLog] [warning] read 28ac3786-e549-4b90-b5f5-84eeb57c0551 (length 11914) has no trained clipping model
+[2024-04-13 02:43:34.942] [jointLog] [warning] (in update()) CIGAR string for read [1e712d78-bae5-4682-b9d5-c0a97d47a4ab] seems inconsistent. It implied an error rate greater than 1: 1.09833 0.0305344 0.0274809
+[2024-04-13 02:43:34.942] [jointLog] [warning] (in update()) CIGAR string for read [6b180b98-768d-4d28-9e3f-4f3416eef0f8] seems inconsistent. It implied an error rate greater than 1: 1.09995 0.0184237 0.0342886
+[2024-04-13 02:43:34.975] [jointLog] [warning] (in update()) CIGAR string for read [b1aa176a-d51e-4540-a8e1-83d6ea79dcb0] seems inconsistent. It implied an error rate greater than 1: 1.74908 0.0165032 0.0131547
+[2024-04-13 02:43:34.975] [jointLog] [warning] (in update()) CIGAR string for read [003b2caf-f3aa-4cf7-8a09-b7a0be1c2170] seems inconsistent. It implied an error rate greater than 1: 1.85542 0.0208384 0.0245158
+[2024-04-13 02:43:34.975] [jointLog] [warning] (in update()) CIGAR string for read [7ab16106-aa40-46e7-a188-78e59f5bc638] seems inconsistent. It implied an error rate greater than 1: 2.03275 0.0235294 0.0158568
+[2024-04-13 02:43:34.975] [jointLog] [warning] (in update()) CIGAR string for read [f9d4defe-3d61-44a3-a1c6-6d85a965b548] seems inconsistent. It implied an error rate greater than 1: 1.87561 0.00374625 0.0224775
+[2024-04-13 02:43:34.976] [jointLog] [warning] (in update()) CIGAR string for read [e2e3f67c-0447-49df-a27e-9bb535a40fe3] seems inconsistent. It implied an error rate greater than 1: 1.86968 0.00907029 0.0146133
+[2024-04-13 02:43:34.976] [jointLog] [warning] (in update()) CIGAR string for read [2b886ffe-f7f6-47e4-8c27-15f8b9edc7f0] seems inconsistent. It implied an error rate greater than 1: 2.34463 0.0215089 0.0115817
+[2024-04-13 02:43:34.990] [jointLog] [warning] (in update()) CIGAR string for read [c7a1e08f-6b6d-48d6-94b7-378552e75f63] seems inconsistent. It implied an error rate greater than 1: 1.08406 0.0903955 0.0433145
+[2024-04-13 02:43:34.990] [jointLog] [warning] (in update()) CIGAR string for read [8192c510-a558-49d8-aa05-a24586474a42] seems inconsistent. It implied an error rate greater than 1: 1.07948 0.0741206 0.0565327
+[2024-04-13 02:43:34.990] [jointLog] [warning] read 23aab663-1d5a-4704-8116-20a7797b15b1 (length 12289 - align length 12144) has no trained error model
+[2024-04-13 02:43:34.990] [jointLog] [warning] read 23aab663-1d5a-4704-8116-20a7797b15b1 (length 12289) has no trained clipping model
+[2024-04-13 02:43:34.990] [jointLog] [warning] read 23aab663-1d5a-4704-8116-20a7797b15b1 (length 12289) has no trained clipping model
+[2024-04-13 02:43:34.990] [jointLog] [warning] read 9858085a-b403-44b4-be73-51a36f887c21 (length 14054 - align length 13930) has no trained error model
+[2024-04-13 02:43:34.990] [jointLog] [warning] read 9858085a-b403-44b4-be73-51a36f887c21 (length 14054) has no trained clipping model
+[2024-04-13 02:43:34.990] [jointLog] [warning] read 9858085a-b403-44b4-be73-51a36f887c21 (length 14054) has no trained clipping model
+[2024-04-13 02:43:34.995] [jointLog] [warning] read 160648f9-8d28-4cac-8a0a-95628555f58c (length 9698 - align length 398) has no trained error model
+[2024-04-13 02:43:34.995] [jointLog] [warning] read 160648f9-8d28-4cac-8a0a-95628555f58c (length 9698) has no trained clipping model
+[2024-04-13 02:43:34.995] [jointLog] [warning] read 160648f9-8d28-4cac-8a0a-95628555f58c (length 9698) has no trained clipping model
+[2024-04-13 02:43:34.996] [jointLog] [warning] read 03262424-fd2b-4896-bfbf-71958537a12a (length 15291 - align length 15157) has no trained error model
+[2024-04-13 02:43:34.996] [jointLog] [warning] read 03262424-fd2b-4896-bfbf-71958537a12a (length 15291) has no trained clipping model
+[2024-04-13 02:43:34.996] [jointLog] [warning] read 03262424-fd2b-4896-bfbf-71958537a12a (length 15291) has no trained clipping model
+[2024-04-13 02:43:34.996] [jointLog] [warning] read 6d7c2f08-67d0-46d9-a70c-f8eb7b050fd3 (length 9381 - align length 9333) has no trained error model
+[2024-04-13 02:43:35.037] [jointLog] [warning] read 80f58b74-b980-4770-a66c-8d7f5551d157 (length 12973 - align length 12839) has no trained error model
+[2024-04-13 02:43:35.037] [jointLog] [warning] read 80f58b74-b980-4770-a66c-8d7f5551d157 (length 12973) has no trained clipping model
+[2024-04-13 02:43:35.037] [jointLog] [warning] read 80f58b74-b980-4770-a66c-8d7f5551d157 (length 12973) has no trained clipping model
+[2024-04-13 02:43:35.039] [jointLog] [warning] read e8bf958c-9966-4a42-bc9d-1b92569077e7 (length 10387 - align length 10232) has no trained error model
+[2024-04-13 02:43:35.048] [jointLog] [warning] read 09c9c5b0-206f-470c-8cca-7579c906e0ce (length 10271 - align length 9449) has no trained error model
+[2024-04-13 02:43:35.093] [jointLog] [warning] (in update()) CIGAR string for read [eaa7dc61-cdda-476d-847b-bb4ad5b9044d] seems inconsistent. It implied an error rate greater than 1: 1.45898 0.0228707 0.0157729
+[2024-04-13 02:43:35.093] [jointLog] [warning] (in update()) CIGAR string for read [2211e5a5-0be7-4624-9d88-1b9c7055d631] seems inconsistent. It implied an error rate greater than 1: 1.46383 0.0155317 0.0211071
+[2024-04-13 02:43:35.097] [jointLog] [warning] (in update()) CIGAR string for read [4ee71805-627c-46cc-883b-b38625acf4eb] seems inconsistent. It implied an error rate greater than 1: 1.4533 0.0301395 0.0499325
+[2024-04-13 02:43:35.097] [jointLog] [warning] (in update()) CIGAR string for read [de94a430-433d-40ec-aa67-1f425d76a86a] seems inconsistent. It implied an error rate greater than 1: 1.08046 0.013199 0.0284821
+[2024-04-13 02:43:35.097] [jointLog] [warning] (in update()) CIGAR string for read [52817a9a-b066-46f9-8791-363f1777054f] seems inconsistent. It implied an error rate greater than 1: 1.42621 0.0213734 0.0450205
+[2024-04-13 02:43:35.097] [jointLog] [warning] (in update()) CIGAR string for read [289c83d4-ed85-48c8-a231-fb0302099e3b] seems inconsistent. It implied an error rate greater than 1: 1.12674 0.0209424 0.026178
+[2024-04-13 02:43:35.097] [jointLog] [warning] (in update()) CIGAR string for read [593f81c4-1979-4c66-8d8f-02a3864f3809] seems inconsistent. It implied an error rate greater than 1: 1.04938 0.0139741 0.0265849
+[2024-04-13 02:43:35.097] [jointLog] [warning] (in update()) CIGAR string for read [864ddc43-c105-416b-9646-95f349b1772e] seems inconsistent. It implied an error rate greater than 1: 1.07684 0.0224796 0.0422343
+[2024-04-13 02:43:35.097] [jointLog] [warning] (in update()) CIGAR string for read [cad0bc8b-0185-48d9-a5f8-7c4b7274b044] seems inconsistent. It implied an error rate greater than 1: 1.40321 0.00959024 0.0401046
+[2024-04-13 02:43:35.097] [jointLog] [warning] (in update()) CIGAR string for read [cfda21f1-2a89-4453-aef6-137991a34629] seems inconsistent. It implied an error rate greater than 1: 1.03631 0.0180236 0.00621504
+[2024-04-13 02:43:35.128] [jointLog] [warning] read 9619cfa8-890d-4061-9275-d89df74e2b0a (length 11465 - align length 11360) has no trained error model
+[2024-04-13 02:43:35.129] [jointLog] [warning] read fdce93d6-3137-4f87-ac3b-afaf4f5bec27 (length 11695 - align length 11601) has no trained error model
+[2024-04-13 02:43:35.129] [jointLog] [warning] read f05de9bb-6af1-4f4d-982e-d85467e492d4 (length 11682 - align length 11569) has no trained error model
+[2024-04-13 02:43:35.149] [jointLog] [warning] (in update()) CIGAR string for read [17a56ea1-e6d1-4945-9fed-d8c65e1e99f5] seems inconsistent. It implied an error rate greater than 1: 1.03738 0.0389527 0.0727969
+[2024-04-13 02:43:35.676] [jointLog] [warning] read 977ffa91-40a5-4de7-9f2d-7412e5c889fa (length 9119 - align length 241) has no trained error model
+[2024-04-13 02:43:35.676] [jointLog] [warning] read 977ffa91-40a5-4de7-9f2d-7412e5c889fa (length 9119) has no trained clipping model
+[2024-04-13 02:43:35.676] [jointLog] [warning] read 977ffa91-40a5-4de7-9f2d-7412e5c889fa (length 9119) has no trained clipping model
+[2024-04-13 02:43:36.263] [jointLog] [warning] (in update()) CIGAR string for read [d342907c-b743-4bb7-b9a2-2f00ed9c9641] seems inconsistent. It implied an error rate greater than 1: 1.01657 0.0119284 0.0284957
+[2024-04-13 02:43:36.263] [jointLog] [warning] (in update()) CIGAR string for read [ce1e3e2a-66ed-4173-a020-046a6312ddce] seems inconsistent. It implied an error rate greater than 1: 1.11379 0.0224913 0.0287197
+[2024-04-13 02:43:36.263] [jointLog] [warning] (in update()) CIGAR string for read [7a8c41b3-91c5-4f41-88c2-87c4946db09e] seems inconsistent. It implied an error rate greater than 1: 1.10591 0.0127762 0.035221
+[2024-04-13 02:43:36.263] [jointLog] [warning] (in update()) CIGAR string for read [8671163a-b349-4229-9f76-0fa10b418d15] seems inconsistent. It implied an error rate greater than 1: 1.14556 0.0132712 0.0182927
+[2024-04-13 02:43:36.316] [jointLog] [warning] read 07bf603d-da71-41a0-bfab-a932bce81d42 (length 9904 - align length 9787) has no trained error model
+[2024-04-13 02:43:36.317] [jointLog] [warning] read 2605ee76-7c44-404b-b429-cebc074f56cb (length 10596 - align length 10506) has no trained error model
+[2024-04-13 02:43:36.317] [jointLog] [warning] read 2605ee76-7c44-404b-b429-cebc074f56cb (length 10596) has no trained clipping model
+[2024-04-13 02:43:36.317] [jointLog] [warning] read 2605ee76-7c44-404b-b429-cebc074f56cb (length 10596) has no trained clipping model
+[2024-04-13 02:43:36.337] [jointLog] [warning] (in update()) CIGAR string for read [92d32029-9e53-4364-bb7e-8596220dc768] seems inconsistent. It implied an error rate greater than 1: 1.26406 0.00250455 0.0136612
+[2024-04-13 02:43:36.346] [jointLog] [warning] (in update()) CIGAR string for read [a25e5f1a-2052-4dea-8a9e-a6add4840add] seems inconsistent. It implied an error rate greater than 1: 1.74455 0.00855615 0.0347594
+[2024-04-13 02:43:36.874] [jointLog] [warning] read 9a7d6c90-295c-475f-bd98-5f648e71677b (length 11253 - align length 5644) has no trained error model
+[2024-04-13 02:43:36.874] [jointLog] [warning] read 9a7d6c90-295c-475f-bd98-5f648e71677b (length 11253) has no trained clipping model
+[2024-04-13 02:43:36.874] [jointLog] [warning] read 9a7d6c90-295c-475f-bd98-5f648e71677b (length 11253) has no trained clipping model
+[2024-04-13 02:43:36.874] [jointLog] [warning] read b344cd8d-2ad4-40c6-9c4f-76c7c847b863 (length 18440 - align length 4625) has no trained error model
+[2024-04-13 02:43:36.874] [jointLog] [warning] read b344cd8d-2ad4-40c6-9c4f-76c7c847b863 (length 18440) has no trained clipping model
+[2024-04-13 02:43:36.874] [jointLog] [warning] read b344cd8d-2ad4-40c6-9c4f-76c7c847b863 (length 18440) has no trained clipping model
+[2024-04-13 02:43:36.939] [jointLog] [warning] (in update()) CIGAR string for read [8b04cdcb-9483-4bc1-b864-f68dfd661aa0] seems inconsistent. It implied an error rate greater than 1: 2.07457 0.0149701 0.0329341
+[2024-04-13 02:43:36.948] [jointLog] [warning] (in update()) CIGAR string for read [82999c23-2659-487b-ab2f-0dee062c0959] seems inconsistent. It implied an error rate greater than 1: 1.14086 0.0141304 0.0264493
+[2024-04-13 02:43:36.954] [jointLog] [warning] read 252e5ac2-99bd-4e04-9120-00ebf45a142b (length 12304 - align length 3864) has no trained error model
+[2024-04-13 02:43:36.954] [jointLog] [warning] read 252e5ac2-99bd-4e04-9120-00ebf45a142b (length 12304) has no trained clipping model
+[2024-04-13 02:43:36.954] [jointLog] [warning] read 252e5ac2-99bd-4e04-9120-00ebf45a142b (length 12304) has no trained clipping model
+[2024-04-13 02:43:36.990] [jointLog] [warning] read 235abcc8-cb38-44cc-a786-7da25fe317c2 (length 14459 - align length 12524) has no trained error model
+[2024-04-13 02:43:36.990] [jointLog] [warning] read 7a959d9d-419c-4537-98a9-7a7de009975f (length 14417 - align length 12486) has no trained error model
+[2024-04-13 02:43:37.100] [jointLog] [warning] read d21e826f-2b54-430b-b9e9-db42ce0e1ae7 (length 10038 - align length 9943) has no trained error model
+[2024-04-13 02:43:37.100] [jointLog] [warning] read d21e826f-2b54-430b-b9e9-db42ce0e1ae7 (length 10038) has no trained clipping model
+[2024-04-13 02:43:37.100] [jointLog] [warning] read d21e826f-2b54-430b-b9e9-db42ce0e1ae7 (length 10038) has no trained clipping model
+[2024-04-13 02:43:37.247] [jointLog] [warning] (in update()) CIGAR string for read [5a0703b8-0e33-4b7f-a64b-5d52b28cad6b] seems inconsistent. It implied an error rate greater than 1: 1.81516 0.000823045 0.0329218
+[2024-04-13 02:43:37.484] [jointLog] [warning] (in update()) CIGAR string for read [602d2529-13d5-4475-8366-bb9843932bae] seems inconsistent. It implied an error rate greater than 1: 1.02016 0.0178078 0.0531164
+[2024-04-13 02:43:37.485] [jointLog] [warning] (in update()) CIGAR string for read [aac2d52c-1495-4a40-85c2-dcdd9e13beab] seems inconsistent. It implied an error rate greater than 1: 1.96019 0.016835 0.0246914
+[2024-04-13 02:43:37.492] [jointLog] [warning] (in update()) CIGAR string for read [f983dd30-d82b-4fb4-a8d3-6b00280df6c7] seems inconsistent. It implied an error rate greater than 1: 1.31703 0.0227273 0.321834
+[2024-04-13 02:43:37.492] [jointLog] [warning] (in update()) CIGAR string for read [957782b8-d8a4-484f-8f35-ddb8f6c610ec] seems inconsistent. It implied an error rate greater than 1: 1.31439 0.0169355 0.330242
+[2024-04-13 02:43:37.516] [jointLog] [warning] read 6d594344-b9e3-48dd-9b58-ad29e76ece82 (length 13736 - align length 119) has no trained error model
+[2024-04-13 02:43:37.516] [jointLog] [warning] read 6d594344-b9e3-48dd-9b58-ad29e76ece82 (length 13736) has no trained clipping model
+[2024-04-13 02:43:37.516] [jointLog] [warning] read 6d594344-b9e3-48dd-9b58-ad29e76ece82 (length 13736) has no trained clipping model
+[2024-04-13 02:43:37.837] [jointLog] [warning] (in update()) CIGAR string for read [2849662f-68db-4afa-997f-d026dcfa1ca5] seems inconsistent. It implied an error rate greater than 1: 1.1736 0.000628536 0.0471402
+[2024-04-13 02:43:37.843] [jointLog] [warning] read c05a8092-9a9c-4753-b22a-dfc520e55068 (length 11028 - align length 10918) has no trained error model
+[2024-04-13 02:43:37.971] [jointLog] [warning] read 946be5e0-481e-4227-acd7-2d4dd4962573 (length 9390 - align length 9241) has no trained error model
+[2024-04-13 02:43:37.990] [jointLog] [warning] (in update()) CIGAR string for read [27a1f33f-f341-4302-9bba-37f445a96c12] seems inconsistent. It implied an error rate greater than 1: 1.02587 0.0198076 0.0396152
+[2024-04-13 02:43:38.001] [jointLog] [warning] (in update()) CIGAR string for read [05832324-b69e-46d3-96de-e17b6b3c7463] seems inconsistent. It implied an error rate greater than 1: 1.40129 0.0265487 0.0184686
+[2024-04-13 02:43:38.001] [jointLog] [warning] (in update()) CIGAR string for read [5846e500-986a-49c5-8673-d160622fd52a] seems inconsistent. It implied an error rate greater than 1: 1.44711 0.0193798 0.027907
+[2024-04-13 02:43:38.002] [jointLog] [warning] read 29c4f822-4619-4eb5-ab23-66ee8c1e8d5a (length 13251 - align length 5821) has no trained error model
+[2024-04-13 02:43:38.002] [jointLog] [warning] read 29c4f822-4619-4eb5-ab23-66ee8c1e8d5a (length 13251) has no trained clipping model
+[2024-04-13 02:43:38.002] [jointLog] [warning] read 29c4f822-4619-4eb5-ab23-66ee8c1e8d5a (length 13251) has no trained clipping model
+[2024-04-13 02:43:38.027] [jointLog] [warning] read 23dadf64-b18e-48bf-9c42-73c652a84370 (length 13119 - align length 12955) has no trained error model
+[2024-04-13 02:43:38.027] [jointLog] [warning] read 23dadf64-b18e-48bf-9c42-73c652a84370 (length 13119) has no trained clipping model
+[2024-04-13 02:43:38.027] [jointLog] [warning] read 23dadf64-b18e-48bf-9c42-73c652a84370 (length 13119) has no trained clipping model
+[2024-04-13 02:43:38.031] [jointLog] [warning] read dcdcb6d7-b54d-44ee-a6cc-735fcf1b65b6 (length 12793 - align length 12644) has no trained error model
+[2024-04-13 02:43:38.031] [jointLog] [warning] read dcdcb6d7-b54d-44ee-a6cc-735fcf1b65b6 (length 12793) has no trained clipping model
+[2024-04-13 02:43:38.031] [jointLog] [warning] read dcdcb6d7-b54d-44ee-a6cc-735fcf1b65b6 (length 12793) has no trained clipping model
+[2024-04-13 02:43:38.446] [jointLog] [warning] (in update()) CIGAR string for read [3437bca2-a3db-446d-b3f3-78ca8de82708] seems inconsistent. It implied an error rate greater than 1: 1.01957 0.00659682 0.0217307
+[2024-04-13 02:43:38.459] [jointLog] [warning] read 6fb732b6-cc79-4b30-81fe-b966e42c4157 (length 11981 - align length 10432) has no trained error model
+[2024-04-13 02:43:38.474] [jointLog] [warning] read c1acbab9-d8a2-4a8e-aaf0-f6ab11bd9a49 (length 9943 - align length 9832) has no trained error model
+[2024-04-13 02:43:38.492] [jointLog] [warning] (in update()) CIGAR string for read [b94908cf-692e-4fe7-ba06-e9844dbf52cf] seems inconsistent. It implied an error rate greater than 1: 3.70105 0.0110727 0.0629758
+[2024-04-13 02:43:38.499] [jointLog] [warning] (in update()) CIGAR string for read [d9833ddc-b96d-4d4f-a6f9-2e0a3290bc3e] seems inconsistent. It implied an error rate greater than 1: 1.94415 0.0148322 0.0277127
+[2024-04-13 02:43:38.585] [jointLog] [warning] (in update()) CIGAR string for read [2aa9ebf8-e23d-44df-a75f-675b994e26e2] seems inconsistent. It implied an error rate greater than 1: 1.25095 0.0205444 0.0359527
+[2024-04-13 02:43:38.586] [jointLog] [warning] (in update()) CIGAR string for read [edb6dc4c-8c1f-4ba8-be96-b7695c221c53] seems inconsistent. It implied an error rate greater than 1: 1.43585 0.00721421 0.045505
+[2024-04-13 02:43:38.586] [jointLog] [warning] (in update()) CIGAR string for read [c5711344-cf7a-40ed-8ea8-f09071da99b8] seems inconsistent. It implied an error rate greater than 1: 1.4264 0.0201965 0.0453057
+[2024-04-13 02:43:38.586] [jointLog] [warning] (in update()) CIGAR string for read [258079ac-fcf7-4197-bf11-3687be73da71] seems inconsistent. It implied an error rate greater than 1: 1.27027 0.0187305 0.0379813
+[2024-04-13 02:43:38.586] [jointLog] [warning] (in update()) CIGAR string for read [c196fd70-0d5b-4d54-b3af-82938b980b96] seems inconsistent. It implied an error rate greater than 1: 1.4511 0.0205327 0.0432852
+[2024-04-13 02:43:38.592] [jointLog] [warning] read 848363ca-5a06-4da9-a392-c5ea4747904d (length 10743 - align length 10633) has no trained error model
+[2024-04-13 02:43:38.592] [jointLog] [warning] read e4d0e7a5-8a3e-4dd8-b3eb-7698418b3c22 (length 9717 - align length 9576) has no trained error model
+[2024-04-13 02:43:38.603] [jointLog] [warning] read 03399c14-0366-48f4-a004-59cf180a8818 (length 12510 - align length 205) has no trained error model
+[2024-04-13 02:43:38.603] [jointLog] [warning] read 03399c14-0366-48f4-a004-59cf180a8818 (length 12510) has no trained clipping model
+[2024-04-13 02:43:38.603] [jointLog] [warning] read 03399c14-0366-48f4-a004-59cf180a8818 (length 12510) has no trained clipping model
+[2024-04-13 02:43:38.623] [jointLog] [warning] (in update()) CIGAR string for read [f0cf23ea-2866-4a2b-b673-fc9c76c16544] seems inconsistent. It implied an error rate greater than 1: 3.15789 0.00833333 0.0294872
+[2024-04-13 02:43:38.624] [jointLog] [warning] (in update()) CIGAR string for read [b08910d1-bd6f-4bf6-803c-19bff4b6983c] seems inconsistent. It implied an error rate greater than 1: 1.15889 0.0243289 0.00419463
+[2024-04-13 02:43:38.624] [jointLog] [warning] (in update()) CIGAR string for read [8c84b9b8-488b-4bba-a4e5-aee958f06f15] seems inconsistent. It implied an error rate greater than 1: 1.35424 0.0303388 0.0208826
+[2024-04-13 02:43:38.657] [jointLog] [warning] (in update()) CIGAR string for read [a311a031-e701-45e1-970a-4a5705211ac8] seems inconsistent. It implied an error rate greater than 1: 1.17865 0.0368254 0.0533333
+[2024-04-13 02:43:38.658] [jointLog] [warning] (in update()) CIGAR string for read [938886c5-8571-4ef8-b638-95988517f719] seems inconsistent. It implied an error rate greater than 1: 1.19901 0.0235519 0.0776575
+[2024-04-13 02:43:38.659] [jointLog] [warning] (in update()) CIGAR string for read [d3f112e1-8e4a-44af-a710-9dd80f114aa5] seems inconsistent. It implied an error rate greater than 1: 1.3153 0.0191415 0.0214617
+[2024-04-13 02:43:38.660] [jointLog] [warning] (in update()) CIGAR string for read [942cde17-5fdb-4e22-96af-1c14b7ae7d26] seems inconsistent. It implied an error rate greater than 1: 1.84078 0.00033761 0.0243079
+[2024-04-13 02:43:38.765] [jointLog] [warning] read c8e29b25-b1df-488d-903b-b57cae8e847f (length 15542 - align length 3688) has no trained error model
+[2024-04-13 02:43:38.765] [jointLog] [warning] read c8e29b25-b1df-488d-903b-b57cae8e847f (length 15542) has no trained clipping model
+[2024-04-13 02:43:38.765] [jointLog] [warning] read c8e29b25-b1df-488d-903b-b57cae8e847f (length 15542) has no trained clipping model
+[2024-04-13 02:43:39.108] [jointLog] [warning] (in update()) CIGAR string for read [6ec34ee4-2783-4ce8-ba5d-76d1c8f3d93d] seems inconsistent. It implied an error rate greater than 1: 1.38595 0.0139373 0.0271003
+[2024-04-13 02:43:39.111] [jointLog] [warning] read e0e1487f-7cf8-4a94-a934-c6a3dfd8bbdf (length 14638 - align length 14458) has no trained error model
+[2024-04-13 02:43:39.111] [jointLog] [warning] read e0e1487f-7cf8-4a94-a934-c6a3dfd8bbdf (length 14638) has no trained clipping model
+[2024-04-13 02:43:39.111] [jointLog] [warning] read e0e1487f-7cf8-4a94-a934-c6a3dfd8bbdf (length 14638) has no trained clipping model
+[2024-04-13 02:43:39.111] [jointLog] [warning] read 05f77853-c397-4e29-a49a-65f5b752e8b0 (length 14472 - align length 12774) has no trained error model
+[2024-04-13 02:43:39.111] [jointLog] [warning] read f8a93071-f5b2-468f-85f5-aa9fb184b7b9 (length 14466 - align length 12763) has no trained error model
+[2024-04-13 02:43:39.138] [jointLog] [warning] (in update()) CIGAR string for read [273b1bcc-50e3-4357-96f6-0802c481347b] seems inconsistent. It implied an error rate greater than 1: 1.91609 0.014621 0.0361678
+[2024-04-13 02:43:39.538] [jointLog] [warning] read 0ae7c1f3-ec97-4b18-910b-f94efbe89cec (length 12651 - align length 133) has no trained error model
+[2024-04-13 02:43:39.538] [jointLog] [warning] read 0ae7c1f3-ec97-4b18-910b-f94efbe89cec (length 12651) has no trained clipping model
+[2024-04-13 02:43:39.538] [jointLog] [warning] read 0ae7c1f3-ec97-4b18-910b-f94efbe89cec (length 12651) has no trained clipping model
+[2024-04-13 02:43:39.930] [jointLog] [warning] (in update()) CIGAR string for read [073ce9ee-9aa0-4e3c-b38c-c7e5fd0df68d] seems inconsistent. It implied an error rate greater than 1: 1.21009 0.0107725 0.0252385
+[2024-04-13 02:43:39.943] [jointLog] [warning] (in update()) CIGAR string for read [a39e1f99-2797-47d1-ae69-43badeab2c24] seems inconsistent. It implied an error rate greater than 1: 1.99907 0.0501179 0.00353774
+[2024-04-13 02:43:39.951] [jointLog] [warning] (in update()) CIGAR string for read [197315e2-f972-418c-829f-90089747af71] seems inconsistent. It implied an error rate greater than 1: 1.60156 0.0215005 0.013495
+[2024-04-13 02:43:39.951] [jointLog] [warning] (in update()) CIGAR string for read [3e144902-b4ee-4db2-a6f6-1474246a50fc] seems inconsistent. It implied an error rate greater than 1: 1.19728 0.0071298 0.0133455
+[2024-04-13 02:43:39.951] [jointLog] [warning] (in update()) CIGAR string for read [1872e880-5350-43c5-bcd9-b94d80d358a3] seems inconsistent. It implied an error rate greater than 1: 1.03828 0.00891182 0.0168856
+[2024-04-13 02:43:39.952] [jointLog] [warning] (in update()) CIGAR string for read [7e4c015c-816d-4695-9692-abc5de565a83] seems inconsistent. It implied an error rate greater than 1: 2.18681 0.0182967 0.0129741
+[2024-04-13 02:43:39.955] [jointLog] [warning] (in update()) CIGAR string for read [26bee4f0-fae5-4927-b6fd-c5d17ec54b75] seems inconsistent. It implied an error rate greater than 1: 1.54795 0.0433884 0.0158402
+[2024-04-13 02:43:39.956] [jointLog] [warning] (in update()) CIGAR string for read [30af19a5-b131-4e0e-8c8e-859de5478625] seems inconsistent. It implied an error rate greater than 1: 1.53324 0.0330351 0.0247763
+[2024-04-13 02:43:40.380] [jointLog] [warning] (in update()) CIGAR string for read [fe9f5429-80f4-4e68-8a5a-c6056547e187] seems inconsistent. It implied an error rate greater than 1: 1.02903 0.0118758 0.0231425
+[2024-04-13 02:43:40.383] [jointLog] [warning] (in update()) CIGAR string for read [480a8feb-0ed1-4517-b951-ae9239e37540] seems inconsistent. It implied an error rate greater than 1: 1.07619 0.0213816 0.0115132
+[2024-04-13 02:43:40.387] [jointLog] [warning] (in update()) CIGAR string for read [b37dc7ce-9eb7-4625-8544-31cef2ec12d3] seems inconsistent. It implied an error rate greater than 1: 1.12599 0.0209511 0.0129697
+[2024-04-13 02:43:40.388] [jointLog] [warning] (in update()) CIGAR string for read [49916862-379c-4234-ae32-fccdedafb081] seems inconsistent. It implied an error rate greater than 1: 1.31366 0.00730816 0.0296387
+[2024-04-13 02:43:40.389] [jointLog] [warning] (in update()) CIGAR string for read [4350e846-236d-4be4-8e94-6a874f2eea9c] seems inconsistent. It implied an error rate greater than 1: 1.08616 0.0121551 0.0193824
+[2024-04-13 02:43:40.412] [jointLog] [warning] (in update()) CIGAR string for read [511bb3c2-b098-471c-89fb-72f997c0e95f] seems inconsistent. It implied an error rate greater than 1: 1.07703 0.0044484 0.0311388
+[2024-04-13 02:43:40.468] [jointLog] [warning] read 77a03b48-3cf3-4e65-af84-d7cb53ef4515 (length 12427 - align length 2038) has no trained error model
+[2024-04-13 02:43:40.468] [jointLog] [warning] read 77a03b48-3cf3-4e65-af84-d7cb53ef4515 (length 12427) has no trained clipping model
+[2024-04-13 02:43:40.468] [jointLog] [warning] read 77a03b48-3cf3-4e65-af84-d7cb53ef4515 (length 12427) has no trained clipping model
+[2024-04-13 02:43:40.483] [jointLog] [warning] read a3b2d1e3-2f9d-45f0-a189-8d9b9141660a (length 12847 - align length 2051) has no trained error model
+[2024-04-13 02:43:40.483] [jointLog] [warning] read a3b2d1e3-2f9d-45f0-a189-8d9b9141660a (length 12847) has no trained clipping model
+[2024-04-13 02:43:40.483] [jointLog] [warning] read a3b2d1e3-2f9d-45f0-a189-8d9b9141660a (length 12847) has no trained clipping model
+[2024-04-13 02:43:40.615] [jointLog] [warning] (in update()) CIGAR string for read [d393a48c-1f00-4e7c-8c5b-b2cb792c579b] seems inconsistent. It implied an error rate greater than 1: 1.50263 0.0242341 0.0205761
+[2024-04-13 02:43:40.647] [jointLog] [warning] read bf2082bf-4309-44ed-9fdc-3a34570121a1 (length 16019 - align length 1568) has no trained error model
+[2024-04-13 02:43:40.647] [jointLog] [warning] read bf2082bf-4309-44ed-9fdc-3a34570121a1 (length 16019) has no trained clipping model
+[2024-04-13 02:43:40.647] [jointLog] [warning] read bf2082bf-4309-44ed-9fdc-3a34570121a1 (length 16019) has no trained clipping model
+[2024-04-13 02:43:40.700] [jointLog] [warning] (in update()) CIGAR string for read [658997bd-6577-4bdc-88eb-ee03ceff2675] seems inconsistent. It implied an error rate greater than 1: 2.1684 0.030507 0.0183939
+[2024-04-13 02:43:40.990] [jointLog] [warning] (in update()) CIGAR string for read [11b0432d-c66d-40fb-9243-211f66d16b66] seems inconsistent. It implied an error rate greater than 1: 1.33305 0.0165198 0.0145925
+[2024-04-13 02:43:40.992] [jointLog] [warning] (in update()) CIGAR string for read [b9f69498-95d4-45ba-a814-072bc689bb0f] seems inconsistent. It implied an error rate greater than 1: 1.30283 0.0104195 0.0216616
+[2024-04-13 02:43:41.012] [jointLog] [warning] (in update()) CIGAR string for read [7e023a9d-9d0b-4b29-9230-722ebb051d62] seems inconsistent. It implied an error rate greater than 1: 1.10302 0.0222772 0.0206271
+[2024-04-13 02:43:41.069] [jointLog] [warning] read 27338266-eecf-43db-9d4a-f93830811a91 (length 13600 - align length 13510) has no trained error model
+[2024-04-13 02:43:41.069] [jointLog] [warning] (in update()) CIGAR string for read [85249738-41c9-4b7e-b78b-c70e89f40bc8] seems inconsistent. It implied an error rate greater than 1: 1.00544 0.00955668 0.014335
+[2024-04-13 02:43:41.069] [jointLog] [warning] (in update()) CIGAR string for read [4ee25bfb-15d9-46a1-908d-31db61224611] seems inconsistent. It implied an error rate greater than 1: 1.02275 0.0100423 0.0140063
+[2024-04-13 02:43:41.084] [jointLog] [warning] (in update()) CIGAR string for read [bd8996dc-7f80-48ee-b74e-90e08d2ff145] seems inconsistent. It implied an error rate greater than 1: 1.63598 0.025266 0.0359043
+[2024-04-13 02:43:41.084] [jointLog] [warning] (in update()) CIGAR string for read [ac00be73-663f-4e56-a4b8-f6a4b0be4dfe] seems inconsistent. It implied an error rate greater than 1: 1.30193 0.0277904 0.00501139
+[2024-04-13 02:43:41.138] [jointLog] [warning] (in update()) CIGAR string for read [9db9be2d-24c5-4ab7-828b-eec1e8df52be] seems inconsistent. It implied an error rate greater than 1: 1.32063 0.012401 0.0206683
+[2024-04-13 02:43:41.139] [jointLog] [warning] (in update()) CIGAR string for read [5d8072ae-e79d-4416-8930-6e29c3452109] seems inconsistent. It implied an error rate greater than 1: 1.32974 0.00174764 0.0262146
+[2024-04-13 02:43:41.335] [jointLog] [warning] (in update()) CIGAR string for read [7a454a2e-f6e3-4d7c-8d87-ec04c253d0d1] seems inconsistent. It implied an error rate greater than 1: 1.64075 0.0194757 0.0411985
+[2024-04-13 02:43:41.655] [jointLog] [warning] read a5e2a0ac-09f2-47a6-8d99-957ba65532d6 (length 10863 - align length 10750) has no trained error model
+[2024-04-13 02:43:41.658] [jointLog] [warning] (in update()) CIGAR string for read [4a8c1115-085e-4c85-9a79-22469e583a24] seems inconsistent. It implied an error rate greater than 1: 1.2196 0.0171455 0.0417053
+[2024-04-13 02:43:41.985] [jointLog] [warning] (in update()) CIGAR string for read [6a70d0cf-73fe-4964-9eac-8ffe966144bd] seems inconsistent. It implied an error rate greater than 1: 1.68022 0.00261552 0.0322581
+[2024-04-13 02:43:42.407] [jointLog] [warning] (in update()) CIGAR string for read [e43f4146-2744-4f34-b466-27a804fb528d] seems inconsistent. It implied an error rate greater than 1: 1.04921 0.0213984 0.0232068
+[2024-04-13 02:43:42.704] [jointLog] [warning] (in update()) CIGAR string for read [9ecd2811-fd28-4397-97f9-71d41425640f] seems inconsistent. It implied an error rate greater than 1: 1.61312 0.0318841 0.0405797
+[2024-04-13 02:43:42.704] [jointLog] [warning] (in update()) CIGAR string for read [e42aadec-3745-47d4-89c6-9c7bc0295215] seems inconsistent. It implied an error rate greater than 1: 1.59837 0.0480602 0.0306891
+[2024-04-13 02:43:42.910] [jointLog] [warning] (in update()) CIGAR string for read [7e1bd306-ff69-452f-be10-1efa3f514e74] seems inconsistent. It implied an error rate greater than 1: 2.16158 0.0333333 0.0150538
+[2024-04-13 02:43:42.910] [jointLog] [warning] (in update()) CIGAR string for read [99390292-0c0f-4172-afbe-3a00b4be853c] seems inconsistent. It implied an error rate greater than 1: 2.14554 0.0216099 0.0280929
+[2024-04-13 02:43:42.945] [jointLog] [warning] (in update()) CIGAR string for read [3cee6c57-0297-46b2-b035-c1b138f5cd54] seems inconsistent. It implied an error rate greater than 1: 1.27559 0.01144 0.00944253
+[2024-04-13 02:43:42.945] [jointLog] [warning] (in update()) CIGAR string for read [6701f12d-d3d1-496b-9614-5e23f9382271] seems inconsistent. It implied an error rate greater than 1: 1.298 0.00899862 0.00922935
+[2024-04-13 02:43:42.945] [jointLog] [warning] (in update()) CIGAR string for read [bc583a87-850f-4de1-9af1-4fdd97ec5bd1] seems inconsistent. It implied an error rate greater than 1: 1.17709 0.0137683 0.000635459
+[2024-04-13 02:43:42.971] [jointLog] [warning] (in update()) CIGAR string for read [d8efca30-0eaf-4670-9eef-58353db9531e] seems inconsistent. It implied an error rate greater than 1: 1.01959 0.0123083 0.00928168
+[2024-04-13 02:43:42.976] [jointLog] [warning] read 5bfb15eb-22fa-40e7-b94b-1badff1b23d4 (length 11273 - align length 11186) has no trained error model
+[2024-04-13 02:43:42.976] [jointLog] [warning] read d17512e1-6c98-4f27-8617-44462143c7e7 (length 13591 - align length 10575) has no trained error model
+[2024-04-13 02:43:42.976] [jointLog] [warning] read d17512e1-6c98-4f27-8617-44462143c7e7 (length 13591) has no trained clipping model
+[2024-04-13 02:43:42.976] [jointLog] [warning] read d17512e1-6c98-4f27-8617-44462143c7e7 (length 13591) has no trained clipping model
+[2024-04-13 02:43:42.980] [jointLog] [warning] (in update()) CIGAR string for read [9b4e6467-02d6-44a1-a41d-14054accb700] seems inconsistent. It implied an error rate greater than 1: 1.43402 0.0257937 0.037037
+[2024-04-13 02:43:42.990] [jointLog] [warning] read 5b5b05c8-f158-4a08-83b1-a34c1c702968 (length 13803 - align length 476) has no trained error model
+[2024-04-13 02:43:42.990] [jointLog] [warning] read 5b5b05c8-f158-4a08-83b1-a34c1c702968 (length 13803) has no trained clipping model
+[2024-04-13 02:43:42.990] [jointLog] [warning] read 5b5b05c8-f158-4a08-83b1-a34c1c702968 (length 13803) has no trained clipping model
+[2024-04-13 02:43:42.998] [jointLog] [warning] (in update()) CIGAR string for read [d881a0cd-4d42-4641-89b2-cfffbcc1d8c6] seems inconsistent. It implied an error rate greater than 1: 1.76051 0.015753 0.0173283
+[2024-04-13 02:43:42.999] [jointLog] [warning] (in update()) CIGAR string for read [c2deadbc-cf75-496d-a930-7fbaf9f85483] seems inconsistent. It implied an error rate greater than 1: 1.8002 0.0150256 0.0233376
+[2024-04-13 02:43:42.999] [jointLog] [warning] (in update()) CIGAR string for read [a05b2625-06d6-4455-a8e0-975be1192693] seems inconsistent. It implied an error rate greater than 1: 1.03425 0.0355709 0.0263913
+[2024-04-13 02:43:43.002] [jointLog] [warning] (in update()) CIGAR string for read [7e8257a9-7f0e-4859-b400-031a2e235e25] seems inconsistent. It implied an error rate greater than 1: 1.335 0.0140655 0.013795
+[2024-04-13 02:43:43.002] [jointLog] [warning] (in update()) CIGAR string for read [2ee80a1d-a0f3-4799-b35a-97d97c7aa81c] seems inconsistent. It implied an error rate greater than 1: 1.33698 0.00981997 0.0171849
+[2024-04-13 02:43:43.027] [jointLog] [warning] (in update()) CIGAR string for read [40dea4de-d56c-43b0-a666-47705c3065a7] seems inconsistent. It implied an error rate greater than 1: 1.00921 0.0104196 0.0107012
+[2024-04-13 02:43:43.031] [jointLog] [warning] (in update()) CIGAR string for read [fe35f008-e094-4903-b71a-45bc005ec857] seems inconsistent. It implied an error rate greater than 1: 1.65651 0.0308 0.0236
+[2024-04-13 02:43:43.031] [jointLog] [warning] (in update()) CIGAR string for read [51ba5330-8227-4de9-8b8b-180818e376c1] seems inconsistent. It implied an error rate greater than 1: 1.64549 0.0219473 0.0359138
+[2024-04-13 02:43:43.033] [jointLog] [warning] (in update()) CIGAR string for read [dffd2f07-d419-437a-837c-2884b94a9391] seems inconsistent. It implied an error rate greater than 1: 1.76601 0.133898 0
+[2024-04-13 02:43:43.063] [jointLog] [warning] (in update()) CIGAR string for read [45f7dfe1-e813-4d6f-863e-583f52d233a2] seems inconsistent. It implied an error rate greater than 1: 1.05041 0.0333745 0.0185414
+[2024-04-13 02:43:43.441] [jointLog] [warning] (in update()) CIGAR string for read [3557ba92-b007-49d7-aa14-35587048aad9] seems inconsistent. It implied an error rate greater than 1: 1.29467 0.147358 0.025206
+[2024-04-13 02:43:43.441] [jointLog] [warning] (in update()) CIGAR string for read [16fbd13a-4b12-4772-be21-18417db56745] seems inconsistent. It implied an error rate greater than 1: 1.56715 0.220959 0.0355907
+[2024-04-13 02:43:43.459] [jointLog] [warning] (in update()) CIGAR string for read [93836f4c-ba9e-4c88-8079-5ba82bf58292] seems inconsistent. It implied an error rate greater than 1: 1.45959 0.0120898 0.023532
+[2024-04-13 02:43:43.459] [jointLog] [warning] (in update()) CIGAR string for read [3359c1ca-9aee-455c-b31c-61fac910acfe] seems inconsistent. It implied an error rate greater than 1: 1.46943 0.00850414 0.0178805
+[2024-04-13 02:43:43.506] [jointLog] [warning] (in update()) CIGAR string for read [1d9a1e54-30ca-4f32-a82d-4dbff7582a99] seems inconsistent. It implied an error rate greater than 1: 1.10542 0.0132332 0.00286123
+[2024-04-13 02:43:43.525] [jointLog] [warning] (in update()) CIGAR string for read [71a697e2-39e3-4ef4-9b24-5e77ea63787f] seems inconsistent. It implied an error rate greater than 1: 1.94354 0.0157638 0.090857
+[2024-04-13 02:43:43.526] [jointLog] [warning] (in update()) CIGAR string for read [1ace21e4-f1e4-4131-b3a3-f3592cdba6ba] seems inconsistent. It implied an error rate greater than 1: 1.97702 0.0110049 0.0944107
+[2024-04-13 02:43:43.526] [jointLog] [warning] (in update()) CIGAR string for read [701e7872-39a4-4bf5-8b9d-873fcf4c8b7a] seems inconsistent. It implied an error rate greater than 1: 1.45582 0 0.0239562
+[2024-04-13 02:43:43.529] [jointLog] [warning] (in update()) CIGAR string for read [89b074e3-67a6-47f5-a562-ed60454fa6f8] seems inconsistent. It implied an error rate greater than 1: 1.05253 0.0249077 0.0442804
+[2024-04-13 02:43:43.529] [jointLog] [warning] (in update()) CIGAR string for read [d3210992-b0ef-4648-980d-8728f7301659] seems inconsistent. It implied an error rate greater than 1: 1.12227 0.0155902 0.0262806
+[2024-04-13 02:43:43.794] [jointLog] [warning] (in update()) CIGAR string for read [8dcbbd1d-b311-4d11-af4b-e4c511210544] seems inconsistent. It implied an error rate greater than 1: 1.31792 0.0228945 0.0396566
+[2024-04-13 02:43:43.795] [jointLog] [warning] (in update()) CIGAR string for read [84acc333-038a-4f86-abbe-7464fe602ae9] seems inconsistent. It implied an error rate greater than 1: 1.87916 0.037037 0.0382925
+[2024-04-13 02:43:43.813] [jointLog] [warning] (in update()) CIGAR string for read [722623dc-4809-4dbd-b31b-9078cdd5ba78] seems inconsistent. It implied an error rate greater than 1: 1.13367 0.0181039 0.0266794
+[2024-04-13 02:43:44.179] [jointLog] [warning] (in update()) CIGAR string for read [056c2dbe-1907-4a5b-a2d5-c4f903b782d9] seems inconsistent. It implied an error rate greater than 1: 1.48837 0.0141844 0.0227697
+[2024-04-13 02:43:44.185] [jointLog] [warning] (in update()) CIGAR string for read [7abbb0f1-5b39-4af4-a87d-f21b5e18bb78] seems inconsistent. It implied an error rate greater than 1: 2.55389 0.0345988 0.0379625
+[2024-04-13 02:43:44.205] [jointLog] [warning] (in update()) CIGAR string for read [ecaaeee2-1f2c-434f-b689-f5823b20e817] seems inconsistent. It implied an error rate greater than 1: 1.02435 0.0107457 0.0797786
+[2024-04-13 02:43:44.256] [jointLog] [warning] (in update()) CIGAR string for read [cb8faf1c-feda-45cb-b289-d1b9dc6b6cb2] seems inconsistent. It implied an error rate greater than 1: 1.93252 0.0486588 0.0361822
+[2024-04-13 02:43:44.263] [jointLog] [warning] read 41146572-dbd7-4267-af59-d21f2cdb54b5 (length 12375 - align length 12217) has no trained error model
+[2024-04-13 02:43:44.271] [jointLog] [warning] (in update()) CIGAR string for read [428651b5-0fe0-4c2e-a87c-034a3d4efe93] seems inconsistent. It implied an error rate greater than 1: 1.29623 0.119635 0.0128755
+[2024-04-13 02:43:44.271] [jointLog] [warning] (in update()) CIGAR string for read [dea13110-503d-4214-9d4e-3fc71287d248] seems inconsistent. It implied an error rate greater than 1: 1.29832 0 0.0456298
+[2024-04-13 02:43:44.631] [jointLog] [warning] (in update()) CIGAR string for read [4a3e0045-0fa2-4beb-a129-712d34e233a3] seems inconsistent. It implied an error rate greater than 1: 1.38833 0.097479 0.0672269
+[2024-04-13 02:43:44.696] [jointLog] [warning] read 01d788bc-2e47-4450-8e74-07bc75a66cff (length 13858 - align length 13778) has no trained error model
+[2024-04-13 02:43:44.701] [jointLog] [warning] read 584c89a9-9652-4de3-98f4-40b00092db7d (length 13777 - align length 13660) has no trained error model
+[2024-04-13 02:43:44.786] [jointLog] [warning] (in update()) CIGAR string for read [96ea6fb2-cd7b-4fc8-ba96-6518e2fb12b9] seems inconsistent. It implied an error rate greater than 1: 1.12127 0.104972 0.0376695
+[2024-04-13 02:43:44.802] [jointLog] [warning] read 4ad2e761-88aa-4cd8-88c0-4aa2b3c9cf8f (length 15998 - align length 7633) has no trained error model
+[2024-04-13 02:43:44.802] [jointLog] [warning] read 4ad2e761-88aa-4cd8-88c0-4aa2b3c9cf8f (length 15998) has no trained clipping model
+[2024-04-13 02:43:44.802] [jointLog] [warning] read 4ad2e761-88aa-4cd8-88c0-4aa2b3c9cf8f (length 15998) has no trained clipping model
+[2024-04-13 02:43:44.852] [jointLog] [warning] (in update()) CIGAR string for read [f300b7fe-06f0-4119-8e27-fddf4424a6b8] seems inconsistent. It implied an error rate greater than 1: 2.43925 0.00996828 0.214318
+[2024-04-13 02:43:44.876] [jointLog] [warning] (in update()) CIGAR string for read [fda4c436-2667-4480-9030-77f00d1c3f3b] seems inconsistent. It implied an error rate greater than 1: 1.78979 0.306425 0.144975
+[2024-04-13 02:43:44.901] [jointLog] [warning] read df4e0f94-b4bb-4e82-802a-52d75c660eb8 (length 14615 - align length 14507) has no trained error model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read b775c61d-5719-4182-ba88-540cf4b3656b (length 14371 - align length 14260) has no trained error model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read b775c61d-5719-4182-ba88-540cf4b3656b (length 14371) has no trained clipping model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read b775c61d-5719-4182-ba88-540cf4b3656b (length 14371) has no trained clipping model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read b0c387e7-f005-46b5-bc93-ca4829307f16 (length 12061 - align length 11950) has no trained error model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read b0c387e7-f005-46b5-bc93-ca4829307f16 (length 12061) has no trained clipping model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read b0c387e7-f005-46b5-bc93-ca4829307f16 (length 12061) has no trained clipping model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read 3700ba08-f731-49d2-9e5c-fe0ed62471c3 (length 11803 - align length 11727) has no trained error model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read 69c46c37-35c6-48e5-b1d2-b480b26ee276 (length 14790 - align length 14718) has no trained error model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read 1987a6c4-93b5-416f-ad6f-b15490e0689d (length 15073 - align length 14656) has no trained error model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read 1987a6c4-93b5-416f-ad6f-b15490e0689d (length 15073) has no trained clipping model
+[2024-04-13 02:43:44.902] [jointLog] [warning] read 1987a6c4-93b5-416f-ad6f-b15490e0689d (length 15073) has no trained clipping model
+[2024-04-13 02:43:44.909] [jointLog] [warning] (in update()) CIGAR string for read [58814b15-2c8c-4980-8473-50f4ee44d45c] seems inconsistent. It implied an error rate greater than 1: 1.17171 0.0216619 0.0269886
+[2024-04-13 02:43:45.018] [jointLog] [warning] (in update()) CIGAR string for read [c8ece0c5-db1b-4326-9a3d-ec6e7f366613] seems inconsistent. It implied an error rate greater than 1: 1.68575 0.0145631 0.0265123
+[2024-04-13 02:43:45.157] [jointLog] [warning] read 7e70754c-193d-410f-945c-d52356268c79 (length 12114 - align length 3259) has no trained error model
+[2024-04-13 02:43:45.157] [jointLog] [warning] read 7e70754c-193d-410f-945c-d52356268c79 (length 12114) has no trained clipping model
+[2024-04-13 02:43:45.157] [jointLog] [warning] read 7e70754c-193d-410f-945c-d52356268c79 (length 12114) has no trained clipping model
+[2024-04-13 02:43:45.473] [jointLog] [warning] (in update()) CIGAR string for read [3828731e-f46f-4266-a093-a246141089ef] seems inconsistent. It implied an error rate greater than 1: 1.54603 0.493289 0.0215622
+[2024-04-13 02:43:45.514] [jointLog] [warning] (in update()) CIGAR string for read [061bd91a-5fc9-47c7-8228-609f14ba7820] seems inconsistent. It implied an error rate greater than 1: 1.30656 0.0119048 0.0285088
+[2024-04-13 02:43:45.647] [jointLog] [warning] (in update()) CIGAR string for read [a1bd9fef-a965-4286-8b09-2e991e62e304] seems inconsistent. It implied an error rate greater than 1: 1.90978 0.0135042 0.0231994
+[2024-04-13 02:43:45.649] [jointLog] [warning] (in update()) CIGAR string for read [825f326b-6437-47d7-9069-a8df0d9e28f0] seems inconsistent. It implied an error rate greater than 1: 1.01719 0.0272109 0.0231293
+[2024-04-13 02:43:46.011] [jointLog] [warning] (in update()) CIGAR string for read [b86ad605-dc22-47de-8fcf-3d0765debbfb] seems inconsistent. It implied an error rate greater than 1: 2.07566 0.031219 0.00594648
+[2024-04-13 02:43:46.032] [jointLog] [warning] (in update()) CIGAR string for read [6c7dbb20-c2d7-4e90-b061-66b9bc3a2483] seems inconsistent. It implied an error rate greater than 1: 1.09925 0.034178 0.0276959
+[2024-04-13 02:43:46.032] [jointLog] [warning] (in update()) CIGAR string for read [868fac4f-b2d4-4c40-a75c-12e9d8191dcf] seems inconsistent. It implied an error rate greater than 1: 1.3225 0.0584594 0.391334
+[2024-04-13 02:43:46.033] [jointLog] [warning] (in update()) CIGAR string for read [caa10f09-ac87-4dbf-9dfc-fadf79948292] seems inconsistent. It implied an error rate greater than 1: 1.12116 0.0192208 0.0332468
+[2024-04-13 02:43:46.034] [jointLog] [warning] (in update()) CIGAR string for read [2dae2540-1c3e-453b-9d3d-d95efc32f44a] seems inconsistent. It implied an error rate greater than 1: 1.00477 0 0.0338288
+[2024-04-13 02:43:46.426] [jointLog] [warning] read 756abfe8-1885-4f30-878a-74bf8514c810 (length 14212 - align length 503) has no trained error model
+[2024-04-13 02:43:46.426] [jointLog] [warning] read 756abfe8-1885-4f30-878a-74bf8514c810 (length 14212) has no trained clipping model
+[2024-04-13 02:43:46.426] [jointLog] [warning] read 756abfe8-1885-4f30-878a-74bf8514c810 (length 14212) has no trained clipping model
+[2024-04-13 02:43:46.431] [jointLog] [warning] read c9633baa-fbfb-43f2-bd72-3118a075155f (length 18054 - align length 17919) has no trained error model
+[2024-04-13 02:43:46.431] [jointLog] [warning] read c9633baa-fbfb-43f2-bd72-3118a075155f (length 18054) has no trained clipping model
+[2024-04-13 02:43:46.431] [jointLog] [warning] read c9633baa-fbfb-43f2-bd72-3118a075155f (length 18054) has no trained clipping model
+[2024-04-13 02:43:46.434] [jointLog] [warning] (in update()) CIGAR string for read [b711243f-10f9-437c-95f0-439f8e709adb] seems inconsistent. It implied an error rate greater than 1: 1.46109 0.0350034 0.0212766
+[2024-04-13 02:43:46.442] [jointLog] [warning] read 5abaa07b-8992-4247-bc19-84ccd860fb4a (length 16933 - align length 893) has no trained error model
+[2024-04-13 02:43:46.442] [jointLog] [warning] read 5abaa07b-8992-4247-bc19-84ccd860fb4a (length 16933) has no trained clipping model
+[2024-04-13 02:43:46.442] [jointLog] [warning] read 5abaa07b-8992-4247-bc19-84ccd860fb4a (length 16933) has no trained clipping model
+[2024-04-13 02:43:46.442] [jointLog] [warning] read fb956560-659f-4bc1-af03-15783037d623 (length 16833 - align length 900) has no trained error model
+[2024-04-13 02:43:46.442] [jointLog] [warning] read fb956560-659f-4bc1-af03-15783037d623 (length 16833) has no trained clipping model
+[2024-04-13 02:43:46.442] [jointLog] [warning] read fb956560-659f-4bc1-af03-15783037d623 (length 16833) has no trained clipping model
+[2024-04-13 02:43:46.452] [jointLog] [warning] (in update()) CIGAR string for read [4381455b-d6da-4c4d-ac5d-38b1a12821cd] seems inconsistent. It implied an error rate greater than 1: 1.68415 0.0287206 0.0255875
+[2024-04-13 02:43:46.452] [jointLog] [warning] (in update()) CIGAR string for read [a3917dc7-2f5b-41d8-9953-a5b426bc2d20] seems inconsistent. It implied an error rate greater than 1: 1.71056 0.0250261 0.0364964
+[2024-04-13 02:43:46.461] [jointLog] [warning] read 848a5a3c-cbbf-41b3-9043-fca310083491 (length 10474 - align length 10358) has no trained error model
+[2024-04-13 02:43:46.462] [jointLog] [warning] (in update()) CIGAR string for read [0dab0474-d2ff-44f4-97b9-6d114025aa23] seems inconsistent. It implied an error rate greater than 1: 1.04484 0.0314961 0.032021
+[2024-04-13 02:43:46.463] [jointLog] [warning] (in update()) CIGAR string for read [2d1891ff-f69f-4227-9766-660412a828d0] seems inconsistent. It implied an error rate greater than 1: 2.54815 0.0240513 0.0379476
+[2024-04-13 02:43:46.677] [jointLog] [warning] (in update()) CIGAR string for read [2101eafc-0de1-4dd5-99f1-5166dac16e34] seems inconsistent. It implied an error rate greater than 1: 1.0966 0.017306 0.015287
+[2024-04-13 02:43:46.677] [jointLog] [warning] (in update()) CIGAR string for read [6dbf4612-deae-41b5-97f9-5f109b61a404] seems inconsistent. It implied an error rate greater than 1: 1.10833 0.0109795 0.0208032
+[2024-04-13 02:43:46.769] [jointLog] [warning] (in update()) CIGAR string for read [517969d6-2463-4139-85f6-973c9a4d0026] seems inconsistent. It implied an error rate greater than 1: 1.41271 0.0355619 0.0246562
+[2024-04-13 02:43:46.789] [jointLog] [warning] read 4b7e2a91-fb1e-4df0-a98f-4724163f0a7b (length 13312 - align length 90) has no trained error model
+[2024-04-13 02:43:46.789] [jointLog] [warning] read 4b7e2a91-fb1e-4df0-a98f-4724163f0a7b (length 13312) has no trained clipping model
+[2024-04-13 02:43:46.789] [jointLog] [warning] read 4b7e2a91-fb1e-4df0-a98f-4724163f0a7b (length 13312) has no trained clipping model
+[2024-04-13 02:43:46.797] [jointLog] [warning] (in update()) CIGAR string for read [d9972bdb-8b21-4da6-90da-b137859b9fd8] seems inconsistent. It implied an error rate greater than 1: 1.44108 0.00643547 0.0257419
+[2024-04-13 02:43:46.800] [jointLog] [warning] (in update()) CIGAR string for read [4c2cf273-e1d9-48fa-b0df-70be64580ea3] seems inconsistent. It implied an error rate greater than 1: 1.09711 0.0220503 0.0139265
+[2024-04-13 02:43:46.911] [jointLog] [warning] (in update()) CIGAR string for read [24117cee-99af-48ce-ab10-9c2b4913a48d] seems inconsistent. It implied an error rate greater than 1: 1.66309 0.0296401 0.0508116
+[2024-04-13 02:43:46.925] [jointLog] [warning] (in update()) CIGAR string for read [ab6af736-bb59-484a-94b2-7410d388cd08] seems inconsistent. It implied an error rate greater than 1: 1.09331 0.00131004 0.0393013
+[2024-04-13 02:43:47.009] [jointLog] [warning] (in update()) CIGAR string for read [af752dba-5bb5-4569-9f50-20ca231f2009] seems inconsistent. It implied an error rate greater than 1: 1.10827 0.0221088 0.0564059
+[2024-04-13 02:43:47.024] [jointLog] [warning] (in update()) CIGAR string for read [4b24ae75-ae6c-4923-b412-8dc04f7dcf0a] seems inconsistent. It implied an error rate greater than 1: 1.29959 0.354715 0.0191669
+[2024-04-13 02:43:47.024] [jointLog] [warning] (in update()) CIGAR string for read [2e3cc510-06b7-421d-bb40-0b9e9f57b66e] seems inconsistent. It implied an error rate greater than 1: 1.40964 0.3624 0.0178667
+[2024-04-13 02:43:47.030] [jointLog] [warning] (in update()) CIGAR string for read [21696e58-5795-4120-8568-3ba62ae0b648] seems inconsistent. It implied an error rate greater than 1: 1.01854 0.195611 0.0287552
+[2024-04-13 02:43:47.041] [jointLog] [warning] (in update()) CIGAR string for read [661aee86-6547-4003-a05d-1bcdbd46ef90] seems inconsistent. It implied an error rate greater than 1: 1.02323 0.113368 0.0325933
+[2024-04-13 02:43:47.078] [jointLog] [warning] (in update()) CIGAR string for read [faebadf5-f8b5-41b2-b530-7a3e05b89ac6] seems inconsistent. It implied an error rate greater than 1: 2.21447 0.0120482 0.0285352
+[2024-04-13 02:43:47.078] [jointLog] [warning] (in update()) CIGAR string for read [38eef669-64bf-44e0-9778-f9c8e6caec3e] seems inconsistent. It implied an error rate greater than 1: 1.43719 0.00711744 0.024911
+[2024-04-13 02:43:47.078] [jointLog] [warning] (in update()) CIGAR string for read [ca5a506e-73af-4a3f-aa36-0a8c7c31b407] seems inconsistent. It implied an error rate greater than 1: 1.01816 0.116652 0.0231164
+[2024-04-13 02:43:47.078] [jointLog] [warning] (in update()) CIGAR string for read [3e9805cd-5b36-4911-aaa4-12fd8d708ce4] seems inconsistent. It implied an error rate greater than 1: 1.01412 0.116486 0.0271589
+[2024-04-13 02:43:47.094] [jointLog] [warning] (in update()) CIGAR string for read [2b17d918-2fb9-49ee-b1f1-c34b3bcefe40] seems inconsistent. It implied an error rate greater than 1: 1.11925 0.0156501 0.0421348
+[2024-04-13 02:43:47.094] [jointLog] [warning] (in update()) CIGAR string for read [7ea6ead2-8302-4c78-8b93-596b43a92526] seems inconsistent. It implied an error rate greater than 1: 1.43547 0.00142248 0.036036
+[2024-04-13 02:43:47.094] [jointLog] [warning] (in update()) CIGAR string for read [746bd7d7-fb89-41e3-b0a0-e3f80e7e4cda] seems inconsistent. It implied an error rate greater than 1: 1.12301 0.0241506 0.0241506
+[2024-04-13 02:43:47.094] [jointLog] [warning] (in update()) CIGAR string for read [efe78fa8-ddd9-425b-a0c8-735afff382f0] seems inconsistent. It implied an error rate greater than 1: 1.12374 0.00256082 0.0454545
+[2024-04-13 02:43:47.094] [jointLog] [warning] (in update()) CIGAR string for read [c89f4f55-2901-48b8-84f7-cab779d4cf59] seems inconsistent. It implied an error rate greater than 1: 1.12638 0.0224249 0.0121627
+[2024-04-13 02:43:47.094] [jointLog] [warning] (in update()) CIGAR string for read [13f9f9f8-cdc5-42be-ade8-a659f8c7f849] seems inconsistent. It implied an error rate greater than 1: 1.10512 0.0151057 0.0185045
+[2024-04-13 02:43:47.103] [jointLog] [warning] (in update()) CIGAR string for read [ff76d585-7838-4858-a990-e185faed1280] seems inconsistent. It implied an error rate greater than 1: 1.12508 0.0109091 0.029697
+[2024-04-13 02:43:47.146] [jointLog] [warning] read 4ad4641c-98c5-4fd4-a736-b8268b127c84 (length 13900 - align length 5018) has no trained error model
+[2024-04-13 02:43:47.146] [jointLog] [warning] read 4ad4641c-98c5-4fd4-a736-b8268b127c84 (length 13900) has no trained clipping model
+[2024-04-13 02:43:47.146] [jointLog] [warning] read 4ad4641c-98c5-4fd4-a736-b8268b127c84 (length 13900) has no trained clipping model
+[2024-04-13 02:43:47.379] [jointLog] [warning] (in update()) CIGAR string for read [8a46b1dd-69a4-4bec-bb45-1a542576ee4d] seems inconsistent. It implied an error rate greater than 1: 2.49283 0.019333 0.037216
+[2024-04-13 02:43:47.514] [jointLog] [warning] read 01afe1a7-1065-404e-bcab-c68633807319 (length 18261 - align length 17743) has no trained error model
+[2024-04-13 02:43:47.514] [jointLog] [warning] read 01afe1a7-1065-404e-bcab-c68633807319 (length 18261) has no trained clipping model
+[2024-04-13 02:43:47.514] [jointLog] [warning] read 01afe1a7-1065-404e-bcab-c68633807319 (length 18261) has no trained clipping model
+[2024-04-13 02:43:47.609] [jointLog] [warning] (in update()) CIGAR string for read [650f49a2-8f74-416a-a120-4ea4abf3be84] seems inconsistent. It implied an error rate greater than 1: 1.33343 0.0120313 0.0279799
+[2024-04-13 02:43:47.618] [jointLog] [warning] read b28afdef-b1e9-4bbc-b365-68b990c8a0f1 (length 17459 - align length 2051) has no trained error model
+[2024-04-13 02:43:47.618] [jointLog] [warning] read b28afdef-b1e9-4bbc-b365-68b990c8a0f1 (length 17459) has no trained clipping model
+[2024-04-13 02:43:47.618] [jointLog] [warning] read b28afdef-b1e9-4bbc-b365-68b990c8a0f1 (length 17459) has no trained clipping model
+[2024-04-13 02:43:47.618] [jointLog] [warning] read 1547e647-20e4-4df0-b693-950558b6b109 (length 18537 - align length 570) has no trained error model
+[2024-04-13 02:43:47.618] [jointLog] [warning] read 1547e647-20e4-4df0-b693-950558b6b109 (length 18537) has no trained clipping model
+[2024-04-13 02:43:47.618] [jointLog] [warning] read 1547e647-20e4-4df0-b693-950558b6b109 (length 18537) has no trained clipping model
+[2024-04-13 02:43:47.632] [jointLog] [warning] (in update()) CIGAR string for read [c6ba5184-cd65-4e89-af34-505f3c0475f2] seems inconsistent. It implied an error rate greater than 1: 1.73786 0.0563231 0.0132837
+[2024-04-13 02:43:47.632] [jointLog] [warning] (in update()) CIGAR string for read [17e10496-462e-4a95-bf1e-eb5adf2ee4ec] seems inconsistent. It implied an error rate greater than 1: 1.08072 0.0059761 0.0266932
+[2024-04-13 02:43:47.632] [jointLog] [warning] (in update()) CIGAR string for read [28741d06-9619-463f-abc0-ba8f1dea821e] seems inconsistent. It implied an error rate greater than 1: 2.33591 0.0114324 0.0316073
+[2024-04-13 02:43:47.632] [jointLog] [warning] (in update()) CIGAR string for read [1be793cd-6463-448c-bb92-cd9ec1939e82] seems inconsistent. It implied an error rate greater than 1: 1.09397 0.0164626 0.0312368
+[2024-04-13 02:43:47.643] [jointLog] [warning] read 2a85a6ff-c1f4-4a86-9a9f-cf1cd2729d8d (length 18253 - align length 18113) has no trained error model
+[2024-04-13 02:43:47.646] [jointLog] [warning] read 55931de8-b70f-471f-a903-4efb61d432f5 (length 15670 - align length 15544) has no trained error model
+[2024-04-13 02:43:47.646] [jointLog] [warning] read 55931de8-b70f-471f-a903-4efb61d432f5 (length 15670) has no trained clipping model
+[2024-04-13 02:43:47.646] [jointLog] [warning] read 55931de8-b70f-471f-a903-4efb61d432f5 (length 15670) has no trained clipping model
+[2024-04-13 02:43:47.656] [jointLog] [warning] (in update()) CIGAR string for read [50a8c14e-062b-4b5e-9994-589f2b2f19d7] seems inconsistent. It implied an error rate greater than 1: 1.28086 0.0165069 0.0194356
+[2024-04-13 02:43:47.657] [jointLog] [warning] (in update()) CIGAR string for read [ab066201-2944-492e-8e8b-df145108c9a4] seems inconsistent. It implied an error rate greater than 1: 1.30837 0.0165472 0.0148924
+[2024-04-13 02:43:47.669] [jointLog] [warning] (in update()) CIGAR string for read [8cc18a1f-a3de-4cf5-81ee-f5ba997c2dc9] seems inconsistent. It implied an error rate greater than 1: 1.40284 0.0332 0.0364
+[2024-04-13 02:43:47.670] [jointLog] [warning] (in update()) CIGAR string for read [f73ac1fe-1945-459b-8328-3b056ecfc37d] seems inconsistent. It implied an error rate greater than 1: 1.67133 0.0179612 0.0456311
+[2024-04-13 02:43:47.695] [jointLog] [warning] (in update()) CIGAR string for read [7dfd6acd-7ff5-458e-8b88-5802cbddd9f7] seems inconsistent. It implied an error rate greater than 1: 1.02621 0.017833 0.00297217
+[2024-04-13 02:43:47.700] [jointLog] [warning] (in update()) CIGAR string for read [396937ad-ed83-4c05-aac5-f3a6028eee82] seems inconsistent. It implied an error rate greater than 1: 1.12728 0.0311355 0.0407509
+[2024-04-13 02:43:47.752] [jointLog] [warning] (in update()) CIGAR string for read [d7c9af10-1d7b-49c3-ad84-2568e992cb4b] seems inconsistent. It implied an error rate greater than 1: 1.01131 0.109641 0.0548204
+[2024-04-13 02:43:47.760] [jointLog] [warning] (in update()) CIGAR string for read [0953383e-a4da-40d1-b349-c3c8d59af0a2] seems inconsistent. It implied an error rate greater than 1: 1.20643 0.000901713 0.03156
+[2024-04-13 02:43:48.207] [jointLog] [warning] (in update()) CIGAR string for read [d31a3b5a-c397-423a-80c1-c17990bdc148] seems inconsistent. It implied an error rate greater than 1: 1.41252 0.0168394 0.45013
+[2024-04-13 02:43:48.236] [jointLog] [warning] (in update()) CIGAR string for read [3ab014fc-1a63-47fd-af69-7bd727d2cc65] seems inconsistent. It implied an error rate greater than 1: 1.44753 0.0132939 0.0295421
+[2024-04-13 02:43:48.236] [jointLog] [warning] (in update()) CIGAR string for read [2cdef44a-6e79-4560-829d-d501712bc9d1] seems inconsistent. It implied an error rate greater than 1: 1.89663 0.00043592 0.0549259
+[0;32mprocessed[0;31m 1000000 [0;32mreads in current round[0;0m[2024-04-13 02:43:48.984] [jointLog] [warning] (in update()) CIGAR string for read [1a8812cc-3c58-4469-998d-082a1b87eb9d] seems inconsistent. It implied an error rate greater than 1: 1.97727 0.212982 0.0730223
+[2024-04-13 02:43:48.990] [jointLog] [warning] (in update()) CIGAR string for read [45e69363-c2e1-4d4d-884b-5d6ca1a750b0] seems inconsistent. It implied an error rate greater than 1: 1.60935 0.028865 0.0293542
+[2024-04-13 02:43:49.003] [jointLog] [warning] (in update()) CIGAR string for read [c7e52212-49c4-4e99-8889-d5f6a27ffa61] seems inconsistent. It implied an error rate greater than 1: 1.78164 0.0353418 0.0307068
+[2024-04-13 02:43:49.046] [jointLog] [warning] read 80855a1d-6380-4d10-ad1a-bb81c860c527 (length 13096 - align length 12582) has no trained error model
+[2024-04-13 02:43:49.052] [jointLog] [warning] (in update()) CIGAR string for read [6aecdee8-51fc-41b0-9385-028459d1d999] seems inconsistent. It implied an error rate greater than 1: 1.15144 0.107615 0.028005
+[2024-04-13 02:43:49.052] [jointLog] [warning] (in update()) CIGAR string for read [41979e06-44b0-47e8-a59b-410bfa3325a4] seems inconsistent. It implied an error rate greater than 1: 1.1619 0.10083 0.0280791
+[2024-04-13 02:43:49.062] [jointLog] [warning] (in update()) CIGAR string for read [5d878409-166a-4803-91df-78e070023c65] seems inconsistent. It implied an error rate greater than 1: 1.02214 0.0214562 0.0253254
+[2024-04-13 02:43:49.063] [jointLog] [warning] (in update()) CIGAR string for read [7c0ee24d-34b2-4ecd-b3ad-f0e802085c56] seems inconsistent. It implied an error rate greater than 1: 1.348 0.0486139 0.0289273
+[2024-04-13 02:43:49.065] [jointLog] [warning] (in update()) CIGAR string for read [9fd8f58c-875e-4a6f-9c95-accdab126398] seems inconsistent. It implied an error rate greater than 1: 1.02691 0.0694864 0.0322256
+[2024-04-13 02:43:49.078] [jointLog] [warning] (in update()) CIGAR string for read [703fb51d-49fa-4731-ac34-a29e3a8a9c76] seems inconsistent. It implied an error rate greater than 1: 1.25619 0.0230011 0.0178897
+[2024-04-13 02:43:49.169] [jointLog] [warning] (in update()) CIGAR string for read [181b94a6-7071-4221-894f-3cfce57ab929] seems inconsistent. It implied an error rate greater than 1: 1.22341 0.0372588 0.0306055
+[2024-04-13 02:43:49.172] [jointLog] [warning] (in update()) CIGAR string for read [ca44c094-74e5-4478-a3d6-1394b8873f55] seems inconsistent. It implied an error rate greater than 1: 1.21681 0.0262273 0.0618695
+[2024-04-13 02:43:49.176] [jointLog] [warning] (in update()) CIGAR string for read [d97ce183-7a83-43cf-988f-3b3c8b69e8e8] seems inconsistent. It implied an error rate greater than 1: 2.03817 0.0215094 0.0392453
+[2024-04-13 02:43:49.176] [jointLog] [warning] (in update()) CIGAR string for read [4c4a49a0-4a87-4db9-9481-3b53d6c04812] seems inconsistent. It implied an error rate greater than 1: 2.06367 0.0187596 0.0371363
+[2024-04-13 02:43:49.213] [jointLog] [warning] read 3b980eda-593a-4ac9-b05e-88070f6d8a56 (length 18799 - align length 347) has no trained error model
+[2024-04-13 02:43:49.213] [jointLog] [warning] read 3b980eda-593a-4ac9-b05e-88070f6d8a56 (length 18799) has no trained clipping model
+[2024-04-13 02:43:49.213] [jointLog] [warning] read 3b980eda-593a-4ac9-b05e-88070f6d8a56 (length 18799) has no trained clipping model
+[2024-04-13 02:43:49.224] [jointLog] [warning] (in update()) CIGAR string for read [b664fd94-88d7-4576-ad42-ea4b32e973e4] seems inconsistent. It implied an error rate greater than 1: 1.27432 0.0101351 0.0230856
+[2024-04-13 02:43:49.228] [jointLog] [warning] (in update()) CIGAR string for read [caf4d4af-db81-48e2-b180-f77ab546703c] seems inconsistent. It implied an error rate greater than 1: 1.06625 0.0616469 0.014531
+[2024-04-13 02:43:49.551] [jointLog] [warning] read 4230f396-680b-47bc-beaf-e1f6da41d18e (length 14831 - align length 3635) has no trained error model
+[2024-04-13 02:43:49.551] [jointLog] [warning] read 4230f396-680b-47bc-beaf-e1f6da41d18e (length 14831) has no trained clipping model
+[2024-04-13 02:43:49.551] [jointLog] [warning] read 4230f396-680b-47bc-beaf-e1f6da41d18e (length 14831) has no trained clipping model
+[2024-04-13 02:43:49.996] [jointLog] [warning] (in update()) CIGAR string for read [be30e713-21f2-4630-b7ee-c6dc7c6336f5] seems inconsistent. It implied an error rate greater than 1: 1.81135 0.0457769 0.0451322
+[2024-04-13 02:43:50.296] [jointLog] [warning] (in update()) CIGAR string for read [1c1227eb-6c07-4abe-8fb3-e9ffba97522a] seems inconsistent. It implied an error rate greater than 1: 1.07289 0.0176035 0.00370599
+[2024-04-13 02:43:50.297] [jointLog] [warning] (in update()) CIGAR string for read [5f54bf37-0051-4ab0-9ab5-4d9745075171] seems inconsistent. It implied an error rate greater than 1: 1.38739 0.000602954 0.0141694
+[2024-04-13 02:43:50.299] [jointLog] [warning] (in update()) CIGAR string for read [ddf46d9c-5896-4592-9757-2b93e34270fc] seems inconsistent. It implied an error rate greater than 1: 1.54416 0.0141236 0.0121059
+[2024-04-13 02:43:50.299] [jointLog] [warning] (in update()) CIGAR string for read [92d8871a-a557-4a0f-8a0b-ef8e5c5158b1] seems inconsistent. It implied an error rate greater than 1: 1.63617 0.0140296 0.0205248
+[2024-04-13 02:43:50.299] [jointLog] [warning] (in update()) CIGAR string for read [3233c868-10cd-4060-9926-7e2d66a07795] seems inconsistent. It implied an error rate greater than 1: 2.21274 0.0193757 0.0175816
+[2024-04-13 02:43:50.299] [jointLog] [warning] (in update()) CIGAR string for read [b9cd3007-9b1a-4fd4-bf9c-e214b61ee2d0] seems inconsistent. It implied an error rate greater than 1: 1.37261 0.0122123 0.00704556
+[2024-04-13 02:43:50.303] [jointLog] [warning] (in update()) CIGAR string for read [9d5563a5-b517-4936-84c1-599965dcb608] seems inconsistent. It implied an error rate greater than 1: 1.46745 0.00699458 0.0155686
+[2024-04-13 02:43:50.303] [jointLog] [warning] (in update()) CIGAR string for read [9807a388-b3dd-4a0f-a7c5-ba94b8d0abbc] seems inconsistent. It implied an error rate greater than 1: 1.53942 0.00732508 0.0186916
+[2024-04-13 02:43:50.303] [jointLog] [warning] (in update()) CIGAR string for read [341119cc-9f33-41d5-af9c-2349c433c31e] seems inconsistent. It implied an error rate greater than 1: 1.7486 0.00895037 0.0222403
+[2024-04-13 02:43:50.304] [jointLog] [warning] (in update()) CIGAR string for read [8bd5c89b-376a-4b8e-99c6-75ddb30ed6b3] seems inconsistent. It implied an error rate greater than 1: 1.57381 0.00786203 0.0180066
+[2024-04-13 02:43:50.304] [jointLog] [warning] (in update()) CIGAR string for read [2108bc96-aaae-4c51-adb2-ef61203e7b79] seems inconsistent. It implied an error rate greater than 1: 1.57324 0.00803415 0.0236003
+[2024-04-13 02:43:50.304] [jointLog] [warning] (in update()) CIGAR string for read [e8550ff6-f59b-4ef6-aef4-3f7d9ef6a1d2] seems inconsistent. It implied an error rate greater than 1: 2.11153 0.00216183 0.0259419
+[2024-04-13 02:43:50.304] [jointLog] [warning] (in update()) CIGAR string for read [af575ac2-511a-4ab2-93c0-d5e6fe7ee89e] seems inconsistent. It implied an error rate greater than 1: 2.23947 0.0040367 0.0198165
+[2024-04-13 02:43:50.305] [jointLog] [warning] (in update()) CIGAR string for read [a092d390-c30d-4b94-8fb4-13d7829f8e54] seems inconsistent. It implied an error rate greater than 1: 2.35362 0.0208967 0.0174772
+[2024-04-13 02:43:50.334] [jointLog] [warning] (in update()) CIGAR string for read [435de2fb-7790-4173-888e-076ab2fd4195] seems inconsistent. It implied an error rate greater than 1: 1.12405 0.0113393 0.0226785
+[2024-04-13 02:43:50.343] [jointLog] [warning] read 8bd84c4f-9155-446e-b625-d81e30e840dc (length 12873 - align length 12763) has no trained error model
+[2024-04-13 02:43:50.364] [jointLog] [warning] (in update()) CIGAR string for read [8c422662-abfd-4648-afd6-005ece6b3639] seems inconsistent. It implied an error rate greater than 1: 1.05197 0.00996785 0.0186495
+[2024-04-13 02:43:50.421] [jointLog] [warning] read c8be68eb-6b20-4525-b652-f6a6f5d07782 (length 96) has no trained clipping model
+[2024-04-13 02:43:50.516] [jointLog] [warning] (in update()) CIGAR string for read [a7e408a2-3119-4049-8ad3-acb5c86e9442] seems inconsistent. It implied an error rate greater than 1: 1.84623 0.175643 0.0245177
+[2024-04-13 02:43:50.577] [jointLog] [warning] (in update()) CIGAR string for read [376c85ff-f6bd-495a-8eae-15bb514a9835] seems inconsistent. It implied an error rate greater than 1: 2.13389 0.0247137 0.0433996
+[2024-04-13 02:43:50.684] [jointLog] [warning] (in update()) CIGAR string for read [ad9ae9ff-4aeb-4dc5-96fc-2ee69b0f1e77] seems inconsistent. It implied an error rate greater than 1: 1.701 0.0246761 0.0468846
+[2024-04-13 02:43:50.779] [jointLog] [warning] (in update()) CIGAR string for read [e8a2f9b2-8ee4-4434-8581-57440d990b0f] seems inconsistent. It implied an error rate greater than 1: 1.62093 0.00676036 0.0142323
+[2024-04-13 02:43:50.780] [jointLog] [warning] (in update()) CIGAR string for read [a774152e-1c6f-462f-b957-038f5f9eac53] seems inconsistent. It implied an error rate greater than 1: 1.15097 0.00215569 0.0189222
+[2024-04-13 02:43:50.792] [jointLog] [warning] read 053e8bdb-7a0c-423c-9ca1-9985a4a17d3b (length 13636 - align length 13401) has no trained error model
+[2024-04-13 02:43:50.792] [jointLog] [warning] read 2423f7b4-fc38-4f8a-b304-428907009947 (length 13477 - align length 13337) has no trained error model
+[2024-04-13 02:43:50.793] [jointLog] [warning] read 7be28013-2e12-46a3-a224-7fbb4fe3dbf2 (length 13981 - align length 13867) has no trained error model
+[2024-04-13 02:43:50.793] [jointLog] [warning] read a73454a5-eb9d-4903-8351-b6abb2fdb552 (length 13355 - align length 13245) has no trained error model
+[2024-04-13 02:43:50.793] [jointLog] [warning] read bae2ecd8-32ac-455a-95d6-e5e5e6eca75e (length 13257 - align length 13168) has no trained error model
+[2024-04-13 02:43:50.793] [jointLog] [warning] read b25edaa3-99fd-4250-a2d3-c8f8eb000f74 (length 13121 - align length 13046) has no trained error model
+[2024-04-13 02:43:51.306] [jointLog] [warning] (in update()) CIGAR string for read [6a1af547-f54d-4cd6-9de9-d9e84f24bf8a] seems inconsistent. It implied an error rate greater than 1: 2.8283 0.0062448 0.0287261
+[2024-04-13 02:43:51.315] [jointLog] [warning] (in update()) CIGAR string for read [588c1e64-81bd-4d91-b980-f0435d38638f] seems inconsistent. It implied an error rate greater than 1: 1.12614 0.0143342 0.0316862
+[2024-04-13 02:43:51.315] [jointLog] [warning] (in update()) CIGAR string for read [566d227e-4aff-45e5-a8ed-1ac90d4e7c2d] seems inconsistent. It implied an error rate greater than 1: 1.21544 0.0201785 0.0197905
+[2024-04-13 02:43:51.335] [jointLog] [warning] read dbc2ab51-afde-4a21-9146-32159ac7b84a (length 12408 - align length 12304) has no trained error model
+[2024-04-13 02:43:51.385] [jointLog] [warning] (in update()) CIGAR string for read [25ea5ba1-76e8-4f19-98f9-fea40baac17c] seems inconsistent. It implied an error rate greater than 1: 1.2384 0.078453 0.0640884
+[2024-04-13 02:43:51.568] [jointLog] [warning] (in update()) CIGAR string for read [86d3d29f-1c1a-4c83-9079-defdfed403c7] seems inconsistent. It implied an error rate greater than 1: 1.14118 0.0208228 0.0259015
+[2024-04-13 02:43:51.589] [jointLog] [warning] read 50bd9557-187a-43b3-a45b-c713305e9b77 (length 16573 - align length 1284) has no trained error model
+[2024-04-13 02:43:51.589] [jointLog] [warning] read 50bd9557-187a-43b3-a45b-c713305e9b77 (length 16573) has no trained clipping model
+[2024-04-13 02:43:51.589] [jointLog] [warning] read 50bd9557-187a-43b3-a45b-c713305e9b77 (length 16573) has no trained clipping model
+[2024-04-13 02:43:52.013] [jointLog] [warning] read 1961cc72-95d5-471d-b2cd-b83b6f12e447 (length 15360 - align length 826) has no trained error model
+[2024-04-13 02:43:52.013] [jointLog] [warning] read 1961cc72-95d5-471d-b2cd-b83b6f12e447 (length 15360) has no trained clipping model
+[2024-04-13 02:43:52.013] [jointLog] [warning] read 1961cc72-95d5-471d-b2cd-b83b6f12e447 (length 15360) has no trained clipping model
+[2024-04-13 02:43:52.049] [jointLog] [warning] (in update()) CIGAR string for read [ce8ec7e1-f551-4e25-854b-0e9c68e7f649] seems inconsistent. It implied an error rate greater than 1: 1.37632 0.0120253 0.0310127
+[2024-04-13 02:43:52.049] [jointLog] [warning] (in update()) CIGAR string for read [19cb6712-9941-42f7-b9b7-e99f035000f3] seems inconsistent. It implied an error rate greater than 1: 1.46528 0.0184941 0.0254293
+[2024-04-13 02:43:52.050] [jointLog] [warning] (in update()) CIGAR string for read [d2bf2b15-782d-4cc2-bc7f-2025b3525e70] seems inconsistent. It implied an error rate greater than 1: 1.46311 0.0218158 0.0519731
+[2024-04-13 02:43:52.050] [jointLog] [warning] (in update()) CIGAR string for read [d845d67d-29e6-45df-bed8-85780beb805b] seems inconsistent. It implied an error rate greater than 1: 1.43551 0.0203469 0.0176785
+[2024-04-13 02:43:52.052] [jointLog] [warning] (in update()) CIGAR string for read [062d18ad-2dcd-4233-a88b-bb960de68e4f] seems inconsistent. It implied an error rate greater than 1: 1.46724 0.0190724 0.0281751
+[2024-04-13 02:43:52.053] [jointLog] [warning] (in update()) CIGAR string for read [4c76a66e-4e01-4011-a825-49bdb03921f0] seems inconsistent. It implied an error rate greater than 1: 1.19728 0.00954198 0.0366412
+[2024-04-13 02:43:52.053] [jointLog] [warning] (in update()) CIGAR string for read [1c2e5bb2-5d2f-4d85-860b-c04a1b9c6e93] seems inconsistent. It implied an error rate greater than 1: 1.48445 0.0164911 0.0407696
+[2024-04-13 02:43:52.053] [jointLog] [warning] (in update()) CIGAR string for read [83abd14d-5f9e-45a0-9925-03045e3c3cb9] seems inconsistent. It implied an error rate greater than 1: 1.68739 0.0121436 0.0454065
+[2024-04-13 02:43:52.053] [jointLog] [warning] (in update()) CIGAR string for read [e79e6c3f-264b-4ae5-9813-85ffc0c1754f] seems inconsistent. It implied an error rate greater than 1: 1.68894 0.0259671 0.0302067
+[2024-04-13 02:43:52.054] [jointLog] [warning] (in update()) CIGAR string for read [66c68eed-6c04-4fe0-b342-953e9c24cff2] seems inconsistent. It implied an error rate greater than 1: 1.7559 0.0060208 0.0432403
+[2024-04-13 02:43:52.095] [jointLog] [warning] (in update()) CIGAR string for read [a18cf7af-a882-49f6-88f5-2f3372c22186] seems inconsistent. It implied an error rate greater than 1: 2.80173 0.0260521 0.0474282
+[2024-04-13 02:43:52.108] [jointLog] [warning] (in update()) CIGAR string for read [e0e6abdf-c965-448f-8302-a7052b2dda21] seems inconsistent. It implied an error rate greater than 1: 2.39411 0.0849478 0.105812
+[2024-04-13 02:43:52.193] [jointLog] [warning] (in update()) CIGAR string for read [d345f28a-45ed-44b6-94a9-d3db68e4b98a] seems inconsistent. It implied an error rate greater than 1: 1.46442 0.0424818 0.077697
+[2024-04-13 02:43:52.256] [jointLog] [warning] (in update()) CIGAR string for read [c101da24-1c51-48cc-9053-d622694ea7cf] seems inconsistent. It implied an error rate greater than 1: 1.32252 0.0167722 0.0177215
+[2024-04-13 02:43:52.604] [jointLog] [warning] (in update()) CIGAR string for read [c5f7e087-8d45-41a1-be70-1ac97803468f] seems inconsistent. It implied an error rate greater than 1: 1.10974 0.020961 0.0415995
+[2024-04-13 02:43:52.604] [jointLog] [warning] (in update()) CIGAR string for read [0d7b00c9-247e-418d-8684-ba6b4c11f866] seems inconsistent. It implied an error rate greater than 1: 1.12801 0.0126162 0.0225764
+[2024-04-13 02:43:52.604] [jointLog] [warning] (in update()) CIGAR string for read [7c196537-6efb-48ce-bd62-75e60d19ba4e] seems inconsistent. It implied an error rate greater than 1: 1.24294 0.000361664 0.0260398
+[2024-04-13 02:43:52.606] [jointLog] [warning] read b9ba61d5-3a42-4a00-b629-0f1a1fc4b9a8 (length 14117 - align length 309) has no trained error model
+[2024-04-13 02:43:52.606] [jointLog] [warning] read b9ba61d5-3a42-4a00-b629-0f1a1fc4b9a8 (length 14117) has no trained clipping model
+[2024-04-13 02:43:52.606] [jointLog] [warning] read b9ba61d5-3a42-4a00-b629-0f1a1fc4b9a8 (length 14117) has no trained clipping model
+[2024-04-13 02:43:52.746] [jointLog] [warning] (in update()) CIGAR string for read [a71ad6ae-3907-480e-923f-451938b95476] seems inconsistent. It implied an error rate greater than 1: 1.98042 0.090312 0.0432403
+[2024-04-13 02:43:52.746] [jointLog] [warning] (in update()) CIGAR string for read [28d91f38-fb7d-4bff-ac66-0775b6cdce29] seems inconsistent. It implied an error rate greater than 1: 1.17604 0.00102522 0.0112774
+[2024-04-13 02:43:52.747] [jointLog] [warning] (in update()) CIGAR string for read [a3ee44c7-ae0f-4b8e-a3f7-08e11413f845] seems inconsistent. It implied an error rate greater than 1: 2.02433 0.364168 0.00939217
+[2024-04-13 02:43:52.778] [jointLog] [warning] (in update()) CIGAR string for read [348163a6-9d70-42e1-ada9-7809f2635a88] seems inconsistent. It implied an error rate greater than 1: 1.04551 0.0258258 0.0636637
+[2024-04-13 02:43:52.810] [jointLog] [warning] (in update()) CIGAR string for read [8742a4fc-415e-4fef-8581-ba876299b834] seems inconsistent. It implied an error rate greater than 1: 2.31699 0.441748 0.0631068
+[2024-04-13 02:43:52.810] [jointLog] [warning] (in update()) CIGAR string for read [a3354264-dc19-4143-abc5-b1734e0cbd4f] seems inconsistent. It implied an error rate greater than 1: 1.59153 0.180915 0.0371107
+[2024-04-13 02:43:52.814] [jointLog] [warning] (in update()) CIGAR string for read [d75a906b-c4d9-42af-a0ed-328b21e6ffc2] seems inconsistent. It implied an error rate greater than 1: 2.10273 0.0240104 0.0473718
+[2024-04-13 02:43:53.165] [jointLog] [warning] (in update()) CIGAR string for read [32531581-84e7-4319-8110-b1db5c081aea] seems inconsistent. It implied an error rate greater than 1: 1.16989 0.0107444 0.275518
+[2024-04-13 02:43:53.176] [jointLog] [warning] (in update()) CIGAR string for read [f7c4645c-8c5d-479c-bea7-70700589a034] seems inconsistent. It implied an error rate greater than 1: 2.44362 0.012 0.0301538
+[2024-04-13 02:43:53.176] [jointLog] [warning] (in update()) CIGAR string for read [ec51588d-1739-4580-904e-f71ada4c5526] seems inconsistent. It implied an error rate greater than 1: 1.06673 0.0272356 0
+[2024-04-13 02:43:53.216] [jointLog] [warning] (in update()) CIGAR string for read [3281fef5-648a-4a2a-a20a-5a65f2e57e83] seems inconsistent. It implied an error rate greater than 1: 1.1091 0.0273973 0.017664
+[2024-04-13 02:43:53.217] [jointLog] [warning] (in update()) CIGAR string for read [4e68a182-bfaa-4565-896c-f0fad259b5e7] seems inconsistent. It implied an error rate greater than 1: 1.18125 0.0260805 0.0201192
+[2024-04-13 02:43:53.218] [jointLog] [warning] (in update()) CIGAR string for read [554f9ddb-bc67-4e79-9bbe-1e9742c45ba0] seems inconsistent. It implied an error rate greater than 1: 1.14727 0.0186199 0.0244615
+[2024-04-13 02:43:53.218] [jointLog] [warning] (in update()) CIGAR string for read [61bb1992-7255-4372-b9fe-698e5368fa9b] seems inconsistent. It implied an error rate greater than 1: 1.19589 0.0230141 0.0200445
+[2024-04-13 02:43:53.243] [jointLog] [warning] (in update()) CIGAR string for read [2a9cfd77-333b-47d1-856d-7d12f6f90810] seems inconsistent. It implied an error rate greater than 1: 1.59758 0.00127959 0.0479846
+[2024-04-13 02:43:53.446] [jointLog] [warning] (in update()) CIGAR string for read [6f866ecd-80c5-43e8-bd8c-48d5def6926f] seems inconsistent. It implied an error rate greater than 1: 2.24082 0.0333855 0.0286907
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [97bf899b-0208-4e38-a38b-ad10a07933f7] seems inconsistent. It implied an error rate greater than 1: 2.13144 0.0333847 0.00924499
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [4dc7c3a4-7108-4244-8eb5-e1e78c4d0049] seems inconsistent. It implied an error rate greater than 1: 2.1056 0.0295888 0.0300903
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [afd0ee48-2b70-4c8a-acb5-7174f813bc18] seems inconsistent. It implied an error rate greater than 1: 1.87796 0.0346241 0.0432802
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [d9b64834-42df-4529-bd5b-558f77982f2e] seems inconsistent. It implied an error rate greater than 1: 2.07785 0.0316362 0.0286703
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [b83f5726-880a-4ec3-ba4e-076920c15593] seems inconsistent. It implied an error rate greater than 1: 2.10928 0.0423814 0.00655903
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [7c6f8715-8c7a-40f6-98a6-a2934b4fe49e] seems inconsistent. It implied an error rate greater than 1: 2.1016 0.0296185 0.0266064
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [9ce863ab-6abe-4091-8a9a-dffc49e2004f] seems inconsistent. It implied an error rate greater than 1: 1.78694 0.0171946 0.0334842
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [f85e5c05-611b-4abe-a493-280cdbac60d5] seems inconsistent. It implied an error rate greater than 1: 2.08937 0.00856855 0.0383065
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [b33545d0-70c5-4679-a617-fbf8851b7d45] seems inconsistent. It implied an error rate greater than 1: 2.49284 0.0202931 0.0349493
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [a27554b2-343e-4d3b-93c0-e1b23d05c8ce] seems inconsistent. It implied an error rate greater than 1: 2.09395 0.021393 0.0412935
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [edda3af6-9f95-4dbd-af49-355c010d123d] seems inconsistent. It implied an error rate greater than 1: 2.09556 0.0319202 0.0234414
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [5055d17b-ec80-41fa-909f-1f80e3bab9b4] seems inconsistent. It implied an error rate greater than 1: 2.70622 0.0113841 0.0443379
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [19d66df7-1f06-47e5-9fae-b78a511b9c2a] seems inconsistent. It implied an error rate greater than 1: 2.12554 0.0335025 0.0203046
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [35aefa10-e2b5-420c-9117-11833bb864c1] seems inconsistent. It implied an error rate greater than 1: 2.27831 0.0170485 0.0372936
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [4353c422-0695-4f09-8f6b-c24e2aec4c44] seems inconsistent. It implied an error rate greater than 1: 2.10915 0.0324455 0.0624697
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [722c6cc8-6a1f-4935-8262-14b93227c0b0] seems inconsistent. It implied an error rate greater than 1: 2.13283 0.0311089 0.0396387
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [20211ff2-14ac-4eee-bdd5-04a406128830] seems inconsistent. It implied an error rate greater than 1: 2.16721 0.0307452 0.0156331
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [2bf2c935-0c25-46c4-a776-ceec0e829490] seems inconsistent. It implied an error rate greater than 1: 2.5899 0.0824144 0.0330818
+[2024-04-13 02:43:53.451] [jointLog] [warning] (in update()) CIGAR string for read [340e7d13-71b8-49c6-9639-ae5ba6295ce3] seems inconsistent. It implied an error rate greater than 1: 1.09163 0.0577311 0.0302786
+[2024-04-13 02:43:53.452] [jointLog] [warning] (in update()) CIGAR string for read [a2394378-5570-45e6-afc2-5cc04f1afdee] seems inconsistent. It implied an error rate greater than 1: 1.33333 0.0177854 0.424555
+[2024-04-13 02:43:53.452] [jointLog] [warning] (in update()) CIGAR string for read [b3470868-be17-4d39-8434-6a89356e248b] seems inconsistent. It implied an error rate greater than 1: 1.30547 0.0290276 0.0159652
+[2024-04-13 02:43:53.687] [jointLog] [warning] (in update()) CIGAR string for read [5c4cae31-1765-4b2f-a11b-66e718598146] seems inconsistent. It implied an error rate greater than 1: 2.13504 0.0158434 0.0214352
+[2024-04-13 02:43:53.688] [jointLog] [warning] (in update()) CIGAR string for read [e8743ef4-f9c9-487c-a747-89edbcffcec5] seems inconsistent. It implied an error rate greater than 1: 1.60142 0.0308123 0.0218487
+[2024-04-13 02:43:53.964] [jointLog] [warning] (in update()) CIGAR string for read [4a250aa7-840c-4b6b-9235-987a73d2a6f0] seems inconsistent. It implied an error rate greater than 1: 2.10049 0.0142631 0.0237718
+[2024-04-13 02:43:54.088] [jointLog] [warning] (in update()) CIGAR string for read [d5f218ed-1d34-470e-9708-4e7b23e19d7d] seems inconsistent. It implied an error rate greater than 1: 1.07126 0.00979653 0.0384326
+[2024-04-13 02:43:54.088] [jointLog] [warning] (in update()) CIGAR string for read [6adbdfba-0ad5-4af8-a9ae-85cc2726fee5] seems inconsistent. It implied an error rate greater than 1: 1.03727 0 0.0543319
+[2024-04-13 02:43:54.310] [jointLog] [warning] (in update()) CIGAR string for read [e2b61237-ee5b-4e13-be9a-3fb424d051d8] seems inconsistent. It implied an error rate greater than 1: 1.46588 0.0375587 0.107311
+[2024-04-13 02:43:54.323] [jointLog] [warning] (in update()) CIGAR string for read [3671b93c-34bd-4bf4-a9e7-01d3c85b2507] seems inconsistent. It implied an error rate greater than 1: 1.19698 0.00678208 0.0119579
+[2024-04-13 02:43:55.042] [jointLog] [warning] (in update()) CIGAR string for read [d354f829-37ed-44c3-b77a-0c2082faf2c5] seems inconsistent. It implied an error rate greater than 1: 1.00561 0.0182342 0.0407869
+[2024-04-13 02:43:55.056] [jointLog] [warning] (in update()) CIGAR string for read [d25910f3-d715-4732-a263-7c90b5c10a61] seems inconsistent. It implied an error rate greater than 1: 1.94228 0.018198 0.105193
+[2024-04-13 02:43:55.056] [jointLog] [warning] (in update()) CIGAR string for read [dc8a2c3c-119c-42d7-9c17-901f01ec9983] seems inconsistent. It implied an error rate greater than 1: 1.63777 0.023166 0.031746
+[2024-04-13 02:43:55.056] [jointLog] [warning] (in update()) CIGAR string for read [82bac2e1-c50c-49a5-8824-5d4cefff66c5] seems inconsistent. It implied an error rate greater than 1: 1.50746 0.261466 0.0271451
+[2024-04-13 02:43:55.187] [jointLog] [warning] read bf094989-dda7-4635-8897-db35f03cbd1a (length 11917 - align length 11799) has no trained error model
+[2024-04-13 02:43:55.925] [jointLog] [warning] (in update()) CIGAR string for read [5d1dc9ca-e8ea-40fa-a7a2-9c486f303d52] seems inconsistent. It implied an error rate greater than 1: 1.32626 0.0216248 0.0414962
+[2024-04-13 02:43:55.941] [jointLog] [warning] (in update()) CIGAR string for read [063eb098-7b6d-4fd6-a953-9c7bd2f364be] seems inconsistent. It implied an error rate greater than 1: 1.07866 0.010989 0.0270016
+[2024-04-13 02:43:55.951] [jointLog] [warning] (in update()) CIGAR string for read [e0ac9619-1f4d-4f03-b1bb-1a43eeb087bd] seems inconsistent. It implied an error rate greater than 1: 1.41344 0.00923226 0.0182216
+[2024-04-13 02:43:56.042] [jointLog] [warning] (in update()) CIGAR string for read [76c98f0c-f1a3-4d75-95bb-3fb841c94a22] seems inconsistent. It implied an error rate greater than 1: 1.20755 0.157895 0.0216718
+[2024-04-13 02:43:56.079] [jointLog] [warning] (in update()) CIGAR string for read [64438d8a-9c1d-4dfc-8cab-8a402404c4e2] seems inconsistent. It implied an error rate greater than 1: 1.39229 0.0441676 0.10419
+[2024-04-13 02:43:56.092] [jointLog] [warning] (in update()) CIGAR string for read [1c11f1d9-953c-4cf4-878f-adf10f42efb3] seems inconsistent. It implied an error rate greater than 1: 1.02536 0.0503178 0.0307203
+[2024-04-13 02:43:56.112] [jointLog] [warning] (in update()) CIGAR string for read [e747a5c5-ba4c-48ce-98a7-d26557749333] seems inconsistent. It implied an error rate greater than 1: 1.04709 0.0110952 0.023622
+[2024-04-13 02:43:56.528] [jointLog] [warning] (in update()) CIGAR string for read [9e003408-1797-43e7-a155-ee363924c844] seems inconsistent. It implied an error rate greater than 1: 1.41379 0.0585754 0.0309278
+[2024-04-13 02:43:56.978] [jointLog] [warning] (in update()) CIGAR string for read [af69313e-cad4-45c8-8d98-359056dede49] seems inconsistent. It implied an error rate greater than 1: 1.39018 0.0202053 0.0131495
+[2024-04-13 02:43:56.986] [jointLog] [warning] read 83f3ec72-9509-470a-9ba3-8e22ec389da3 (length 12539 - align length 12402) has no trained error model
+[2024-04-13 02:43:57.026] [jointLog] [warning] (in update()) CIGAR string for read [60223edd-51bb-4b87-844d-4558ce579fa1] seems inconsistent. It implied an error rate greater than 1: 2.07821 0.0305958 0.10467
+[2024-04-13 02:43:57.046] [jointLog] [warning] (in update()) CIGAR string for read [471572bb-f01b-4f1e-9a2c-58c64ff71d71] seems inconsistent. It implied an error rate greater than 1: 1.02099 0.0167736 0.0429206
+[2024-04-13 02:43:57.414] [jointLog] [warning] (in update()) CIGAR string for read [aeb55ba5-0d14-474d-af97-ce10da973330] seems inconsistent. It implied an error rate greater than 1: 1.7674 0.0162187 0.0115848
+[2024-04-13 02:43:57.414] [jointLog] [warning] (in update()) CIGAR string for read [f5b9b52a-a370-4e1d-9c08-daa24c8d54f3] seems inconsistent. It implied an error rate greater than 1: 1.5652 0.0212384 0.0107688
+[2024-04-13 02:43:57.414] [jointLog] [warning] (in update()) CIGAR string for read [35e9d526-3193-43f8-8230-a1818076f2e4] seems inconsistent. It implied an error rate greater than 1: 1.04049 0.0208117 0.0110995
+[2024-04-13 02:43:57.414] [jointLog] [warning] (in update()) CIGAR string for read [3759ba93-d1e8-468a-ae38-4970699c9b4d] seems inconsistent. It implied an error rate greater than 1: 1.45695 0.0119 0.0135135
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [62077b2c-9ebf-497b-9cc8-710ac94a32b8] seems inconsistent. It implied an error rate greater than 1: 1.80564 0.0147506 0.0131117
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [23b59782-983d-4e77-930e-d9486bd403a9] seems inconsistent. It implied an error rate greater than 1: 1.59172 0.0226792 0.0130027
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [2eb0fb11-7180-416c-87cc-d2da64473d71] seems inconsistent. It implied an error rate greater than 1: 1.44347 0.0125253 0.0153535
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [28f351fe-404d-4b4d-ba31-56c9163f9488] seems inconsistent. It implied an error rate greater than 1: 1.44489 0.00369382 0.0151857
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [14beb3ff-32db-4884-b68c-7d222be18e9d] seems inconsistent. It implied an error rate greater than 1: 1.47249 0.00769871 0.0164378
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [33bd9425-8ed7-453f-b744-30dbda5f2833] seems inconsistent. It implied an error rate greater than 1: 1.48906 0.0102275 0.016698
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [6b48c6e2-4c7c-4736-90c4-c14eafec8e90] seems inconsistent. It implied an error rate greater than 1: 1.67461 0.00989144 0.00844391
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [cbfe63b2-3777-46ec-b652-d9834f6edc34] seems inconsistent. It implied an error rate greater than 1: 1.48079 0.00750939 0.0150188
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [d0ba3e28-0d44-4c7d-ab35-e30069cc6bc3] seems inconsistent. It implied an error rate greater than 1: 1.40268 0.00765358 0.0145015
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [b8e0b695-dfa5-4ee5-9459-4e6d7fd7f97c] seems inconsistent. It implied an error rate greater than 1: 1.58439 0.0171674 0.0280921
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [c6627388-fa6e-4212-913b-ebd89c42070f] seems inconsistent. It implied an error rate greater than 1: 1.37958 0.00741632 0.0130287
+[2024-04-13 02:43:57.415] [jointLog] [warning] (in update()) CIGAR string for read [8568e42e-a057-440c-a924-26f52ef853b9] seems inconsistent. It implied an error rate greater than 1: 1.58368 0.00875881 0.017304
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [7b634053-5d66-4887-96bb-2286a71320b0] seems inconsistent. It implied an error rate greater than 1: 1.71821 0.00965586 0.0089131
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [af149edc-b3fe-4b94-af30-8a301194c29f] seems inconsistent. It implied an error rate greater than 1: 1.8153 0.00843289 0.0175685
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [6bbcac8d-2eb8-4b31-8404-68d35b7b8318] seems inconsistent. It implied an error rate greater than 1: 1.38746 0.0125126 0.00565086
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [e3c2e999-01f8-4ae9-9781-eaa8919c9019] seems inconsistent. It implied an error rate greater than 1: 1.39027 0.00817874 0.0201476
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [418684bf-aa40-43c2-ad60-6d82963e337d] seems inconsistent. It implied an error rate greater than 1: 1.28841 0.0252366 0.012224
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [ba6a9a20-351d-4fca-a809-ea2a216f1883] seems inconsistent. It implied an error rate greater than 1: 1.61242 0.0166811 0.0062825
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [a5bc4de4-e4a8-4691-970b-c742f8d5ca50] seems inconsistent. It implied an error rate greater than 1: 1.45013 0.0163472 0.00873732
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [50511260-a236-42b7-ba3f-f213fd182799] seems inconsistent. It implied an error rate greater than 1: 1.54898 0.0045208 0.017179
+[2024-04-13 02:43:57.416] [jointLog] [warning] (in update()) CIGAR string for read [ea635762-ff1c-4812-b8bc-8ccccae6a947] seems inconsistent. It implied an error rate greater than 1: 1.55446 0.0164425 0.0173393
+[2024-04-13 02:43:57.417] [jointLog] [warning] (in update()) CIGAR string for read [5639fa85-4022-46ce-841d-b36a11b7d56b] seems inconsistent. It implied an error rate greater than 1: 1.38736 0.0138614 0.0245545
+[2024-04-13 02:43:57.417] [jointLog] [warning] (in update()) CIGAR string for read [73d95c91-cc1b-4799-831a-8ea85d99225f] seems inconsistent. It implied an error rate greater than 1: 1.50741 0.020221 0.00979779
+[2024-04-13 02:43:57.490] [jointLog] [warning] (in update()) CIGAR string for read [51bdc8e2-4f69-43c7-ba94-be568c63e2f9] seems inconsistent. It implied an error rate greater than 1: 1.48383 0.00817782 0.0127909
+[2024-04-13 02:43:57.490] [jointLog] [warning] (in update()) CIGAR string for read [ddb54dec-29d1-440d-b39d-fb67ae341dd6] seems inconsistent. It implied an error rate greater than 1: 1.38308 0.0128075 0.00223623
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [05df17e6-f765-4255-926a-2596bfce6259] seems inconsistent. It implied an error rate greater than 1: 1.48391 0.00809297 0.0184686
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [2e6f247a-8934-4129-88d6-a389e4c23e35] seems inconsistent. It implied an error rate greater than 1: 1.41885 0.0153072 0.0143001
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [207e0f01-df7b-46bc-8d03-3ed905ec0c79] seems inconsistent. It implied an error rate greater than 1: 1.39662 0.0204527 0.0172756
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [94e0cb74-a331-4f09-9fab-97ed2d808f6f] seems inconsistent. It implied an error rate greater than 1: 1.53532 0.0288136 0.0114407
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [4ca1d8a7-3855-4c21-96b3-825d0a96e3c8] seems inconsistent. It implied an error rate greater than 1: 1.51364 0.0240304 0.0103288
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [2e50cc51-f8e0-4982-a8bf-b8cab7ae1d36] seems inconsistent. It implied an error rate greater than 1: 1.48288 0.027749 0.0103541
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [d93b952b-3dbb-4061-9e81-6add653673af] seems inconsistent. It implied an error rate greater than 1: 2.1 0.0402782 0.00347725
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [42573b82-26ce-45c3-a75e-8079a64983f7] seems inconsistent. It implied an error rate greater than 1: 1.9117 0.0314628 0.0432026
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [abcb1500-7883-40a5-8386-3c4096f07e2f] seems inconsistent. It implied an error rate greater than 1: 1.42442 0.065577 0.0101187
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [e69bffa1-2fa2-438b-9e15-f16d1c29d78d] seems inconsistent. It implied an error rate greater than 1: 1.56943 0.0398333 0.0328856
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [8899dd2b-9480-4e60-943a-9383a2872bb6] seems inconsistent. It implied an error rate greater than 1: 1.54376 0.0246651 0.0157346
+[2024-04-13 02:43:57.491] [jointLog] [warning] (in update()) CIGAR string for read [59035efa-f934-4696-b78e-a1e84dd797fc] seems inconsistent. It implied an error rate greater than 1: 1.62263 0.0249617 0.0153273
+[2024-04-13 02:43:57.492] [jointLog] [warning] (in update()) CIGAR string for read [1ca8017c-3eb0-4601-bfbd-b04c2add190a] seems inconsistent. It implied an error rate greater than 1: 1.23737 0.0603922 0.0392157
+[2024-04-13 02:43:57.492] [jointLog] [warning] (in update()) CIGAR string for read [40205a74-9149-424d-b20a-e0f0de4ff51f] seems inconsistent. It implied an error rate greater than 1: 1.82673 0.0315421 0.013785
+[2024-04-13 02:43:57.492] [jointLog] [warning] (in update()) CIGAR string for read [f30c3283-df67-4191-a776-4960aa3e402e] seems inconsistent. It implied an error rate greater than 1: 1.46679 0.0217524 0.0140272
+[2024-04-13 02:43:57.492] [jointLog] [warning] (in update()) CIGAR string for read [6b3932e4-c29f-40b0-a67f-e82627e832a6] seems inconsistent. It implied an error rate greater than 1: 1.42676 0.0602151 0.0134897
+[2024-04-13 02:43:57.492] [jointLog] [warning] (in update()) CIGAR string for read [a9bfcc16-96c4-4648-ba95-8653887d48ae] seems inconsistent. It implied an error rate greater than 1: 1.55643 0.0130804 0.0152605
+[2024-04-13 02:43:57.512] [jointLog] [warning] (in update()) CIGAR string for read [99367bb6-a86a-4b39-b214-41359e4211d5] seems inconsistent. It implied an error rate greater than 1: 1.96368 0.0521251 0.042502
+[2024-04-13 02:43:57.514] [jointLog] [warning] (in update()) CIGAR string for read [9cdcebb2-912e-4470-9415-0b2297d4fa17] seems inconsistent. It implied an error rate greater than 1: 1.14015 0.00114242 0.0152323
+[2024-04-13 02:43:57.609] [jointLog] [warning] read dadd152b-a10f-46bb-b19e-da0743030cca (length 12167 - align length 12030) has no trained error model
+[2024-04-13 02:43:57.610] [jointLog] [warning] read af843088-e982-447f-8c3c-b200cb090694 (length 14308 - align length 14111) has no trained error model
+[2024-04-13 02:43:57.713] [jointLog] [warning] (in update()) CIGAR string for read [b5765a1a-f733-4d4f-b7c2-d6554a064b06] seems inconsistent. It implied an error rate greater than 1: 2.22264 0.0166337 0.0281188
+[2024-04-13 02:43:57.713] [jointLog] [warning] (in update()) CIGAR string for read [ce9a6a8c-43c9-4853-a8f1-5471bc7d760a] seems inconsistent. It implied an error rate greater than 1: 2.22917 0.0285149 0.0209901
+[2024-04-13 02:43:57.724] [jointLog] [warning] (in update()) CIGAR string for read [1e9e733d-e0a5-47a6-bb38-1ef728dcfe14] seems inconsistent. It implied an error rate greater than 1: 1.35642 0.0828437 0.0434783
+[2024-04-13 02:43:57.725] [jointLog] [warning] (in update()) CIGAR string for read [b4e360bc-fc6e-4c87-b6bc-70c069a7dfae] seems inconsistent. It implied an error rate greater than 1: 1.49902 0.0298229 0.0149115
+[2024-04-13 02:43:57.762] [jointLog] [warning] (in update()) CIGAR string for read [2d177d07-3a72-411a-90ee-4b7eaeec1b54] seems inconsistent. It implied an error rate greater than 1: 1.16906 0.00940594 0.00965347
+[2024-04-13 02:43:57.771] [jointLog] [warning] (in update()) CIGAR string for read [09e3b21a-5f07-431e-87b2-69df0f7fb8e8] seems inconsistent. It implied an error rate greater than 1: 1.35686 0.0198582 0.00035461
+[2024-04-13 02:43:57.919] [jointLog] [warning] (in update()) CIGAR string for read [693e4cb2-a6f7-4091-a395-9963296d2c42] seems inconsistent. It implied an error rate greater than 1: 1.0885 0.0371447 0.0103359
+[2024-04-13 02:43:57.926] [jointLog] [warning] (in update()) CIGAR string for read [bc610efc-bb81-43b8-9c7e-2557acff8912] seems inconsistent. It implied an error rate greater than 1: 1.00574 0.0181736 0.0327124
+[2024-04-13 02:43:57.927] [jointLog] [warning] (in update()) CIGAR string for read [bb9dde34-a24e-40e1-945c-e4428347e87e] seems inconsistent. It implied an error rate greater than 1: 1.02713 0.000949668 0.0365622
+[2024-04-13 02:43:57.935] [jointLog] [warning] (in update()) CIGAR string for read [8f1f537a-181a-4426-9a65-a11b57b1be88] seems inconsistent. It implied an error rate greater than 1: 1.56327 0.00698439 0.0287592
+[2024-04-13 02:43:57.946] [jointLog] [warning] (in update()) CIGAR string for read [a0821eae-6eb1-4812-b4f9-05bdb8be7e21] seems inconsistent. It implied an error rate greater than 1: 1.2952 0.145687 0.0193662
+[2024-04-13 02:43:57.967] [jointLog] [warning] (in update()) CIGAR string for read [b5a8d2e4-fc39-4d6d-af7d-b7d6fc8dc080] seems inconsistent. It implied an error rate greater than 1: 1.09057 0.204291 0.09559
+[2024-04-13 02:43:58.326] [jointLog] [warning] (in update()) CIGAR string for read [348c7671-1bef-4076-949c-f9b974a475e1] seems inconsistent. It implied an error rate greater than 1: 1.92578 0.012605 0.00231092
+[2024-04-13 02:43:58.380] [jointLog] [warning] (in update()) CIGAR string for read [d54b5c04-011c-4df8-a99e-c922d0a3aa9b] seems inconsistent. It implied an error rate greater than 1: 1.35444 0.0310938 0.0305386
+[2024-04-13 02:43:58.394] [jointLog] [warning] read d8152755-1ef0-49eb-87e0-4a96015ff46d (length 14535 - align length 292) has no trained error model
+[2024-04-13 02:43:58.394] [jointLog] [warning] read d8152755-1ef0-49eb-87e0-4a96015ff46d (length 14535) has no trained clipping model
+[2024-04-13 02:43:58.394] [jointLog] [warning] read d8152755-1ef0-49eb-87e0-4a96015ff46d (length 14535) has no trained clipping model
+[2024-04-13 02:43:58.403] [jointLog] [warning] (in update()) CIGAR string for read [5385a6be-d2be-417a-904d-6e46225322bb] seems inconsistent. It implied an error rate greater than 1: 1.50984 0.0326264 0
+[2024-04-13 02:43:58.403] [jointLog] [warning] (in update()) CIGAR string for read [eada336b-db91-401d-b8ae-925dff32a4e3] seems inconsistent. It implied an error rate greater than 1: 1.56126 0.0188107 0.0351942
+[2024-04-13 02:43:58.744] [jointLog] [warning] (in update()) CIGAR string for read [64e18d0d-42ff-4c2b-9d69-1bb6f9cf388b] seems inconsistent. It implied an error rate greater than 1: 1.19237 0.0188466 0.0327931
+[2024-04-13 02:43:58.744] [jointLog] [warning] (in update()) CIGAR string for read [c4f79cf7-4f9a-418e-9704-4f1a4e4d2933] seems inconsistent. It implied an error rate greater than 1: 1.44234 0.0105747 0.0165517
+[2024-04-13 02:43:58.744] [jointLog] [warning] (in update()) CIGAR string for read [6c806d83-c36f-4058-a144-9f949a2e1d70] seems inconsistent. It implied an error rate greater than 1: 1.33771 0.0218418 0.0342385
+[2024-04-13 02:43:59.268] [jointLog] [warning] (in update()) CIGAR string for read [61ff1b2f-47c0-5e97-9b16-bf98319c37b5] seems inconsistent. It implied an error rate greater than 1: 1.04398 0.024004 0.0081663
+[2024-04-13 02:43:59.268] [jointLog] [warning] (in update()) CIGAR string for read [18291acb-941f-5713-b3e2-505018acd11b] seems inconsistent. It implied an error rate greater than 1: 1.06708 0.0179641 0.0149701
+[2024-04-13 02:43:59.508] [jointLog] [warning] (in update()) CIGAR string for read [99da576c-1458-4790-813c-363ffd9bedc2] seems inconsistent. It implied an error rate greater than 1: 1.6928 0.00693878 0.0297959
+[2024-04-13 02:43:59.580] [jointLog] [warning] (in update()) CIGAR string for read [95788ae7-7971-4aff-92dd-bb3b116832bb] seems inconsistent. It implied an error rate greater than 1: 1.04438 0.0958904 0.0157033
+[2024-04-13 02:43:59.697] [jointLog] [warning] (in update()) CIGAR string for read [a12eae26-f5f9-4de0-bb29-32a72d9b2d75] seems inconsistent. It implied an error rate greater than 1: 1.1237 0.0165696 0.165249
+[2024-04-13 02:43:59.697] [jointLog] [warning] (in update()) CIGAR string for read [efada284-e21e-4d9f-b4ff-cb529faaba22] seems inconsistent. It implied an error rate greater than 1: 1.00613 0.00765156 0.0329606
+[2024-04-13 02:43:59.894] [jointLog] [warning] (in update()) CIGAR string for read [e376a73d-ff02-4a45-96be-c15fdbec3330] seems inconsistent. It implied an error rate greater than 1: 1.42017 0.00637477 0.0122463
+[2024-04-13 02:44:00.298] [jointLog] [warning] (in update()) CIGAR string for read [6f03da14-6a41-404c-9e8c-612b451f0e85] seems inconsistent. It implied an error rate greater than 1: 1.76541 0.0360087 0.0208243
+[2024-04-13 02:44:00.526] [jointLog] [warning] (in update()) CIGAR string for read [207b3aed-c61b-5e72-bb26-676427f4367b] seems inconsistent. It implied an error rate greater than 1: 1.29348 0.00617284 0
+[2024-04-13 02:44:00.526] [jointLog] [warning] (in update()) CIGAR string for read [7a408c80-eac4-5bcc-a7c6-3a52b5b4d786] seems inconsistent. It implied an error rate greater than 1: 1.27188 0.0076864 0
+[2024-04-13 02:44:00.527] [jointLog] [warning] (in update()) CIGAR string for read [36e10e67-7d68-501d-864a-d7cfa5abc531] seems inconsistent. It implied an error rate greater than 1: 1.09671 0.0239398 0
+[2024-04-13 02:44:00.546] [jointLog] [warning] (in update()) CIGAR string for read [418e1c9d-8efb-446f-a8a7-7b60fd840d5e] seems inconsistent. It implied an error rate greater than 1: 1.23314 0.0334553 0.0831155
+[2024-04-13 02:44:00.546] [jointLog] [warning] (in update()) CIGAR string for read [d5bb2fa7-c2a5-4129-aeeb-01e920279cb2] seems inconsistent. It implied an error rate greater than 1: 1.00252 0.0163132 0.01441
+[2024-04-13 02:44:00.546] [jointLog] [warning] (in update()) CIGAR string for read [01aa5af3-b18d-47d9-9d48-b4125a47bb4d] seems inconsistent. It implied an error rate greater than 1: 2.22363 0.0235501 0.2
+[2024-04-13 02:44:00.558] [jointLog] [warning] (in update()) CIGAR string for read [2b39cc1c-4c5d-49cb-ba59-a8b81d0c6b0c] seems inconsistent. It implied an error rate greater than 1: 1.29146 0.0249462 0.0232258
+[2024-04-13 02:44:00.631] [jointLog] [warning] (in update()) CIGAR string for read [8f68c1f9-6f58-4dc5-8e1b-c33c235c71d7] seems inconsistent. It implied an error rate greater than 1: 1.7982 0.0100206 0.0172148
+[2024-04-13 02:44:00.636] [jointLog] [warning] (in update()) CIGAR string for read [dc84dead-1914-4312-99e3-c78b5e9266aa] seems inconsistent. It implied an error rate greater than 1: 2.32624 0.0794251 0.0325265
+[2024-04-13 02:44:00.662] [jointLog] [warning] (in update()) CIGAR string for read [df396b82-af76-4c45-bb66-061230ebf8b0] seems inconsistent. It implied an error rate greater than 1: 1.36702 0.0271584 0.014008
+[2024-04-13 02:44:00.773] [jointLog] [warning] (in update()) CIGAR string for read [99ac85b2-2bf5-4332-9beb-96528621c11d] seems inconsistent. It implied an error rate greater than 1: 1.74737 0.0060906 0.0159878
+[2024-04-13 02:44:00.773] [jointLog] [warning] (in update()) CIGAR string for read [842ee58e-f240-4580-910f-c6de9d2c7e4f] seems inconsistent. It implied an error rate greater than 1: 1.80745 0.0105541 0.0282699
+[2024-04-13 02:44:00.773] [jointLog] [warning] (in update()) CIGAR string for read [b7a459dc-ae2d-40dc-973b-64ed5ef4690d] seems inconsistent. It implied an error rate greater than 1: 2.66548 0.00508187 0.0446076
+[2024-04-13 02:44:01.168] [jointLog] [warning] (in update()) CIGAR string for read [5f25d2a1-d3bb-4210-808e-4ac64421be5f] seems inconsistent. It implied an error rate greater than 1: 1.1842 0.0281964 0.0243072
+[2024-04-13 02:44:01.179] [jointLog] [warning] (in update()) CIGAR string for read [06464955-81a0-4333-9b1a-b4f3f9ef8983] seems inconsistent. It implied an error rate greater than 1: 1.19087 0.00474359 0.0320513
+[2024-04-13 02:44:01.179] [jointLog] [warning] (in update()) CIGAR string for read [2dc70ddd-c712-423b-9493-e791f3bb364d] seems inconsistent. It implied an error rate greater than 1: 1.06099 0.0108322 0.0187583
+[2024-04-13 02:44:01.971] [jointLog] [warning] read 83a1004d-bb85-466d-8449-848eec4e8604 (length 14995 - align length 14931) has no trained error model
+[2024-04-13 02:44:01.971] [jointLog] [warning] read da07ff71-5b0b-4769-9d28-4aee7a362671 (length 15418 - align length 15319) has no trained error model
+[2024-04-13 02:44:01.971] [jointLog] [warning] read da07ff71-5b0b-4769-9d28-4aee7a362671 (length 15418) has no trained clipping model
+[2024-04-13 02:44:01.971] [jointLog] [warning] read da07ff71-5b0b-4769-9d28-4aee7a362671 (length 15418) has no trained clipping model
+[2024-04-13 02:44:02.092] [jointLog] [warning] (in update()) CIGAR string for read [686a86dd-458a-4d73-bad5-d4a423791337] seems inconsistent. It implied an error rate greater than 1: 1.94025 0.0182751 0.00512985
+[2024-04-13 02:44:02.092] [jointLog] [warning] (in update()) CIGAR string for read [abc831df-0768-4792-b0be-1435e41765ab] seems inconsistent. It implied an error rate greater than 1: 2.10757 0.00577838 0.0241332
+[2024-04-13 02:44:02.092] [jointLog] [warning] (in update()) CIGAR string for read [fa76c973-99d7-5cdf-9439-53651d2c4348] seems inconsistent. It implied an error rate greater than 1: 1.96468 0.0198909 0.0173244
+[2024-04-13 02:44:02.092] [jointLog] [warning] (in update()) CIGAR string for read [ce3d94e0-a2da-4de1-b236-d55da0d10809] seems inconsistent. It implied an error rate greater than 1: 1.2382 0.00595864 0.0287417
+[2024-04-13 02:44:02.092] [jointLog] [warning] (in update()) CIGAR string for read [2a487525-afca-41ac-8704-e7cece91a64b] seems inconsistent. It implied an error rate greater than 1: 1.50116 0.197383 0.0192657
+[2024-04-13 02:44:02.092] [jointLog] [warning] (in update()) CIGAR string for read [6c995b16-fe39-4244-a0f1-9fa5db57b01a] seems inconsistent. It implied an error rate greater than 1: 1.87863 0.0144107 0.0272774
+[2024-04-13 02:44:02.108] [jointLog] [warning] (in update()) CIGAR string for read [0c303458-e20a-4162-ae06-131d6de1dee1] seems inconsistent. It implied an error rate greater than 1: 1.07989 0.0107304 0.00698125
+[2024-04-13 02:44:02.108] [jointLog] [warning] (in update()) CIGAR string for read [f5dc75df-ed2d-4edf-80fa-13cbdb2a3308] seems inconsistent. It implied an error rate greater than 1: 1.07634 0.00477296 0.0100619
+[2024-04-13 02:44:02.111] [jointLog] [warning] (in update()) CIGAR string for read [a30e5e80-e236-4823-9117-a5801f314bbd] seems inconsistent. It implied an error rate greater than 1: 1.17773 0.00496586 0.0223464
+[2024-04-13 02:44:02.118] [jointLog] [warning] (in update()) CIGAR string for read [adf1b75e-dcd1-47c1-90df-93c944b613a9] seems inconsistent. It implied an error rate greater than 1: 1.35326 0.0127137 0.0118369
+[2024-04-13 02:44:02.118] [jointLog] [warning] (in update()) CIGAR string for read [e7ee43c8-5e37-4bcf-89a6-f56039b0cae8] seems inconsistent. It implied an error rate greater than 1: 1.34514 0.00852832 0.0164006
+[2024-04-13 02:44:02.168] [jointLog] [warning] (in update()) CIGAR string for read [ea6a730f-95ad-43bd-af13-adee32c2efe0] seems inconsistent. It implied an error rate greater than 1: 1.63245 0.03082 0.0176114
+[2024-04-13 02:44:02.169] [jointLog] [warning] (in update()) CIGAR string for read [97779f9c-2bcc-472b-bc6f-f7c47a509cb5] seems inconsistent. It implied an error rate greater than 1: 1.87648 0.0409768 0.0173841
+[2024-04-13 02:44:02.169] [jointLog] [warning] (in update()) CIGAR string for read [54ecd75d-a085-428b-977c-685d2fdedf3d] seems inconsistent. It implied an error rate greater than 1: 1.25641 0.212146 0.01417
+[2024-04-13 02:44:02.171] [jointLog] [warning] (in update()) CIGAR string for read [8f83f113-9a9d-46fb-9fb6-1ac592034f3f] seems inconsistent. It implied an error rate greater than 1: 1.02883 0.0202544 0.0320301
+[2024-04-13 02:44:02.171] [jointLog] [warning] (in update()) CIGAR string for read [c35533b1-9d43-4c25-a88a-9383b0184311] seems inconsistent. It implied an error rate greater than 1: 3.03971 0.000772798 0.0455951
+[2024-04-13 02:44:02.174] [jointLog] [warning] (in update()) CIGAR string for read [6cda9d61-1505-4314-926b-8bb018300cfe] seems inconsistent. It implied an error rate greater than 1: 1.1341 0.044621 0.0482885
+[2024-04-13 02:44:02.590] [jointLog] [warning] (in update()) CIGAR string for read [dbd5c2ab-c9f7-4e0d-8e29-8be5fef2335e] seems inconsistent. It implied an error rate greater than 1: 1.12522 0.0169779 0.0181098
+[2024-04-13 02:44:02.598] [jointLog] [warning] (in update()) CIGAR string for read [5aa43b96-a150-46a9-afaa-810bb751f3a7] seems inconsistent. It implied an error rate greater than 1: 1.07218 0.0708715 0.0223805
+[2024-04-13 02:44:02.627] [jointLog] [warning] (in update()) CIGAR string for read [ded413a3-2f14-41c4-9dc8-bb171012fba8] seems inconsistent. It implied an error rate greater than 1: 1.24073 0.0629807 0.68263
+[2024-04-13 02:44:02.633] [jointLog] [warning] read c7e53d9f-e47c-47cd-8549-56fff9916cc4 (length 15322 - align length 15234) has no trained error model
+[2024-04-13 02:44:02.970] [jointLog] [warning] (in update()) CIGAR string for read [9c3b0286-b926-4a07-9be9-76258de9bc34] seems inconsistent. It implied an error rate greater than 1: 1.08946 0.0424731 0.0801075
+[2024-04-13 02:44:03.167] [jointLog] [warning] (in update()) CIGAR string for read [5c22dba2-f423-4c5a-b678-27c70b9fc1ff] seems inconsistent. It implied an error rate greater than 1: 1.85442 0.203646 0.0710245
+[2024-04-13 02:44:03.661] [jointLog] [warning] (in update()) CIGAR string for read [e235aa84-d283-4e8b-bede-701f422710d0] seems inconsistent. It implied an error rate greater than 1: 1.74634 0.410148 0.0129199
+[2024-04-13 02:44:03.699] [jointLog] [warning] (in update()) CIGAR string for read [3c943c1d-f23f-4f3b-9dc0-af595edecdee] seems inconsistent. It implied an error rate greater than 1: 1.66667 0.000865426 0.0268282
+[2024-04-13 02:44:03.699] [jointLog] [warning] (in update()) CIGAR string for read [5d07cf4c-6dec-4ae2-8d67-c4c5adf8872f] seems inconsistent. It implied an error rate greater than 1: 1.038 0.0164975 0.0234772
+[2024-04-13 02:44:03.725] [jointLog] [warning] (in update()) CIGAR string for read [c6299b94-f9e3-4971-a12f-4c3ddbad5137] seems inconsistent. It implied an error rate greater than 1: 1.21678 0.00252525 0.0256133
+[2024-04-13 02:44:03.725] [jointLog] [warning] (in update()) CIGAR string for read [c8be1c59-0517-42e7-860f-41d12073c0a8] seems inconsistent. It implied an error rate greater than 1: 1.24194 0.0228758 0.0196078
+[2024-04-13 02:44:03.748] [jointLog] [warning] (in update()) CIGAR string for read [6613208b-bb0a-44f0-879b-b055089210b3] seems inconsistent. It implied an error rate greater than 1: 1.03712 0.0355556 0.00666667
+[0;32mprocessed[0;31m 2000000 [0;32mreads in current round[0;0m[2024-04-13 02:44:04.127] [jointLog] [warning] (in update()) CIGAR string for read [7bc8b815-e6d5-4349-ae8d-27ee435ed4ff] seems inconsistent. It implied an error rate greater than 1: 2.00701 0.282882 0.0275629
+[2024-04-13 02:44:04.127] [jointLog] [warning] (in update()) CIGAR string for read [82ad021e-06c2-4022-bca7-fb70cc7896a4] seems inconsistent. It implied an error rate greater than 1: 2.20419 0.401613 0.0280645
+[2024-04-13 02:44:04.191] [jointLog] [warning] (in update()) CIGAR string for read [9e983206-397f-4b25-bc7f-f4465dd7e228] seems inconsistent. It implied an error rate greater than 1: 2.18038 0.0301336 0.0105623
+[2024-04-13 02:44:04.193] [jointLog] [warning] (in update()) CIGAR string for read [e7d432a6-bfa0-4262-8bd7-de7be8093869] seems inconsistent. It implied an error rate greater than 1: 1.11538 0.0401035 0.0349288
+[2024-04-13 02:44:04.193] [jointLog] [warning] (in update()) CIGAR string for read [897ef51d-481d-444d-a26b-db8d4f3cb877] seems inconsistent. It implied an error rate greater than 1: 1.1088 0.0264005 0.0444301
+[2024-04-13 02:44:04.196] [jointLog] [warning] (in update()) CIGAR string for read [d9b7b1fe-0643-472e-acc0-7918c857c2f9] seems inconsistent. It implied an error rate greater than 1: 1.11574 0.0143426 0.0390438
+[2024-04-13 02:44:04.197] [jointLog] [warning] (in update()) CIGAR string for read [e0446998-20d7-4c13-b744-0b8bb27cafab] seems inconsistent. It implied an error rate greater than 1: 1.11425 0.0161878 0.023877
+[2024-04-13 02:44:04.955] [jointLog] [warning] (in update()) CIGAR string for read [90895e63-d2f1-438e-8cf3-9222d12520cc] seems inconsistent. It implied an error rate greater than 1: 1.1087 0.471355 0.511307
+[2024-04-13 02:44:04.999] [jointLog] [warning] (in update()) CIGAR string for read [1d90c3d8-76d6-49a4-9096-ff242b15b36a] seems inconsistent. It implied an error rate greater than 1: 1.36476 0.0344828 0.0250784
+[2024-04-13 02:44:05.030] [jointLog] [warning] (in update()) CIGAR string for read [e30d59f3-3081-4bc2-915e-e67a2ba0aea1] seems inconsistent. It implied an error rate greater than 1: 1.70438 0.0259923 0.0115911
+[2024-04-13 02:44:05.030] [jointLog] [warning] (in update()) CIGAR string for read [4e63b8c5-b610-4019-bd3d-c131fd0fcfd9] seems inconsistent. It implied an error rate greater than 1: 1.70807 0.0176305 0.0172779
+[2024-04-13 02:44:05.031] [jointLog] [warning] (in update()) CIGAR string for read [5667717e-e671-4568-a781-852d7d90d60f] seems inconsistent. It implied an error rate greater than 1: 2.1754 0.0170374 0.0170374
+[2024-04-13 02:44:05.039] [jointLog] [warning] (in update()) CIGAR string for read [bdea036c-0a03-45d4-a108-7d1ef1e29030] seems inconsistent. It implied an error rate greater than 1: 1.3059 0.00777001 0.0104895
+[2024-04-13 02:44:05.068] [jointLog] [warning] (in update()) CIGAR string for read [77b1b554-bbdd-4b7f-8d69-077fa486acb7] seems inconsistent. It implied an error rate greater than 1: 1.46976 0.061011 0.0261476
+[2024-04-13 02:44:05.086] [jointLog] [warning] (in update()) CIGAR string for read [660c2c67-29fc-437c-a8aa-121780d6d946] seems inconsistent. It implied an error rate greater than 1: 1.22809 0.071 0.039
+[2024-04-13 02:44:05.111] [jointLog] [warning] (in update()) CIGAR string for read [943bc31a-64df-4535-b2a4-47abdc50ba60] seems inconsistent. It implied an error rate greater than 1: 1.02267 0.0101473 0.0222586
+[2024-04-13 02:44:05.130] [jointLog] [warning] (in update()) CIGAR string for read [62ab812b-e142-4fbf-bcb1-124ceb6d1155] seems inconsistent. It implied an error rate greater than 1: 1.08215 0.00494743 0.038961
+[2024-04-13 02:44:05.143] [jointLog] [warning] (in update()) CIGAR string for read [18bf8763-e893-42d6-b7f6-cd15a358cdf3] seems inconsistent. It implied an error rate greater than 1: 1.39933 0.0239748 0.0328076
+[2024-04-13 02:44:05.235] [jointLog] [warning] (in update()) CIGAR string for read [c86a0cb5-be9c-4284-8b68-69d0158b4479] seems inconsistent. It implied an error rate greater than 1: 1.22444 0.200161 0.0318164
+[2024-04-13 02:44:05.383] [jointLog] [warning] (in update()) CIGAR string for read [93bd72cf-bb64-4be4-a64e-1d2b64f2641e] seems inconsistent. It implied an error rate greater than 1: 3.58763 0.11359 0.0993915
+[2024-04-13 02:44:05.397] [jointLog] [warning] (in update()) CIGAR string for read [047b0f72-2d7d-46dd-a844-0bc9b33e9a27] seems inconsistent. It implied an error rate greater than 1: 2.08086 0.0197368 0.041498
+[2024-04-13 02:44:05.397] [jointLog] [warning] (in update()) CIGAR string for read [8aa3f25a-47b1-490f-895f-c4ff7935eaad] seems inconsistent. It implied an error rate greater than 1: 2.09282 0.01926 0.0415611
+[2024-04-13 02:44:05.397] [jointLog] [warning] (in update()) CIGAR string for read [c4f2048d-a99f-4e8f-bb4a-05229b5d0554] seems inconsistent. It implied an error rate greater than 1: 2.14372 0.0335079 0.0120419
+[2024-04-13 02:44:05.397] [jointLog] [warning] (in update()) CIGAR string for read [63432b61-20a2-4ba9-87dc-04dedfa59407] seems inconsistent. It implied an error rate greater than 1: 2.11589 0.0190329 0.0354938
+[2024-04-13 02:44:05.438] [jointLog] [warning] (in update()) CIGAR string for read [8f10f0de-75b7-4e42-8a0d-b1679ab987df] seems inconsistent. It implied an error rate greater than 1: 1.00333 0.252773 0.0467017
+[2024-04-13 02:44:05.903] [jointLog] [warning] (in update()) CIGAR string for read [75cc06c5-f12a-483e-bb69-205b10584545] seems inconsistent. It implied an error rate greater than 1: 2.5728 0.0177192 0.0368015
+[2024-04-13 02:44:05.951] [jointLog] [warning] (in update()) CIGAR string for read [9c87c61c-68da-4820-9f79-8da34d549887] seems inconsistent. It implied an error rate greater than 1: 1.01431 0.541585 0.0790445
+[2024-04-13 02:44:05.992] [jointLog] [warning] (in update()) CIGAR string for read [88133319-1b65-43ac-a4af-07eafd4ef864] seems inconsistent. It implied an error rate greater than 1: 1.02458 0.01849 0.0410889
+[2024-04-13 02:44:05.998] [jointLog] [warning] (in update()) CIGAR string for read [5b4b35c0-9bf9-46c6-99db-fe3c23ee7e1b] seems inconsistent. It implied an error rate greater than 1: 2.72308 0.000372301 0.0316456
+[2024-04-13 02:44:06.026] [jointLog] [warning] (in update()) CIGAR string for read [42ac1364-6b61-4dc4-a886-b9e00a2742d3] seems inconsistent. It implied an error rate greater than 1: 1.02996 0.0382979 0.0146572
+[2024-04-13 02:44:06.053] [jointLog] [warning] (in update()) CIGAR string for read [145ec099-9c10-4ee0-a24e-4ceafdc70f27] seems inconsistent. It implied an error rate greater than 1: 1.41021 0.0229621 0.043628
+[2024-04-13 02:44:06.055] [jointLog] [warning] (in update()) CIGAR string for read [10e7fdeb-fa53-4c4c-bea8-c5d61efdc912] seems inconsistent. It implied an error rate greater than 1: 1.61376 0.0213864 0.0105703
+[2024-04-13 02:44:06.056] [jointLog] [warning] (in update()) CIGAR string for read [d757cb9b-5d06-4c9a-8264-f8d83a1049fa] seems inconsistent. It implied an error rate greater than 1: 1.59227 0.0130125 0.0144856
+[2024-04-13 02:44:06.056] [jointLog] [warning] (in update()) CIGAR string for read [e704fcfb-3282-4626-94da-67d2907d393c] seems inconsistent. It implied an error rate greater than 1: 3.25415 0.150763 0.0159631
+[2024-04-13 02:44:06.056] [jointLog] [warning] (in update()) CIGAR string for read [6bdcbaa9-b45c-43b3-9eb3-7b61ddf4451a] seems inconsistent. It implied an error rate greater than 1: 1.4603 0.0931447 0.0132753
+[2024-04-13 02:44:06.456] [jointLog] [warning] (in update()) CIGAR string for read [014c975c-bb6c-4acb-97ef-afeeea5a42c9] seems inconsistent. It implied an error rate greater than 1: 1.24824 0.195671 0.0534452
+[2024-04-13 02:44:06.798] [jointLog] [warning] (in update()) CIGAR string for read [0797efed-5786-4acb-b943-5f013670e0a4] seems inconsistent. It implied an error rate greater than 1: 2.17079 0.0278571 0.0478571
+[2024-04-13 02:44:06.798] [jointLog] [warning] (in update()) CIGAR string for read [7db93d32-4cb8-4e20-8499-19f1d1185db2] seems inconsistent. It implied an error rate greater than 1: 2.17529 0.0109409 0.0444931
+[2024-04-13 02:44:06.805] [jointLog] [warning] (in update()) CIGAR string for read [acf46622-aa0a-4f47-812e-3aa52f129c8d] seems inconsistent. It implied an error rate greater than 1: 1.25314 0.0152745 0.0343675
+[2024-04-13 02:44:06.805] [jointLog] [warning] (in update()) CIGAR string for read [4b242b32-7d5c-4f58-a906-df798a612263] seems inconsistent. It implied an error rate greater than 1: 2.27113 0.0118959 0.0557621
+[2024-04-13 02:44:07.111] [jointLog] [warning] (in update()) CIGAR string for read [2453fd67-d761-4abf-b4a3-dbf3ee75dbaf] seems inconsistent. It implied an error rate greater than 1: 1.20532 0.0590699 0.013445
+[2024-04-13 02:44:07.476] [jointLog] [warning] (in update()) CIGAR string for read [5c6aa0db-b03d-44eb-822f-3862b78e74ef] seems inconsistent. It implied an error rate greater than 1: 1.68236 0.017254 0.0234949
+[2024-04-13 02:44:07.830] [jointLog] [warning] (in update()) CIGAR string for read [53604604-7429-4dfa-b22b-b9ecdc0aebe8] seems inconsistent. It implied an error rate greater than 1: 1.02885 0.0618729 0.0685619
+[2024-04-13 02:44:07.849] [jointLog] [warning] read b0553531-2c89-46a5-94ab-d9eb40297a41 (length 16761 - align length 3967) has no trained error model
+[2024-04-13 02:44:07.849] [jointLog] [warning] read b0553531-2c89-46a5-94ab-d9eb40297a41 (length 16761) has no trained clipping model
+[2024-04-13 02:44:07.849] [jointLog] [warning] read b0553531-2c89-46a5-94ab-d9eb40297a41 (length 16761) has no trained clipping model
+[2024-04-13 02:44:08.157] [jointLog] [warning] (in update()) CIGAR string for read [8c996038-11f9-4b19-8a20-98c857b3c921] seems inconsistent. It implied an error rate greater than 1: 1.32268 0.0120898 0.0255613
+[2024-04-13 02:44:08.158] [jointLog] [warning] (in update()) CIGAR string for read [6b188b05-fc7f-5b16-9784-e442cb6fdc86] seems inconsistent. It implied an error rate greater than 1: 1.55616 0.0268185 0.0279206
+[2024-04-13 02:44:08.179] [jointLog] [warning] (in update()) CIGAR string for read [f07e0ea7-56dc-4a0f-8dd2-7014bf1b5613] seems inconsistent. It implied an error rate greater than 1: 1.1587 0.012012 0.021021
+[2024-04-13 02:44:08.179] [jointLog] [warning] (in update()) CIGAR string for read [ec119b37-fc3a-46f5-8496-b9b9f4db17e4] seems inconsistent. It implied an error rate greater than 1: 1.12174 0.0171429 0.0144361
+[2024-04-13 02:44:08.188] [jointLog] [warning] (in update()) CIGAR string for read [694599cb-b196-4c0e-9467-25d44b43af1d] seems inconsistent. It implied an error rate greater than 1: 1.51173 0.0379476 0.0283271
+[2024-04-13 02:44:08.243] [jointLog] [warning] (in update()) CIGAR string for read [644a011d-c215-4d83-a16d-94d0bf15c404] seems inconsistent. It implied an error rate greater than 1: 1.42165 0.0202614 0.0620915
+[2024-04-13 02:44:09.100] [jointLog] [warning] (in update()) CIGAR string for read [f5c6c69a-1acc-4dda-a1ea-dfa6c5dce6e4] seems inconsistent. It implied an error rate greater than 1: 1.28363 0 0.0547068
+[2024-04-13 02:44:09.141] [jointLog] [warning] (in update()) CIGAR string for read [c3e5fa80-d412-4001-b320-845712974de9] seems inconsistent. It implied an error rate greater than 1: 1.50114 0.0307143 0.0271429
+[2024-04-13 02:44:09.184] [jointLog] [warning] (in update()) CIGAR string for read [4eabef4d-511b-4ccd-ace1-b9446eac365f] seems inconsistent. It implied an error rate greater than 1: 1.53465 0.0469055 0.0319218
+[2024-04-13 02:44:09.281] [jointLog] [warning] (in update()) CIGAR string for read [6f6760d6-75de-46a0-acea-daaad725822a] seems inconsistent. It implied an error rate greater than 1: 1.36094 0.0160745 0.0287648
+[2024-04-13 02:44:09.285] [jointLog] [warning] (in update()) CIGAR string for read [482eef08-3a90-445d-af94-2d290a1cf211] seems inconsistent. It implied an error rate greater than 1: 1.54769 0.0283146 0.0386517
+[2024-04-13 02:44:09.285] [jointLog] [warning] (in update()) CIGAR string for read [e7dd2a99-4bb6-43f7-ae0a-5d63fb5b50cf] seems inconsistent. It implied an error rate greater than 1: 1.56066 0.0209472 0.0368852
+[2024-04-13 02:44:09.285] [jointLog] [warning] (in update()) CIGAR string for read [f8c017d1-e562-4e63-8f0d-82c71f74b9c9] seems inconsistent. It implied an error rate greater than 1: 1.57644 0.0165517 0.0390805
+[2024-04-13 02:44:09.297] [jointLog] [warning] (in update()) CIGAR string for read [fb799487-e969-4cea-ad34-0bbf99991fdb] seems inconsistent. It implied an error rate greater than 1: 1.44987 0.0178821 0.015088
+[2024-04-13 02:44:09.297] [jointLog] [warning] (in update()) CIGAR string for read [f951fd9f-e5fe-4f48-93bd-d33ae2be2ee0] seems inconsistent. It implied an error rate greater than 1: 1.37665 0.0111292 0.019544
+[2024-04-13 02:44:09.297] [jointLog] [warning] (in update()) CIGAR string for read [5a1c9800-057c-4769-af5a-43a05ed1a93a] seems inconsistent. It implied an error rate greater than 1: 1.36821 0.00463721 0.0204583
+[2024-04-13 02:44:09.297] [jointLog] [warning] (in update()) CIGAR string for read [000f3757-7e15-4b83-8d13-7f7eff9999f7] seems inconsistent. It implied an error rate greater than 1: 1.35076 0.0101686 0.0224779
+[2024-04-13 02:44:09.662] [jointLog] [warning] (in update()) CIGAR string for read [a75a0bf8-e7ce-416e-86fb-a42e720b11c9] seems inconsistent. It implied an error rate greater than 1: 2.0598 0.0238411 0.0569536
+[2024-04-13 02:44:09.669] [jointLog] [warning] (in update()) CIGAR string for read [f2a15f54-0349-4350-872e-b9717bd9841a] seems inconsistent. It implied an error rate greater than 1: 2.4681 0.0145795 0.0143192
+[2024-04-13 02:44:09.684] [jointLog] [warning] (in update()) CIGAR string for read [0e0b3159-403c-4b74-b1d8-dbea9448d449] seems inconsistent. It implied an error rate greater than 1: 1.02415 0.00162602 0.0108401
+[2024-04-13 02:44:09.692] [jointLog] [warning] (in update()) CIGAR string for read [e06f6890-64c6-462a-b8a2-cf5902889ce1] seems inconsistent. It implied an error rate greater than 1: 1.32478 0.0131056 0.0893566
+[2024-04-13 02:44:10.077] [jointLog] [warning] (in update()) CIGAR string for read [277a45f4-5f3a-4228-9a13-c669f06f160a] seems inconsistent. It implied an error rate greater than 1: 2.5 0.0231929 0.0212601
+[2024-04-13 02:44:10.077] [jointLog] [warning] (in update()) CIGAR string for read [e6bc0d71-5e1a-45e2-a323-a5503b674238] seems inconsistent. It implied an error rate greater than 1: 2.48869 0.0143023 0.0286046
+[2024-04-13 02:44:10.088] [jointLog] [warning] (in update()) CIGAR string for read [5b8a7b6a-80f8-43fc-b225-e0358c997f9d] seems inconsistent. It implied an error rate greater than 1: 1.15589 0.433643 0.0566357
+[2024-04-13 02:44:10.092] [jointLog] [warning] (in update()) CIGAR string for read [3ff4e83c-6c4a-42d4-8902-a9302f7d2a07] seems inconsistent. It implied an error rate greater than 1: 1.0629 0.0184382 0.0591106
+[2024-04-13 02:44:10.530] [jointLog] [warning] (in update()) CIGAR string for read [a43114cc-20a7-4c0e-bed3-4a205870c8c9] seems inconsistent. It implied an error rate greater than 1: 1.15583 0.0229286 0.0474205
+[2024-04-13 02:44:10.607] [jointLog] [warning] (in update()) CIGAR string for read [1e2f6cf6-c1d7-41fc-927a-a2335b939b2b] seems inconsistent. It implied an error rate greater than 1: 1.17308 0.150866 0.0275229
+[2024-04-13 02:44:10.607] [jointLog] [warning] (in update()) CIGAR string for read [1c2fc1c0-0632-40ba-9c1a-8e66726df7a4] seems inconsistent. It implied an error rate greater than 1: 1.02733 0.121524 0.0281905
+[2024-04-13 02:44:10.703] [jointLog] [warning] (in update()) CIGAR string for read [f949e08f-a88b-4e38-b1eb-547a5374cad0] seems inconsistent. It implied an error rate greater than 1: 2.36338 0.00841121 0.16215
+[2024-04-13 02:44:10.705] [jointLog] [warning] (in update()) CIGAR string for read [6a05e0bf-67bf-4114-bae7-f9e93e45af39] seems inconsistent. It implied an error rate greater than 1: 1.26891 0.0177436 0.0174088
+[2024-04-13 02:44:10.764] [jointLog] [warning] (in update()) CIGAR string for read [082d3e92-e5ba-4b2e-8a6a-7e4f53861181] seems inconsistent. It implied an error rate greater than 1: 1.11191 0.0403761 0.0403761
+[2024-04-13 02:44:10.826] [jointLog] [warning] (in update()) CIGAR string for read [29c753e4-eea4-4148-9124-706f600464b5] seems inconsistent. It implied an error rate greater than 1: 1.399 0.0364179 0.00895522
+[2024-04-13 02:44:10.826] [jointLog] [warning] (in update()) CIGAR string for read [ed54a08d-7802-467c-ab2a-f4c4c2a322e1] seems inconsistent. It implied an error rate greater than 1: 1.31579 0.0321508 0.0304878
+[2024-04-13 02:44:10.969] [jointLog] [warning] (in update()) CIGAR string for read [792a2878-4940-49eb-914d-3ec3ecc46f50] seems inconsistent. It implied an error rate greater than 1: 1.73422 0.03125 0.0337302
+[2024-04-13 02:44:10.970] [jointLog] [warning] (in update()) CIGAR string for read [61441902-8d05-46b4-b315-bcee87ed4968] seems inconsistent. It implied an error rate greater than 1: 1.09534 0.0131719 0.184051
+[2024-04-13 02:44:10.971] [jointLog] [warning] (in update()) CIGAR string for read [be33e56a-d64e-47ac-a0cf-3345d64a1b32] seems inconsistent. It implied an error rate greater than 1: 3.28607 0.258303 0
+[2024-04-13 02:44:10.989] [jointLog] [warning] (in update()) CIGAR string for read [4b4d144e-b7cc-4c14-a95b-4436eb733d24] seems inconsistent. It implied an error rate greater than 1: 1.57333 0.0284887 0.0299372
+[2024-04-13 02:44:10.997] [jointLog] [warning] (in update()) CIGAR string for read [6df7fbf1-9ce5-42c0-b0c6-29079ce66869] seems inconsistent. It implied an error rate greater than 1: 1.66599 0.0408039 0.0621194
+[2024-04-13 02:44:10.998] [jointLog] [warning] (in update()) CIGAR string for read [49bcba18-97fe-43ef-898b-a193941e1ea8] seems inconsistent. It implied an error rate greater than 1: 1.24984 0.00297974 0.0524434
+[2024-04-13 02:44:10.998] [jointLog] [warning] (in update()) CIGAR string for read [daedf70d-4f08-4559-93c4-9b147f5019d4] seems inconsistent. It implied an error rate greater than 1: 1.01907 0.0384161 0.000591017
+[2024-04-13 02:44:10.998] [jointLog] [warning] (in update()) CIGAR string for read [fd7aecc9-7aaf-4122-831d-bb6bede434b5] seems inconsistent. It implied an error rate greater than 1: 1.01629 0.0145819 0.00660743
+[2024-04-13 02:44:10.998] [jointLog] [warning] (in update()) CIGAR string for read [c0bacea4-4fc1-4eba-b0ce-c8a4c3f57ba9] seems inconsistent. It implied an error rate greater than 1: 1.01932 0.00997959 0.015423
+[2024-04-13 02:44:11.004] [jointLog] [warning] (in update()) CIGAR string for read [b359e8ae-04b9-41be-8855-afb34feed1ae] seems inconsistent. It implied an error rate greater than 1: 1.13445 0.0279874 0.0106918
+[2024-04-13 02:44:11.004] [jointLog] [warning] (in update()) CIGAR string for read [52f2005e-e933-4b07-b4d8-3455726e75e7] seems inconsistent. It implied an error rate greater than 1: 1.18389 0.0126963 0.020715
+[2024-04-13 02:44:11.004] [jointLog] [warning] (in update()) CIGAR string for read [072e2727-0c5d-4242-9e3a-bef78b40fd7e] seems inconsistent. It implied an error rate greater than 1: 1.16775 0.0196078 0.00564972
+[2024-04-13 02:44:11.005] [jointLog] [warning] (in update()) CIGAR string for read [f20c9750-fa2f-4df9-93c2-92cf6f6cfb12] seems inconsistent. It implied an error rate greater than 1: 1.62634 0.00639773 0.01244
+[2024-04-13 02:44:11.006] [jointLog] [warning] (in update()) CIGAR string for read [12fb34f2-5724-4605-93fa-89773a5d802c] seems inconsistent. It implied an error rate greater than 1: 1.6169 0.0177559 0.0192355
+[2024-04-13 02:44:11.006] [jointLog] [warning] (in update()) CIGAR string for read [857928ac-2b5c-4f48-b948-946a4f8e13d7] seems inconsistent. It implied an error rate greater than 1: 1.69874 0.399185 0.00439009
+[2024-04-13 02:44:11.008] [jointLog] [warning] (in update()) CIGAR string for read [33068f1f-a160-40a1-b59d-6a5e7f1dd3b3] seems inconsistent. It implied an error rate greater than 1: 1.39962 0.0162514 0.035753
+[2024-04-13 02:44:11.010] [jointLog] [warning] (in update()) CIGAR string for read [d3d78291-517a-479e-980e-fabfa1a3e8a6] seems inconsistent. It implied an error rate greater than 1: 1.52726 0.0206746 0.0413493
+[2024-04-13 02:44:11.425] [jointLog] [warning] (in update()) CIGAR string for read [467882c6-e6a0-4437-8494-24ab341fa070] seems inconsistent. It implied an error rate greater than 1: 1.12925 0.0218057 0.0221882
+[2024-04-13 02:44:11.427] [jointLog] [warning] (in update()) CIGAR string for read [cd492f38-8f49-483d-beb8-0fdf34f09600] seems inconsistent. It implied an error rate greater than 1: 2.07646 0.0249465 0.0242338
+[2024-04-13 02:44:11.437] [jointLog] [warning] (in update()) CIGAR string for read [93191b6f-2050-49d5-8604-0c1517da0618] seems inconsistent. It implied an error rate greater than 1: 1.45515 0.0195262 0.0204866
+[2024-04-13 02:44:11.440] [jointLog] [warning] (in update()) CIGAR string for read [11669e0f-79b0-4f55-9434-a7bf48eb2b3a] seems inconsistent. It implied an error rate greater than 1: 1.72264 0.0675723 0.015674
+[2024-04-13 02:44:11.440] [jointLog] [warning] (in update()) CIGAR string for read [bd41b3e8-ebd1-43df-b772-c62d100ae8b3] seems inconsistent. It implied an error rate greater than 1: 1.76413 0.0581114 0.0238672
+[2024-04-13 02:44:11.467] [jointLog] [warning] (in update()) CIGAR string for read [377b1439-8e5b-47d5-b9bb-c6c9e2379260] seems inconsistent. It implied an error rate greater than 1: 1.2213 0.396905 0.147637
+[2024-04-13 02:44:11.505] [jointLog] [warning] (in update()) CIGAR string for read [334f9dab-f21c-44b9-a942-23d8c469225e] seems inconsistent. It implied an error rate greater than 1: 1.36857 0.0262927 0.0368098
+[2024-04-13 02:44:11.506] [jointLog] [warning] (in update()) CIGAR string for read [9a364861-affa-4853-b2dc-42899043fbea] seems inconsistent. It implied an error rate greater than 1: 1.48586 0.031829 0.0109264
+[2024-04-13 02:44:11.906] [jointLog] [warning] (in update()) CIGAR string for read [4449af2c-acdb-4d6a-be3b-c8fd75333a12] seems inconsistent. It implied an error rate greater than 1: 1.35711 0.0230643 0.0127677
+[2024-04-13 02:44:11.955] [jointLog] [warning] (in update()) CIGAR string for read [5c5435cf-9a0c-442d-a934-d4c5f1aee9b3] seems inconsistent. It implied an error rate greater than 1: 1.0105 0.0239339 0.0226284
+[2024-04-13 02:44:11.960] [jointLog] [warning] (in update()) CIGAR string for read [ac0c4a9c-c093-4ad4-8d5e-6c95b5092c0c] seems inconsistent. It implied an error rate greater than 1: 1.79324 0.0373223 0.0343602
+[2024-04-13 02:44:11.961] [jointLog] [warning] (in update()) CIGAR string for read [d7ba6308-b28e-48e2-bdb8-5bc1273ca07b] seems inconsistent. It implied an error rate greater than 1: 1.03717 0.0245056 0.0503009
+[2024-04-13 02:44:11.961] [jointLog] [warning] (in update()) CIGAR string for read [a1d13138-52fe-4b99-9eb9-2e3c9c643d65] seems inconsistent. It implied an error rate greater than 1: 1.00546 0.027921 0.027921
+[2024-04-13 02:44:11.961] [jointLog] [warning] (in update()) CIGAR string for read [9ef563b2-931e-498e-849c-de5f047167a3] seems inconsistent. It implied an error rate greater than 1: 1.0776 0.0285213 0.0215007
+[2024-04-13 02:44:11.962] [jointLog] [warning] (in update()) CIGAR string for read [c601f453-9f97-4957-8045-6465553db7bf] seems inconsistent. It implied an error rate greater than 1: 1.03461 0.0186713 0.0403821
+[2024-04-13 02:44:11.963] [jointLog] [warning] (in update()) CIGAR string for read [5cbc6812-c1f3-4aff-a455-147dffe7a541] seems inconsistent. It implied an error rate greater than 1: 1.79416 0.0248374 0.0443525
+[2024-04-13 02:44:11.963] [jointLog] [warning] (in update()) CIGAR string for read [ff670163-ce51-4266-b93a-1536c95512bb] seems inconsistent. It implied an error rate greater than 1: 1.00272 0.00782949 0.0326229
+[2024-04-13 02:44:11.963] [jointLog] [warning] (in update()) CIGAR string for read [58774daf-1a49-4b18-87d9-2f975ab39951] seems inconsistent. It implied an error rate greater than 1: 1.01553 0.00824653 0.0412326
+[2024-04-13 02:44:11.964] [jointLog] [warning] (in update()) CIGAR string for read [9af03daa-1b62-4fbe-b98c-832b416a4d85] seems inconsistent. It implied an error rate greater than 1: 1.00182 0.00954861 0.0355903
+[2024-04-13 02:44:11.964] [jointLog] [warning] (in update()) CIGAR string for read [e9674fd7-7066-441d-b89b-5979aafde133] seems inconsistent. It implied an error rate greater than 1: 1.00045 0.0164147 0.0276458
+[2024-04-13 02:44:11.985] [jointLog] [warning] (in update()) CIGAR string for read [1af99312-f675-454e-8f6c-78a3cb18fde8] seems inconsistent. It implied an error rate greater than 1: 1.04556 0.0155508 0.0267819
+[2024-04-13 02:44:11.986] [jointLog] [warning] (in update()) CIGAR string for read [c9445d93-26f7-45e1-9568-bb656c057464] seems inconsistent. It implied an error rate greater than 1: 1.06988 0.0210342 0.0319895
+[2024-04-13 02:44:11.987] [jointLog] [warning] (in update()) CIGAR string for read [99374ecc-636a-4558-b82d-28961da86f40] seems inconsistent. It implied an error rate greater than 1: 1.23632 0.0185714 0.0504762
+[2024-04-13 02:44:11.987] [jointLog] [warning] (in update()) CIGAR string for read [0a6e428a-745c-43ea-a5f0-5da99099f04c] seems inconsistent. It implied an error rate greater than 1: 1.00364 0.0251518 0.0229835
+[2024-04-13 02:44:11.987] [jointLog] [warning] (in update()) CIGAR string for read [a689cb39-c49a-4722-9d94-42485bb7475a] seems inconsistent. It implied an error rate greater than 1: 1.00991 0.0148873 0.041259
+[2024-04-13 02:44:11.988] [jointLog] [warning] (in update()) CIGAR string for read [509c1de7-a01f-4d24-aac7-cfb1da451ede] seems inconsistent. It implied an error rate greater than 1: 1.18206 0.305643 0.0301437
+[2024-04-13 02:44:11.998] [jointLog] [warning] (in update()) CIGAR string for read [5778ae0d-749b-4573-b6c5-cec1720ad617] seems inconsistent. It implied an error rate greater than 1: 1.0672 0.0124654 0.297091
+[2024-04-13 02:44:12.402] [jointLog] [warning] (in update()) CIGAR string for read [71e22c0d-67e8-47ff-a49c-29fe5d64b173] seems inconsistent. It implied an error rate greater than 1: 1.23706 0.0190151 0.0390054
+[2024-04-13 02:44:12.403] [jointLog] [warning] (in update()) CIGAR string for read [fec1156b-aeaf-44c7-a2d6-2d8d2f4de928] seems inconsistent. It implied an error rate greater than 1: 1.06882 0 0.00411241
+[2024-04-13 02:44:12.757] [jointLog] [warning] (in update()) CIGAR string for read [b7ec0d62-c2a7-41d7-937f-fd6b48f82da4] seems inconsistent. It implied an error rate greater than 1: 1.74185 0.0311111 0.151111
+[2024-04-13 02:44:12.877] [jointLog] [warning] (in update()) CIGAR string for read [94f1e412-b61c-4119-9ffc-5f59e9e6ac58] seems inconsistent. It implied an error rate greater than 1: 1.04215 0.247903 0.147266
+[2024-04-13 02:44:13.025] [jointLog] [warning] (in update()) CIGAR string for read [8d0a74ff-46ac-41c5-b6eb-7b1f2be162a3] seems inconsistent. It implied an error rate greater than 1: 2.32242 0.0325771 0.0255963
+[2024-04-13 02:44:13.027] [jointLog] [warning] (in update()) CIGAR string for read [4ee31fcf-bb5c-44f2-959a-cbfd2f421e3f] seems inconsistent. It implied an error rate greater than 1: 1.27621 0.00163733 0.0380679
+[2024-04-13 02:44:13.384] [jointLog] [warning] read 0597def5-9e3e-46c2-ae11-5c79a085b1d7 (length 19409 - align length 19099) has no trained error model
+[2024-04-13 02:44:13.384] [jointLog] [warning] read 0597def5-9e3e-46c2-ae11-5c79a085b1d7 (length 19409) has no trained clipping model
+[2024-04-13 02:44:13.384] [jointLog] [warning] read 0597def5-9e3e-46c2-ae11-5c79a085b1d7 (length 19409) has no trained clipping model
+[2024-04-13 02:44:13.401] [jointLog] [warning] (in update()) CIGAR string for read [4dd267bf-c9b5-478c-a169-bf3f8447c511] seems inconsistent. It implied an error rate greater than 1: 1.27174 0.019174 0.0309735
+[2024-04-13 02:44:13.755] [jointLog] [warning] (in update()) CIGAR string for read [5d2efef0-6cf9-4951-831f-f2934577c966] seems inconsistent. It implied an error rate greater than 1: 1.72106 0.308254 0.0178661
+[2024-04-13 02:44:13.782] [jointLog] [warning] (in update()) CIGAR string for read [f882ceda-6179-4a64-8ece-e38c37d1f4f8] seems inconsistent. It implied an error rate greater than 1: 1.65984 0.0200976 0.0683319
+[2024-04-13 02:44:13.782] [jointLog] [warning] (in update()) CIGAR string for read [a0d16895-1f17-4f00-a30a-a355130afff7] seems inconsistent. It implied an error rate greater than 1: 1.64225 0.0154506 0.074392
+[2024-04-13 02:44:13.943] [jointLog] [warning] (in update()) CIGAR string for read [35f56aee-a0f7-4414-a4e7-b91533e790ad] seems inconsistent. It implied an error rate greater than 1: 1.48205 0.0352682 0.00293902
+[2024-04-13 02:44:13.988] [jointLog] [warning] (in update()) CIGAR string for read [1375d9ee-6f9e-4744-9e0e-23bb924fb3f9] seems inconsistent. It implied an error rate greater than 1: 1.24393 0.0167384 0.0186514
+[2024-04-13 02:44:13.995] [jointLog] [warning] (in update()) CIGAR string for read [edbe0778-f933-4431-ba1e-3ecd77874c83] seems inconsistent. It implied an error rate greater than 1: 1.23965 0.0537634 0.0663082
+[2024-04-13 02:44:14.008] [jointLog] [warning] read 1868d440-2afc-4723-9a08-8358dce6727f (length 15173 - align length 2266) has no trained error model
+[2024-04-13 02:44:14.008] [jointLog] [warning] read 1868d440-2afc-4723-9a08-8358dce6727f (length 15173) has no trained clipping model
+[2024-04-13 02:44:14.008] [jointLog] [warning] read 1868d440-2afc-4723-9a08-8358dce6727f (length 15173) has no trained clipping model
+[2024-04-13 02:44:14.008] [jointLog] [warning] read ddde9605-a8d0-4a33-a27f-6c8050209ac3 (length 21338 - align length 8460) has no trained error model
+[2024-04-13 02:44:14.008] [jointLog] [warning] read ddde9605-a8d0-4a33-a27f-6c8050209ac3 (length 21338) has no trained clipping model
+[2024-04-13 02:44:14.008] [jointLog] [warning] read ddde9605-a8d0-4a33-a27f-6c8050209ac3 (length 21338) has no trained clipping model
+[2024-04-13 02:44:14.014] [jointLog] [warning] read 1f44f93a-068a-4f3d-953b-445eb0a2086b (length 18197 - align length 18018) has no trained error model
+[2024-04-13 02:44:14.014] [jointLog] [warning] read 1f44f93a-068a-4f3d-953b-445eb0a2086b (length 18197) has no trained clipping model
+[2024-04-13 02:44:14.014] [jointLog] [warning] read 1f44f93a-068a-4f3d-953b-445eb0a2086b (length 18197) has no trained clipping model
+[2024-04-13 02:44:14.034] [jointLog] [warning] (in update()) CIGAR string for read [66bdf434-c310-4cd2-a828-e3e13a0d9b86] seems inconsistent. It implied an error rate greater than 1: 1.24009 0.0684685 0.158559
+[2024-04-13 02:44:14.047] [jointLog] [warning] (in update()) CIGAR string for read [4d829701-4c9a-4fa5-a6ef-f05f97e9ba21] seems inconsistent. It implied an error rate greater than 1: 1.87859 0.0524372 0.0228951
+[2024-04-13 02:44:14.051] [jointLog] [warning] (in update()) CIGAR string for read [0f03c309-eb94-4659-b86e-5596b7564514] seems inconsistent. It implied an error rate greater than 1: 1.19593 0.0433105 0.15566
+[2024-04-13 02:44:14.080] [jointLog] [warning] (in update()) CIGAR string for read [2fc4e698-6ccf-4853-88fa-e7f1a2d47858] seems inconsistent. It implied an error rate greater than 1: 1.67048 0.042953 0.0181208
+[2024-04-13 02:44:14.080] [jointLog] [warning] (in update()) CIGAR string for read [a387b1df-2535-4b09-9d39-826e029b83c2] seems inconsistent. It implied an error rate greater than 1: 1.67624 0.0251701 0.0272109
+[2024-04-13 02:44:14.081] [jointLog] [warning] (in update()) CIGAR string for read [58cbc438-52c4-48f5-9f5f-5cc82a797747] seems inconsistent. It implied an error rate greater than 1: 1.0982 0.00854701 0.0395299
+[2024-04-13 02:44:14.081] [jointLog] [warning] (in update()) CIGAR string for read [3cba8fdb-4873-4068-9a2b-d2a877b206c9] seems inconsistent. It implied an error rate greater than 1: 1.6898 0.0122616 0.0456403
+[2024-04-13 02:44:14.159] [jointLog] [warning] (in update()) CIGAR string for read [cafa223a-d94d-4d29-917b-b6c368fa6bce] seems inconsistent. It implied an error rate greater than 1: 2.51876 0.00624462 0.359711
+[2024-04-13 02:44:14.182] [jointLog] [warning] (in update()) CIGAR string for read [efec1158-1a85-447a-8129-717c76801fb5] seems inconsistent. It implied an error rate greater than 1: 1.06605 0.0230934 0.0418904
+[2024-04-13 02:44:14.550] [jointLog] [warning] read 43e75013-8fec-4d4b-9182-98e15a82220a (length 15805 - align length 609) has no trained error model
+[2024-04-13 02:44:14.550] [jointLog] [warning] read 43e75013-8fec-4d4b-9182-98e15a82220a (length 15805) has no trained clipping model
+[2024-04-13 02:44:14.550] [jointLog] [warning] read 43e75013-8fec-4d4b-9182-98e15a82220a (length 15805) has no trained clipping model
+[2024-04-13 02:44:14.598] [jointLog] [warning] (in update()) CIGAR string for read [d66e81b6-06cd-46d0-bd31-c3fc3689af45] seems inconsistent. It implied an error rate greater than 1: 1.35883 0.130612 0.0208163
+[2024-04-13 02:44:14.607] [jointLog] [warning] (in update()) CIGAR string for read [a61d62cd-be54-4698-918c-b3e895c0be48] seems inconsistent. It implied an error rate greater than 1: 1.91373 0.00449403 0.00573377
+[2024-04-13 02:44:15.123] [jointLog] [warning] (in update()) CIGAR string for read [2c2430c8-e8d6-41a5-b6f4-877fe9f61b40] seems inconsistent. It implied an error rate greater than 1: 2.19623 0.0200091 0.0391087
+[2024-04-13 02:44:15.467] [jointLog] [warning] (in update()) CIGAR string for read [780005c9-243b-48e7-8e26-d913389d3301] seems inconsistent. It implied an error rate greater than 1: 1.56372 0.0224057 0.0306604
+[2024-04-13 02:44:15.467] [jointLog] [warning] (in update()) CIGAR string for read [a39cc905-3ef3-418d-aafd-407a5b148076] seems inconsistent. It implied an error rate greater than 1: 1.50692 0.0220247 0.0282071
+[2024-04-13 02:44:15.467] [jointLog] [warning] (in update()) CIGAR string for read [3976012c-30bf-438b-a560-4e1b014c7be3] seems inconsistent. It implied an error rate greater than 1: 1.52929 0.0247059 0.0180392
+[2024-04-13 02:44:15.508] [jointLog] [warning] (in update()) CIGAR string for read [82a8dc49-fb33-4beb-9e52-0489e8815a8b] seems inconsistent. It implied an error rate greater than 1: 1.16473 0.353158 0.0141018
+[2024-04-13 02:44:15.553] [jointLog] [warning] (in update()) CIGAR string for read [5c790251-2644-49da-8445-2c6010ad9982] seems inconsistent. It implied an error rate greater than 1: 1.13829 0.0172587 0.0291555
+[2024-04-13 02:44:15.582] [jointLog] [warning] (in update()) CIGAR string for read [6d861f1a-ed1b-4d70-af8d-745a0345e1cf] seems inconsistent. It implied an error rate greater than 1: 3.10807 0.032967 0.0458953
+[2024-04-13 02:44:15.625] [jointLog] [warning] (in update()) CIGAR string for read [9773f7ee-b45a-4a19-8685-65c1aea9e8d8] seems inconsistent. It implied an error rate greater than 1: 1.63349 0.000307125 0.0276413
+[2024-04-13 02:44:15.625] [jointLog] [warning] (in update()) CIGAR string for read [39104414-fbf9-42f7-8862-f3542c75dd8c] seems inconsistent. It implied an error rate greater than 1: 1.33343 0.0363732 0.0268846
+[2024-04-13 02:44:15.710] [jointLog] [warning] (in update()) CIGAR string for read [0d7374fc-3357-48e8-aa19-27298e0fbede] seems inconsistent. It implied an error rate greater than 1: 2.06136 0.0254237 0.0159521
+[2024-04-13 02:44:15.813] [jointLog] [warning] (in update()) CIGAR string for read [2b190dc6-8bd4-4410-91dd-1228629d9899] seems inconsistent. It implied an error rate greater than 1: 1.72758 0.0583079 0.0407774
+[2024-04-13 02:44:15.813] [jointLog] [warning] (in update()) CIGAR string for read [85879ec3-4afd-4241-8671-18c2cbf05682] seems inconsistent. It implied an error rate greater than 1: 1.49107 0.0642265 0.0265884
+[2024-04-13 02:44:15.813] [jointLog] [warning] (in update()) CIGAR string for read [15c0f7fc-2bac-422f-9e2b-e510b0786a9e] seems inconsistent. It implied an error rate greater than 1: 1.40144 0.0258856 0.0249773
+[2024-04-13 02:44:15.835] [jointLog] [warning] (in update()) CIGAR string for read [deae671a-b65a-472a-8d17-7a6bd76ca955] seems inconsistent. It implied an error rate greater than 1: 1.86708 0.0179874 0.0311133
+[2024-04-13 02:44:15.896] [jointLog] [warning] (in update()) CIGAR string for read [6a80ab37-ff46-474e-83e0-6e70a10417e0] seems inconsistent. It implied an error rate greater than 1: 1.26482 0.0180866 0.0347454
+[2024-04-13 02:44:15.906] [jointLog] [warning] (in update()) CIGAR string for read [0859f9dc-dab6-4b88-ac00-074350682fd9] seems inconsistent. It implied an error rate greater than 1: 1.87278 0.0733411 0.00698487
+[2024-04-13 02:44:16.075] [jointLog] [warning] (in update()) CIGAR string for read [59e48d54-9bb5-41a4-ab0c-671c4aefd235] seems inconsistent. It implied an error rate greater than 1: 1.1265 0.0201368 0.000759878
+[2024-04-13 02:44:16.076] [jointLog] [warning] (in update()) CIGAR string for read [efc950a1-8393-44c5-9114-fcff5fd02a89] seems inconsistent. It implied an error rate greater than 1: 1.16599 0.0308166 0.0842322
+[2024-04-13 02:44:16.092] [jointLog] [warning] (in update()) CIGAR string for read [146cc424-1cd3-4bcf-97b4-9842cd169c82] seems inconsistent. It implied an error rate greater than 1: 1.51427 0.0157614 0.00727449
+[2024-04-13 02:44:16.099] [jointLog] [warning] (in update()) CIGAR string for read [5053a081-eaf8-4cc9-bec3-60f6539d08b7] seems inconsistent. It implied an error rate greater than 1: 1.80482 0.0576425 0.0563472
+[2024-04-13 02:44:16.124] [jointLog] [warning] (in update()) CIGAR string for read [b773b6f0-c5f1-4b13-8832-8df1bd46a9e2] seems inconsistent. It implied an error rate greater than 1: 1.38643 0.135835 0.601757
+[2024-04-13 02:44:16.159] [jointLog] [warning] (in update()) CIGAR string for read [ac455cfc-b103-4d86-87f2-ce99d7b6dfba] seems inconsistent. It implied an error rate greater than 1: 1.53154 0.0223529 0.424314
+[2024-04-13 02:44:16.181] [jointLog] [warning] (in update()) CIGAR string for read [be783b58-e7fd-4ee5-a3cb-aa31a631c5b4] seems inconsistent. It implied an error rate greater than 1: 1.04923 0.0403141 0.0450262
+[0;32mprocessed[0;31m 3000000 [0;32mreads in current round[0;0m[2024-04-13 02:44:22.104] [jointLog] [warning] (in update()) CIGAR string for read [f2d8cb6c-19bb-414c-898c-ecd151d487ac] seems inconsistent. It implied an error rate greater than 1: 1.25278 0.0387374 0.0588235
+[0;32mprocessed[0;31m 3567938 [0;32mreads in current round[0;0m
+killing thread 0 . . . donekilling thread 1 . . . donekilling thread 2 . . . donekilling thread 3 . . . donekilling thread 4 . . . done
+
+# observed = 3567938 / # required = 50000000[A[A[A[A[A
+
+
+
+[2024-04-13 02:44:25.199] [jointLog] [info] Thread saw mini-batch with a maximum of 100.00% zero probability fragments
+[2024-04-13 02:44:25.199] [jointLog] [info] Thread saw mini-batch with a maximum of 100.00% zero probability fragments
+[2024-04-13 02:44:25.199] [jointLog] [info] Thread saw mini-batch with a maximum of 99.90% zero probability fragments
+[2024-04-13 02:44:25.199] [jointLog] [info] Thread saw mini-batch with a maximum of 99.90% zero probability fragments
+[2024-04-13 02:44:25.202] [jointLog] [info] Thread saw mini-batch with a maximum of 99.90% zero probability fragments
+[2024-04-13 02:44:25.202] [jointLog] [info] 
+
+
+Completed first pass through the alignment file.
+Total # of mapped reads : 3567938
+# of uniquely mapped reads : 3567937
+# ambiguously mapped reads : 1
+
+
+
+[2024-04-13 02:44:25.247] [jointLog] [info] Computed 66,000 rich equivalence classes for further processing
+[2024-04-13 02:44:25.247] [jointLog] [info] Counted 1,509,206 total reads in the equivalence classes 
+[2024-04-13 02:44:25.260] [jointLog] [warning] Only 3567938 fragments were mapped, but the number of burn-in fragments was set to 5000000.
+The effective lengths have been computed using the observed mappings.
+
+[2024-04-13 02:44:25.261] [jointLog] [info] starting optimizer
+[2024-04-13 02:44:25.307] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2024-04-13 02:44:25.314] [jointLog] [info] iteration = 0 | max rel diff. = 4.81915
+[2024-04-13 02:44:25.993] [jointLog] [info] iteration = 100 | max rel diff. = 0
+[2024-04-13 02:44:25.999] [jointLog] [info] finished optimizer
+[2024-04-13 02:44:25.999] [jointLog] [info] writing output
+
+Freeing memory used by read queue . . . 
+Joined parsing thread . . . "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/sorted/primary_over_30/H9-CRX_hRO_2.bam" 
+Closed all files . . . 
+Emptied frag queue. . . 
+Emptied Alignment Group Pool. . 
+Emptied Alignment Group Queue. . . done
+**** Job ends ****
+2024-04-13 02:44:29

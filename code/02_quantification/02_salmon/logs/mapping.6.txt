@@ -1,0 +1,162 @@
+**** Job starts ****
+2024-02-01 18:58:30
+**** JHPCE info ****
+User: sparthib
+Job id: 1887394
+Job name: salmon
+Node name: compute-068
+Task id: 6
+EP1-WT_ROs_D45
+Version Server Response: Not Found
+### salmon (selective-alignment-based) v1.10.2
+### [ program ] => salmon 
+### [ command ] => quant 
+### [ index ] => { /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/transcripts/index }
+### [ libType ] => { A }
+### [ unmatedReads ] => { /dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/EP1-WT_ROs_D45.fastq.gz }
+### [ validateMappings ] => { }
+### [ threads ] => { 20 }
+### [ dumpEq ] => { }
+### [ useEM ] => { }
+### [ output ] => { /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/mapping_mode/EP1-WT_ROs_D45 }
+Logs will be written to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/mapping_mode/EP1-WT_ROs_D45/logs
+[2024-02-01 18:58:31.726] [jointLog] [info] setting maxHashResizeThreads to 20
+[2024-02-01 18:58:31.726] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2024-02-01 18:58:31.726] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2024-02-01 18:58:31.726] [jointLog] [info] Setting consensusSlack to selective-alignment default of 0.35.
+[2024-02-01 18:58:31.727] [jointLog] [info] parsing read library format
+[2024-02-01 18:58:31.727] [jointLog] [info] There is 1 library.
+[2024-02-01 18:58:31.744] [jointLog] [info] Loading pufferfish index
+[2024-02-01 18:58:31.768] [jointLog] [info] Loading dense pufferfish index.
+-----------------------------------------
+| Loading contig table | Time = 40.455 s
+-----------------------------------------
+size = 37695385
+-----------------------------------------
+| Loading contig offsets | Time = 794.19 ms
+-----------------------------------------
+-----------------------------------------
+| Loading reference lengths | Time = 74.922 ms
+-----------------------------------------
+-----------------------------------------
+| Loading mphf table | Time = 13.688 s
+-----------------------------------------
+size = 3808565745
+Number of ones: 37695384
+Number of ones per inventory item: 512
+Inventory entries filled: 73624
+-----------------------------------------
+| Loading contig boundaries | Time = 19.334 s
+-----------------------------------------
+size = 3808565745
+-----------------------------------------
+| Loading sequence | Time = 8.9561 s
+-----------------------------------------
+size = 2677704225
+-----------------------------------------
+| Loading positions | Time = 72.875 s
+-----------------------------------------
+size = 3728773822
+-----------------------------------------
+| Loading reference sequence | Time = 9.1649 s
+-----------------------------------------
+-----------------------------------------
+| Loading reference accumulative lengths | Time = 57.189 ms
+-----------------------------------------
+[2024-02-01 19:01:17.215] [jointLog] [info] done
+[2024-02-01 19:01:17.354] [jointLog] [info] Index contained 252,661 targets
+[2024-02-01 19:01:17.469] [jointLog] [info] Number of decoys : 706
+[2024-02-01 19:01:17.469] [jointLog] [info] First decoy index : 251,913 
+
+
+
+
+[2024-02-01 19:02:36.273] [jointLog] [info] Automatically detected most likely library type as U
+
+[A[32mprocessed[31m 500,000 [32mfragments[0m
+hits: 117,093; hits per frag:  0.234594[A[32mprocessed[31m 1,000,000 [32mfragments[0m
+hits: 232,514; hits per frag:  0.23952[A[32mprocessed[31m 1,500,000 [32mfragments[0m
+hits: 350,106; hits per frag:  0.240849[A[32mprocessed[31m 2,000,000 [32mfragments[0m
+hits: 465,478; hits per frag:  0.233633[A[32mprocessed[31m 2,500,000 [32mfragments[0m
+hits: 581,376; hits per frag:  0.232605[A[32mprocessed[31m 3,000,000 [32mfragments[0m
+hits: 699,323; hits per frag:  0.234175[A[32mprocessed[31m 3,500,000 [32mfragments[0m
+hits: 815,046; hits per frag:  0.234805[A[32mprocessed[31m 4,000,000 [32mfragments[0m
+hits: 931,864; hits per frag:  0.23457[A[32mprocessed[31m 4,500,000 [32mfragments[0m
+hits: 1,049,893; hits per frag:  0.234796[A[32mprocessed[31m 5,000,000 [32mfragments[0m
+hits: 1,166,670; hits per frag:  0.233425[A[32mprocessed[31m 5,500,000 [32mfragments[0m
+hits: 1,284,441; hits per frag:  0.235615[A[32mprocessed[31m 6,000,000 [32mfragments[0m
+hits: 1,402,564; hits per frag:  0.234729[A[32mprocessed[31m 6,500,000 [32mfragments[0m
+hits: 1,519,039; hits per frag:  0.233769[A[32mprocessed[31m 7,000,000 [32mfragments[0m
+hits: 1,637,463; hits per frag:  0.235808[A[32mprocessed[31m 7,500,000 [32mfragments[0m
+hits: 1,753,576; hits per frag:  0.234027[A[32mprocessed[31m 8,000,000 [32mfragments[0m
+hits: 1,872,357; hits per frag:  0.234391[A[32mprocessed[31m 8,500,000 [32mfragments[0m
+hits: 1,987,615; hits per frag:  0.235357[A[32mprocessed[31m 9,000,000 [32mfragments[0m
+hits: 2,103,791; hits per frag:  0.233875[A[32mprocessed[31m 9,500,000 [32mfragments[0m
+hits: 2,222,398; hits per frag:  0.235274[A[32mprocessed[31m 10,000,000 [32mfragments[0m
+hits: 2,338,083; hits per frag:  0.234447[A[32mprocessed[31m 10,500,000 [32mfragments[0m
+hits: 2,456,416; hits per frag:  0.235263[A[32mprocessed[31m 11,000,000 [32mfragments[0m
+hits: 2,576,037; hits per frag:  0.235106[A[32mprocessed[31m 11,500,000 [32mfragments[0m
+hits: 2,692,937; hits per frag:  0.234842[A[32mprocessed[31m 12,000,000 [32mfragments[0m
+hits: 2,814,056; hits per frag:  0.235309[A[32mprocessed[31m 12,500,000 [32mfragments[0m
+hits: 2,935,032; hits per frag:  0.235324[A[32mprocessed[31m 13,000,001 [32mfragments[0m
+hits: 3,055,279; hits per frag:  0.235977[A[32mprocessed[31m 13,500,000 [32mfragments[0m
+hits: 3,178,114; hits per frag:  0.235949[A[32mprocessed[31m 14,000,000 [32mfragments[0m
+hits: 3,304,392; hits per frag:  0.236274[A[32mprocessed[31m 14,500,000 [32mfragments[0m
+hits: 3,430,554; hits per frag:  0.236606[A[32mprocessed[31m 15,000,000 [32mfragments[0m
+hits: 3,559,765; hits per frag:  0.237518[A[32mprocessed[31m 15,500,000 [32mfragments[0m
+hits: 3,692,227; hits per frag:  0.254645[A[32mprocessed[31m 16,000,000 [32mfragments[0m
+hits: 3,825,876; hits per frag:  0.239253[A[32mprocessed[31m 16,500,000 [32mfragments[0m
+hits: 3,964,120; hits per frag:  0.241101[A[32mprocessed[31m 17,000,000 [32mfragments[0m
+hits: 4,099,532; hits per frag:  0.241474[A[32mprocessed[31m 17,500,000 [32mfragments[0m
+hits: 4,228,999; hits per frag:  0.241902[A[32mprocessed[31m 18,000,000 [32mfragments[0m
+hits: 4,364,572; hits per frag:  0.243274[A[32mprocessed[31m 18,500,000 [32mfragments[0m
+hits: 4,497,789; hits per frag:  0.243279[A[32mprocessed[31m 19,000,000 [32mfragments[0m
+hits: 4,628,760; hits per frag:  0.244327[A[32mprocessed[31m 19,500,000 [32mfragments[0m
+hits: 4,777,652; hits per frag:  0.245631[A[32mprocessed[31m 20,000,001 [32mfragments[0m
+hits: 4,948,141; hits per frag:  0.247456[A[32mprocessed[31m 20,500,000 [32mfragments[0m
+hits: 5,064,570; hits per frag:  0.247671[A[32mprocessed[31m 21,000,000 [32mfragments[0m
+hits: 5,180,333; hits per frag:  0.247388[A[32mprocessed[31m 21,500,000 [32mfragments[0m
+hits: 5,296,675; hits per frag:  0.247068[A[32mprocessed[31m 22,000,000 [32mfragments[0m
+hits: 5,412,980; hits per frag:  0.246467
+
+
+
+
+
+
+
+[2024-02-02 00:24:41.982] [jointLog] [info] Computed 137,494 rich equivalence classes for further processing
+[2024-02-02 00:24:41.982] [jointLog] [info] Counted 3,363,314 total reads in the equivalence classes 
+[2024-02-02 00:24:42.081] [jointLog] [info] Number of mappings discarded because of alignment score : 81,091,393
+[2024-02-02 00:24:42.081] [jointLog] [info] Number of fragments entirely discarded because of alignment score : 14,716,337
+[2024-02-02 00:24:42.081] [jointLog] [info] Number of fragments discarded because they are best-mapped to decoys : 4,377,147
+[2024-02-02 00:24:42.081] [jointLog] [info] Number of fragments discarded because they have only dovetail (discordant) mappings to valid targets : 0
+[2024-02-02 00:24:42.162] [jointLog] [warning] Only 3363314 fragments were mapped, but the number of burn-in fragments was set to 5000000.
+The effective lengths have been computed using the observed mappings.
+
+[2024-02-02 00:24:42.162] [jointLog] [info] Mapping rate = 15.2751%
+
+[2024-02-02 00:24:42.162] [jointLog] [info] finished quantifyLibrary()
+[2024-02-02 00:24:42.285] [jointLog] [info] Starting optimizer
+[2024-02-02 00:24:42.497] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2024-02-02 00:24:42.518] [jointLog] [info] iteration = 0 | max rel diff. = 11.5831
+[2024-02-02 00:24:44.165] [jointLog] [info] iteration = 100 | max rel diff. = 0.0797835
+[2024-02-02 00:24:45.809] [jointLog] [info] iteration = 200 | max rel diff. = 0.0439813
+[2024-02-02 00:24:47.457] [jointLog] [info] iteration = 300 | max rel diff. = 0.0293412
+[2024-02-02 00:24:49.097] [jointLog] [info] iteration = 400 | max rel diff. = 0.0234697
+[2024-02-02 00:24:50.732] [jointLog] [info] iteration = 500 | max rel diff. = 0.0207869
+[2024-02-02 00:24:52.377] [jointLog] [info] iteration = 600 | max rel diff. = 0.0166819
+[2024-02-02 00:24:53.968] [jointLog] [info] iteration = 698 | max rel diff. = 0.00881069
+[2024-02-02 00:24:54.084] [jointLog] [info] Finished optimizer
+[2024-02-02 00:24:54.084] [jointLog] [info] writing output 
+
+[2024-02-02 00:24:54.672] [jointLog] [info] writing equivalence class counts.
+[2024-02-02 00:24:54.712] [jointLog] [info] Collapsing factorization information into simplified equivalence classes.
+[2024-02-02 00:24:54.777] [jointLog] [info] done.
+[2024-02-02 00:24:55.716] [jointLog] [info] done writing equivalence class counts.
+[2024-02-02 00:24:55.734] [jointLog] [warning] NOTE: Read Lib [[ /dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/EP1-WT_ROs_D45.fastq.gz ]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/salmon/mapping_mode/EP1-WT_ROs_D45/lib_format_counts.json for details
+
+**** Job ends ****
+2024-02-02 00:25:03
