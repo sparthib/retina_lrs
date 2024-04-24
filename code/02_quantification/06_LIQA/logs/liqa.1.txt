@@ -1,0 +1,15 @@
+**** Job starts ****
+2024-02-28 13:50:25
+**** JHPCE info ****
+User: sparthib
+Job id: 2821075
+Job name: liqa
+Node name: compute-069
+Task id: 1
+/var/spool/slurm/d/job2821075/slurm_script: line 24: activate: No such file or directory
+EP1-BRN3B-RO
+63241 genes are being processed...
+usage: conda [-h] [--no-plugins] [-V] COMMAND ...
+conda: error: argument COMMAND: invalid choice: 'deactivate' (choose from 'clean', 'compare', 'config', 'create', 'info', 'init', 'install', 'list', 'notices', 'package', 'remove', 'uninstall', 'rename', 'run', 'search', 'update', 'upgrade', 'doctor', 'content-trust', 'env')
+**** Job ends ****
+2024-02-28 14:34:49

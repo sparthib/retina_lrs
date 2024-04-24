@@ -1,0 +1,13 @@
+**** Job starts ****
+2024-04-19 11:24:39
+**** JHPCE info ****
+User: sparthib
+Job id: 4703633
+Job name: test_bambu
+Node name: compute-124
+Array ID: 8
+Unloading LIBD SLURM module for samtools/1.18
+Loading LIBD SLURM module for samtools/1.18
+**** Processing sample YZ-15T_hRGC ****
+**** Job ends ****
+Fri Apr 19 12:40:34 PM EDT 2024
