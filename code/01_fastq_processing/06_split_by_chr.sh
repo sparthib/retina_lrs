@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/06_split/gencode_splice/split.%a.txt
 #SBATCH -e logs/06_split/gencode_splice/split.%a.txt
-#SBATCH --array=1-12
+#SBATCH --array=13-15
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
