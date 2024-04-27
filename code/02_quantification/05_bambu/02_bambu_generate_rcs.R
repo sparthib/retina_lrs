@@ -13,8 +13,8 @@ root_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_ou
 files <- list.files(root_dir, recursive = TRUE, full.names = TRUE)
 rds_files <- files[grep("\\.rds$", files)]
 
-#select elements 1,2,3,4,5,6,7,8,11,12,13
-rds_files <- rds_files[c(1,2,3,4,5,6,7,8,11,12,13)]
+#select RO samples 
+rds_files <- rds_files[c(2,3,4,5,6,7,8)]
 
 se   <- bambu(reads = rds_files,
               annotations = annotation,
