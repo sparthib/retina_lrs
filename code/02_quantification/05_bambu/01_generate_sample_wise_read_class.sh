@@ -22,6 +22,7 @@ echo "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
+mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/$sample/
 
 echo "**** Processing sample $sample ****"
 
