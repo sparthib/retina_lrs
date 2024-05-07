@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=40G
 #SBATCH -c 20
-#SBATCH --job-name=flair2
+#SBATCH --job-name=bamtobed
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/bam_stats_transcriptome_gencode_splice/minimap_log.%a.txt
-#SBATCH -e logs/bam_stats_transcriptome_gencode_splice/minimap_log.%a.txt
+#SBATCH -o logs/bam2bed12/genome_splice/bam2bed12.%a.txt
+#SBATCH -e logs/bam2bed12/genome_splice/bam2bed12.%a.txt
 #SBATCH --array=1-15
 
 
