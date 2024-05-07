@@ -31,7 +31,7 @@ bed12_folder=/dcs04/hicks/data/sparthib/retina_lrs/05b_beds/genome/GENCODE_splic
 
 
 #use bedtools to convert bam to bed files 
-bedtools2 bamtobed -bed12 -i $input_bam  > $bed12_folder/${sample}.bed12
+bedtools bamtobed -bed12 -i $input_bam  > $bed12_folder/${sample}.bed12
 
 
 echo "**** Job ends ****"
