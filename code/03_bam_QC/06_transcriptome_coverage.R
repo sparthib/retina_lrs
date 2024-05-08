@@ -1,4 +1,6 @@
 library(dplyr)
+library(ggplot2)
+library(sessioninfo)
 
 sample <- commandArgs(trailingOnly = TRUE)
 
@@ -40,5 +42,13 @@ for (i in 1:nrow(coverage_table)) {
 }
 
 dev.off()
+
+
+## Reproducibility information
+print("Reproducibility information:")
+Sys.time()
+proc.time()
+options(width = 120)
+session_info()
 
 
