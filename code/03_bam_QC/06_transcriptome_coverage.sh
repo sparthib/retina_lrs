@@ -28,7 +28,7 @@ echo $sample
 
 ml load conda_R/4.3.x
 
-Rscript plot_coverage.R  $sample 
+Rscript 06_plot_coverage.R  $sample 
 
 echo "**** Job ends ****" 
 date +"%Y-%m-%d %T"
