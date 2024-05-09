@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=20G
 #SBATCH -c 5
-#SBATCH --job-name=plot_gc
+#SBATCH --job-name=gene_body_cov
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/plot_gc/transcriptome/plot_gc.%a.txt
-#SBATCH -e logs/plot_gc/transcriptome/plot_gc.%a.txt
+#SBATCH -o logs/plot_gene_body_cov/sample.%a.txt
+#SBATCH -e logs/plot_gene_body_cov/sample.%a.txt
 #SBATCH --array=1-15
 
 
