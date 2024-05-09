@@ -32,7 +32,7 @@ mkdir $output
 
 ml load rseqc/3.0.1
 
-read_GC.py -i $BAM_FILE -r $ref_gene_model -o $output
+geneBody_coverage.py -i $BAM_FILE -r $ref_gene_model -o $output
 
 
 conda deactivate 
