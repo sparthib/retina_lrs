@@ -9,6 +9,7 @@
 #SBATCH -o logs/flair.%a.txt
 #SBATCH -e logs/flair.%a.txt
 #SBATCH --array=1-15
+#SBATCH --time=7-00:00:00
 
 
 echo "**** Job starts ****"
@@ -31,17 +32,19 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf
 
 source activate flair 
- 
+
 ### take the bed files created from bedtools using minimap2 bams and input the bed12 into flair correct 
 bed12_file=/dcs04/hicks/data/sparthib/retina_lrs/05b_beds/genome/GENCODE_splice/${sample}.bed12
 
-correction_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output/${sample}
-mkdir -p $correction_output
+collapsed_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapsed_output/${sample}
+mkdir -p $collapsed_output
 
 
-flair correct -q $bed12_file -f $REFERENCE_GTF -g $REFERENCE_FASTA \
---output $correction_output --print_check \
--- threads $SLURM_CPUS_PER_TASK
+flair collapse --query $bed_file  --genome $REFERENCE_FASTA  --reads \
+--output $correction_output --threads $SLURM_CPUS_PER_TASK \ 
+--gtf $REFERENCE_GTF --keep_intermediate_files
+
+
 
 
 echo "**** Job ends ****"
