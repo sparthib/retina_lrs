@@ -3,7 +3,7 @@
 #SBATCH -p shared
 #SBATCH --mem=20G
 #SBATCH -c 10
-#SBATCH --job-name=genomecov
+#SBATCH --job-name=transcriptome_cov
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/transcriptome_cov/transcriptome_cov.%a.txt
@@ -31,7 +31,7 @@ transcriptome_input_bam=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcript
 transcriptome_coverage=/dcs04/hicks/data/sparthib/retina_lrs/05c_coverage/transcriptome
 
 #use bedtools to convert bam to transcritpome coverage files 
-bedtools genomecov -bed12 -ibam $transcriptome_input_bam  > $transcriptome_coverage/${sample}.coverage.txt
+bedtools genomecov -ibam $transcriptome_input_bam -d  > $transcriptome_coverage/${sample}.coverage.txt
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
