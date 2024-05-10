@@ -1,0 +1,11 @@
+**** Job starts ****
+2024-01-02 13:05:56
+**** JHPCE info ****
+User: sparthib
+Job id: 1377639
+Job name: fastq_qc
+Node name: compute-145
+Task id: 3
+hRGC
+**** Job ends ****
+2024-01-02 19:05:32

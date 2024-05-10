@@ -1,0 +1,57 @@
+input file: /dcs04/hicks/data/sparthib/casey_round_2/input_fastqs/YZ-15T_hRGC/20231024_1154_2F_PAO15921_6d6f855b/sequencing_summary_PAO15921_6d6f855b_4f4f3940.txt
+All reads:
+  total.gigabases: 45.7374255
+  total.reads: 23782722
+  N50.length: 2726.0
+  mean.length: 1923.1
+  median.length: 1366.0
+  max.length: 1351037.0
+  mean.q: 12.2
+  median.q: 13.2
+  reads:
+    '>10kb': 151579
+    '>20kb': 13224
+    '>50kb': 2389
+    '>100kb': 1101
+    '>200kb': 442
+    '>500kb': 79
+    '>1m': 5
+    ultralong: 7541.0
+  gigabases:
+    '>10kb': 2.37306
+    '>20kb': 0.6350837
+    '>50kb': 0.3434737
+    '>100kb': 0.2550498
+    '>200kb': 0.1628446
+    '>500kb': 0.0547569
+    '>1m': 0.0062312
+    ultralong: 0.5100808
+Q>=7:
+  total.gigabases: 38.4199752
+  total.reads: 19897857
+  N50.length: 2706.0
+  mean.length: 1930.9
+  median.length: 1389.0
+  max.length: 752285.0
+  mean.q: 13.4
+  median.q: 13.7
+  reads:
+    '>10kb': 119567
+    '>20kb': 6148
+    '>50kb': 206
+    '>100kb': 59
+    '>200kb': 18
+    '>500kb': 2
+    '>1m': 0
+    ultralong: 242.0
+  gigabases:
+    '>10kb': 1.5865202
+    '>20kb': 0.1697215
+    '>50kb': 0.0208392
+    '>100kb': 0.0113053
+    '>200kb': 0.0057629
+    '>500kb': 0.0013243
+    '>1m': 0.0
+    ultralong: 0.0225873
+notes: ultralong reads refers to the largest set of reads with N50>100KB
+

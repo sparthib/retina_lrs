@@ -1,0 +1,11 @@
+**** Job starts ****
+2024-04-10 18:47:56
+**** JHPCE info ****
+User: sparthib
+Job id: 4221006
+Job name: fastq_qc
+Node name: compute-127
+Task id: 13
+EP1-WT_hRO_2
+**** Job ends ****
+2024-04-10 20:10:54
