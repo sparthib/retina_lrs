@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=100G
 #SBATCH -c 20
-#SBATCH --job-name=flair
+#SBATCH --job-name=flair_collapse
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/flair.%a.txt
-#SBATCH -e logs/flair.%a.txt
+#SBATCH -o logs/flair_collapse.%a.txt
+#SBATCH -e logs/flair_collapse.%a.txt
 #SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
@@ -43,9 +43,10 @@ collapsed_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/
 mkdir -p $collapsed_output
 
 
-flair collapse -g $REFERENCE_FASTA -f $REFERENCE_GTF -q $bed_file -o $collapsed_output \
+flair collapse -g $REFERENCE_FASTA -f $REFERENCE_GTF -q $bed_file \ -r $REFERENCE_FASTQ 
 --stringent --check_splice --generate_map --annotation_reliant generate --threads 20 \
---longshot_vcf $longshot_output/${sample}.vcf --longshot_bam $longshot_output/${sample}.bam
+--longshot_vcf $longshot_output/${sample}.vcf --longshot_bam $longshot_output/${sample}.bam \
+-o $collapsed_output 
 
 
 echo "**** Job ends ****"
