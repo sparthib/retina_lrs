@@ -38,22 +38,5 @@ mkdir -p $longshot_output
 longshot  --out_bam $longshot_output/${sample}.bam  --bam $genome_bam \
 --ref $REFERENCE_FASTA --out $longshot_output/${sample}.vcf
 
-
-
-
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
-
-
-
-
-
-
-
-
-
-
-
-
-
-longshot [FLAGS] [OPTIONS] --bam <BAM/CRAM> --ref <FASTA> --out <VCF>

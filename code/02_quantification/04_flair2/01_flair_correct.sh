@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=100G
 #SBATCH -c 20
-#SBATCH --job-name=flair
+#SBATCH --job-name=flair_correct
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/flair.%a.txt
-#SBATCH -e logs/flair.%a.txt
+#SBATCH -o logs/flair_correct.%a.txt
+#SBATCH -e logs/flair_correct.%a.txt
 #SBATCH --array=1-15
 
 
