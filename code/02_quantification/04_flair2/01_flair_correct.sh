@@ -41,7 +41,7 @@ mkdir -p $correction_output
 
 flair correct -q $bed12_file -f $REFERENCE_GTF -g $REFERENCE_FASTA \
 --output $correction_output --print_check \
---threads $SLURM_CPUS_PER_TASK
+--threads $SLURM_CPUS_PER_TASK 
 
 
 echo "**** Job ends ****"

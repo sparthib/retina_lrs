@@ -33,7 +33,7 @@ genome_bam=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/$
 source activate longshot
 
 longshot_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/longshot_vcfs/${sample}
-mkdir -p $longshot_output
+
 
 longshot  --out_bam $longshot_output/${sample}.bam  --bam $genome_bam \
 --ref $REFERENCE_FASTA --out $longshot_output/${sample}.vcf

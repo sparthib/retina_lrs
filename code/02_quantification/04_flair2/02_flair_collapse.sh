@@ -30,21 +30,22 @@ echo $sample
 
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf
+REFERENCE_FASTQ=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/${sample}.fastq.gz
+longshot_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/longshot_vcfs/${sample}
+
 
 source activate flair 
 
-### take the bed files created from bedtools using minimap2 bams and input the bed12 into flair correct 
-bed12_file=/dcs04/hicks/data/sparthib/retina_lrs/05b_beds/genome/GENCODE_splice/${sample}.bed12
-
+### take the bed files created from correction step 
+bed_file=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output/${sample}_all_corrected.bed
 collapsed_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapsed_output/${sample}
+
 mkdir -p $collapsed_output
 
 
-flair collapse --query $bed_file  --genome $REFERENCE_FASTA  --reads \
---output $correction_output --threads $SLURM_CPUS_PER_TASK \ 
---gtf $REFERENCE_GTF --keep_intermediate_files
-
-
+flair collapse -g $REFERENCE_FASTA -f $REFERENCE_GTF -q $bed_file -o $collapsed_output \
+--stringent --check_splice --generate_map --annotation_reliant generate --threads 20 \
+--longshot_vcf $longshot_output/${sample}.vcf --longshot_bam $longshot_output/${sample}.bam
 
 
 echo "**** Job ends ****"
