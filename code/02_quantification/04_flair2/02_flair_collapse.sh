@@ -42,11 +42,13 @@ collapsed_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/
 
 mkdir -p $collapsed_output
 
-
-flair collapse -g $REFERENCE_FASTA -f $REFERENCE_GTF -q $bed_file -r $REFERENCE_FASTQ \
---stringent --check_splice --generate_map --annotation_reliant generate --threads 20 \
+flair collapse -r $REFERENCE_FASTQ -q $bed_file -g $REFERENCE_FASTA --threads 20 \
 --longshot_vcf $longshot_output/${sample}.vcf --longshot_bam $longshot_output/${sample}.bam \
 -o $collapsed_output 
+
+# flair collapse -g  -f $REFERENCE_GTF -q  -r  \
+# --stringent --check_splice --generate_map --annotation_reliant generate --threads 20 \
+# --longshot_vcf $longshot_output/${sample}.vcf --longshot_bam $longshot_output/${sample}.bam \
 
 
 echo "**** Job ends ****"
