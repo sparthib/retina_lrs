@@ -27,7 +27,7 @@ sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo $sample
 ref_gene_model=/dcs04/hicks/data/sparthib/references/rseqc_gencode_44_comp.bed
 BAM_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/${sample}_sorted.bam  
-output=/users/sparthib/retina_lrs/plots/gene_body_percentile/
+output=/users/sparthib/retina_lrs/plots/gene_body_percentile/$sample
 mkdir $output
 
 ml load rseqc/3.0.1
