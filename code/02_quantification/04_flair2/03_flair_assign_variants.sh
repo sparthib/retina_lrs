@@ -44,9 +44,9 @@ collapsed_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/
 
 mkdir -p $collapsed_output
 
-assign_variants_to_transcripts –bam $genome_bam -i $sample.isoforms.bed \
--v $longshot_output –map $sample.isoform.read.map.txt \
-–bed_out $out_bed –map_out $out_map > $out_vcf
+assign_variants_to_transcripts --bam $genome_bam -i $sample.isoforms.bed \
+-v $longshot_output --map $sample.isoform.read.map.txt \
+--bed_out $out_bed --map_out $out_map > $out_vcf
 
 
 echo "**** Job ends ****"
