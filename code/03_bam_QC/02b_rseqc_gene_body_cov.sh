@@ -8,7 +8,9 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/plot_gene_body_cov/sample.%a.txt
 #SBATCH -e logs/plot_gene_body_cov/sample.%a.txt
-#SBATCH --array=1-15
+#SBATCH --array=1,2,3,4,8
+#SBATCH --time=7-00:00:00
+
 
 
 echo "**** Job starts ****"
