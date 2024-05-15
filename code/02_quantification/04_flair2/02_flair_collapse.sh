@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flair_collapse.%a.txt
 #SBATCH -e logs/flair_collapse.%a.txt
-#SBATCH --array=1
+#SBATCH --array=2-15
 #SBATCH --time=7-00:00:00
 
 
