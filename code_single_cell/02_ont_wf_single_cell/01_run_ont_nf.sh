@@ -25,8 +25,8 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/single_cell.config
 INPUT_FOLDER=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo $sample
-FASTQ='/dcs04/hicks/data/sparthib/retina_single_cell_lrs/01_input_fastqs/${sample}.fastq.gz'
-output_folder='/dcs04/hicks/data/sparthib/retina_single_cell_lrs/02_ont_wf_single_cell_output/'
+FASTQ=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/01_input_fastqs/${sample}.fastq.gz
+output_folder=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/02_ont_wf_single_cell_output/
 
 
 nextflow run epi2me-labs/wf-single-cell \
