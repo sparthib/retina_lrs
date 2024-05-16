@@ -34,9 +34,9 @@ mkdir -p $output_folder/work/$sample
 nextflow -log $output_folder/logs/$sample run epi2me-labs/wf-single-cell \
     --fastq $FASTQ \
     --expected_cells 100 \
-    --kit_name '3prime' \
-    --kit_version 'v3' \
-    --ref_genome_dir '/dcs04/hicks/data/sparthib/references/genome/GENCODE/' \
+    --kit_name 3prime \
+    --kit_version v3 \
+    --ref_genome_dir /dcs04/hicks/data/sparthib/references/genome/GENCODE/ \
     -profile singularity \
     -w $output_folder/work/$sample \
     --out_dir $output_folder
