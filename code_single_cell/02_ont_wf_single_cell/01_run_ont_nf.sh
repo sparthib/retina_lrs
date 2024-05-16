@@ -29,6 +29,7 @@ FASTQ=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/01_input_fastqs/${sample
 output_folder=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/02_ont_wf_single_cell_output/
 
 mkdir -p $output_folder/logs/$sample
+mkdir -p $output_folder/work/$sample
 
 nextflow -log $output_folder/logs/$sample run epi2me-labs/wf-single-cell \
     --fastq $FASTQ \
@@ -37,6 +38,7 @@ nextflow -log $output_folder/logs/$sample run epi2me-labs/wf-single-cell \
     --kit_version 'v3' \
     --ref_genome_dir '/dcs04/hicks/data/sparthib/references/genome/GENCODE/' \
     -profile singularity \
+    -w $output_folder/work/$sample \
     --out_dir $output_folder
 
 echo "**** Job ends ****"
