@@ -6,8 +6,8 @@
 #SBATCH -c 20
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/ont_sc_wf.%a.txt
-#SBATCH -e logs//ont_sc_wf.%a.txt
+#SBATCH -o /dcs04/hicks/data/sparthib/retina_single_cell_lrs/02_ont_wf_single_cell_output/logs/ont_sc_wf.%a.txt
+#SBATCH -e /dcs04/hicks/data/sparthib/retina_single_cell_lrs/02_ont_wf_single_cell_output/logs/ont_sc_wf.%a.txt
 #SBATCH --array=1
 
 echo "**** Job starts ****"
