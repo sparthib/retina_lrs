@@ -40,12 +40,12 @@ source activate flair
 
 ### take the bed files created from correction step 
 bed_file=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output/${sample}_all_corrected.bed
-collapsed_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapsed_output/${sample}
+collapsed_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapsed_output/
 
 mkdir -p $collapsed_output
 
-assign_variants_to_transcripts --bam $genome_bam -i $sample.isoforms.bed \
--v $longshot_output --map $sample.isoform.read.map.txt \
+assign_variants_to_transcripts --bam $genome_bam -i $collapsed_output/$sample.isoforms.bed \
+-v $longshot_output --map $collapsed_output/$sample.isoform.read.map.txt \
 --bed_out $out_bed --map_out $out_map > $out_vcf
 
 
