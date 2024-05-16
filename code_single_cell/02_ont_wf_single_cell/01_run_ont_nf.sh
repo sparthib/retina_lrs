@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=25G
-#SBATCH --job-name=concat_fqs
-#SBATCH -c 2
+#SBATCH --mem=100G
+#SBATCH --job-name=ont_sc_wf
+#SBATCH -c 20
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/concat/concat_fqs.%a.txt
-#SBATCH -e logs/concat/concat_fqs.%a.txt
+#SBATCH -o logs/concat/ont_sc_wf.%a.txt
+#SBATCH -e logs/concat/ont_sc_wf.%a.txt
 #SBATCH --array=1
 
 echo "**** Job starts ****"
