@@ -35,7 +35,7 @@ nextflow run epi2me-labs/wf-single-cell \
     --kit_name '3prime' \
     --kit_version 'v3' \
     --ref_genome_dir '/dcs04/hicks/data/sparthib/references/genome/GENCODE/' \
-    --profile singularity
+    -profile singularity \
     --out_dir $output_folder
 
 echo "**** Job ends ****"
