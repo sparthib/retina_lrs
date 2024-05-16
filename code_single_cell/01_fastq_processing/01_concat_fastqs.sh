@@ -25,7 +25,7 @@ sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo $sample
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/01_input_fastqs
 
-cd $INPUT_FOLDER
+cd $INPUT_FOLDER/fastq_pass/
 cat *.fastq.gz > $OUTPUT_FOLDER/${sample}.fastq.gz
 
 echo "**** Job ends ****"
