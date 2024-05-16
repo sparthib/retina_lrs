@@ -6,8 +6,8 @@
 #SBATCH -c 20
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/concat/ont_sc_wf.%a.txt
-#SBATCH -e logs/concat/ont_sc_wf.%a.txt
+#SBATCH -o logs/ont_sc_wf.%a.txt
+#SBATCH -e logs//ont_sc_wf.%a.txt
 #SBATCH --array=1
 
 echo "**** Job starts ****"
