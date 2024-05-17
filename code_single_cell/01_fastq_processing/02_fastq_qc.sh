@@ -6,8 +6,8 @@
 #SBATCH --job-name=fastq_qc
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/02_Nanofilt/fastq_qc.%a.txt
-#SBATCH -e logs/02_NanoFilt/fastq_qc.%a.txt
+#SBATCH -o logs/nanofilt/fastq_qc.%a.txt
+#SBATCH -e logs/nanoFilt/fastq_qc.%a.txt
 #SBATCH --array=1-4
 
 echo "**** Job starts ****"
