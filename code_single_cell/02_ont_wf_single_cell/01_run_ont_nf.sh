@@ -39,6 +39,7 @@ nextflow -log $output_folder/logs/$sample run epi2me-labs/wf-single-cell \
     --ref_genome_dir /dcs04/hicks/data/sparthib/references/genome/GENCODE/ \
     -profile singularity \
     -w $output_folder/work/$sample \
+    -r prerelease \
     --out_dir $output_folder
 
 echo "**** Job ends ****"
