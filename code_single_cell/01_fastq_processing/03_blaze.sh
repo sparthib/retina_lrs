@@ -4,11 +4,11 @@
 #SBATCH --nodes=1
 #SBATCH --mem=40G
 #SBATCH -c 10
-#SBATCH --job-name=fastq_qc
+#SBATCH --job-name=blaze
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/nanofilt/fastq_qc.%a.txt
-#SBATCH -e logs/nanofilt/fastq_qc.%a.txt
+#SBATCH -o logs/blaze/blaze.%a.txt
+#SBATCH -e logs/blaze/blaze.%a.txt
 #SBATCH --array=1-4
 #SBATCH --time=7-00:00:00
 
