@@ -22,7 +22,7 @@ minion_qc_output=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_minion_qc_
 mkdir -p $minion_qc_output
 guppy_summary_file=${path}/${seq_sum}
 
-mkdir -p $minIONQC_OUTPUT
+mkdir -p $minion_qc_output
 
 module load conda_R/4.3
 
