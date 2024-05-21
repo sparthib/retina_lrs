@@ -28,8 +28,8 @@ echo $sample
 
 READS_MANIFEST=/users/sparthib/retina_lrs/code/02_quantification/04_flair2/reads_manifest.tsv 
 OUTDIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/quantify_output
-ISOFORMS_FA=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapse_output/$sample.isoforms.fa
-ISOFORMS_BED=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapse_output/$sample.isoforms.bed
+ISOFORMS_FA=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapsed_output/$sample.isoforms.fa
+ISOFORMS_BED=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapsed_output/$sample.isoform.bed
 
 source activate flair 
 
