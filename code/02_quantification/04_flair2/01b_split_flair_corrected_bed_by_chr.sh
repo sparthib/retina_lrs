@@ -22,11 +22,13 @@ echo "****"
 
 
 input=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output/all_samples_corrected.bed
+output_dir=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output/all_sample_chr_split
+mkdir -p $output_dir
 
 for chr in `cut -f 1 $input | sort | uniq`;
 do
 	echo $chr
-	grep -w $chr $input > $chr.bed
+	grep -w $chr $input > $output_dir/$chr.bed
 done
 
 echo "**** Job ends ****"
