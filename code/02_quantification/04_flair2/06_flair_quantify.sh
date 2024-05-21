@@ -34,7 +34,7 @@ ISOFORMS_BED=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/coll
 source activate flair 
 
 flair quantify -r $READS_MANIFEST -i $ISOFORMS_FA -o $OUTDIR/$sample --threads $SLURM_CPUS_PER_TASK \
---quality 30 --generate map --check_splice --isoform_bed $ISOFORMS_BED
+--quality 30 --generate_map --check_splice --isoform_bed $ISOFORMS_BED
 
 conda deactivate 
 
