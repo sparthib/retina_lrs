@@ -19,7 +19,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "****"
 
-$sample_wise_bed_dir=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output/
+$sample_wise_bed_dir=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output
 
 #H9 FT vs HRGC
 for file in $sample_wise_bed_dir/H9-FT_1_all_corrected.bed $sample_wise_bed_dir/H9-FT_2_all_corrected.bed $sample_wise_bed_dir/H9-hRGC_2_all_corrected.bed $sample_wise_bed_dir/H9-hRGC_1_all_corrected.bed;
