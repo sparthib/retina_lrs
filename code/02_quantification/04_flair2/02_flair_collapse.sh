@@ -39,7 +39,7 @@ REFERENCE_FASTQ=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/all_RO
 source activate flair 
 
 ### take the bed files created from correction step 
-bed_file=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output/all_RO_sample_chr_split/$chr.bed 
+bed_file=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/correction_output/all_RO_sample_chr_split/chr$chr.bed 
 
 ##output dir
 collapsed_output=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collapsed_output/all_RO_samples
