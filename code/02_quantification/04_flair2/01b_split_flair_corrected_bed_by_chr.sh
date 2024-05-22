@@ -33,8 +33,8 @@ mkdir -p $output_dir
 
 for chr in {1..22} X Y M;
 do
-	echo $chr
-	grep -w $chr $input > $output_dir/$chr.bed
+	echo chr$chr
+	grep -w chr$chr $input > $output_dir/$chr.bed
 done
 
 
@@ -51,8 +51,8 @@ mkdir -p $output_dir
 
 for chr in {1..22} X Y M;
 do
-	echo $chr
-	grep -w $chr $input > $output_dir/$chr.bed
+	echo chr$chr
+	grep -w chr$chr $input > $output_dir/$chr.bed
 done
 
 
