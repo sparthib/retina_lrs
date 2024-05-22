@@ -24,7 +24,7 @@ echo "****"
 
 
 
-CONFIG=/users/sparthib/retina_lrs/code/chromosome_number.txt
+CONFIG=/users/sparthib/retina_lrs/chromosome_config.tsv
 chr=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "chromosome" $chr
 
