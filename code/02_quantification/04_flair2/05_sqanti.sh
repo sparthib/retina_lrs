@@ -40,7 +40,7 @@ SAMPLE_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collap
 # and we recommend to stick to this format if your transcriptome construction pipeline allows it
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/sqanti_output
 
-source activate SQANTI3.env
+source activate /users/sparthib/.conda/envs/SQANTI3.env
 # SQANTI_DIR=~/SQANTI3-5.2.1
 # 
 # python $SQANTI_DIR/sqanti3_qc.py  ${SAMPLE_GTF} ${REFERENCE_GTF}  ${REFERENCE_GENOME_FASTA} \
