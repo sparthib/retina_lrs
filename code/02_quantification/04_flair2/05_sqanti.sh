@@ -41,14 +41,13 @@ SAMPLE_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/collap
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/sqanti_output
 
 source activate SQANTI3.env
-SQANTI_DIR=~/SQANTI3-5.2.1
-
-python $SQANTI_DIR/sqanti3_qc.py  ${SAMPLE_GTF} ${REFERENCE_GTF}  ${REFERENCE_GENOME_FASTA} \
-    --skipORF --fasta ${SAMPLE_TRANSCRIPTOME} \
-    -o $sample --dir $OUTPUT_DIR ${sample}_sqanti3_qc --saturation \ 
-    -t $SLURM_CPUS_PER_TASK --report pdf --isoform_hits
-    
-conda deactivate 
+# SQANTI_DIR=~/SQANTI3-5.2.1
+# 
+# python $SQANTI_DIR/sqanti3_qc.py  ${SAMPLE_GTF} ${REFERENCE_GTF}  ${REFERENCE_GENOME_FASTA} \
+#     --skipORF --fasta ${SAMPLE_TRANSCRIPTOME} \
+#     -o $sample --dir $OUTPUT_DIR ${sample}_sqanti3_qc --saturation \ 
+#     -t $SLURM_CPUS_PER_TASK --report pdf --isoform_hits
+#     
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
