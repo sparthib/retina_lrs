@@ -44,8 +44,7 @@ source activate /users/sparthib/.conda/envs/SQANTI3
 SQANTI_DIR=~/SQANTI3-5.2.1
 
 python $SQANTI_DIR/sqanti3_qc.py  ${SAMPLE_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
-    --skipORF --fasta ${SAMPLE_TRANSCRIPTOME} \
-    -o $sample -d $OUTPUT_DIR/${sample}_sqanti3_qc --saturation \
+    --skipORF -o $sample -d $OUTPUT_DIR/${sample}_sqanti3_qc --saturation \
     -t $SLURM_CPUS_PER_TASK --report pdf --isoform_hits 
      ##positional arguments
 
