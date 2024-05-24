@@ -43,11 +43,11 @@ OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flair2/sqanti
 source activate /users/sparthib/.conda/envs/SQANTI3
 SQANTI_DIR=~/SQANTI3-5.2.1
 
-python $SQANTI_DIR/sqanti3_qc.py   \
+python $SQANTI_DIR/sqanti3_qc.py  ${SAMPLE_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
     --skipORF --fasta ${SAMPLE_TRANSCRIPTOME} \
-    -o $sample --dir $OUTPUT_DIR ${sample}_sqanti3_qc --saturation \
-    -t $SLURM_CPUS_PER_TASK --report pdf --isoform_hits \
-    ${SAMPLE_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} ##positional arguments
+    -o $sample -d $OUTPUT_DIR/${sample}_sqanti3_qc --saturation \
+    -t $SLURM_CPUS_PER_TASK --report pdf --isoform_hits 
+     ##positional arguments
 
 
 echo "**** Job ends ****"
