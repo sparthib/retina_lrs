@@ -1,12 +1,12 @@
 **** Job starts ****
-2024-05-25 14:24:05
+2024-05-25 14:24:06
 **** JHPCE info ****
 User: sparthib
-Job id: 6622636
+Job id: 6622641
 Job name: isoquant
-Node name: compute-144
-Task id: 6
-EP1-WT_ROs_D45
+Node name: compute-129
+Task id: 9
+H9-FT_1
 Traceback (most recent call last):
   File "/users/sparthib/.conda/envs/isoquant/bin/isoquant.py", line 22, in <module>
     from src.gtf2db import convert_gtf_to_db
@@ -14,5 +14,5 @@ Traceback (most recent call last):
     import gffutils
 ModuleNotFoundError: No module named 'gffutils'
 **** Job ends ****
-/var/spool/slurm/d/job6622636/slurm_script: line 48: jobstats: command not found
-2024-05-25 14:24:06
+/var/spool/slurm/d/job6622641/slurm_script: line 48: jobstats: command not found
+2024-05-25 14:24:08
