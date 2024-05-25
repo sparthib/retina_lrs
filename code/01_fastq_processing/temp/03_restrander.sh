@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/restrander.%a.txt
 #SBATCH -e logs/restrander.%a.txt
-#SBATCH --array=1-4
+#SBATCH --array=7
 
 
 echo "**** Job starts ****"
@@ -21,25 +21,18 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 
-#mkdir for output if it doesn't exist 
-mkdir -p /dcs04/hicks/data/sparthib/casey/fastqs/restrander
-mkdir -p /users/sparthib/retina_lrs/code/01_fastq_processing/logs/restrander
-
-
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-INPUT_FILE=/dcs04/hicks/data/sparthib/casey/fastqs/${sample}.fastq.gz
-OUTPUT_FILE=/dcs04/hicks/data/sparthib/casey/fastqs/restrander/${sample}.fastq.gz
+INPUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/${sample}.fastq.gz
+OUTPUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/restrander/${sample}.fastq.gz
 STATS_FILE=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/restrander/${sample}_stats.json
 
 cd /users/sparthib/restrander
 ./restrander \
     $INPUT_FILE \
     $OUTPUT_FILE \
-    config/LSK114.json \
+    /users/sparthib/retina_lrs/code/01_fastq_processing/temp/DCS_LSK114.json \
         > $STATS_FILE
         
-
-echo "Memory Utilized: "
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
