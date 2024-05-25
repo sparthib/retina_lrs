@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=100G
-#SBATCH -c 20
+#SBATCH --mem=20G
+#SBATCH -c 15
 #SBATCH --job-name=sqanti
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -21,7 +21,6 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 echo "****"
-
 
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
@@ -45,7 +44,7 @@ SQANTI_DIR=~/SQANTI3-5.2.1
 
 python $SQANTI_DIR/sqanti3_qc.py  ${SAMPLE_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
     --skipORF -o $sample -d $OUTPUT_DIR/${sample}_sqanti3_qc --saturation \
-    -t $SLURM_CPUS_PER_TASK --report both --isoform_hits 
+    -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits 
      ##positional arguments
 
 
