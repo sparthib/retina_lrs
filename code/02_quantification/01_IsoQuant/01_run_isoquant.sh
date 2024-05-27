@@ -25,8 +25,6 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 
 source activate isoquant 
-cd /users/sparthib/IsoQuant/
-
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
