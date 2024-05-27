@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/isoquant.%a.txt
 #SBATCH -e logs/isoquant.%a.txt
-#SBATCH --array=7
+#SBATCH --array=1-6,8,9,10,11,12,13,14,15
 #SBATCH --time=7-00:00:00
 
 #try running for all chromosomes
