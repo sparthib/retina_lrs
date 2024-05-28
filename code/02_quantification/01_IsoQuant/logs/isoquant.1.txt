@@ -1,17 +1,62 @@
 **** Job starts ****
-2024-05-25 14:50:24
+2024-05-27 21:58:31
 **** JHPCE info ****
 User: sparthib
-Job id: 6628241
+Job id: 6918829
 Job name: isoquant
-Node name: compute-114
+Node name: compute-122
 Task id: 1
 EP1-BRN3B-RO
-2024-05-25 14:50:30,364 - INFO - Running IsoQuant version 3.3.1
-2024-05-25 14:50:30,365 - WARNING - Output folder already contains a previous run, some files may be overwritten. Use --resume to resume a failed run. Use --force to avoid this message. Press Ctrl+C to interrupt the run now.
-Resuming the run in 9 secondsResuming the run in 8 secondsResuming the run in 7 secondsResuming the run in 6 secondsResuming the run in 5 secondsResuming the run in 4 secondsResuming the run in 3 secondsResuming the run in 2 secondsResuming the run in 1 seconds2024-05-25 14:50:39,375 - INFO - Overwriting the previous run
-2024-05-25 14:50:40,816 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT folder already exists, some files may be overwritten
-2024-05-25 14:50:40,828 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT/aux folder already exists, some files may be overwritten
-2024-05-25 14:50:40,831 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
-2024-05-25 14:50:40,832 - INFO -  === IsoQuant pipeline started === 
-2024-05-25 14:50:40,834 - INFO - Converting gene annotation file to .db format (takes a while)...
+2024-05-27 21:59:29,713 - INFO - Running IsoQuant version 3.4.1
+2024-05-27 21:59:29,713 - WARNING - Output folder already contains a previous run, some files may be overwritten. Use --resume to resume a failed run. Use --force to avoid this message.
+2024-05-27 21:59:29,713 - WARNING - Press Ctrl+C to interrupt the run now.
+Resuming the run in 9 secondsResuming the run in 8 secondsResuming the run in 7 secondsResuming the run in 6 secondsResuming the run in 5 secondsResuming the run in 4 secondsResuming the run in 3 secondsResuming the run in 2 secondsResuming the run in 1 second2024-05-27 21:59:38,722 - INFO - Overwriting the previous run
+2024-05-27 21:59:40,588 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT folder already exists, some files may be overwritten
+2024-05-27 21:59:40,651 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT/aux folder already exists, some files may be overwritten
+2024-05-27 21:59:40,651 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
+2024-05-27 21:59:40,652 - INFO -  === IsoQuant pipeline started === 
+2024-05-27 21:59:40,652 - INFO - gffutils version: 0.13
+2024-05-27 21:59:40,652 - INFO - pysam version: 0.22.1
+2024-05-27 21:59:40,652 - INFO - pyfaidx version: 0.8.1.1
+2024-05-27 21:59:40,676 - INFO - Checking input gene annotation
+2024-05-27 22:00:27,440 - INFO - Gene annotation seems to be correct
+2024-05-27 22:00:27,506 - INFO - Converting gene annotation file to .db format (takes a while)...
+2024-05-27 22:11:01,594 - INFO - Gene database written to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.db
+2024-05-27 22:11:01,594 - INFO - Provide this database next time to avoid excessive conversion
+2024-05-27 22:11:02,025 - INFO - Loading gene database from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.db
+2024-05-27 22:11:02,029 - INFO - Loading reference genome from /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz
+2024-05-27 22:11:34,705 - INFO - Loading uncompressed reference from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/GRCh38.p14.genome.fa
+2024-05-27 22:11:59,207 - INFO - Processing 1 experiment
+2024-05-27 22:11:59,207 - INFO - Processing experiment OUT
+2024-05-27 22:11:59,207 - INFO - Experiment has 1 BAM file: /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/EP1-BRN3B-RO_sorted.bam
+2024-05-27 22:11:59,503 - INFO - Collecting read alignments
+2024-05-27 22:11:59,620 - INFO - Alignments collected, overall alignment statistics:
+2024-05-27 22:11:59,620 - INFO - unaligned: 118205
+2024-05-27 22:11:59,620 - INFO - Resolving multimappers
+2024-05-27 22:11:59,680 - WARNING - No reads were assigned to isoforms, check your input files
+2024-05-27 22:11:59,686 - INFO - Read assignments files saved to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT/aux/OUT.save*. 
+2024-05-27 22:11:59,687 - INFO - To keep these intermediate files for debug purposes use --keep_tmp flag
+2024-05-27 22:11:59,687 - INFO - Total alignments used for analysis: 0, polyA tail detected in 0 (0.0%)
+2024-05-27 22:11:59,687 - WARNING - PolyA percentage is suspiciously low. IsoQuant expects non-polya-trimmed reads. If you aim to construct transcript models, consider using --polya_requirement option.
+2024-05-27 22:11:59,687 - INFO - Processing assigned reads OUT
+2024-05-27 22:11:59,687 - INFO - Transcript models construction is turned on
+2024-05-27 22:11:59,990 - INFO - Transcript construction options:
+2024-05-27 22:11:59,990 - INFO -   Novel monoexonic transcripts will be reported: no
+2024-05-27 22:11:59,990 - INFO -   PolyA tails are required for multi-exon transcripts to be reported: no
+2024-05-27 22:11:59,990 - INFO -   PolyA tails are required for 2-exon transcripts to be reported: yes
+2024-05-27 22:11:59,990 - INFO -   PolyA tails are required for known monoexon transcripts to be reported: yes
+2024-05-27 22:11:59,990 - INFO -   PolyA tails are required for novel monoexon transcripts to be reported: yes
+2024-05-27 22:11:59,990 - INFO -   Splice site reporting level: only_stranded
+2024-05-27 22:12:00,183 - INFO - Transcript model file /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT/OUT.transcript_models.gtf
+2024-05-27 22:12:00,183 - INFO - Extended annotation is saved to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT/OUT.extended_annotation.gtf
+2024-05-27 22:12:00,184 - INFO - Transcript model statistics
+2024-05-27 22:12:00,611 - INFO - Gene counts are stored in /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT/OUT.gene_counts.tsv
+2024-05-27 22:12:00,611 - INFO - Transcript counts are stored in /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT/OUT.transcript_counts.tsv
+2024-05-27 22:12:00,611 - INFO - Read assignments are stored in /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/EP1-BRN3B-RO/OUT/OUT.read_assignments.tsv.gz
+2024-05-27 22:12:00,611 - INFO - Read assignment statistics
+2024-05-27 22:12:02,715 - INFO - Processed experiment OUT
+2024-05-27 22:12:02,715 - INFO - Processed 1 experiment
+2024-05-27 22:12:02,715 - INFO -  === IsoQuant pipeline finished === 
+**** Job ends ****
+/var/spool/slurm/d/job6918829/slurm_script: line 47: jobstats: command not found
+2024-05-27 22:12:13
