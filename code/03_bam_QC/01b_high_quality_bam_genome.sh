@@ -26,7 +26,7 @@ LOGS_FOLDER=/users/sparthib/retina_lrs/code/03_bam_QC/logs/primary_over_30/genom
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
-bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/
+bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice
 bam=$bam_dir/${sample}_sorted.bam
 primary_over_30=$bam_dir/primary_over_30_chr_only
 mkdir -p $primary_over_30
