@@ -23,19 +23,20 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/single_cell.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
+num_cells=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $5}' $CONFIG)
 path=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
 seq_sum=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $4}' $CONFIG)
 echo $sample
 
 source activate flair
 
-input_fastq=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/02_nanofilt_processed/${sample}.fastq.gz
+input_fastq=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/restrander_output/${sample}.fastq.gz
 output_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed
 mkdir -p $output_dir
 output_prefix=${output_dir}/${sample}
 
 echo "processing input fastq"
-blaze --expect-cells 2000 --output-prefix $output_prefix \
+blaze --expect-cells $num_cells --output-prefix $output_prefix \
 --threads $SLURM_CPUS_PER_TASK  $input_fastq  
 
 echo "**** Job ends ****"
