@@ -10,7 +10,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/primary_over_30/genome_splice/log.%a.txt
 #SBATCH -e logs/primary_over_30/genome_splice/log.%a.txt
-#SBATCH --array=1-15
+#SBATCH --array=1
 #SBATCH -t 4-00:00:00
 
 echo "**** Job starts ****"
