@@ -31,26 +31,24 @@ bam=$bam_dir/${sample}_sorted.bam
 primary_over_30=$bam_dir/primary_over_30_chr_only
 mkdir -p $primary_over_30
 
-# for chr in chr{1..22} chrX chrY chrM
-# do
-#     echo "Processing $chr"
-#     samtools view -b $bam $chr > ${output}/${sample}_${chr}.bam
-#     samtools index ${output}/${sample}_${chr}.bam ${output}/${sample}_${chr}.bam.bai
-# done
+
 ml load samtools 
 
-chr_only_bam=$bam_dir/${sample}_chromosome_level/$sample.bam
-samtools view -q 30 -F 0x800 $chr_only_bam > $primary_over_30/${sample}_primary_over_30.bam
-samtools sort $primary_over_30/${sample}_primary_over_30.bam -o $primary_over_30/${sample}_sorted.bam
-samtools index $primary_over_30/${sample}_primary_over_30_sorted.bam $primary_over_30/${sample}_sorted.bam.bai
+samtools view -q 30 -F 0x800 $bam > $primary_over_30/${sample}_primary_over_30.bam
+samtools view -b $primary_over_30/${sample}_primary_over_30.bam chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 \ 
+chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM -o $primary_over_30/${sample}_primary_over_30_chr_only.bam
 
-# echo "finished indexing bam"
-samtools idxstats $primary_over_30/${sample}_sorted.bam > ${LOGS_FOLDER}/primary_over_30_${sample}_index_stats.txt
 
-echo "finished computing stats for plotting"
-
-echo "flagstat" > ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
-samtools flagstat $primary_over_30/${sample}_sorted.bam >> ${LOGS_FOLDER}/primary_over_30_${sample}_bam_flagstat.txt
+# samtools sort $primary_over_30/${sample}_primary_over_30.bam -o $primary_over_30/${sample}_sorted.bam
+# samtools index $primary_over_30/${sample}_primary_over_30_sorted.bam $primary_over_30/${sample}_sorted.bam.bai
+# 
+# # echo "finished indexing bam"
+# samtools idxstats $primary_over_30/${sample}_sorted.bam > ${LOGS_FOLDER}/primary_over_30_${sample}_index_stats.txt
+# 
+# echo "finished computing stats for plotting"
+# 
+# echo "flagstat" > ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
+# samtools flagstat $primary_over_30/${sample}_sorted.bam >> ${LOGS_FOLDER}/primary_over_30_${sample}_bam_flagstat.txt
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
