@@ -33,7 +33,7 @@ bam=$input_dir/${sample}_sorted.bam
 
 ml load samtools 
 
-samtools view -b -q 30 -F 0x800 -h $bam > $output_dir/${sample}_primary_over_30.bam
+samtools view -q 30 -F 0x800 -h $bam > $output_dir/${sample}_primary_over_30.bam
 samtools sort $output_dir/${sample}_primary_over_30.bam -o $output_dir/${sample}_primary_over_30_sorted.bam
 samtools index $output_dir/${sample}_primary_over_30_sorted.bam $output_dir/${sample}_primary_over_30_sorted.bam.bai
 
