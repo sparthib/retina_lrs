@@ -32,14 +32,13 @@ mkdir -p $output_dir
 bam=$input_dir/${sample}_sorted.bam
 
 ml load samtools 
+q
 
-
-samtools view -q 30 -F 0x800 $bam > $output_dir/${sample}_primary_over_30.bam
+samtools view -b -q 30 -F 0x800 -h $bam > $output_dir/${sample}_primary_over_30.bam
 samtools sort $output_dir/${sample}_primary_over_30.bam -o $output_dir/${sample}_primary_over_30_sorted.bam
 samtools index $output_dir/${sample}_primary_over_30_sorted.bam $output_dir/${sample}_primary_over_30_sorted.bam.bai
-samtools view -b $output_dir/${sample}_primary_over_30_sorted.bam chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 \ 
+samtools view -h -b $output_dir/${sample}_primary_over_30_sorted.bam chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 \ 
 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM -o $output_dir/${sample}_chr_only.bam
-
 samtools sort $output_dir/${sample}_chr_only.bam -o $output_dir/${sample}_chr_only_sorted.bam
 samtools index $output_dir/${sample}_chr_only_sorted.bam $output_dir/${sample}_chr_only_sorted.bam.bai
 
