@@ -26,22 +26,20 @@ LOGS_FOLDER=/users/sparthib/retina_lrs/code/03_bam_QC/logs/primary_over_30/genom
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
-bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice
-bam=$bam_dir/${sample}_sorted.bam
-primary_over_30=$bam_dir/primary_over_30_chr_only
+
 mkdir -p $primary_over_30
 
 
 ml load samtools 
 
-samtools view -q 30 -F 0x800 $bam > $primary_over_30/${sample}_primary_over_30.bam
-samtools view -b $primary_over_30/${sample}_primary_over_30.bam chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 \ 
-chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM -o $primary_over_30/${sample}_primary_over_30_chr_only.bam
+# samtools view -q 30 -F 0x800 $bam > $primary_over_30/${sample}_primary_over_30.bam
+# samtools view -b $primary_over_30/${sample}_primary_over_30.bam chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 \ 
+# chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM -o $primary_over_30/${sample}_primary_over_30_chr_only.bam
 
 
-# samtools sort $primary_over_30/${sample}_primary_over_30.bam -o $primary_over_30/${sample}_sorted.bam
-# samtools index $primary_over_30/${sample}_primary_over_30_sorted.bam $primary_over_30/${sample}_sorted.bam.bai
-# 
+samtools sort $primary_over_30/${sample}_primary_over_30.bam -o $primary_over_30/${sample}_sorted.bam
+samtools index $primary_over_30/${sample}_primary_over_30_sorted.bam $primary_over_30/${sample}_sorted.bam.bai
+
 # # echo "finished indexing bam"
 # samtools idxstats $primary_over_30/${sample}_sorted.bam > ${LOGS_FOLDER}/primary_over_30_${sample}_index_stats.txt
 # 
