@@ -27,23 +27,25 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 input_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice"
-output_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only"
+output_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only
 mkdir -p $output_dir
 bam=$input_dir/${sample}_sorted.bam
 
 ml load samtools 
 
-samtools view -q 30 -F 0x800 -h $bam > $output_dir/${sample}_primary_over_30.bam
+samtools view -h -b -q 30 -F 0x800 $bam > $output_dir/${sample}_primary_over_30.bam
+echo "finished filtering bam by mapping quality and removing duplicates"
 samtools sort $output_dir/${sample}_primary_over_30.bam -o $output_dir/${sample}_primary_over_30_sorted.bam
 samtools index $output_dir/${sample}_primary_over_30_sorted.bam $output_dir/${sample}_primary_over_30_sorted.bam.bai
+echo "finished sorting and indexing bam"
 
-# # echo "finished indexing bam"
-# samtools idxstats $primary_over_30/${sample}_sorted.bam > ${LOGS_FOLDER}/primary_over_30_${sample}_index_stats.txt
-# 
-# echo "finished computing stats for plotting"
-# 
-# echo "flagstat" > ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
-# samtools flagstat $primary_over_30/${sample}_sorted.bam >> ${LOGS_FOLDER}/primary_over_30_${sample}_bam_flagstat.txt
+samtools view -h -b $output_dir/${sample}_primary_over_30_sorted.bam chr1 chr2 chr3 chr4 \
+chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 \
+chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM > $output_dir/${sample}_primary_over_30_chr_only.bam
+echo "finished subsetting bam by chromosome"
+samtools sort $output_dir/${sample}_primary_over_30_chr_only.bam -o $output_dir/${sample}_primary_over_30_chr_only_sorted.bam
+samtools index $output_dir/${sample}_primary_over_30_chr_only_sorted.bam $output_dir/${sample}_primary_over_30_chr_only_sorted.bam.bai
+echo "finished sorting and indexing bam"
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
