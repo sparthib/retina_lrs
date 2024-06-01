@@ -21,7 +21,8 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 
 module load conda_R/4.3.x
-Rscript 02_bambu_generate_rcs.R 
+Rscript 02a_bambu_generate_rcs_ROs.R 
+Rscript 02b_bambu_generate_rcs_RGC_FT.R
 
 echo "**** Job ends ****"
 date
