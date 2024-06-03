@@ -40,11 +40,11 @@ mkdir $long_output
 ml load rseqc/3.0.1
 
 echo "**** Plotting gene body coverage for short length reads****"
-geneBody_coverage.py -i $SHORT_BAM_FILE -r $ref_gene_model -o $short_output
+geneBody_coverage.py -i $SHORT_BAM_FILE -r $ref_gene_model -o $short_output/short_ 
 echo "**** Plotting gene body coverage for medium length reads****"
-geneBody_coverage.py -i $MEDIUM_BAM_FILE -r $ref_gene_model -o $medium_output
+geneBody_coverage.py -i $MEDIUM_BAM_FILE -r $ref_gene_model -o $medium_output/medium_ 
 echo "**** Plotting gene body coverage for long length reads****"
-geneBody_coverage.py -i $LONG_BAM_FILE -r $ref_gene_model -o $long_output
+geneBody_coverage.py -i $LONG_BAM_FILE -r $ref_gene_model -o $long_output/long_
 
 
 conda deactivate 
