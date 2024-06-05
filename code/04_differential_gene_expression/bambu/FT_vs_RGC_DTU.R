@@ -74,7 +74,7 @@ write_tsv(SwitchList$isoformFeatures, file = "/users/sparthib/retina_lrs/process
 
 #only where one of the conditions has iso_value > 0 and the other = 0
 
-non_DTUs <- SwitchList$isoformFeatures |> dplyr::filter((iso_value_1 > 0 & iso_value_2 == 0) | (iso_value_1 == 0 & iso_value_2 > 0)) |>
+non_DTUs <- SwitchList$isoformFeatures |> dplyr::filter((iso_value_1 > 0 & gene_value_2 == 0) | (gene_value_1 == 0 & iso_value_2 > 0)) |>
   dplyr::select(isoform_id, gene_id, gene_name, iso_value_1, iso_value_2, IF1, IF2)
 write_tsv(non_DTUs, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/FT_vs_RGC/non_DTUs.tsv")
 
