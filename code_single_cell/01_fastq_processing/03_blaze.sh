@@ -30,8 +30,8 @@ echo $sample
 
 source activate flair
 
-input_fastq=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/restrander_output/${sample}.fastq.gz
-output_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/restrander
+input_fastq=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/01_input_fastqs/${sample}.fastq.gz
+output_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw
 mkdir -p $output_dir
 output_prefix=${output_dir}/${sample}_
 
