@@ -70,24 +70,32 @@ SwitchList$isoformFeatures <- merge(SwitchList$isoformFeatures, annotLookup, by=
 head(SwitchList$isoformFeatures)
 SwitchList$isoformFeatures$gene_name <- SwitchList$isoformFeatures$ensembl_gene_name
 
-#check if "NF1" is in SwitchList$isoformFeatures$gene_name
-"NF1" %in% SwitchList$isoformFeatures$gene_name
+write_tsv(SwitchList$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/FT_vs_RGC/all_isoform_Features.tsv")
 
-SwitchList$isoformFeatures |> dplyr::filter(gene_name == "NF1") |> 
-  dplyr::select(isoform_id, gene_name, dIF, isoform_switch_q_value) |> arrange(dIF)
+#only where one of the conditions has iso_value > 0 and the other = 0
 
-SwitchList$isoformFeatures |> dplyr::filter(gene_name == "NF1") |> 
-  dplyr::select(isoform_id, gene_name, dIF, iso_value_1,
-                iso_value_2, IF1, IF2) 
-  
-##get me a list of genes that have IF1 NaN and IF2 > 0 
-SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
-  dplyr::select(isoform_id, gene_name, dIF, isoform_switch_q_value,
-                iso_value_2, IF1, IF2) |> nrow() 
-#6772 
-SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
-  dplyr::select(gene_name) |> unique() |> nrow()
-#3093
+non_DTUs <- SwitchList$isoformFeatures |> dplyr::filter((iso_value_1 > 0 & iso_value_2 == 0) | (iso_value_1 == 0 & iso_value_2 > 0)) |>
+  dplyr::select(isoform_id, gene_id, gene_name, iso_value_1, iso_value_2, IF1, IF2)
+write_tsv(non_DTUs, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/FT_vs_RGC/non_DTUs.tsv")
+
+# #check if "NF1" is in SwitchList$isoformFeatures$gene_name
+# "NF1" %in% SwitchList$isoformFeatures$gene_name
+# 
+# SwitchList$isoformFeatures |> dplyr::filter(gene_name == "NF1") |> 
+#   dplyr::select(isoform_id, gene_name, dIF, isoform_switch_q_value) |> arrange(dIF)
+# 
+# SwitchList$isoformFeatures |> dplyr::filter(gene_name == "NF1") |> 
+#   dplyr::select(isoform_id, gene_name, dIF, iso_value_1,
+#                 iso_value_2, IF1, IF2) 
+#   
+# ##get me a list of genes that have IF1 NaN and IF2 > 0 
+# SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
+#   dplyr::select(isoform_id, gene_name, dIF, isoform_switch_q_value,
+#                 iso_value_2, IF1, IF2) |> nrow() 
+# #6772 
+# SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
+#   dplyr::select(gene_name) |> unique() |> nrow()
+# #3093
 
 
 
@@ -136,28 +144,6 @@ DEXSeq_SwitchList <- isoformSwitchTestDEXSeq(switchAnalyzeRlist = SwitchListFilt
                                              reduceToSwitchingGenes=TRUE)
 
 
-###add gene names 
-
-require("biomaRt")
-mart <- useMart("ENSEMBL_MART_ENSEMBL")
-mart <- useDataset("hsapiens_gene_ensembl", mart)
-
-
-annotLookup <- getBM(
-  mart=mart,
-  attributes=c( "ensembl_gene_id",
-                "hgnc_symbol"),
-  filter="ensembl_gene_id",
-  values=DEXSeq_SwitchList$isoformFeatures$gene_id,
-  uniqueRows=TRUE)
-
-colnames(annotLookup) <- c("gene_id", "ensembl_gene_name")
-
-
-DEXSeq_SwitchList$isoformFeatures <- merge(DEXSeq_SwitchList$isoformFeatures, annotLookup, by="gene_id", all.x=TRUE)
-
-head(DEXSeq_SwitchList$isoformFeatures)
-DEXSeq_SwitchList$isoformFeatures$gene_name <- DEXSeq_SwitchList$isoformFeatures$ensembl_gene_name
 #FDR cutoff = 0.05 by default
 
 output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/FT_vs_RGC"
@@ -186,20 +172,20 @@ sum(is.na(top_genes$gene_name))
 ###### MAKE SWITCH PLOTS #######
 ## FT vs RGC 
 
-output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu_FT_vs_RGC"
-pdf(paste0(output_plots_dir,"switch_FT_vs_RGC_top_500_dtu_events_genes.pdf"))
-for(gene_id in top_genes$gene_id){
-  plot <- switchPlot(
-    DEXSeq_SwitchList,
-    gene=gene_id,
-    condition1 = 'FT',
-    condition2 = 'RGC',
-    plotTopology=FALSE
-  ) 
-  
-}
-print(plot)
-dev.off()
+output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/FT_vs_RGC/"
+# pdf(paste0(output_plots_dir,"switch_FT_vs_RGC_top_500_dtu_events_genes.pdf"))
+# for(gene_id in top_genes$gene_id){
+#   plot <- switchPlot(
+#     DEXSeq_SwitchList,
+#     gene=gene_id,
+#     condition1 = 'FT',
+#     condition2 = 'RGC',
+#     plotTopology=FALSE
+#   ) 
+#   
+# }
+# print(plot)
+# dev.off()
 
 ## Volcano Plots ##
 DEXSeq_SwitchList_top_20 <- DEXSeq_SwitchList$isoformFeatures[order(abs(DEXSeq_SwitchList$isoformFeatures$isoform_switch_q_value)),]
@@ -209,9 +195,6 @@ DEXSeq_SwitchList_top_20 <- DEXSeq_SwitchList_top_20[abs(DEXSeq_SwitchList_top_2
 DEXSeq_SwitchList_top_20 <- DEXSeq_SwitchList_top_20[1:20,]
 
 pdf(paste0(output_plots_dir,"isoform_volcano.pdf"))
-
-
-
 p <- ggplot(data=DEXSeq_SwitchList$isoformFeatures, aes(x=dIF, y=-log10(isoform_switch_q_value))) +
   geom_point(
     aes( color=abs(dIF) > 0.1 & isoform_switch_q_value < 0.05 ), # default cutoff
@@ -235,7 +218,7 @@ nrow(DEXSeq_SwitchList$isoformFeatures |> filter(abs(dIF) > 0.1 & isoform_switch
 
 Volcano_df <- DEXSeq_SwitchList$isoformFeatures |> 
   dplyr::filter(condition_1 == "FT" & condition_2 == "RGC") |>
-  dplyr::filter(isoform_switch_q_value < 0.05 & dIF > 0.1)
+  dplyr::filter(isoform_switch_q_value < 0.05 & abs(dIF) > 0.1)
 
 write_tsv(Volcano_df,
           file =  paste0(output_data_dir, "FT_vs_RGC_switches.tsv"))
@@ -264,7 +247,7 @@ dev.off()
 
 switch_vs_degs_FT_vs_RGC <- DEXSeq_SwitchList$isoformFeatures |> 
   dplyr::filter(condition_1 == "FT" & condition_2 == "RGC") |>
-  dplyr::filter(abs(dIF)> 0.5 & abs(gene_log2_fold_change) < 2)
+  dplyr::filter(abs(dIF) > 0.1 & abs(gene_log2_fold_change) < 2 & isoform_switch_q_value < 0.05)
 
 write_tsv(switch_vs_degs_FT_vs_RGC ,
           file = paste0(output_data_dir,"switch_vs_degs_FT_vs_RGC.tsv"))
@@ -273,9 +256,10 @@ write_tsv(switch_vs_degs_FT_vs_RGC ,
 
 ########## MICROEXONS ###############
 
+
 exons <- as.data.frame(DEXSeq_SwitchList$exons)
 
-microexons <- exons |> dplyr::filter(width <= 27)
+microexons <- exons |> dplyr::filter(width < 27)
 
 #remove version number from gene_id
 microexons$gene_id <- gsub("\\..*", "", microexons$gene_id)
@@ -287,7 +271,7 @@ microexons$gene_name <- microexons$ensembl_gene_name
 #all microexons found in all genes that are expressed in the samples. 
 write_tsv(microexons, paste0(output_data_dir, "/microexons/all_micro_exons.tsv"))
 
-DEXSeq <- DEXSeq_SwitchList$isoformFeatures |>  filter(isoform_switch_q_value < 0.05 & dIF >= 0.01) |> 
+DEXSeq <- DEXSeq_SwitchList$isoformFeatures |>  filter(isoform_switch_q_value < 0.05 & abs(dIF) > 0.1) |> 
   dplyr::select(isoform_id, dIF, isoform_switch_q_value,gene_id, gene_name, condition_1, condition_2)
 
 ## all microexons found in genes that have some isoform that showed differential usage across any pairwise comparison

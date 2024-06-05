@@ -3,6 +3,8 @@ library(tximeta)
 library(readr)
 library(sessioninfo)
 
+
+
 # # names condition
 # # 1     DG-WT-hRGC       RGC
 # # 2   EP1-BRN3B-RO   RO_D209
@@ -293,6 +295,9 @@ switch_vs_degs_ROD209_vs_ROD45 <- DEXSeq_SwitchList$isoformFeatures |>
   dplyr::filter(abs(dIF)> 0.5 & abs(gene_log2_fold_change) < 2)
 write_tsv(switch_vs_degs_ROD209_vs_ROD45,
           file = paste0(output_data_dir,"switch_vs_degs_ROD209_vs_ROD45.tsv"))
+
+
+
 
 
 ########## MICROEXONS ###############
