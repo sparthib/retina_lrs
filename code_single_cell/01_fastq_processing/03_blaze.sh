@@ -7,8 +7,8 @@
 #SBATCH --job-name=blaze
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/blaze/blaze.%a.txt
-#SBATCH -e logs/blaze/blaze.%a.txt
+#SBATCH -o logs/blaze/raw_high_sensitivity.%a.txt
+#SBATCH -e logs/blaze/raw_high_sensitivity.%a.txt
 #SBATCH --array=1-4
 #SBATCH --time=7-00:00:00
 
@@ -31,13 +31,13 @@ echo $sample
 source activate flair
 
 input_fastq=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/01_input_fastqs/${sample}.fastq.gz
-output_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw
+output_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity
 mkdir -p $output_dir
 output_prefix=${output_dir}/${sample}_
 
 echo "processing input fastq"
 blaze --expect-cells $num_cells --output-prefix $output_prefix \
---threads $SLURM_CPUS_PER_TASK  $input_fastq  
+--threads $SLURM_CPUS_PER_TASK  $input_fastq  --high-sensitivity-mode
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
