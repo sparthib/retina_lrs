@@ -15,15 +15,15 @@ bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/
 bam_dir <- paste0(bam_dir, sample, "_primary_over_30_chr_only_sorted.bam")
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
 
-output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/", sample, "/")
+output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/track_reads/", sample, "/")
 print(sample)
 
 se_read_class <- bambu(reads = paste0(bam_dir),
                      annotations = annotation,
                      genome = fa.file,
-                     discovery = FALSE, quant = FALSE, 
                      rcOutDir = output_dir,
-                     lowMemory = TRUE)
+                     lowMemory = TRUE,
+                     trackReads = TRUE)
 
 
 sessioninfo::session_info()
