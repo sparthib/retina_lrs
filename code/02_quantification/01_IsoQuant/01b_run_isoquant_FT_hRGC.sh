@@ -28,21 +28,19 @@ BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/p
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz
 
-EP1_BRN3B_RO=$BAM_FOLDER/EP1-BRN3B-RO_primary_over_30_chr_only_sorted.bam
-EP1_WT_hRO_2=$BAM_FOLDER/EP1-WT_hRO_2_primary_over_30_chr_only_sorted.bam
-EP1_WT_ROs_D45=$BAM_FOLDER/EP1-WT_ROs_D45_primary_over_30_chr_only_sorted.bam
-H9_BRN3B_hRO_2=$BAM_FOLDER/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam
-H9_BRN3B_RO=$BAM_FOLDER/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam
-H9_CRX_hRO_2=$BAM_FOLDER/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam
-H9_CRX_ROs_D45=$BAM_FOLDER/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam
+H9_FT_1=$BAM_FOLDER/H9-FT_1_primary_over_30_chr_only_sorted.bam
+H9_FT_2=$BAM_FOLDER/H9-FT_2_primary_over_30_chr_only_sorted.bam
+H9_hRGC_1=$BAM_FOLDER/H9-hRGC_1_primary_over_30_chr_only_sorted.bam
+H9_hRGC_2=$BAM_FOLDER/H9-hRGC_2_primary_over_30_chr_only_sorted.bam
+
 
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py --reference $REFERENCE_FASTA --data_type ont --genedb $REFERENCE_GTF \
---bam $EP1_BRN3B_RO $EP1_WT_hRO_2 $EP1_WT_ROs_D45 $H9_BRN3B_hRO_2 $H9_BRN3B_RO $H9_CRX_hRO_2 $H9_CRX_ROs_D45 \
-  --output $OUTPUT_FOLDER --clean_start --count_exons -t ${SLURM_CPUS_PER_TASK} --complete_genedb \
-  --sqanti_output --check_canonical 
+--bam $H9_FT_1 $H9_FT_2 $H9_hRGC_1 $H9_hRGC_2  \
+  --output $OUTPUT_FOLDER --clean_start --count_exons -t ${SLURM_CPUS_PER_TASK} \
+  --complete_genedb --sqanti_output --check_canonical
   
   
 conda deactivate
