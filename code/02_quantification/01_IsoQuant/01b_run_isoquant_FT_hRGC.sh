@@ -7,8 +7,8 @@
 #SBATCH --job-name=isoquant
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/isoquant_ROs.txt
-#SBATCH -e logs/isoquant_ROs.txt
+#SBATCH -o logs/isoquant_FT_RGC.txt
+#SBATCH -e logs/isoquant_FT_RGC.txt
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
