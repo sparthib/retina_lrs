@@ -39,7 +39,7 @@ SwitchList <- importRdata(isoformCountMatrix   = counts,
                           isoformRepExpression = cpm,
                           designMatrix         = myDesign,
                           isoformExonAnnoation = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/extended_annotations.gtf",
-                          isoformNtFasta       = "/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa",
+                          isoformNtFasta       = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/gffread_fasta.fa",
                           removeNonConvensionalChr = TRUE,
                           ignoreAfterBar = TRUE,
                           ignoreAfterPeriod = FALSE,
@@ -52,7 +52,6 @@ SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "", SwitchList$isoformFeatur
 require("biomaRt")
 mart <- useMart("ENSEMBL_MART_ENSEMBL")
 mart <- useDataset("hsapiens_gene_ensembl", mart)
-
 
 annotLookup <- getBM(
   mart=mart,
@@ -143,7 +142,6 @@ SwitchListFiltered$isoformFeatures |> dplyr::filter(gene_name == "NF1") |> nrow(
 DEXSeq_SwitchList <- isoformSwitchTestDEXSeq(switchAnalyzeRlist = SwitchListFiltered,  
                                              reduceToSwitchingGenes=TRUE)
 
-
 #FDR cutoff = 0.05 by default
 
 output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/FT_vs_RGC"
@@ -173,19 +171,19 @@ sum(is.na(top_genes$gene_name))
 ## FT vs RGC 
 
 output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/FT_vs_RGC/"
-# pdf(paste0(output_plots_dir,"switch_FT_vs_RGC_top_500_dtu_events_genes.pdf"))
-# for(gene_id in top_genes$gene_id){
-#   plot <- switchPlot(
-#     DEXSeq_SwitchList,
-#     gene=gene_id,
-#     condition1 = 'FT',
-#     condition2 = 'RGC',
-#     plotTopology=FALSE
-#   ) 
-#   
-# }
-# print(plot)
-# dev.off()
+pdf(paste0(output_plots_dir,"switch_FT_vs_RGC_top_500_dtu_events_genes.pdf"))
+for(gene_id in top_genes$gene_id){
+  plot <- switchPlot(
+    DEXSeq_SwitchList,
+    gene=gene_id,
+    condition1 = 'FT',
+    condition2 = 'RGC',
+    plotTopology=FALSE
+  )
+
+}
+print(plot)
+dev.off()
 
 ## Volcano Plots ##
 DEXSeq_SwitchList_top_20 <- DEXSeq_SwitchList$isoformFeatures[order(abs(DEXSeq_SwitchList$isoformFeatures$isoform_switch_q_value)),]
@@ -287,14 +285,5 @@ nrow(microexons_DTU_isoforms)
 
 write_tsv(microexons_DTU_isoforms, paste0(output_data_dir, "/microexons/microexons_DTU_isoforms.tsv"))
 
-
-
-###### Check for NF1 #######
-
-output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/FT_vs_RGC"
-
-isoform_features <- read_tsv(paste0(output_data_dir, "/FT_vs_RGCDEXSeqSwitchList.tsv"))
-
-isoform_features |> filter(gene_name == "NF1") |> select(isoform_id, gene_name, dIF, isoform_switch_q_value) |> arrange(dIF)
 
 

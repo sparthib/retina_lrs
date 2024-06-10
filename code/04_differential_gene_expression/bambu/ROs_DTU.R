@@ -3,8 +3,6 @@ library(tximeta)
 library(readr)
 library(sessioninfo)
 
-
-
 bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation"
 
 #read counts_transcript.txt table from bambu_dir
@@ -29,7 +27,6 @@ colnames(cpm)[1] <- "isoform_id"
 cpm <- cpm[, -2]
 head(cpm)
 
-
 myDesign  <- data.frame(sampleID = c("EP1.BRN3B.RO" , "EP1.WT_hRO_2", "EP1.WT_ROs_D45", 
                                      "H9.BRN3B_hRO_2",  "H9.BRN3B.RO", "H9.CRX_hRO_2", "H9.CRX_ROs_D45") ,
                         condition = c("RO_D200", "RO_D100", "RO_D45", "RO_D100", "RO_D200", "RO_D100", "RO_D45"),
@@ -39,18 +36,16 @@ SwitchList <- importRdata(isoformCountMatrix   = counts,
                           isoformRepExpression = cpm,
                           designMatrix         = myDesign,
                           isoformExonAnnoation = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/extended_annotations.gtf",
-                          isoformNtFasta       = "/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa",
+                          isoformNtFasta       = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/gffread_fasta.fa",
                           removeNonConvensionalChr = TRUE,
                           ignoreAfterBar = TRUE,
                           ignoreAfterPeriod = FALSE,
                           showProgress = TRUE)
 
-
 #remove version number from gene_id
 SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "", SwitchList$isoformFeatures$gene_id)
 
 ###add gene names 
-
 require("biomaRt")
 mart <- useMart("ENSEMBL_MART_ENSEMBL")
 mart <- useDataset("hsapiens_gene_ensembl", mart)
@@ -72,28 +67,24 @@ SwitchList$isoformFeatures <- merge(SwitchList$isoformFeatures, annotLookup, by=
 head(SwitchList$isoformFeatures)
 SwitchList$isoformFeatures$gene_name <- SwitchList$isoformFeatures$ensembl_gene_name
 
-# > unique(SwitchList$isoformFeatures$condition_1)
+# unique(SwitchList$isoformFeatures$condition_1)
 # [1] "RO_D100" "RO_D200"
 # > unique(SwitchList$isoformFeatures$condition_2)
 # [1] "RO_D200" "RO_D45" 
 
-D100 vs D45 
-D200 vs D45
-D100 vs D200
 
-
-#check if "NF1" is in SwitchList$isoformFeatures$gene_name
-"NF1" %in% SwitchList$isoformFeatures$gene_name
-
-SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
-  dplyr::select(isoform_id, gene_name, dIF, isoform_switch_q_value,
-                iso_value_2, IF1, IF2,
-                condition_1, condition_2) |> nrow() 
-#38515
-
-SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
-  dplyr::select(gene_name) |> unique() |> nrow()
-#5071
+# #check if "NF1" is in SwitchList$isoformFeatures$gene_name
+# "NF1" %in% SwitchList$isoformFeatures$gene_name
+# 
+# SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
+#   dplyr::select(isoform_id, gene_name, dIF, isoform_switch_q_value,
+#                 iso_value_2, IF1, IF2,
+#                 condition_1, condition_2) |> nrow() 
+# #38515
+# 
+# SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
+#   dplyr::select(gene_name) |> unique() |> nrow()
+# #5071
 
 SwitchListFiltered <- preFilter(
   switchAnalyzeRlist = SwitchList,
@@ -102,20 +93,12 @@ SwitchListFiltered <- preFilter(
   removeSingleIsoformGenes = TRUE
 )
 
-
-SwitchListFiltered$isoformFeatures |> dplyr::filter(gene_name == "NF1") |> 
-  nrow()
-
 #split by conditions 
 
 SwitchList_D100_D45 <- SwitchList
 SwitchList_D200_D45 <- SwitchList
 SwitchList_D100_D200 <- SwitchList
 
-
-write_tsv(SwitchList_D100_D45$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/all_isoform_Features.tsv")
-write_tsv(SwitchList_D200_D45$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/all_isoform_Features.tsv")
-write_tsv(SwitchList_D100_D200$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/all_isoform_Features.tsv")
 
 
 SwitchList_D100_D45$isoformFeatures <- SwitchList$isoformFeatures |> 
@@ -127,6 +110,9 @@ SwitchList_D200_D45$isoformFeatures <- SwitchList$isoformFeatures |>
 SwitchList_D100_D200$isoformFeatures <- SwitchList$isoformFeatures |> 
   dplyr::filter(condition_1 == "RO_D100" & condition_2 == "RO_D200")
 
+write_tsv(SwitchList_D100_D45$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/all_isoform_Features.tsv")
+write_tsv(SwitchList_D200_D45$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/all_isoform_Features.tsv")
+write_tsv(SwitchList_D100_D200$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/all_isoform_Features.tsv")
 
 non_DTUs_D100_D45 <- SwitchList_D100_D45$isoformFeatures |> dplyr::filter((iso_value_1 > 0 & gene_value_2 == 0) | (gene_value_1 == 0 & iso_value_2 > 0)) |>
   dplyr::select(isoform_id, gene_id, gene_name, iso_value_1, iso_value_2, IF1, IF2)
@@ -178,8 +164,6 @@ DEX_Seq_output_writing <- function(dexseq_switchlist, output_dir) {
             file = paste0(output_dir, "DEXSeqSwitchList.tsv"))
   dexseq_switchlist$isoformCountMatrix |> write_tsv(file =  paste0(output_dir,  "isoform_counts.tsv"))
   dexseq_switchlist$isoformRepExpression |> write_tsv(file =  paste0(output_dir, "isoform_abundance.tsv"))
-
-  
   }
 
 DEX_Seq_output_writing(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/")
@@ -320,3 +304,89 @@ microexon_data(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/processed
 microexon_data(DEXSeq_SwitchList_D200_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/")
 microexon_data(DEXSeq_SwitchList_D100_D200, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/")
 
+
+###### MAKE SWITCH PLOTS #######
+
+## D100 vs D45
+top_genes_D100_D45 <- extractTopSwitches(DEXSeq_SwitchList_D100_D45, n=500, 
+                                alpha = 0.05,
+                                dIFcutoff = 0.1)
+output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/"
+write_tsv(top_genes_D100_D45,
+          file = paste0(output_data_dir,  "top_genes.tsv"))
+
+#count number of nas in gene_name
+sum(is.na(top_genes_D100_D45$gene_name))
+
+
+output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D45/"
+pdf(paste0(output_plots_dir,"switch_RO_D100_vs_RO_D45_MAP4.pdf"))
+plot <- switchPlot(
+  DEXSeq_SwitchList_D100_D45,
+  gene="MAP4",
+  plotTopology=FALSE
+)
+print(plot)
+dev.off()
+
+pdf(paste0(output_plots_dir,"switch_RO_D100_vs_RO_D45_top_500_dtu_events_genes.pdf"))
+for(gene_id in top_genes_D100_D45$gene_id){
+  plot <- switchPlot(
+    DEXSeq_SwitchList_D100_D45,
+    gene=gene_id,
+    plotTopology=FALSE
+  )
+  
+}
+print(plot)
+dev.off()
+
+## D200 vs D45
+
+top_genes_D200_D45 <- extractTopSwitches(DEXSeq_SwitchList_D200_D45, n=500, 
+                                         alpha = 0.05,
+                                         dIFcutoff = 0.1)
+output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/"
+write_tsv(top_genes_D200_D45,
+          file = paste0(output_data_dir,  "top_genes.tsv"))
+
+#count number of nas in gene_name
+sum(is.na(top_genes_D200_D45$gene_name))
+
+
+output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D200_vs_RO_D45/"
+pdf(paste0(output_plots_dir,"switch_RO_D200_vs_RO_D45_top_500_dtu_events_genes.pdf"))
+for(gene_id in top_genes_D200_D45$gene_id){
+  plot <- switchPlot(
+    DEXSeq_SwitchList_D200_D45,
+    gene=gene_id,
+    plotTopology=FALSE
+  )
+  
+}
+print(plot)
+dev.off()
+
+# D100 vs D200
+top_genes_D100_D200 <- extractTopSwitches(DEXSeq_SwitchList_D100_D200, n=500, 
+                                         alpha = 0.05,
+                                         dIFcutoff = 0.1)
+output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/"
+write_tsv(top_genes_D100_D200,
+          file = paste0(output_data_dir,  "top_genes.tsv"))
+
+#count number of nas in gene_name
+sum(is.na(top_genes_D100_D200$gene_name))
+
+output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D200/"
+pdf(paste0(output_plots_dir,"switch_RO_D100_vs_RO_D200_top_500_dtu_events_genes.pdf"))
+for(gene_id in top_genes_D100_D200$gene_id){
+  plot <- switchPlot(
+    DEXSeq_SwitchList_D100_D200,
+    gene=gene_id,
+    plotTopology=FALSE
+  )
+  
+}
+print(plot)
+dev.off()

@@ -10,6 +10,8 @@ colnames(cpm)[1] <- "isoform_id"
 cpm <- cpm[, -2]
 head(cpm)
 
+cpm |> dplyr::filter(isoform_id == "ENST00000687027.1")
+
 targets  <- data.frame(Sample = c("H9.FT_1","H9.FT_2", "H9.hRGC_1", "H9.hRGC_2") ,
                         Group = c( "FT", "FT", "RGC", "RGC"),
                        Replicate = c(1, 2, 1, 2),
@@ -21,7 +23,7 @@ y <- DGEList(counts = cpm[2:5],
              group = targets$Group,
              genes = cpm[1])
 
-keep <- filterByExpr(y)
+keep <- filterByExpr(y, )
 table(keep)
 y <- y[keep, , keep.lib.sizes=FALSE]
 
@@ -59,6 +61,8 @@ summary(is.de)
 # The top set of most significant differentially expressed transcripts can be examined with top
 # Tags, with a positive log-fold change representing up-regulation in expression levels in FT
 # over RGC.
+
+1*FT -1*RGC
 
 tt <- topTags(qlf,n = Inf)
 nrow(tt) #10261
