@@ -4,7 +4,7 @@
 #SBATCH -p shared
 #SBATCH --mem=150G
 #SBATCH --cpus-per-task=20
-#SBATCH --job-name=isoquant
+#SBATCH --job-name=isoquant_FT_RGC
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/isoquant_FT_RGC.txt
@@ -34,7 +34,7 @@ H9_hRGC_1=$BAM_FOLDER/H9-hRGC_1_primary_over_30_chr_only_sorted.bam
 H9_hRGC_2=$BAM_FOLDER/H9-hRGC_2_primary_over_30_chr_only_sorted.bam
 
 
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py --reference $REFERENCE_FASTA --data_type ont --genedb $REFERENCE_GTF \
