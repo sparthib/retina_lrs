@@ -28,8 +28,8 @@ REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.c
 REFERENCE_TRANSCRIPTOME=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa
 
 #sample transcriptome
-ROs_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/extended_annotation.gtf
-FT_vs_RGC_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/extended_annotation.gtf
+ROs_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/extended_annotations.gtf
+FT_vs_RGC_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/extended_annotations.gtf
 # GTF (default): by default, SQANTI3 expects the transcriptome to be provided as a GTF file, 
 # and we recommend to stick to this format if your transcriptome construction pipeline allows it
 RO_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/sqanti3_qc
