@@ -6,8 +6,8 @@
 #SBATCH --job-name=sqanti
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/sqanti.%a.txt
-#SBATCH -e logs/sqanti.%a.txt
+#SBATCH -o logs/sqanti.txt
+#SBATCH -e logs/sqanti.txt
 #SBATCH --time=7-00:00:00
 
 
