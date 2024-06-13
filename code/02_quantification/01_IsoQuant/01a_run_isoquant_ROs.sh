@@ -2,7 +2,7 @@
 
 #SBATCH -p shared
 #SBATCH -p shared
-#SBATCH --mem=250G
+#SBATCH --mem=350G
 #SBATCH --cpus-per-task=20
 #SBATCH --job-name=isoquant_RO
 #SBATCH --mail-user=sparthi1@jhu.edu
