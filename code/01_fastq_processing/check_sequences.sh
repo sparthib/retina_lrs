@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=10G
-#SBATCH -c 2
+#SBATCH --mem=40G
+#SBATCH -c 10
 #SBATCH --job-name=check_sequence
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
