@@ -1,12 +1,15 @@
+import argparse
+import gzip
 from Bio import SeqIO
 
 def read_fasta(file_path):
     fasta_dict = {}
-    for record in SeqIO.parse(file_path, "fasta"):
-        if record.id in fasta_dict:
-            fasta_dict[record.id].append(str(record.seq))
-        else:
-            fasta_dict[record.id] = [str(record.seq)]
+    with gzip.open(file_path, "rt") as handle:
+        for record in SeqIO.parse(handle, "fasta"):
+            if record.id in fasta_dict:
+                fasta_dict[record.id].append(str(record.seq))
+            else:
+                fasta_dict[record.id] = [str(record.seq)]
     return fasta_dict
 
 def compare_sequences(fasta_dict):
@@ -16,8 +19,12 @@ def compare_sequences(fasta_dict):
             discrepancies[read_id] = sequences
     return discrepancies
 
-def main(file_path):
-    fasta_dict = read_fasta(file_path)
+def main():
+    parser = argparse.ArgumentParser(description="Compare FASTA sequences with the same read ID.")
+    parser.add_argument("file_path", help="Path to the gzipped FASTA file.")
+    args = parser.parse_args()
+
+    fasta_dict = read_fasta(args.file_path)
     discrepancies = compare_sequences(fasta_dict)
     if discrepancies:
         print("Discrepancies found:")
@@ -29,5 +36,4 @@ def main(file_path):
         print("All sequences with the same read ID are identical.")
 
 if __name__ == "__main__":
-    file_path = "your_fasta_file.fasta"
-    main(file_path)
+    main()
