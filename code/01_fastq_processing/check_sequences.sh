@@ -3,7 +3,7 @@
 #SBATCH -p shared
 #SBATCH --mem=10G
 #SBATCH -c 2
-#SBATCH --job-name=fastq2bam
+#SBATCH --job-name=check_sequence
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH --array=7
