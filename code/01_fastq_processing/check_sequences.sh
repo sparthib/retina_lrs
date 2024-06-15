@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=40G
+#SBATCH --mem=70G
 #SBATCH -c 10
 #SBATCH --job-name=check_sequence
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH --array=9-12
+#SBATCH --array=5
 #SBATCH --output=logs/check_sequence.%a.log
 #SBATCH --error=logs/check_sequence.%a.log
 #SBATCH -t 7-00:00:00
