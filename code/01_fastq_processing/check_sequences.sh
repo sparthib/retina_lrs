@@ -27,7 +27,7 @@ echo "$sample"
 input_dir="/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/$sample.fastq.gz"
 
 source activate check_seq
-python check_sequence.py $input_file
+python check_sequences.py $input_file
 
 conda deactivate 
 echo "**** Job ends ****"
