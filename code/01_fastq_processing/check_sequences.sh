@@ -24,7 +24,7 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
-input_dir="/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/$sample.fastq.gz"
+input_file="/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/$sample.fastq.gz"
 
 source activate check_seq
 python check_sequences.py $input_file
