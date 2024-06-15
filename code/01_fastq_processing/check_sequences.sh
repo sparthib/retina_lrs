@@ -6,7 +6,7 @@
 #SBATCH --job-name=check_sequence
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH --array=10
+#SBATCH --array=9-12
 #SBATCH --output=logs/check_sequence.%a.log
 #SBATCH --error=logs/check_sequence.%a.log
 #SBATCH -t 7-00:00:00
@@ -26,8 +26,9 @@ sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 input_dir="/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/$sample.fastq.gz"
 
-ml load python 
+source activate check_seq
 python check_sequence.py $input_file
 
+conda deactivate 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
