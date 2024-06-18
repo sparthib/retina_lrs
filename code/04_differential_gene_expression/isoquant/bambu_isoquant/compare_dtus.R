@@ -15,12 +15,19 @@ compare_datasets <- function(compare){
   isoquant_data <- isoquant_tsv |> select("gene_id", "isoform_id" ,
                                           "dIF", "isoform_switch_q_value",
                                           "ensembl_gene_name", "condition_1", "condition_2")
+  
   bambu_data <- bambu_tsv |> select("gene_id", "isoform_id" ,
                                     "dIF", "isoform_switch_q_value",
                                     "ensembl_gene_name", "condition_1", "condition_2")   
   #filter out the isoforms with q value < 0.05 and abs(dIF) > 0.1
   isoquant_data <- isoquant_data |> filter(isoform_switch_q_value < 0.05 & abs(dIF) > 0.1)
+  isoquant_data <- isoquant_data[!duplicated(isoquant_data),]
+  print("isoquant",str(nrow(isoquant_data)))
   bambu_data <- bambu_data |> filter(isoform_switch_q_value < 0.05 & abs(dIF) > 0.1)
+  #remove duplicate rows
+  bambu_data <- bambu_data[!duplicated(bambu_data),]
+  print("bambu",str(nrow(bambu_data)))
+  
   
   colnames(isoquant_data) <- c("gene_id", "isoform_id", "isoquant_dIF", "isoquant_isoform_switch_q_value",
                                "ensembl_gene_name", "isoquant_condition_1", "isoquant_condition_2")
@@ -52,8 +59,14 @@ RO_D200_vs_RO_D45 <- read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/Iso
 RO_D100_vs_RO_D200 <- read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu_isoquant/RO_D100_vs_RO_D200/common_isoforms.tsv")
 
 
+nrow(FT_vs_RGC)
+nrow(RO_D100_vs_RO_D45)
 nrow(RO_D200_vs_RO_D45)
-RO_D200_vs_RO_D45$ensembl_gene_name.x
+nrow(RO_D100_vs_RO_D200)
+FT_vs_RGC$ensembl_gene_name.x
+
+nrow(RO_D200_vs_RO_D45)
+RO_D200_vs_RO_D45$isoform_id
 
 # [1] "GTF2IRD1" "CLK1"     "CLK1"     "PLEKHB1"  "GRAMD1B"  "GUCA1A"  
 # [7] "ELN"      "LLGL2"    "DGKD"     "GNB1"     "LIPE"     "PAPOLA"  
