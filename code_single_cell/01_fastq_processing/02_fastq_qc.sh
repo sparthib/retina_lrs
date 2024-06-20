@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/nanofilt/fastq_qc.%a.txt
 #SBATCH -e logs/nanofilt/fastq_qc.%a.txt
-#SBATCH --array=1-4
+#SBATCH --array=5-12
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
