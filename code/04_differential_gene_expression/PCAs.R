@@ -66,19 +66,27 @@ ROs_isoquant_groups <- c("RO_D200", "RO_D45", "RO_D100",
 # make pc plot function
 output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/pca/"
 pc_plot <- function(tpm, samples, groups, name){ 
-  pc <- prcomp(t(log2(tpm+1)), scale = TRUE)
-  pcr <- data.frame(pc$x[,1:2])
+  # Perform PCA
+  pc <- prcomp(t(log2(tpm + 1)), scale = TRUE)
+  pcr <- data.frame(pc$x[, 1:2])
   
-  pdf(paste0(output_plots_dir, name, "/isoform_level_pca.pdf"), width = 10, height = 5)
-  p <- ggplot(pcr, aes(PC1, PC2, color=groups)) + 
-    geom_point(size=4) + 
+  # Specify the PDF output file and dimensions
+  pdf(paste0(output_plots_dir, name, "/isoform_level_pca.pdf"), width = 12, height = 6)
+  
+  # Create the plot
+  p <- ggplot(pcr, aes(PC1, PC2, color = groups)) + 
+    geom_point(size = 4) + 
     theme_bw() +
     ggtitle("PCA on Isoform Expression of all genes") + 
-    geom_text(aes(label=rownames(pcr)), hjust=0, vjust=0, size=2) +
+    geom_text(aes(label = rownames(pcr)), hjust = 0, vjust = 0, size = 2) +
     geom_jitter()
+  
+  # Print the plot to the PDF device
   print(p)
+  
+  # Close the PDF device
   dev.off()
-  }
+}
 
 pc_plot(FT_vs_RGC_bambu_tpm, FT_vs_RGC_bambu_samples, FT_vs_RGC_bambu_groups, "bambu")
 pc_plot(ROs_bambu_tpm, ROs_bambu_samples, ROs_bambu_groups, "bambu")
@@ -138,20 +146,32 @@ ROs_isoquant_gene_groups <- c("RO_D200", "RO_D45", "RO_D100",
                                      "RO_D200", "RO_D100", "RO_D45", "RO_D100")
 
 # make pc plot function
+# Load necessary library
+
+
 pc_plot_gene <- function(tpm, samples, groups, name){ 
-  pc <- prcomp(t(log2(tpm+1)), scale = TRUE)
-  pcr <- data.frame(pc$x[,1:2])
+  pc <- prcomp(t(log2(tpm + 1)), scale = TRUE)
+  pcr <- data.frame(pc$x[, 1:2])
   
-  pdf(paste0(output_plots_dir, name, "/gene_level_pca.pdf"), width = 10, height = 5)
-  p <- ggplot(pcr, aes(PC1, PC2, color=groups)) + 
-    geom_point(size=4) + 
+  # Specify the PDF output file and dimensions
+  pdf(paste0(output_plots_dir, name, "/gene_level_pca.pdf"), width = 12, height = 6)
+  
+  # Create the plot
+  p <- ggplot(pcr, aes(PC1, PC2, color = groups)) + 
+    geom_point(size = 4) + 
     theme_bw() +
     ggtitle("PCA on Gene Expression") + 
-    geom_text(aes(label=rownames(pcr)), hjust=0, vjust=0, size=2) +
+    geom_text(aes(label = rownames(pcr)), hjust = 0, vjust = 0, size = 2) +
     geom_jitter()
+  
+  # Print the plot to the PDF device
   print(p)
+  
+  # Close the PDF device
   dev.off()
 }
+
+
 
 pc_plot_gene(FT_vs_RGC_bambu_gene_tpm, FT_vs_RGC_bambu_gene_samples, FT_vs_RGC_bambu_gene_groups, "bambu")
 pc_plot_gene(ROs_bambu_gene_tpm, ROs_bambu_gene_samples, ROs_bambu_gene_groups, "bambu")
