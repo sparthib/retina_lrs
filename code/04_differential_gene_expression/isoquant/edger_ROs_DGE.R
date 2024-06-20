@@ -1,20 +1,19 @@
 library(edgeR)
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation"
-counts <- read.table(file.path(bambu_dir, "counts_gene.txt"),
+isoquant_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs/OUT/"
+counts <- read.table(file.path(isoquant_dir,  "OUT.gene_grouped_tpm.tsv"),
                      header = TRUE)
 
 
-#remove "_primary_over_30_chr_only_sorted" in column names 
-colnames(counts) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(counts))
-colnames(counts)[1] <- "gene_id"
-head(counts)
+colnames(counts) <- c("gene_id", "EP_1_BRN3B_RO",  "EP1_WT_ROs_D45", "EP1_WT_hRO_2",
+                      "H9_BRN3B_RO", "H9_BRN3B_hRO_2", "H9_CRX_ROs_D45", "H9_CRX_hRO_2")
 
 
-group <- factor(c("RO_D200", "RO_D100", "RO_D45", "RO_D100", "RO_D200", "RO_D100", "RO_D45"))
+
+group <- factor(c("RO_D200", "RO_D45", "RO_D100", "RO_D200", "RO_D100", "RO_D45", "RO_D100"))
 y <- DGEList(counts=counts, group=group, genes=counts$gene_id,
-             samples = c("EP1.BRN3B.RO" , "EP1.WT_hRO_2", "EP1.WT_ROs_D45", 
-                         "H9.BRN3B_hRO_2",  "H9.BRN3B.RO", "H9.CRX_hRO_2", "H9.CRX_ROs_D45"))
+             samples = c("EP_1_BRN3B_RO",  "EP1_WT_ROs_D45", "EP1_WT_hRO_2",
+                         "H9_BRN3B_RO", "H9_BRN3B_hRO_2", "H9_CRX_ROs_D45", "H9_CRX_hRO_2"))
 
 keep <- filterByExpr(y)
 table(keep)
@@ -64,9 +63,8 @@ for (i in 1:ncol(contr)){
   
   tt$table <- tt$table[order(tt$table$FDR),]
   
-  file <- paste0("/users/sparthib/retina_lrs/processed_data/dge/edgeR/bambu/ROs/", colnames(contr)[i], "_DGEs.tsv")
+  file <- paste0("/users/sparthib/retina_lrs/processed_data/dge/edgeR/isoquant/ROs/", colnames(contr)[i], "_DGEs.tsv")
   write.table(tt$table, file = file,
               sep = "\t", quote = FALSE, row.names = FALSE)
-  
   
 }
