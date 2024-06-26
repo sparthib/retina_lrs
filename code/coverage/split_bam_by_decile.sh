@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=10G
-#SBATCH -c 10
+#SBATCH --mem=30G
+#SBATCH -c 5
 #SBATCH --job-name=highqualbam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -38,3 +38,6 @@ do
     awk 'NR==FNR {reads[$1]; next} ($1 in reads) || ($1 ~ /^@/)' $decile_file - | \
     samtools view -Sb - > $output_bam
 done
+
+echo "**** Job ends ****"
+date +"%Y-%m-%d %T"
