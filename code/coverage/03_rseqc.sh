@@ -21,10 +21,12 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "****"
 
 ref_gene_model=/dcs04/hicks/data/sparthib/references/rseqc_gencode_44_comp.bed
+bam_paths=/users/sparthib/retina_lrs/code/coverage/H9-FT2_bam_paths.txt
+path_to_output=/users/sparthib/retina_lrs/plots/coverage/H9_FT2_deciles
+mkdir -p $path_to_output
 
 ml load rseqc/3.0.1
-
-geneBody_coverage.py -i $LONG_BAM_FILE -r $ref_gene_model -o $long_output/long_
+geneBody_coverage.py -i $bam_paths -r $ref_gene_model -o $path_to_output
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
