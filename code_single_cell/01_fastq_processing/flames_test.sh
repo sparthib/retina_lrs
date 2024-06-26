@@ -7,6 +7,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flames/10x_D200-EP1-1_B2.txt
 #SBATCH -e logs/flames/10x_D200-EP1-1_B2.txt
+#SBATCH --time=7-00:00:00
 
 
 echo "**** Job starts ****"
