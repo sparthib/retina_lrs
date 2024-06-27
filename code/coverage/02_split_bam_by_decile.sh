@@ -37,7 +37,7 @@ do
     # samtools view -h $input_bam | \
     # awk 'NR==FNR {reads[$1]; next} ($1 in reads) || ($1 ~ /^@/)' $decile_file - | \
     # samtools view -Sb - > $output_bam
-    samtools index $output_bam
+    samtools index $output_bam > ${output_bam}.bai
 done
 
 echo "**** Job ends ****"
