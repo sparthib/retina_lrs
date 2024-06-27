@@ -34,9 +34,10 @@ do
     output_bam=$decile_folder/H9_FT2_genome_decile_${i}.bam
 
     # Subset the BAM file based on the current decile file
-    samtools view -h $input_bam | \
-    awk 'NR==FNR {reads[$1]; next} ($1 in reads) || ($1 ~ /^@/)' $decile_file - | \
-    samtools view -Sb - > $output_bam
+    # samtools view -h $input_bam | \
+    # awk 'NR==FNR {reads[$1]; next} ($1 in reads) || ($1 ~ /^@/)' $decile_file - | \
+    # samtools view -Sb - > $output_bam
+    samtools index $output_bam
 done
 
 echo "**** Job ends ****"
