@@ -16,5 +16,6 @@ BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/p
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 
+ml load samtools 
 # Extract read ids from bam files
 samtools view -h $BAM_FOLDER/${sample}_primary_over_30_chr_only_sorted.bam | awk '{if($1 ~ /^@/ || $1 ~ /NH:i:1/) print $1}' > $BAM_FOLDER/${sample}_read_ids.txt
