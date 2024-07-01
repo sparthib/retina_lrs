@@ -18,4 +18,4 @@ echo "$sample"
 
 ml load samtools 
 # Extract read ids from bam files
-samtools view -h $BAM_FOLDER/${sample}_primary_over_30_chr_only_sorted.bam | awk '{if($1 ~ /^@/ || $1 ~ /NH:i:1/) print $1}' > $BAM_FOLDER/${sample}_read_ids.txt
+samtools view $BAM_FOLDER/${sample}_primary_over_30_chr_only_sorted.bam | awk '{if($1 ~ /^@/ || $1 ~ /NH:i:1/) print $1}' > $BAM_FOLDER/${sample}_read_ids.txt
