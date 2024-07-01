@@ -2,7 +2,7 @@
 #SBATCH -p shared
 #SBATCH --mem=50G
 #SBATCH --job-name=flames
-#SBATCH -c 10
+#SBATCH -c 20
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flames/10x_D200-EP1-1_B2.txt
