@@ -32,22 +32,27 @@ ROs_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extend
 FT_vs_RGC_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/extended_annotations.gtf
 # GTF (default): by default, SQANTI3 expects the transcriptome to be provided as a GTF file, 
 # and we recommend to stick to this format if your transcriptome construction pipeline allows it
-RO_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/sqanti3_qc
-FT_vs_RGC_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc
-mkdir -p $RO_OUTPUT_DIR
-mkdir -p $FT_vs_RGC_OUTPUT_DIR
+RO_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/
+FT_vs_RGC_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/
 
 source activate /users/sparthib/.conda/envs/SQANTI3
 SQANTI_DIR=~/SQANTI3-5.2.1
 
 python $SQANTI_DIR/sqanti3_qc.py  ${ROs_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
-    --skipORF -o ROs -d $RO_OUTPUT_DIR/sqanti3_qc --saturation \
-    -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits 
+     -o ROs -d $RO_OUTPUT_DIR/sqanti3_qc --saturation \
+    -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits \
+    --CAGE_peak /users/sparthib/retina_lrs/raw_data/cage/human.refTSS_v3.1.hg38.bed \
+    --polyA_motif /users/sparthib/retina_lrs/raw_data/polya/mouse_and_human.polyA_motif.txt \
+    --polyA_peak /users/sparthib/retina_lrs/raw_data/polya/atlas.clusters.2.0.GRCh38.96.bed 
      ##positional arguments
      
 python $SQANTI_DIR/sqanti3_qc.py  ${FT_vs_RGC_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
-    --skipORF -o FT_vs_RGC -d $FT_vs_RGC_OUTPUT_DIR/sqanti3_qc --saturation \
-    -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits
+     -o FT_vs_RGC -d $FT_vs_RGC_OUTPUT_DIR/sqanti3_qc --saturation \
+    -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits \
+    --CAGE_peak /users/sparthib/retina_lrs/raw_data/cage/human.refTSS_v3.1.hg38.bed \
+    --polyA_motif /users/sparthib/retina_lrs/raw_data/polya/mouse_and_human.polyA_motif.txt \
+    --polyA_peak /users/sparthib/retina_lrs/raw_data/polya/atlas.clusters.2.0.GRCh38.96.bed
+    
 
 
 echo "**** Job ends ****"
