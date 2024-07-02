@@ -3,7 +3,8 @@ library("sessioninfo")
 
 ## blaze FASTQ files 
 
-fastq <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/10x_D200-EP1-1_B2_matched_reads.fastq.gz")
+#have all input files uncompressed (Related to this issue: https://github.com/mritchielab/FLAMES/issues/31)
+fastq <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/10x_D200-EP1-1_B2_matched_reads.fastq")
 genome_fa <- file.path("/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa")
 annot <- file.path("/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation-short.gtf")
 minimap_path <- file.path("/users/sparthib/minimap2")
@@ -14,6 +15,7 @@ config_file <- FLAMES::create_config(config_dir, type = "sc_3end",
                                      do_barcode_demultiplex = FALSE,
                                      do_genome_alignment = FALSE,
                                      do_gene_quantification = FALSE,
+                                     bambu_isoform_identification = TRUE,
                                      min_sup_cnt = 5,
                                      threads = 20)
 # genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/align2genome.bam")
