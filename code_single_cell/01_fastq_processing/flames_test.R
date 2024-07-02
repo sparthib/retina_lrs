@@ -15,7 +15,9 @@ config_file <- FLAMES::create_config(config_dir, type = "sc_3end",
                                      do_barcode_demultiplex = FALSE,
                                      do_genome_alignment = FALSE,
                                      do_gene_quantification = FALSE,
-                                     bambu_isoform_identification = TRUE,
+                                     do_isoform_identification = FALSE,
+                                     do_read_realignment = FALSE,
+                                     do_transcript_quantification = TRUE,
                                      min_sup_cnt = 5,
                                      threads = 20)
 # genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/align2genome.bam")
