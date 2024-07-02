@@ -12,7 +12,7 @@ sample_reads <- read.table(paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams
                                   sample, "_read_ids.txt"))
 
 # Filter out reads in read_asgts if they are in sample_reads
-read_asgts <- read_asgts |> filter(read_id %in% sample_reads$V1)
+read_asgts <- read_asgts |> filter(read_id %in% sample_reads)
 
 # Remove version number in read_asgts$transcript_id
 read_asgts$transcript_id <- gsub("\\..*", "", read_asgts$transcript_id)
