@@ -27,7 +27,7 @@ echo "$sample"
 
 ml load conda_R/4.3.x
 
-Rscript 01_transcript_length_deciles.R ${SLURM_ARRAY_TASK_ID}
+Rscript 01_transcript_length_deciles.R $sample
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"

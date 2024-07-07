@@ -2,18 +2,13 @@ library(readr)
 library(dplyr)
 library(biomaRt)
 
-task_num <- as.integer(commandArgs(trailingOnly = TRUE))
-print(paste0("Task number: ", task_num))
-config <- read.table("/users/sparthib/retina_lrs/raw_data/data_paths.config",
-                     sep="\t", header=TRUE) 
-
-sample <- config$sample_name[task_num]
+sample <- commandArgs(trailingOnly = TRUE)
 print(sample)
 
-if(task_num %in% c(1,2,5,6,13,14,15)){
+if(grepl("RO", sample)){
   read_asgts <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs/OUT/read_asgts_for_gene_body.tsv",
                            sep="\t", header=FALSE, skip=3)
-} else if(task_num %in% c(9,10,11,12)){
+} else if(grepl("H9", sample)){
   read_asgts <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC/OUT/read_asgts_for_gene_body.tsv",
                            sep="\t", header=FALSE, skip=3)
 } else {
