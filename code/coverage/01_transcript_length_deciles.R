@@ -8,12 +8,13 @@ print(sample)
 read_asgts <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC/OUT/read_asgts_for_gene_body.tsv",
                          sep="\t", header=FALSE, skip=3)
 print(paste0("Number of reads in read_asgts: ", nrow(read_asgts)))
-
+head(read_asgts)
 colnames(read_asgts) <- c("read_id", "transcript_id", "gene_id")
 
 sample_reads <- read.table(paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only/", 
                                   sample, "_read_ids.txt"))
 print(paste0("Number of reads in sample_reads: ", nrow(sample_reads)))
+head(sample_reads)
 # keep reads in read_asgts if they are in sample_reads column 1
 read_asgts <- read_asgts |> filter(read_id %in% sample_reads[,1])
 print(paste0("Number of reads in read_asgts after filtering: ", nrow(read_asgts)))
