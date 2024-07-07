@@ -3,18 +3,22 @@ library(dplyr)
 library(biomaRt)
 
 sample <- commandArgs(trailingOnly = TRUE)
+print(sample)
 
 read_asgts <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC/OUT/read_asgts_for_gene_body.tsv",
                          sep="\t", header=FALSE, skip=3)
+print(paste0("Number of reads in read_asgts: ", nrow(read_asgts)))
+
 colnames(read_asgts) <- c("read_id", "transcript_id", "gene_id")
 
 sample_reads <- read.table(paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only/", 
                                   sample, "_read_ids.txt"))
-
-# Filter out reads in read_asgts if they are in sample_reads
-read_asgts <- read_asgts |> filter(read_id %in% sample_reads)
-
+print(paste0("Number of reads in sample_reads: ", nrow(sample_reads)))
+# keep reads in read_asgts if they are in sample_reads column 1
+read_asgts <- read_asgts |> filter(read_id %in% sample_reads[,1])
+print(paste0("Number of reads in read_asgts after filtering: ", nrow(read_asgts)))
 # Remove version number in read_asgts$transcript_id
+
 read_asgts$transcript_id <- gsub("\\..*", "", read_asgts$transcript_id)
 
 mart <- useMart("ENSEMBL_MART_ENSEMBL")
@@ -31,6 +35,8 @@ colnames(annotLookup) <- c("transcript_id", "transcript_length")
 
 read_asgts <- read_asgts |> left_join(annotLookup, by="transcript_id")
 read_asgts <- read_asgts |> distinct()
+
+print(paste0("Number of reads in read_asgts after joining with transcript_length: ", nrow(read_asgts)))
 
 # Remove reads where transcript length is NA 
 read_asgts_new <- read_asgts |> filter(!is.na(transcript_length))
