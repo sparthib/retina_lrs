@@ -2,17 +2,34 @@ library(readr)
 library(dplyr)
 library(biomaRt)
 
-sample <- commandArgs(trailingOnly = TRUE)
+task_num <- as.integer(commandArgs(trailingOnly = TRUE))
+print(paste0("Task number: ", task_num))
+config <- read.table("/users/sparthib/retina_lrs/raw_data/data_paths.config",
+                     sep="\t", header=TRUE) 
+
+sample <- config$sample_name[task_num]
 print(sample)
 
-read_asgts <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC/OUT/read_asgts_for_gene_body.tsv",
-                         sep="\t", header=FALSE, skip=3)
+if(task_num %in% c(1,2,5,6,13,14,15)){
+  read_asgts <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs/OUT/read_asgts_for_gene_body.tsv",
+                           sep="\t", header=FALSE, skip=3)
+} else if(task_num %in% c(9,10,11,12)){
+  read_asgts <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC/OUT/read_asgts_for_gene_body.tsv",
+                           sep="\t", header=FALSE, skip=3)
+} else {
+  stop("Transcripts not quantified for this sample. Exiting.")
+}
+
+
 print(paste0("Number of reads in read_asgts: ", nrow(read_asgts)))
 head(read_asgts)
 colnames(read_asgts) <- c("read_id", "transcript_id", "gene_id")
 
 sample_reads <- read.table(paste0("/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only/", 
                                   sample, "_read_ids.txt"))
+
+intersect(sample_reads[,1], read_asgts$read_id)
+
 print(paste0("Number of reads in sample_reads: ", nrow(sample_reads)))
 head(sample_reads)
 # keep reads in read_asgts if they are in sample_reads column 1
