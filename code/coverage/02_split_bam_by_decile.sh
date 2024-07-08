@@ -6,8 +6,8 @@
 #SBATCH --job-name=split_by_decile
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/split_bam_by_decile.txt
-#SBATCH -e logs/split_bam_by_decile.txt
+#SBATCH -o logs/split_bam_by_decile.%a.txt
+#SBATCH -e logs/split_bam_by_decile.%a.txt
 #SBATCH --array=1-15
 #SBATCH --time=3-00:00:00
 
