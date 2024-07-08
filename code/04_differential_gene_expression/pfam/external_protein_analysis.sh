@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #SBATCH -p shared
 #SBATCH --mem=50G
 #SBATCH -c 20
