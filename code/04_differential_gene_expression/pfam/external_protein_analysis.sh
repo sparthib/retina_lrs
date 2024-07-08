@@ -18,7 +18,7 @@ echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
-comparisons=("FT_vs_RGC", "RO_D100_vs_D45", "RO_D100_vs_D200", "RO_D200_vs_D45")
+comparisons=("FT_vs_RGC" "RO_D100_vs_RO_D45" "RO_D100_vs_RO_D200" "RO_D200_vs_RO_D45")
 
 source activate CPC2
 cd $CPC_HOME
