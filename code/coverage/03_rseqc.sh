@@ -29,6 +29,7 @@ echo "$sample"
 
 ref_gene_model=/dcs04/hicks/data/sparthib/references/rseqc_gencode_44_comp.bed
 bam_paths=/dcs04/hicks/data/sparthib/retina_lrs/05c_coverage/genome/isoquant/${sample}_deciles/${sample}_bam_paths.txt
+touch $bam_paths
 path_to_output=/users/sparthib/retina_lrs/plots/coverage/${sample}_deciles/
 
 cd /dcs04/hicks/data/sparthib/retina_lrs/05c_coverage/genome/isoquant/${sample}_deciles/
