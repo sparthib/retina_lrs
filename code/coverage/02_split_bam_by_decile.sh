@@ -3,7 +3,7 @@
 #SBATCH -p shared
 #SBATCH --mem=50G
 #SBATCH -c 5
-#SBATCH --job-name=highqualbam
+#SBATCH --job-name=split_by_decile
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/split_bam_by_decile.txt
