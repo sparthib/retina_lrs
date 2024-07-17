@@ -359,9 +359,6 @@ saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/
 #   sortByQvals = FALSE
 # )
 
-
-
-
 exampleSwitchList <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
   n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
