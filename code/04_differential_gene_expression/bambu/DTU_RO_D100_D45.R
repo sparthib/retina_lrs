@@ -2,14 +2,10 @@ library(IsoformSwitchAnalyzeR)
 library(tximeta)
 library(readr)
 library(sessioninfo)
-library(rtracklayer)
 library(edgeR)
-library(tidyr)
-library(dplyr)
 library(ggVennDiagram)
-library('BSgenome.Hsapiens.UCSC.hg38')
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation"
+bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation"
 
 #read counts_transcript.txt table from bambu_dir
 
@@ -22,6 +18,8 @@ colnames(counts) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(counts
 colnames(counts)[1] <- "isoform_id"
 #remove GENE_ID (2nd column)
 counts <- counts[, -2]
+#only keep RO D200 and D45
+counts <- counts[, c(1, 3, 4, 5,7, 8)]
 head(counts)
 
 
@@ -31,39 +29,39 @@ cpm <- read.table(file.path(bambu_dir, "CPM_transcript.txt"),
 colnames(cpm) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(cpm))
 colnames(cpm)[1] <- "isoform_id"
 cpm <- cpm[, -2]
+cpm <- cpm[, c(1,3, 4, 5,7, 8)]
 head(cpm)
 
-
-myDesign  <- data.frame(sampleID = c("H9.FT_1","H9.FT_2", "H9.hRGC_1", "H9.hRGC_2") ,
-                        condition = c( "FT", "FT", "RGC", "RGC"),
+myDesign  <- data.frame(sampleID = c("EP1.WT_hRO_2" , "EP1.WT_ROs_D45" ,"H9.BRN3B_hRO_2",
+                                     "H9.CRX_hRO_2" , "H9.CRX_ROs_D45") ,
+                        condition = c("RO_D100",  "RO_D45",  "RO_D100", 
+                                      "RO_D100","RO_D45"),
                         stringsAsFactors = FALSE)
 
-rdata_path = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D200_vs_RO_D45/SwitchList.rds"
+
+rdata_path = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/SwitchList.rds"
 if(!file.exists(rdata_path)){ 
   SwitchList <- importRdata(isoformCountMatrix   = counts,
                             isoformRepExpression = cpm,
                             designMatrix         = myDesign,
-                            isoformExonAnnoation = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/extended_annotations.gtf",
-                            isoformNtFasta       = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/FT_vs_RGC_corrected.fasta",
+                            isoformExonAnnoation = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/extended_annotations.gtf",
+                            isoformNtFasta       = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.fasta",
                             removeNonConvensionalChr = TRUE,
                             ignoreAfterBar = TRUE,
                             ignoreAfterPeriod = FALSE,
                             showProgress = TRUE)
-  
-  
   #if cds gtf doesn't exist, convert gff to gtf
-  if(!file.exists("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/sqanti3_qc/RGC_FT_corrected.gtf.cds.gtf")){
-    gff <- rtracklayer::import("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/RGC_FT_corrected.gtf.cds.gff")
-    rtracklayer::export(gff, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/RGC_FT_corrected.gtf.cds.gtf",
+  if(!file.exists("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/sqanti3_qc/sqanti3_qc/ROs_corrected.gtf.cds.gtf")){
+    gff <- rtracklayer::import("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gff")
+    rtracklayer::export(gff, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf",
                         "gtf")
     rm(gff)
   }
   
   SwitchList <- addORFfromGTF(
     switchAnalyzeRlist     = SwitchList,
-    pathToGTF              = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/RGC_FT_corrected.gtf.cds.gtf"
+    pathToGTF              = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf"
   )
-  
   
   SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "", SwitchList$isoformFeatures$gene_id)
   require("biomaRt")
@@ -97,21 +95,21 @@ if(!file.exists(rdata_path)){
   
 }else { 
   SwitchListFiltered <- readRDS(rdata_path)
-    }
+}
 
-summary(SwitchList)
+
 
 #### DTE ####
 
-if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DTE_table.tsv")){
+if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DTE_table.tsv")){
   
   # counts$isoform_id <- gsub("\\..*", "", counts$isoform_id)
-
+  
   counts_preFilter <- counts |> filter(counts$isoform_id %in% SwitchListFiltered$isoformFeatures$isoform_id)
   
   print(paste0("number of isoforms before filtering: ", nrow(counts)))
   print(paste0("number of isoforms after filtering: ", nrow(counts_preFilter)))
-  y <- DGEList(counts = counts_preFilter[2:5],
+  y <- DGEList(counts = counts_preFilter[2:6],
                samples = myDesign$sampleID,
                group = myDesign$condition,
                genes = counts_preFilter[1])
@@ -123,7 +121,7 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
   y <- estimateDisp(y, design, robust=TRUE)
   y$common.dispersion
   fit <- glmQLFit(y, design, robust=TRUE)
-  contr <- makeContrasts(FT - RGC, levels=design)
+  contr <- makeContrasts(RO_D100 - RO_D45, levels=design)
   qlf <- glmQLFTest(fit, contrast=contr)
   is.de <- decideTests(qlf, p.value=0.05)
   print(summary(is.de))
@@ -136,26 +134,26 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
   tt$table <- tt$table[order(tt$table$FDR),]
   DTE_table <- tt$table
   
-  write_tsv(tt$table, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DTE_table.tsv")
+  write_tsv(tt$table, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DTE_table.tsv")
   
 } else {
-  DTE_table <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DTE_table.tsv")
+  DTE_table <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DTE_table.tsv")
 }
 
-
-
-#### DGE ####
-if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_table.tsv")){
+if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DGE_table.tsv")){
   counts <- read.table(file.path(bambu_dir, "counts_gene.txt"),
                        header = TRUE)
   #remove "_primary_over_30_chr_only_sorted" in column names 
   colnames(counts) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(counts))
   colnames(counts)[1] <- "gene_id"
+  counts <- counts[, c(1, 3, 4, 5,7, 8)]
   head(counts)
   
-  group <- factor(c("FT", "FT", "RGC", "RGC"))
+  group <- factor(c("RO_D100",  "RO_D45",  "RO_D100", 
+                    "RO_D100","RO_D45"))
   y_dge <- DGEList(counts=counts, group=group, genes=counts$gene_id,
-                   samples = c("H9.FT_1","H9.FT_2", "H9.hRGC_1", "H9.hRGC_2"))
+                   samples = c("EP1.WT_hRO_2" , "EP1.WT_ROs_D45" ,"H9.BRN3B_hRO_2",
+                               "H9.CRX_hRO_2" , "H9.CRX_ROs_D45"))
   
   #filtering for DTE is based on SwitchList_preFilter, for DGE, just used edgeR function. 
   keep <- filterByExpr(y_dge)
@@ -175,7 +173,7 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
   # y_dge$common.dispersion
   
   fit_dge <- glmQLFit(y_dge, design, robust=TRUE)
-  contr <- makeContrasts(FT - RGC, levels=design)
+  contr <- makeContrasts(RO_D100 - RO_D45, levels=design)
   qlf_dge <- glmQLFTest(fit_dge, contrast=contr)
   
   is.de <- decideTests(qlf_dge, p.value=0.05)
@@ -184,21 +182,22 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
   tt_dge <- topTags(qlf_dge,n = Inf)
   tt_dge$table$gene_id <- gsub("\\..*", "", tt_dge$table$gene_id)
   DGE_table <- tt_dge$table
-  write_tsv(tt_dge$table, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_table.tsv")
+  write_tsv(tt_dge$table, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DGE_table.tsv")
 } else {
-  DGE_table <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_table.tsv")
+  DGE_table <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DGE_table.tsv")
 }
-  
 
-#### DEXSeq ####
-dtu_rdata_path  = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DexSeqDTUDGESwitchList.rds"
+
+###add gene names 
+dtu_rdata_path  = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DexSeqDTUDGESwitchList.rds"
+
 if(!file.exists(dtu_rdata_path)){
   
   SwitchList_part1 <- isoformSwitchTestDEXSeq(
     switchAnalyzeRlist         = SwitchListFiltered,
     reduceToSwitchingGenes     = FALSE
   )
-
+  
   ### Add DTE/DGE to switchList
   # SwitchList_part1$isoformFeatures$isoform_id <- gsub("\\..*", "", SwitchList_part1$isoformFeatures$isoform_id)
   idx = match(SwitchList_part1$isoformFeatures$isoform_id, DTE_table$isoform_id)
@@ -209,34 +208,31 @@ if(!file.exists(dtu_rdata_path)){
   
   
   SwitchList_part1 <- analyzeORF(SwitchList_part1, genomeObject = Hsapiens)
-
+  
   SwitchList_part1$aaSequence = NULL
- 
+  
   
   SwitchList_part1 <- extractSequence(
     switchAnalyzeRlist = SwitchList_part1,
-    pathToOutput       = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/",
-    extractNTseq       = TRUE,
+    pathToOutput       = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/",
+    extractNTseq       = TRUE, #for CPC2
     extractAAseq       = TRUE,
     removeShortAAseq   = TRUE,
-    removeLongAAseq    = TRUE, #FOR PFAM 
+    removeLongAAseq    = TRUE, #FOR PFAM, SignalP
     onlySwitchingGenes = TRUE,
-    alsoSplitFastaFile=TRUE #FOR PFAM
+    alsoSplitFastaFile=TRUE 
   )
   saveRDS(SwitchList_part1, file = dtu_rdata_path)
-
+  
 }else{
   SwitchList_part1 <- readRDS(dtu_rdata_path)
 }
 
 summary(SwitchList_part1)
 
-
-
-  
 #similar to table s3 in the paper
 
-if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_DTU_DTE.tsv")){
+if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DGE_DTU_DTE.tsv")){
   # SwitchList_part1$isoformSwitchAnalysis$isoform_id <- gsub("\\..*", "", SwitchList_part1$isoformSwitchAnalysis$isoform_id)
   DGE_DTU_DTE = SwitchList_part1$isoformFeatures |>
     as_tibble() |>
@@ -275,12 +271,10 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
       DGE = DGE_qval < 0.05
     )
   
-  write_tsv( DGE_DTU_DTE, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_DTU_DTE.tsv")
+  write_tsv( DGE_DTU_DTE, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DGE_DTU_DTE.tsv")
 } else {
-  DGE_DTU_DTE <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_DTU_DTE.tsv")
+  DGE_DTU_DTE <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DGE_DTU_DTE.tsv")
 }
-
-
 
 #### VENN DIAGRAM ####
 
@@ -288,7 +282,7 @@ gene_overlaps = DGE_DTU_DTE |> group_by(gene_id) |>
   summarise(DTE = any(DTE), DGE=any(DGE), DTU=any(DTU))  |> dplyr::select(-gene_id)
 
 # save venn diagram as pdf 
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_DTU_DTE_venn.pdf")
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/DGE_DTU_DTE_venn.pdf")
 fig <- ggVennDiagram(list(DTU = which(gene_overlaps$DTU), 
                           DGE = which(gene_overlaps$DGE),
                           DTE = which(gene_overlaps$DTE))) + 
@@ -301,13 +295,13 @@ dev.off()
 SwitchList_part2 <- analyzeAlternativeSplicing(
   switchAnalyzeRlist = SwitchList_part1
 )
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/Splicing_Summary.pdf")
-print(extractSplicingSummary(SwitchList_AS))
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/Splicing_Summary.pdf")
+print(extractSplicingSummary(SwitchList_part2))
 dev.off()
 
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/Splicing_Enrichment.pdf")
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/Splicing_Enrichment.pdf")
 splicingEnrichment <- extractSplicingEnrichment(
-  SwitchList_AS,
+  SwitchList_part2,
   splicingToAnalyze='all',
   returnResult=TRUE,
   returnSummary=TRUE
@@ -315,62 +309,18 @@ splicingEnrichment <- extractSplicingEnrichment(
 print(splicingEnrichment)
 dev.off()
 
-saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/SwitchList_part2.rds")
+saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/SwitchList_part2.rds")
 
 
-##ADD CPC2 ANALYSIS ##
-
-# SwitchList_part2 <- analyzeCPC2(
-#   switchAnalyzeRlist   = SwitchList_part2,
-#   pathToCPC2resultFile = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/CPC2_output.txt.txt",
-#   codingCutoff         = 0.725, # the coding potential cutoff we suggested for human
-#   removeNoncodinORFs   = TRUE   # because ORF was predicted de novo
-# )
-
-##need to convert csv to tab delimited text file
-# SwitchList_part2 <- analyzePFAM(
-#   SwitchList_part2,
-#   pathToPFAMresultFile = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/pfam_results.txt",
-#   showProgress=TRUE,
-#   quiet=FALSE
-# )
-# 
-# SwitchList_part2 <- analyzeSignalP(
-#   SwitchList_part2,
-#   pathToSignalPresultFile = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/prediction_results.txt",
-#   minSignalPeptideProbability = 0.5,
-#   quiet=FALSE
-# )
-# 
-# consequencesOfInterest <- c('intron_retention','coding_potential','NMD_status','ORF_seq_similarity',
-#                             'domains_identified')
-# 
-# SwitchList_part2 <- analyzeSwitchConsequences(
-#   SwitchList_part2,
-#   consequencesToAnalyze = consequencesOfInterest, 
-#   dIFcutoff = 0.1, # very high cutoff for fast runtimes - you should use the default (0.1)
-#   showProgress=FALSE
-# )
-# 
-# switchingIso <- extractTopSwitches(
-#   SwitchList_part2, 
-#   n = NA,
-#   filterForConsequences = TRUE, 
-#   sortByQvals = FALSE
-# )
-
-
-
-
-exampleSwitchList <- isoformSwitchAnalysisPart2(
+SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
   n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
   removeNoncodinORFs        = TRUE,
-  pathToCPC2resultFile      = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/CPC2_output.txt.txt",
-  pathToPFAMresultFile      = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/pfam_results.txt",
-  pathToSignalPresultFile   = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/prediction_results.txt",
+  pathToCPC2resultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/CPC2_output.txt",
+  pathToPFAMresultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/pfam_results.txt",
+  pathToSignalPresultFile   = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/prediction_results.txt",
   outputPlots               = TRUE,
-  pathToOutput              = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/part_2",
+  pathToOutput              = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/part_2",
   consequencesToAnalyze = c(
     'intron_retention',
     'coding_potential',
@@ -379,15 +329,30 @@ exampleSwitchList <- isoformSwitchAnalysisPart2(
     'domains_identified',
     'domain_isotype',
     'signal_peptide_identified'
-  ))
+  )
+  
+)
 
+saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/SwitchList_part2.rds")
+
+switchingIsoNoConsequenceSummary <- extractSwitchSummary(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = FALSE)
+
+switchingIsoSummary <- extractSwitchSummary(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = TRUE)
+
+# 
+# Comparison nrIsoforms nrSwitches nrGenes
+# 1 RO_D100 vs RO_D45       1899       1597    1386
+# > switchingIso 
+# Comparison nrIsoforms nrSwitches nrGenes
+# 1 RO_D100 vs RO_D45       1231       1150     869
+switchingIso <- extractTopSwitches(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = TRUE)
 
 # library("ggthemes")
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/Switchplot_with_consequence.pdf")
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/Switchplot_with_consequence.pdf")
 for(gene in unique(switchingIso$gene_id)){
   print(switchPlot(SwitchList_part2, gene = gene,
                    plotTopology  = FALSE
-                   ))
+  ))
 }
 dev.off()
 
@@ -398,7 +363,7 @@ bar_data <- SwitchList_part2$switchConsequence$switchConsequence |>
   mutate(Percentage = Freq / sum(Freq) * 100)
 
 # Define the output PDF file
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/CPC2_stacked_barplot.pdf")
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D45/CPC2_stacked_barplot.pdf")
 # Create the stacked percentage bar plot
 p <- ggplot(bar_data, aes(x = "", y = Percentage, fill = Var1)) + 
   geom_bar(stat = "identity") + 
