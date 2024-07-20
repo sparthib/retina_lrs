@@ -1,0 +1,28 @@
+gene_id	isoform_id	DTU_dIF	DTU_qval	Symbol	Disease_Category
+ENSG00000033867	ENST00000419036.5	0.18234999999999996	0.00736804699855049	SLC4A7	Cone or cone-rod dystrophy, autosomal recessive
+ENSG00000072756	ENST00000698416.1	0.27875	1.9870724978287385e-11	TRNT1	c(""Retinitis pigmentosa, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000079841	ENST00000697193.1	0.31055	9.287167455633882e-5	RIMS1	Cone or cone-rod dystrophy, autosomal dominant
+ENSG00000079841	ENST00000521978.6	-0.1252	0.00178408837734151	RIMS1	Cone or cone-rod dystrophy, autosomal dominant
+ENSG00000079841	ENST00000524197.1	-0.10515	0.00803886715425466	RIMS1	Cone or cone-rod dystrophy, autosomal dominant
+ENSG00000101680	ENST00000492048.5	0.15380000000000002	0.02543179218789437	LAMA1	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000103351	ENST00000341633.9	0.14995	8.323941242407828e-4	CLUAP1	Leber congenital amaurosis, autosomal recessive
+ENSG00000103351	ENST00000576634.6	-0.278	2.990141895368147e-6	CLUAP1	Leber congenital amaurosis, autosomal recessive
+ENSG00000103494	ENST00000647211.2	-0.1142	0.0238204700469376	RPGRIP1L	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000104218	ENST00000677009.1	-0.1044	0.00582754151807091	CSPP1	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000108370	ENST00000638125.1	-0.4013	2.95610220404787e-4	RGS9	Other retinopathy, autosomal recessive
+ENSG00000110871	ENST00000288532.11	-0.2944500000000001	1.3567096816656928e-5	COQ5	Retinitis pigmentosa, autosomal recessive
+ENSG00000110871	BambuTx371	0.28205	1.8997531075986577e-5	COQ5	Retinitis pigmentosa, autosomal recessive
+ENSG00000112280	ENST00000683980.2	-0.16305	0.017763216041116	COL9A1	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000115380	ENST00000355426.8	-0.3272	1.6297980596243108e-5	EFEMP1	Macular degeneration, autosomal dominant
+ENSG00000122550	ENST00000339077.10	0.1352	0.01569812752413508	KLHL7	Retinitis pigmentosa, autosomal dominant
+ENSG00000125779	ENST00000336066.8	0.14780000000000004	0.02395634966922809	PANK2	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000139219	ENST00000490609.2	0.18575000000000003	0.00239011716561628	COL2A1	Syndromic/systemic diseases with retinopathy, autosomal dominant
+ENSG00000139219	ENST00000380518.8	-0.17090000000000005	0.00218631337990349	COL2A1	Syndromic/systemic diseases with retinopathy, autosomal dominant
+ENSG00000148019	ENST00000424347.6	-0.2105	0.01133297117862038	CEP78	c(""Cone or cone-rod dystrophy, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000155755	ENST00000409883.7	-0.16045	2.55671733588081e-4	TMEM237	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000157869	ENST00000288723.9	-0.12765	0.04663111235190956	RAB28	Cone or cone-rod dystrophy, autosomal recessive
+ENSG00000157869	ENST00000630951.1	0.1059	6.458805723995294e-6	RAB28	Cone or cone-rod dystrophy, autosomal recessive
+ENSG00000163646	ENST00000295911.6	0.20355	0.03683150430032751	CLRN1	c(""Retinitis pigmentosa, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000163646	ENST00000327047.6	-0.17699999999999994	0.01256398532691979	CLRN1	c(""Retinitis pigmentosa, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000167113	ENST00000300452.8	-0.26265000000000005	9.799651812450946e-4	COQ4	Retinitis pigmentosa, autosomal recessive
+ENSG00000198836	ENST00000361908.8	-0.14035000000000003	0.03507457730408193	OPA1	Optic atrophy, autosomal dominant

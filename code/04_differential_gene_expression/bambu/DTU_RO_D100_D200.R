@@ -227,7 +227,7 @@ if(!file.exists(dtu_rdata_path)){
   saveRDS(SwitchList_part1, file = dtu_rdata_path)
   
 }else{
-  SwitchList_part1 <- readRDS(dtu_rdata_path)
+  SwitchList_part1 <- readRDS("./processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/DexSeqDTUDGESwitchList.rds")
 }
 
 summary(SwitchList_part1)
@@ -275,13 +275,45 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
   
   write_tsv( DGE_DTU_DTE, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/DGE_DTU_DTE.tsv")
 } else {
-  DGE_DTU_DTE <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/DGE_DTU_DTE.tsv")
+  DGE_DTU_DTE <- readr::read_tsv("./processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/DGE_DTU_DTE.tsv")
 }
 
 #### VENN DIAGRAM ####
 
 gene_overlaps = DGE_DTU_DTE |> group_by(gene_id) |> 
   summarise(DTE = any(DTE), DGE=any(DGE), DTU=any(DTU))  |> dplyr::select(-gene_id)
+
+dge_overlaps = DGE_DTU_DTE |> group_by(gene_id) |> dplyr::select( -DTE) |> 
+  summarise(DGE=any(DGE), DTU=any(DTU))  
+
+dte_overlaps = DGE_DTU_DTE |> group_by(gene_id) |> dplyr::select(-DGE) |> 
+  summarise(DTE = any(DTE), DTU=any(DTU)) 
+
+dge_contingency_table <- as_tibble(xtabs(~ DGE + DTU, data = dge_overlaps))
+dge_contingency_table <- plyr::ddply(dge_contingency_table, .(DGE), transform, Prop = n / sum(n))
+
+
+dge_bar <- ggplot(dge_contingency_table, aes(x = DGE, y = n, fill = DTU)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "DGE and DTU genes", x = "DGE", y = "Count") + 
+  scale_y_continuous(labels = scales::percent) +  # Display y-axis as percentage
+  theme_minimal() +
+  geom_text(aes(label = scales::percent(Prop)), position = position_stack(vjust = 0.5), size = 3)
+
+dte_contingency_table <- xtabs(~ DTE + DTU, data = dte_overlaps)
+dte_contingency_table <- plyr::ddply(as_tibble(dte_contingency_table), .(DTE), transform, Prop = n / sum(n))
+
+dte_bar <- ggplot(dte_contingency_table, aes(x = DTE, y = n, fill = DTU)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "DTE and DTU genes", x = "DTE", y = "Count") + 
+  scale_y_continuous(labels = scales::percent) +  # Display y-axis as percentage
+  theme_minimal() +
+  geom_text(aes(label = scales::percent(Prop)), position = position_stack(vjust = 0.5), size = 3)
+
+library(patchwork)
+p <- dge_bar + dte_bar + plot_annotation(title = 'RO_D100 vs RO_D200')
+ggsave(path = "./processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/",
+       device = "pdf", plot = p, filename = "DGE_DTU_DTE_barplot.pdf")
 
 # save venn diagram as pdf 
 pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/DGE_DTU_DTE_venn.pdf")
@@ -297,19 +329,27 @@ dev.off()
 SwitchList_part2 <- analyzeAlternativeSplicing(
   switchAnalyzeRlist = SwitchList_part1
 )
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/Splicing_Summary.pdf")
-print(extractSplicingSummary(SwitchList_part2))
+
+
+pdf("./processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/Splicing_Summary.pdf")
+splicing_summary <- extractSplicingSummary(SwitchList_part2,
+                                           splicingToAnalyze = 'all',dIFcutoff = 0.1,
+                                           onlySigIsoforms = T,
+                                           returnResult = F,
+                                           plot = T)  
+print(splicing_summary)
+dev.off()
+pdf("./processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/Splicing_Enrichment.pdf")
+splicing_enrichment <- extractSplicingEnrichment(
+  SwitchList_part2,
+  returnResult = F ,
+  onlySigIsoforms = T,
+  countGenes = F
+)
+print(splicing_enrichment)
 dev.off()
 
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D100_vs_RO_D200/Splicing_Enrichment.pdf")
-splicingEnrichment <- extractSplicingEnrichment(
-  SwitchList_part2,
-  splicingToAnalyze='all',
-  returnResult=TRUE,
-  returnSummary=TRUE
-)
-print(splicingEnrichment)
-dev.off()
+
 
 SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 

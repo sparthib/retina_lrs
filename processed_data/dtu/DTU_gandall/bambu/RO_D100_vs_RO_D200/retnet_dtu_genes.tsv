@@ -1,0 +1,45 @@
+gene_id	isoform_id	DTU_dIF	DTU_qval	Symbol	Disease_Category
+ENSG00000011143	ENST00000393119.7	-0.19293333333333337	0.03844461763180836	MKS1	c(""Bardet-Biedl syndrome, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000033867	ENST00000428386.5	0.13983333333333334	0.003559219820394	SLC4A7	Cone or cone-rod dystrophy, autosomal recessive
+ENSG00000040487	ENST00000375155.7	0.2819833333333333	0.04784778714082793	SLC66A1	Retinitis pigmentosa, autosomal recessive
+ENSG00000040487	ENST00000375153.8	-0.37283333333333335	0.01560202810652674	SLC66A1	Retinitis pigmentosa, autosomal recessive
+ENSG00000044115	ENST00000522792.1	-0.20286666666666664	0.00930256105519559	CTNNA1	Macular degeneration, autosomal dominant
+ENSG00000048545	ENST00000372958.2	0.31099999999999994	2.3853410531037094e-6	GUCA1A	Cone or cone-rod dystrophy, autosomal dominant
+ENSG00000048545	ENST00000679182.1	-0.31099999999999994	2.3303645441208812e-6	GUCA1A	Cone or cone-rod dystrophy, autosomal dominant
+ENSG00000074621	ENST00000339868.10	-0.22383333333333333	1.918659176359337e-4	SLC24A1	Congenital stationary night blindness, autosomal recessive
+ENSG00000074621	ENST00000261892.11	0.34576666666666667	7.241635861684396e-5	SLC24A1	Congenital stationary night blindness, autosomal recessive
+ENSG00000075891	ENST00000427256.6	0.12769999999999998	0.01447239969756694	PAX2	Syndromic/systemic diseases with retinopathy, autosomal dominant
+ENSG00000092200	ENST00000556336.5	0.12315	2.018101395434487e-7	RPGRIP1	c(""Cone or cone-rod dystrophy, autosomal recessive"", ""Leber congenital amaurosis, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000102935	ENST00000562520.1	0.31545	9.760776853709636e-24	ZNF423	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000103351	ENST00000341633.9	0.10481666666666668	0.04001368238359876	CLUAP1	Leber congenital amaurosis, autosomal recessive
+ENSG00000103494	ENST00000564374.5	0.2509166666666667	0.03060777277128979	RPGRIP1L	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000108370	ENST00000638125.1	-0.37728333333333336	8.736526303353472e-6	RGS9	Other retinopathy, autosomal recessive
+ENSG00000109103	ENST00000470125.5	-0.15149999999999997	7.546259746872151e-7	UNC119	Cone or cone-rod dystrophy, autosomal dominant
+ENSG00000110871	ENST00000288532.11	-0.26513333333333333	0.00661961086183029	COQ5	Retinitis pigmentosa, autosomal recessive
+ENSG00000110871	BambuTx218	0.27003333333333335	0.00835468671135629	COQ5	Retinitis pigmentosa, autosomal recessive
+ENSG00000111837	ENST00000313243.6	0.10858333333333337	3.677218570133111e-4	MAK	Retinitis pigmentosa, autosomal recessive
+ENSG00000113262	ENST00000519003.1	-0.11755	0.01915640718926407	GRM6	Congenital stationary night blindness, autosomal recessive
+ENSG00000113966	ENST00000463745.6	-0.1498166666666666	0.01281653527972578	ARL6	c(""Bardet-Biedl syndrome, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"")
+ENSG00000115255	ENST00000233596.8	-0.29906666666666665	8.320897802213364e-4	REEP6	Retinitis pigmentosa, autosomal recessive
+ENSG00000115255	ENST00000395479.10	0.2981333333333333	8.301442487399104e-4	REEP6	Retinitis pigmentosa, autosomal recessive
+ENSG00000127463	ENST00000477853.6	-0.2479000000000001	0.00445340962025181	EMC1	Retinitis pigmentosa, autosomal recessive
+ENSG00000131697	ENST00000478423.6	0.10275	0.00483783165497712	NPHP4	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000134183	ENST00000351050.8	0.6185	2.865341174725711e-4	GNAT2	Cone or cone-rod dystrophy, autosomal recessive
+ENSG00000134183	ENST00000679935.1	-0.6185	2.871206782539335e-4	GNAT2	Cone or cone-rod dystrophy, autosomal recessive
+ENSG00000134376	ENST00000538660.5	-0.15378333333333333	0.03161352920680675	CRB1	c(""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"", ""Other retinopathy, autosomal dominant"")
+ENSG00000135437	ENST00000257895.10	-0.2854833333333333	0.00682461846814555	RDH5	c(""Cone or cone-rod dystrophy, autosomal recessive"", ""Congenital stationary night blindness, autosomal recessive"")
+ENSG00000143951	ENST00000272321.12	-0.2881	0.01984759495209072	WDPCP	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000148482	ENST00000377374.8	0.1659	0.03629666832337226	SLC39A12	Retinitis pigmentosa, autosomal recessive
+ENSG00000156313	ENST00000642395.2	-0.13795000000000002	3.467395892201957e-6	RPGR	c(""Cone or cone-rod dystrophy, autosomal recessive"", ""Cone or cone-rod dystrophy, X-linked"", ""Leber congenital amaurosis, autosomal recessive"", ""Macular degeneration, X-linked"", ""Retinitis pigmentosa, X-linked"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000157796	ENST00000512588.5	-0.2748	0.00821895317685532	WDR19	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000165533	ENST00000622513.4	-0.14578333333333332	0.00432832764855673	TTC8	c(""Bardet-Biedl syndrome, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"")
+ENSG00000176406	ENST00000436393.6	0.3209166666666667	4.530688003644566e-8	RIMS2	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000176406	ENST00000696799.1	-0.10173333333333334	3.842301348654106e-4	RIMS2	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000187017	ENST00000645284.1	0.27805	0.00194154299811575	ESPN	c(""Deafness alone or syndromic, autosomal dominant"", ""Deafness alone or syndromic, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000187535	ENST00000361339.9	-0.20503333333333337	1.580930482404225e-6	IFT140	c(""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000187535	ENST00000426508.7	0.2976833333333333	0.00175975173722437	IFT140	c(""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000188107	ENST00000503581.6	0.4652500000000001	4.631447278084343e-6	EYS	Retinitis pigmentosa, autosomal recessive
+ENSG00000188107	ENST00000370621.7	-0.22086666666666663	3.4678943825640653e-7	EYS	Retinitis pigmentosa, autosomal recessive
+ENSG00000198707	ENST00000676363.1	-0.13035000000000002	8.1511393475822e-6	CEP290	c(""Bardet-Biedl syndrome, autosomal recessive"", ""Leber congenital amaurosis, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000198947	ENST00000679437.1	-0.20361666666666664	4.048321812546116e-5	DMD	Other retinopathy, X-linked
+ENSG00000198947	ENST00000357033.9	0.29231666666666667	0.01222106496670439	DMD	Other retinopathy, X-linked
