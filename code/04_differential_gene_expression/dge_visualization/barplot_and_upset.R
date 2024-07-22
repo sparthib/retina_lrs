@@ -104,8 +104,10 @@ plot_barplot <- function(df, condition){
 
 plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D100" &
                                      condition_2 == "RO_D45"), "RO_D100_vs_RO_D45")
+
 plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D200" &
                                      condition_2 == "RO_D45"), "RO_D200_vs_RO_D45")
+
 plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D100" &
                                      condition_2 == "RO_D200"), "RO_D100_vs_RO_D200")
 

@@ -290,150 +290,67 @@ splicing_enrichment <- extractSplicingEnrichment(
 print(splicing_enrichment)
 dev.off()
 
-
-
 ################################################################################
 
-
-
-volcano_plot(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D45/")
-volcano_plot(DEXSeq_SwitchList_D200_D45, "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D200_vs_RO_D45/")
-volcano_plot(DEXSeq_SwitchList_D100_D200, "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D200/")
-
-
-volcano_df <- function(dexseq_switchlist, output_dir){
-  
-  Volcano_df <- dexseq_switchlist$isoformFeatures |> 
-    dplyr::filter(isoform_switch_q_value < 0.05 & abs(dIF) > 0.1)
-  
-  write_tsv(Volcano_df,
-            file =  paste0(output_dir, "switches.tsv"))
-  
-}
-
-volcano_df(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/")
-volcano_df(DEXSeq_SwitchList_D200_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/")
-volcano_df(DEXSeq_SwitchList_D100_D200, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/")
-
-
-
-####.SWITCH VS GENE CHANGES ####
-
-switch_vs_gene_plot <- function(dexseq_switchlist, output_dir){ 
-  dexseq_switchlist_top_20 <- dexseq_switchlist$isoformFeatures[order(abs(dexseq_switchlist$isoformFeatures$isoform_switch_q_value)),]
-  #filter by dIF
-  dexseq_switchlist_top_20 <- dexseq_switchlist_top_20[abs(dexseq_switchlist_top_20$dIF) > 0.5,]
-  #top 20
-  dexseq_switchlist_top_20 <- dexseq_switchlist_top_20[1:20,]
-  
-  pdf(paste0(output_dir,"switch_vs_degs.pdf"))
-  s <- ggplot(data=dexseq_switchlist$isoformFeatures, aes(x=gene_log2_fold_change, y=dIF)) +
-    geom_point(
-      aes( color=abs(dIF) > 0.1 & isoform_switch_q_value < 0.05 ), # default cutoff
-      size=1
-    )  + 
-    geom_hline(yintercept = 0, linetype='dashed') +
-    geom_vline(xintercept = 0, linetype='dashed') +
-    scale_color_manual('Signficant\nIsoform Switch', values = c('grey','skyblue')) +
-    labs(x='Gene log2 fold change', y='dIF') +
-    theme_bw() + 
-    geom_text(aes(label=ifelse(gene_name %in% dexseq_switchlist_top_20$gene_name & abs(dIF) > 0.5, 
-                               gene_name,'')),
-              hjust=0,vjust=0, size = 1)
-    print(s)
-    dev.off()
-    
-}
-
-switch_vs_gene_plot(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D45/")
-switch_vs_gene_plot(DEXSeq_SwitchList_D200_D45, "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D200_vs_RO_D45/")
-switch_vs_gene_plot(DEXSeq_SwitchList_D100_D200, "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D200/")
-
-
-switch_vs_deg_data <- function(dexseq_switchlist, output_dir){
-  
-  switch_vs_degs <- dexseq_switchlist$isoformFeatures |> 
-    dplyr::filter(abs(dIF) > 0.1 & abs(gene_log2_fold_change) < 2 & isoform_switch_q_value < 0.05)
-  
-  write_tsv(switch_vs_degs,
-            file =  paste0(output_dir, "switch_vs_degs.tsv"))
-  
-}
-
-switch_vs_deg_data(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/")
-switch_vs_deg_data(DEXSeq_SwitchList_D200_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/")
-switch_vs_deg_data(DEXSeq_SwitchList_D100_D200, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/")
-
-
-microexon_data <- function(dexseq_switchlist, output_dir){ 
-  exons <- as.data.frame(dexseq_switchlist$exons)
-  microexons <- exons |> dplyr::filter(width < 27)
-  
-  #remove version number from gene_id
-  microexons$gene_id <- gsub("\\..*", "", microexons$gene_id)
-  microexons <- merge(microexons, annotLookup, by="gene_id", all.x=TRUE)
-  microexons$gene_name <- microexons$ensembl_gene_name
-  #drop ensemble_gene_name
-  microexons <- microexons |> dplyr::select(-ensembl_gene_name)
-  
-  #all microexons found in all genes that are expressed in the samples. 
-  write_tsv(microexons, paste0(output_dir, "/microexons/all_micro_exons.tsv"))
-  
-  DEXSeq <- dexseq_switchlist$isoformFeatures |>  filter(isoform_switch_q_value < 0.05 & abs(dIF) > 0.1) |> 
-    dplyr::select(isoform_id, dIF, isoform_switch_q_value,gene_id, gene_name, condition_1, condition_2)
-  
-  ## all microexons found in genes that have some isoform that showed differential usage across any pairwise comparison
-  microexons_DTU_genes <- microexons |> filter(gene_id %in% DEXSeq$gene_id)
-  nrow(microexons_DTU_genes)
-  
-  write_tsv(microexons_DTU_genes, paste0(output_dir, "/microexons/microexons_DTU_genes.tsv"))
-  
-  ## all microexons found in isoforms  that showed differential usage across any pairwise comparison 
-  microexons_DTU_isoforms <- microexons |> filter(isoform_id %in% DEXSeq$isoform_id)
-  nrow(microexons_DTU_isoforms)
-  
-  
-  write_tsv(microexons_DTU_isoforms, paste0(output_dir, "/microexons/microexons_DTU_isoforms.tsv"))
-
-}
-
-microexon_data(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/")
-microexon_data(DEXSeq_SwitchList_D200_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/")
-microexon_data(DEXSeq_SwitchList_D100_D200, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/")
-
-
-###### MAKE SWITCH PLOTS #######
-
-## D100 vs D45
-top_genes_D100_D45 <- extractTopSwitches(DEXSeq_SwitchList_D100_D45, n=500, 
-                                alpha = 0.05,
-                                dIFcutoff = 0.1)
-output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/"
-write_tsv(top_genes_D100_D45,
-          file = paste0(output_data_dir,  "top_genes.tsv"))
-
-#count number of nas in gene_name
-sum(is.na(top_genes_D100_D45$gene_name))
-
-
-output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D45/"
-pdf(paste0(output_plots_dir,"switch_RO_D100_vs_RO_D45_MAP4.pdf"))
-plot <- switchPlot(
-  DEXSeq_SwitchList_D100_D45,
-  gene="MAP4",
-  plotTopology=FALSE
-)
-print(plot)
-dev.off()
-
-pdf(paste0(output_plots_dir,"switch_RO_D100_vs_RO_D45_top_500_dtu_events_genes.pdf"))
-for(gene_id in top_genes_D100_D45$gene_id){
-  plot <- switchPlot(
-    DEXSeq_SwitchList_D100_D45,
-    gene=gene_id,
-    plotTopology=FALSE
+SwitchList_part2 <- isoformSwitchAnalysisPart2(
+  switchAnalyzeRlist        = SwitchList_part2, 
+  n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
+  removeNoncodinORFs        = TRUE,
+  pathToCPC2resultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_analysis_outputs/CPC2_output.txt",
+  pathToPFAMresultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_analysis_outputs/pfam_results.txt",
+  pathToSignalPresultFile   = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_analysis_outputs/prediction_results.txt",
+  outputPlots               = TRUE,
+  pathToOutput              = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_analysis_outputs/switchplots_with_consequences",
+  consequencesToAnalyze = c(
+    'intron_retention',
+    'coding_potential',
+    'ORF_seq_similarity',
+    'NMD_status',
+    'domains_identified',
+    'domain_isotype',
+    'signal_peptide_identified'
   )
   
+)
+
+saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/rds/SwitchList_part2.rds")
+
+switchingIsoNoConsequenceSummary <- extractSwitchSummary(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = FALSE)
+
+switchingIsoSummary <- extractSwitchSummary(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = TRUE)
+
+switchingIso <- extractTopSwitches(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = TRUE)
+
+# library("ggthemes")
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/plots/Switchplot_with_consequence.pdf")
+for(gene in unique(switchingIso$gene_id)){
+  print(switchPlot(SwitchList_part2, gene = gene,
+                   plotTopology  = FALSE
+  ))
 }
-print(plot)
 dev.off()
+
+## bar plot of coding potential 
+bar_data <- SwitchList_part2$switchConsequence$switchConsequence |> 
+  table() |> 
+  as.data.frame() |>
+  mutate(Percentage = Freq / sum(Freq) * 100)
+
+# Define the output PDF file
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/plots/CPC2_stacked_barplot.pdf")
+# Create the stacked percentage bar plot
+p <- ggplot(bar_data, aes(x = "", y = Percentage, fill = Var1)) + 
+  geom_bar(stat = "identity") + 
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) + 
+  geom_text(aes(label = Freq), position = position_stack(vjust = 0.5), color = "white") + 
+  theme_minimal() + 
+  labs(title = "Switching Consequences", x = NULL, y = "Percentage", fill = "Consequence") +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+# Print the plot
+print(p)
+
+# Close the PDF device
+dev.off()
+
+
