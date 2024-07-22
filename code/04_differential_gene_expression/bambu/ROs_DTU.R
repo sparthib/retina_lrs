@@ -262,54 +262,6 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
 
 
 
-#### VENN AND BARPLOT DIAGRAM ####
-
-
-plot_barplot <- function(df, condition){ 
-  
-  dge_overlaps = df |> group_by(gene_id) |> dplyr::select( -DTE) |> 
-    summarise(DGE=any(DGE), DTU=any(DTU))  
-  
-  dte_overlaps = df |> group_by(gene_id) |> dplyr::select(-DGE) |> 
-    summarise(DTE = any(DTE), DTU=any(DTU)) 
-  
-  dge_contingency_table <- as_tibble(xtabs(~ DGE + DTU, data = dge_overlaps))
-  dge_contingency_table <- plyr::ddply(dge_contingency_table, ~DGE, transform, Prop = n / sum(n))
-  
-  
-  dge_bar <- ggplot(dge_contingency_table, aes(x = DGE, y = n, fill = DTU)) +
-    geom_bar(stat = "identity", position = "stack") +
-    labs(title = "DGE and DTU genes", x = "DGE", y = "Count") + 
-    scale_y_continuous(labels = scales::percent) +  # Display y-axis as percentage
-    theme_minimal() +
-    geom_text(aes(label = scales::percent(Prop)), position = position_stack(vjust = 0.5), size = 3)
-  
-  dte_contingency_table <- xtabs(~ DTE + DTU, data = dte_overlaps)
-  dte_contingency_table <- plyr::ddply(as_tibble(dte_contingency_table), ~DTE, transform, Prop = n / sum(n))
-  
-  dte_bar <- ggplot(dte_contingency_table, aes(x = DTE, y = n, fill = DTU)) +
-    geom_bar(stat = "identity", position = "stack") +
-    labs(title = "DTE and DTU genes", x = "DTE", y = "Count") + 
-    scale_y_continuous(labels = scales::percent) +  # Display y-axis as percentage
-    theme_minimal() +
-    geom_text(aes(label = scales::percent(Prop)), position = position_stack(vjust = 0.5), size = 3)
-  
-  library(patchwork)
-  p <- dge_bar + dte_bar + plot_annotation(title = 'condition')
-  ggsave(path = "./processed_data/dtu/DTU_gandall/bambu/ROs/",
-         device = "pdf", plot = p, filename = paste0(condition, "df_barplot.pdf"))
-  
-  }
-
-plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D100" &
-                                     condition_2 == "RO_D45"), "RO_D100_vs_RO_D45")
-plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D200" &
-                                     condition_2 == "RO_D45"), "RO_D200_vs_RO_D45")
-plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D100" &
-                                     condition_2 == "RO_D200"), "RO_D100_vs_RO_D200")
-
-
-
 #### Consequences ####
 
 SwitchList_part2 <- analyzeAlternativeSplicing(
@@ -478,56 +430,6 @@ pdf(paste0(output_plots_dir,"switch_RO_D100_vs_RO_D45_top_500_dtu_events_genes.p
 for(gene_id in top_genes_D100_D45$gene_id){
   plot <- switchPlot(
     DEXSeq_SwitchList_D100_D45,
-    gene=gene_id,
-    plotTopology=FALSE
-  )
-  
-}
-print(plot)
-dev.off()
-
-## D200 vs D45
-
-top_genes_D200_D45 <- extractTopSwitches(DEXSeq_SwitchList_D200_D45, n=500, 
-                                         alpha = 0.05,
-                                         dIFcutoff = 0.1)
-output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/"
-write_tsv(top_genes_D200_D45,
-          file = paste0(output_data_dir,  "top_genes.tsv"))
-
-#count number of nas in gene_name
-sum(is.na(top_genes_D200_D45$gene_name))
-
-
-output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D200_vs_RO_D45/"
-pdf(paste0(output_plots_dir,"switch_RO_D200_vs_RO_D45_top_500_dtu_events_genes.pdf"))
-for(gene_id in top_genes_D200_D45$gene_id){
-  plot <- switchPlot(
-    DEXSeq_SwitchList_D200_D45,
-    gene=gene_id,
-    plotTopology=FALSE
-  )
-  
-}
-print(plot)
-dev.off()
-
-# D100 vs D200
-top_genes_D100_D200 <- extractTopSwitches(DEXSeq_SwitchList_D100_D200, n=500, 
-                                         alpha = 0.05,
-                                         dIFcutoff = 0.1)
-output_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/"
-write_tsv(top_genes_D100_D200,
-          file = paste0(output_data_dir,  "top_genes.tsv"))
-
-#count number of nas in gene_name
-sum(is.na(top_genes_D100_D200$gene_name))
-
-output_plots_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D200/"
-pdf(paste0(output_plots_dir,"switch_RO_D100_vs_RO_D200_top_500_dtu_events_genes.pdf"))
-for(gene_id in top_genes_D100_D200$gene_id){
-  plot <- switchPlot(
-    DEXSeq_SwitchList_D100_D200,
     gene=gene_id,
     plotTopology=FALSE
   )
