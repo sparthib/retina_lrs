@@ -26,7 +26,7 @@ cd $CPC_HOME
 for item in ${comparisons[@]}; do
     echo $item
     NT_FASTA=/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/$item/fastas/isoformSwitchAnalyzeR_isoform_nt.fasta
-    CPC2_OUTPUT=/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/$item/external_protein_analyses
+    CPC2_OUTPUT=/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/$item/external_protein_analyses/CPC2_output
     bin/CPC2.py -i $NT_FASTA -o $CPC2_OUTPUT
 done
 
