@@ -52,7 +52,7 @@ source activate SignalP
 for item in ${comparisons[@]}; do
     echo $item
     input_dir=/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/$item/fastas/
-    signalp6 --fastafile $input_dir/isoformSwitchAnalyzeR_isoform_AA_complete.fasta \
+    signalp6 --fastafile $input_dir/isoformSwitchAnalyzeR_isoform_AA.fasta \
     --organism eukarya --output_dir /users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/$item/external_protein_analyses --format txt --mode fast
 done
 
