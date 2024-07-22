@@ -1,7 +1,7 @@
 library(edgeR)
 
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation"
+bambu_dir <- here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation")
 
 cpm <- read.table(file.path(bambu_dir, "CPM_transcript.txt"),
                   header = TRUE)
@@ -29,7 +29,9 @@ y <- y[keep, , keep.lib.sizes=FALSE]
 y <- normLibSizes(y)
 
 
+
 output_plot_dir <- "/users/sparthib/retina_lrs/plots/de/edgeR/bambu/ROs"
+dir.create(output_plot_dir, recursive = TRUE, showWarnings = FALSE)
 pdf(paste0(output_plot_dir, "/plotMDS.pdf"))
 p <- plotMDS(y,col = c(1:2)[y$samples$group],labels = y$samples$Sample,xlim = c(-4,4))
 print(p)
@@ -54,9 +56,9 @@ p <- plotQLDisp(fit)
 print(p)
 dev.off()
 
-contr <- makeContrasts(D200_vs_D100 =  RO_D200 - RO_D100, 
-                       D200_vs_D45 = RO_D200 - RO_D45,
-                       D100_vs_D45 = RO_D100 - RO_D45,
+contr <- makeContrasts(D100_vs_D200 =  RO_D100 - RO_D200, 
+                       D200_vs_D45 = RO_D100 - RO_D45,
+                       D100_vs_D45 = RO_D200 - RO_D45,
                        levels=design)
 
 # require("biomaRt")
@@ -117,11 +119,15 @@ for (i in 1:ncol(contr)){
                     by="isoform_id", all.x=TRUE)
   
   tt$table <- tt$table[order(tt$table$FDR),]
+  tt$table$condition_1 <- names(contr[,i])[contr[,i]== 1]
+  tt$table$condition_2 <- names(contr[,i])[contr[,i]== -1]
   
-  file <- paste0("/users/sparthib/retina_lrs/processed_data/dtu/edgeR/bambu/ROs/", colnames(contr)[i], "_DTEs.tsv")
-  write.table(tt$table, file = file,
-              sep = "\t", quote = FALSE, row.names = FALSE)
+  file <- paste0("./processed_data/dtu/DTU_gandall/bambu/ROs/DTE/", colnames(contr)[i], "_DTEs.tsv")
+  write_tsv(tt$table, file)
   
   
 }
+
+
+
 

@@ -1,6 +1,6 @@
 library(edgeR)
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation"
+bambu_dir <- here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation")
 counts <- read.table(file.path(bambu_dir, "counts_gene.txt"),
                      header = TRUE)
 
@@ -31,10 +31,11 @@ y <- estimateDisp(y, design, robust=TRUE)
 y$common.dispersion
 fit <- glmQLFit(y, design, robust=TRUE)
 
-contr <- makeContrasts(D200_vs_D100 =  RO_D200 - RO_D100, 
-                       D200_vs_D45 = RO_D200 - RO_D45,
-                       D100_vs_D45 = RO_D100 - RO_D45,
+contr <- makeContrasts(D100_vs_D200 =  RO_D100 - RO_D200, 
+                       D200_vs_D45 = RO_D100 - RO_D45,
+                       D100_vs_D45 = RO_D200 - RO_D45,
                        levels=design)
+dir.create("./processed_data/dtu/DTU_gandall/bambu/ROs/DGE", showWarnings = FALSE, recursive = T)
 
 for (i in 1:ncol(contr)){
   
@@ -64,9 +65,9 @@ for (i in 1:ncol(contr)){
   
   tt$table <- tt$table[order(tt$table$FDR),]
   
-  file <- paste0("/users/sparthib/retina_lrs/processed_data/dge/edgeR/bambu/ROs/", colnames(contr)[i], "_DGEs.tsv")
-  write.table(tt$table, file = file,
-              sep = "\t", quote = FALSE, row.names = FALSE)
-  
-  
+  tt$table$condition_1 <- names(contr[,i])[contr[,i]== 1]
+  tt$table$condition_2 <- names(contr[,i])[contr[,i]== -1]
+  file <- paste0("./processed_data/dtu/DTU_gandall/bambu/ROs/DGE/", colnames(contr)[i], "_DGEs.tsv")
+  write_tsv(tt$table, file)
+
 }

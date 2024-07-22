@@ -100,3 +100,23 @@ print(results_df)
 # 
 # [[3]]
 # [1] "Syndromic/systemic diseases with retinopathy, autosomal dominant"
+
+
+
+
+splicing_summary <- extractSplicingSummary(SwitchList_part2,
+                       splicingToAnalyze = 'all',dIFcutoff = 0.1,
+                       onlySigIsoforms = T,
+                       returnResult = F,
+                       plot = T)  
+
+splicing_enrichment <- extractSplicingEnrichment(
+  SwitchList_part2,
+  returnResult = F ,
+  onlySigIsoforms = T,
+  countGenes = F
+)
+
+
+
+

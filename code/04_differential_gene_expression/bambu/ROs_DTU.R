@@ -2,8 +2,9 @@ library(IsoformSwitchAnalyzeR)
 library(tximeta)
 library(readr)
 library(sessioninfo)
+library(here)
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation"
+bambu_dir <- here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation")
 
 #read counts_transcript.txt table from bambu_dir
 
@@ -32,24 +33,38 @@ myDesign  <- data.frame(sampleID = c("EP1.BRN3B.RO" , "EP1.WT_hRO_2", "EP1.WT_RO
                         condition = c("RO_D200", "RO_D100", "RO_D45", "RO_D100", "RO_D200", "RO_D100", "RO_D45"),
                         stringsAsFactors = FALSE)
 
+dir.create(here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/"), showWarnings = T,
+           recursive = T)
+rdata_path = here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/SwitchList.rds")
+
+if(!file.exists(rdata_path)){
 SwitchList <- importRdata(isoformCountMatrix   = counts,
                           isoformRepExpression = cpm,
                           designMatrix         = myDesign,
-                          isoformExonAnnoation = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/extended_annotations.gtf",
-                          isoformNtFasta       = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.fasta",
+                          isoformExonAnnoation = here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/extended_annotations.gtf"),
+                          isoformNtFasta       = here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.fasta"),
                           removeNonConvensionalChr = TRUE,
                           ignoreAfterBar = TRUE,
                           ignoreAfterPeriod = FALSE,
                           showProgress = TRUE)
+#if cds gtf doesn't exist, convert gff to gtf
+if(!file.exists(here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf"))) {
+  gff <- rtracklayer::import(here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gff"))
+  rtracklayer::export(gff, here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf"),
+                      "gtf")
+  rm(gff)
+}
 
-#remove version number from gene_id
+
+SwitchList <- addORFfromGTF(
+  switchAnalyzeRlist     = SwitchList,
+  pathToGTF              = here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf")
+)
+
 SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "", SwitchList$isoformFeatures$gene_id)
-
-###add gene names 
 require("biomaRt")
-mart <- useMart("ENSEMBL_MART_ENSEMBL")
-mart <- useDataset("hsapiens_gene_ensembl", mart)
-
+us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
+mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 
 annotLookup <- getBM(
   mart=mart,
@@ -60,144 +75,274 @@ annotLookup <- getBM(
   uniqueRows=TRUE)
 
 colnames(annotLookup) <- c("gene_id", "ensembl_gene_name")
-
-
 SwitchList$isoformFeatures <- merge(SwitchList$isoformFeatures, annotLookup, by="gene_id", all.x=TRUE)
+
 
 head(SwitchList$isoformFeatures)
 SwitchList$isoformFeatures$gene_name <- SwitchList$isoformFeatures$ensembl_gene_name
 
-# unique(SwitchList$isoformFeatures$condition_1)
-# [1] "RO_D100" "RO_D200"
-# > unique(SwitchList$isoformFeatures$condition_2)
-# [1] "RO_D200" "RO_D45" 
-
-
-# #check if "NF1" is in SwitchList$isoformFeatures$gene_name
-# "NF1" %in% SwitchList$isoformFeatures$gene_name
-# 
-# SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
-#   dplyr::select(isoform_id, gene_name, dIF, isoform_switch_q_value,
-#                 iso_value_2, IF1, IF2,
-#                 condition_1, condition_2) |> nrow() 
-# #38515
-# 
-# SwitchList$isoformFeatures |> dplyr::filter(is.na(IF1) & IF2 > 0) |> 
-#   dplyr::select(gene_name) |> unique() |> nrow()
-# #5071
-
 SwitchListFiltered <- preFilter(
-  switchAnalyzeRlist = SwitchList,
-  geneExpressionCutoff = 1,
-  isoformExpressionCutoff = 0,
-  removeSingleIsoformGenes = TRUE
+  switchAnalyzeRlist         = SwitchList,
+  geneExpressionCutoff       = 1,     # default
+  isoformExpressionCutoff    = 0,     # default
+  removeSingleIsoformGenes   = TRUE  # default
 )
 
-#split by conditions 
+saveRDS(SwitchListFiltered, file = rdata_path)
+#save DEXSeq switchlist
 
-SwitchList_D100_D45 <- SwitchList
-SwitchList_D200_D45 <- SwitchList
-SwitchList_D100_D200 <- SwitchList
+}else { 
+  SwitchListFiltered <- readRDS(rdata_path)
+}
 
-
-
-SwitchList_D100_D45$isoformFeatures <- SwitchList$isoformFeatures |> 
-  dplyr::filter(condition_1 == "RO_D100" & condition_2 == "RO_D45")
-
-SwitchList_D200_D45$isoformFeatures <- SwitchList$isoformFeatures |> 
-  dplyr::filter(condition_1 == "RO_D200" & condition_2 == "RO_D45")
-
-SwitchList_D100_D200$isoformFeatures <- SwitchList$isoformFeatures |> 
-  dplyr::filter(condition_1 == "RO_D100" & condition_2 == "RO_D200")
-
-write_tsv(SwitchList_D100_D45$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/all_isoform_Features.tsv")
-write_tsv(SwitchList_D200_D45$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/all_isoform_Features.tsv")
-write_tsv(SwitchList_D100_D200$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/all_isoform_Features.tsv")
-
-non_DTUs_D100_D45 <- SwitchList_D100_D45$isoformFeatures |> dplyr::filter((iso_value_1 > 0 & gene_value_2 == 0) | (gene_value_1 == 0 & iso_value_2 > 0)) |>
-  dplyr::select(isoform_id, gene_id, gene_name, iso_value_1, iso_value_2, IF1, IF2)
-write_tsv(non_DTUs_D100_D45, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/non_DTUs.tsv")
-
-non_DTUs_D200_D45 <- SwitchList_D200_D45$isoformFeatures |> dplyr::filter((iso_value_1 > 0 & gene_value_2 == 0) | (gene_value_1 == 0 & iso_value_2 > 0)) |>
-  dplyr::select(isoform_id, gene_id, gene_name, iso_value_1, iso_value_2, IF1, IF2)
-write_tsv(non_DTUs_D200_D45, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/non_DTUs.tsv")
-
-non_DTUs_D100_D200 <- SwitchList_D100_D200$isoformFeatures |> dplyr::filter((iso_value_1 > 0 & gene_value_2 == 0) | (gene_value_1 == 0 & iso_value_2 > 0)) |>
-  dplyr::select(isoform_id, gene_id, gene_name, iso_value_1, iso_value_2, IF1, IF2)
-write_tsv(non_DTUs_D100_D200, file = "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/non_DTUs.tsv")
-
-
-SwitchList_D100_D45_Filtered <- preFilter(
-  switchAnalyzeRlist = SwitchList_D100_D45,
-  geneExpressionCutoff = 1,
-  isoformExpressionCutoff = 0,
-  removeSingleIsoformGenes = TRUE
-)
-
-SwitchList_D200_D45_Filtered <- preFilter(
-  switchAnalyzeRlist = SwitchList_D200_D45,
-  geneExpressionCutoff = 1,
-  isoformExpressionCutoff = 0,
-  removeSingleIsoformGenes = TRUE
-)
-
-SwitchList_D100_D200_Filtered <- preFilter(
-  switchAnalyzeRlist = SwitchList_D100_D200,
-  geneExpressionCutoff = 1,
-  isoformExpressionCutoff = 0,
-  removeSingleIsoformGenes = TRUE
-)
-
-DEXSeq_SwitchList_D100_D45 <- isoformSwitchTestDEXSeq(switchAnalyzeRlist = SwitchList_D100_D45_Filtered,  
-                                             reduceToSwitchingGenes=TRUE)
-
-DEXSeq_SwitchList_D200_D45 <- isoformSwitchTestDEXSeq(switchAnalyzeRlist = SwitchList_D200_D45_Filtered,  
-                                             reduceToSwitchingGenes=TRUE)
-
-DEXSeq_SwitchList_D100_D200 <- isoformSwitchTestDEXSeq(switchAnalyzeRlist = SwitchList_D100_D200_Filtered,  
-                                             reduceToSwitchingGenes=TRUE)
+# if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/DTE_table.tsv")){
+#   
+dtu_rdata_path  = here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/DexSeqDTUDGESwitchList.rds")
+dir.create(here("processed_data/dtu/DTU_gandall/bambu/ROs/fastas/"), showWarnings = T, recursive = T)
+if(!file.exists(dtu_rdata_path)){
+  SwitchList_part1 <- isoformSwitchTestDEXSeq(
+    switchAnalyzeRlist         = SwitchListFiltered,
+    reduceToSwitchingGenes     = FALSE
+  )
+  
+  idx = match(SwitchList_part1$isoformFeatures$isoform_id, DTE_table$isoform_id)
+  SwitchList_part1$isoformFeatures$iso_q_value = DTE_table$FDR[idx]
+  
+  idx = match(SwitchList_part1$isoformFeatures$gene_id, DGE_table$gene_id)
+  SwitchList_part1$isoformFeatures$gene_q_value = DGE_table$FDR[idx]
+  
+  SwitchList_part1$isoformFeatures <- SwitchList_part1$isoformFeatures |> distinct() 
+  
+  # Switching features:
+  #   Comparison Isoforms Switches Genes
+  # 1  RO_D100 vs RO_D45     2076     1588  1495
+  # 2 RO_D100 vs RO_D200     1684     1389  1290
+  # 3  RO_D200 vs RO_D45     2490     2055  1775
+  # 4           Combined     4804     4417  3188
+  
+  SwitchList_part1 <- analyzeORF(SwitchList_part1, genomeObject = Hsapiens)
+  
+  SwitchList_part1$aaSequence = NULL
+  
+  SwitchList_part1 <- extractSequence(
+    switchAnalyzeRlist = SwitchList_part1,
+    pathToOutput       = here("processed_data/dtu/DTU_gandall/bambu/ROs/fastas/"),
+    extractNTseq       = TRUE, #for CPC2
+    extractAAseq       = TRUE,
+    removeShortAAseq   = TRUE,
+    removeLongAAseq    = TRUE, #FOR PFAM, SignalP
+    onlySwitchingGenes = TRUE,
+    alsoSplitFastaFile=FALSE
+  )
+  
+  saveRDS(SwitchList_part1, file = dtu_rdata_path)
+}else{
+  SwitchList_part1 <- readRDS(dtu_rdata_path)
+}
 
 
-DEX_Seq_output_writing <- function(dexseq_switchlist, output_dir) { 
-  dexseq_switchlist$isoformFeatures$neg_log_10_q <- -log10(dexseq_switchlist$isoformFeatures$isoform_switch_q_value)
-  write_tsv(dexseq_switchlist$isoformFeatures,
-            file = paste0(output_dir, "DEXSeqSwitchList.tsv"))
-  dexseq_switchlist$isoformCountMatrix |> write_tsv(file =  paste0(output_dir,  "isoform_counts.tsv"))
-  dexseq_switchlist$isoformRepExpression |> write_tsv(file =  paste0(output_dir, "isoform_abundance.tsv"))
+if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/DGE_DTU_DTE.tsv")){
+  
+  
+  ### load DTEs ###
+  D100_vs_D200_DTE_table <- read_tsv("./processed_data/dtu/DTU_gandall/bambu/ROs/DTE/D100_vs_D200_DTEs.tsv")
+  D200_vs_D45_DTE_table <- read_tsv("./processed_data/dtu/DTU_gandall/bambu/ROs/DTE/D200_vs_D45_DTEs.tsv")
+  D100_vs_D45_DTE_table <- read_tsv("./processed_data/dtu/DTU_gandall/bambu/ROs/DTE/D100_vs_D45_DTEs.tsv")
+  
+  #rbind 
+  DTE_table <- rbind(D100_vs_D200_DTE_table, D200_vs_D45_DTE_table, D100_vs_D45_DTE_table)
+  
+  ### load DGEs ###
+  D100_vs_D200_DGE_table <- read_tsv("./processed_data/dtu/DTU_gandall/bambu/ROs/DGE/D100_vs_D200_DGEs.tsv")
+  D200_vs_D45_DGE_table <- read_tsv("./processed_data/dtu/DTU_gandall/bambu/ROs/DGE/D200_vs_D45_DGEs.tsv")
+  D100_vs_D45_DGE_table <- read_tsv("./processed_data/dtu/DTU_gandall/bambu/ROs/DGE/D100_vs_D45_DGEs.tsv")
+  
+  #rbind
+  DGE_table <- rbind(D100_vs_D200_DGE_table, D200_vs_D45_DGE_table, D100_vs_D45_DGE_table)
+  
+  #check for duplicates 
+  SwitchList_part1$isoformFeatures <- SwitchList_part1$isoformFeatures |> distinct() 
+  
+  DGE_DTU_DTE = SwitchList_part1$isoformFeatures |>
+    as_tibble() |>
+    dplyr::select(isoform_id, gene_id, gene_name, condition_1, condition_2) |>
+    left_join(
+      SwitchList_part1$isoformSwitchAnalysis |> dplyr::select(isoform_id, dIF, pvalue, padj, condition_1, condition_2),
+      by = c("isoform_id", "condition_1", "condition_2")
+    ) |>
+    dplyr::rename(
+      DTU_dIF    = "dIF",
+      DTU_pval   = "pvalue",
+      DTU_qval   = "padj"
+    ) |>
+    mutate(
+      DTU = DTU_qval < 0.05 # & abs(DTU_dIF) > 0.1
+    ) 
+  
+  DGE_DTU_DTE$isoform_id <- gsub("\\..*", "", DGE_DTU_DTE$isoform_id)
+  
+  DGE_DTU_DTE  <- DGE_DTU_DTE |>
+    left_join(
+      DTE_table , by = c("isoform_id", "condition_1", "condition_2")
+    ) |>
+    dplyr::rename(
+      DTE_log2FC = "logFC",
+      DTE_pval   = "PValue",
+      DTE_qval   = "FDR"
+    ) |>
+    mutate(
+      DTE = DTE_qval < 0.05
+    ) 
+  DGE_DTU_DTE <- DGE_DTU_DTE |> dplyr::select(-c(logCPM, F))
+  
+  DGE_DTU_DTE$gene_id <- DGE_DTU_DTE$gene_id.x
+  DGE_DTU_DTE$gene_name <- DGE_DTU_DTE$gene_name.x
+  DGE_DTU_DTE <- DGE_DTU_DTE |> dplyr::select(-c(gene_id.x,gene_name.x, gene_id.y, gene_name.y))
+  colnames(DGE_DTU_DTE) 
+  
+  DGE_DTU_DTE  <- DGE_DTU_DTE |>
+    left_join(
+      DGE_table, by = c("gene_id", "condition_1", "condition_2")
+    ) |>
+    dplyr::rename(
+      DGE_log2FC = "logFC",
+      DGE_pval   = "PValue",
+      DGE_qval   = "FDR"
+    ) |>
+    mutate(
+      DGE = DGE_qval < 0.05
+    )
+  colnames(DGE_DTU_DTE)
+  
+
+  DGE_DTU_DTE$gene_name <- DGE_DTU_DTE$gene_name.x
+  DGE_DTU_DTE <- DGE_DTU_DTE |> dplyr::select(-c(gene_name.x,  gene_name.y, gene_name, gene_biotype, transcript_biotype))
+  
+  annotLookup <- getBM(
+    mart=mart,
+    attributes=c( "ensembl_gene_id",
+                  "external_gene_name",
+                  "gene_biotype"),
+    filter="ensembl_gene_id",
+    values=DGE_DTU_DTE$gene_id,
+    uniqueRows=TRUE)
+  
+  colnames(annotLookup) <- c("gene_id", "gene_name", "gene_biotype")
+  
+  DGE_DTU_DTE <- merge(DGE_DTU_DTE, annotLookup,
+                    by="gene_id", all.x=TRUE)
+  
+  # Set the Ensembl mirror to "useast"
+  mart <- useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl", mirror = "useast")
+  
+  # Ensure DGE_DTU_DTE$isoform_id is a vector
+  isoform_ids <- as.vector(DGE_DTU_DTE$isoform_id)
+  
+  # Query the database
+  # annotLookup <- getBM(
+  #   mart = mart,
+  #   attributes = c("ensembl_transcript_id", "transcript_biotype"),
+  #   filters = "ensembl_transcript_id",
+  #   values = isoform_ids,
+  #   uniqueRows = TRUE
+  # )
+  # 
+  # colnames(annotLookup) <- c("isoform_id", "transcript_biotype")
+  # tt$table <- merge(tt$table, annotLookup,
+  #                   by="isoform_id", all.x=TRUE)
+  # 
+  
+  
+  
+  
+  write_tsv( DGE_DTU_DTE, file = "./processed_data/dtu/DTU_gandall/bambu/ROs/DGE_DTU_DTE.tsv")
+} else {
+  DGE_DTU_DTE <- readr::read_tsv("./processed_data/dtu/DTU_gandall/bambu/ROs/DGE_DTU_DTE.tsv")
+}
+
+
+
+#### VENN AND BARPLOT DIAGRAM ####
+
+
+plot_barplot <- function(df, condition){ 
+  
+  dge_overlaps = df |> group_by(gene_id) |> dplyr::select( -DTE) |> 
+    summarise(DGE=any(DGE), DTU=any(DTU))  
+  
+  dte_overlaps = df |> group_by(gene_id) |> dplyr::select(-DGE) |> 
+    summarise(DTE = any(DTE), DTU=any(DTU)) 
+  
+  dge_contingency_table <- as_tibble(xtabs(~ DGE + DTU, data = dge_overlaps))
+  dge_contingency_table <- plyr::ddply(dge_contingency_table, ~DGE, transform, Prop = n / sum(n))
+  
+  
+  dge_bar <- ggplot(dge_contingency_table, aes(x = DGE, y = n, fill = DTU)) +
+    geom_bar(stat = "identity", position = "stack") +
+    labs(title = "DGE and DTU genes", x = "DGE", y = "Count") + 
+    scale_y_continuous(labels = scales::percent) +  # Display y-axis as percentage
+    theme_minimal() +
+    geom_text(aes(label = scales::percent(Prop)), position = position_stack(vjust = 0.5), size = 3)
+  
+  dte_contingency_table <- xtabs(~ DTE + DTU, data = dte_overlaps)
+  dte_contingency_table <- plyr::ddply(as_tibble(dte_contingency_table), ~DTE, transform, Prop = n / sum(n))
+  
+  dte_bar <- ggplot(dte_contingency_table, aes(x = DTE, y = n, fill = DTU)) +
+    geom_bar(stat = "identity", position = "stack") +
+    labs(title = "DTE and DTU genes", x = "DTE", y = "Count") + 
+    scale_y_continuous(labels = scales::percent) +  # Display y-axis as percentage
+    theme_minimal() +
+    geom_text(aes(label = scales::percent(Prop)), position = position_stack(vjust = 0.5), size = 3)
+  
+  library(patchwork)
+  p <- dge_bar + dte_bar + plot_annotation(title = 'condition')
+  ggsave(path = "./processed_data/dtu/DTU_gandall/bambu/ROs/",
+         device = "pdf", plot = p, filename = paste0(condition, "df_barplot.pdf"))
+  
   }
 
-DEX_Seq_output_writing(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D45/")
-DEX_Seq_output_writing(DEXSeq_SwitchList_D200_D45, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D200_vs_RO_D45/")
-DEX_Seq_output_writing(DEXSeq_SwitchList_D100_D200, "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/RO_D100_vs_RO_D200/")
+plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D100" &
+                                     condition_2 == "RO_D45"), "RO_D100_vs_RO_D45")
+plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D200" &
+                                     condition_2 == "RO_D45"), "RO_D200_vs_RO_D45")
+plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "RO_D100" &
+                                     condition_2 == "RO_D200"), "RO_D100_vs_RO_D200")
 
-## Volcano Plots ##
 
-volcano_plot <- function(dexseq_switchlist, output_dir){ 
-  dexseq_switchlist_top_20 <- dexseq_switchlist$isoformFeatures[order(abs(dexseq_switchlist$isoformFeatures$isoform_switch_q_value)),]
-  #filter by dIF
-  dexseq_switchlist_top_20 <- dexseq_switchlist_top_20[abs(dexseq_switchlist_top_20$dIF) > 0.5,]
-  #top 20
-  dexseq_switchlist_top_20 <- dexseq_switchlist_top_20[1:20,]
-  
-  pdf(paste0(output_dir,"isoform_volcano.pdf"))
-  p <- ggplot(data=dexseq_switchlist$isoformFeatures, aes(x=dIF, y=-log10(isoform_switch_q_value))) +
-    geom_point(
-      aes( color=abs(dIF) > 0.1 & isoform_switch_q_value < 0.05 ), # default cutoff
-      size=1
-    ) +
-    geom_hline(yintercept = -log10(0.05), linetype='dashed') + # default cutoff
-    geom_vline(xintercept = c(-0.1, 0.1), linetype='dashed') + # default cutoff
-    scale_color_manual('Signficant\nIsoform Switch', values = c('grey','skyblue')) +
-    labs(x='dIF', y='-Log10 ( Isoform Switch Q Value )') +
-    theme_bw() + 
-    geom_text(aes(label=ifelse(gene_name %in% dexseq_switchlist_top_20$gene_name & abs(dIF) > 0.5, 
-                               gene_name,'')),
-              hjust=0,vjust=0, size = 1)
-  
-  print(p)
-  dev.off()
-  
-  }
+
+#### Consequences ####
+
+SwitchList_part2 <- analyzeAlternativeSplicing(
+  switchAnalyzeRlist = SwitchList_part1
+)
+
+saveRDS(SwitchList_part2, file = here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/SwitchList_part2.rds"))
+
+# dir.create("./processed_data/dtu/DTU_gandall/bambu/ROs/plots", showWarnings = T, recursive = T)
+pdf("./processed_data/dtu/DTU_gandall/bambu/ROs/plots/Splicing_Summary.pdf")
+splicing_summary <- extractSplicingSummary(SwitchList_part2,
+                                           splicingToAnalyze = 'all',dIFcutoff = 0.1,
+                                           onlySigIsoforms = T,
+                                           returnResult = F,
+                                           plot = T)  
+print(splicing_summary)
+dev.off()
+pdf("./processed_data/dtu/DTU_gandall/bambu/ROs/plots/Splicing_Enrichment.pdf",
+    width = 10, height = 7)
+splicing_enrichment <- extractSplicingEnrichment(
+  SwitchList_part2,
+  returnResult = F ,
+  onlySigIsoforms = T,
+  countGenes = F
+)
+print(splicing_enrichment)
+dev.off()
+
+
+
+################################################################################
+
+
 
 volcano_plot(DEXSeq_SwitchList_D100_D45, "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D100_vs_RO_D45/")
 volcano_plot(DEXSeq_SwitchList_D200_D45, "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/RO_D200_vs_RO_D45/")
