@@ -41,7 +41,7 @@ cd /dcs04/hicks/data/sparthib/retina_lrs/PfamScan/pfam_scan
 for item in ${comparisons[@]}; do
     echo $item
     input_dir=/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/$item/fastas/
-    ./pfam_scan.py $input_dir/isoformSwitchAnalyzeR_isoform_AA_complete.fasta \
+    ./pfam_scan.py $input_dir/isoformSwitchAnalyzeR_isoform_AA.fasta \
     ../ -out /users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/$item/external_protein_analyses/pfam_results.csv -cpu $SLURM_CPUS_PER_TASK
 done
 conda deactivate
