@@ -345,4 +345,5 @@ p <- extractConsequenceEnrichment(
 print(p)
 dev.off()
 
+# to convert pfam output to right format
 # write.table(pfam_results, file = "/Users/sparthib/Documents/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/pfam_results.txt", sep = "\t", quote = FALSE, row.names = FALSE)
