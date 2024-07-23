@@ -1,0 +1,39 @@
+gene_id	isoform_id	DTU_dIF	DTU_qval	gene_name	disease_category
+ENSG00000007062	ENST00000447510	-0.16061666666666666	5.681612459174246e-7	PROM1	c(""Cone or cone-rod dystrophy, autosomal dominant"", ""Macular degeneration, autosomal dominant"", ""Retinitis pigmentosa, autosomal recessive"", ""Other retinopathy, autosomal recessive"")
+ENSG00000007062	ENST00000505450	0.14015000000000002	0.01175415461770067	PROM1	c(""Cone or cone-rod dystrophy, autosomal dominant"", ""Macular degeneration, autosomal dominant"", ""Retinitis pigmentosa, autosomal recessive"", ""Other retinopathy, autosomal recessive"")
+ENSG00000007062	ENST00000508167	0.35865	0.00280957857377046	PROM1	c(""Cone or cone-rod dystrophy, autosomal dominant"", ""Macular degeneration, autosomal dominant"", ""Retinitis pigmentosa, autosomal recessive"", ""Other retinopathy, autosomal recessive"")
+ENSG00000042317	ENST00000553885	0.28945	8.10108379044249e-22	SPATA7	c(""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"")
+ENSG00000042781	ENST00000366942	-0.2924333333333334	0.01508142315904387	USH2A	c(""Retinitis pigmentosa, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000072756	ENST00000251607	0.20275	4.437163824509572e-5	TRNT1	c(""Retinitis pigmentosa, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000104237	ENST00000220676	-0.8112333333333334	4.781551082245325e-13	RP1	c(""Macular degeneration, autosomal dominant"", ""Retinitis pigmentosa, autosomal dominant"", ""Retinitis pigmentosa, autosomal recessive"")
+ENSG00000104237	ENST00000636932	0.7475166666666666	8.442489192144486e-13	RP1	c(""Macular degeneration, autosomal dominant"", ""Retinitis pigmentosa, autosomal dominant"", ""Retinitis pigmentosa, autosomal recessive"")
+ENSG00000105392	ENST00000613299	-0.19718333333333335	4.956006859895669e-7	CRX	c(""Cone or cone-rod dystrophy, autosomal dominant"", ""Leber congenital amaurosis, autosomal dominant"", ""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal dominant"")
+ENSG00000105392	ENST00000221996	0.17891666666666683	1.9843760456522764e-4	CRX	c(""Cone or cone-rod dystrophy, autosomal dominant"", ""Leber congenital amaurosis, autosomal dominant"", ""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal dominant"")
+ENSG00000107736	ENST00000398788	-0.23885000000000003	0.02336090042958911	CDH23	c(""Deafness alone or syndromic, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000107736	ENST00000299366	0.15466666666666667	1.6768023109797786e-7	CDH23	c(""Deafness alone or syndromic, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000109103	ENST00000470125	-0.14525	0.01128706185611902	UNC119	Cone or cone-rod dystrophy, autosomal dominant
+ENSG00000112280	ENST00000683602	-0.23343333333333333	0.0045600231834033	COL9A1	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000115255	ENST00000395479	-0.3751666666666667	3.5628435639936605e-21	REEP6	Retinitis pigmentosa, autosomal recessive
+ENSG00000115255	ENST00000233596	0.3756333333333334	3.3475000449062503e-21	REEP6	Retinitis pigmentosa, autosomal recessive
+ENSG00000117650	ENST00000366999	0.10816666666666663	0.005730356805303	NEK2	Retinitis pigmentosa, autosomal recessive
+ENSG00000127980	ENST00000248633	0.10693333333333332	0.04270976890601127	PEX1	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000134376	ENST00000367400	0.14423333333333332	0.02115182881675413	CRB1	c(""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"", ""Other retinopathy, autosomal dominant"")
+ENSG00000135437	ENST00000257895	-0.5040833333333333	2.004781413864163e-4	RDH5	c(""Cone or cone-rod dystrophy, autosomal recessive"", ""Congenital stationary night blindness, autosomal recessive"")
+ENSG00000135437	ENST00000548082	0.16125	0.00721542916833657	RDH5	c(""Cone or cone-rod dystrophy, autosomal recessive"", ""Congenital stationary night blindness, autosomal recessive"")
+ENSG00000138686	ENST00000264499	-0.32423333333333326	0.00134334272626436	BBS7	Bardet-Biedl syndrome, autosomal recessive
+ENSG00000138686	ENST00000506636	0.2028166666666667	0.00107627472979709	BBS7	Bardet-Biedl syndrome, autosomal recessive
+ENSG00000144061	ENST00000496524	0.23955	0.02724159990256743	NPHP1	c(""Bardet-Biedl syndrome, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000155755	ENST00000409444	0.14974999999999994	5.021843878667906e-4	TMEM237	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000155755	ENST00000495329	-0.18531666666666669	2.316477105741024e-4	TMEM237	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000157796	ENST00000512588	-0.33240000000000003	3.5891363304332655e-5	WDR19	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000165533	ENST00000380656	-0.19926666666666665	9.225153119864008e-10	TTC8	c(""Bardet-Biedl syndrome, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"")
+ENSG00000165533	ENST00000622513	0.18791666666666657	0.00223851701351713	TTC8	c(""Bardet-Biedl syndrome, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"")
+ENSG00000167995	ENST00000378043	-0.23763333333333336	0.0011343527859675	BEST1	c(""Macular degeneration, autosomal dominant"", ""Retinitis pigmentosa, autosomal dominant"", ""Retinitis pigmentosa, autosomal recessive"", ""Other retinopathy, autosomal dominant"", ""Other retinopathy, autosomal recessive"")
+ENSG00000173085	ENST00000647002	0.4909	0.03140427675497023	COQ2	c(""Retinitis pigmentosa, autosomal recessive"", ""Other retinopathy, autosomal recessive"")
+ENSG00000176406	ENST00000436393	-0.34173333333333333	3.97978142113776e-8	RIMS2	Syndromic/systemic diseases with retinopathy, autosomal recessive
+ENSG00000187017	ENST00000633239	-0.1790333333333333	9.200459233694596e-4	ESPN	c(""Deafness alone or syndromic, autosomal dominant"", ""Deafness alone or syndromic, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000187017	ENST00000461727	0.16799999999999998	0.0033086643413797	ESPN	c(""Deafness alone or syndromic, autosomal dominant"", ""Deafness alone or syndromic, autosomal recessive"", ""Usher syndrome, autosomal recessive"")
+ENSG00000187535	ENST00000361339	-0.20503333333333332	9.62436291909872e-8	IFT140	c(""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000187535	ENST00000426508	0.24773333333333336	8.045500921013135e-4	IFT140	c(""Leber congenital amaurosis, autosomal recessive"", ""Retinitis pigmentosa, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
+ENSG00000187634	ENST00000341065	-0.26726666666666665	0.03366522870154102	SAMD11	Retinitis pigmentosa, autosomal recessive
+ENSG00000198707	ENST00000676363	-0.1426	3.7137530207541144e-11	CEP290	c(""Bardet-Biedl syndrome, autosomal recessive"", ""Leber congenital amaurosis, autosomal recessive"", ""Syndromic/systemic diseases with retinopathy, autosomal recessive"")
