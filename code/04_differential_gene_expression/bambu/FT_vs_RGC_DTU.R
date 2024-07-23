@@ -38,7 +38,7 @@ myDesign  <- data.frame(sampleID = c("H9.FT_1","H9.FT_2", "H9.hRGC_1", "H9.hRGC_
                         condition = c( "FT", "FT", "RGC", "RGC"),
                         stringsAsFactors = FALSE)
 
-rdata_path = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/RO_D200_vs_RO_D45/SwitchList.rds"
+rdata_path = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/rds/SwitchList.rds"
 if(!file.exists(rdata_path)){ 
   SwitchList <- importRdata(isoformCountMatrix   = counts,
                             isoformRepExpression = cpm,
@@ -52,16 +52,16 @@ if(!file.exists(rdata_path)){
   
   
   #if cds gtf doesn't exist, convert gff to gtf
-  if(!file.exists("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/sqanti3_qc/RGC_FT_corrected.gtf.cds.gtf")){
-    gff <- rtracklayer::import("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/RGC_FT_corrected.gtf.cds.gff")
-    rtracklayer::export(gff, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/RGC_FT_corrected.gtf.cds.gtf",
+  if(!file.exists("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/FT_vs_RGC_corrected.gtf.cds.gtf")){
+    gff <- rtracklayer::import("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/FT_vs_RGC_corrected.gtf.cds.gff")
+    rtracklayer::export(gff, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/FT_vs_RGC_corrected.gtf.cds.gtf",
                         "gtf")
     rm(gff)
   }
   
   SwitchList <- addORFfromGTF(
     switchAnalyzeRlist     = SwitchList,
-    pathToGTF              = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/RGC_FT_corrected.gtf.cds.gtf"
+    pathToGTF              = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/sqanti3_qc/FT_vs_RGC_corrected.gtf.cds.gtf"
   )
   
   
@@ -128,6 +128,12 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
   is.de <- decideTests(qlf, p.value=0.05)
   print(summary(is.de))
   
+  # print(summary(is.de))
+  # 1*FT -1*RGC
+  # Down           211
+  # NotSig       48443
+  # Up             199
+  
   tt <- topTags(qlf,n = Inf)
   nrow(tt) #10261
   print("head of topTags")
@@ -180,6 +186,11 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu
   
   is.de <- decideTests(qlf_dge, p.value=0.05)
   summary(is.de)
+  # >   summary(is.de)
+  # 1*FT -1*RGC
+  # Down           783
+  # NotSig       20006
+  # Up             891
   
   tt_dge <- topTags(qlf_dge,n = Inf)
   tt_dge$table$gene_id <- gsub("\\..*", "", tt_dge$table$gene_id)
@@ -215,7 +226,7 @@ if(!file.exists(dtu_rdata_path)){
   
   SwitchList_part1 <- extractSequence(
     switchAnalyzeRlist = SwitchList_part1,
-    pathToOutput       = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/",
+    pathToOutput       = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/fastas/",
     extractNTseq       = TRUE,
     extractAAseq       = TRUE,
     removeShortAAseq   = TRUE,
@@ -295,33 +306,36 @@ dte_overlaps = DGE_DTU_DTE |> group_by(gene_id) |> dplyr::select(-DGE) |>
   summarise(DTE = any(DTE), DTU=any(DTU)) 
 #total 10673 genes after filtering 
 dge_contingency_table <- as_tibble(xtabs(~ DGE + DTU, data = dge_overlaps))
-dge_contingency_table <- plyr::ddply(dge_contingency_table, .(DGE), transform, Prop = n / sum(n))
+dge_contingency_table <- plyr::ddply(dge_contingency_table, ~DGE, transform, Prop = n / sum(n))
 
 
 dge_bar <- ggplot(dge_contingency_table, aes(x = DGE, y = n, fill = DTU)) +
   geom_bar(stat = "identity", position = "stack") +
   labs(title = "DGE and DTU genes", x = "DGE", y = "Count") + 
-  scale_y_continuous(labels = scales::percent) +  # Display y-axis as percentage
+  scale_y_continuous(labels = scales::comma) +   # Display y-axis as percentage
   theme_minimal() +
-  geom_text(aes(label = scales::percent(Prop)), position = position_stack(vjust = 0.5), size = 3)
+  geom_text(aes(label = n), 
+            position = position_stack(vjust = 0.5), 
+            size = 2)
 
 dte_contingency_table <- xtabs(~ DTE + DTU, data = dte_overlaps)
-dte_contingency_table <- plyr::ddply(as_tibble(dte_contingency_table), .(DTE), transform, Prop = n / sum(n))
+dte_contingency_table <- plyr::ddply(as_tibble(dte_contingency_table), ~DTE, transform, Prop = n / sum(n))
 
 dte_bar <- ggplot(dte_contingency_table, aes(x = DTE, y = n, fill = DTU)) +
   geom_bar(stat = "identity", position = "stack") +
   labs(title = "DTE and DTU genes", x = "DTE", y = "Count") + 
-  scale_y_continuous(labels = scales::percent) +  # Display y-axis as percentage
+  scale_y_continuous(labels = scales::comma) +   # Display y-axis as percentage
   theme_minimal() +
-  geom_text(aes(label = scales::percent(Prop)), position = position_stack(vjust = 0.5), size = 3)
-
+  geom_text(aes(label = n), 
+            position = position_stack(vjust = 0.5), 
+            size = 2)
 library(patchwork)
 p <- dge_bar + dte_bar + plot_annotation(title = 'FT vs RGC')
-ggsave(path = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/",
+ggsave(path = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/",
        device = "pdf", plot = p, filename = "DGE_DTU_DTE_barplot.pdf")
 
 # save venn diagram as pdf 
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_DTU_DTE_venn.pdf")
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/DGE_DTU_DTE_venn.pdf")
 fig <- ggVennDiagram(list(DTU = which(gene_overlaps$DTU), 
                           DGE = which(gene_overlaps$DGE),
                           DTE = which(gene_overlaps$DTE))) + 
@@ -340,9 +354,9 @@ SwitchList_part2 <- analyzeAlternativeSplicing(
 
 saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/SwitchList_part2.rds")
 
-SwitchList_part2 <- readRDS("./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/SwitchList_part2.rds")
+SwitchList_part2 <- readRDS("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/SwitchList_part2.rds")
 
-pdf("./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/Splicing_Summary.pdf")
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/Splicing_Summary.pdf")
 splicing_summary <- extractSplicingSummary(SwitchList_part2,
                                            splicingToAnalyze = 'all',dIFcutoff = 0.1,
                                            onlySigIsoforms = T,
@@ -350,7 +364,7 @@ splicing_summary <- extractSplicingSummary(SwitchList_part2,
                                            plot = T)  
 print(splicing_summary)
 dev.off()
-pdf("./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/Splicing_Enrichment.pdf")
+pdf("/users/sparthib/retina_lrs//processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/Splicing_Enrichment.pdf")
 splicing_enrichment <- extractSplicingEnrichment(
   SwitchList_part2,
   returnResult = F ,
@@ -369,11 +383,11 @@ SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
   n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
   removeNoncodinORFs        = TRUE,
-  pathToCPC2resultFile      = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/CPC2_output.txt.txt",
-  pathToPFAMresultFile      = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/pfam_results.txt",
-  pathToSignalPresultFile   = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/prediction_results.txt",
+  pathToCPC2resultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/external_protein_analyses/CPC2_output.txt",
+  pathToPFAMresultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/external_protein_analyses/pfam_results.txt",
+  pathToSignalPresultFile   = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/external_protein_analyses/prediction_results.txt",
   outputPlots               = TRUE,
-  pathToOutput              = "./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/part_2",
+  pathToOutput              = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/external_protein_analyses/switchplots_with_consequences",
   consequencesToAnalyze = c(
     'intron_retention',
     'coding_potential',
@@ -384,12 +398,26 @@ SwitchList_part2 <- isoformSwitchAnalysisPart2(
     'signal_peptide_identified'
   ))
 
-SwitchList_part2$isoformFeatures$codingPotential
+saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/rds/SwitchList_part2.rds")
 
 
-#### Switch Consequences ####
+# The number of isoform switches with functional consequences identified were:
+#   Comparison nrIsoforms nrSwitches nrGenes
+# 1  FT vs RGC        864        899     608
 
-pdf("./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/Splicing_Enrichment.pdf")
+#### Switch Consequence plots  ####
+pdf("./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/Splicing_Summary.pdf")
+splicing_summary <- extractSplicingSummary(SwitchList_part2,
+                                           splicingToAnalyze = 'all',dIFcutoff = 0.1,
+                                           onlySigIsoforms = T,
+                                           returnResult = F,
+                                           plot = T)  
+print(splicing_summary)
+dev.off()
+
+
+
+pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/Splicing_Enrichment.pdf")
 splicing_enrichment <- extractSplicingEnrichment(
   SwitchList_part2,
   returnResult = F ,
@@ -399,28 +427,23 @@ splicing_enrichment <- extractSplicingEnrichment(
 print(splicing_enrichment)
 dev.off()
 
-####
-
-
-## bar plot of coding potential 
-bar_data <- SwitchList_part2$switchConsequence$switchConsequence |> 
-  table() |> 
-  as.data.frame() |>
-  mutate(Percentage = Freq / sum(Freq) * 100)
-
-# Define the output PDF file
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/CPC2_stacked_barplot.pdf")
-# Create the stacked percentage bar plot
-p <- ggplot(bar_data, aes(x = "", y = Percentage, fill = Var1)) + 
-  geom_bar(stat = "identity") + 
-  scale_y_continuous(labels = scales::percent_format(scale = 1)) + 
-  geom_text(aes(label = Freq), position = position_stack(vjust = 0.5), color = "white") + 
-  theme_minimal() + 
-  labs(title = "Switching Consequences", x = NULL, y = "Percentage", fill = "Consequence") +
-  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
-
-# Print the plot
+pdf("./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/Consequence_Enrichment.pdf",
+    width = 10, height = 7)
+p <- extractConsequenceEnrichment(
+  SwitchList_part2,
+  consequencesToAnalyze = c(
+    'intron_retention',
+    'coding_potential',
+    'ORF_seq_similarity',
+    'NMD_status',
+    'domains_identified',
+    'domain_isotype',
+    'signal_peptide_identified'
+  ),
+  analysisOppositeConsequence = TRUE,
+  localTheme = theme_bw(base_size = 14), # Increase font size in vignette
+  returnResult = FALSE, # if TRUE returns a data.frame with the summary statistics
+  countGenes = F
+)
 print(p)
-
-# Close the PDF device
 dev.off()

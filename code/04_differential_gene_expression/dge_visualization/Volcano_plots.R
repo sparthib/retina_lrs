@@ -1,7 +1,6 @@
 library(ggplot2)
+library(here)
 
-dtu_rdata_path  = here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/DexSeqDTUDGESwitchList.rds")
-SwitchList_part1 <- readRDS(dtu_rdata_path)
 
 volcano_plot <- function(SwitchList_part1, output_dir, cond1, cond2){ 
   df <- SwitchList_part1$isoformFeatures |> 
@@ -32,6 +31,13 @@ volcano_plot <- function(SwitchList_part1, output_dir, cond1, cond2){
   dev.off()
 }
 
+dtu_rdata_path  = here("processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/rds/DexSeqDTUDGESwitchList.rds")
+SwitchList_part1 <- readRDS(dtu_rdata_path)
+
+volcano_plot(SwitchList_part1, here("processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/"), "FT" , "RGC")
+
+dtu_rdata_path  = here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/DexSeqDTUDGESwitchList.rds")
+SwitchList_part1 <- readRDS(dtu_rdata_path)
 
 volcano_plot(SwitchList_part1,here("processed_data/dtu/DTU_gandall/bambu/ROs/plots/"), "RO_D100" , "RO_D45")
 volcano_plot(SwitchList_part1,here("processed_data/dtu/DTU_gandall/bambu/ROs/plots/"), "RO_D200", "RO_D45")
@@ -71,6 +77,15 @@ switch_vs_gene_plot <- function(SwitchList_part1, output_dir, cond1, cond2){
   dev.off()
   
 }
+
+dtu_rdata_path  = here("processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/rds/DexSeqDTUDGESwitchList.rds")
+SwitchList_part1 <- readRDS(dtu_rdata_path)
+
+switch_vs_gene_plot(SwitchList_part1, here("processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/plots/"), "FT" , "RGC")
+
+dtu_rdata_path  = here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/DexSeqDTUDGESwitchList.rds")
+SwitchList_part1 <- readRDS(dtu_rdata_path)
+
 
 switch_vs_gene_plot(SwitchList_part1,here("processed_data/dtu/DTU_gandall/bambu/ROs/plots/"), "RO_D100" , "RO_D45")
 switch_vs_gene_plot(SwitchList_part1,here("processed_data/dtu/DTU_gandall/bambu/ROs/plots/"), "RO_D200", "RO_D45")

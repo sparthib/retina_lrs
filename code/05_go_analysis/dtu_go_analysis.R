@@ -10,15 +10,20 @@ library(tidyr)
 FT_vs_RGC_bambu_dtu <- read_tsv(here("processed_data","dtu",
                                      "DTU_gandall","bambu", "FT_vs_RGC",
                                      "DGE_DTU_DTE.tsv"))
+
 D100_vs_D45_bambu_dtu <- read_tsv(here("processed_data","dtu",
-                                       "DTU_gandall","bambu", "RO_D100_vs_RO_D45",
+                                       "DTU_gandall","bambu", "ROs",
                                        "DGE_DTU_DTE.tsv"))
+D100_vs_D45_bambu_dtu <- D100_vs_D45_bambu_dtu |> filter(condition_1 == "RO_D100" & condition_2 == "RO_D45")
+
 D200_vs_D45_bambu_dtu <- read_tsv(here("processed_data","dtu",
-                                       "DTU_gandall","bambu", "RO_D200_vs_RO_D45",
+                                       "DTU_gandall","bambu", "ROs",
                                        "DGE_DTU_DTE.tsv"))
+D200_vs_D45_bambu_dtu <- D200_vs_D45_bambu_dtu |> filter(condition_1 == "RO_D200" & condition_2 == "RO_D45")
 D100_vs_D200_bambu_dtu <- read_tsv(here("processed_data","dtu",
-                                        "DTU_gandall","bambu", "RO_D100_vs_RO_D200",
+                                        "DTU_gandall","bambu", "ROs",
                                         "DGE_DTU_DTE.tsv"))
+D100_vs_D200_bambu_dtu <- D100_vs_D200_bambu_dtu |> filter(condition_1 == "RO_D100" & condition_2 == "RO_D200")
 
 
 # get geneList function 
@@ -41,17 +46,17 @@ getGeneList <- function(dtu, fdr = 0.05, dIF = 0.1) {
 # get geneList for bambu DGE data
 FT_vs_RGC_bambu_geneList <- getGeneList(FT_vs_RGC_bambu_dtu)
 length(unique(names(FT_vs_RGC_bambu_geneList)))
-#988
+
 D100_vs_D45_bambu_geneList <- getGeneList(D100_vs_D45_bambu_dtu)
 length(unique(names(D100_vs_D45_bambu_geneList)))
-#1386
+
 D200_vs_D45_bambu_geneList <- getGeneList(D200_vs_D45_bambu_dtu)
 length(unique(names(D200_vs_D45_bambu_geneList)))
-#1776
+
 
 D100_vs_D200_bambu_geneList <- getGeneList(D100_vs_D200_bambu_dtu)
 length(unique(names(D100_vs_D200_bambu_geneList)))
-#1303
+
 
 
 ########make plots for over representation analysis ########
