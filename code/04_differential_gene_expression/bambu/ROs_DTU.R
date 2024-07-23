@@ -291,16 +291,17 @@ print(splicing_enrichment)
 dev.off()
 
 ################################################################################
+SwitchList_part2 <- readRDS("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/rds/SwitchList_part2.rds")
 
 SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
   n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
   removeNoncodinORFs        = TRUE,
-  pathToCPC2resultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_analysis_outputs/CPC2_output.txt",
-  pathToPFAMresultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_analysis_outputs/pfam_results.txt",
-  pathToSignalPresultFile   = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_analysis_outputs/prediction_results.txt",
+  pathToCPC2resultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/CPC2_output.txt",
+  pathToPFAMresultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/pfam_results.txt",
+  pathToSignalPresultFile   = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/prediction_results.txt",
   outputPlots               = TRUE,
-  pathToOutput              = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_analysis_outputs/switchplots_with_consequences",
+  pathToOutput              = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/switchplots_with_consequences",
   consequencesToAnalyze = c(
     'intron_retention',
     'coding_potential',
@@ -313,44 +314,35 @@ SwitchList_part2 <- isoformSwitchAnalysisPart2(
   
 )
 
-saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/rds/SwitchList_part2.rds")
+saveRDS(SwitchList_part2, file = "./processed_data/dtu/DTU_gandall/bambu/ROs/rds/SwitchList_part2.rds")
 
-switchingIsoNoConsequenceSummary <- extractSwitchSummary(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = FALSE)
 
-switchingIsoSummary <- extractSwitchSummary(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = TRUE)
+# The number of isoform switches with functional consequences identified were:
+#   Comparison nrIsoforms nrSwitches nrGenes
+# 1  RO_D100 vs RO_D45       1299       1168     898
+# 2 RO_D100 vs RO_D200       1044       1027     773
+# 3  RO_D200 vs RO_D45       1545       1473    1046
+# 4           Combined       3050       3232    1977
 
-switchingIso <- extractTopSwitches(SwitchList_part2, dIFcutoff = 0.1, filterForConsequences = TRUE)
-
-# library("ggthemes")
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/plots/Switchplot_with_consequence.pdf")
-for(gene in unique(switchingIso$gene_id)){
-  print(switchPlot(SwitchList_part2, gene = gene,
-                   plotTopology  = FALSE
-  ))
-}
-dev.off()
-
-## bar plot of coding potential 
-bar_data <- SwitchList_part2$switchConsequence$switchConsequence |> 
-  table() |> 
-  as.data.frame() |>
-  mutate(Percentage = Freq / sum(Freq) * 100)
-
-# Define the output PDF file
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/plots/CPC2_stacked_barplot.pdf")
-# Create the stacked percentage bar plot
-p <- ggplot(bar_data, aes(x = "", y = Percentage, fill = Var1)) + 
-  geom_bar(stat = "identity") + 
-  scale_y_continuous(labels = scales::percent_format(scale = 1)) + 
-  geom_text(aes(label = Freq), position = position_stack(vjust = 0.5), color = "white") + 
-  theme_minimal() + 
-  labs(title = "Switching Consequences", x = NULL, y = "Percentage", fill = "Consequence") +
-  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
-
-# Print the plot
+pdf("./processed_data/dtu/DTU_gandall/bambu/ROs/plots/Consequence_Enrichment.pdf",
+    width = 10, height = 7)
+p <- extractConsequenceEnrichment(
+  SwitchList_part2,
+  consequencesToAnalyze = c(
+    'intron_retention',
+    'coding_potential',
+    'ORF_seq_similarity',
+    'NMD_status',
+    'domains_identified',
+    'domain_isotype',
+    'signal_peptide_identified'
+  ),
+  analysisOppositeConsequence = TRUE,
+  localTheme = theme_bw(base_size = 14), # Increase font size in vignette
+  returnResult = FALSE, # if TRUE returns a data.frame with the summary statistics
+  countGenes = F
+)
 print(p)
-
-# Close the PDF device
 dev.off()
 
-
+# write.table(pfam_results, file = "/Users/sparthib/Documents/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/pfam_results.txt", sep = "\t", quote = FALSE, row.names = FALSE)
