@@ -24,7 +24,7 @@ source activate pfam
 cd /dcs04/hicks/data/sparthib/retina_lrs/PfamScan/pfam_scan
 input_dir=/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC
 ./pfam_scan.py $input_dir/isoformSwitchAnalyzeR_isoform_AA_complete.fasta \
-../ -out $input_dir/pfam_results.csv -cpu $SLURM_CPUS_PER_TASK
+../ -out $input_dir/pfam_results.csv -cpu 20
 
 
 conda deactivate 

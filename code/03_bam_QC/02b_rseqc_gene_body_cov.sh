@@ -49,5 +49,14 @@ geneBody_coverage.py -i $LONG_BAM_FILE -r $ref_gene_model -o $long_output/long_
 
 conda deactivate 
 
+
+gtf=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/extended_annotations.gtf
+ref_fasta=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa
+sample_transcriptome_fasta=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/gffread_fasta.fa
+
+
+
+
+
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"

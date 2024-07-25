@@ -38,7 +38,15 @@ if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
   #work around is to create a symlink to the blaze processed fastq file 
   #ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/10x_D200-EP1-1_B2_matched_reads.fastq /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/matched_reads.fastq
 
+  
+  sce <- create_sce_from_dir(outdir = outdir, annotation = annot)
+  
 }
+
+##TIPS:
+#if you run blaze yourself, create a symlink to the unzipped blaze processed fastq file in the flames output directory called matched_reads.fastq
+#set bambu_isoform_quantification = TRUE in the config file (something to do with the bam or gtf being unordered.)
+#replace "." or "None" values in annot and isoform annot files with "*" before running quantify_transcript
 
 
 sessionInfo()

@@ -5,6 +5,7 @@ library(biomaRt)
 sample <- commandArgs(trailingOnly = TRUE)
 print(sample)
 
+#if H9 in sample name, then task_num is 1
 if(grepl("RO", sample)){
   read_asgts <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs/OUT/read_asgts_for_gene_body.tsv",
                            sep="\t", header=FALSE, skip=3)
