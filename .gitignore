@@ -13,3 +13,5 @@ code/01_fastq_processing/temp/logs/
 code/02_quantification/04_flair2/logs/
 plots/plotCoverage/bedtools/
 single_cell_raw_data/
+processed_data/bambu_sqanti_annotation/
+processed_data/coverage/
