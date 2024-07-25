@@ -1,0 +1,12 @@
+**** Job starts ****
+2024-05-07 11:38:57
+**** JHPCE info ****
+User: sparthib
+Job id: 5299422
+Job name: bamtobed
+Node name: compute-143
+Task id: 9
+****
+H9-FT_1
+**** Job ends ****
+2024-05-07 11:48:18

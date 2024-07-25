@@ -1,0 +1,241 @@
+**** Job starts ****
+2023-12-07 20:31:45
+**** JHPCE info ****
+User: sparthib
+Job id: 1040654
+Job name: flames_realign
+Node name: compute-117
+Task id: 1
+Loading LIBD SLURM module for samtools/1.18
+EP1-BRN3B-RO
+Preprocessing bulk fastqs...
+Running FLAMES pipeline...
+Use config file: /users/sparthib/retina_lrs/code/07_flames/config_step2.json
+Parameters in configuration file:
+comment : custom bulk config. use splice annotation on alignment.
+pipeline_parameters
+	 do_genome_alignment : True
+	 do_isoform_identification : True
+	 do_read_realignment : True
+	 do_transcript_quantification : True
+global_parameters
+	 generate_raw_isoform : True
+	 has_UMI : False
+isoform_parameters
+	 MAX_DIST : 10
+	 MAX_TS_DIST : 100
+	 MAX_SPLICE_MATCH_DIST : 10
+	 min_fl_exon_len : 40
+	 Max_site_per_splice : 3
+	 Min_sup_cnt : 10
+	 Min_cnt_pct : 0.01
+	 Min_sup_pct : 0.2
+	 strand_specific : 0
+	 remove_incomp_reads : 5
+alignment_parameters
+	 use_junctions : True
+	 no_flank : True
+	 seed : 2022
+realign_parameters
+	 use_annotation : True
+transcript_counting
+	 min_tr_coverage : 0.4
+	 min_read_coverage : 0.4
+Input parameters:
+	gene annotation: /dcs04/hicks/data/sparthib/ENSEMBL_GTF.gtf
+	genome fasta: /dcs04/hicks/data/sparthib/ENSEMBL_DNA_PRIMARY.fa
+	input bam: /dcs04/hicks/data/sparthib/casey/flames_output/EP1-BRN3B-RO/align2genome.bam
+	output directory: /dcs04/hicks/data/sparthib/casey/flames_output/EP1-BRN3B-RO
+	directory contains minimap2: 
+### skip aligning reads to genome 2023-12-07 20:31:51
+### read gene annotation 2023-12-07 20:31:51
+remove similar transcripts in gene annotation: Counter({'duplicated_transcripts': 765})
+### find isoforms 2023-12-07 20:33:42
+1
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+2
+20
+21
+exon chain not in ascending order: (8217702, 8217916, 8217914, 8218850) [8217702, 8217916, 8217914, 8218850]
+exon chain not in ascending order: (8217892, 8217916, 8217914, 8218850) [8217892, 8217916, 8217914, 8218850]
+exon chain not in ascending order: (8217769, 8217916, 8217914, 8218185) [8217769, 8217916, 8217914, 8218185]
+exon chain not in ascending order: (8397539, 8397538, 8398417, 8398986) [8397539, 8397538, 8398417, 8398986]
+exon chain not in ascending order: (8398266, 8400086, 8400082, 8400775) [8398266, 8400086, 8400082, 8400775]
+exon chain not in ascending order: (8400045, 8400086, 8400082, 8400775) [8400045, 8400086, 8400082, 8400775]
+exon chain not in ascending order: (8399960, 8400086, 8400082, 8400179) [8399960, 8400086, 8400082, 8400179]
+exon chain not in ascending order: (8398792, 8399049, 8399042, 8400349) [8398792, 8399049, 8399042, 8400349]
+exon chain not in ascending order: (8398792, 8399049, 8399042, 8400775) [8398792, 8399049, 8399042, 8400775]
+exon chain not in ascending order: (8398633, 8399049, 8399042, 8401889) [8398633, 8399049, 8399042, 8401889]
+exon chain not in ascending order: (8399923, 8399918, 8400417, 8401223) [8399923, 8399918, 8400417, 8401223]
+exon chain not in ascending order: (8443554, 8443817, 8443816, 8445007) [8443554, 8443817, 8443816, 8445007]
+exon chain not in ascending order: (8442495, 8443817, 8443816, 8445007) [8442495, 8443817, 8443816, 8445007]
+exon chain not in ascending order: (8443659, 8443817, 8443816, 8445455) [8443659, 8443817, 8443816, 8445455]
+exon chain not in ascending order: (8444702, 8444924, 8444923, 8446210) [8444702, 8444924, 8444923, 8446210]
+22
+3
+4
+5
+6
+7
+8
+9
+GL000009.2
+GL000194.1
+GL000195.1
+GL000205.2
+GL000213.1
+GL000216.2
+GL000218.1
+GL000219.1
+GL000220.1
+GL000225.1
+KI270442.1
+KI270711.1
+KI270713.1
+KI270721.1
+KI270726.1
+KI270727.1
+KI270728.1
+KI270731.1
+KI270733.1
+KI270734.1
+KI270744.1
+KI270750.1
+MT
+X
+Y
+duplicate transcript sequence: ENST00000384782 ENST00000384659
+duplicate transcript sequence: ENST00000384782 ENST00000384278
+duplicate transcript sequence: ENST00000384782 ENST00000615842
+duplicate transcript sequence: ENST00000622040 ENST00000516847
+duplicate transcript sequence: ENST00000516847 ENST00000612110
+duplicate transcript sequence: ENST00000613290 ENST00000617712
+duplicate transcript sequence: ENST00000493884 ENST00000483916
+duplicate transcript sequence: ENST00000485850 ENST00000476514
+duplicate transcript sequence: ENST00000679433 ENST00000679441
+duplicate transcript sequence: ENST00000408722 ENST00000408138
+duplicate transcript sequence: ENST00000384694 ENST00000384564
+duplicate transcript sequence: ENST00000384564 ENST00000383979
+duplicate transcript sequence: ENST00000617664 ENST00000611011
+duplicate transcript sequence: ENST00000622248 ENST00000618304
+duplicate transcript sequence: ENST00000537085 ENST00000539740
+duplicate transcript sequence: ENST00000611011 ENST00000615860
+duplicate transcript sequence: ENST00000331436 ENST00000327792
+duplicate transcript sequence: ENST00000283050 ENST00000526166
+duplicate transcript sequence: ENST00000541593 ENST00000531453
+duplicate transcript sequence: ENST00000618304 ENST00000616362
+duplicate transcript sequence: ENST00000383979 ENST00000384200
+duplicate transcript sequence: ENST00000566917 ENST00000564355
+duplicate transcript sequence: ENST00000543392 ENST00000564991
+duplicate transcript sequence: ENST00000579107 ENST00000617599
+duplicate transcript sequence: ENST00000351581 ENST00000345535
+duplicate transcript sequence: ENST00000330181 ENST00000251303
+duplicate transcript sequence: ENST00000459337 ENST00000458813
+duplicate transcript sequence: ENST00000579701 ENST00000582765
+duplicate transcript sequence: ENST00000636800 ENST00000640925
+duplicate transcript sequence: ENST00000625037 ENST00000624092
+duplicate transcript sequence: ENST00000621110 ENST00000620023
+duplicate transcript sequence: ENST00000619371 ENST00000618277
+duplicate transcript sequence: ENST00000383898 ENST00000384238
+duplicate transcript sequence: ENST00000401322 ENST00000637366
+duplicate transcript sequence: ENST00000637366 ENST00000401376
+duplicate transcript sequence: ENST00000401376 ENST00000621667
+duplicate transcript sequence: ENST00000631211 ENST00000625598
+duplicate transcript sequence: ENST00000631211 ENST00000627981
+duplicate transcript sequence: ENST00000622482 ENST00000617390
+duplicate transcript sequence: ENST00000612463 ENST00000613359
+duplicate transcript sequence: ENST00000612463 ENST00000619471
+duplicate transcript sequence: ENST00000556853 ENST00000494439
+duplicate transcript sequence: ENST00000383898 ENST00000384205
+duplicate transcript sequence: ENST00000536425 ENST00000582508
+duplicate transcript sequence: ENST00000380751 ENST00000317633
+duplicate transcript sequence: ENST00000503931 ENST00000504458
+duplicate transcript sequence: ENST00000513144 ENST00000503509
+duplicate transcript sequence: ENST00000628696 ENST00000625245
+duplicate transcript sequence: ENST00000511873 ENST00000507905
+duplicate transcript sequence: ENST00000509805 ENST00000513228
+duplicate transcript sequence: ENST00000643472 ENST00000646820
+duplicate transcript sequence: ENST00000467948 ENST00000485543
+duplicate transcript sequence: ENST00000470365 ENST00000486992
+duplicate transcript sequence: ENST00000477424 ENST00000473957
+duplicate transcript sequence: ENST00000460841 ENST00000461632
+duplicate transcript sequence: ENST00000490663 ENST00000496560
+duplicate transcript sequence: ENST00000460060 ENST00000485263
+duplicate transcript sequence: ENST00000467749 ENST00000490071
+duplicate transcript sequence: ENST00000471624 ENST00000478388
+duplicate transcript sequence: ENST00000469975 ENST00000468237
+duplicate transcript sequence: ENST00000491876 ENST00000463249
+duplicate transcript sequence: ENST00000458633 ENST00000415626
+duplicate transcript sequence: ENST00000579075 ENST00000581927
+duplicate transcript sequence: ENST00000610955 ENST00000394939
+duplicate transcript sequence: ENST00000473333 ENST00000620866
+duplicate transcript sequence: ENST00000476035 ENST00000615592
+duplicate transcript sequence: ENST00000364412 ENST00000365015
+duplicate transcript sequence: ENST00000365015 ENST00000365089
+duplicate transcript sequence: ENST00000436491 ENST00000415119
+duplicate transcript sequence: ENST00000428514 ENST00000426867
+duplicate transcript sequence: ENST00000471617 ENST00000497416
+duplicate transcript sequence: ENST00000485287 ENST00000599522
+duplicate transcript sequence: ENST00000408778 ENST00000408548
+duplicate transcript sequence: ENST00000593751 ENST00000596733
+duplicate transcript sequence: ENST00000616419 ENST00000617970
+duplicate transcript sequence: ENST00000540220 ENST00000598087
+duplicate transcript sequence: ENST00000434885 ENST00000452016
+duplicate transcript sequence: ENST00000383898 ENST00000384314
+duplicate transcript annotation: ENST00000326153 ENST00000711233
+duplicate transcript annotation: ENSG00000169100_1386272_1392113_1 ENSG00000292334_1386272_1392113_1
+duplicate transcript annotation: ENSG00000169100_1386427_1392113_1 ENSG00000292334_1386427_1392113_1
+duplicate transcript annotation: ENST00000381401 ENST00000711214
+duplicate transcript annotation: ENST00000381317 ENST00000711197
+duplicate transcript annotation: ENSG00000169084_2408760_2500555_1 ENSG00000292338_2408760_2500555_1
+duplicate transcript annotation: ENST00000381192 ENST00000711160
+duplicate transcript sequence: ENST00000286448 ENST00000711260
+duplicate transcript sequence: ENST00000488344 ENST00000711262
+duplicate transcript sequence: ENST00000463317 ENST00000711263
+duplicate transcript sequence: ENST00000460621 ENST00000711265
+duplicate transcript sequence: ENST00000262640 ENST00000711264
+duplicate transcript sequence: ENST00000479687 ENST00000711261
+duplicate transcript sequence: ENSG00000182484_156024071_156025666_1 ENSG00000292372_57210591_57212186_1
+duplicate transcript sequence: ENSG00000182484_156024214_156025666_1 ENSG00000292372_57210734_57212186_1
+duplicate transcript sequence: ENST00000492963 ENST00000711277
+duplicate transcript sequence: ENST00000475594 ENST00000711279
+duplicate transcript sequence: ENST00000476066 ENST00000711271
+duplicate transcript sequence: ENST00000483079 ENST00000711282
+duplicate transcript sequence: ENST00000464205 ENST00000711285
+duplicate transcript sequence: ENST00000479401 ENST00000711275
+duplicate transcript sequence: ENST00000483286 ENST00000711284
+duplicate transcript sequence: ENST00000496011 ENST00000711274
+duplicate transcript sequence: ENST00000359512 ENST00000711272
+duplicate transcript sequence: ENST00000496301 ENST00000711283
+duplicate transcript sequence: ENST00000484415 ENST00000711281
+duplicate transcript sequence: ENST00000460206 ENST00000711278
+duplicate transcript sequence: ENST00000461007 ENST00000711273
+duplicate transcript sequence: ENST00000340131 ENST00000711276
+duplicate transcript sequence: ENST00000482170 ENST00000711280
+b''
+### realign to transcript using minimap2 2023-12-08 14:11:41
+b'[M::mm_idx_gen::5.959*1.54] collected minimizers\n[M::mm_idx_gen::6.421*2.26] sorted minimizers\n[M::main::6.494*2.23] loaded/built the index for 168017 target sequence(s)\n[M::mm_mapopt_update::6.749*2.19] mid_occ = 114\n[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 168017\n[M::mm_idx_stat::6.914*2.16] distinct minimizers: 12550123 (38.45% are singletons); average occurrences: 4.517; average spacing: 5.395; total length: 305829683\n[M::worker_pipeline::113.496*10.56] mapped 282435 sequences\n[M::worker_pipeline::191.095*11.23] mapped 281079 sequences\n[M::worker_pipeline::296.846*11.56] mapped 280364 sequences\n[M::worker_pipeline::350.986*11.68] mapped 280431 sequences\n[M::worker_pipeline::419.548*11.77] mapped 282298 sequences\n[M::worker_pipeline::499.513*11.84] mapped 278914 sequences\n[M::worker_pipeline::569.928*11.89] mapped 280275 sequences\n[M::worker_pipeline::645.235*11.93] mapped 279789 sequences\n[M::worker_pipeline::742.310*11.96] mapped 277951 sequences\n[M::worker_pipeline::799.314*11.99] mapped 278264 sequences\n[M::worker_pipeline::878.447*12.00] mapped 276860 sequences\n[M::worker_pipeline::949.439*12.02] mapped 280966 sequences\n[M::worker_pipeline::1025.646*12.03] mapped 277974 sequences\n[M::worker_pipeline::1092.088*12.05] mapped 278741 sequences\n[M::worker_pipeline::1172.635*12.06] mapped 277592 sequences\n[M::worker_pipeline::1244.580*12.07] mapped 279125 sequences\n[M::worker_pipeline::1326.871*12.08] mapped 277035 sequences\n[M::worker_pipeline::1398.432*12.09] mapped 279885 sequences\n[M::worker_pipeline::1468.441*12.09] mapped 277234 sequences\n[M::worker_pipeline::1538.717*12.10] mapped 278006 sequences\n[M::worker_pipeline::1615.044*12.11] mapped 277883 sequences\n[M::worker_pipeline::1693.246*12.11] mapped 276631 sequences\n[M::worker_pipeline::1767.867*12.12] mapped 279406 sequences\n[M::worker_pipeline::1843.012*12.12] mapped 277861 sequences\n[M::worker_pipeline::1914.979*12.13] mapped 277079 sequences\n[M::worker_pipeline::1998.808*12.13] mapped 277447 sequences\n[M::worker_pipeline::2065.666*12.13] mapped 277366 sequences\n[M::worker_pipeline::2141.029*12.14] mapped 277111 sequences\n[M::worker_pipeline::2218.856*12.14] mapped 279507 sequences\n[M::worker_pipeline::2291.631*12.14] mapped 276560 sequences\n[M::worker_pipeline::2371.200*12.14] mapped 276555 sequences\n[M::worker_pipeline::2432.749*12.15] mapped 277724 sequences\n[M::worker_pipeline::2509.790*12.15] mapped 276069 sequences\n[M::worker_pipeline::2583.389*12.15] mapped 278089 sequences\n[M::worker_pipeline::2662.259*12.15] mapped 276095 sequences\n[M::worker_pipeline::2739.373*12.16] mapped 277027 sequences\n[M::worker_pipeline::2807.435*12.16] mapped 275604 sequences\n[M::worker_pipeline::2888.318*12.16] mapped 275919 sequences\n[M::worker_pipeline::2959.149*12.16] mapped 277913 sequences\n[M::worker_pipeline::3032.999*12.16] mapped 276070 sequences\n[M::worker_pipeline::3116.497*12.16] mapped 275602 sequences\n[M::worker_pipeline::3181.984*12.17] mapped 275984 sequences\n[M::worker_pipeline::3258.596*12.17] mapped 275900 sequences\n[M::worker_pipeline::3329.718*12.17] mapped 278068 sequences\n[M::worker_pipeline::3402.497*12.17] mapped 275722 sequences\n[M::worker_pipeline::3477.657*12.17] mapped 275659 sequences\n[M::worker_pipeline::3552.908*12.17] mapped 275931 sequences\n[M::worker_pipeline::3631.250*12.17] mapped 277238 sequences\n[M::worker_pipeline::3706.598*12.17] mapped 277599 sequences\n[M::worker_pipeline::3784.726*12.18] mapped 275761 sequences\n[M::worker_pipeline::3858.834*12.18] mapped 275325 sequences\n[M::worker_pipeline::3937.308*12.18] mapped 275620 sequences\n[M::worker_pipeline::4016.035*12.18] mapped 277737 sequences\n[M::worker_pipeline::4076.885*12.18] mapped 274837 sequences\n[M::worker_pipeline::4151.241*12.18] mapped 276202 sequences\n[M::worker_pipeline::4227.083*12.18] mapped 274873 sequences\n[M::worker_pipeline::4313.327*12.18] mapped 279960 sequences\n[M::worker_pipeline::4384.152*12.18] mapped 275498 sequences\n[M::worker_pipeline::4453.022*12.18] mapped 274844 sequences\n[M::worker_pipeline::4528.743*12.18] mapped 275104 sequences\n[M::worker_pipeline::4604.998*12.18] mapped 278470 sequences\n[M::worker_pipeline::4676.250*12.18] mapped 275766 sequences\n[M::worker_pipeline::4751.685*12.18] mapped 275078 sequences\n[M::worker_pipeline::4824.410*12.18] mapped 276405 sequences\n[M::worker_pipeline::4894.286*12.19] mapped 276461 sequences\n[M::worker_pipeline::4975.372*12.19] mapped 275437 sequences\n[M::worker_pipeline::5053.380*12.19] mapped 274939 sequences\n[M::worker_pipeline::5129.798*12.19] mapped 279283 sequences\n[M::worker_pipeline::5197.632*12.19] mapped 276481 sequences\n[M::worker_pipeline::5271.401*12.19] mapped 275918 sequences\n[M::worker_pipeline::5344.443*12.19] mapped 278353 sequences\n[M::worker_pipeline::5419.667*12.19] mapped 275241 sequences\n[M::worker_pipeline::5501.414*12.19] mapped 275531 sequences\n[M::worker_pipeline::5569.308*12.19] mapped 281286 sequences\n[M::worker_pipeline::5641.879*12.19] mapped 277802 sequences\n[M::worker_pipeline::5711.925*12.19] mapped 276786 sequences\n[M::worker_pipeline::5795.333*12.19] mapped 281223 sequences\n[M::worker_pipeline::5865.051*12.19] mapped 277194 sequences\n[M::worker_pipeline::5940.755*12.19] mapped 277972 sequences\n[M::worker_pipeline::6024.885*12.19] mapped 279274 sequences\n[M::worker_pipeline::6088.249*12.19] mapped 277924 sequences\n[M::worker_pipeline::6158.256*12.19] mapped 280400 sequences\n[M::worker_pipeline::6240.998*12.19] mapped 277740 sequences\n[M::worker_pipeline::6312.026*12.19] mapped 277440 sequences\n[M::worker_pipeline::6378.029*12.19] mapped 283999 sequences\n[M::worker_pipeline::6457.478*12.19] mapped 278426 sequences\n[M::worker_pipeline::6525.428*12.19] mapped 282263 sequences\n[M::worker_pipeline::6603.827*12.19] mapped 277310 sequences\n[M::worker_pipeline::6675.143*12.19] mapped 282861 sequences\n[M::worker_pipeline::6754.887*12.19] mapped 280020 sequences\n[M::worker_pipeline::6828.146*12.19] mapped 285210 sequences\n[M::worker_pipeline::6897.373*12.19] mapped 283626 sequences\n[M::worker_pipeline::6970.534*12.19] mapped 282428 sequences\n[M::worker_pipeline::7048.486*12.19] mapped 282688 sequences\n[M::worker_pipeline::7115.685*12.20] mapped 282514 sequences\n[M::worker_pipeline::7193.331*12.20] mapped 282508 sequences\n[M::worker_pipeline::7262.057*12.20] mapped 282662 sequences\n[M::worker_pipeline::7333.242*12.20] mapped 283257 sequences\n[M::worker_pipeline::7410.218*12.20] mapped 281546 sequences\n[M::worker_pipeline::7480.639*12.20] mapped 279749 sequences\n[M::worker_pipeline::7555.710*12.20] mapped 296328 sequences\n[M::worker_pipeline::7632.558*12.20] mapped 281684 sequences\n[M::worker_pipeline::7701.975*12.20] mapped 287579 sequences\n[M::worker_pipeline::7764.684*12.20] mapped 281836 sequences\n[M::worker_pipeline::7837.683*12.20] mapped 286242 sequences\n[M::worker_pipeline::7916.657*12.20] mapped 281040 sequences\n[M::worker_pipeline::7992.988*12.20] mapped 284131 sequences\n[M::worker_pipeline::8062.733*12.19] mapped 280818 sequences\n[M::worker_pipeline::8067.118*12.18] mapped 71212 sequences\n[M::main] Version: 2.26-r1175\n[M::main] CMD: minimap2 -ax map-ont -p 0.9 --end-bonus 10 -N 3 -t 12 /dcs04/hicks/data/sparthib/casey/flames_output/EP1-BRN3B-RO/transcript_assembly.fa /dcs04/hicks/data/sparthib/casey/flames_output/EP1-BRN3B-RO/merged.fastq.gz\n[M::main] Real time: 8067.142 sec; CPU: 98251.250 sec; Peak RSS: 5.122 GB\n'
+b'[bam_sort_core] merging from 9 files and 12 in-memory blocks...\n'
+b''
+### generate transcript count matrix 2023-12-08 17:21:24
+Traceback (most recent call last):
+  File "/users/sparthib/flames/python/bulk_long_pipeline.py", line 270, in <module>
+    bulk_long_pipeline(args)
+  File "/users/sparthib/flames/python/bulk_long_pipeline.py", line 235, in bulk_long_pipeline
+    bc_tr_count_dict, bc_tr_badcov_count_dict, tr_kept = parse_realigned_bam(
+  File "/users/sparthib/flames/python/count_tr.py", line 114, in parse_realigned_bam
+    bc_dict = make_bc_dict(kwargs["bc_file"])
+  File "/users/sparthib/flames/python/count_tr.py", line 57, in make_bc_dict
+    with open(bc_anno) as f:
+FileNotFoundError: [Errno 2] No such file or directory: ''
+**** Job ends ****
+2023-12-08 17:21:34

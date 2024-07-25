@@ -3,3 +3,13 @@
 .RData
 .Ruserdata
 .DS_Store
+plots/de/switch_analyzer/bambu/
+code/01_fastq_processing/logs/
+code/coverage/H9-FT2_bam_paths.txt
+code/coverage/coverage_genes_of_interest.tsv
+code/coverage/log.txt
+code/coverage/logs/
+code/01_fastq_processing/temp/logs/
+code/02_quantification/04_flair2/logs/
+plots/plotCoverage/bedtools/
+single_cell_raw_data/

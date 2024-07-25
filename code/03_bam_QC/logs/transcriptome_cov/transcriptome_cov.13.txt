@@ -1,0 +1,12 @@
+**** Job starts ****
+2024-05-07 14:03:26
+**** JHPCE info ****
+User: sparthib
+Job id: 5310282
+Job name: transcriptome_cov
+Node name: compute-096
+Task id: 13
+****
+EP1-WT_hRO_2
+**** Job ends ****
+2024-05-07 14:26:41

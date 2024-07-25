@@ -1,0 +1,18 @@
+**** Job starts ****
+2024-05-31 19:47:18
+**** JHPCE info ****
+User: sparthib
+Job id: 7148395
+Job name: highqualbam
+Node name: compute-153
+Task id: 12
+H9-hRGC_2
+Loading LIBD SLURM module for samtools/1.18
+finished filtering bam by mapping quality and removing duplicates
+[bam_sort_core] merging from 20 files and 1 in-memory blocks...
+finished sorting and indexing bam
+finished subsetting bam by chromosome
+[bam_sort_core] merging from 20 files and 1 in-memory blocks...
+finished sorting and indexing bam
+**** Job ends ****
+2024-06-01 00:47:11

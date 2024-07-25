@@ -1,0 +1,13 @@
+**** Job starts ****
+2024-05-09 12:43:17
+**** JHPCE info ****
+User: sparthib
+Job id: 5382621
+Job name: plot_gc
+Node name: compute-127
+Task id: 4
+****
+DG-WT-hRGC
+mkdir: cannot create directory ‘/users/sparthib/retina_lrs/plots/gene_body_percentile/’: File exists
+Loading LIBD SLURM module for RSeQC/3.0.1
+slurmstepd: error: *** JOB 5382621 ON compute-127 CANCELLED AT 2024-05-09T12:43:24 ***

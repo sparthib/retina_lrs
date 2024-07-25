@@ -1,0 +1,11 @@
+**** Job starts ****
+2023-12-06 02:19:44
+**** JHPCE info ****
+User: sparthib
+Job id: 994284
+Job name: flames
+Node name: compute-062
+Task id: 4
+Loading LIBD SLURM module for samtools/1.18
+DG-WT-hRGC
+slurmstepd: error: *** JOB 994284 ON compute-062 CANCELLED AT 2023-12-07T01:31:04 ***

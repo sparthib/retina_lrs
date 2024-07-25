@@ -1,0 +1,36 @@
+**** Job starts ****
+2024-05-08 13:35:21
+**** JHPCE info ****
+User: sparthib
+Job id: 5349089
+Job name: plot_coverage
+Node name: compute-146
+Task id: 14
+****
+H9-BRN3B_hRO_2
+Loading conda_R/4.3.x
+To install colorout use: remotes::install_github("jalvesaq/colorout")
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+         transcript position coverage
+1 ENST00000488147.1        1        0
+2 ENST00000488147.1        2        0
+3 ENST00000488147.1        3        0
+4 ENST00000488147.1        4        0
+5 ENST00000488147.1        5        0
+6 ENST00000488147.1        6        0
+[1] 438336799         3
+Error in ggplot(coverage_table[i, ], aes(x = position, y = coverage)) : 
+  could not find function "ggplot"
+Execution halted
+**** Job ends ****
+2024-05-08 13:40:33

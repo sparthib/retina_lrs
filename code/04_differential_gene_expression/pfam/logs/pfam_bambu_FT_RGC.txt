@@ -1,0 +1,14 @@
+**** Job starts ****
+2024-07-06 15:05:17
+**** JHPCE info ****
+User: sparthib
+Job id: 8276603
+Job name: pfam
+Node name: compute-053
+Task id: 
+****
+/var/spool/slurm/d/job8276603/slurm_script: line 23: activate: No such file or directory
+usage: conda [-h] [--no-plugins] [-V] COMMAND ...
+conda: error: argument COMMAND: invalid choice: 'deactivate' (choose from 'clean', 'compare', 'config', 'create', 'info', 'init', 'install', 'list', 'notices', 'package', 'remove', 'uninstall', 'rename', 'run', 'search', 'update', 'upgrade', 'doctor', 'content-trust', 'env')
+**** Job ends ****
+2024-07-06 16:26:50

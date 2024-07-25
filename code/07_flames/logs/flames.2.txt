@@ -1,0 +1,73 @@
+**** Job starts ****
+2023-12-05 20:52:10
+**** JHPCE info ****
+User: sparthib
+Job id: 995256
+Job name: flames
+Node name: compute-150
+Task id: 2
+Loading LIBD SLURM module for samtools/1.18
+H9-BRN3B-RO
+Preprocessing bulk fastqs...
+H9-BRN3B-RO.fastq.gz GGVNQTORYFGAXXTF
+H9-BRN3B-RO.fastq.gz 28836500
+Running FLAMES pipeline...
+Use config file: /users/sparthib/retina_lrs/code/07_flames/config.json
+Parameters in configuration file:
+comment : custom bulk config. use splice annotation on alignment.
+pipeline_parameters
+	 do_genome_alignment : True
+	 do_isoform_identification : True
+	 do_read_realignment : True
+	 do_transcript_quantification : True
+global_parameters
+	 generate_raw_isoform : True
+	 has_UMI : False
+isoform_parameters
+	 MAX_DIST : 10
+	 MAX_TS_DIST : 100
+	 MAX_SPLICE_MATCH_DIST : 10
+	 min_fl_exon_len : 40
+	 Max_site_per_splice : 3
+	 Min_sup_cnt : 10
+	 Min_cnt_pct : 0.01
+	 Min_sup_pct : 0.2
+	 strand_specific : 0
+	 remove_incomp_reads : 5
+alignment_parameters
+	 use_junctions : True
+	 no_flank : True
+	 seed : 2022
+realign_parameters
+	 use_annotation : True
+transcript_counting
+	 min_tr_coverage : 0.4
+	 min_read_coverage : 0.4
+Input parameters:
+	gene annotation: /dcs04/hicks/data/sparthib/ENSEMBL_GTF.gtf.gz
+	genome fasta: /dcs04/hicks/data/sparthib/ENSEMBL_DNA_PRIMARY.fa.gz
+	input fastq: /dcs04/hicks/data/sparthib/casey/flames_output/H9-BRN3B-RO/merged.fastq.gz
+	output directory: /dcs04/hicks/data/sparthib/casey/flames_output/H9-BRN3B-RO
+	directory contains minimap2: 
+### align reads to genome using minimap2 2023-12-06 03:15:07
+b''
+b'[M::mm_idx_gen::51.322*1.85] collected minimizers\n[M::mm_idx_gen::60.172*3.28] sorted minimizers\n[M::main::60.172*3.28] loaded/built the index for 194 target sequence(s)\n[M::mm_mapopt_update::61.540*3.23] mid_occ = 2053\n[M::mm_idx_stat] kmer size: 14; skip: 5; is_hpc: 0; #seq: 194\n[M::mm_idx_stat::62.344*3.21] distinct minimizers: 65621209 (23.06% are singletons); average occurrences: 15.289; average spacing: 3.090; total length: 3099750718\n[M::worker_pipeline::1252.812*11.43] mapped 297016 sequences\n[M::worker_pipeline::2357.604*11.67] mapped 295686 sequences\n[M::worker_pipeline::3469.963*11.76] mapped 294687 sequences\n[M::worker_pipeline::4557.227*11.78] mapped 295701 sequences\n[M::worker_pipeline::5638.886*11.81] mapped 294082 sequences\n[M::worker_pipeline::6706.720*11.83] mapped 297447 sequences\n[M::worker_pipeline::7765.668*11.85] mapped 294798 sequences\n[M::worker_pipeline::8825.639*11.86] mapped 296208 sequences\n[M::worker_pipeline::9887.847*11.87] mapped 294541 sequences\n[M::worker_pipeline::10944.423*11.88] mapped 294857 sequences\n[M::worker_pipeline::12000.103*11.89] mapped 294305 sequences\n[M::worker_pipeline::13035.689*11.89] mapped 295951 sequences\n[M::worker_pipeline::14088.278*11.90] mapped 294109 sequences\n[M::worker_pipeline::15152.672*11.90] mapped 295206 sequences\n[M::worker_pipeline::16205.098*11.91] mapped 293520 sequences\n[M::worker_pipeline::17268.233*11.91] mapped 295286 sequences\n[M::worker_pipeline::18333.510*11.92] mapped 293685 sequences\n[M::worker_pipeline::19392.694*11.92] mapped 295508 sequences\n[M::worker_pipeline::20516.237*11.92] mapped 293763 sequences\n[M::worker_pipeline::21649.765*11.92] mapped 294400 sequences\n[M::worker_pipeline::22795.772*11.92] mapped 293567 sequences\n[M::worker_pipeline::23942.388*11.92] mapped 293123 sequences\n[M::worker_pipeline::25084.992*11.92] mapped 295543 sequences\n[M::worker_pipeline::26208.844*11.93] mapped 294216 sequences\n[M::worker_pipeline::27341.780*11.93] mapped 293886 sequences\n[M::worker_pipeline::28448.353*11.93] mapped 294297 sequences\n[M::worker_pipeline::29512.875*11.93] mapped 293804 sequences\n[M::worker_pipeline::30577.228*11.93] mapped 293026 sequences\n[M::worker_pipeline::31652.542*11.93] mapped 295729 sequences\n[M::worker_pipeline::32746.062*11.93] mapped 294365 sequences\n[M::worker_pipeline::33862.083*11.93] mapped 295255 sequences\n[M::worker_pipeline::35141.598*11.93] mapped 294952 sequences\n[M::worker_pipeline::36256.918*11.93] mapped 293258 sequences\n[M::worker_pipeline::37321.327*11.93] mapped 295523 sequences\n[M::worker_pipeline::38372.290*11.93] mapped 293584 sequences\n[M::worker_pipeline::39447.066*11.93] mapped 293962 sequences\n[M::worker_pipeline::40527.913*11.93] mapped 293784 sequences\n[M::worker_pipeline::41606.939*11.93] mapped 295663 sequences\n[M::worker_pipeline::42705.378*11.93] mapped 294040 sequences\n[M::worker_pipeline::43809.227*11.93] mapped 295119 sequences\n[M::worker_pipeline::44936.766*11.93] mapped 293489 sequences\n[M::worker_pipeline::46001.574*11.93] mapped 293392 sequences\n[M::worker_pipeline::47106.832*11.93] mapped 295135 sequences\n[M::worker_pipeline::48174.003*11.93] mapped 294138 sequences\n[M::worker_pipeline::49249.102*11.93] mapped 294511 sequences\n[M::worker_pipeline::50368.266*11.93] mapped 296023 sequences\n[M::worker_pipeline::51452.801*11.93] mapped 295652 sequences\n[M::worker_pipeline::52525.767*11.93] mapped 294128 sequences\n[M::worker_pipeline::53602.361*11.94] mapped 293649 sequences\n[M::worker_pipeline::54654.941*11.94] mapped 294326 sequences\n[M::worker_pipeline::55702.573*11.94] mapped 293922 sequences\n[M::worker_pipeline::56746.996*11.94] mapped 293161 sequences\n[M::worker_pipeline::57810.600*11.94] mapped 294010 sequences\n[M::worker_pipeline::58908.713*11.94] mapped 294906 sequences\n[M::worker_pipeline::60019.952*11.94] mapped 296384 sequences\n[M::worker_pipeline::61098.565*11.94] mapped 295268 sequences\n[M::worker_pipeline::62192.207*11.94] mapped 293502 sequences\n[M::worker_pipeline::63287.257*11.94] mapped 293921 sequences\n[M::worker_pipeline::64381.205*11.94] mapped 298225 sequences\n[M::worker_pipeline::65463.220*11.94] mapped 295104 sequences\n[M::worker_pipeline::66574.937*11.94] mapped 295239 sequences\n[M::worker_pipeline::67668.658*11.94] mapped 296621 sequences\n[M::worker_pipeline::68768.795*11.94] mapped 297052 sequences\n[M::worker_pipeline::69851.406*11.94] mapped 295220 sequences\n[M::worker_pipeline::70935.367*11.94] mapped 296467 sequences\n[M::worker_pipeline::72030.310*11.94] mapped 297015 sequences\n[M::worker_pipeline::73156.106*11.94] mapped 296650 sequences\n[M::worker_pipeline::74246.319*11.94] mapped 296266 sequences\n[M::worker_pipeline::75363.849*11.94] mapped 299216 sequences\n[M::worker_pipeline::76410.975*11.94] mapped 295303 sequences\n[M::worker_pipeline::77494.936*11.94] mapped 296033 sequences\n[M::worker_pipeline::78597.243*11.94] mapped 301249 sequences\n[M::worker_pipeline::79669.939*11.94] mapped 295363 sequences\n[M::worker_pipeline::80763.756*11.94] mapped 298944 sequences\n[M::worker_pipeline::81853.251*11.94] mapped 297000 sequences\n[M::worker_pipeline::82916.046*11.94] mapped 295619 sequences\n[M::worker_pipeline::83944.044*11.94] mapped 304285 sequences\n[M::worker_pipeline::85032.658*11.94] mapped 296116 sequences\n[M::worker_pipeline::86086.877*11.94] mapped 303733 sequences\n[M::worker_pipeline::87156.155*11.94] mapped 300060 sequences\n[M::worker_pipeline::88179.504*11.94] mapped 303766 sequences\n[M::worker_pipeline::89239.211*11.94] mapped 304727 sequences\n[M::worker_pipeline::90276.196*11.94] mapped 305779 sequences\n[M::worker_pipeline::91350.304*11.94] mapped 304198 sequences\n[M::worker_pipeline::92422.740*11.94] mapped 309793 sequences\n[M::worker_pipeline::93435.060*11.94] mapped 305983 sequences\n[M::worker_pipeline::94501.016*11.94] mapped 315707 sequences\n[M::worker_pipeline::95516.257*11.94] mapped 310268 sequences\n[M::worker_pipeline::96572.909*11.94] mapped 307265 sequences\n[M::worker_pipeline::97625.102*11.94] mapped 311459 sequences\n[M::worker_pipeline::98705.597*11.94] mapped 304826 sequences\n[M::worker_pipeline::99777.413*11.94] mapped 300213 sequences\n[M::worker_pipeline::100872.084*11.94] mapped 292244 sequences\n[M::worker_pipeline::101949.260*11.94] mapped 296567 sequences\n[M::worker_pipeline::103023.456*11.94] mapped 296939 sequences\n[M::worker_pipeline::104129.319*11.94] mapped 301406 sequences\n[M::worker_pipeline::105180.792*11.94] mapped 295945 sequences\n[M::worker_pipeline::105235.959*11.94] mapped 35666 sequences\n[M::main] Version: 2.26-r1175\n[M::main] CMD: minimap2 -ax splice -t 12 --junc-bed /dcs04/hicks/data/sparthib/casey/flames_output/H9-BRN3B-RO/tmp.splice_anno.bed12 --junc-bonus 1 --splice-flank=no -k14 --secondary=no /dcs04/hicks/data/sparthib/ENSEMBL_DNA_PRIMARY.fa.gz /dcs04/hicks/data/sparthib/casey/flames_output/H9-BRN3B-RO/merged.fastq.gz\n[M::main] Real time: 105236.292 sec; CPU: 1256961.549 sec; Peak RSS: 24.516 GB\n'
+b'[bam_sort_core] merging from 11 files and 12 in-memory blocks...\n'
+b''
+### read gene annotation 2023-12-07 10:28:11
+remove similar transcripts in gene annotation: Counter({'duplicated_transcripts': 765})
+### find isoforms 2023-12-07 10:30:24
+Traceback (most recent call last):
+  File "/users/sparthib/flames/python/bulk_long_pipeline.py", line 270, in <module>
+    bulk_long_pipeline(args)
+  File "/users/sparthib/flames/python/bulk_long_pipeline.py", line 202, in bulk_long_pipeline
+    group_bam2isoform(genome_bam, isoform_gff3, tss_tes_stat, "", chr_to_blocks, gene_dict, transcript_to_junctions, transcript_dict, args.genomefa,
+  File "/users/sparthib/flames/python/sc_longread.py", line 1115, in group_bam2isoform
+    for c in get_fa(fa_f):
+  File "/users/sparthib/flames/python/sc_longread.py", line 45, in get_fa
+    for line in open(fn):
+  File "/users/sparthib/.conda/envs/FLAMES/lib/python3.10/codecs.py", line 322, in decode
+    (result, consumed) = self._buffer_decode(data, self.errors, final)
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x8b in position 1: invalid start byte
+**** Job ends ****
+2023-12-07 10:30:27

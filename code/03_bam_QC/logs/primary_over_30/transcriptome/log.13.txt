@@ -1,0 +1,17 @@
+**** Job starts ****
+2024-04-12 13:32:38
+**** JHPCE info ****
+User: sparthib
+Job id: 4382635
+Job name: highqualbam
+Node name: compute-153
+Task id: 13
+EP1-WT_hRO_2
+Loading LIBD SLURM module for samtools/1.18
+[bam_sort_core] merging from 11 files and 1 in-memory blocks...
+/var/spool/slurm/d/job4382635/slurm_script: line 44: index: command not found
+finished computing stats for plotting
+finished computing flagstats: contains percentage mapped reads
+finished computing depth stats
+**** Job ends ****
+2024-04-12 14:10:16
