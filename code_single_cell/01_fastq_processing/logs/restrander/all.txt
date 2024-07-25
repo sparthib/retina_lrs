@@ -1,0 +1,60 @@
+{
+    "stats": {
+        "artefactStats": {
+            "RTP-RTP": 956898,
+            "TSO-TSO": 10567481,
+            "no artefact": 32790525
+        },
+        "strandStats": {
+            "+": 17618516,
+            "-": 13094285,
+            "?": 13602103
+        },
+        "totalReads": 44314904
+    }
+}
+{
+    "stats": {
+        "artefactStats": {
+            "RTP-RTP": 36655,
+            "TSO-TSO": 413310,
+            "no artefact": 1316939
+        },
+        "strandStats": {
+            "+": 707209,
+            "-": 517923,
+            "?": 541772
+        },
+        "totalReads": 1766904
+    }
+}
+{
+    "stats": {
+        "artefactStats": {
+            "RTP-RTP": 1841714,
+            "TSO-TSO": 16692012,
+            "no artefact": 55980359
+        },
+        "strandStats": {
+            "+": 29061767,
+            "-": 23989816,
+            "?": 21462502
+        },
+        "totalReads": 74514085
+    }
+}
+{
+    "stats": {
+        "artefactStats": {
+            "RTP-RTP": 220297,
+            "TSO-TSO": 2027047,
+            "no artefact": 7156753
+        },
+        "strandStats": {
+            "+": 3702874,
+            "-": 3075832,
+            "?": 2625391
+        },
+        "totalReads": 9404097
+    }
+}

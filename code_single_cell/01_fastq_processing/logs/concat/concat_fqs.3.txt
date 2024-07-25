@@ -1,0 +1,10 @@
+**** Job starts ****
+2024-06-03 09:56:17
+**** JHPCE info ****
+User: sparthib
+Job id: 7220342
+Job name: concat_fqs
+Node name: compute-099
+10x_D100-EP1_B1
+**** Job ends ****
+2024-06-03 10:54:39

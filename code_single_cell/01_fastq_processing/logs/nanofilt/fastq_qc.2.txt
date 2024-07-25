@@ -1,0 +1,13 @@
+**** Job starts ****
+2024-05-17 12:07:03
+**** JHPCE info ****
+User: sparthib
+Job id: 5548058
+Job name: fastq_qc
+Node name: compute-057
+Task id: 2
+nanofilt on
+10x_D100-EP1_A2
+processing input fastq
+**** Job ends ****
+2024-05-17 12:21:41
