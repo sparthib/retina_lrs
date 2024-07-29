@@ -22,3 +22,24 @@ splicing_factors <- read_csv(here("raw_data", "GeneCards-Pathway-Splicing.csv"))
 # 
 # # Save the data
 # write_csv(splicing_factors, here("raw_data", "GeneCards-Pathway-Splicing.csv"))
+
+
+##### ADD GENE COUNTS #####
+
+# Load FT vs RGC gene counts matrix 
+
+bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation"
+counts <- read.table(file.path(bambu_dir, "counts_gene.txt"),
+                     header = TRUE)
+
+
+#remove "_primary_over_30_chr_only_sorted" in column names 
+colnames(counts) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(counts))
+colnames(counts)[1] <- "gene_id"
+head(counts)
+
+group <- factor(c("FT", "FT", "RGC", "RGC"))
+
+
+
+
