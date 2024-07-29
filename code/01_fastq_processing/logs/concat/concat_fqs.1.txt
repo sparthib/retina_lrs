@@ -1,10 +1,11 @@
 **** Job starts ****
-2023-12-30 12:29:46
+2024-07-29 15:52:50
 **** JHPCE info ****
 User: sparthib
-Job id: 1360061
+Job id: 8808877
 Job name: concat_fqs
-Node name: compute-143
+Node name: compute-120
 EP1-BRN3B-RO
+/var/spool/slurm/d/job8808877/slurm_script: line 29: /dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/EP1-BRN3B-RO.fastq.gz: No such file or directory
 **** Job ends ****
-2023-12-30 13:12:31
+2024-07-29 15:52:52
