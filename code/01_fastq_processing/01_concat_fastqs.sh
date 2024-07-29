@@ -24,6 +24,7 @@ INPUT_FOLDER=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo $sample
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs
+mkdir -p $OUTPUT_FOLDER
 
 cd $INPUT_FOLDER
 cat *.fastq.gz > $OUTPUT_FOLDER/${sample}.fastq.gz
