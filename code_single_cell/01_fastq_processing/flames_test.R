@@ -30,7 +30,7 @@ if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
     genome_fa = genome_fa,
     outdir = outdir, 
     config_file = config_file,
-    expect_cell_number = 63)
+    expect_cell_number = 2000)
 
   
   #sce pipeline failed because it didn't find the matched_reads.fastq file
