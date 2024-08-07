@@ -10,7 +10,7 @@ minimap_path <- file.path("/users/sparthib/minimap2")
 
 
 outdir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample)
-config_dir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/single_thread_isoform_identification.json")
+config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/single_thread_isoform_identification.json")
 # config_file <- FLAMES::create_config(config_dir, type = "sc_3end",
 #                                      do_barcode_demultiplex = FALSE,
 #                                      do_genome_alignment = FALSE,
