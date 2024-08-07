@@ -1,54 +1,30 @@
 **** Job starts ****
-2024-06-13 13:29:53
+2024-08-03 20:32:00
 **** JHPCE info ****
 User: sparthib
-Job id: 7569217
+Job id: 8945068
 Job name: fastq2bam
-Node name: compute-153
+Node name: compute-124
 Task id: 2
 10x_D100-EP1_A2
-rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/sams/10x_D100-EP1_A2_stranded.sam': No such file or directory
-[M::mm_idx_gen::61.625*1.86] collected minimizers
-[M::mm_idx_gen::70.954*2.91] sorted minimizers
-[M::main::70.955*2.91] loaded/built the index for 706 target sequence(s)
-[M::mm_mapopt_update::74.573*2.82] mid_occ = 812
+[M::mm_idx_gen::46.174*1.91] collected minimizers
+[M::mm_idx_gen::51.249*3.25] sorted minimizers
+[M::main::51.249*3.25] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::53.922*3.14] mid_occ = 812
 [M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 706
-[M::mm_idx_stat::76.776*2.77] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
-[M::worker_pipeline::523.695*8.75] mapped 418585 sequences
-[M::worker_pipeline::956.628*9.31] mapped 416164 sequences
-[M::worker_pipeline::1363.878*9.49] mapped 390383 sequences
+[M::mm_idx_stat::55.520*3.08] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
+[M::worker_pipeline::288.415*15.97] mapped 484186 sequences
+[M::worker_pipeline::388.125*16.88] mapped 217620 sequences
 [M::main] Version: 2.26-r1175
-[M::main] CMD: ./minimap2 -ax splice -y --secondary=no -t 10 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz /dcs04/hicks/data/sparthib/retina_single_cell_lrs/restrander_output/10x_D100-EP1_A2.fastq.gz
-[M::main] Real time: 1364.057 sec; CPU: 12948.597 sec; Peak RSS: 23.520 GB
+[M::main] CMD: ./minimap2 -ax splice -y --secondary=no -t 20 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/10x_D100-EP1_A2_matched_reads.fastq.gz
+[M::main] Real time: 388.382 sec; CPU: 6551.952 sec; Peak RSS: 27.383 GB
 rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D100-EP1_A2_stranded_sorted.bam': No such file or directory
 rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D100-EP1_A2_stranded_sorted.bam.bai': No such file or directory
 Loading LIBD SLURM module for samtools/1.18
-[bam_sort_core] merging from 3 files and 1 in-memory blocks...
-finished indexing stranded bam
-/var/spool/slurm/d/job7569217/slurm_script: line 61: index: command not found
-finished computing stats for plotting
-finished computing flagstats: contains percentage mapped reads
-rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/sams/10x_D100-EP1_A2_unknown.sam': No such file or directory
-[M::mm_idx_gen::61.502*1.86] collected minimizers
-[M::mm_idx_gen::70.911*2.92] sorted minimizers
-[M::main::70.911*2.92] loaded/built the index for 706 target sequence(s)
-[M::mm_mapopt_update::74.562*2.83] mid_occ = 812
-[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 706
-[M::mm_idx_stat::76.769*2.77] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
-[WARNING][1;31m failed to parse the FASTA/FASTQ record next to 'c30da296-7e42-41f2-9f78-908c9923b70c'. Continue anyway.[0m
-[M::worker_pipeline::599.705*8.89] mapped 470108 sequences
-[M::worker_pipeline::672.265*9.00] mapped 71641 sequences
-[M::main] Version: 2.26-r1175
-[M::main] CMD: ./minimap2 -ax splice -y --secondary=no -t 10 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz /dcs04/hicks/data/sparthib/retina_single_cell_lrs/restrander_output/10x_D100-EP1_A2-unknowns.fastq.gz
-[M::main] Real time: 672.407 sec; CPU: 6047.378 sec; Peak RSS: 22.608 GB
-rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D100-EP1_A2_unknown_sorted.bam': No such file or directory
-rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D100-EP1_A2_unknown_sorted.bam.bai': No such file or directory
-Unloading LIBD SLURM module for samtools/1.18
-Loading LIBD SLURM module for samtools/1.18
 [bam_sort_core] merging from 1 files and 1 in-memory blocks...
-finished indexing uknown bam
-/var/spool/slurm/d/job7569217/slurm_script: line 91: index: command not found
+finished indexing stranded bam
+/var/spool/slurm/d/job8945068/slurm_script: line 60: index: command not found
 finished computing stats for plotting
 finished computing flagstats: contains percentage mapped reads
 **** Job ends ****
-2024-06-13 14:15:25
+2024-08-03 20:41:41

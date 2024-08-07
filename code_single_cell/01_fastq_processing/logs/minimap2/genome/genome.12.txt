@@ -1,0 +1,31 @@
+**** Job starts ****
+2024-08-04 03:25:07
+**** JHPCE info ****
+User: sparthib
+Job id: 8945066
+Job name: fastq2bam
+Node name: compute-152
+Task id: 12
+10x_D200-EP1-2_B2
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/sams/10x_D200-EP1-2_B2_stranded.sam': No such file or directory
+[M::mm_idx_gen::37.638*1.84] collected minimizers
+[M::mm_idx_gen::40.956*2.93] sorted minimizers
+[M::main::40.957*2.93] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::43.214*2.82] mid_occ = 812
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 706
+[M::mm_idx_stat::44.477*2.77] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
+[M::worker_pipeline::218.715*15.74] mapped 500155 sequences
+[M::worker_pipeline::266.445*16.42] mapped 156059 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: ./minimap2 -ax splice -y --secondary=no -t 20 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/10x_D200-EP1-2_B2_matched_reads.fastq.gz
+[M::main] Real time: 266.633 sec; CPU: 4374.826 sec; Peak RSS: 28.008 GB
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D200-EP1-2_B2_stranded_sorted.bam': No such file or directory
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D200-EP1-2_B2_stranded_sorted.bam.bai': No such file or directory
+Loading LIBD SLURM module for samtools/1.18
+[bam_sort_core] merging from 1 files and 1 in-memory blocks...
+finished indexing stranded bam
+/var/spool/slurm/d/job8945066/slurm_script: line 60: index: command not found
+finished computing stats for plotting
+finished computing flagstats: contains percentage mapped reads
+**** Job ends ****
+2024-08-04 03:32:02
