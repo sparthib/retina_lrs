@@ -1,0 +1,67 @@
+**** Job starts ****
+2024-08-03 20:32:00
+**** JHPCE info ****
+User: sparthib
+Job id: 8945067
+Job name: fastq2bam
+Node name: compute-160
+Task id: 1
+10x_D100-EP1_A1
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/sams/10x_D100-EP1_A1_stranded.sam': No such file or directory
+[M::mm_idx_gen::37.278*2.03] collected minimizers
+[M::mm_idx_gen::47.268*2.97] sorted minimizers
+[M::main::47.268*2.97] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::49.720*2.88] mid_occ = 812
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 706
+[M::mm_idx_stat::51.438*2.81] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
+[M::worker_pipeline::243.420*15.76] mapped 483614 sequences
+[M::worker_pipeline::430.512*17.60] mapped 478408 sequences
+[M::worker_pipeline::614.474*18.31] mapped 475131 sequences
+[M::worker_pipeline::795.410*18.70] mapped 476179 sequences
+[M::worker_pipeline::972.081*18.93] mapped 487593 sequences
+[M::worker_pipeline::1148.488*19.09] mapped 485304 sequences
+[M::worker_pipeline::1325.385*19.21] mapped 483402 sequences
+[M::worker_pipeline::1502.661*19.30] mapped 484003 sequences
+[M::worker_pipeline::1678.758*19.38] mapped 481929 sequences
+[M::worker_pipeline::1857.534*19.43] mapped 482299 sequences
+[M::worker_pipeline::2042.555*19.48] mapped 480156 sequences
+[M::worker_pipeline::2230.074*19.52] mapped 481041 sequences
+[M::worker_pipeline::2413.541*19.55] mapped 479275 sequences
+[M::worker_pipeline::2597.326*19.58] mapped 480218 sequences
+[M::worker_pipeline::2778.191*19.61] mapped 479868 sequences
+[M::worker_pipeline::2959.382*19.63] mapped 479756 sequences
+[M::worker_pipeline::3143.951*19.65] mapped 478396 sequences
+[M::worker_pipeline::3328.416*19.67] mapped 479431 sequences
+[M::worker_pipeline::3510.219*19.68] mapped 477308 sequences
+[M::worker_pipeline::3692.543*19.70] mapped 478625 sequences
+[M::worker_pipeline::3878.039*19.71] mapped 478623 sequences
+[M::worker_pipeline::4060.134*19.72] mapped 482043 sequences
+[M::worker_pipeline::4245.890*19.74] mapped 480694 sequences
+[M::worker_pipeline::4427.636*19.75] mapped 484773 sequences
+[M::worker_pipeline::4613.144*19.76] mapped 486127 sequences
+[M::worker_pipeline::4794.740*19.76] mapped 485138 sequences
+[M::worker_pipeline::4979.450*19.77] mapped 475112 sequences
+[M::worker_pipeline::5160.724*19.78] mapped 475010 sequences
+[M::worker_pipeline::5349.030*19.79] mapped 475491 sequences
+[M::worker_pipeline::5531.358*19.79] mapped 475302 sequences
+[M::worker_pipeline::5712.971*19.80] mapped 474384 sequences
+[M::worker_pipeline::5895.563*19.80] mapped 475099 sequences
+[M::worker_pipeline::6076.410*19.81] mapped 474390 sequences
+[M::worker_pipeline::6258.093*19.81] mapped 474647 sequences
+[M::worker_pipeline::6441.741*19.82] mapped 475634 sequences
+[M::worker_pipeline::6627.186*19.82] mapped 476589 sequences
+[M::worker_pipeline::6803.860*19.83] mapped 477779 sequences
+[M::worker_pipeline::6970.345*19.83] mapped 430087 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: ./minimap2 -ax splice -y --secondary=no -t 20 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/10x_D100-EP1_A1_matched_reads.fastq.gz
+[M::main] Real time: 6970.461 sec; CPU: 138188.941 sec; Peak RSS: 29.952 GB
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D100-EP1_A1_stranded_sorted.bam': No such file or directory
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D100-EP1_A1_stranded_sorted.bam.bai': No such file or directory
+Loading LIBD SLURM module for samtools/1.18
+[bam_sort_core] merging from 11 files and 1 in-memory blocks...
+finished indexing stranded bam
+/var/spool/slurm/d/job8945067/slurm_script: line 60: index: command not found
+finished computing stats for plotting
+finished computing flagstats: contains percentage mapped reads
+**** Job ends ****
+2024-08-03 23:45:32

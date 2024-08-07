@@ -1,0 +1,48 @@
+**** Job starts ****
+2024-08-03 20:32:01
+**** JHPCE info ****
+User: sparthib
+Job id: 8945071
+Job name: fastq2bam
+Node name: compute-068
+Task id: 5
+10x_D200-EP1-1_A1
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/sams/10x_D200-EP1-1_A1_stranded.sam': No such file or directory
+[M::mm_idx_gen::556.583*1.86] collected minimizers
+[M::mm_idx_gen::648.690*3.37] sorted minimizers
+[M::main::648.693*3.37] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::699.945*3.20] mid_occ = 812
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 706
+[M::mm_idx_stat::713.813*3.16] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
+[M::worker_pipeline::3853.641*15.00] mapped 490842 sequences
+[M::worker_pipeline::6814.440*16.62] mapped 489917 sequences
+[M::worker_pipeline::9742.281*17.29] mapped 492641 sequences
+[M::worker_pipeline::12672.623*17.62] mapped 496171 sequences
+[M::worker_pipeline::15582.231*17.85] mapped 493719 sequences
+[M::worker_pipeline::18398.420*18.05] mapped 499324 sequences
+[M::worker_pipeline::21164.877*18.23] mapped 483623 sequences
+[M::worker_pipeline::23930.135*18.36] mapped 482724 sequences
+[M::worker_pipeline::26708.845*18.47] mapped 481885 sequences
+[M::worker_pipeline::29450.530*18.56] mapped 485600 sequences
+[M::worker_pipeline::32190.062*18.63] mapped 481687 sequences
+[M::worker_pipeline::34941.200*18.70] mapped 487362 sequences
+[M::worker_pipeline::37660.358*18.75] mapped 484217 sequences
+[M::worker_pipeline::40376.438*18.80] mapped 487148 sequences
+[M::worker_pipeline::43098.844*18.84] mapped 488918 sequences
+[M::worker_pipeline::45795.545*18.88] mapped 488739 sequences
+[M::worker_pipeline::48478.825*18.91] mapped 497473 sequences
+[M::worker_pipeline::51187.698*18.94] mapped 495899 sequences
+[M::worker_pipeline::53929.193*18.96] mapped 494419 sequences
+[M::worker_pipeline::56664.523*18.99] mapped 494473 sequences
+[M::worker_pipeline::59367.180*19.01] mapped 493025 sequences
+[M::worker_pipeline::62077.909*19.03] mapped 491152 sequences
+[M::worker_pipeline::64789.063*19.04] mapped 492333 sequences
+[M::worker_pipeline::67456.873*19.06] mapped 489634 sequences
+[M::worker_pipeline::70146.048*19.07] mapped 489624 sequences
+[M::worker_pipeline::72836.910*19.08] mapped 491179 sequences
+[M::worker_pipeline::75520.645*19.10] mapped 488579 sequences
+[M::worker_pipeline::78218.670*19.11] mapped 488122 sequences
+[M::worker_pipeline::80912.448*19.12] mapped 487865 sequences
+[M::worker_pipeline::83599.228*19.13] mapped 486710 sequences
+[M::worker_pipeline::86290.798*19.14] mapped 486836 sequences
+slurmstepd: error: *** JOB 8945071 ON compute-068 CANCELLED AT 2024-08-04T20:32:13 DUE TO TIME LIMIT ***

@@ -1,0 +1,35 @@
+**** Job starts ****
+2024-08-03 20:42:07
+**** JHPCE info ****
+User: sparthib
+Job id: 8945083
+Job name: fastq2bam
+Node name: compute-068
+Task id: 6
+10x_D200-EP1-1_A2
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/sams/10x_D200-EP1-1_A2_stranded.sam': No such file or directory
+[M::mm_idx_gen::587.791*1.84] collected minimizers
+[M::mm_idx_gen::693.956*3.19] sorted minimizers
+[M::main::693.958*3.19] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::750.092*3.03] mid_occ = 812
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 706
+[M::mm_idx_stat::764.031*2.99] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
+[M::worker_pipeline::4163.167*14.50] mapped 495981 sequences
+[M::worker_pipeline::7161.271*16.11] mapped 499496 sequences
+[M::worker_pipeline::10191.695*16.73] mapped 494204 sequences
+[M::worker_pipeline::13222.133*17.07] mapped 490332 sequences
+[M::worker_pipeline::16326.179*17.28] mapped 487054 sequences
+[M::worker_pipeline::16662.316*17.27] mapped 58079 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: ./minimap2 -ax splice -y --secondary=no -t 20 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/10x_D200-EP1-1_A2_matched_reads.fastq.gz
+[M::main] Real time: 16664.326 sec; CPU: 287843.123 sec; Peak RSS: 29.722 GB
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D200-EP1-1_A2_stranded_sorted.bam': No such file or directory
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D200-EP1-1_A2_stranded_sorted.bam.bai': No such file or directory
+Loading LIBD SLURM module for samtools/1.18
+[bam_sort_core] merging from 6 files and 1 in-memory blocks...
+finished indexing stranded bam
+/var/spool/slurm/d/job8945083/slurm_script: line 60: index: command not found
+finished computing stats for plotting
+finished computing flagstats: contains percentage mapped reads
+**** Job ends ****
+2024-08-04 03:19:05

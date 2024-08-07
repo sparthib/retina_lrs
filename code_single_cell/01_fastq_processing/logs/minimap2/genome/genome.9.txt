@@ -1,0 +1,69 @@
+**** Job starts ****
+2024-08-04 00:09:47
+**** JHPCE info ****
+User: sparthib
+Job id: 8945374
+Job name: fastq2bam
+Node name: compute-156
+Task id: 9
+10x_D200-EP1-2_A1
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/sams/10x_D200-EP1-2_A1_stranded.sam': No such file or directory
+[M::mm_idx_gen::36.805*2.07] collected minimizers
+[M::mm_idx_gen::46.519*3.07] sorted minimizers
+[M::main::46.519*3.07] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::48.873*2.97] mid_occ = 812
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 706
+[M::mm_idx_stat::50.485*2.91] distinct minimizers: 167327584 (33.90% are singletons); average occurrences: 6.404; average spacing: 3.072; total length: 3291585349
+[M::worker_pipeline::255.730*16.07] mapped 493917 sequences
+[M::worker_pipeline::450.530*17.76] mapped 493626 sequences
+[M::worker_pipeline::646.808*18.43] mapped 492639 sequences
+[M::worker_pipeline::841.953*18.79] mapped 493626 sequences
+[M::worker_pipeline::1036.404*19.01] mapped 492963 sequences
+[M::worker_pipeline::1229.674*19.17] mapped 496402 sequences
+[M::worker_pipeline::1419.804*19.28] mapped 505936 sequences
+[M::worker_pipeline::1609.435*19.36] mapped 502802 sequences
+[M::worker_pipeline::1788.958*19.42] mapped 503438 sequences
+[M::worker_pipeline::1978.398*19.47] mapped 502303 sequences
+[M::worker_pipeline::2167.355*19.52] mapped 501954 sequences
+[M::worker_pipeline::2355.257*19.56] mapped 499761 sequences
+[M::worker_pipeline::2543.292*19.59] mapped 501495 sequences
+[M::worker_pipeline::2732.954*19.61] mapped 498735 sequences
+[M::worker_pipeline::2922.429*19.64] mapped 498927 sequences
+[M::worker_pipeline::3110.226*19.66] mapped 497992 sequences
+[M::worker_pipeline::3297.128*19.68] mapped 498678 sequences
+[M::worker_pipeline::3485.067*19.69] mapped 498453 sequences
+[M::worker_pipeline::3672.722*19.71] mapped 497965 sequences
+[M::worker_pipeline::3861.009*19.72] mapped 498313 sequences
+[M::worker_pipeline::4059.684*19.73] mapped 497448 sequences
+[M::worker_pipeline::4253.637*19.74] mapped 498115 sequences
+[M::worker_pipeline::4448.242*19.75] mapped 496945 sequences
+[M::worker_pipeline::4646.491*19.76] mapped 497645 sequences
+[M::worker_pipeline::4850.443*19.73] mapped 497156 sequences
+[M::worker_pipeline::5042.504*19.74] mapped 498310 sequences
+[M::worker_pipeline::5235.659*19.75] mapped 498270 sequences
+[M::worker_pipeline::5431.362*19.76] mapped 497610 sequences
+[M::worker_pipeline::5624.816*19.76] mapped 498719 sequences
+[M::worker_pipeline::5817.860*19.77] mapped 498359 sequences
+[M::worker_pipeline::6011.628*19.78] mapped 500255 sequences
+[M::worker_pipeline::6204.542*19.78] mapped 499293 sequences
+[M::worker_pipeline::6402.125*19.79] mapped 500986 sequences
+[M::worker_pipeline::6598.434*19.79] mapped 497862 sequences
+[M::worker_pipeline::6794.345*19.80] mapped 502271 sequences
+[M::worker_pipeline::6988.452*19.80] mapped 500562 sequences
+[M::worker_pipeline::7182.453*19.81] mapped 506264 sequences
+[M::worker_pipeline::7379.420*19.81] mapped 503913 sequences
+[M::worker_pipeline::7572.649*19.81] mapped 512712 sequences
+[M::worker_pipeline::7747.628*19.81] mapped 468947 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: ./minimap2 -ax splice -y --secondary=no -t 20 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/10x_D200-EP1-2_A1_matched_reads.fastq.gz
+[M::main] Real time: 7747.785 sec; CPU: 153483.174 sec; Peak RSS: 30.598 GB
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D200-EP1-2_A1_stranded_sorted.bam': No such file or directory
+rm: cannot remove '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D200-EP1-2_A1_stranded_sorted.bam.bai': No such file or directory
+Loading LIBD SLURM module for samtools/1.18
+[bam_sort_core] merging from 14 files and 1 in-memory blocks...
+finished indexing stranded bam
+/var/spool/slurm/d/job8945374/slurm_script: line 60: index: command not found
+finished computing stats for plotting
+finished computing flagstats: contains percentage mapped reads
+**** Job ends ****
+2024-08-04 03:41:12
