@@ -20,7 +20,7 @@ config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_f
 #                                      do_transcript_quantification = TRUE,
 #                                      min_sup_cnt = 5,
 #                                      threads = 20)
-genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/", paste0(sample, "_sorted.bam"))
+genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams", paste0(sample, "_sorted.bam"))
 
 #run minimap2
 

@@ -35,6 +35,7 @@ gunzip -c /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/r
 
 #symlink for bam files 
 ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/${sample}_sorted.bam /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam
+ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/${sample}_sorted.bam.bai /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam.bai
 
 
 ml load conda_R/4.4.x
