@@ -1,20 +1,20 @@
 **** Job starts ****
-2024-08-07 01:50:02
+2024-08-07 02:05:07
 **** JHPCE info ****
 User: sparthib
-Job id: 8996639
+Job id: 8996638
 Job name: flames
-Node name: compute-095
-Task id: 1
-10x_D100-EP1_A1
+Node name: compute-092
+Task id: 12
+10x_D200-EP1-2_B2
 Loading conda_R/4.4.x
 To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-02:00:17 AM Wed Aug 07 2024 Start running
+02:05:55 AM Wed Aug 07 2024 Start running
 Skipping Demultiplexing step...
-Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_A1/matched_reads.fastq `` is the the demultiplexing output from previous FLAEMS call.
+Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2/matched_reads.fastq `` is the the demultiplexing output from previous FLAEMS call.
 Running FLAMES pipeline...
 #### Input parameters:
 {
@@ -72,20 +72,20 @@ Running FLAMES pipeline...
 } 
 gene annotation: /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf 
 genome fasta: /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa 
-input fastq: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_A1/matched_reads.fastq 
-output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_A1 
+input fastq: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2/matched_reads.fastq 
+output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2 
 minimap2 path: 
 k8 path: 
 #### Skip aligning reads to genome
-02:00:17 AM Wed Aug 07 2024 Start gene quantification and UMI deduplication
-02:00:17 AM Wed Aug 07 2024 quantify genes 
+02:05:55 AM Wed Aug 07 2024 Start gene quantification and UMI deduplication
+02:05:55 AM Wed Aug 07 2024 quantify genes 
 Found genome alignment file(s): 	align2genome.bam
-[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_A1/align2genome.bam'
-[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_A1/align2genome.bam'
+[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2/align2genome.bam'
+[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2/align2genome.bam'
 Error in py_call_impl(callable, call_args$unnamed, call_args$named) : 
   ValueError: fetch called on bamfile without index
 Run `reticulate::py_last_error()` for details.
 Calls: sc_long_pipeline ... quantify_gene -> basiliskRun -> fun -> <Anonymous> -> py_call_impl
 Execution halted
 **** Job ends ****
-2024-08-07 02:01:34
+2024-08-07 02:06:53
