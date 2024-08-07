@@ -1,18 +1,19 @@
 **** Job starts ****
-2024-08-07 01:50:02
+2024-08-07 02:51:31
 **** JHPCE info ****
 User: sparthib
-Job id: 8996643
+Job id: 8996672
 Job name: flames
-Node name: compute-092
+Node name: compute-124
 Task id: 5
 10x_D200-EP1-1_A1
+ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-1_A1/align2genome.bam': File exists
 Loading conda_R/4.4.x
 To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-02:04:45 AM Wed Aug 07 2024 Start running
+03:07:53 AM Wed Aug 07 2024 Start running
 Skipping Demultiplexing step...
 Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-1_A1/matched_reads.fastq `` is the the demultiplexing output from previous FLAEMS call.
 Running FLAMES pipeline...
@@ -77,8 +78,8 @@ output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_ou
 minimap2 path: 
 k8 path: 
 #### Skip aligning reads to genome
-02:04:45 AM Wed Aug 07 2024 Start gene quantification and UMI deduplication
-02:04:45 AM Wed Aug 07 2024 quantify genes 
+03:07:53 AM Wed Aug 07 2024 Start gene quantification and UMI deduplication
+03:07:53 AM Wed Aug 07 2024 quantify genes 
 Found genome alignment file(s): 	align2genome.bam
 [E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-1_A1/align2genome.bam" : No such file or directory
 Error in py_call_impl(callable, call_args$unnamed, call_args$named) : 
@@ -87,4 +88,4 @@ Run `reticulate::py_last_error()` for details.
 Calls: sc_long_pipeline ... quantify_gene -> basiliskRun -> fun -> <Anonymous> -> py_call_impl
 Execution halted
 **** Job ends ****
-2024-08-07 02:04:50
+2024-08-07 03:07:56
