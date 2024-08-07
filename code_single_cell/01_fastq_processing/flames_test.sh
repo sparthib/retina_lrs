@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -p shared
-#SBATCH --mem=50G
+#SBATCH --mem=100G
 #SBATCH --job-name=flames
 #SBATCH -c 20
 #SBATCH --mail-user=sparthi1@jhu.edu
