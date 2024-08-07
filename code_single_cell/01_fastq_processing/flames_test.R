@@ -10,14 +10,15 @@ minimap_path <- file.path("/users/sparthib/minimap2")
 
 
 outdir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample)
-config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/config_file_3766646.json")
+config_dir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/single_thread_isoform_identification.json")
 # config_file <- FLAMES::create_config(config_dir, type = "sc_3end",
 #                                      do_barcode_demultiplex = FALSE,
 #                                      do_genome_alignment = FALSE,
-#                                      do_gene_quantification = TRUE,
+#                                      do_gene_quantification = FALSE,
 #                                      do_isoform_identification = TRUE,
 #                                      do_read_realignment = TRUE,
 #                                      do_transcript_quantification = TRUE,
+#                                      multithread_isoform_identification = FALSE,
 #                                      min_sup_cnt = 5,
 #                                      threads = 20)
 genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams", paste0(sample, "_sorted.bam"))
