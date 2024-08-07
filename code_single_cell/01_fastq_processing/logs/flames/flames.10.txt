@@ -1,0 +1,12 @@
+**** Job starts ****
+2024-08-07 01:48:13
+**** JHPCE info ****
+User: sparthib
+Job id: 8996637
+Job name: flames
+Node name: compute-095
+Task id: 10
+10x_D200-EP1-2_A2
+Loading conda_R/4.4.x
+To install colorout use: remotes::install_github("jalvesaq/colorout")
+slurmstepd: error: *** JOB 8996637 ON compute-095 CANCELLED AT 2024-08-07T01:48:40 ***

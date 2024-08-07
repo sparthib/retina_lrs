@@ -1,0 +1,10 @@
+**** Job starts ****
+2024-08-07 01:40:01
+**** JHPCE info ****
+User: sparthib
+Job id: 8996636
+Job name: flames
+Node name: compute-094
+Task id: 9
+10x_D200-EP1-2_A1
+slurmstepd: error: *** JOB 8996636 ON compute-094 CANCELLED AT 2024-08-07T01:48:40 ***

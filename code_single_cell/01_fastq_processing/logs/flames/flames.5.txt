@@ -1,0 +1,10 @@
+**** Job starts ****
+2024-08-07 01:34:31
+**** JHPCE info ****
+User: sparthib
+Job id: 8996630
+Job name: flames
+Node name: compute-092
+Task id: 5
+10x_D200-EP1-1_A1
+slurmstepd: error: *** JOB 8996630 ON compute-092 CANCELLED AT 2024-08-07T01:48:40 ***
