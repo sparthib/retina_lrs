@@ -23,8 +23,8 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 LOGS_FOLDER=/users/sparthib/retina_lrs/code_single_cell/01_fastq_processing/logs/minimap2/genome/primary_over_30
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
+CONFIG=/users/sparthib/retina_lrs/raw_data/single_cell.config
+sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 input_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams
 output_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only
