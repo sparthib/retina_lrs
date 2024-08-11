@@ -11,7 +11,7 @@ minimap_path <- file.path("/users/sparthib/minimap2")
 
 outdir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample)
 config_dir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config")
-config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/bambu_isoform_processing.json")
+config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/genome_alignment.json")
 # config_file <- FLAMES::create_config(config_dir, type = "sc_3end",
 #                                      do_barcode_demultiplex = FALSE,
 #                                      do_genome_alignment = FALSE,
@@ -22,7 +22,8 @@ config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_f
 #                                      do_transcript_quantification = TRUE,
 #                                      min_sup_cnt = 5,
 #                                      threads = 20)
-genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams", paste0(sample, "_sorted.bam"))
+genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only",
+                        paste0(sample, "_primary_over_30_chr_only.bam"))
 
 #run minimap2
 
