@@ -22,7 +22,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
-LOGS_FOLDER=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/minimap2/genome/primary_over_30
+LOGS_FOLDER=/users/sparthib/retina_lrs/code_single_cell/01_fastq_processing/logs/minimap2/genome/primary_over_30
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
