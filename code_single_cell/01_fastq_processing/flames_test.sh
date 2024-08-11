@@ -31,11 +31,12 @@ echo $sample
   #work around is to create a symlink to the blaze processed fastq file 
 #create symlink for the fastq files 
 # mkdir -p /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
-# gunzip -c /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/${sample}_matched_reads.fastq.gz > /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/matched_reads.fastq
 
 #symlink for bam files 
 rm -r /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
 mkdir -p /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
+gunzip -c /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/${sample}_matched_reads.fastq.gz > /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/matched_reads.fastq
+
 
 unlink /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam
 unlink /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam.bai
