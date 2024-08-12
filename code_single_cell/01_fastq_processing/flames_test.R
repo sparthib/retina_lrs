@@ -11,7 +11,9 @@ minimap_path <- file.path("/users/sparthib/minimap2")
 
 outdir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample)
 config_dir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config")
-config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/genome_alignment.json")
+config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/bambu_isoform_processing.json")
+#use genome_alignment.json for gene quantification
+#use bambu_isoform_processing.json for isoform alignment and quantification
 # config_file <- FLAMES::create_config(config_dir, type = "sc_3end",
 #                                      do_barcode_demultiplex = FALSE,
 #                                      do_genome_alignment = FALSE,
