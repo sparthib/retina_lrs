@@ -1,10 +1,10 @@
 **** Job starts ****
-2024-08-11 06:40:38
+2024-08-11 06:44:09
 **** JHPCE info ****
 User: sparthib
-Job id: 9023882
+Job id: 9023894
 Job name: flames
-Node name: compute-161
+Node name: compute-122
 Task id: 4
 10x_D100-EP1_B2
 unlink: cannot unlink '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D100-EP1_B2/align2genome.bam': No such file or directory
@@ -14,9 +14,80 @@ To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-Error in check_arguments(annotation, fastq, genome_bam, outdir, genome_fa,  : 
-  Make sure /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_B2/matched_reads.fastq exists.
-Calls: sc_long_pipeline -> check_arguments
+06:46:34 AM Sun Aug 11 2024 Start running
+Skipping Demultiplexing step...
+Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_B2/matched_reads.fastq `` is the the demultiplexing output from previous FLAEMS call.
+Running FLAMES pipeline...
+#### Input parameters:
+{
+  "pipeline_parameters": {
+    "seed": [2022],
+    "threads": [20],
+    "do_barcode_demultiplex": [false],
+    "do_gene_quantification": [true],
+    "do_genome_alignment": [false],
+    "do_isoform_identification": [true],
+    "bambu_isoform_identification": [false],
+    "multithread_isoform_identification": [true],
+    "do_read_realignment": [true],
+    "do_transcript_quantification": [true]
+  },
+  "barcode_parameters": {
+    "max_bc_editdistance": [2],
+    "max_flank_editdistance": [8],
+    "pattern": {
+      "primer": ["CTACACGACGCTCTTCCGATCT"],
+      "BC": ["NNNNNNNNNNNNNNNN"],
+      "UMI": ["NNNNNNNNNNNN"],
+      "polyT": ["TTTTTTTTT"]
+    },
+    "TSO_seq": ["CCCATGTACTCTGCGTTGATACCACTGCTT"],
+    "TSO_prime": [3],
+    "full_length_only": [false]
+  },
+  "isoform_parameters": {
+    "generate_raw_isoform": [false],
+    "max_dist": [10],
+    "max_ts_dist": [100],
+    "max_splice_match_dist": [10],
+    "min_fl_exon_len": [40],
+    "max_site_per_splice": [3],
+    "min_sup_cnt": [5],
+    "min_cnt_pct": [0.001],
+    "min_sup_pct": [0.2],
+    "bambu_trust_reference": [true],
+    "strand_specific": [0],
+    "remove_incomp_reads": [4],
+    "downsample_ratio": [1]
+  },
+  "alignment_parameters": {
+    "use_junctions": [true],
+    "no_flank": [false]
+  },
+  "realign_parameters": {
+    "use_annotation": [true]
+  },
+  "transcript_counting": {
+    "min_tr_coverage": [0.4],
+    "min_read_coverage": [0.4]
+  }
+} 
+gene annotation: /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf 
+genome fasta: /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa 
+input fastq: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_B2/matched_reads.fastq 
+output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_B2 
+minimap2 path: 
+k8 path: 
+#### Skip aligning reads to genome
+06:46:34 AM Sun Aug 11 2024 Start gene quantification and UMI deduplication
+06:46:34 AM Sun Aug 11 2024 quantify genes 
+Found genome alignment file(s): 	align2genome.bam
+[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_B2/align2genome.bam'
+[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D100-EP1_B2/align2genome.bam'
+Error in py_call_impl(callable, call_args$unnamed, call_args$named) : 
+  ValueError: fetch called on bamfile without index
+Run `reticulate::py_last_error()` for details.
+Calls: sc_long_pipeline ... quantify_gene -> basiliskRun -> fun -> <Anonymous> -> py_call_impl
 Execution halted
 **** Job ends ****
-2024-08-11 06:40:52
+2024-08-11 06:47:14
