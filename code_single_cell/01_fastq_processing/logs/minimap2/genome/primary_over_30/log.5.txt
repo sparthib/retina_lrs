@@ -1,0 +1,31 @@
+**** Job starts ****
+2024-08-10 22:46:58
+**** JHPCE info ****
+User: sparthib
+Job id: 9023501
+Job name: highqualbam
+Node name: compute-119
+Task id: 5
+10x_D200-EP1-1_A1
+Loading LIBD SLURM module for samtools/1.18
+[E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D200-EP1-1_A1_sorted.bam" : No such file or directory
+samtools view: failed to open "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/10x_D200-EP1-1_A1_sorted.bam" for reading: No such file or directory
+finished filtering bam by mapping quality and removing duplicates
+[W::hts_set_opt] Cannot change block size for this format
+samtools sort: failed to read header from "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30.bam"
+[E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_sorted.bam" : No such file or directory
+samtools index: failed to open "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_sorted.bam": No such file or directory
+finished sorting and indexing bam
+[E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_sorted.bam" : No such file or directory
+samtools view: failed to open "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_sorted.bam" for reading: No such file or directory
+finished subsetting bam by chromosome
+[W::hts_set_opt] Cannot change block size for this format
+samtools sort: failed to read header from "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_chr_only.bam"
+[E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_chr_only_sorted.bam" : No such file or directory
+samtools index: failed to open "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_chr_only_sorted.bam": No such file or directory
+finished sorting and indexing bam
+[E::hts_open_format] Failed to open file "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_chr_only_sorted.bam" : No such file or directory
+samtools flagstat: Cannot open input file "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A1_primary_over_30_chr_only_sorted.bam": No such file or directory
+finished computing flag stats
+**** Job ends ****
+2024-08-10 22:46:59
