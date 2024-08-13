@@ -46,7 +46,7 @@ echo $sample
 
 
 ml load conda_R/4.4.x
-Rscript flames_test.R "$sample"
+Rscript 05_flames.R "$sample"
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
