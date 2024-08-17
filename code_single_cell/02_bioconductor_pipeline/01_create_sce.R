@@ -4,6 +4,7 @@ library(Matrix)
 library(rtracklayer)
 library(scater)
 library(sessioninfo)
+library(bluster)
 
 
 sample_names <- c( "10x_D100-EP1_A1",
@@ -60,18 +61,24 @@ create_sce <- function(sample){
     rowData(sce)
     
     ## dimension reduction 
-    sce <- scater::runPCA(sce)
+    sce <- scater::runPCA(sce, ncomponents=25, subset_row=hvg)
     dim(reducedDim(sce, "PCA"))
     
+    # Clustering.
+    
+    colLabels(sce) <- clusterCells(sce, use.dimred='PCA',
+                                   BLUSPARAM=NNGraphParam(cluster.fun="louvain"))    
+    
     sce <- scater::runTSNE(sce, perplexity = 0.1)
-    
     sce <- runUMAP(sce, dimred = 'PCA')
+    #plot umap
     p <- plotUMAP(sce, colour_by="label")
-    
     pdf(file.path(plots_dir, paste0(sample, "_umap.pdf")))
+    print(p)
+    dev.off()
+    
     #save sce object
     saveRDS(sce, file.path(plots_dir, paste0(sample,'_sce.rds')))
-    dev.off()
     
   } else {
     message(paste0(sample, " counts file does not exist"))
