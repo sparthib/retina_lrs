@@ -5,6 +5,9 @@ library(rtracklayer)
 library(scater)
 library(sessioninfo)
 library(bluster)
+library(scran)
+
+
 
 
 sample_names <- c( "10x_D100-EP1_A1",
@@ -60,12 +63,15 @@ create_sce <- function(sample){
     sce <- scuttle::addPerFeatureQC(sce)
     rowData(sce)
     
+    # Feature selection.
+    dec <- modelGeneVar(sce)
+    hvg <- getTopHVGs(dec, prop=0.1)
+    
     ## dimension reduction 
     sce <- scater::runPCA(sce, ncomponents=25, subset_row=hvg)
     dim(reducedDim(sce, "PCA"))
     
     # Clustering.
-    
     colLabels(sce) <- clusterCells(sce, use.dimred='PCA',
                                    BLUSPARAM=NNGraphParam(cluster.fun="louvain"))    
     
