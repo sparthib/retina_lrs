@@ -22,8 +22,7 @@ echo "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 
 ml load conda_R/4.4.x
-
-
+Rscript 01_create_sce.R
 
 echo "**** Job ends ****"
 date
