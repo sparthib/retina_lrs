@@ -2,6 +2,8 @@ library(scuttle)
 library(data.table)
 library(Matrix)
 library(rtracklayer)
+library(scater)
+library(sessioninfo)
 
 
 sample_names <- c( "10x_D100-EP1_A1",
@@ -25,6 +27,7 @@ create_sce <- function(sample){
   counts_path <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/",
                 sample, "/transcript_count.csv.gz")
   if (file.exists(counts_path)){
+    print(paste0("Creating SingleCellExperiment object for ", sample))
     mat <- fread(counts_path)
     
     rownames <- paste(mat[[1]], mat[[2]], sep = "_")
@@ -56,7 +59,6 @@ create_sce <- function(sample){
     sce <- scuttle::addPerFeatureQC(sce)
     rowData(sce)
     
-    
     ## dimension reduction 
     sce <- scater::runPCA(sce)
     dim(reducedDim(sce, "PCA"))
@@ -79,7 +81,9 @@ create_sce <- function(sample){
 
 lapply(sample_names, create_sce)
 
-
-## add genomics ranges to sce 
-
-
+## Reproducibility information
+print("Reproducibility information:")
+Sys.time()
+proc.time()
+options(width = 120)
+session_info()
