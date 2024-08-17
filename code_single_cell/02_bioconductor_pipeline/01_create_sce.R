@@ -84,7 +84,7 @@ create_sce <- function(sample){
     dev.off()
     
     #save sce object
-    saveRDS(sce, file.path(plots_dir, paste0(sample,'_sce.rds')))
+    saveRDS(sce, file.path(output_dir, paste0(sample,'_sce.rds')))
     
   } else {
     message(paste0(sample, " counts file does not exist"))
