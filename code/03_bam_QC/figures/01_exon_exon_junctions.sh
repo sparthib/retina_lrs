@@ -11,6 +11,8 @@
 #SBATCH --array=9
 
 
+
+
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
 echo "**** JHPCE info ****"
@@ -25,7 +27,7 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 
-ml load conda_R/4.4
+ml load conda_R/4.4.x
 Rscript 01_exon_exon_junctions.R $sample
 
 echo "**** Job ends ****"
