@@ -48,6 +48,7 @@ compute_num_junction_per_read <- function(cigar_string) {
 max_junction <- 11 
 df_list <- list()
 
+bamfile <- scanBam(BamFile(alignment))
 nums <- c()  
 for (i in 1:nrow(genic_gtf)) {
   chr <- as.character(genic_gtf[i, "seqid"])
