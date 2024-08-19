@@ -34,7 +34,6 @@ gtf <- readGFF(gtf_fn) %>% as_tibble()
 genic_gtf <- readRDS('/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic_gtf.rds')
 ### 2. Get BAM file names
 sample <- commandArgs(trailingOnly = TRUE)[1]
-sample <- "H9-FT_1"
 alignment_dir <- '/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only'
 alignment <- paste0(alignment_dir, '/', sample, '_primary_over_30_chr_only_sorted.bam')
 
@@ -81,11 +80,6 @@ write.csv(df, paste0(output_dir, sample, "_exon-exon_junctions_df.csv"),
 
 
 session_info::sessionInfo()
-
-  
-  
-  
-
 
 
 ### 5. Calculate summary statistics for two types of sequencing
