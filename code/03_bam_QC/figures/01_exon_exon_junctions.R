@@ -51,7 +51,7 @@ df_list <- list()
 bamfile <- scanBam(BamFile(alignment))
 nums <- c()  
 for (i in 1:nrow(genic_gtf)) {
-  chr <- as.character(genic_gtf[i, "seqnames"])
+  chr <- as.character(genic_gtf[i, "seqid"])
   start <- as.integer(genic_gtf[i, "start"])
   end <- as.integer(genic_gtf[i, "end"])
   
