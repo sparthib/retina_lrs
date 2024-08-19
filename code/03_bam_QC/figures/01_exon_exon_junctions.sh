@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/exon_exon/sample.%a.txt
 #SBATCH -e logs/exon_exon/sample.%a.txt
-#SBATCH --array=1-15
+#SBATCH --array=9
 
 
 echo "**** Job starts ****"
