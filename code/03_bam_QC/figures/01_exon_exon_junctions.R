@@ -48,14 +48,13 @@ compute_num_junction_per_read <- function(cigar_string) {
 max_junction <- 11 
 df_list <- list()
 
-bamfile <- scanBam(BamFile(alignment))
 nums <- c()  
 for (i in 1:nrow(genic_gtf)) {
   chr <- as.character(genic_gtf[i, "seqid"])
   start <- as.integer(genic_gtf[i, "start"])
   end <- as.integer(genic_gtf[i, "end"])
   
-  reads <- scanBam(BamFile(fn), param = ScanBamParam(which = GRanges(chr, IRanges(start, end))))
+  reads <- scanBam(BamFile(alignment), param = ScanBamParam(which = GRanges(chr, IRanges(start, end))))
   
   for (read in reads[[1]]$cigar) {
     num <- compute_num_junction_per_read(read)
