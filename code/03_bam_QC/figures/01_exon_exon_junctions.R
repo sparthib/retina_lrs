@@ -3,6 +3,7 @@ library(plyranges)
 library(Rsamtools)
 library(dplyr)
 library(tidyr)
+library(string)
 
 ### 1. Load protein-coding multi-exonic genes
 sample <- commandArgs(trailingOnly = TRUE)[1]
