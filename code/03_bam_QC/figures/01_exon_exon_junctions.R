@@ -33,6 +33,10 @@ gtf <- readGFF(gtf_fn) %>% as_tibble()
 # saveRDS(genic_gtf, '/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic_gtf.rds')
 genic_gtf <- readRDS('/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic_gtf.rds')
 
+#get all rows that have chr prefix in seqid 
+#chrM is missing as we're only looking at protein-coding
+genic_gtf <- genic_gtf[grep("chr", genic_gtf$seqid), ]
+
 ### 2. Get BAM file name
 sample <- commandArgs(trailingOnly = TRUE)[1]
 sample <- "H9-FT_1"
@@ -65,6 +69,7 @@ for (i in 1:nrow(genic_gtf)) {
     nums <- c(nums, num)
   }
 }
+
 tmp_counter <- table(factor(nums, levels = 0:(max_junction - 1)))
 df <- as.numeric(tmp_counter)
 df 
