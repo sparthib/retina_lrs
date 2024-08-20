@@ -37,6 +37,7 @@ genic_gtf <- readRDS('/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic
 #chrM is missing as we're only looking at protein-coding
 genic_gtf <- genic_gtf[grep("chr", genic_gtf$seqid), ]
 
+unique(genic_gtf$seqid)
 ### 2. Get BAM file name
 sample <- commandArgs(trailingOnly = TRUE)[1]
 sample <- "H9-FT_1"
@@ -56,9 +57,11 @@ max_junction <- 11
 df_list <- list()
 
 bamfile <- scanBam(BamFile(alignment))
+unique(bamfile$seqnames)
 nums <- c()  
 for (i in 1:nrow(genic_gtf)) {
   chr <- paste0("chr",as.character(genic_gtf[i, "seqid"]))
+  if (chr %in% )
   start <- as.integer(genic_gtf[i, "start"])
   end <- as.integer(genic_gtf[i, "end"])
   
