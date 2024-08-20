@@ -58,40 +58,43 @@ df_list <- list()
 
 bamfile <- scanBam(BamFile(alignment))
 colnames(bamfile)
-# 
-# nums <- c()  
-# for (i in 1:nrow(genic_gtf)) {
-#   chr <- paste0("chr",as.character(genic_gtf[i, "seqid"]))
-#   start <- as.integer(genic_gtf[i, "start"])
-#   end <- as.integer(genic_gtf[i, "end"])
-#   
-#   reads <- scanBam(BamFile(alignment), param = ScanBamParam(which = GRanges(chr, IRanges(start, end))))
-#   
-#   for (read in reads[[1]]$cigar) {
-#     num <- compute_num_junction_per_read(read)
-#     nums <- c(nums, num)
-#   }
-# }
-# 
-# tmp_counter <- table(factor(nums, levels = 0:(max_junction - 1)))
-# df <- as.numeric(tmp_counter)
-# df 
-# 
-# per_df <- sweep(df, 1, rowSums(df), FUN = "/") 
-# 
-# per_df 
+
+nums <- c()  
+for (i in 1:nrow(genic_gtf)) {
+  chr <- paste0("chr",as.character(genic_gtf[i, "seqid"]))
+  start <- as.integer(genic_gtf[i, "start"])
+  end <- as.integer(genic_gtf[i, "end"])
+  
+  #if chr in chr1 to chr 22 or chrX or chrY
+  if (chr %in% c(paste0("chr", 1:22), "chrX", "chrY")){
+    reads <- scanBam(BamFile(alignment), param = ScanBamParam(which = GRanges(chr, IRanges(start, end))))
+    
+    for (read in reads[[1]]$cigar) {
+      num <- compute_num_junction_per_read(read)
+      nums <- c(nums, num)
+  }
+  }
+}
+
+tmp_counter <- table(factor(nums, levels = 0:(max_junction - 1)))
+df <- as.numeric(tmp_counter)
+df 
+
+per_df <- sweep(df, 1, rowSums(df), FUN = "/") 
+
+per_df 
 
 
 
 ### 5. Save summary to CSV
-# output_dir <- '/users/sparthib/retina_lrs/processed_data/bam_qc/'
-# write.csv(per_df, paste0(output_dir, sample, "_exon-exon_junctions_perdf.csv"),
-#           row.names = FALSE)
-# write.csv(df, paste0(output_dir, sample, "_exon-exon_junctions_df.csv"),
-#           row.names = FALSE)
-# 
-# 
-# session_info::sessionInfo()
+output_dir <- '/users/sparthib/retina_lrs/processed_data/bam_qc/'
+write.csv(per_df, paste0(output_dir, sample, "_exon-exon_junctions_perdf.csv"),
+          row.names = FALSE)
+write.csv(df, paste0(output_dir, sample, "_exon-exon_junctions_df.csv"),
+          row.names = FALSE)
+
+
+session_info::sessionInfo()
 
 
 ### 5. Calculate summary statistics for two types of sequencing
