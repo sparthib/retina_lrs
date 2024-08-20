@@ -6,7 +6,7 @@ library(tidyr)
 library(stringr)
 
 ### 1. Load protein-coding multi-exonic genes
-sample <- commandArgs(trailingOnly = TRUE)[1]q
+sample <- commandArgs(trailingOnly = TRUE)[1]
 print(sample)
 alignment_dir <- '/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only'
 alignment <- paste0(alignment_dir, '/', sample, '_primary_over_30_chr_only_sorted.bam')
