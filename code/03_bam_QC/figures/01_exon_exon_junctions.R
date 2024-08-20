@@ -32,8 +32,11 @@ gtf <- readGFF(gtf_fn) %>% as_tibble()
 
 # saveRDS(genic_gtf, '/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic_gtf.rds')
 genic_gtf <- readRDS('/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic_gtf.rds')
-### 2. Get BAM file names
+
+### 2. Get BAM file name
 sample <- commandArgs(trailingOnly = TRUE)[1]
+sample <- "H9-FT_1"
+print(sample)
 alignment_dir <- '/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only'
 alignment <- paste0(alignment_dir, '/', sample, '_primary_over_30_chr_only_sorted.bam')
 
@@ -51,7 +54,7 @@ df_list <- list()
 bamfile <- scanBam(BamFile(alignment))
 nums <- c()  
 for (i in 1:nrow(genic_gtf)) {
-  chr <- as.character(genic_gtf[i, "seqid"])
+  chr <- paste0("chr",as.character(genic_gtf[i, "seqid"]))
   start <- as.integer(genic_gtf[i, "start"])
   end <- as.integer(genic_gtf[i, "end"])
   
@@ -71,7 +74,8 @@ per_df <- sweep(df, 1, rowSums(df), FUN = "/")
 per_df 
 
 
-### 7. Save summary to CSV
+
+### 5. Save summary to CSV
 output_dir <- '/users/sparthib/retina_lrs/processed_data/bam_qc/'
 write.csv(per_df, paste0(output_dir, sample, "_exon-exon_junctions_perdf.csv"),
           row.names = FALSE)
