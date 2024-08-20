@@ -61,7 +61,6 @@ unique(bamfile$seqnames)
 nums <- c()  
 for (i in 1:nrow(genic_gtf)) {
   chr <- paste0("chr",as.character(genic_gtf[i, "seqid"]))
-  if (chr %in% )
   start <- as.integer(genic_gtf[i, "start"])
   end <- as.integer(genic_gtf[i, "end"])
   
