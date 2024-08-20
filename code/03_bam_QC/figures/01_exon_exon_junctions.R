@@ -31,13 +31,13 @@ gtf <- readGFF(gtf_fn) %>% as_tibble()
 # genic_gtf <- gtf %>% filter(type == "gene" & gene_id %in% goi)
 
 # saveRDS(genic_gtf, '/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic_gtf.rds')
-genic_gtf <- readRDS('/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic_gtf.rds')
-
-#get all rows that have chr prefix in seqid 
-#chrM is missing as we're only looking at protein-coding
-genic_gtf <- genic_gtf[grep("chr", genic_gtf$seqid), ]
-
-unique(genic_gtf$seqid)
+# genic_gtf <- readRDS('/dcs04/hicks/data/sparthib/references/genome/GENCODE/genic_gtf.rds')
+# 
+# #get all rows that have chr prefix in seqid 
+# #chrM is missing as we're only looking at protein-coding
+# genic_gtf <- genic_gtf[grep("chr", genic_gtf$seqid), ]
+# 
+# unique(genic_gtf$seqid)
 ### 2. Get BAM file name
 sample <- commandArgs(trailingOnly = TRUE)[1]
 sample <- "H9-FT_1"
@@ -52,65 +52,22 @@ compute_num_junction_per_read <- function(cigar_string) {
   return(m)
 }
 
-### 4. Calculate junction coverage for each BAM file
-max_junction <- 11 
-df_list <- list()
 
 bamfile <- scanBam(BamFile(alignment))
 colnames(bamfile)
 
+(bamfile[[1]]$cigar)[1] 
+
 nums <- c()  
-for (i in 1:nrow(genic_gtf)) {
-  chr <- paste0("chr",as.character(genic_gtf[i, "seqid"]))
-  start <- as.integer(genic_gtf[i, "start"])
-  end <- as.integer(genic_gtf[i, "end"])
-  
-  #if chr in chr1 to chr 22 or chrX or chrY
-  if (chr %in% c(paste0("chr", 1:22), "chrX", "chrY")){
-    reads <- scanBam(BamFile(alignment), param = ScanBamParam(which = GRanges(chr, IRanges(start, end))))
-    
-    for (read in reads[[1]]$cigar) {
-      num <- compute_num_junction_per_read(read)
-      nums <- c(nums, num)
-  }
-  }
+
+for (cig_string in bamfile[[1]]$cigar) {
+  num <- compute_num_junction_per_read(cig_string)
+  nums <- c(nums, num)
 }
 
-tmp_counter <- table(factor(nums, levels = 0:(max_junction - 1)))
-df <- as.numeric(tmp_counter)
-df 
+table(nums)
 
-per_df <- sweep(df, 1, rowSums(df), FUN = "/") 
-
-per_df 
-
-
-
-### 5. Save summary to CSV
-output_dir <- '/users/sparthib/retina_lrs/processed_data/bam_qc/'
-write.csv(per_df, paste0(output_dir, sample, "_exon-exon_junctions_perdf.csv"),
-          row.names = FALSE)
-write.csv(df, paste0(output_dir, sample, "_exon-exon_junctions_df.csv"),
-          row.names = FALSE)
 
 
 session_info::sessionInfo()
-
-
-### 5. Calculate summary statistics for two types of sequencing
-# ont_per_df <- per_df[1:9, ] %>% t() %>% as.data.frame()
-# ont_per_df$mean <- rowMeans(ont_per_df)
-# ont_per_df$sem <- apply(ont_per_df, 1, sd) / sqrt(ncol(ont_per_df))
-# 
-# rna_per_df <- per_df[10:nrow(per_df), ] %>% t() %>% as.data.frame()
-# rna_per_df$mean <- rowMeans(rna_per_df)
-# rna_per_df$sem <- apply(rna_per_df, 1, sd) / sqrt(ncol(rna_per_df))
-# 
-# ### 6. Prepare summary DataFrame
-# summary_df <- data.frame(
-#   group = rep(c("long_read", "short_read"), each = max_junction),
-#   num = rep(0:(max_junction - 1), 2),
-#   mean = c(ont_per_df$mean, rna_per_df$mean),
-#   sem = c(ont_per_df$sem, rna_per_df$sem)
-# )
 
