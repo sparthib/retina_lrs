@@ -32,6 +32,6 @@ for (cig_string in bamfile[[1]]$cigar) {
 
 table(nums)
 output_dir <- '/users/sparthib/retina_lrs/processed_data/'
-write.table(tabl(nums), file = paste0(output_dir,sample, "_num_junctions.txt"), row.names = FALSE, col.names = FALSE)
+write.table(table(nums), file = paste0(output_dir,sample, "_num_junctions.txt"), row.names = FALSE, col.names = FALSE)
 session_info::sessionInfo()
 
