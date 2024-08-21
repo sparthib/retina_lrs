@@ -31,3 +31,4 @@ ml load conda_R/4.4.x
 Rscript 01_exon_exon_junctions.R $sample
 
 echo "**** Job ends ****"
+date +"%Y-%m-%d %T"
