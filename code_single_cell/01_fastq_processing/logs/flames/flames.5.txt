@@ -1,12 +1,13 @@
 **** Job starts ****
-2024-08-27 15:41:10
+2024-08-27 15:46:22
 **** JHPCE info ****
 User: sparthib
-Job id: 9567342
+Job id: 9567356
 Job name: flames
-Node name: compute-115
+Node name: compute-113
 Task id: 5
 10x_D200-EP1-1_A1
+/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-1_A1/align2genome.bam
 Loading conda_R/4.4.x
 To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
@@ -17,4 +18,4 @@ Error in check_arguments(annotation, fastq, genome_bam, outdir, genome_fa,  :
 Calls: sc_long_pipeline -> check_arguments
 Execution halted
 **** Job ends ****
-2024-08-27 15:41:51
+2024-08-27 15:47:04
