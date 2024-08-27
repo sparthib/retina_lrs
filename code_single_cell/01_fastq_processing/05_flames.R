@@ -24,8 +24,8 @@ config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_f
 #                                      do_transcript_quantification = TRUE,
 #                                      min_sup_cnt = 5,
 #                                      threads = 20)
-genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only",
-                        paste0(sample, "_primary_over_30_chr_only.bam"))
+genome_bam <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", 
+                        paste0(sample, "align2genome.bam"))
 
 #run minimap2
 
@@ -40,12 +40,10 @@ if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
   sce <- create_sce_from_dir(outdir = outdir, annotation = annot)
   
 }
-
 ##TIPS:
 #if you run blaze yourself, create a symlink to the unzipped blaze processed fastq file in the flames output directory called matched_reads.fastq
 #set bambu_isoform_quantification = TRUE in the config file (something to do with the bam or gtf being unordered.)
 #replace "." or "None" values in annot and isoform annot files with "*" before running quantify_transcript
-
 
 sessionInfo()
 
