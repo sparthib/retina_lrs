@@ -38,9 +38,10 @@ echo $sample
 # gunzip -c /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/${sample}_matched_reads.fastq.gz > /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/matched_reads.fastq
 # 
 # 
-# unlink /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam
-# unlink /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam.bai
-# 
+echo "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam"
+unlink /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam
+unlink /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam.bai
+
 # ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_primary_over_30_chr_only.bam /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam
 # ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_primary_over_30_chr_only.bam.bai /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/align2genome.bam.bai
 
