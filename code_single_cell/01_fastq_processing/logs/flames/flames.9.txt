@@ -1,19 +1,18 @@
 **** Job starts ****
-2024-08-27 15:46:22
+2024-08-27 15:51:56
 **** JHPCE info ****
 User: sparthib
-Job id: 9567360
+Job id: 9567398
 Job name: flames
 Node name: compute-115
 Task id: 9
 10x_D200-EP1-2_A1
-/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_A1/align2genome.bam
 Loading conda_R/4.4.x
 To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-03:47:04 PM Tue Aug 27 2024 Start running
+03:52:37 PM Tue Aug 27 2024 Start running
 Skipping Demultiplexing step...
 Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_A1/matched_reads.fastq `` is the demultiplexing output from previous FLAMES call.
 Running FLAMES pipeline...
@@ -79,12 +78,23 @@ output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_ou
 minimap2 path: 
 k8 path: 
 #### Skip aligning reads to genome
-03:47:04 PM Tue Aug 27 2024 Start gene quantification and UMI deduplication
-03:47:04 PM Tue Aug 27 2024 quantify genes 
-Found genome alignment file(s): 	
-Error in quantify_gene(annotation, outdir, infq, config$pipeline_parameters$threads,  : 
-  Incorrect number of genome alignment files found.
-Calls: sc_long_pipeline -> quantify_gene
+03:52:37 PM Tue Aug 27 2024 Start gene quantification and UMI deduplication
+03:52:37 PM Tue Aug 27 2024 quantify genes 
+Found genome alignment file(s): 	align2genome.bam
+[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_A1/align2genome.bam'
+[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_A1/align2genome.bam'
+Error in value[[3L]](cond) : Error when quantifying genes:
+Traceback (most recent call last):
+  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 485, in quantification
+    quantify_gene(in_bam, annotation, n_process)
+  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 198, in quantify_gene
+    [x for x in independent_gene_set_generator(in_gtf_df, in_bam, threads=n_process)]
+  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 198, in <listcomp>
+    [x for x in independent_gene_set_generator(in_gtf_df, in_bam, threads=n_process)]
+  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 606, in independent_gene_set_generator
+    yield from _yield_genes_per_chr(gtf_df[gtf_df.chr_name==chr], bam)
+  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_g
+Calls: sc_long_pipeline ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
 Execution halted
 **** Job ends ****
-2024-08-27 15:47:04
+2024-08-27 15:54:58
