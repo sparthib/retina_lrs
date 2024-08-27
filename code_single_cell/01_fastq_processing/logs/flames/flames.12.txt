@@ -1,100 +1,136 @@
 **** Job starts ****
-2024-08-27 15:53:11
+2024-08-27 16:32:51
 **** JHPCE info ****
 User: sparthib
-Job id: 9567389
+Job id: 9567687
 Job name: flames
-Node name: compute-124
+Node name: compute-103
 Task id: 12
 10x_D200-EP1-2_B2
+ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_B2/align2genome.bam': File exists
+ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_B2/align2genome.bam.bai': File exists
+Unloading conda_R/4.4.x
 Loading conda_R/4.4.x
-To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-03:53:27 PM Tue Aug 27 2024 Start running
-Skipping Demultiplexing step...
-Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2/matched_reads.fastq `` is the demultiplexing output from previous FLAMES call.
-Running FLAMES pipeline...
-#### Input parameters:
-{
-  "pipeline_parameters": {
-    "seed": [2022],
-    "threads": [20],
-    "do_barcode_demultiplex": [false],
-    "do_gene_quantification": [true],
-    "do_genome_alignment": [false],
-    "do_isoform_identification": [true],
-    "bambu_isoform_identification": [true],
-    "multithread_isoform_identification": [true],
-    "do_read_realignment": [true],
-    "do_transcript_quantification": [true]
-  },
-  "barcode_parameters": {
-    "max_bc_editdistance": [2],
-    "max_flank_editdistance": [8],
-    "pattern": {
-      "primer": ["CTACACGACGCTCTTCCGATCT"],
-      "BC": ["NNNNNNNNNNNNNNNN"],
-      "UMI": ["NNNNNNNNNNNN"],
-      "polyT": ["TTTTTTTTT"]
-    },
-    "TSO_seq": ["CCCATGTACTCTGCGTTGATACCACTGCTT"],
-    "TSO_prime": [3],
-    "full_length_only": [false]
-  },
-  "isoform_parameters": {
-    "generate_raw_isoform": [false],
-    "max_dist": [10],
-    "max_ts_dist": [100],
-    "max_splice_match_dist": [10],
-    "min_fl_exon_len": [40],
-    "max_site_per_splice": [3],
-    "min_sup_cnt": [5],
-    "min_cnt_pct": [0.001],
-    "min_sup_pct": [0.2],
-    "bambu_trust_reference": [true],
-    "strand_specific": [0],
-    "remove_incomp_reads": [4],
-    "downsample_ratio": [1]
-  },
-  "alignment_parameters": {
-    "use_junctions": [true],
-    "no_flank": [false]
-  },
-  "realign_parameters": {
-    "use_annotation": [true]
-  },
-  "transcript_counting": {
-    "min_tr_coverage": [0.4],
-    "min_read_coverage": [0.4]
-  }
-} 
-gene annotation: /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf 
-genome fasta: /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa 
-input bam: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-2_B2_primary_over_30_chr_only_sorted.bam 
-input fastq: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2/matched_reads.fastq 
-output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2 
-minimap2 path: 
-k8 path: 
-#### Skip aligning reads to genome
-03:53:27 PM Tue Aug 27 2024 Start gene quantification and UMI deduplication
-03:53:27 PM Tue Aug 27 2024 quantify genes 
-Found genome alignment file(s): 	align2genome.bam
-[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2/align2genome.bam'
-[E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_B2/align2genome.bam'
-Error in value[[3L]](cond) : Error when quantifying genes:
-Traceback (most recent call last):
-  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 485, in quantification
-    quantify_gene(in_bam, annotation, n_process)
-  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 198, in quantify_gene
-    [x for x in independent_gene_set_generator(in_gtf_df, in_bam, threads=n_process)]
-  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 198, in <listcomp>
-    [x for x in independent_gene_set_generator(in_gtf_df, in_bam, threads=n_process)]
-  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 606, in independent_gene_set_generator
-    yield from _yield_genes_per_chr(gtf_df[gtf_df.chr_name==chr], bam)
-  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_g
-Calls: sc_long_pipeline ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
-Execution halted
+R version 4.4.1 Patched (2024-08-21 r87049)
+Platform: x86_64-conda-linux-gnu
+Running under: Rocky Linux 9.4 (Blue Onyx)
+
+Matrix products: default
+BLAS:   /jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/lib/libRblas.so 
+LAPACK: /jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/lib/libRlapack.so;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: US/Eastern
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] sessioninfo_1.2.2 FLAMES_1.11.1    
+
+loaded via a namespace (and not attached):
+  [1] BiocIO_1.15.2               bitops_1.0-8               
+  [3] filelock_1.0.3              tibble_3.2.1               
+  [5] R.oo_1.26.0                 basilisk.utils_1.17.2      
+  [7] bambu_3.7.0                 graph_1.83.0               
+  [9] XML_3.99-0.17               rpart_4.1.23               
+ [11] httr2_1.0.3                 lifecycle_1.0.4            
+ [13] edgeR_4.3.11                doParallel_1.0.17          
+ [15] globals_0.16.3              lattice_0.22-6             
+ [17] ensembldb_2.29.1            OrganismDbi_1.47.0         
+ [19] MultiAssayExperiment_1.31.5 backports_1.5.0            
+ [21] magrittr_2.0.3              limma_3.61.9               
+ [23] Hmisc_5.1-3                 rmarkdown_2.28             
+ [25] yaml_2.3.10                 metapod_1.13.0             
+ [27] reticulate_1.38.0           ggbio_1.53.0               
+ [29] cowplot_1.1.3               DBI_1.2.3                  
+ [31] RColorBrewer_1.1-3          abind_1.4-5                
+ [33] zlibbioc_1.51.1             GenomicRanges_1.57.1       
+ [35] purrr_1.0.2                 R.utils_2.12.3             
+ [37] AnnotationFilter_1.29.0     biovizBase_1.53.0          
+ [39] BiocGenerics_0.51.0         RCurl_1.98-1.16            
+ [41] nnet_7.3-19                 rappdirs_0.3.3             
+ [43] VariantAnnotation_1.51.0    circlize_0.4.16            
+ [45] GenomeInfoDbData_1.2.12     IRanges_2.39.2             
+ [47] S4Vectors_0.43.2            ggrepel_0.9.5              
+ [49] irlba_2.3.5.1               listenv_0.9.1              
+ [51] dqrng_0.4.1                 parallelly_1.38.0          
+ [53] DelayedMatrixStats_1.27.3   codetools_0.2-20           
+ [55] DropletUtils_1.25.2         DelayedArray_0.31.11       
+ [57] xml2_1.3.6                  scuttle_1.15.4             
+ [59] tidyselect_1.2.1            shape_1.4.6.1              
+ [61] UCSC.utils_1.1.0            viridis_0.6.5              
+ [63] ScaledMatrix_1.13.0         BiocFileCache_2.13.0       
+ [65] matrixStats_1.3.0           stats4_4.4.1               
+ [67] base64enc_0.1-3             GenomicAlignments_1.41.0   
+ [69] jsonlite_1.8.8              BiocNeighbors_1.23.0       
+ [71] GetoptLong_1.0.5            Formula_1.2-5              
+ [73] scater_1.33.4               iterators_1.0.14           
+ [75] foreach_1.5.2               progress_1.2.3             
+ [77] tools_4.4.1                 Rcpp_1.0.13                
+ [79] glue_1.7.0                  gridExtra_2.3              
+ [81] SparseArray_1.5.31          xfun_0.47                  
+ [83] MatrixGenerics_1.17.0       GenomeInfoDb_1.41.1        
+ [85] dplyr_1.1.4                 HDF5Array_1.33.6           
+ [87] withr_3.0.1                 BiocManager_1.30.24        
+ [89] fastmap_1.2.0               GGally_2.2.1               
+ [91] basilisk_1.17.2             bluster_1.15.0             
+ [93] rhdf5filters_1.17.0         fansi_1.0.6                
+ [95] rsvd_1.0.5                  digest_0.6.37              
+ [97] R6_2.5.1                    colorspace_2.1-1           
+ [99] dichromat_2.0-0.1           biomaRt_2.61.3             
+[101] RSQLite_2.3.7               R.methodsS3_1.8.2          
+[103] utf8_1.2.4                  tidyr_1.3.1                
+[105] generics_0.1.3              data.table_1.16.0          
+[107] rtracklayer_1.65.0          prettyunits_1.2.0          
+[109] httr_1.4.7                  htmlwidgets_1.6.4          
+[111] S4Arrays_1.5.7              ggstats_0.6.0              
+[113] pkgconfig_2.0.3             gtable_0.3.5               
+[115] blob_1.2.4                  ComplexHeatmap_2.21.0      
+[117] SingleCellExperiment_1.27.2 XVector_0.45.0             
+[119] htmltools_0.5.8.1           RBGL_1.81.0                
+[121] ProtGenerics_1.37.1         clue_0.3-65                
+[123] scales_1.3.0                Biobase_2.65.0             
+[125] png_0.1-8                   scran_1.33.1               
+[127] knitr_1.48                  rstudioapi_0.16.0          
+[129] reshape2_1.4.4              rjson_0.2.22               
+[131] checkmate_2.3.2             curl_5.2.2                 
+[133] cachem_1.1.0                rhdf5_2.49.0               
+[135] GlobalOptions_0.1.2         stringr_1.5.1              
+[137] vipor_0.4.7                 parallel_4.4.1             
+[139] foreign_0.8-87              AnnotationDbi_1.67.0       
+[141] restfulr_0.0.15             pillar_1.9.0               
+[143] grid_4.4.1                  vctrs_0.6.5                
+[145] BiocSingular_1.21.2         dbplyr_2.5.0               
+[147] beachmat_2.21.5             cluster_2.1.6              
+[149] beeswarm_0.4.0              htmlTable_2.4.3            
+[151] evaluate_0.24.0             GenomicFeatures_1.57.0     
+[153] cli_3.6.3                   locfit_1.5-9.10            
+[155] compiler_4.4.1              Rsamtools_2.21.1           
+[157] rlang_1.1.4                 crayon_1.5.3               
+[159] ggbeeswarm_0.7.2            plyr_1.8.9                 
+[161] stringi_1.8.4               viridisLite_0.4.2          
+[163] BiocParallel_1.39.0         txdbmaker_1.1.1            
+[165] munsell_0.5.1               Biostrings_2.73.1          
+[167] lazyeval_0.2.2              Matrix_1.7-0               
+[169] dir.expiry_1.13.0           BSgenome_1.73.0            
+[171] hms_1.1.3                   sparseMatrixStats_1.17.2   
+[173] bit64_4.0.5                 future_1.34.0              
+[175] ggplot2_3.5.1               Rhdf5lib_1.27.0            
+[177] KEGGREST_1.45.1             statmod_1.5.0              
+[179] SummarizedExperiment_1.35.1 igraph_2.0.3               
+[181] memoise_2.0.1               bit_4.0.5                  
+[183] xgboost_1.7.8.1            
 **** Job ends ****
-2024-08-27 15:54:02
+2024-08-27 16:34:47
