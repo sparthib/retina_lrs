@@ -1,20 +1,14 @@
 **** Job starts ****
-2024-08-27 15:51:56
+2024-08-27 16:28:48
 **** JHPCE info ****
 User: sparthib
-Job id: 9567394
+Job id: 9567678
 Job name: flames
-Node name: compute-113
+Node name: compute-108
 Task id: 5
 10x_D200-EP1-1_A1
+ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-1_A1/align2genome.bam': File exists
+ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-1_A1/align2genome.bam.bai': File exists
+Unloading conda_R/4.4.x
 Loading conda_R/4.4.x
-To install colorout use: remotes::install_github("jalvesaq/colorout")
-Registered S3 method overwritten by 'GGally':
-  method from   
-  +.gg   ggplot2
-Error in check_arguments(annotation, fastq, genome_bam, outdir, genome_fa,  : 
-  Make sure genome_bam exists
-Calls: sc_long_pipeline -> check_arguments
-Execution halted
-**** Job ends ****
-2024-08-27 15:52:37
+slurmstepd: error: *** JOB 9567678 ON compute-108 CANCELLED AT 2024-08-27T16:28:49 ***
