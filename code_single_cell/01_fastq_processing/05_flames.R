@@ -24,8 +24,8 @@ config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_f
 #                                      do_transcript_quantification = TRUE,
 #                                      min_sup_cnt = 5,
 #                                      threads = 20)
-genome_bam <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", 
-                       sample, "/align2genome.bam")
+genome_bam <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/", 
+                       sample, "_primary_over_30_chr_only_sorted.bam")
 
 #run minimap2
 
