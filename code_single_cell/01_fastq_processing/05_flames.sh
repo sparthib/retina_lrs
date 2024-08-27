@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH -p shared
-#SBATCH --mem=100G
+#SBATCH --mem=10G
 #SBATCH --job-name=flames
-#SBATCH -c 20
+#SBATCH -c 5
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flames/flames.%a.txt
