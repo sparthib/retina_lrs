@@ -33,6 +33,7 @@ if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
   sce <- sc_long_pipeline(
     annotation = annot, fastq = fastq,
     genome_fa = genome_fa,
+    genome_bam = genome_bam,
     outdir = outdir, 
     config_file = config_file,
     expect_cell_number = 2000)
