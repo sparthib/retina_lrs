@@ -1,8 +1,8 @@
 **** Job starts ****
-2024-08-27 15:31:10
+2024-08-27 15:38:10
 **** JHPCE info ****
 User: sparthib
-Job id: 9567321
+Job id: 9567335
 Job name: flames
 Node name: compute-114
 Task id: 10
@@ -12,7 +12,7 @@ To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-03:31:50 PM Tue Aug 27 2024 Start running
+03:38:51 PM Tue Aug 27 2024 Start running
 Skipping Demultiplexing step...
 Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_A2/matched_reads.fastq `` is the demultiplexing output from previous FLAMES call.
 Running FLAMES pipeline...
@@ -77,8 +77,7 @@ output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_ou
 minimap2 path: 
 k8 path: 
 #### Skip aligning reads to genome
-03:31:50 PM Tue Aug 27 2024 Start gene quantification and UMI deduplication
-03:31:50 PM Tue Aug 27 2024 quantify genes 
+03:38:51 PM Tue Aug 27 2024 Start gene quantification and UMI deduplication
+03:38:51 PM Tue Aug 27 2024 quantify genes 
 Found genome alignment file(s): 	align2genome.bam
 [E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-2_A2/align2genome.bam'
-slurmstepd: error: *** JOB 9567321 ON compute-114 CANCELLED AT 2024-08-27T15:34:08 ***
