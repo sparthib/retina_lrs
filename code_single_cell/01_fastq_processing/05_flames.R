@@ -25,6 +25,7 @@ if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
   #   expect_cell_number = 2000)
   
   sce <- create_sce_from_dir(outdir = outdir, annotation = annot)
+  saveRDS(sce, file = paste0(outdir, "/sce.rds"))
   
 }
 ##TIPS:
