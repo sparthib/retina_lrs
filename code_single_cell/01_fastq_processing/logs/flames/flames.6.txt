@@ -1,8 +1,8 @@
 **** Job starts ****
-2024-08-27 15:37:10
+2024-08-27 15:41:10
 **** JHPCE info ****
 User: sparthib
-Job id: 9567331
+Job id: 9567343
 Job name: flames
 Node name: compute-115
 Task id: 6
@@ -12,7 +12,7 @@ To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-03:37:51 PM Tue Aug 27 2024 Start running
+03:41:51 PM Tue Aug 27 2024 Start running
 Skipping Demultiplexing step...
 Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-1_A2/matched_reads.fastq `` is the demultiplexing output from previous FLAMES call.
 Running FLAMES pipeline...
@@ -72,13 +72,14 @@ Running FLAMES pipeline...
 } 
 gene annotation: /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf 
 genome fasta: /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa 
+input bam: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/10x_D200-EP1-1_A2_primary_over_30_chr_only_sorted.bam 
 input fastq: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-1_A2/matched_reads.fastq 
 output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-1_A2 
 minimap2 path: 
 k8 path: 
 #### Skip aligning reads to genome
-03:37:51 PM Tue Aug 27 2024 Start gene quantification and UMI deduplication
-03:37:51 PM Tue Aug 27 2024 quantify genes 
+03:41:51 PM Tue Aug 27 2024 Start gene quantification and UMI deduplication
+03:41:51 PM Tue Aug 27 2024 quantify genes 
 Found genome alignment file(s): 	align2genome.bam
 [E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-1_A2/align2genome.bam'
 [E::idx_find_and_load] Could not retrieve index file for '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output//10x_D200-EP1-1_A2/align2genome.bam'
@@ -96,4 +97,4 @@ Traceback (most recent call last):
 Calls: sc_long_pipeline ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
 Execution halted
 **** Job ends ****
-2024-08-27 15:40:13
+2024-08-27 15:44:13
