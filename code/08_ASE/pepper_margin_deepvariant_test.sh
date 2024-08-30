@@ -19,7 +19,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "****"
 
-BASE="$MYSCRATCH/singularity-quickstart"
+BASE="~/singularity-quickstart"
 
 # Set up input data
 INPUT_DIR="${BASE}/input/data"
