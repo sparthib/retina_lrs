@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=20G
 #SBATCH -c 5
-#SBATCH --job-name=compute_HP
+#SBATCH --job-name=split_files
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/compute_HP.%a.txt
-#SBATCH -e logs/compute_HP.%a.txt
+#SBATCH -o logs/split_files.%a.txt
+#SBATCH -e logs/split_files.%a.txt
 #SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
