@@ -31,7 +31,7 @@ ml load samtools
 
 longshot_output=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/01_longshot_vcfs/${sample}
 
-total_reads=$(samtools view -c $longshot_output/${sample}.bam)"
+total_reads=$(samtools view -c $longshot_output/${sample}.bam)
 hp1_reads=$(samtools view $longshot_output/${sample}.bam | grep "HP:i:1" | wc -l)
 hp2_reads=$(samtools view $longshot_output/${sample}.bam | grep "HP:i:2" | wc -l)
 unphased_reads=$(samtools view $longshot_output/${sample}.bam | grep -v "HP:i:" | wc -l)
