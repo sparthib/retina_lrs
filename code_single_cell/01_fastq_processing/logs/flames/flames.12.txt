@@ -1,10 +1,10 @@
 **** Job starts ****
-2024-08-27 16:32:51
+2024-08-27 16:48:29
 **** JHPCE info ****
 User: sparthib
-Job id: 9567687
+Job id: 9567735
 Job name: flames
-Node name: compute-103
+Node name: compute-105
 Task id: 12
 10x_D200-EP1-2_B2
 ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_B2/align2genome.bam': File exists
@@ -133,4 +133,4 @@ loaded via a namespace (and not attached):
 [181] memoise_2.0.1               bit_4.0.5                  
 [183] xgboost_1.7.8.1            
 **** Job ends ****
-2024-08-27 16:34:47
+2024-08-27 16:49:31
