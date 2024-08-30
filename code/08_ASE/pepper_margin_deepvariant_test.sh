@@ -50,6 +50,7 @@ wget -P ${INPUT_DIR} https://storage.googleapis.com/pepper-deepvariant-public/qu
 wget -P ${INPUT_DIR} https://storage.googleapis.com/pepper-deepvariant-public/quickstart_data/HG002_GRCh38_1_22_v4.2.1_benchmark_noinconsistent.quickstart.bed
 
 # Pull the docker images
+ml load singularity
 singularity pull docker://jmcdani20/hap.py:v0.3.12
 singularity pull docker://kishwars/pepper_deepvariant:r0.8
 
