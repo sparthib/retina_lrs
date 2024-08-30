@@ -31,6 +31,7 @@ ml load samtools
 
 longshot_output=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/01_longshot_vcfs/${sample}
 
+#split files 
 #get all reads that have HP:i:1 tag
 samtools view -h $longshot_output/${sample}.bam | grep "HP:i:1" > /$longshot_output/${sample}.HP1.bam
 
