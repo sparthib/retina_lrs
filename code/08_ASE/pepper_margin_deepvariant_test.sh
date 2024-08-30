@@ -19,7 +19,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "****"
 
-BASE="q"
+BASE="/dcs04/hicks/data/sparthib/retina_lrs/09_deepVariant/singularity-quickstart"
 
 # Set up input data
 INPUT_DIR="${BASE}/input/data"
