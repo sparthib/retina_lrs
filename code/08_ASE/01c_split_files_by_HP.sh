@@ -39,7 +39,7 @@ samtools view -h $longshot_output/${sample}.bam | grep "HP:i:1" > /$longshot_out
 samtools view -h $longshot_output/${sample}.bam | grep "HP:i:2" > /$longshot_output/${sample}.HP2.bam
 
 #get all reads that don't have the HP tag 
-# samtools view -h $longshot_output/${sample}.bam | grep -v "HP:i:" > /$longshot_output/${sample}.noHP.bam
+samtools view -h $longshot_output/${sample}.bam | grep -v "HP:i:" > /$longshot_output/${sample}.noHP.bam
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
