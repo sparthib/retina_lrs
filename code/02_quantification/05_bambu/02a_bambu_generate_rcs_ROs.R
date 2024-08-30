@@ -18,9 +18,11 @@ rds_files <- rds_files[c(2,3,4,5,6,7,8)]
 
 se   <- bambu(reads = rds_files,
               annotations = annotation,
-              genome = fa.file)
+              genome = fa.file,
+              trackReads = TRUE)
 
-writeBambuOutput(se, path = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/")
+dir.create("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation_track_reads/", showWarnings = FALSE)
+writeBambuOutput(se, path = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation_track_reads/")
 
 sessioninfo::session_info()
 # library(rtracklayer)
