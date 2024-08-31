@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=20G
 #SBATCH -c 5
-#SBATCH --job-name=split_files
+#SBATCH --job-name=read_length_distribution
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/split_files.%a.txt
-#SBATCH -e logs/split_files.%a.txt
+#SBATCH -o logs/read_length_distribution.%a.txt
+#SBATCH -e logs/read_length_distribution.%a.txt
 #SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
