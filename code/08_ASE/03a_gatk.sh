@@ -6,8 +6,8 @@
 #SBATCH --job-name=split_files
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/split_files.%a.txt
-#SBATCH -e logs/split_files.%a.txt
+#SBATCH -o logs/lrRNAseqVariantCalling/split_files.%a.txt
+#SBATCH -e logs/lrRNAseqVariantCalling/split_files.%a.txt
 #SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
