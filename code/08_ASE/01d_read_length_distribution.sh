@@ -31,9 +31,9 @@ ml load samtools
 
 longshot_output=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/01_longshot_vcfs/${sample}
 
-samtools view $longshot_output/${sample}.HP1.bam | awk '{print length($10)}' > $longshot_output/${sample}.HP1.read_lengths.txt
-samtools view $longshot_output/${sample}.HP2.bam | awk '{print length($10)}' > $longshot_output/${sample}.HP2.read_lengths.txt
-samtools view $longshot_output/${sample}.noHP.bam | awk '{print length($10)}' > $longshot_output/${sample}.noHP.read_lengths.txt
+samtools view $longshot_output/${sample}.bam | grep "HP:i:1" | awk '{print length($10)}' > $longshot_output/${sample}.HP1.read_lengths.txt
+samtools view $longshot_output/${sample}.bam | grep "HP:i:2" | awk '{print length($10)}' > $longshot_output/${sample}.HP2.read_lengths.txt
+samtools view $longshot_output/${sample}.bam | grep -v "HP:i:"| awk '{print length($10)}' > $longshot_output/${sample}.noHP.read_lengths.txt
 
 awk '{counts[$1]++} END {for (len in counts) print len, counts[len]}' ${sample}.HP1.read_lengths.txt > ${sample}.HP1.read_length_distribution.txt
 awk '{counts[$1]++} END {for (len in counts) print len, counts[len]}' ${sample}.HP2.read_lengths.txt > ${sample}.HP2.read_length_distribution.txt
