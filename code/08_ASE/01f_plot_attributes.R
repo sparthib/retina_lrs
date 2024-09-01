@@ -3,7 +3,6 @@ library(stringr)
 library(sessioninfo)
 
 sample <- commandArgs(trailingOnly = TRUE)[1]
-sample <- "hRGC"
 dir.create(paste0("/users/sparthib/retina_lrs/plots/", sample), showWarnings = FALSE)
 output_dir <- paste0("/users/sparthib/retina_lrs/plots/", sample)
 
@@ -14,7 +13,7 @@ HP2_read_length_distribution <- paste0(seq_dir, sample, ".HP2.read_length_distri
 noHP_read_length_distribution <- paste0(seq_dir, sample, ".noHP.read_length_distribution.txt")
 
 HP1_read_length_distribution <- read.table(HP1_read_length_distribution, header = FALSE)
-HP1_read_length_distribution <- read.table(HP2_read_length_distribution, header = FALSE)
+HP2_read_length_distribution <- read.table(HP2_read_length_distribution, header = FALSE)
 noHP_read_length_distribution <- read.table(noHP_read_length_distribution, header = FALSE)
 
 colnames(HP1_read_length_distribution) <- c("read_length", "count")
