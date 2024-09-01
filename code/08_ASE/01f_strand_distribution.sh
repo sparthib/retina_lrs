@@ -1,9 +1,7 @@
 #!/bin/bash
 
-#!/bin/bash
-
 #SBATCH -p shared
-#SBATCH --mem=10G
+#SBATCH --mem=50G
 #SBATCH -c 10
 #SBATCH --job-name=strand
 #SBATCH --mail-user=sparthi1@jhu.edu
