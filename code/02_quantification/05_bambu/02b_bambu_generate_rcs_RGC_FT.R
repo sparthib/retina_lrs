@@ -23,7 +23,7 @@ se <- bambu(reads = rds_files,
 
 dir.create("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation_track_reads/", showWarnings = FALSE)
 writeBambuOutput(se, path = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation_track_reads/")
-
+saveRDS(se, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation_track_reads/se.rds")
 sessioninfo::session_info()
 
 
