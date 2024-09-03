@@ -13,18 +13,16 @@ minimap_path <- file.path("/users/sparthib/minimap2")
 
 outdir <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample)
 config_dir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config")
-config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/bambu_isoform_processing.json")
+config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/full_pipeline.json")
 
 if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
 
-  # sce <- sc_long_pipeline(
-  #   annotation = annot, fastq = fastq,
-  #   genome_fa = genome_fa,
-  #   outdir = outdir, 
-  #   config_file = config_file,
-  #   expect_cell_number = 2000)
-  
-  sce <- create_sce_from_dir(outdir = outdir, annotation = annot)
+  sce <- sc_long_pipeline(
+    annotation = annot, fastq = fastq,
+    genome_fa = genome_fa,
+    outdir = outdir,
+    config_file = config_file,
+    expect_cell_number = 2000)
   saveRDS(sce, file = paste0(outdir, "/sce.rds"))
   
 }
