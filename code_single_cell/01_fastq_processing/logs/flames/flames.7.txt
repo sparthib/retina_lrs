@@ -1,136 +1,145 @@
 **** Job starts ****
-2024-08-27 16:48:31
+2024-09-03 14:26:23
 **** JHPCE info ****
 User: sparthib
-Job id: 9567744
+Job id: 9606264
 Job name: flames
 Node name: compute-103
 Task id: 7
 10X_D200-EP1-1_B1
-ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/align2genome.bam': File exists
-ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/align2genome.bam.bai': File exists
-Unloading conda_R/4.4.x
+Unloading conda_R/4.3.x
 Loading conda_R/4.4.x
+
+The following have been reloaded with a version change:
+  1) conda/3-23.3.1 => conda/3-24.3.0     2) conda_R/4.3.x => conda_R/4.4.x
+
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-R version 4.4.1 Patched (2024-08-21 r87049)
-Platform: x86_64-conda-linux-gnu
-Running under: Rocky Linux 9.4 (Blue Onyx)
-
-Matrix products: default
-BLAS:   /jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/lib/libRblas.so 
-LAPACK: /jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/lib/libRlapack.so;  LAPACK version 3.12.0
-
-locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-
-time zone: US/Eastern
-tzcode source: system (glibc)
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] sessioninfo_1.2.2 FLAMES_1.11.1    
-
-loaded via a namespace (and not attached):
-  [1] BiocIO_1.15.2               bitops_1.0-8               
-  [3] filelock_1.0.3              tibble_3.2.1               
-  [5] R.oo_1.26.0                 basilisk.utils_1.17.2      
-  [7] bambu_3.7.0                 graph_1.83.0               
-  [9] XML_3.99-0.17               rpart_4.1.23               
- [11] httr2_1.0.3                 lifecycle_1.0.4            
- [13] edgeR_4.3.11                doParallel_1.0.17          
- [15] globals_0.16.3              lattice_0.22-6             
- [17] ensembldb_2.29.1            OrganismDbi_1.47.0         
- [19] MultiAssayExperiment_1.31.5 backports_1.5.0            
- [21] magrittr_2.0.3              limma_3.61.9               
- [23] Hmisc_5.1-3                 rmarkdown_2.28             
- [25] yaml_2.3.10                 metapod_1.13.0             
- [27] reticulate_1.38.0           ggbio_1.53.0               
- [29] cowplot_1.1.3               DBI_1.2.3                  
- [31] RColorBrewer_1.1-3          abind_1.4-5                
- [33] zlibbioc_1.51.1             GenomicRanges_1.57.1       
- [35] purrr_1.0.2                 R.utils_2.12.3             
- [37] AnnotationFilter_1.29.0     biovizBase_1.53.0          
- [39] BiocGenerics_0.51.0         RCurl_1.98-1.16            
- [41] nnet_7.3-19                 rappdirs_0.3.3             
- [43] VariantAnnotation_1.51.0    circlize_0.4.16            
- [45] GenomeInfoDbData_1.2.12     IRanges_2.39.2             
- [47] S4Vectors_0.43.2            ggrepel_0.9.5              
- [49] irlba_2.3.5.1               listenv_0.9.1              
- [51] dqrng_0.4.1                 parallelly_1.38.0          
- [53] DelayedMatrixStats_1.27.3   codetools_0.2-20           
- [55] DropletUtils_1.25.2         DelayedArray_0.31.11       
- [57] xml2_1.3.6                  scuttle_1.15.4             
- [59] tidyselect_1.2.1            shape_1.4.6.1              
- [61] UCSC.utils_1.1.0            viridis_0.6.5              
- [63] ScaledMatrix_1.13.0         BiocFileCache_2.13.0       
- [65] matrixStats_1.3.0           stats4_4.4.1               
- [67] base64enc_0.1-3             GenomicAlignments_1.41.0   
- [69] jsonlite_1.8.8              BiocNeighbors_1.23.0       
- [71] GetoptLong_1.0.5            Formula_1.2-5              
- [73] scater_1.33.4               iterators_1.0.14           
- [75] foreach_1.5.2               progress_1.2.3             
- [77] tools_4.4.1                 Rcpp_1.0.13                
- [79] glue_1.7.0                  gridExtra_2.3              
- [81] SparseArray_1.5.31          xfun_0.47                  
- [83] MatrixGenerics_1.17.0       GenomeInfoDb_1.41.1        
- [85] dplyr_1.1.4                 HDF5Array_1.33.6           
- [87] withr_3.0.1                 BiocManager_1.30.24        
- [89] fastmap_1.2.0               GGally_2.2.1               
- [91] basilisk_1.17.2             bluster_1.15.0             
- [93] rhdf5filters_1.17.0         fansi_1.0.6                
- [95] rsvd_1.0.5                  digest_0.6.37              
- [97] R6_2.5.1                    colorspace_2.1-1           
- [99] dichromat_2.0-0.1           biomaRt_2.61.3             
-[101] RSQLite_2.3.7               R.methodsS3_1.8.2          
-[103] utf8_1.2.4                  tidyr_1.3.1                
-[105] generics_0.1.3              data.table_1.16.0          
-[107] rtracklayer_1.65.0          prettyunits_1.2.0          
-[109] httr_1.4.7                  htmlwidgets_1.6.4          
-[111] S4Arrays_1.5.7              ggstats_0.6.0              
-[113] pkgconfig_2.0.3             gtable_0.3.5               
-[115] blob_1.2.4                  ComplexHeatmap_2.21.0      
-[117] SingleCellExperiment_1.27.2 XVector_0.45.0             
-[119] htmltools_0.5.8.1           RBGL_1.81.0                
-[121] ProtGenerics_1.37.1         clue_0.3-65                
-[123] scales_1.3.0                Biobase_2.65.0             
-[125] png_0.1-8                   scran_1.33.1               
-[127] knitr_1.48                  rstudioapi_0.16.0          
-[129] reshape2_1.4.4              rjson_0.2.22               
-[131] checkmate_2.3.2             curl_5.2.2                 
-[133] cachem_1.1.0                rhdf5_2.49.0               
-[135] GlobalOptions_0.1.2         stringr_1.5.1              
-[137] vipor_0.4.7                 parallel_4.4.1             
-[139] foreign_0.8-87              AnnotationDbi_1.67.0       
-[141] restfulr_0.0.15             pillar_1.9.0               
-[143] grid_4.4.1                  vctrs_0.6.5                
-[145] BiocSingular_1.21.2         dbplyr_2.5.0               
-[147] beachmat_2.21.5             cluster_2.1.6              
-[149] beeswarm_0.4.0              htmlTable_2.4.3            
-[151] evaluate_0.24.0             GenomicFeatures_1.57.0     
-[153] cli_3.6.3                   locfit_1.5-9.10            
-[155] compiler_4.4.1              Rsamtools_2.21.1           
-[157] rlang_1.1.4                 crayon_1.5.3               
-[159] ggbeeswarm_0.7.2            plyr_1.8.9                 
-[161] stringi_1.8.4               viridisLite_0.4.2          
-[163] BiocParallel_1.39.0         txdbmaker_1.1.1            
-[165] munsell_0.5.1               Biostrings_2.73.1          
-[167] lazyeval_0.2.2              Matrix_1.7-0               
-[169] dir.expiry_1.13.0           BSgenome_1.73.0            
-[171] hms_1.1.3                   sparseMatrixStats_1.17.2   
-[173] bit64_4.0.5                 future_1.34.0              
-[175] ggplot2_3.5.1               Rhdf5lib_1.27.0            
-[177] KEGGREST_1.45.1             statmod_1.5.0              
-[179] SummarizedExperiment_1.35.1 igraph_2.0.3               
-[181] memoise_2.0.1               bit_4.0.5                  
-[183] xgboost_1.7.8.1            
-**** Job ends ****
-2024-08-27 16:52:26
+02:51:58 PM Tue Sep 03 2024 Start running
+Skipping Demultiplexing step...
+Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/matched_reads.fastq `` is the demultiplexing output from previous FLAMES call.
+Running FLAMES pipeline...
+#### Input parameters:
+{
+  "pipeline_parameters": {
+    "seed": [2022],
+    "threads": [20],
+    "do_barcode_demultiplex": [false],
+    "do_gene_quantification": [true],
+    "do_genome_alignment": [true],
+    "do_isoform_identification": [true],
+    "bambu_isoform_identification": [true],
+    "multithread_isoform_identification": [false],
+    "do_read_realignment": [true],
+    "do_transcript_quantification": [true]
+  },
+  "barcode_parameters": {
+    "max_bc_editdistance": [2],
+    "max_flank_editdistance": [8],
+    "pattern": {
+      "primer": ["CTACACGACGCTCTTCCGATCT"],
+      "BC": ["NNNNNNNNNNNNNNNN"],
+      "UMI": ["NNNNNNNNNNNN"],
+      "polyT": ["TTTTTTTTT"]
+    },
+    "TSO_seq": ["CCCATGTACTCTGCGTTGATACCACTGCTT"],
+    "TSO_prime": [3],
+    "full_length_only": [false]
+  },
+  "isoform_parameters": {
+    "generate_raw_isoform": [false],
+    "max_dist": [10],
+    "max_ts_dist": [100],
+    "max_splice_match_dist": [10],
+    "min_fl_exon_len": [40],
+    "max_site_per_splice": [3],
+    "min_sup_cnt": [5],
+    "min_cnt_pct": [0.001],
+    "min_sup_pct": [0.2],
+    "bambu_trust_reference": [true],
+    "strand_specific": [0],
+    "remove_incomp_reads": [4],
+    "downsample_ratio": [1]
+  },
+  "alignment_parameters": {
+    "use_junctions": [true],
+    "no_flank": [false]
+  },
+  "realign_parameters": {
+    "use_annotation": [true]
+  },
+  "transcript_counting": {
+    "min_tr_coverage": [0.4],
+    "min_read_coverage": [0.4]
+  }
+} 
+gene annotation: /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf 
+genome fasta: /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa 
+input fastq: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/matched_reads.fastq 
+output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1 
+minimap2 path: 
+k8 path: 
+#### Aligning reads to genome using minimap2
+02:51:58 PM Tue Sep 03 2024 minimap2_align
+[M::mm_idx_gen::99.108*1.88] collected minimizers
+[M::mm_idx_gen::126.789*3.18] sorted minimizers
+[M::main::126.789*3.18] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::128.579*3.15] mid_occ = 2173
+[M::mm_idx_stat] kmer size: 14; skip: 5; is_hpc: 0; #seq: 706
+[M::mm_idx_stat::129.653*3.13] distinct minimizers: 65649907 (22.01% are singletons); average occurrences: 16.223; average spacing: 3.091; total length: 3291585349
+[M::worker_pipeline::1942.665*11.48] mapped 489032 sequences
+[M::worker_pipeline::3570.116*11.84] mapped 490406 sequences
+[M::worker_pipeline::5183.381*11.97] mapped 487956 sequences
+[M::worker_pipeline::6797.495*12.04] mapped 486631 sequences
+[M::worker_pipeline::8411.122*12.08] mapped 489782 sequences
+[M::worker_pipeline::10012.609*12.11] mapped 487529 sequences
+[M::worker_pipeline::11612.620*12.13] mapped 486668 sequences
+[M::worker_pipeline::13187.205*12.15] mapped 489307 sequences
+[M::worker_pipeline::14750.733*12.15] mapped 487862 sequences
+[M::worker_pipeline::16347.297*12.16] mapped 487883 sequences
+[M::worker_pipeline::17923.435*12.17] mapped 490333 sequences
+[M::worker_pipeline::19498.287*12.18] mapped 488984 sequences
+[M::worker_pipeline::21060.278*12.19] mapped 488462 sequences
+[M::worker_pipeline::22611.764*12.19] mapped 491768 sequences
+[M::worker_pipeline::24177.020*12.20] mapped 488787 sequences
+[M::worker_pipeline::25740.768*12.20] mapped 488043 sequences
+[M::worker_pipeline::27294.960*12.21] mapped 492729 sequences
+[M::worker_pipeline::28876.215*12.21] mapped 490309 sequences
+[M::worker_pipeline::30431.718*12.21] mapped 491830 sequences
+[M::worker_pipeline::31991.230*12.21] mapped 496489 sequences
+[M::worker_pipeline::33599.611*12.21] mapped 495960 sequences
+[M::worker_pipeline::35173.840*12.22] mapped 498300 sequences
+[M::worker_pipeline::36744.666*12.22] mapped 498703 sequences
+[M::worker_pipeline::38301.841*12.22] mapped 496855 sequences
+[M::worker_pipeline::39867.925*12.22] mapped 495669 sequences
+[M::worker_pipeline::41428.242*12.22] mapped 496379 sequences
+[M::worker_pipeline::43024.669*12.23] mapped 494709 sequences
+[M::worker_pipeline::44586.631*12.23] mapped 494166 sequences
+[M::worker_pipeline::46159.816*12.23] mapped 494266 sequences
+[M::worker_pipeline::47713.181*12.23] mapped 493029 sequences
+[M::worker_pipeline::49297.546*12.23] mapped 492082 sequences
+[M::worker_pipeline::50864.705*12.23] mapped 493538 sequences
+[M::worker_pipeline::52428.340*12.23] mapped 493721 sequences
+[M::worker_pipeline::54018.301*12.23] mapped 491793 sequences
+[M::worker_pipeline::55569.339*12.23] mapped 490974 sequences
+[M::worker_pipeline::57134.616*12.23] mapped 490806 sequences
+[M::worker_pipeline::58700.406*12.23] mapped 490619 sequences
+[M::worker_pipeline::60265.055*12.23] mapped 492715 sequences
+[M::worker_pipeline::61822.775*12.23] mapped 490810 sequences
+[M::worker_pipeline::63383.127*12.23] mapped 490440 sequences
+[M::worker_pipeline::64936.820*12.23] mapped 489478 sequences
+[M::worker_pipeline::66483.697*12.24] mapped 488745 sequences
+[M::worker_pipeline::68036.631*12.24] mapped 490302 sequences
+[M::worker_pipeline::69575.598*12.24] mapped 490840 sequences
+[M::worker_pipeline::71177.119*12.24] mapped 489329 sequences
+[M::worker_pipeline::72736.967*12.24] mapped 489427 sequences
+[M::worker_pipeline::74303.502*12.24] mapped 489335 sequences
+[M::worker_pipeline::75968.649*12.24] mapped 488131 sequences
+[M::worker_pipeline::77767.780*12.24] mapped 489196 sequences
+[M::worker_pipeline::79560.745*12.24] mapped 489276 sequences
+[M::worker_pipeline::81361.158*12.24] mapped 488664 sequences
+[M::worker_pipeline::83149.123*12.24] mapped 487693 sequences
+[M::worker_pipeline::84919.607*12.24] mapped 487747 sequences
+[M::worker_pipeline::86706.888*12.24] mapped 489743 sequences
+[M::worker_pipeline::88469.391*12.24] mapped 488454 sequences
