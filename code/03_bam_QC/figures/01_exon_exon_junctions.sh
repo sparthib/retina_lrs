@@ -9,7 +9,7 @@
 #SBATCH -o logs/exon_exon/sample.%a.txt
 #SBATCH -e logs/exon_exon/sample.%a.txt
 #SBATCH --array=1-15
-
+#SBATCH --time=7-00:00:00
 
 
 
