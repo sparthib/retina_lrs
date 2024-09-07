@@ -1,11 +1,12 @@
 **** Job starts ****
-2024-09-05 16:10:44
+2024-09-06 20:59:20
 **** JHPCE info ****
 User: sparthib
-Job id: 9626482
+Job id: 9631156
 Job name: exon_exon_junctions
-Node name: compute-113
+Node name: compute-157
 Task id: 4
 DG-WT-hRGC
 Loading LIBD SLURM module for samtools/1.18
-slurmstepd: error: *** JOB 9626482 ON compute-113 CANCELLED AT 2024-09-06T20:56:24 ***
+**** Job ends ****
+2024-09-06 21:13:34
