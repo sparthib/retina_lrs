@@ -32,25 +32,11 @@ ml load samtools
 alignment_dir='/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only'
 alignment="${alignment_dir}/${sample}_primary_over_30_chr_only_sorted.bam"
 
-# 1. Define the function to compute the number of exon-exon junctions covered by one read based on CIGAR string
-function compute_num_junction_per_read() {
-    local cigar_string=$1
-    local num_junctions=$(echo "$cigar_string" | grep -o "N" | wc -l)
-    echo $num_junctions
-}
-
 # 2. Compute number of junctions in read
-output_file="/users/sparthib/retina_lrs/processed_data/exon_exon/${sample}_num_junctions.txt"
+output_file="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only/CIGAR_sequences/${sample}_cigar_sequences.txt"
 nums=()
 
-samtools view "$alignment" | awk '{print $6}' | while read cigar; do
-    num=$(compute_num_junction_per_read "$cigar")
-    nums+=("$num")
-done
-
-# 3. Generate the table of counts
-printf "%s\n" "${nums[@]}" | sort | uniq -c | awk '{print $2, $1}' > "$output_file"
-
+samtools view $alignment | awk '{print $6}' > $output_file
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
