@@ -6,8 +6,8 @@
 #SBATCH --job-name=count_N
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/count_N.%a.txt
-#SBATCH -e logs/count_N.%a.txt
+#SBATCH -o logs/count_N/%a.txt
+#SBATCH -e logs/count_N/%a.txt
 #SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
@@ -29,7 +29,7 @@ input_file="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/
 output_file="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only/CIGAR_sequences/${sample}_N_count.txt"
 
 ml load python/3.11.8
-python3 count_N.py ${input_file} -o ${output_file}
+python3 02_count_N.py ${input_file} -o ${output_file}
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
