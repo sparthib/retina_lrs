@@ -1,11 +1,11 @@
 **** Job starts ****
-2024-09-04 15:56:27
+2024-09-05 16:10:44
 **** JHPCE info ****
 User: sparthib
-Job id: 9615465
+Job id: 9626488
 Job name: exon_exon_junctions
-Node name: compute-053
+Node name: compute-106
 Task id: 10
 H9-FT_2
 Loading LIBD SLURM module for samtools/1.18
-slurmstepd: error: *** JOB 9615465 ON compute-053 CANCELLED AT 2024-09-05T15:56:53 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 9626488 ON compute-106 CANCELLED AT 2024-09-06T20:56:24 ***
