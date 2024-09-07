@@ -6,8 +6,8 @@
 #SBATCH --job-name=count_N
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/count_N/sample.%a.txt
-#SBATCH -e logs/count_N/sample.%a.txt
+#SBATCH -o logs/count_N.%a.txt
+#SBATCH -e logs/count_N.%a.txt
 #SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
