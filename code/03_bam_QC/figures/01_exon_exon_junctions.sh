@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=100G
-#SBATCH -c 20
+#SBATCH --mem=20G
+#SBATCH -c 5
 #SBATCH --job-name=exon_exon_junctions
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -32,9 +32,7 @@ ml load samtools
 alignment_dir='/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only'
 alignment="${alignment_dir}/${sample}_primary_over_30_chr_only_sorted.bam"
 
-# 2. Compute number of junctions in read
 output_file="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only/CIGAR_sequences/${sample}_cigar_sequences.txt"
-nums=()
 
 samtools view $alignment | awk '{print $6}' > $output_file
 
