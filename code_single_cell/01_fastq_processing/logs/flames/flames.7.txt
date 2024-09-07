@@ -1,22 +1,18 @@
 **** Job starts ****
-2024-09-03 14:26:23
+2024-09-07 17:58:34
 **** JHPCE info ****
 User: sparthib
-Job id: 9606264
+Job id: 9633170
 Job name: flames
-Node name: compute-103
+Node name: compute-168
 Task id: 7
 10X_D200-EP1-1_B1
-Unloading conda_R/4.3.x
 Loading conda_R/4.4.x
-
-The following have been reloaded with a version change:
-  1) conda/3-23.3.1 => conda/3-24.3.0     2) conda_R/4.3.x => conda_R/4.4.x
-
+To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-02:51:58 PM Tue Sep 03 2024 Start running
+06:14:08 PM Sat Sep 07 2024 Start running
 Skipping Demultiplexing step...
 Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/matched_reads.fastq `` is the demultiplexing output from previous FLAMES call.
 Running FLAMES pipeline...
@@ -81,65 +77,15 @@ output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_ou
 minimap2 path: 
 k8 path: 
 #### Aligning reads to genome using minimap2
-02:51:58 PM Tue Sep 03 2024 minimap2_align
-[M::mm_idx_gen::99.108*1.88] collected minimizers
-[M::mm_idx_gen::126.789*3.18] sorted minimizers
-[M::main::126.789*3.18] loaded/built the index for 706 target sequence(s)
-[M::mm_mapopt_update::128.579*3.15] mid_occ = 2173
+06:14:08 PM Sat Sep 07 2024 minimap2_align
+[M::mm_idx_gen::38.290*1.74] collected minimizers
+[M::mm_idx_gen::48.353*2.93] sorted minimizers
+[M::main::48.354*2.93] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::49.314*2.89] mid_occ = 2173
 [M::mm_idx_stat] kmer size: 14; skip: 5; is_hpc: 0; #seq: 706
-[M::mm_idx_stat::129.653*3.13] distinct minimizers: 65649907 (22.01% are singletons); average occurrences: 16.223; average spacing: 3.091; total length: 3291585349
-[M::worker_pipeline::1942.665*11.48] mapped 489032 sequences
-[M::worker_pipeline::3570.116*11.84] mapped 490406 sequences
-[M::worker_pipeline::5183.381*11.97] mapped 487956 sequences
-[M::worker_pipeline::6797.495*12.04] mapped 486631 sequences
-[M::worker_pipeline::8411.122*12.08] mapped 489782 sequences
-[M::worker_pipeline::10012.609*12.11] mapped 487529 sequences
-[M::worker_pipeline::11612.620*12.13] mapped 486668 sequences
-[M::worker_pipeline::13187.205*12.15] mapped 489307 sequences
-[M::worker_pipeline::14750.733*12.15] mapped 487862 sequences
-[M::worker_pipeline::16347.297*12.16] mapped 487883 sequences
-[M::worker_pipeline::17923.435*12.17] mapped 490333 sequences
-[M::worker_pipeline::19498.287*12.18] mapped 488984 sequences
-[M::worker_pipeline::21060.278*12.19] mapped 488462 sequences
-[M::worker_pipeline::22611.764*12.19] mapped 491768 sequences
-[M::worker_pipeline::24177.020*12.20] mapped 488787 sequences
-[M::worker_pipeline::25740.768*12.20] mapped 488043 sequences
-[M::worker_pipeline::27294.960*12.21] mapped 492729 sequences
-[M::worker_pipeline::28876.215*12.21] mapped 490309 sequences
-[M::worker_pipeline::30431.718*12.21] mapped 491830 sequences
-[M::worker_pipeline::31991.230*12.21] mapped 496489 sequences
-[M::worker_pipeline::33599.611*12.21] mapped 495960 sequences
-[M::worker_pipeline::35173.840*12.22] mapped 498300 sequences
-[M::worker_pipeline::36744.666*12.22] mapped 498703 sequences
-[M::worker_pipeline::38301.841*12.22] mapped 496855 sequences
-[M::worker_pipeline::39867.925*12.22] mapped 495669 sequences
-[M::worker_pipeline::41428.242*12.22] mapped 496379 sequences
-[M::worker_pipeline::43024.669*12.23] mapped 494709 sequences
-[M::worker_pipeline::44586.631*12.23] mapped 494166 sequences
-[M::worker_pipeline::46159.816*12.23] mapped 494266 sequences
-[M::worker_pipeline::47713.181*12.23] mapped 493029 sequences
-[M::worker_pipeline::49297.546*12.23] mapped 492082 sequences
-[M::worker_pipeline::50864.705*12.23] mapped 493538 sequences
-[M::worker_pipeline::52428.340*12.23] mapped 493721 sequences
-[M::worker_pipeline::54018.301*12.23] mapped 491793 sequences
-[M::worker_pipeline::55569.339*12.23] mapped 490974 sequences
-[M::worker_pipeline::57134.616*12.23] mapped 490806 sequences
-[M::worker_pipeline::58700.406*12.23] mapped 490619 sequences
-[M::worker_pipeline::60265.055*12.23] mapped 492715 sequences
-[M::worker_pipeline::61822.775*12.23] mapped 490810 sequences
-[M::worker_pipeline::63383.127*12.23] mapped 490440 sequences
-[M::worker_pipeline::64936.820*12.23] mapped 489478 sequences
-[M::worker_pipeline::66483.697*12.24] mapped 488745 sequences
-[M::worker_pipeline::68036.631*12.24] mapped 490302 sequences
-[M::worker_pipeline::69575.598*12.24] mapped 490840 sequences
-[M::worker_pipeline::71177.119*12.24] mapped 489329 sequences
-[M::worker_pipeline::72736.967*12.24] mapped 489427 sequences
-[M::worker_pipeline::74303.502*12.24] mapped 489335 sequences
-[M::worker_pipeline::75968.649*12.24] mapped 488131 sequences
-[M::worker_pipeline::77767.780*12.24] mapped 489196 sequences
-[M::worker_pipeline::79560.745*12.24] mapped 489276 sequences
-[M::worker_pipeline::81361.158*12.24] mapped 488664 sequences
-[M::worker_pipeline::83149.123*12.24] mapped 487693 sequences
-[M::worker_pipeline::84919.607*12.24] mapped 487747 sequences
-[M::worker_pipeline::86706.888*12.24] mapped 489743 sequences
-[M::worker_pipeline::88469.391*12.24] mapped 488454 sequences
+[M::mm_idx_stat::49.953*2.86] distinct minimizers: 65649907 (22.01% are singletons); average occurrences: 16.223; average spacing: 3.091; total length: 3291585349
+[M::worker_pipeline::260.715*16.58] mapped 489032 sequences
+[M::worker_pipeline::465.070*18.07] mapped 490406 sequences
+[M::worker_pipeline::667.560*18.64] mapped 487956 sequences
+[M::worker_pipeline::871.278*18.95] mapped 486631 sequences
+[M::worker_pipeline::1076.320*19.14] mapped 489782 sequences
