@@ -34,15 +34,31 @@ INPUT_DIR="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/p
 MODEL_NAME="r941_prom_sup_g5014"
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa
 
-source activate clair3
+# source activate clair3
+# 
+# run_clair3.sh \
+#   --bam_fn=$INPUT_DIR/${sample}_primary_over_30_chr_only_sorted.bam \                 ## change your bam file name here
+#   --ref_fn=$REFERENCE_FASTA \                    ## change your reference file name here
+#   --threads=20 \               ## maximum threads to be used
+#   --platform="ont" \                   ## options: {ont,hifi,ilmn}
+#   --model_path="/users/sparthib/.conda/envs/clair3/bin/models/${MODEL_NAME}" \ 
+#   --output=${OUTPUT_DIR}     ## output path prefix 
 
-run_clair3.sh \
-  --bam_fn=$INPUT_DIR/${sample}_primary_over_30_chr_only_sorted.bam \                 ## change your bam file name here
-  --ref_fn=$REFERENCE_FASTA \                    ## change your reference file name here
+ml load singularity
+
+singularity pull docker://hkubal/clair3:latest
+
+# run clair3 like this afterward
+singularity exec \
+  -B $INPUT_DIR,${OUTPUT_DIR} \
+  clair3_latest.sif \
+  /opt/bin/run_clair3.sh \
+  --bam_fn=${INPUT_DIR}/input.bam \    ## change your bam file name here
+  --ref_fn=$REFERENCE_FASTA \       ## change your reference file name here
   --threads=20 \               ## maximum threads to be used
   --platform="ont" \                   ## options: {ont,hifi,ilmn}
-  --model_path="/users/sparthib/.conda/envs/clair3/bin/models/${MODEL_NAME}" \ 
-  --output=${OUTPUT_DIR}     ## output path prefix 
+  --model_path="/users/sparthib/.conda/envs/clair3/bin/models/${MODEL_NAME}" \
+  --output=${OUTPUT_DIR}               ## absolute output path prefix
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
