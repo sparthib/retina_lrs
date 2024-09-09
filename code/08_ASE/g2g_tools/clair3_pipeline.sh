@@ -53,12 +53,13 @@ singularity exec \
   -B ${INPUT_DIR},${OUTPUT_DIR} \
   clair3_latest.sif \
   /opt/bin/run_clair3.sh \
-  --bam_fn=${INPUT_DIR}/${sample}_primary_over_30_chr_only_sorted.bam \    ## change your bam file name here
-  --ref_fn=$REFERENCE_FASTA \       ## change your reference file name here
-  --threads=20 \               ## maximum threads to be used
-  --platform="ont" \                   ## options: {ont,hifi,ilmn}
+  --bam_fn=${INPUT_DIR}/${sample}_primary_over_30_chr_only_sorted.bam \
+  --ref_fn=${REFERENCE_FASTA} \
+  --threads=20 \
+  --platform="ont" \
   --model_path="/users/sparthib/.conda/envs/clair3/bin/models/r941_prom_sup_g5014" \
-  --output=${OUTPUT_DIR}               ## absolute output path prefix
-
+  --output=${OUTPUT_DIR}
+  
+  
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
