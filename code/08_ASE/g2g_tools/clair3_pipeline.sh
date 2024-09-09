@@ -32,7 +32,7 @@ mkdir $OUTPUT_DIR
 
 INPUT_DIR="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only"        
 MODEL_NAME="r941_prom_sup_g5014"
-REFERENCE_FASTA="/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
+REFERENCE_DIR="/dcs04/hicks/data/sparthib/references/genome/GENCODE/"
 
 # source activate clair3
 # 
@@ -50,11 +50,11 @@ singularity pull docker://hkubal/clair3:latest
 
 # run clair3 like this afterward
 singularity exec \
-  -B ${INPUT_DIR},${OUTPUT_DIR} \
+  -B ${REFERENCE_DIR},${INPUT_DIR},${OUTPUT_DIR} \
   clair3_latest.sif \
   /users/sparthib/.conda/envs/clair3/bin/run_clair3.sh \
   --bam_fn=${INPUT_DIR}/${sample}_primary_over_30_chr_only_sorted.bam \
-  --ref_fn=${REFERENCE_FASTA} \
+  --ref_fn=${REFERENCE_DIR}/GRCh38.p14.genome.fa \
   --threads=20 \
   --platform="ont" \
   --model_path="/users/sparthib/.conda/envs/clair3/bin/models/r941_prom_sup_g5014" \
