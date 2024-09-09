@@ -23,7 +23,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 echo "****"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-stem_cell=$(awk -v line=$SLURM_ARRAY_TASK_ID 'NR==line {print $1}' $CONFIG)
+stem_cell=$(awk -v line=$SLURM_ARRAY_TASK_ID 'NR==line {print $5}' $CONFIG)
 sample=$(awk -v line=$SLURM_ARRAY_TASK_ID 'NR==line {print $2}' $CONFIG)
 
 OUTPUT_DIR="/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/clair_vcfs/$stem_cell"
