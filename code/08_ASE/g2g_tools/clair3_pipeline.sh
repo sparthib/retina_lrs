@@ -52,7 +52,7 @@ singularity pull docker://hkubal/clair3:latest
 singularity exec \
   -B ${INPUT_DIR},${OUTPUT_DIR} \
   clair3_latest.sif \
-  /opt/bin/run_clair3.sh \
+  /users/sparthib/.conda/envs/clair3/bin/run_clair3.sh \
   --bam_fn=${INPUT_DIR}/${sample}_primary_over_30_chr_only_sorted.bam \
   --ref_fn=${REFERENCE_FASTA} \
   --threads=20 \
