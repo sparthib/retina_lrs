@@ -36,8 +36,14 @@ rm -r /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
 mkdir -p /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
 gunzip -c /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/${sample}_matched_reads.fastq.gz > /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/matched_reads.fastq
 
+#create symlink for bam file 
+ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/${sample}_sorted.bam /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/align2genome.bam
+ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/${sample}_sorted.bam.bai /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/align2genome.bam.bai
+
+
 
 ml load conda_R/4.4.x
+Rscript 05c_flames_quantify_gene.R "${sample}" 
 Rscript 05_flames.R "$sample"
 
 echo "**** Job ends ****"
