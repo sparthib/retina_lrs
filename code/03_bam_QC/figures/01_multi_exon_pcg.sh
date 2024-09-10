@@ -19,7 +19,7 @@ echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
-ml load python/3.11.8
+ml load python/3.10.13
 python3 01_multi_exon_pcg.py 
 
 echo "**** Job ends ****"
