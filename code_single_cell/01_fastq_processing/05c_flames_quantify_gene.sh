@@ -37,7 +37,6 @@ echo $sample
 # mkdir -p /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
 # gunzip -c /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/${sample}_matched_reads.fastq.gz > /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/matched_reads.fastq
 
-
 ml load conda_R/4.4.x
 Rscript 05c_flames_quantify_gene.R "$sample"
 
