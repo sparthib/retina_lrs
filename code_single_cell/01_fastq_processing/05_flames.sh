@@ -7,7 +7,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flames/flames.%a.txt
 #SBATCH -e logs/flames/flames.%a.txt
-#SBATCH --array=8-9
+#SBATCH --array=7
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
