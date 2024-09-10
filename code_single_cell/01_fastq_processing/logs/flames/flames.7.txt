@@ -1,8 +1,8 @@
 **** Job starts ****
-2024-09-09 23:05:09
+2024-09-09 23:13:47
 **** JHPCE info ****
 User: sparthib
-Job id: 9639657
+Job id: 9639668
 Job name: flames
 Node name: compute-168
 Task id: 7
@@ -13,7 +13,23 @@ To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-Error: 'quantify_gene' is not an exported object from 'namespace:FLAMES'
+11:14:00 PM Mon Sep 09 2024 quantify genes 
+Found genome alignment file(s): 	align2genome.bam
+Assigning reads to genes...
+Processed:   0%|          | 0/19721 [00:00<?, ?gene_group/s]Error in value[[3L]](cond) : Error when quantifying genes:
+Traceback (most recent call last):
+  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 485, in quantification
+    quantify_gene(in_bam, annotation, n_process)
+  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/count_gene.py", line 205, in quantify_gene
+    for future in helper.multiprocessing_submit(
+  File "/jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/site-library/FLAMES/python/helper.py", line 142, in multiprocessing_submit
+    executor = concurrent.futures.ProcessPoolExecutor(n_process)
+  File "/users/sparthib/.cache/R/basilisk/1.17.2/FLAMES/1.11.1/flames_env/lib/python3.10/concurrent/futures/process.py", line 662, in __init__
+    self._call_queue = _SafeQueue(
+  File "/users/sparthib/.cache/R/basilisk/1.17.2/FLAMES/1.11.1/flames_env/lib/python3.10/concurrent/futures/process.py", line 168, in __init__
+    super().__init__(max_size, ctx=ctx)
+  F
+Calls: <Anonymous> ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
 Execution halted
 **** Job ends ****
-2024-09-09 23:05:23
+2024-09-09 23:21:00
