@@ -1,19 +1,18 @@
 **** Job starts ****
-2024-09-09 23:13:47
+2024-09-10 06:55:52
 **** JHPCE info ****
 User: sparthib
-Job id: 9639668
+Job id: 9640534
 Job name: flames
-Node name: compute-168
+Node name: compute-158
 Task id: 7
 10X_D200-EP1-1_B1
-Unloading conda_R/4.4.x
 Loading conda_R/4.4.x
 To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-11:14:00 PM Mon Sep 09 2024 quantify genes 
+06:56:05 AM Tue Sep 10 2024 quantify genes 
 Found genome alignment file(s): 	align2genome.bam
 Assigning reads to genes...
 Processed:   0%|          | 0/19721 [00:00<?, ?gene_group/s]Error in value[[3L]](cond) : Error when quantifying genes:
@@ -32,4 +31,4 @@ Traceback (most recent call last):
 Calls: <Anonymous> ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
 Execution halted
 **** Job ends ****
-2024-09-09 23:21:00
+2024-09-10 07:01:51
