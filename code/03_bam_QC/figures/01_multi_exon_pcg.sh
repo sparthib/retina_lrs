@@ -6,8 +6,8 @@
 #SBATCH --job-name=multi_exon_pcg
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/multi_exon_pcg/%a.txt
-#SBATCH -e logs/multi_exon_pcg/%a.txt
+#SBATCH -o logs/multi_exon_pcg.txt
+#SBATCH -e logs/multi_exon_pcg.txt
 #SBATCH --time=7-00:00:00
 
 
