@@ -18,7 +18,7 @@ FLAMES:::quantify_gene(
   annotation = annot,
   outdir,
   infq = fastq,
-  n_process = 20,
+  n_process = 15, #reduced to less than allotted to avoid memory issues
   pipeline = "sc_single_sample",
   samples = NULL)
 
