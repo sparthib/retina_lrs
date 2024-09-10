@@ -13,14 +13,14 @@ minimap_path <- file.path("/users/sparthib/minimap2")
 
 outdir <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample)
 
-quantify_gene(
+FLAMES::quantify_gene(
   annotation = annot,
   outdir,
   infq = fastq,
   n_process = 20,
   pipeline = "sc_single_sample",
-  samples = NULL
-)
+  samples = NULL)
+
 print("done quantifying genes")
 
 sessionInfo()
