@@ -1,19 +1,19 @@
 **** Job starts ****
-2024-09-09 22:54:45
+2024-09-09 23:05:09
 **** JHPCE info ****
 User: sparthib
-Job id: 9639654
+Job id: 9639657
 Job name: flames
-Node name: compute-122
+Node name: compute-168
 Task id: 7
 10X_D200-EP1-1_B1
+Unloading conda_R/4.4.x
 Loading conda_R/4.4.x
 To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-Error in quantify_gene(annotation = annot, outdir, infq = fastq, n_process = 20,  : 
-  could not find function "quantify_gene"
+Error: 'quantify_gene' is not an exported object from 'namespace:FLAMES'
 Execution halted
 **** Job ends ****
-2024-09-09 22:55:03
+2024-09-09 23:05:23
