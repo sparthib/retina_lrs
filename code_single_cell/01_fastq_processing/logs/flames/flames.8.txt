@@ -1,10 +1,10 @@
 **** Job starts ****
-2024-09-09 17:53:07
+2024-09-11 12:28:37
 **** JHPCE info ****
 User: sparthib
-Job id: 9638210
+Job id: 9648242
 Job name: flames
-Node name: compute-113
+Node name: compute-122
 Task id: 8
 10x_D200-EP1-1_B2
 Loading conda_R/4.4.x
@@ -12,19 +12,7 @@ To install colorout use: remotes::install_github("jalvesaq/colorout")
 Registered S3 method overwritten by 'GGally':
   method from   
   +.gg   ggplot2
-Writing configuration parameters to:  /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-1_B2/config_file_132478.json 
-05:53:50 PM Mon Sep 09 2024 quantify transcripts 
-Found realignment file(s): 	realign2transcript.bam
-	Counter({'unmapped': 610957, 'no_good_match': 555148, 'counted_reads': 486780, 'not_enough_coverage': 64495})
-shared splice chain: {'ENSG00000278365.1', 'ENSG00000276766.1', 'ENSG00000276220.1', 'ENSG00000274359.1', 'ENSG00000273642.1'}
-(77309, 77534, 77609, 80353, 80431, 81230)
-shared splice chain: {'ENSG00000278270.4', 'ENSG00000274626.3', 'ENSG00000275323.3', 'ENSG00000277359.3', 'ENSG00000278081.3', 'ENSG00000274005.3'}
-(175870, 176141, 176263, 176468, 176591, 181257, 181444, 182379)
-shared splice chain: {'ENSG00000273397.4', 'ENSG00000277365.3'}
-(8659, 9404, 9520, 12950)
-NULL
-[1] "done quantifying transcripts"
-R version 4.4.1 Patched (2024-08-21 r87049)
+R version 4.4.1 Patched (2024-09-10 r87116)
 Platform: x86_64-conda-linux-gnu
 Running under: Rocky Linux 9.4 (Blue Onyx)
 
@@ -143,4 +131,4 @@ loaded via a namespace (and not attached):
 [181] memoise_2.0.1               bit_4.0.5                  
 [183] xgboost_1.7.8.1            
 **** Job ends ****
-2024-09-09 18:04:16
+2024-09-11 12:29:50
