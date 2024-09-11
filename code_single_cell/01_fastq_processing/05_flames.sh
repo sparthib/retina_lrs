@@ -7,7 +7,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flames/flames.%a.txt
 #SBATCH -e logs/flames/flames.%a.txt
-#SBATCH --array=7
+#SBATCH --array=8-9
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
@@ -32,18 +32,16 @@ echo $sample
   #https://github.com/mritchielab/FLAMES/issues/30
   #work around is to create a symlink to the blaze processed fastq file 
 
-rm -r /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
-mkdir -p /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
-gunzip -c /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/${sample}_matched_reads.fastq.gz > /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/matched_reads.fastq
-
-#create symlink for bam file 
-ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/${sample}_sorted.bam /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/align2genome.bam
-ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/${sample}_sorted.bam.bai /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/align2genome.bam.bai
-
-
+#ONLY UNCOMMENT LINES BELOW IF YOU WANT TO START PIPELINE FROM SCRATCH.
+# rm -r /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
+# mkdir -p /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample
+# gunzip -c /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity/${sample}_matched_reads.fastq.gz > /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/$sample/matched_reads.fastq
+# 
+# #create symlink for bam file 
+# ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/${sample}_sorted.bam /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/align2genome.bam
+# ln -s /dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/${sample}_sorted.bam.bai /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/align2genome.bam.bai
 
 ml load conda_R/4.4.x
-Rscript 05c_flames_quantify_gene.R "${sample}" 
 Rscript 05_flames.R "$sample"
 
 echo "**** Job ends ****"

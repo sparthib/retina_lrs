@@ -10,20 +10,27 @@ minimap_path <- file.path("/users/sparthib/minimap2")
 # genome_bam <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/", 
 #                      sample, "_primary_over_30_chr_only_sorted.bam")
 
-
 outdir <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample)
 config_dir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config")
 config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/full_pipeline.json")
 
 if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
 
-  sce <- sc_long_pipeline(
-    annotation = annot, fastq = fastq,
-    genome_fa = genome_fa,
-    outdir = outdir,
-    config_file = config_file,
-    expect_cell_number = 2000)
+  #UNCOMMENT IF YOU WANT TO RUN PIPELINE FROM SCRATCH. 
+  #CHECK CONFIG FILE TO MAKE SURE YOU HAVE SET THE RIGHT PARAMETERS BEFORE STARTING THE PIPELINE.
+  # sce <- sc_long_pipeline(
+  #   annotation = annot, fastq = fastq,
+  #   genome_fa = genome_fa,
+  #   outdir = outdir,
+  #   config_file = config_file,
+  #   expect_cell_number = 2000)
+  #saveRDS(sce, file = paste0(outdir, "/sce.rds"))
+  
+  #below is given all required files post isoform quantification
+  #already exist in the output directory
+  sce <- create_sce_from_dir(outdir, annotation = annot)
   saveRDS(sce, file = paste0(outdir, "/sce.rds"))
+  
   
 }
 ##TIPS:
