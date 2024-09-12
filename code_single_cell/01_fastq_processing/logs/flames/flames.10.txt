@@ -1,318 +1,12 @@
 **** Job starts ****
-2024-09-03 15:17:58
+2024-09-11 12:52:34
 **** JHPCE info ****
 User: sparthib
-Job id: 9606709
+Job id: 9648685
 Job name: flames
-Node name: compute-152
+Node name: compute-150
 Task id: 10
 10x_D200-EP1-2_A2
-Unloading conda_R/4.3.x
-Loading conda_R/4.4.x
-
-The following have been reloaded with a version change:
-  1) conda/3-23.3.1 => conda/3-24.3.0     2) conda_R/4.3.x => conda_R/4.4.x
-
-Registered S3 method overwritten by 'GGally':
-  method from   
-  +.gg   ggplot2
-03:18:27 PM Tue Sep 03 2024 Start running
-Skipping Demultiplexing step...
-Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_A2/matched_reads.fastq `` is the demultiplexing output from previous FLAMES call.
-Running FLAMES pipeline...
-#### Input parameters:
-{
-  "pipeline_parameters": {
-    "seed": [2022],
-    "threads": [20],
-    "do_barcode_demultiplex": [false],
-    "do_gene_quantification": [true],
-    "do_genome_alignment": [true],
-    "do_isoform_identification": [true],
-    "bambu_isoform_identification": [true],
-    "multithread_isoform_identification": [false],
-    "do_read_realignment": [true],
-    "do_transcript_quantification": [true]
-  },
-  "barcode_parameters": {
-    "max_bc_editdistance": [2],
-    "max_flank_editdistance": [8],
-    "pattern": {
-      "primer": ["CTACACGACGCTCTTCCGATCT"],
-      "BC": ["NNNNNNNNNNNNNNNN"],
-      "UMI": ["NNNNNNNNNNNN"],
-      "polyT": ["TTTTTTTTT"]
-    },
-    "TSO_seq": ["CCCATGTACTCTGCGTTGATACCACTGCTT"],
-    "TSO_prime": [3],
-    "full_length_only": [false]
-  },
-  "isoform_parameters": {
-    "generate_raw_isoform": [false],
-    "max_dist": [10],
-    "max_ts_dist": [100],
-    "max_splice_match_dist": [10],
-    "min_fl_exon_len": [40],
-    "max_site_per_splice": [3],
-    "min_sup_cnt": [5],
-    "min_cnt_pct": [0.001],
-    "min_sup_pct": [0.2],
-    "bambu_trust_reference": [true],
-    "strand_specific": [0],
-    "remove_incomp_reads": [4],
-    "downsample_ratio": [1]
-  },
-  "alignment_parameters": {
-    "use_junctions": [true],
-    "no_flank": [false]
-  },
-  "realign_parameters": {
-    "use_annotation": [true]
-  },
-  "transcript_counting": {
-    "min_tr_coverage": [0.4],
-    "min_read_coverage": [0.4]
-  }
-} 
-gene annotation: /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf 
-genome fasta: /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa 
-input fastq: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_A2/matched_reads.fastq 
-output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_A2 
-minimap2 path: 
-k8 path: 
-#### Aligning reads to genome using minimap2
-03:18:27 PM Tue Sep 03 2024 minimap2_align
-[M::mm_idx_gen::36.684*1.61] collected minimizers
-[M::mm_idx_gen::40.509*2.93] sorted minimizers
-[M::main::40.509*2.93] loaded/built the index for 706 target sequence(s)
-[M::mm_mapopt_update::41.437*2.89] mid_occ = 2173
-[M::mm_idx_stat] kmer size: 14; skip: 5; is_hpc: 0; #seq: 706
-[M::mm_idx_stat::42.030*2.86] distinct minimizers: 65649907 (22.01% are singletons); average occurrences: 16.223; average spacing: 3.091; total length: 3291585349
-[M::worker_pipeline::275.503*17.17] mapped 501803 sequences
-[M::worker_pipeline::285.266*17.22] mapped 38515 sequences
-[M::main] Version: 2.26-r1175
-[M::main] CMD: /users/sparthib/minimap2/minimap2 -ax splice -t 20 -k14 --secondary=no --seed 2022 --junc-bed /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_A2/tmp_splice_anno.bed12 --junc-bonus 1 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_A2/matched_reads.fastq
-[M::main] Real time: 285.529 sec; CPU: 4913.693 sec; Peak RSS: 27.099 GB
-[bam_sort_core] merging from 1 files and 1 in-memory blocks...
-03:23:50 PM Tue Sep 03 2024 Start gene quantification and UMI deduplication
-03:23:50 PM Tue Sep 03 2024 quantify genes 
-Found genome alignment file(s): 	align2genome.bam
-Assigning reads to genes...
-Processed:   0%|          | 0/43765 [00:00<?, ?gene_group/s]Processed:   0%|          | 1/43765 [00:00<3:26:36,  3.53gene_group/s]Processed:   0%|          | 30/43765 [00:00<07:27, 97.81gene_group/s] Processed:   0%|          | 67/43765 [00:00<04:02, 180.42gene_group/s]Processed:   0%|          | 108/43765 [00:00<02:54, 250.62gene_group/s]Processed:   0%|          | 152/43765 [00:00<02:21, 308.38gene_group/s]Processed:   0%|          | 193/43765 [00:00<02:10, 332.99gene_group/s]Processed:   1%|          | 233/43765 [00:00<02:03, 352.77gene_group/s]Processed:   1%|          | 276/43765 [00:01<01:56, 372.15gene_group/s]Processed:   1%|          | 319/43765 [00:01<01:51, 388.43gene_group/s]Processed:   1%|          | 366/43765 [00:01<01:46, 409.42gene_group/s]Processed:   1%|          | 413/43765 [00:01<01:42, 424.54gene_group/s]Processed:   1%|          | 464/43765 [00:01<01:37, 442.20gene_group/s]Processed:   1%|          | 517/43765 [00:01<01:32, 467.09gene_group/s]Processed:   1%|▏         | 575/43765 [00:01<01:26, 497.40gene_group/s]Processed:   1%|▏         | 628/43765 [00:01<01:25, 506.89gene_group/s]Processed:   2%|▏         | 684/43765 [00:01<01:23, 516.08gene_group/s]Processed:   2%|▏         | 739/43765 [00:01<01:22, 522.48gene_group/s]Processed:   2%|▏         | 792/43765 [00:02<01:24, 508.71gene_group/s]Processed:   2%|▏         | 844/43765 [00:02<01:28, 486.40gene_group/s]Processed:   2%|▏         | 897/43765 [00:02<01:26, 498.22gene_group/s]Processed:   2%|▏         | 955/43765 [00:02<01:22, 520.57gene_group/s]Processed:   2%|▏         | 1010/43765 [00:02<01:20, 528.66gene_group/s]Processed:   2%|▏         | 1068/43765 [00:02<01:18, 542.02gene_group/s]Processed:   3%|▎         | 1123/43765 [00:02<01:18, 543.67gene_group/s]Processed:   3%|▎         | 1182/43765 [00:02<01:16, 556.49gene_group/s]Processed:   3%|▎         | 1242/43765 [00:02<01:14, 569.20gene_group/s]Processed:   3%|▎         | 1304/43765 [00:02<01:13, 574.65gene_group/s]Processed:   3%|▎         | 1365/43765 [00:03<01:12, 584.47gene_group/s]Processed:   3%|▎         | 1425/43765 [00:03<01:12, 583.74gene_group/s]Processed:   3%|▎         | 1487/43765 [00:03<01:11, 591.63gene_group/s]Processed:   4%|▎         | 1556/43765 [00:03<01:08, 619.13gene_group/s]Processed:   4%|▎         | 1623/43765 [00:03<01:07, 626.85gene_group/s]Processed:   4%|▍         | 1694/43765 [00:03<01:04, 650.73gene_group/s]Processed:   4%|▍         | 1760/43765 [00:03<01:04, 649.08gene_group/s]Processed:   4%|▍         | 1825/43765 [00:03<01:06, 629.91gene_group/s]Processed:   4%|▍         | 1889/43765 [00:03<01:09, 605.84gene_group/s]Processed:   4%|▍         | 1954/43765 [00:04<01:07, 618.21gene_group/s]Processed:   5%|▍         | 2021/43765 [00:04<01:06, 631.52gene_group/s]Processed:   5%|▍         | 2085/43765 [00:04<01:05, 633.66gene_group/s]Processed:   5%|▍         | 2156/43765 [00:04<01:03, 652.51gene_group/s]Processed:   5%|▌         | 2222/43765 [00:04<01:03, 649.47gene_group/s]Processed:   5%|▌         | 2292/43765 [00:04<01:02, 663.09gene_group/s]Processed:   5%|▌         | 2359/43765 [00:04<01:03, 648.11gene_group/s]Processed:   6%|▌         | 2424/43765 [00:04<01:04, 643.65gene_group/s]Processed:   6%|▌         | 2489/43765 [00:04<01:04, 642.19gene_group/s]Processed:   6%|▌         | 2554/43765 [00:04<01:04, 643.92gene_group/s]Processed:   6%|▌         | 2624/43765 [00:05<01:02, 659.18gene_group/s]Processed:   6%|▌         | 2694/43765 [00:05<01:01, 671.02gene_group/s]Processed:   6%|▋         | 2765/43765 [00:05<01:00, 681.79gene_group/s]Processed:   6%|▋         | 2834/43765 [00:05<01:02, 659.59gene_group/s]Processed:   7%|▋         | 2901/43765 [00:05<01:02, 654.25gene_group/s]Processed:   7%|▋         | 2972/43765 [00:05<01:00, 669.23gene_group/s]Processed:   7%|▋         | 3040/43765 [00:05<01:01, 663.02gene_group/s]Processed:   7%|▋         | 3107/43765 [00:05<01:01, 664.79gene_group/s]Processed:   7%|▋         | 3177/43765 [00:05<01:00, 671.08gene_group/s]Processed:   7%|▋         | 3260/43765 [00:05<00:56, 713.35gene_group/s]Processed:   8%|▊         | 3333/43765 [00:06<00:56, 715.89gene_group/s]Processed:   8%|▊         | 3406/43765 [00:06<00:56, 718.19gene_group/s]Processed:   8%|▊         | 3478/43765 [00:06<00:56, 713.56gene_group/s]Processed:   8%|▊         | 3550/43765 [00:06<00:58, 689.15gene_group/s]Processed:   8%|▊         | 3620/43765 [00:06<00:58, 681.52gene_group/s]Processed:   8%|▊         | 3689/43765 [00:06<00:58, 679.90gene_group/s]Processed:   9%|▊         | 3762/43765 [00:06<00:57, 693.25gene_group/s]Processed:   9%|▉         | 3832/43765 [00:06<00:58, 686.88gene_group/s]Processed:   9%|▉         | 3906/43765 [00:06<00:57, 697.94gene_group/s]Processed:   9%|▉         | 3976/43765 [00:07<01:52, 354.69gene_group/s]Processed:   9%|▉         | 4039/43765 [00:07<01:39, 401.23gene_group/s]Processed:   9%|▉         | 4112/43765 [00:07<01:25, 463.11gene_group/s]Processed:  10%|▉         | 4180/43765 [00:07<01:17, 510.02gene_group/s]Processed:  10%|▉         | 4249/43765 [00:07<01:11, 552.06gene_group/s]Processed:  10%|▉         | 4315/43765 [00:07<01:08, 577.34gene_group/s]Processed:  10%|█         | 4386/43765 [00:07<01:04, 612.06gene_group/s]Processed:  10%|█         | 4454/43765 [00:08<01:02, 628.00gene_group/s]Processed:  10%|█         | 4521/43765 [00:08<01:01, 633.57gene_group/s]Processed:  10%|█         | 4589/43765 [00:08<01:00, 643.19gene_group/s]Processed:  11%|█         | 4656/43765 [00:08<01:00, 647.61gene_group/s]Processed:  11%|█         | 4723/43765 [00:08<01:00, 646.22gene_group/s]Processed:  11%|█         | 4792/43765 [00:08<00:59, 658.74gene_group/s]Processed:  11%|█         | 4861/43765 [00:08<00:58, 666.74gene_group/s]Processed:  11%|█▏        | 4930/43765 [00:08<00:57, 672.50gene_group/s]Processed:  11%|█▏        | 4998/43765 [00:08<00:57, 668.53gene_group/s]Processed:  12%|█▏        | 5066/43765 [00:08<00:58, 665.67gene_group/s]Processed:  12%|█▏        | 5133/43765 [00:09<00:58, 665.10gene_group/s]Processed:  12%|█▏        | 5208/43765 [00:09<00:55, 689.40gene_group/s]Processed:  12%|█▏        | 5283/43765 [00:09<00:54, 705.81gene_group/s]Processed:  12%|█▏        | 5359/43765 [00:09<00:53, 712.51gene_group/s]Processed:  12%|█▏        | 5438/43765 [00:09<00:52, 732.55gene_group/s]Processed:  13%|█▎        | 5512/43765 [00:09<00:52, 733.43gene_group/s]Processed:  13%|█▎        | 5586/43765 [00:09<00:52, 730.83gene_group/s]Processed:  13%|█▎        | 5660/43765 [00:09<00:52, 728.71gene_group/s]Processed:  13%|█▎        | 5737/43765 [00:09<00:51, 739.35gene_group/s]Processed:  13%|█▎        | 5811/43765 [00:09<00:52, 726.78gene_group/s]Processed:  13%|█▎        | 5888/43765 [00:10<00:51, 734.23gene_group/s]Processed:  14%|█▎        | 5965/43765 [00:10<00:50, 743.56gene_group/s]Processed:  14%|█▍        | 6040/43765 [00:10<00:51, 737.75gene_group/s]Processed:  14%|█▍        | 6115/43765 [00:10<00:50, 740.04gene_group/s]Processed:  14%|█▍        | 6190/43765 [00:10<00:52, 714.76gene_group/s]Processed:  14%|█▍        | 6265/43765 [00:10<00:52, 719.06gene_group/s]Processed:  14%|█▍        | 6338/43765 [00:10<00:52, 711.65gene_group/s]Processed:  15%|█▍        | 6413/43765 [00:10<00:51, 720.93gene_group/s]Processed:  15%|█▍        | 6489/43765 [00:10<00:51, 727.46gene_group/s]Processed:  15%|█▍        | 6562/43765 [00:11<00:52, 713.28gene_group/s]Processed:  15%|█▌        | 6636/43765 [00:11<00:51, 714.67gene_group/s]Processed:  15%|█▌        | 6717/43765 [00:11<00:50, 736.12gene_group/s]Processed:  16%|█▌        | 6791/43765 [00:11<00:51, 716.41gene_group/s]Processed:  16%|█▌        | 6870/43765 [00:11<00:50, 736.34gene_group/s]Processed:  16%|█▌        | 6944/43765 [00:11<00:50, 731.73gene_group/s]Processed:  16%|█▌        | 7018/43765 [00:11<00:50, 733.44gene_group/s]Processed:  16%|█▌        | 7092/43765 [00:11<00:50, 731.05gene_group/s]Processed:  16%|█▋        | 7166/43765 [00:11<00:50, 723.12gene_group/s]Processed:  17%|█▋        | 7239/43765 [00:11<00:50, 717.89gene_group/s]Processed:  17%|█▋        | 7312/43765 [00:12<00:50, 720.88gene_group/s]Processed:  17%|█▋        | 7387/43765 [00:12<00:50, 718.01gene_group/s]Processed:  17%|█▋        | 7463/43765 [00:12<00:49, 727.78gene_group/s]Processed:  17%|█▋        | 7536/43765 [00:12<00:49, 727.80gene_group/s]Processed:  17%|█▋        | 7610/43765 [00:12<00:49, 728.94gene_group/s]Processed:  18%|█▊        | 7683/43765 [00:12<00:49, 728.76gene_group/s]Processed:  18%|█▊        | 7756/43765 [00:12<00:49, 725.08gene_group/s]Processed:  18%|█▊        | 7833/43765 [00:12<00:49, 729.50gene_group/s]Processed:  18%|█▊        | 7908/43765 [00:12<00:48, 734.28gene_group/s]Processed:  18%|█▊        | 7982/43765 [00:12<00:48, 735.87gene_group/s]Processed:  18%|█▊        | 8056/43765 [00:13<00:49, 725.62gene_group/s]Processed:  19%|█▊        | 8129/43765 [00:13<00:50, 703.44gene_group/s]Processed:  19%|█▊        | 8203/43765 [00:13<00:49, 712.50gene_group/s]Processed:  19%|█▉        | 8276/43765 [00:13<00:49, 717.37gene_group/s]Processed:  19%|█▉        | 8351/43765 [00:13<00:49, 718.05gene_group/s]Processed:  19%|█▉        | 8425/43765 [00:13<00:48, 724.21gene_group/s]Processed:  19%|█▉        | 8498/43765 [00:13<00:49, 716.13gene_group/s]Processed:  20%|█▉        | 8571/43765 [00:13<00:48, 720.13gene_group/s]Processed:  20%|█▉        | 8644/43765 [00:13<00:48, 719.63gene_group/s]Processed:  20%|█▉        | 8716/43765 [00:13<00:48, 717.56gene_group/s]Processed:  20%|██        | 8791/43765 [00:14<00:48, 718.43gene_group/s]Processed:  20%|██        | 8863/43765 [00:14<01:44, 333.35gene_group/s]Processed:  20%|██        | 8929/43765 [00:14<01:30, 385.79gene_group/s]Processed:  21%|██        | 8999/43765 [00:14<01:18, 444.77gene_group/s]Processed:  21%|██        | 9088/43765 [00:14<01:04, 537.65gene_group/s]Processed:  21%|██        | 9175/43765 [00:14<00:56, 610.27gene_group/s]Processed:  21%|██        | 9266/43765 [00:15<00:50, 677.33gene_group/s]Processed:  21%|██▏       | 9352/43765 [00:15<00:47, 724.65gene_group/s]Processed:  22%|██▏       | 9437/43765 [00:15<00:45, 756.00gene_group/s]Processed:  22%|██▏       | 9525/43765 [00:15<00:43, 787.20gene_group/s]Processed:  22%|██▏       | 9616/43765 [00:15<00:41, 821.48gene_group/s]Processed:  22%|██▏       | 9711/43765 [00:15<00:39, 851.82gene_group/s]Processed:  22%|██▏       | 9807/43765 [00:15<00:38, 879.21gene_group/s]Processed:  23%|██▎       | 9897/43765 [00:15<00:38, 883.83gene_group/s]Processed:  23%|██▎       | 9987/43765 [00:15<00:38, 877.42gene_group/s]Processed:  23%|██▎       | 10076/43765 [00:16<00:39, 861.77gene_group/s]Processed:  23%|██▎       | 10163/43765 [00:16<00:38, 863.57gene_group/s]Processed:  23%|██▎       | 10257/43765 [00:16<00:38, 878.33gene_group/s]Processed:  24%|██▎       | 10350/43765 [00:16<00:37, 887.43gene_group/s]Processed:  24%|██▍       | 10446/43765 [00:16<00:36, 907.71gene_group/s]Processed:  24%|██▍       | 10539/43765 [00:16<00:36, 913.78gene_group/s]Processed:  24%|██▍       | 10631/43765 [00:16<00:37, 895.21gene_group/s]Processed:  24%|██▍       | 10721/43765 [00:16<00:37, 882.35gene_group/s]Processed:  25%|██▍       | 10811/43765 [00:16<00:37, 884.21gene_group/s]Processed:  25%|██▍       | 10903/43765 [00:16<00:36, 888.20gene_group/s]Processed:  25%|██▌       | 10994/43765 [00:17<00:36, 892.80gene_group/s]Processed:  25%|██▌       | 11089/43765 [00:17<00:36, 901.96gene_group/s]Processed:  26%|██▌       | 11181/43765 [00:17<00:36, 904.75gene_group/s]Processed:  26%|██▌       | 11276/43765 [00:17<00:35, 917.58gene_group/s]Processed:  26%|██▌       | 11368/43765 [00:17<00:35, 902.96gene_group/s]Processed:  26%|██▌       | 11459/43765 [00:17<00:36, 888.10gene_group/s]Processed:  26%|██▋       | 11548/43765 [00:17<00:36, 884.05gene_group/s]Processed:  27%|██▋       | 11642/43765 [00:17<00:35, 898.86gene_group/s]Processed:  27%|██▋       | 11737/43765 [00:17<00:35, 910.94gene_group/s]Processed:  27%|██▋       | 11834/43765 [00:17<00:34, 920.68gene_group/s]Processed:  27%|██▋       | 11927/43765 [00:18<00:35, 900.14gene_group/s]Processed:  27%|██▋       | 12022/43765 [00:18<00:34, 912.78gene_group/s]Processed:  28%|██▊       | 12118/43765 [00:18<00:34, 923.63gene_group/s]Processed:  28%|██▊       | 12211/43765 [00:18<00:34, 911.95gene_group/s]Processed:  28%|██▊       | 12303/43765 [00:18<00:35, 893.87gene_group/s]Processed:  28%|██▊       | 12393/43765 [00:18<00:35, 888.37gene_group/s]Processed:  29%|██▊       | 12482/43765 [00:18<00:35, 881.68gene_group/s]Processed:  29%|██▊       | 12574/43765 [00:18<00:34, 892.63gene_group/s]Processed:  29%|██▉       | 12664/43765 [00:18<00:35, 879.97gene_group/s]Processed:  29%|██▉       | 12756/43765 [00:18<00:34, 891.16gene_group/s]Processed:  29%|██▉       | 12846/43765 [00:19<00:34, 890.75gene_group/s]Processed:  30%|██▉       | 12938/43765 [00:19<00:34, 898.42gene_group/s]Processed:  30%|██▉       | 13034/43765 [00:19<00:33, 915.92gene_group/s]Processed:  30%|███       | 13131/43765 [00:19<00:32, 930.34gene_group/s]Processed:  30%|███       | 13226/43765 [00:19<00:32, 935.03gene_group/s]Processed:  30%|███       | 13320/43765 [00:19<00:32, 929.65gene_group/s]Processed:  31%|███       | 13413/43765 [00:19<00:32, 925.79gene_group/s]Processed:  31%|███       | 13507/43765 [00:19<00:32, 928.87gene_group/s]Processed:  31%|███       | 13600/43765 [00:19<00:32, 927.42gene_group/s]Processed:  31%|███▏      | 13693/43765 [00:19<00:32, 913.16gene_group/s]Processed:  31%|███▏      | 13785/43765 [00:20<00:32, 913.80gene_group/s]Processed:  32%|███▏      | 13878/43765 [00:20<00:32, 916.38gene_group/s]Processed:  32%|███▏      | 13970/43765 [00:20<00:32, 908.64gene_group/s]Processed:  32%|███▏      | 14064/43765 [00:20<00:32, 917.84gene_group/s]Processed:  32%|███▏      | 14156/43765 [00:20<00:32, 907.48gene_group/s]Processed:  33%|███▎      | 14247/43765 [00:20<00:32, 905.85gene_group/s]Processed:  33%|███▎      | 14338/43765 [00:20<00:32, 891.99gene_group/s]Processed:  33%|███▎      | 14429/43765 [00:20<00:32, 896.88gene_group/s]Processed:  33%|███▎      | 14519/43765 [00:20<00:32, 896.89gene_group/s]Processed:  33%|███▎      | 14609/43765 [00:21<00:32, 894.45gene_group/s]Processed:  34%|███▎      | 14699/43765 [00:21<00:32, 886.10gene_group/s]Processed:  34%|███▍      | 14788/43765 [00:21<00:32, 878.58gene_group/s]Processed:  34%|███▍      | 14884/43765 [00:21<00:32, 902.35gene_group/s]Processed:  34%|███▍      | 14975/43765 [00:21<00:31, 900.12gene_group/s]Processed:  34%|███▍      | 15066/43765 [00:21<00:32, 893.59gene_group/s]Processed:  35%|███▍      | 15156/43765 [00:21<00:32, 893.02gene_group/s]Processed:  35%|███▍      | 15246/43765 [00:21<00:32, 890.58gene_group/s]Processed:  35%|███▌      | 15340/43765 [00:21<00:31, 904.56gene_group/s]Processed:  35%|███▌      | 15431/43765 [00:21<00:31, 902.46gene_group/s]Processed:  35%|███▌      | 15522/43765 [00:22<01:15, 374.66gene_group/s]Processed:  36%|███▌      | 15610/43765 [00:22<01:02, 449.86gene_group/s]Processed:  36%|███▌      | 15704/43765 [00:22<00:52, 534.85gene_group/s]Processed:  36%|███▌      | 15799/43765 [00:22<00:45, 617.36gene_group/s]Processed:  36%|███▋      | 15897/43765 [00:22<00:40, 695.98gene_group/s]Processed:  37%|███▋      | 15988/43765 [00:23<00:37, 747.47gene_group/s]Processed:  37%|███▋      | 16081/43765 [00:23<00:34, 792.01gene_group/s]Processed:  37%|███▋      | 16171/43765 [00:23<00:34, 810.90gene_group/s]Processed:  37%|███▋      | 16261/43765 [00:23<00:32, 834.71gene_group/s]Processed:  37%|███▋      | 16350/43765 [00:23<00:32, 836.99gene_group/s]Processed:  38%|███▊      | 16442/43765 [00:23<00:31, 854.69gene_group/s]Processed:  38%|███▊      | 16531/43765 [00:23<00:31, 854.21gene_group/s]Processed:  38%|███▊      | 16624/43765 [00:23<00:31, 867.60gene_group/s]Processed:  38%|███▊      | 16721/43765 [00:23<00:30, 894.20gene_group/s]Processed:  38%|███▊      | 16813/43765 [00:23<00:29, 901.54gene_group/s]Processed:  39%|███▊      | 16907/43765 [00:24<00:29, 912.01gene_group/s]Processed:  39%|███▉      | 17002/43765 [00:24<00:28, 922.88gene_group/s]Processed:  39%|███▉      | 17095/43765 [00:24<00:29, 917.83gene_group/s]Processed:  39%|███▉      | 17188/43765 [00:24<00:28, 920.97gene_group/s]Processed:  39%|███▉      | 17284/43765 [00:24<00:28, 930.91gene_group/s]Processed:  40%|███▉      | 17378/43765 [00:24<00:28, 926.89gene_group/s]Processed:  40%|███▉      | 17471/43765 [00:24<00:28, 913.53gene_group/s]Processed:  40%|████      | 17563/43765 [00:24<00:28, 903.89gene_group/s]Processed:  40%|████      | 17654/43765 [00:24<00:28, 904.68gene_group/s]Processed:  41%|████      | 17746/43765 [00:24<00:28, 904.07gene_group/s]Processed:  41%|████      | 17837/43765 [00:25<00:28, 894.34gene_group/s]Processed:  41%|████      | 17927/43765 [00:25<00:29, 885.97gene_group/s]Processed:  41%|████      | 18020/43765 [00:25<00:28, 897.47gene_group/s]Processed:  41%|████▏     | 18110/43765 [00:25<00:28, 894.22gene_group/s]Processed:  42%|████▏     | 18206/43765 [00:25<00:28, 911.91gene_group/s]Processed:  42%|████▏     | 18300/43765 [00:25<00:27, 917.04gene_group/s]Processed:  42%|████▏     | 18394/43765 [00:25<00:27, 917.53gene_group/s]Processed:  42%|████▏     | 18486/43765 [00:25<00:27, 917.00gene_group/s]Processed:  42%|████▏     | 18578/43765 [00:25<00:28, 898.15gene_group/s]Processed:  43%|████▎     | 18668/43765 [00:25<00:28, 872.95gene_group/s]Processed:  43%|████▎     | 18763/43765 [00:26<00:28, 889.02gene_group/s]Processed:  43%|████▎     | 18856/43765 [00:26<00:27, 898.31gene_group/s]Processed:  43%|████▎     | 18947/43765 [00:26<00:27, 900.37gene_group/s]Processed:  44%|████▎     | 19038/43765 [00:26<00:27, 891.08gene_group/s]Processed:  44%|████▎     | 19128/43765 [00:26<00:28, 879.22gene_group/s]Processed:  44%|████▍     | 19219/43765 [00:26<00:27, 886.24gene_group/s]Processed:  44%|████▍     | 19310/43765 [00:26<00:27, 891.10gene_group/s]Processed:  44%|████▍     | 19401/43765 [00:26<00:27, 891.74gene_group/s]Processed:  45%|████▍     | 19493/43765 [00:26<00:27, 896.91gene_group/s]Processed:  45%|████▍     | 19585/43765 [00:27<00:26, 903.36gene_group/s]Processed:  45%|████▍     | 19676/43765 [00:27<00:26, 904.75gene_group/s]Processed:  45%|████▌     | 19767/43765 [00:27<00:26, 903.81gene_group/s]Processed:  45%|████▌     | 19858/43765 [00:27<00:26, 901.31gene_group/s]Processed:  46%|████▌     | 19952/43765 [00:27<00:26, 909.74gene_group/s]Processed:  46%|████▌     | 20043/43765 [00:27<00:26, 904.69gene_group/s]Processed:  46%|████▌     | 20137/43765 [00:27<00:25, 910.98gene_group/s]Processed:  46%|████▌     | 20232/43765 [00:27<00:25, 914.95gene_group/s]Processed:  46%|████▋     | 20327/43765 [00:27<00:25, 922.65gene_group/s]Processed:  47%|████▋     | 20421/43765 [00:27<00:25, 925.72gene_group/s]Processed:  47%|████▋     | 20514/43765 [00:28<00:25, 924.78gene_group/s]Processed:  47%|████▋     | 20607/43765 [00:28<00:25, 911.97gene_group/s]Processed:  47%|████▋     | 20699/43765 [00:28<00:25, 907.97gene_group/s]Processed:  48%|████▊     | 20790/43765 [00:28<00:25, 905.48gene_group/s]Processed:  48%|████▊     | 20881/43765 [00:28<00:25, 899.44gene_group/s]Processed:  48%|████▊     | 20971/43765 [00:28<00:25, 898.94gene_group/s]Processed:  48%|████▊     | 21066/43765 [00:28<00:24, 908.53gene_group/s]Processed:  48%|████▊     | 21165/43765 [00:28<00:24, 930.91gene_group/s]Processed:  49%|████▊     | 21259/43765 [00:28<00:24, 932.48gene_group/s]Processed:  49%|████▉     | 21353/43765 [00:28<00:24, 917.33gene_group/s]Processed:  49%|████▉     | 21445/43765 [00:29<00:24, 917.56gene_group/s]Processed:  49%|████▉     | 21537/43765 [00:29<00:24, 913.54gene_group/s]Processed:  49%|████▉     | 21632/43765 [00:29<00:23, 922.54gene_group/s]Processed:  50%|████▉     | 21725/43765 [00:29<00:23, 919.86gene_group/s]Processed:  50%|████▉     | 21818/43765 [00:29<00:24, 894.60gene_group/s]Processed:  50%|█████     | 21912/43765 [00:29<00:24, 900.67gene_group/s]Processed:  50%|█████     | 22007/43765 [00:29<00:23, 913.84gene_group/s]Processed:  50%|█████     | 22100/43765 [00:29<00:23, 915.97gene_group/s]Processed:  51%|█████     | 22192/43765 [00:29<00:23, 913.75gene_group/s]Processed:  51%|█████     | 22284/43765 [00:29<00:23, 911.70gene_group/s]Processed:  51%|█████     | 22376/43765 [00:30<00:23, 896.10gene_group/s]Processed:  51%|█████▏    | 22466/43765 [00:30<00:23, 891.44gene_group/s]Processed:  52%|█████▏    | 22556/43765 [00:30<00:23, 890.31gene_group/s]Processed:  52%|█████▏    | 22646/43765 [00:30<00:23, 892.13gene_group/s]Processed:  52%|█████▏    | 22736/43765 [00:30<00:23, 884.86gene_group/s]Processed:  52%|█████▏    | 22829/43765 [00:30<00:23, 896.16gene_group/s]Processed:  52%|█████▏    | 22920/43765 [00:30<00:23, 894.10gene_group/s]Processed:  53%|█████▎    | 23018/43765 [00:30<00:22, 919.29gene_group/s]Processed:  53%|█████▎    | 23116/43765 [00:30<00:22, 936.24gene_group/s]Processed:  53%|█████▎    | 23210/43765 [00:30<00:21, 936.39gene_group/s]Processed:  53%|█████▎    | 23304/43765 [00:31<00:21, 936.06gene_group/s]Processed:  53%|█████▎    | 23398/43765 [00:31<00:22, 918.00gene_group/s]Processed:  54%|█████▎    | 23490/43765 [00:31<00:22, 897.68gene_group/s]Processed:  54%|█████▍    | 23585/43765 [00:31<00:22, 900.55gene_group/s]Processed:  54%|█████▍    | 23679/43765 [00:31<00:22, 908.30gene_group/s]Processed:  54%|█████▍    | 23770/43765 [00:32<00:59, 335.75gene_group/s]Processed:  55%|█████▍    | 23859/43765 [00:32<00:48, 409.31gene_group/s]Processed:  55%|█████▍    | 23953/43765 [00:32<00:40, 493.69gene_group/s]Processed:  55%|█████▍    | 24047/43765 [00:32<00:34, 576.28gene_group/s]Processed:  55%|█████▌    | 24141/43765 [00:32<00:30, 651.80gene_group/s]Processed:  55%|█████▌    | 24237/43765 [00:32<00:27, 720.49gene_group/s]Processed:  56%|█████▌    | 24328/43765 [00:32<00:25, 761.99gene_group/s]Processed:  56%|█████▌    | 24427/43765 [00:32<00:23, 818.02gene_group/s]Processed:  56%|█████▌    | 24521/43765 [00:32<00:22, 849.97gene_group/s]Processed:  56%|█████▌    | 24614/43765 [00:33<00:21, 871.95gene_group/s]Processed:  56%|█████▋    | 24707/43765 [00:33<00:21, 870.08gene_group/s]Processed:  57%|█████▋    | 24798/43765 [00:33<00:21, 877.46gene_group/s]Processed:  57%|█████▋    | 24889/43765 [00:33<00:21, 871.74gene_group/s]Processed:  57%|█████▋    | 24978/43765 [00:33<00:21, 870.33gene_group/s]Processed:  57%|█████▋    | 25067/43765 [00:33<00:21, 863.80gene_group/s]Processed:  57%|█████▋    | 25155/43765 [00:33<00:21, 867.08gene_group/s]Processed:  58%|█████▊    | 25249/43765 [00:33<00:20, 883.78gene_group/s]Processed:  58%|█████▊    | 25342/43765 [00:33<00:20, 894.09gene_group/s]Processed:  58%|█████▊    | 25437/43765 [00:34<00:20, 908.57gene_group/s]Processed:  58%|█████▊    | 25529/43765 [00:34<00:20, 900.95gene_group/s]Processed:  59%|█████▊    | 25620/43765 [00:34<00:20, 901.27gene_group/s]Processed:  59%|█████▊    | 25711/43765 [00:34<00:20, 897.38gene_group/s]Processed:  59%|█████▉    | 25801/43765 [00:34<00:20, 890.28gene_group/s]Processed:  59%|█████▉    | 25892/43765 [00:34<00:19, 895.23gene_group/s]Processed:  59%|█████▉    | 25982/43765 [00:34<00:19, 892.84gene_group/s]Processed:  60%|█████▉    | 26072/43765 [00:34<00:19, 888.86gene_group/s]Processed:  60%|█████▉    | 26161/43765 [00:34<00:19, 887.20gene_group/s]Processed:  60%|█████▉    | 26251/43765 [00:34<00:19, 888.12gene_group/s]Processed:  60%|██████    | 26344/43765 [00:35<00:19, 898.37gene_group/s]Processed:  60%|██████    | 26437/43765 [00:35<00:19, 906.90gene_group/s]Processed:  61%|██████    | 26528/43765 [00:35<00:19, 905.38gene_group/s]Processed:  61%|██████    | 26619/43765 [00:35<00:19, 900.26gene_group/s]Processed:  61%|██████    | 26710/43765 [00:35<00:18, 901.12gene_group/s]Processed:  61%|██████    | 26802/43765 [00:35<00:18, 893.20gene_group/s]Processed:  61%|██████▏   | 26892/43765 [00:35<00:19, 879.24gene_group/s]Processed:  62%|██████▏   | 26983/43765 [00:35<00:18, 887.44gene_group/s]Processed:  62%|██████▏   | 27074/43765 [00:35<00:19, 875.10gene_group/s]Processed:  62%|██████▏   | 27170/43765 [00:35<00:18, 898.02gene_group/s]Processed:  62%|██████▏   | 27260/43765 [00:36<00:18, 893.42gene_group/s]Processed:  62%|██████▏   | 27350/43765 [00:36<00:18, 870.23gene_group/s]Processed:  63%|██████▎   | 27439/43765 [00:36<00:18, 874.73gene_group/s]Processed:  63%|██████▎   | 27527/43765 [00:36<00:19, 848.72gene_group/s]Processed:  63%|██████▎   | 27613/43765 [00:36<00:18, 851.64gene_group/s]Processed:  63%|██████▎   | 27700/43765 [00:36<00:18, 855.46gene_group/s]Processed:  64%|██████▎   | 27791/43765 [00:36<00:18, 862.84gene_group/s]Processed:  64%|██████▎   | 27891/43765 [00:36<00:17, 902.56gene_group/s]Processed:  64%|██████▍   | 27982/43765 [00:36<00:17, 900.75gene_group/s]Processed:  64%|██████▍   | 28074/43765 [00:36<00:17, 904.65gene_group/s]Processed:  64%|██████▍   | 28165/43765 [00:37<00:17, 901.45gene_group/s]Processed:  65%|██████▍   | 28257/43765 [00:37<00:17, 900.66gene_group/s]Processed:  65%|██████▍   | 28348/43765 [00:37<00:17, 892.11gene_group/s]Processed:  65%|██████▍   | 28442/43765 [00:37<00:16, 903.16gene_group/s]Processed:  65%|██████▌   | 28538/43765 [00:37<00:16, 915.92gene_group/s]Processed:  65%|██████▌   | 28634/43765 [00:37<00:16, 927.70gene_group/s]Processed:  66%|██████▌   | 28727/43765 [00:37<00:16, 896.15gene_group/s]Processed:  66%|██████▌   | 28817/43765 [00:37<00:17, 871.78gene_group/s]Processed:  66%|██████▌   | 28905/43765 [00:37<00:17, 858.87gene_group/s]Processed:  66%|██████▌   | 28994/43765 [00:38<00:17, 866.21gene_group/s]Processed:  66%|██████▋   | 29083/43765 [00:38<00:16, 867.61gene_group/s]Processed:  67%|██████▋   | 29175/43765 [00:38<00:16, 874.14gene_group/s]Processed:  67%|██████▋   | 29263/43765 [00:38<00:16, 874.67gene_group/s]Processed:  67%|██████▋   | 29354/43765 [00:38<00:16, 876.43gene_group/s]Processed:  67%|██████▋   | 29442/43765 [00:38<00:16, 859.46gene_group/s]Processed:  67%|██████▋   | 29529/43765 [00:38<00:16, 855.81gene_group/s]Processed:  68%|██████▊   | 29615/43765 [00:38<00:16, 850.48gene_group/s]Processed:  68%|██████▊   | 29707/43765 [00:38<00:16, 868.38gene_group/s]Processed:  68%|██████▊   | 29794/43765 [00:38<00:16, 862.33gene_group/s]Processed:  68%|██████▊   | 29885/43765 [00:39<00:15, 869.21gene_group/s]Processed:  68%|██████▊   | 29976/43765 [00:39<00:15, 878.40gene_group/s]Processed:  69%|██████▊   | 30068/43765 [00:39<00:15, 888.83gene_group/s]Processed:  69%|██████▉   | 30159/43765 [00:39<00:15, 894.20gene_group/s]Processed:  69%|██████▉   | 30249/43765 [00:39<00:15, 888.74gene_group/s]Processed:  69%|██████▉   | 30339/43765 [00:39<00:15, 892.05gene_group/s]Processed:  70%|██████▉   | 30431/43765 [00:39<00:14, 900.08gene_group/s]Processed:  70%|██████▉   | 30527/43765 [00:39<00:14, 913.85gene_group/s]Processed:  70%|██████▉   | 30619/43765 [00:39<00:14, 908.15gene_group/s]Processed:  70%|███████   | 30716/43765 [00:39<00:14, 924.75gene_group/s]Processed:  70%|███████   | 30816/43765 [00:40<00:13, 944.95gene_group/s]Processed:  71%|███████   | 30911/43765 [00:40<00:13, 944.98gene_group/s]Processed:  71%|███████   | 31006/43765 [00:40<00:13, 938.37gene_group/s]Processed:  71%|███████   | 31100/43765 [00:40<00:13, 931.99gene_group/s]Processed:  71%|███████▏  | 31197/43765 [00:40<00:13, 941.30gene_group/s]Processed:  72%|███████▏  | 31292/43765 [00:40<00:13, 935.16gene_group/s]Processed:  72%|███████▏  | 31386/43765 [00:40<00:13, 918.73gene_group/s]Processed:  72%|███████▏  | 31479/43765 [00:40<00:13, 918.82gene_group/s]Processed:  72%|███████▏  | 31571/43765 [00:40<00:13, 908.80gene_group/s]Processed:  72%|███████▏  | 31662/43765 [00:40<00:13, 905.94gene_group/s]Processed:  73%|███████▎  | 31754/43765 [00:41<00:13, 902.22gene_group/s]Processed:  73%|███████▎  | 31847/43765 [00:41<00:13, 910.15gene_group/s]Processed:  73%|███████▎  | 31939/43765 [00:41<00:12, 910.89gene_group/s]Processed:  73%|███████▎  | 32032/43765 [00:41<00:12, 916.25gene_group/s]Processed:  73%|███████▎  | 32126/43765 [00:41<00:12, 921.57gene_group/s]Processed:  74%|███████▎  | 32219/43765 [00:41<00:12, 915.42gene_group/s]Processed:  74%|███████▍  | 32311/43765 [00:41<00:12, 914.12gene_group/s]Processed:  74%|███████▍  | 32405/43765 [00:41<00:12, 916.41gene_group/s]Processed:  74%|███████▍  | 32500/43765 [00:41<00:12, 921.51gene_group/s]Processed:  74%|███████▍  | 32593/43765 [00:42<00:12, 921.20gene_group/s]Processed:  75%|███████▍  | 32686/43765 [00:42<00:12, 918.33gene_group/s]Processed:  75%|███████▍  | 32779/43765 [00:42<00:11, 917.33gene_group/s]Processed:  75%|███████▌  | 32872/43765 [00:42<00:11, 919.33gene_group/s]Processed:  75%|███████▌  | 32967/43765 [00:42<00:11, 926.08gene_group/s]Processed:  76%|███████▌  | 33060/43765 [00:42<00:11, 905.54gene_group/s]Processed:  76%|███████▌  | 33151/43765 [00:42<00:11, 896.50gene_group/s]Processed:  76%|███████▌  | 33241/43765 [00:42<00:11, 882.15gene_group/s]Processed:  76%|███████▌  | 33330/43765 [00:42<00:11, 881.74gene_group/s]Processed:  76%|███████▋  | 33420/43765 [00:42<00:11, 885.37gene_group/s]Processed:  77%|███████▋  | 33509/43765 [00:43<00:11, 885.55gene_group/s]Processed:  77%|███████▋  | 33598/43765 [00:43<00:11, 881.23gene_group/s]Processed:  77%|███████▋  | 33687/43765 [00:43<00:35, 282.55gene_group/s]Processed:  77%|███████▋  | 33782/43765 [00:44<00:27, 361.96gene_group/s]Processed:  77%|███████▋  | 33873/43765 [00:44<00:22, 440.66gene_group/s]Processed:  78%|███████▊  | 33958/43765 [00:44<00:19, 509.99gene_group/s]Processed:  78%|███████▊  | 34045/43765 [00:44<00:16, 577.73gene_group/s]Processed:  78%|███████▊  | 34134/43765 [00:44<00:14, 644.26gene_group/s]Processed:  78%|███████▊  | 34218/43765 [00:44<00:13, 688.69gene_group/s]Processed:  78%|███████▊  | 34303/43765 [00:44<00:12, 728.16gene_group/s]Processed:  79%|███████▊  | 34391/43765 [00:44<00:12, 764.93gene_group/s]Processed:  79%|███████▉  | 34482/43765 [00:44<00:11, 803.95gene_group/s]Processed:  79%|███████▉  | 34573/43765 [00:44<00:11, 828.86gene_group/s]Processed:  79%|███████▉  | 34669/43765 [00:45<00:10, 857.93gene_group/s]Processed:  79%|███████▉  | 34765/43765 [00:45<00:10, 885.40gene_group/s]Processed:  80%|███████▉  | 34860/43765 [00:45<00:09, 903.19gene_group/s]Processed:  80%|███████▉  | 34952/43765 [00:45<00:09, 905.82gene_group/s]Processed:  80%|████████  | 35050/43765 [00:45<00:09, 923.21gene_group/s]Processed:  80%|████████  | 35144/43765 [00:45<00:09, 921.02gene_group/s]Processed:  81%|████████  | 35237/43765 [00:45<00:09, 908.94gene_group/s]Processed:  81%|████████  | 35329/43765 [00:45<00:09, 905.84gene_group/s]Processed:  81%|████████  | 35420/43765 [00:45<00:09, 906.30gene_group/s]Processed:  81%|████████  | 35513/43765 [00:45<00:09, 910.38gene_group/s]Processed:  81%|████████▏ | 35609/43765 [00:46<00:08, 924.35gene_group/s]Processed:  82%|████████▏ | 35702/43765 [00:46<00:08, 911.75gene_group/s]Processed:  82%|████████▏ | 35796/43765 [00:46<00:08, 919.98gene_group/s]Processed:  82%|████████▏ | 35889/43765 [00:46<00:08, 918.08gene_group/s]Processed:  82%|████████▏ | 35981/43765 [00:46<00:08, 902.29gene_group/s]Processed:  82%|████████▏ | 36072/43765 [00:46<00:08, 897.98gene_group/s]Processed:  83%|████████▎ | 36162/43765 [00:46<00:08, 890.93gene_group/s]Processed:  83%|████████▎ | 36252/43765 [00:46<00:08, 882.03gene_group/s]Processed:  83%|████████▎ | 36347/43765 [00:46<00:08, 899.67gene_group/s]Processed:  83%|████████▎ | 36438/43765 [00:47<00:08, 901.54gene_group/s]Processed:  83%|████████▎ | 36535/43765 [00:47<00:07, 921.73gene_group/s]Processed:  84%|████████▎ | 36630/43765 [00:47<00:07, 924.36gene_group/s]Processed:  84%|████████▍ | 36727/43765 [00:47<00:07, 935.13gene_group/s]Processed:  84%|████████▍ | 36821/43765 [00:47<00:07, 927.95gene_group/s]Processed:  84%|████████▍ | 36914/43765 [00:47<00:07, 925.64gene_group/s]Processed:  85%|████████▍ | 37007/43765 [00:47<00:07, 912.80gene_group/s]Processed:  85%|████████▍ | 37099/43765 [00:47<00:07, 908.82gene_group/s]Processed:  85%|████████▍ | 37190/43765 [00:47<00:07, 903.11gene_group/s]Processed:  85%|████████▌ | 37284/43765 [00:47<00:07, 905.53gene_group/s]Processed:  85%|████████▌ | 37377/43765 [00:48<00:07, 910.51gene_group/s]Processed:  86%|████████▌ | 37469/43765 [00:48<00:06, 903.53gene_group/s]Processed:  86%|████████▌ | 37560/43765 [00:48<00:06, 896.23gene_group/s]Processed:  86%|████████▌ | 37650/43765 [00:48<00:06, 894.96gene_group/s]Processed:  86%|████████▌ | 37745/43765 [00:48<00:06, 910.07gene_group/s]Processed:  86%|████████▋ | 37837/43765 [00:48<00:06, 910.29gene_group/s]Processed:  87%|████████▋ | 37931/43765 [00:48<00:06, 917.87gene_group/s]Processed:  87%|████████▋ | 38023/43765 [00:48<00:06, 910.32gene_group/s]Processed:  87%|████████▋ | 38115/43765 [00:48<00:06, 896.15gene_group/s]Processed:  87%|████████▋ | 38206/43765 [00:48<00:06, 895.72gene_group/s]Processed:  88%|████████▊ | 38296/43765 [00:49<00:06, 895.47gene_group/s]Processed:  88%|████████▊ | 38386/43765 [00:49<00:06, 891.39gene_group/s]Processed:  88%|████████▊ | 38482/43765 [00:49<00:05, 905.34gene_group/s]Processed:  88%|████████▊ | 38576/43765 [00:49<00:05, 915.35gene_group/s]Processed:  88%|████████▊ | 38668/43765 [00:49<00:05, 889.77gene_group/s]Processed:  89%|████████▊ | 38759/43765 [00:49<00:05, 891.65gene_group/s]Processed:  89%|████████▉ | 38849/43765 [00:49<00:05, 885.68gene_group/s]Processed:  89%|████████▉ | 38940/43765 [00:49<00:05, 887.90gene_group/s]Processed:  89%|████████▉ | 39030/43765 [00:49<00:05, 889.91gene_group/s]Processed:  89%|████████▉ | 39120/43765 [00:49<00:05, 892.17gene_group/s]Processed:  90%|████████▉ | 39215/43765 [00:50<00:05, 901.80gene_group/s]Processed:  90%|████████▉ | 39306/43765 [00:50<00:04, 900.16gene_group/s]Processed:  90%|█████████ | 39398/43765 [00:50<00:04, 905.07gene_group/s]Processed:  90%|█████████ | 39493/43765 [00:50<00:04, 918.08gene_group/s]Processed:  90%|█████████ | 39585/43765 [00:50<00:04, 905.53gene_group/s]Processed:  91%|█████████ | 39677/43765 [00:50<00:04, 908.98gene_group/s]Processed:  91%|█████████ | 39768/43765 [00:50<00:04, 909.18gene_group/s]Processed:  91%|█████████ | 39860/43765 [00:50<00:04, 905.05gene_group/s]Processed:  91%|█████████▏| 39952/43765 [00:50<00:04, 909.20gene_group/s]Processed:  91%|█████████▏| 40043/43765 [00:50<00:04, 904.61gene_group/s]Processed:  92%|█████████▏| 40138/43765 [00:51<00:03, 913.18gene_group/s]Processed:  92%|█████████▏| 40230/43765 [00:51<00:03, 904.32gene_group/s]Processed:  92%|█████████▏| 40321/43765 [00:51<00:03, 902.62gene_group/s]Processed:  92%|█████████▏| 40412/43765 [00:51<00:03, 895.73gene_group/s]Processed:  93%|█████████▎| 40504/43765 [00:51<00:03, 902.73gene_group/s]Processed:  93%|█████████▎| 40595/43765 [00:51<00:03, 900.81gene_group/s]Processed:  93%|█████████▎| 40686/43765 [00:51<00:03, 892.36gene_group/s]Processed:  93%|█████████▎| 40776/43765 [00:51<00:03, 894.22gene_group/s]Processed:  93%|█████████▎| 40868/43765 [00:51<00:03, 897.76gene_group/s]Processed:  94%|█████████▎| 40958/43765 [00:52<00:03, 893.56gene_group/s]Processed:  94%|█████████▍| 41048/43765 [00:52<00:03, 894.41gene_group/s]Processed:  94%|█████████▍| 41139/43765 [00:52<00:02, 897.46gene_group/s]Processed:  94%|█████████▍| 41229/43765 [00:52<00:02, 897.92gene_group/s]Processed:  94%|█████████▍| 41319/43765 [00:52<00:02, 896.28gene_group/s]Processed:  95%|█████████▍| 41410/43765 [00:52<00:02, 893.28gene_group/s]Processed:  95%|█████████▍| 41500/43765 [00:52<00:02, 893.10gene_group/s]Processed:  95%|█████████▌| 41592/43765 [00:52<00:02, 895.67gene_group/s]Processed:  95%|█████████▌| 41682/43765 [00:52<00:02, 879.45gene_group/s]Processed:  95%|█████████▌| 41775/43765 [00:52<00:02, 894.12gene_group/s]Processed:  96%|█████████▌| 41865/43765 [00:53<00:02, 880.52gene_group/s]Processed:  96%|█████████▌| 41957/43765 [00:53<00:02, 890.54gene_group/s]Processed:  96%|█████████▌| 42050/43765 [00:53<00:01, 901.62gene_group/s]Processed:  96%|█████████▋| 42141/43765 [00:53<00:01, 898.43gene_group/s]Processed:  97%|█████████▋| 42234/43765 [00:53<00:01, 904.30gene_group/s]Processed:  97%|█████████▋| 42325/43765 [00:53<00:01, 905.72gene_group/s]Processed:  97%|█████████▋| 42416/43765 [00:53<00:01, 898.90gene_group/s]Processed:  97%|█████████▋| 42507/43765 [00:53<00:01, 901.32gene_group/s]Processed:  97%|█████████▋| 42598/43765 [00:53<00:01, 897.63gene_group/s]Processed:  98%|█████████▊| 42688/43765 [00:53<00:01, 887.70gene_group/s]Processed:  98%|█████████▊| 42780/43765 [00:54<00:01, 896.34gene_group/s]Processed:  98%|█████████▊| 42873/43765 [00:54<00:00, 900.71gene_group/s]Processed:  98%|█████████▊| 42964/43765 [00:54<00:00, 893.13gene_group/s]Processed:  98%|█████████▊| 43062/43765 [00:54<00:00, 918.66gene_group/s]Processed:  99%|█████████▊| 43154/43765 [00:54<00:00, 913.76gene_group/s]Processed:  99%|█████████▉| 43246/43765 [00:54<00:00, 901.69gene_group/s]Processed:  99%|█████████▉| 43338/43765 [00:54<00:00, 906.15gene_group/s]Processed:  99%|█████████▉| 43436/43765 [00:54<00:00, 925.35gene_group/s]Processed:  99%|█████████▉| 43535/43765 [00:54<00:00, 944.08gene_group/s]Processed: 100%|█████████▉| 43630/43765 [00:54<00:00, 889.73gene_group/s]Processed: 100%|█████████▉| 43720/43765 [00:55<00:00, 858.58gene_group/s]Processed: 100%|██████████| 43765/43765 [00:55<00:00, 793.65gene_group/s]
-Finalising the gene count matrix ...
-Plotting the saturation curve ...
-Generating deduplicated fastq file ...
-Processed: 0Read [00:00, ?Read/s]Processed: 2500.0Read [00:00, 17459.53Read/s]Processed: 30000.0Read [00:00, 139151.33Read/s]Processed: 55000.0Read [00:00, 181291.05Read/s]Processed: 80000.0Read [00:00, 201979.22Read/s]Processed: 105000.0Read [00:00, 214105.48Read/s]Processed: 130000.0Read [00:00, 220304.27Read/s]Processed: 155000.0Read [00:00, 224439.16Read/s]Processed: 180000.0Read [00:00, 227246.74Read/s]Processed: 205000.0Read [00:00, 228656.52Read/s]Processed: 230000.0Read [00:01, 229331.43Read/s]Processed: 255000.0Read [00:01, 231587.35Read/s]Processed: 280000.0Read [00:01, 231861.33Read/s]Processed: 305000.0Read [00:01, 231606.05Read/s]Processed: 330000.0Read [00:01, 232696.61Read/s]Processed: 355000.0Read [00:01, 233266.62Read/s]Processed: 380000.0Read [00:01, 233698.24Read/s]Processed: 405000.0Read [00:01, 235976.15Read/s]Processed: 430000.0Read [00:01, 238407.79Read/s]Processed: 455000.0Read [00:02, 239554.87Read/s]Processed: 480000.0Read [00:02, 240114.25Read/s]Processed: 530000.0Read [00:02, 315024.84Read/s]Processed: 542500.0Read [00:02, 237286.19Read/s]
-03:27:53 PM Tue Sep 03 2024 Gene quantification and UMI deduplication done!
-03:27:53 PM Tue Sep 03 2024 Start isoform identificaiton
-03:27:53 PM Tue Sep 03 2024 find_isoform
---- Start generating read class files ---
-'getOption("repos")' replaces Bioconductor standard repositories, see
-'help("repositories", package = "BiocManager")' for details.
-Replacement repositories:
-    CRAN: https://cran.rstudio.com
-[15:29:45] WARNING: src/learner.cc:553: 
-  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
-  older XGBoost, please export the model by calling `Booster.save_model` from that version
-  first, then load it back in current version. See:
-
-    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
-
-  for more details about differences between saving model and serializing.
-
-[15:29:45] WARNING: src/learner.cc:553: 
-  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
-  older XGBoost, please export the model by calling `Booster.save_model` from that version
-  first, then load it back in current version. See:
-
-    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
-
-  for more details about differences between saving model and serializing.
-
-[15:29:45] WARNING: src/learner.cc:553: 
-  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
-  older XGBoost, please export the model by calling `Booster.save_model` from that version
-  first, then load it back in current version. See:
-
-    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
-
-  for more details about differences between saving model and serializing.
-
-[15:29:45] WARNING: src/learner.cc:553: 
-  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
-  older XGBoost, please export the model by calling `Booster.save_model` from that version
-  first, then load it back in current version. See:
-
-    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
-
-  for more details about differences between saving model and serializing.
-
-[15:36:57] WARNING: src/learner.cc:553: 
-  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
-  older XGBoost, please export the model by calling `Booster.save_model` from that version
-  first, then load it back in current version. See:
-
-    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
-
-  for more details about differences between saving model and serializing.
-
-[15:36:57] WARNING: src/learner.cc:553: 
-  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
-  older XGBoost, please export the model by calling `Booster.save_model` from that version
-  first, then load it back in current version. See:
-
-    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
-
-  for more details about differences between saving model and serializing.
-
-Detected 2 warnings across the samples during read class construction. Access warnings with metadata(bambuOutput)$warnings
---- Start extending annotations ---
-Using a novel discovery rate (NDR) of: 0.155
---- Start isoform quantification ---
---- Finished running Bambu ---
-Import genomic features from the file as a GRanges object ... OK
-Prepare the 'metadata' data frame ... OK
-Make the TxDb object ... OK
-03:39:27 PM Tue Sep 03 2024 Isoform identificaiton done
-#### Realigning deduplicated reads to transcript using minimap2
-03:39:27 PM Tue Sep 03 2024 minimap2_realign
-[M::mm_idx_gen::1.255*1.25] collected minimizers
-[M::mm_idx_gen::1.404*2.77] sorted minimizers
-[M::main::1.412*2.76] loaded/built the index for 31420 target sequence(s)
-[M::mm_mapopt_update::1.561*2.59] mid_occ = 57
-[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 31420
-[M::mm_idx_stat::1.653*2.50] distinct minimizers: 10186679 (62.76% are singletons); average occurrences: 1.749; average spacing: 5.364; total length: 95555821
-[M::worker_pipeline::18.984*10.95] mapped 444701 sequences
-[M::main] Version: 2.26-r1175
-[M::main] CMD: /users/sparthib/minimap2/minimap2 -ax map-ont -p 0.9 --end-bonus 10 -N 3 -t 20 --seed 2022 /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_A2/transcript_assembly.fa /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10x_D200-EP1-2_A2/matched_reads_dedup.fastq
-[M::main] Real time: 19.053 sec; CPU: 207.851 sec; Peak RSS: 2.166 GB
-[bam_sort_core] merging from 1 files and 1 in-memory blocks...
-#### Generating transcript count matrix
-03:40:12 PM Tue Sep 03 2024 quantify transcripts 
-Found realignment file(s): 	realign2transcript.bam
-	Counter({'no_good_match': 172565, 'unmapped': 155111, 'counted_reads': 106825, 'not_enough_coverage': 10200})
-shared splice chain: {'ENSG00000276766.1', 'ENSG00000274359.1', 'ENSG00000276220.1', 'ENSG00000273642.1'}
-(77309, 77534, 77609, 80353, 80431, 81230)
-shared splice chain: {'ENSG00000274626.3', 'ENSG00000274005.3', 'ENSG00000277359.3', 'ENSG00000275323.3', 'ENSG00000278081.3'}
-(175870, 176141, 176263, 176468, 176591, 181257, 181444, 182379)
-There were 50 or more warnings (use warnings() to see the first 50)
-R version 4.4.1 Patched (2024-08-21 r87049)
-Platform: x86_64-conda-linux-gnu
-Running under: Rocky Linux 9.4 (Blue Onyx)
-
-Matrix products: default
-BLAS:   /jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/lib/libRblas.so 
-LAPACK: /jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/lib/libRlapack.so;  LAPACK version 3.12.0
-
-locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-
-time zone: US/Eastern
-tzcode source: system (glibc)
-
-attached base packages:
-[1] stats4    stats     graphics  grDevices utils     datasets  methods  
-[8] base     
-
-other attached packages:
-[1] IRanges_2.39.2      S4Vectors_0.43.2    BiocGenerics_0.51.0
-[4] sessioninfo_1.2.2   FLAMES_1.11.1      
-
-loaded via a namespace (and not attached):
-  [1] BiocIO_1.15.2               bitops_1.0-8               
-  [3] filelock_1.0.3              tibble_3.2.1               
-  [5] R.oo_1.26.0                 basilisk.utils_1.17.2      
-  [7] bambu_3.7.0                 graph_1.83.0               
-  [9] XML_3.99-0.17               rpart_4.1.23               
- [11] httr2_1.0.3                 lifecycle_1.0.4            
- [13] edgeR_4.3.14                doParallel_1.0.17          
- [15] globals_0.16.3              lattice_0.22-6             
- [17] ensembldb_2.29.1            OrganismDbi_1.47.0         
- [19] MultiAssayExperiment_1.31.5 backports_1.5.0            
- [21] magrittr_2.0.3              limma_3.61.9               
- [23] Hmisc_5.1-3                 rmarkdown_2.28             
- [25] yaml_2.3.10                 metapod_1.13.0             
- [27] reticulate_1.38.0           ggbio_1.53.0               
- [29] cowplot_1.1.3               DBI_1.2.3                  
- [31] RColorBrewer_1.1-3          abind_1.4-5                
- [33] zlibbioc_1.51.1             GenomicRanges_1.57.1       
- [35] purrr_1.0.2                 R.utils_2.12.3             
- [37] AnnotationFilter_1.29.0     biovizBase_1.53.0          
- [39] RCurl_1.98-1.16             nnet_7.3-19                
- [41] rappdirs_0.3.3              VariantAnnotation_1.51.0   
- [43] circlize_0.4.16             GenomeInfoDbData_1.2.12    
- [45] ggrepel_0.9.5               irlba_2.3.5.1              
- [47] listenv_0.9.1               dqrng_0.4.1                
- [49] parallelly_1.38.0           DelayedMatrixStats_1.27.3  
- [51] codetools_0.2-20            DropletUtils_1.25.2        
- [53] DelayedArray_0.31.11        xml2_1.3.6                 
- [55] scuttle_1.15.4              tidyselect_1.2.1           
- [57] shape_1.4.6.1               UCSC.utils_1.1.0           
- [59] viridis_0.6.5               ScaledMatrix_1.13.0        
- [61] BiocFileCache_2.13.0        matrixStats_1.3.0          
- [63] base64enc_0.1-3             GenomicAlignments_1.41.0   
- [65] jsonlite_1.8.8              BiocNeighbors_1.23.0       
- [67] GetoptLong_1.0.5            Formula_1.2-5              
- [69] scater_1.33.4               iterators_1.0.14           
- [71] foreach_1.5.2               progress_1.2.3             
- [73] tools_4.4.1                 Rcpp_1.0.13                
- [75] glue_1.7.0                  gridExtra_2.3              
- [77] SparseArray_1.5.31          xfun_0.47                  
- [79] MatrixGenerics_1.17.0       GenomeInfoDb_1.41.1        
- [81] dplyr_1.1.4                 HDF5Array_1.33.6           
- [83] withr_3.0.1                 BiocManager_1.30.25        
- [85] fastmap_1.2.0               GGally_2.2.1               
- [87] basilisk_1.17.2             bluster_1.15.0             
- [89] rhdf5filters_1.17.0         fansi_1.0.6                
- [91] rsvd_1.0.5                  digest_0.6.37              
- [93] R6_2.5.1                    colorspace_2.1-1           
- [95] dichromat_2.0-0.1           biomaRt_2.61.3             
- [97] RSQLite_2.3.7               R.methodsS3_1.8.2          
- [99] utf8_1.2.4                  tidyr_1.3.1                
-[101] generics_0.1.3              data.table_1.16.0          
-[103] rtracklayer_1.65.0          prettyunits_1.2.0          
-[105] httr_1.4.7                  htmlwidgets_1.6.4          
-[107] S4Arrays_1.5.7              ggstats_0.6.0              
-[109] pkgconfig_2.0.3             gtable_0.3.5               
-[111] blob_1.2.4                  ComplexHeatmap_2.21.0      
-[113] SingleCellExperiment_1.27.2 XVector_0.45.0             
-[115] htmltools_0.5.8.1           RBGL_1.81.0                
-[117] ProtGenerics_1.37.1         clue_0.3-65                
-[119] scales_1.3.0                Biobase_2.65.1             
-[121] png_0.1-8                   scran_1.33.1               
-[123] knitr_1.48                  rstudioapi_0.16.0          
-[125] reshape2_1.4.4              rjson_0.2.22               
-[127] checkmate_2.3.2             curl_5.2.2                 
-[129] cachem_1.1.0                rhdf5_2.49.0               
-[131] GlobalOptions_0.1.2         stringr_1.5.1              
-[133] vipor_0.4.7                 parallel_4.4.1             
-[135] foreign_0.8-87              AnnotationDbi_1.67.0       
-[137] restfulr_0.0.15             pillar_1.9.0               
-[139] grid_4.4.1                  vctrs_0.6.5                
-[141] BiocSingular_1.21.2         dbplyr_2.5.0               
-[143] beachmat_2.21.5             cluster_2.1.6              
-[145] beeswarm_0.4.0              htmlTable_2.4.3            
-[147] evaluate_0.24.0             GenomicFeatures_1.57.0     
-[149] cli_3.6.3                   locfit_1.5-9.10            
-[151] compiler_4.4.1              Rsamtools_2.21.1           
-[153] rlang_1.1.4                 crayon_1.5.3               
-[155] ggbeeswarm_0.7.2            plyr_1.8.9                 
-[157] stringi_1.8.4               viridisLite_0.4.2          
-[159] BiocParallel_1.39.0         txdbmaker_1.1.1            
-[161] munsell_0.5.1               Biostrings_2.73.1          
-[163] lazyeval_0.2.2              Matrix_1.7-0               
-[165] dir.expiry_1.13.0           BSgenome_1.73.0            
-[167] hms_1.1.3                   sparseMatrixStats_1.17.2   
-[169] bit64_4.0.5                 future_1.34.0              
-[171] ggplot2_3.5.1               Rhdf5lib_1.27.0            
-[173] KEGGREST_1.45.1             statmod_1.5.0              
-[175] SummarizedExperiment_1.35.1 igraph_2.0.3               
-[177] memoise_2.0.1               bit_4.0.5                  
-[179] xgboost_1.7.8.1            
+Loading LIBD SLURM module for samtools/1.18
 **** Job ends ****
-2024-09-03 15:42:10
+2024-09-11 12:52:49
