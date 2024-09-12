@@ -2,14 +2,14 @@
 
 #SBATCH -p shared
 #SBATCH --nodes=1
-#SBATCH --mem=100G
-#SBATCH -c 20
+#SBATCH --mem=30G
+#SBATCH -c 10
 #SBATCH --job-name=minIONQC
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/minionqc/minIONQC.%a.txt
 #SBATCH -e logs/minionqc/minIONQC.%a.txt
-#SBATCH --array=1,3
+#SBATCH --array=1-12
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/single_cell.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
