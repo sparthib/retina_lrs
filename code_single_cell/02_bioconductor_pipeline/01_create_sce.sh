@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=20G
-#SBATCH -c 5
+#SBATCH --mem=100G
+#SBATCH -c 20
 #SBATCH --job-name=create_sce
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
