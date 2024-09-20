@@ -18,13 +18,13 @@ if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
 
   #UNCOMMENT IF YOU WANT TO RUN PIPELINE FROM SCRATCH. 
   #CHECK CONFIG FILE TO MAKE SURE YOU HAVE SET THE RIGHT PARAMETERS BEFORE STARTING THE PIPELINE.
-  # sce <- sc_long_pipeline(
-  #   annotation = annot, fastq = fastq,
-  #   genome_fa = genome_fa,
-  #   outdir = outdir,
-  #   config_file = config_file,
-  #   expect_cell_number = 2000)
-  #saveRDS(sce, file = paste0(outdir, "/sce.rds"))
+  sce <- sc_long_pipeline(
+    annotation = annot, fastq = fastq,
+    genome_fa = genome_fa,
+    outdir = outdir,
+    config_file = config_file,
+    expect_cell_number = 2000)
+  saveRDS(sce, file = paste0(outdir, "/sce.rds"))
   
   #below is given all required files post isoform quantification
   #already exist in the output directory
