@@ -1,0 +1,18 @@
+10x_D200-EP1-2_B2
+Loading conda_R/4.3
+To install colorout use: remotes::install_github("jalvesaq/colorout")
+INFO [2024-09-12 11:47:20] Loading input file: /dcs04/hicks/data/sparthib/CK_10x_D200-hRO_03252024/10x_D200-EP1-2_B2/20240327_1354_2C_PAU99314_c23e41c7/sequencing_summary_PAU99314_c23e41c7_0fadc3ea.txt
+INFO [2024-09-12 11:47:25] PromethION flowcell detected
+INFO [2024-09-12 11:48:13] 20240327_1354_2C_PAU99314_c23e41c7: creating output directory:/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_minion_qc_output/10x_D200-EP1-2_B2/20240327_1354_2C_PAU99314_c23e41c7
+INFO [2024-09-12 11:48:13] 20240327_1354_2C_PAU99314_c23e41c7: summarising input file for flowcell
+INFO [2024-09-12 11:48:23] 20240327_1354_2C_PAU99314_c23e41c7: plotting length histogram
+INFO [2024-09-12 11:48:34] 20240327_1354_2C_PAU99314_c23e41c7: plotting mean Q score histogram
+INFO [2024-09-12 11:48:42] 20240327_1354_2C_PAU99314_c23e41c7: plotting flowcell yield over time
+INFO [2024-09-12 11:49:20] 20240327_1354_2C_PAU99314_c23e41c7: plotting flowcell yield by read length
+INFO [2024-09-12 11:50:03] 20240327_1354_2C_PAU99314_c23e41c7: plotting sequence length over time
+INFO [2024-09-12 11:52:17] 20240327_1354_2C_PAU99314_c23e41c7: plotting Q score over time
+INFO [2024-09-12 11:54:43] 20240327_1354_2C_PAU99314_c23e41c7: plotting reads per hour
+INFO [2024-09-12 11:55:10] 20240327_1354_2C_PAU99314_c23e41c7: plotting flowcell channels summary histograms
+INFO [2024-09-12 11:55:16] 20240327_1354_2C_PAU99314_c23e41c7: plotting physical overview of output per channel
+**** Job ends ****
+2024-09-12 11:55:18

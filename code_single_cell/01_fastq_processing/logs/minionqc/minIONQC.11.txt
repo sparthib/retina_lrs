@@ -1,0 +1,14 @@
+10x_D200-EP1-2_B1
+Loading conda_R/4.3
+To install colorout use: remotes::install_github("jalvesaq/colorout")
+INFO [2024-09-12 11:47:20] Loading input file: /dcs04/hicks/data/sparthib/CK_10x_D200-hRO_03252024/10x_D200-EP1-2_B1/20240325_1526_2C_PAU99314_c0de87df/sequencing_summary_PAU99314_c0de87df_bc9a9e0f.txt
+INFO [2024-09-12 11:51:13] PromethION flowcell detected
+INFO [2024-09-12 12:21:28] 20240325_1526_2C_PAU99314_c0de87df: creating output directory:/dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_minion_qc_output/10x_D200-EP1-2_B1/20240325_1526_2C_PAU99314_c0de87df
+INFO [2024-09-12 12:21:28] 20240325_1526_2C_PAU99314_c0de87df: summarising input file for flowcell
+INFO [2024-09-12 12:29:54] 20240325_1526_2C_PAU99314_c0de87df: plotting length histogram
+INFO [2024-09-12 12:34:21] 20240325_1526_2C_PAU99314_c0de87df: plotting mean Q score histogram
+INFO [2024-09-12 12:38:49] 20240325_1526_2C_PAU99314_c0de87df: plotting flowcell yield over time
+/var/spool/slurm/d/job9655895/slurm_script: line 29: 1998603 Killed                  Rscript minion_qc.R -i $guppy_summary_file -o $minion_qc_output -p ${SLURM_CPUS_PER_TASK}
+**** Job ends ****
+2024-09-12 12:50:56
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=9655895.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
