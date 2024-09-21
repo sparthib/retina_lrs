@@ -7,6 +7,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/flames/flames.downsampled.txt
 #SBATCH -e logs/flames/flames.downsampled.txt
+#SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
@@ -16,15 +17,15 @@ echo "User: ${USER}"
 echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
+echo "Array task ID: ${SLURM_ARRAY_TASK_ID}"
 
+CONFIG=/users/sparthib/retina_lrs/raw_data/single_cell.config
+sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
+num_cells=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $5}' $CONFIG)
+path=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
+seq_sum=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $4}' $CONFIG)
+echo $sample
 
-# CONFIG=/users/sparthib/retina_lrs/raw_data/single_cell.config
-# sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-# num_cells=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $5}' $CONFIG)
-# path=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
-# seq_sum=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $4}' $CONFIG)
-# echo $sample
-sample="10x_D100-EP1_A1_downsampled"
 
 # fastq files have to unzipped and in the flames output directory folder named "matched_reads.fastq"
 #sce pipeline failed because it didn't find the matched_reads.fastq file

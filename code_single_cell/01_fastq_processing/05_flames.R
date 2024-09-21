@@ -3,16 +3,16 @@ library("sessioninfo")
 
 #have all input files uncompressed (Related to this issue: https://github.com/mritchielab/FLAMES/issues/31)
 sample <- commandArgs(trailingOnly = TRUE)
-fastq <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample, "/matched_reads.fastq")
+fastq <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/", sample, "/matched_reads.fastq")
 genome_fa <- file.path("/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa")
 annot <- file.path("/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf")
 minimap_path <- file.path("/users/sparthib/minimap2")
 # genome_bam <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/", 
 #                      sample, "_primary_over_30_chr_only_sorted.bam")
 
-outdir <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", sample)
-config_dir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config")
-config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/config/full_pipeline.json")
+outdir <- paste0("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/", sample)
+config_dir <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/config")
+config_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/config/full_pipeline.json")
 
 if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
 
@@ -28,9 +28,9 @@ if (!any(is.na(sys_which(c("minimap2", "k8"))))) {
   
   #below is given all required files post isoform quantification
   #already exist in the output directory
-  sce <- create_sce_from_dir(outdir, annotation = annot)
-  saveRDS(sce, file = paste0(outdir, "/sce.rds"))
-  
+  # sce <- create_sce_from_dir(outdir, annotation = annot)
+  # saveRDS(sce, file = paste0(outdir, "/sce.rds"))
+  # 
   
 }
 ##TIPS:
