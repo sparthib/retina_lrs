@@ -8,8 +8,8 @@ parser.add_argument("output_bam", help="Output BAM file with tags added")
 args = parser.parse_args()
 
 # Open the BAM file
-input_bam = "your_input.bam"  # Replace with your input BAM file path
-output_bam = "output_with_tags.bam"  # Replace with your desired output BAM file path
+input_bam = args.input_bam
+output_bam = args.output_bam  
 
 # Open the input BAM file in read mode
 bamfile = pysam.AlignmentFile(input_bam, "rb")
