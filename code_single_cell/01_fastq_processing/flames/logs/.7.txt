@@ -1,0 +1,21 @@
+**** Job starts ****
+2024-08-06 23:05:15
+**** JHPCE info ****
+User: sparthib
+Job id: 8996144
+Job name: flames
+Node name: compute-091
+Task id: 7
+10X_D200-EP1-1_B1
+ln: failed to create symbolic link '/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/10X_D200-EP1-1_B1/matched_reads.fastq': File exists
+Loading conda_R/4.4.x
+To install colorout use: remotes::install_github("jalvesaq/colorout")
+Registered S3 method overwritten by 'GGally':
+  method from   
+  +.gg   ggplot2
+Error in check_arguments(annotation, fastq, genome_bam, outdir, genome_fa,  : 
+  Make sure /dcs04/hicks/data/sparthib/retina_single_cell_lrs/03_blaze_processed/raw/high_sensitivity//10X_D200-EP1-1_B1_matched_reads.fastq exists.
+Calls: sc_long_pipeline -> check_arguments
+Execution halted
+**** Job ends ****
+2024-08-06 23:26:06

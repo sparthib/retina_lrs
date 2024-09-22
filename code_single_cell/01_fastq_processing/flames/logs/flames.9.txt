@@ -1,0 +1,12 @@
+**** Job starts ****
+2024-09-11 12:52:34
+**** JHPCE info ****
+User: sparthib
+Job id: 9648684
+Job name: flames
+Node name: compute-149
+Task id: 9
+10x_D200-EP1-2_A1
+Loading LIBD SLURM module for samtools/1.18
+**** Job ends ****
+2024-09-11 12:58:46
