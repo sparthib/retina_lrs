@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH -p shared
-#SBATCH --mem=150G
-#SBATCH --job-name=flames
+#SBATCH --mem=100G
+#SBATCH --job-name=add_barcode
 #SBATCH -c 20
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/flames/flames_min_count2.%a.txt
-#SBATCH -e logs/flames/flames_min_count2.%a.txt
+#SBATCH -o logs/add_barcode.%a.txt
+#SBATCH -e logs/add_barcode.%a.txt
 #SBATCH --array=1-12
 #SBATCH --time=7-00:00:00
 
@@ -30,7 +30,7 @@ input_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/g
 output_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_with_tags.bam
 
 ml load python/3.10.13
-python3 add_tags_to_bam.py your_input.bam output_with_tags.bam
+python3 01_add_barcode_tags.py your_input.bam output_with_tags.bam
 
 
 
