@@ -30,7 +30,7 @@ input_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/g
 output_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_with_tags.bam
 
 ml load python/3.10.13
-python3 01_add_barcode_tags.py your_input.bam output_with_tags.bam
+python3 01_add_barcode_tags.py $input_bam $output_bam
 
 
 
