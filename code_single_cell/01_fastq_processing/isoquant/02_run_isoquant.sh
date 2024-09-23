@@ -36,16 +36,15 @@ BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz
 
-
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/quantification_alternatives/01_IsoQuant/$sample
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py -d ont --bam ${BAM_FOLDER}/${sample}_with_tags.bam \
 --reference $REFERENCE_FASTA --genedb $REFERENCE_GTF --complete_genedb \
 --output $OUTPUT_FOLDER -t ${SLURM_CPUS_PER_TASK} \
---sqanti_output --check_canonical --count_exons --bam_tags \
+--sqanti_output --check_canonical --count_exons --bam_tags CB \
 --model_construction_strategy default_ont --report_canonical auto --read_group tag:CB
-  
+
 conda deactivate
 
 echo "**** Job ends ****"
