@@ -39,7 +39,7 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/quantification_alternatives/01_IsoQuant/$sample
 mkdir -p $OUTPUT_FOLDER
 
-isoquant.py -d ont --bam ${BAM_FOLDER}/${sample}_with_tags.bam \
+isoquant.py -d ont --bam ${BAM_FOLDER}/${sample}_with_tags_sorted.bam \
 --reference $REFERENCE_FASTA --genedb $REFERENCE_GTF --complete_genedb \
 --output $OUTPUT_FOLDER -t ${SLURM_CPUS_PER_TASK} \
 --sqanti_output --check_canonical --count_exons --bam_tags CB \
