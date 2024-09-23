@@ -42,7 +42,7 @@ mkdir -p $OUTPUT_FOLDER
 
 isoquant.py -d ont --reference $REFERENCE_FASTA --complete_genedb --genedb $REFERENCE_GTF \
 --bam ${BAM_FOLDER}/${sample}_with_tags.bam \
---sqanti_output --check_canonical --count_exons --bam_tags \
+--sqanti_output --check_canonical --count_exons \
 --genedb_output --output $OUTPUT_FOLDER -t ${SLURM_CPUS_PER_TASK} \
 --model_construction_strategy default_ont --report_canonical auto --read_group tag:CB
   
