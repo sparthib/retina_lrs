@@ -26,9 +26,11 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 source activate isoquant 
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
+CONFIG=/users/sparthib/retina_lrs/raw_data/single_cell.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-echo "${sample}"
+echo $sample
+
+
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only
 
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz
@@ -41,7 +43,7 @@ mkdir -p $OUTPUT_FOLDER
 isoquant.py -d ont --reference $REFERENCE_FASTA --complete_genedb --genedb $REFERENCE_GTF \
 --bam ${BAM_FOLDER}/${sample}_with_tags.bam \
 --sqanti_output --check_canonical --count_exons --bam_tags \
---genedb_output --output $OUTPUT_FOLDER -t ${SLURM_CPUS_PER_TASK}  \
+--genedb_output --output $OUTPUT_FOLDER -t ${SLURM_CPUS_PER_TASK} \
 --model_construction_strategy default_ont --report_canonical auto --read_group tag:CB
   
 conda deactivate
