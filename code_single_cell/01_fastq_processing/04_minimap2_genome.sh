@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/minimap2/genome/genome.%a.txt
 #SBATCH -e logs/minimap2/genome/genome.%a.txt
-#SBATCH --array=1-12
+#SBATCH --array=5
 
 
 echo "**** Job starts ****"
@@ -45,9 +45,9 @@ rm ${SAM_FOLDER}/${sample}_stranded.sam
 ./minimap2 -ax splice -y --secondary=no -t ${SLURM_CPUS_PER_TASK} $REFERENCE_FASTA $input_fastq > ${SAM_FOLDER}/${sample}.sam
 
 
-# remove older bam version
-rm ${BAM_FOLDER}/${sample}_stranded_sorted.bam
-rm ${BAM_FOLDER}/${sample}_stranded_sorted.bam.bai
+# # remove older bam version
+# rm ${BAM_FOLDER}/${sample}_stranded_sorted.bam
+# rm ${BAM_FOLDER}/${sample}_stranded_sorted.bam.bai
 
 ml load samtools
 
