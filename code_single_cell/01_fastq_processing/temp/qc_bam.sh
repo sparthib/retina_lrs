@@ -10,7 +10,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/minimap2/genome/primary_over_30/log.%a.txt
 #SBATCH -e logs/minimap2/genome/primary_over_30/log.%a.txt
-#SBATCH --array=1-12
+#SBATCH --array=5
 #SBATCH -t 4-00:00:00
 
 echo "**** Job starts ****"
