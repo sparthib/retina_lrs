@@ -26,11 +26,10 @@ path=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
 seq_sum=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $4}' $CONFIG)
 echo $sample
 
-# input_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_primary_over_30_chr_only_sorted.bam
-# output_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_with_tags.bam
-
-# ml load python/3.10.13
-# python3 01_add_barcode_tags.py $input_bam $output_bam
+input_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_primary_over_30_chr_only_sorted.bam
+output_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_with_tags.bam
+ml load python/3.10.13
+python3 01_add_barcode_tags.py $input_bam $output_bam
 
 
 #sort tagged file 
