@@ -28,6 +28,7 @@ echo $sample
 
 input_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/${sample}_primary_over_30_chr_only_sorted.bam
 output_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/${sample}_deduped.bam
+rm $output_bam
 ml load python/3.10.13
 python3 01_add_barcode_tags.py $input_bam $output_bam
 
@@ -36,6 +37,9 @@ python3 01_add_barcode_tags.py $input_bam $output_bam
 input_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/${sample}_deduped.bam
 output_bam=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/${sample}_deduped_sorted.bam
 output_bai=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/${sample}_deduped_sorted.bam.bai
+rm $output_bam
+rm $output_bai
+
 ml load samtools
 
 samtools sort $input_bam -o $output_bam
