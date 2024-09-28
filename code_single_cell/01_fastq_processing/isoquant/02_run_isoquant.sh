@@ -41,7 +41,6 @@ REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.c
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz
 
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/quantification_alternatives/01_IsoQuant/$sample
-rm -r $OUTPUT_FOLDER
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py -d ont --bam $rep1 $rep2 $rep3 $rep4 \
