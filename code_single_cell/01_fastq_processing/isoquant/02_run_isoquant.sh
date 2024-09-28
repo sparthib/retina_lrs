@@ -7,8 +7,8 @@
 #SBATCH --job-name=isoquant
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/isoquant.%a.txt
-#SBATCH -e logs/isoquant.%a.txt
+#SBATCH -o logs/isoquant_sample_wise.%a.txt
+#SBATCH -e logs/isoquant_sample_wise.%a.txt
 #SBATCH --array=1-3
 #SBATCH --time=7-00:00:00
 
