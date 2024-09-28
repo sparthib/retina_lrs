@@ -25,7 +25,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 source activate isoquant 
 
-samples=(10x_D100-EP1  10x_D200-EP1-2 10x_D200-EP1-2)
+samples=("10x_D100-EP1" "10x_D200-EP1-1" "10x_D200-EP1-2")
 sample=${samples[$SLURM_ARRAY_TASK_ID]}
 
 mapfile -t files < <(find "$BAM_FOLDER" -name "${sample}*_deduped_sorted.bam")
