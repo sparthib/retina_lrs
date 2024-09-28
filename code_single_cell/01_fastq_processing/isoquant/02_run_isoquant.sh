@@ -26,7 +26,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 source activate isoquant 
 
 samples=("10x_D100-EP1" "10x_D200-EP1-1" "10x_D200-EP1-2")
-sample=${samples[$SLURM_ARRAY_TASK_ID]}
+sample=${samples[$SLURM_ARRAY_TASK_ID-1]}
 
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged
 
