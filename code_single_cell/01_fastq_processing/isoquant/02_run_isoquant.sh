@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/isoquant.%a.txt
 #SBATCH -e logs/isoquant.%a.txt
-#SBATCH --array=1-12
+#SBATCH --array=1-3
 #SBATCH --time=7-00:00:00
 
 #try running for all chromosomes
@@ -23,13 +23,17 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
-
 source activate isoquant 
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/single_cell.config
-sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-echo $sample
+samples=(10x_D100-EP1  10x_D200-EP1-2 10x_D200-EP1-2)
+sample=${samples[$SLURM_ARRAY_TASK_ID]}
 
+mapfile -t files < <(find "$BAM_FOLDER" -name "${sample}*_deduped_sorted.bam")
+
+rep1="${files[0]}"
+rep2="${files[1]}"
+rep3="${files[2]}"
+rep4="${files[3]}"
 
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged
 
@@ -40,7 +44,7 @@ OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/quantification_a
 rm -r $OUTPUT_FOLDER
 mkdir -p $OUTPUT_FOLDER
 
-isoquant.py -d ont --bam ${BAM_FOLDER}/${sample}_deduped_sorted.bam \
+isoquant.py -d ont --bam rep1 rep2 rep3 rep4 \
 --reference $REFERENCE_FASTA --genedb $REFERENCE_GTF --complete_genedb \
 --output $OUTPUT_FOLDER -t ${SLURM_CPUS_PER_TASK} \
 --sqanti_output --check_canonical --count_exons --bam_tags CB \
