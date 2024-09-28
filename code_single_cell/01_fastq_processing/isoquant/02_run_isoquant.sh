@@ -44,7 +44,7 @@ OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/quantification_a
 rm -r $OUTPUT_FOLDER
 mkdir -p $OUTPUT_FOLDER
 
-isoquant.py -d ont --bam rep1 rep2 rep3 rep4 \
+isoquant.py -d ont --bam $rep1 $rep2 $rep3 $rep4 \
 --reference $REFERENCE_FASTA --genedb $REFERENCE_GTF --complete_genedb \
 --output $OUTPUT_FOLDER -t ${SLURM_CPUS_PER_TASK} \
 --sqanti_output --check_canonical --count_exons --bam_tags CB \
