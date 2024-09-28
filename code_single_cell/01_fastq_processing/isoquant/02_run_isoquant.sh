@@ -28,14 +28,14 @@ source activate isoquant
 samples=("10x_D100-EP1" "10x_D200-EP1-1" "10x_D200-EP1-2")
 sample=${samples[$SLURM_ARRAY_TASK_ID]}
 
+BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged
+
 mapfile -t files < <(find "$BAM_FOLDER" -name "${sample}*_deduped_sorted.bam")
 
 rep1="${files[0]}"
 rep2="${files[1]}"
 rep3="${files[2]}"
 rep4="${files[3]}"
-
-BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged
 
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf.gz
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa.gz
