@@ -43,7 +43,7 @@ source activate /users/sparthib/.conda/envs/SQANTI3
 SQANTI_DIR=~/SQANTI3-5.2.1
 
 python $SQANTI_DIR/sqanti3_qc.py $GTF $REFERENCE_GTF $REFERENCE_GENOME_FASTA \
-     -o ROs -d $RO_OUTPUT_DIR/sqanti3_qc --saturation \
+     -o $sample -d $OUTPUT_DIR/sqanti3_qc --saturation \
     -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits \
     --CAGE_peak /users/sparthib/retina_lrs/raw_data/cage/human.refTSS_v3.1.hg38.bed \
     --polyA_motif /users/sparthib/retina_lrs/raw_data/polya/mouse_and_human.polyA_motif.txt \
