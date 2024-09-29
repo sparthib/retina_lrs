@@ -9,7 +9,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/03_NanoFilt/fastq_qc.%a.txt
 #SBATCH -e logs/03_NanoFilt/fastq_qc.%a.txt
-#SBATCH --array=13-15
+#SBATCH --array=1-15
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
@@ -27,12 +27,10 @@ sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 
 input_fastq=/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/${sample}.fastq.gz
-fastq_qc_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/${sample}.fastq.gz
+fastq_qc_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/03a_nanofilt_fastqs/${sample}.fastq.gz
 guppy_summary_file=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $4}' $CONFIG)
 
-
-
-gunzip -c $input_fastq | NanoFilt -q 7 --length 50 -s $guppy_summary_file | gzip > $fastq_qc_OUTPUT
+gunzip -c $input_fastq | NanoFilt -q 10 -s $guppy_summary_file | gzip > $fastq_qc_OUTPUT
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
