@@ -6,9 +6,9 @@
 #SBATCH -c 10
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/restrander.%a.txt
-#SBATCH -e logs/restrander.%a.txt
-#SBATCH --array=7
+#SBATCH -o logs/restrander/restrander.%a.txt
+#SBATCH -e logs/restrander/restrander.%a.txt
+#SBATCH --array=1-15
 
 
 echo "**** Job starts ****"
@@ -23,9 +23,9 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-INPUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs/${sample}.fastq.gz
-OUTPUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/restrander/${sample}.fastq.gz
-STATS_FILE=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/restrander/${sample}_stats.json
+INPUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/03a_nanofilt_fastqs/${sample}.fastq.gz
+OUTPUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/03b_restrander_fastqs/${sample}.fastq.gz
+STATS_FILE=/dcs04/hicks/data/sparthib/retina_lrs/03b_restrander_fastqs/${sample}_stats.json
 
 cd /users/sparthib/restrander
 ./restrander \
