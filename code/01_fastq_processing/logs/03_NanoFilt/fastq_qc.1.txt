@@ -1,11 +1,11 @@
 **** Job starts ****
-2024-01-02 12:37:17
+2024-09-29 16:13:21
 **** JHPCE info ****
 User: sparthib
-Job id: 1377510
+Job id: 9906901
 Job name: fastq_qc
-Node name: compute-127
+Node name: compute-160
 Task id: 1
 EP1-BRN3B-RO
 **** Job ends ****
-2024-01-02 16:13:29
+2024-09-29 19:34:04
