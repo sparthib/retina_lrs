@@ -26,17 +26,18 @@ LOGS_FOLDER=/users/sparthib/retina_lrs/code/03_bam_QC/logs/primary_over_30/genom
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
-input_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice"
-output_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only
-mkdir -p $output_dir
+
+input_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly"
+output_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality"
 bam=$input_dir/${sample}_sorted.bam
 
 ml load samtools 
-
-samtools view -h -b -q 30 -F 0x800 $bam > $output_dir/${sample}_primary_over_30.bam
+# https://broadinstitute.github.io/picard/explain-flags.html #remove secondary, supplementary and unmapped reads
+samtools view -h -b -q 30 -F 0x904 $bam > $output_dir/${sample}_primary_over_30.bam
 echo "finished filtering bam by mapping quality and removing duplicates"
 
 samtools sort $output_dir/${sample}_primary_over_30.bam -o $output_dir/${sample}_primary_over_30_sorted.bam
+rm $output_dir/${sample}_primary_over_30.bam
 samtools index $output_dir/${sample}_primary_over_30_sorted.bam $output_dir/${sample}_primary_over_30_sorted.bam.bai
 echo "finished sorting and indexing bam"
 
@@ -46,8 +47,13 @@ chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM > $output_dir/${sample}
 echo "finished subsetting bam by chromosome"
 
 samtools sort $output_dir/${sample}_primary_over_30_chr_only.bam -o $output_dir/${sample}_primary_over_30_chr_only_sorted.bam
+rm $output_dir/${sample}_primary_over_30_chr_only.bam
 samtools index $output_dir/${sample}_primary_over_30_chr_only_sorted.bam $output_dir/${sample}_primary_over_30_chr_only_sorted.bam.bai
 echo "finished sorting and indexing bam"
+
+### FLAGSTATS 
+samtools flagstat $output_dir/${sample}_primary_over_30_sorted.bam > $output_dir/flagstats/${sample}_primary_over_30_sorted.flagstat
+samtools flagstat $output_dir/${sample}_primary_over_30_chr_only_sorted.bam > $output_dir/flagstats/${sample}_primary_over_30_chr_only_sorted.flagstat
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
