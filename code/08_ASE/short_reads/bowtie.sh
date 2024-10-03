@@ -23,7 +23,7 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_ass
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/sams
 ml load bowtie/2.5.1
 
-BT_INDEX_PATH=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/GRCh38_noalt_as
+BT_INDEX_PATH=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/GRCh38_noalt_as/GRCh38_noalt_as
 
 # Aligning paired reads
 samples=(SRR1091088 SRR1091091 SRR1091092)
