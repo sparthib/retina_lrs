@@ -1,14 +1,19 @@
 **** Job starts ****
-2024-10-03 17:07:19
+2024-10-03 17:22:29
 **** JHPCE info ****
 User: sparthib
-Job id: 10009697
+Job id: 10009959
 Job name: test_bambu
-Node name: compute-065
+Node name: compute-054
 Array ID: 11
 mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/H9-hRGC_1/’: File exists
 **** Processing sample H9-hRGC_1 ****
+Unloading conda_R/4.4.x
 Loading conda_R/4.3.x
+
+The following have been reloaded with a version change:
+  1) conda/3-24.3.0 => conda/3-23.3.1     2) conda_R/4.4.x => conda_R/4.3.x
+
 Loading required package: SummarizedExperiment
 Loading required package: MatrixGenerics
 Loading required package: matrixStats
@@ -155,18 +160,7 @@ The following objects are masked from ‘package:base’:
 
     intersect, setdiff, setequal, union
 
-[1] "H9-hRGC_1"
---- Start generating read class files ---
-'getOption("repos")' replaces Bioconductor standard repositories, see
-'help("repositories", package = "BiocManager")' for details.
-Replacement repositories:
-    CRAN: https://cran.rstudio.com
-Error: BiocParallel errors
-  1 remote errors, element index: 1
-  0 unevaluated and other errors
-  first remote error:
-Error in value[[3L]](cond): failed to open BamFile: file(s) do not exist:
-  ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_qualityH9-hRGC_1_primary_over_30_sorted.bam’
+Error: Bam file does not exist
 Execution halted
 **** Job ends ****
-Thu Oct  3 05:07:46 PM EDT 2024
+Thu Oct  3 05:22:50 PM EDT 2024
