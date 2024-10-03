@@ -4,9 +4,9 @@ library(readr)
 library(sessioninfo)
 library(dplyr)
 
-gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf"
-bambuAnnotations <- prepareAnnotations(gtf.file)
-saveRDS(bambuAnnotations, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/annotations.rds")
+# gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf"
+# bambuAnnotations <- prepareAnnotations(gtf.file)
+# saveRDS(bambuAnnotations, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/annotations.rds")
 
 sample <- commandArgs(trailingOnly = TRUE)
 
@@ -22,10 +22,13 @@ if (!dir.exists(output_dir)){
 }
 print(sample)
 
-se_read_class <- bambu(reads = paste0(bam_dir),
+read_class <- bambu(reads = paste0(bam_dir),
                      annotations = annotation,
                      genome = fa.file,
-                     rcOutDir = output_dir,
-                     lowMemory = TRUE)
+                     lowMemory = TRUE, 
+                     discovery = FALSE, 
+                     quant = FALSE)
+
+saveRDS(read_class, paste0(output_dir, "read_class.rds"))
 
 sessioninfo::session_info()
