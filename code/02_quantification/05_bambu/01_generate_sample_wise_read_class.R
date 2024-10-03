@@ -11,11 +11,11 @@ library(dplyr)
 sample <- commandArgs(trailingOnly = TRUE)
 
 annotation <- readRDS("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/annotations.rds")
-bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only/"
-bam_dir <- paste0(bam_dir, sample, "_primary_over_30_chr_only_sorted.bam")
-fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
+bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality"
+bam_dir <- paste0(bam_dir, sample, "_primary_over_30_sorted.bam")
+fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa"
 
-output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/track_reads/", sample, "/")
+output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/", sample, "/")
 print(sample)
 
 se_read_class <- bambu(reads = paste0(bam_dir),
@@ -27,3 +27,12 @@ se_read_class <- bambu(reads = paste0(bam_dir),
 
 
 sessioninfo::session_info()
+
+
+# class(metadata(se)$readToTranscriptMaps)
+# colnames(metadata(se)$readToTranscriptMaps[[1]])
+# 
+# metadata(se)$readToTranscriptMaps[1][1]
+# length(metadata(se)$readToTranscriptMaps[[7]])
+
+# temp <- readRDS("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/track_reads/EP1-WT_hRO_2/25dd8655e094e7_25dd8655e094e7.rds")

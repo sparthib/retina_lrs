@@ -22,11 +22,11 @@ echo "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/track_reads/$sample/
+mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/$sample/
 
 echo "**** Processing sample $sample ****"
 
-module load conda_R/4.3.x
+module load conda_R/4.4.x
 Rscript 01_generate_sample_wise_read_class.R $sample
 
 echo "**** Job ends ****"
