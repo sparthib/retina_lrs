@@ -16,6 +16,10 @@ bam_dir <- paste0(bam_dir, sample, "_primary_over_30_sorted.bam")
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa"
 
 output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/", sample, "/")
+
+if (!dir.exists(output_dir)){
+  dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
+}
 print(sample)
 
 se_read_class <- bambu(reads = paste0(bam_dir),
