@@ -1,13 +1,14 @@
 **** Job starts ****
-2024-10-03 16:27:28
+2024-10-03 17:01:28
 **** JHPCE info ****
 User: sparthib
-Job id: 10008576
+Job id: 10009558
 Job name: test_bambu
-Node name: compute-067
+Node name: compute-063
 Array ID: 11
 mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/H9-hRGC_1/’: File exists
 **** Processing sample H9-hRGC_1 ****
+Unloading conda_R/4.4.x
 Loading conda_R/4.4.x
 Loading required package: SummarizedExperiment
 Loading required package: MatrixGenerics
@@ -169,4 +170,4 @@ Error in value[[3L]](cond): failed to open BamFile: file(s) do not exist:
   ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_qualityH9-hRGC_1_primary_over_30_sorted.bam’
 Execution halted
 **** Job ends ****
-Thu Oct  3 04:30:09 PM EDT 2024
+Thu Oct  3 05:01:51 PM EDT 2024
