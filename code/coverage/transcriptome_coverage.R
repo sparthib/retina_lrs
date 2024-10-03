@@ -72,49 +72,58 @@ nrow(transcript_info)
 output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/"
 
 # Define the plot coverage function
-plot_coverage <- function(output_dir, transcript_info, sample, length_bin) {
-  # Filter based on length_bin if provided
-  if (!is.null(length_bin)) {
-    transcript_info <- transcript_info[transcript_info$length_bin == length_bin, ]
-  }
-  
-  # Create the output PDF
-  pdf(paste0(output_dir, sample, "_", length_bin, "_coverage.pdf"), width = 10, height = 5)
-  
-  # Iterate through each row (isoform) of transcript_info
-  for (i in 1:nrow(transcript_info)) {
-    isoform <- rownames(transcript_info)[i]
-    coverage <- rev(as.numeric(unlist(transcript_info[i, 4:103])))
-    
-    # Create data frame for plotting
-    coverage_df <- data.frame(
-      position = 1:100,
-      coverage = coverage
-    )
-    
-    # Generate the plot
-    p <- ggplot(coverage_df, aes(x = position, y = coverage)) + 
-      geom_line() + 
-      labs(
-        title = paste("Coverage of", isoform),
-        x = "3' to 5' position",
-        y = "Coverage Value"
-      ) + 
-      theme_minimal()
-    
-    # Print the plot to the PDF
-    print(p)
-  }
-  
-  # Close the PDF device
-  dev.off()
+# Ensure the directory exists
+if (!dir.exists(output_dir)) {
+  stop("Output directory does not exist: ", output_dir)
 }
 
-# Generate coverage plots for each length bin
-length_bins_to_plot <- c("(10,Inf]", "(5,10]", "(2,5]", "(1,2]", "(0,1]")
-for (bin in length_bins_to_plot) {
-  plot_coverage(output_dir, transcript_info, sample, bin)
+# Open PDF device
+pdf(paste0(output_dir, sample, "_", length_bin, "_coverage.pdf"), width = 10, height = 5)
+
+# Ensure dev.off() is called even if there is an error
+on.exit(dev.off())
+
+# Iterate through each row (isoform) of transcript_info
+for (i in 1:nrow(transcript_info)) {
+  isoform <- rownames(transcript_info)[i]
+  
+  # Safeguard for potential data issues
+  if (ncol(transcript_info) < 103) {
+    stop("transcript_info does not have enough columns (expected 103)")
+  }
+  
+  # Extract and reverse coverage data
+  coverage <- rev(as.numeric(unlist(transcript_info[i, 4:103])))
+  
+  # Check for invalid coverage values
+  if (any(is.na(coverage))) {
+    warning("NA values found in coverage data for isoform ", isoform)
+    next  # Skip to the next isoform
+  }
+  
+  # Create data frame for plotting
+  coverage_df <- data.frame(
+    position = 1:100,
+    coverage = coverage
+  )
+  
+  # Generate the plot
+  p <- ggplot(coverage_df, aes(x = position, y = coverage)) + 
+    geom_line() + 
+    labs(
+      title = paste("Coverage of", isoform),
+      x = "3' to 5' position",
+      y = "Coverage Value"
+    ) + 
+    theme_minimal()
+  
+  # Print the plot to the PDF
+  print(p)
 }
+
+# Close the PDF device (this will always be called by on.exit)
+dev.off()
+
 
 # Print session info
 sessionInfo()
