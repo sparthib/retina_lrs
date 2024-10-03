@@ -1,15 +1,14 @@
 **** Job starts ****
-2024-10-03 14:34:24
+2024-10-03 16:24:28
 **** JHPCE info ****
 User: sparthib
-Job id: 10007528
+Job id: 10008539
 Job name: test_bambu
-Node name: compute-069
+Node name: compute-065
 Array ID: 1
-mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/EP1-BRN3B-RO/’: No such file or directory
+mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/EP1-BRN3B-RO/’: File exists
 **** Processing sample EP1-BRN3B-RO ****
 Loading conda_R/4.4.x
-To install colorout use: remotes::install_github("jalvesaq/colorout")
 Loading required package: SummarizedExperiment
 Loading required package: MatrixGenerics
 Loading required package: matrixStats
@@ -170,4 +169,4 @@ Error in value[[3L]](cond): failed to open BamFile: file(s) do not exist:
   ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_qualityEP1-BRN3B-RO_primary_over_30_sorted.bam’
 Execution halted
 **** Job ends ****
-Thu Oct  3 02:36:38 PM EDT 2024
+Thu Oct  3 04:27:20 PM EDT 2024

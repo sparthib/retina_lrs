@@ -1,15 +1,14 @@
 **** Job starts ****
-2024-10-03 14:34:23
+2024-10-03 16:27:12
 **** JHPCE info ****
 User: sparthib
-Job id: 10007534
+Job id: 10008569
 Job name: test_bambu
 Node name: compute-063
 Array ID: 7
-mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/YZ-3T_hRGC/’: No such file or directory
+mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/YZ-3T_hRGC/’: File exists
 **** Processing sample YZ-3T_hRGC ****
 Loading conda_R/4.4.x
-To install colorout use: remotes::install_github("jalvesaq/colorout")
 Loading required package: SummarizedExperiment
 Loading required package: MatrixGenerics
 Loading required package: matrixStats
@@ -170,4 +169,4 @@ Error in value[[3L]](cond): failed to open BamFile: file(s) do not exist:
   ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_qualityYZ-3T_hRGC_primary_over_30_sorted.bam’
 Execution halted
 **** Job ends ****
-Thu Oct  3 02:35:35 PM EDT 2024
+Thu Oct  3 04:29:50 PM EDT 2024
