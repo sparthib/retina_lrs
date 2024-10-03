@@ -75,7 +75,6 @@ if (!dir.exists(output_dir)) {
   stop("Output directory does not exist: ", output_dir)
 }
 
-# Define the plot coverage function
 plot_coverage <- function(output_dir, transcript_info, sample, length_bin) {
   # Filter based on length_bin if provided
   if (!is.null(length_bin)) {
@@ -89,10 +88,13 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin) {
   length_bin_str <- gsub("[\\(\\),\\[\\]]", "_", length_bin_str)
   
   # Open PDF device with cleaned filename
-  pdf(paste0(output_dir, sample, "_", length_bin_str, "_coverage.pdf"), width = 10, height = 5)
+  pdf_file <- paste0(output_dir, sample, "_", length_bin_str, "_coverage.pdf")
+  pdf(pdf_file, width = 10, height = 5)
   
   # Ensure dev.off() is called even if there is an error
-  on.exit(dev.off())
+  on.exit({
+    if (dev.cur() > 1) dev.off()
+  })
   
   # Iterate through each row (isoform) of transcript_info
   for (i in 1:nrow(transcript_info)) {
@@ -133,7 +135,7 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin) {
   }
   
   # Close the PDF device (this will always be called by on.exit)
-  dev.off()
+  on.exit()  # Manually close if not already closed
 }
 
 # Generate coverage plots for each length bin
