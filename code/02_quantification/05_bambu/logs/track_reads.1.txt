@@ -1,8 +1,8 @@
 **** Job starts ****
-2024-10-03 13:54:45
+2024-10-03 14:34:24
 **** JHPCE info ****
 User: sparthib
-Job id: 10007321
+Job id: 10007528
 Job name: test_bambu
 Node name: compute-069
 Array ID: 1
@@ -157,9 +157,17 @@ The following objects are masked from ‘package:base’:
     intersect, setdiff, setequal, union
 
 [1] "EP1-BRN3B-RO"
-Error in checkInputs(annotations, reads, readClass.outputDir = rcOutDir,  : 
-  output folder does not exist
-Calls: bambu -> checkInputs
+--- Start generating read class files ---
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cran.rstudio.com
+Error: BiocParallel errors
+  1 remote errors, element index: 1
+  0 unevaluated and other errors
+  first remote error:
+Error in value[[3L]](cond): failed to open BamFile: file(s) do not exist:
+  ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_qualityEP1-BRN3B-RO_primary_over_30_sorted.bam’
 Execution halted
 **** Job ends ****
-Thu Oct  3 01:56:35 PM EDT 2024
+Thu Oct  3 02:36:38 PM EDT 2024
