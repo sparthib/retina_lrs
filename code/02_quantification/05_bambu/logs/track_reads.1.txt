@@ -1,15 +1,14 @@
 **** Job starts ****
-2024-10-03 16:59:28
+2024-10-03 17:05:19
 **** JHPCE info ****
 User: sparthib
-Job id: 10009542
+Job id: 10009638
 Job name: test_bambu
-Node name: compute-065
+Node name: compute-063
 Array ID: 1
 mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/EP1-BRN3B-RO/’: File exists
 **** Processing sample EP1-BRN3B-RO ****
-Unloading conda_R/4.4.x
-Loading conda_R/4.4.x
+Loading conda_R/4.3.x
 Loading required package: SummarizedExperiment
 Loading required package: MatrixGenerics
 Loading required package: matrixStats
@@ -50,7 +49,7 @@ The following objects are masked from ‘package:base’:
     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    Position, rank, rbind, Reduce, rownames, sapply, saveRDS, setdiff,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
     table, tapply, union, unique, unsplit, which.max, which.min
 
 Loading required package: S4Vectors
@@ -170,4 +169,4 @@ Error in value[[3L]](cond): failed to open BamFile: file(s) do not exist:
   ‘/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_qualityEP1-BRN3B-RO_primary_over_30_sorted.bam’
 Execution halted
 **** Job ends ****
-Thu Oct  3 04:59:53 PM EDT 2024
+Thu Oct  3 05:05:46 PM EDT 2024
