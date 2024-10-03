@@ -26,7 +26,7 @@ mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_asse
 
 echo "**** Processing sample $sample ****"
 
-module load conda_R/4.4.x
+module load conda_R/4.3.x
 Rscript 01_generate_sample_wise_read_class.R $sample
 
 echo "**** Job ends ****"
