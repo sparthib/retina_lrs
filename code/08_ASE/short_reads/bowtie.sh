@@ -23,12 +23,14 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_ass
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/sams
 ml load bowtie/2.5.1
 
+BT_INDEX_PATH=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/GRCh38_noalt_as
+
 # Aligning paired reads
 samples=(SRR1091088 SRR1091091 SRR1091092)
 
 for sample in ${samples[@]}
 do
-    bowtie2 -x $REFERENCE_FASTA -p ${SLURM_CPUS_PER_TASK} \
+    bowtie2 -x $BT_INDEX_PATH -p ${SLURM_CPUS_PER_TASK} \
     -1 example/reads/${sample}_1.fq -2 example/reads/${sample}_2.fq -S $OUTPUT_DIR/${sample}.sam
 done
 
