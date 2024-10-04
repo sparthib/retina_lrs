@@ -27,8 +27,7 @@ mart <- useDataset("hsapiens_gene_ensembl", mart)
 
 create_granges <- function(sample){ 
   sce <- readRDS(file.path(output_dir, paste0(sample,'_sce.rds')))
-  
-  
+
   }
 
 

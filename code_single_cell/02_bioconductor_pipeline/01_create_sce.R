@@ -21,6 +21,7 @@ sample_names <- c( "10x_D100-EP1_A1",
                    "10x_D200-EP1-2_B1",
                    "10x_D200-EP1-2_B2")
 
+sample_names <- "10x_D100-EP1_A1_downsampled"
 
 # gene_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output",
 #                        paste0(sample, "/gene_count.csv"))
@@ -254,6 +255,24 @@ names(post_qc_dimensions) <- sanitized_sample_names
 saveRDS(sce_list,
      file = "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/06_sce_rds_files/transcriptome/01_quality_controlled/sce_list.rds")
 
+sce_list <- readRDS("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/06_sce_rds_files/transcriptome/01_quality_controlled/sce_list.rds")
+
+
+colnames(sce_list[[1]])
+
+colnames(sce_list[[2]])
+
+
+#check common names between colnames(sce_list[[1]]) and colnames(sce_list[[2]])
+
+common_names <- intersect(colnames(sce_list[[1]]), colnames(sce_list[[2]]))
+
+
+
+
+
+                          
+                          
 ## Reproducibility information
 print("Reproducibility information:")
 Sys.time()
