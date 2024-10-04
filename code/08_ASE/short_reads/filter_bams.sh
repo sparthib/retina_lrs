@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=30G
 #SBATCH -c 5
-#SBATCH --job-name=bowtie
+#SBATCH --job-name=filter_bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/bowtie.txt
-#SBATCH -e logs/bowtie.txt
+#SBATCH -o logs/filter_bam.txt
+#SBATCH -e logs/filter_bam.txt
 #SBATCH -t 7-00:00:00
 
 echo "**** Job starts ****"
