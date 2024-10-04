@@ -62,7 +62,7 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
   
   # Filter based on gc_content if provided
   if (!is.null(gc_content)) {
-    transcript_info <- transcript_info[transcript_info$gc_content == gc_content, ]
+    transcript_info <- transcript_info[transcript_info$gc_content_bin == gc_content, ]
     # Convert gc_content to a character string to prevent issues with factors/intervals
     gc_content_str <- as.character(gc_content)
     
