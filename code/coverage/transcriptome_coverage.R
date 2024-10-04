@@ -45,17 +45,16 @@ transcript_coverage <- function(bam, isoform, length_bins, weight_fn = "read_cou
   return(transcript_info)
 }
 
+transcript_info
+
 #Define plot_coverage function
 plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL, gc_content = NULL) {
   
   # Filter based on length_bin if provided
   if (!is.null(length_bin)) {
     transcript_info <- transcript_info[transcript_info$length_bin == length_bin, ]
-    # Convert length_bin to a character string to prevent issues with factors/intervals
     length_bin_str <- as.character(length_bin)
-    
-    # Clean up the length_bin string (remove unwanted characters like parentheses or commas)
-    length_bin_str <- gsub("[\\(\\),\\[\\]]", "_", length_bin_str)
+    length_bin_str <- gsub("[\\(\\),\\[\\]]", "_", length_bin_str)  # Clean the string
   } else {
     length_bin_str <- "all_lengths"
   }
@@ -63,11 +62,8 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
   # Filter based on gc_content if provided
   if (!is.null(gc_content)) {
     transcript_info <- transcript_info[transcript_info$gc_content_bin == gc_content, ]
-    # Convert gc_content to a character string to prevent issues with factors/intervals
     gc_content_str <- as.character(gc_content)
-    
-    # Clean up the gc_content string (remove unwanted characters like parentheses or commas)
-    gc_content_str <- gsub("[\\(\\),\\[\\]]", "_", gc_content_str)
+    gc_content_str <- gsub("[\\(\\),\\[\\]]", "_", gc_content_str)  # Clean the string
   } else {
     gc_content_str <- "all_gc_content"
   }
@@ -75,13 +71,16 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
   # Create filename for the PDF output
   pdf_file <- paste0(output_dir, sample, "_", length_bin_str, "_", gc_content_str, "_coverage.pdf")
   
+  # Ensure there are rows to plot
+  if (nrow(transcript_info) == 0) {
+    stop("No data left to plot after filtering.")
+  }
+  
   # Open PDF device for plotting
   pdf(pdf_file, width = 10, height = 5)
   
   # Ensure dev.off() is called even if there is an error
-  on.exit({
-    if (dev.cur() > 1) dev.off()
-  })
+  on.exit(dev.off(), add = TRUE)
   
   # Iterate through each row (isoform) of transcript_info
   for (i in 1:nrow(transcript_info)) {
@@ -120,11 +119,7 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
     # Print the plot to the PDF
     print(p)
   }
-  
-  # Close the PDF device
-  on.exit()  # Manually close if not already closed
 }
-
 
 
 # Define BAM file directory and sample name
