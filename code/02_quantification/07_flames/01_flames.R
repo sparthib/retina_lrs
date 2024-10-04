@@ -1,33 +1,23 @@
-# To get started, the pipeline needs access to a gene annotation
-# file in GFF3 or GTF format, a directory containing one or more FASTQ 
-# files (which will be merged as pre-processing), a genome FASTA file,
-# as well as the file path to minimap2, and the file path to the directory 
-# to hold output files.
 library("FLAMES")
+library("sessioninfo")
 
-
-gtf <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf"
-genome_fasta <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
-outdir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/test"
+sample <- commandArgs(trailingOnly = TRUE)
+gtf <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf"
+genome_fa  <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa"
+outdir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/", sample)
 genome_bam <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/H9-hRGC_1_sorted.bam"
+minimap_path <- file.path("/users/sparthib/minimap2")
+fastq <- paste0(output_dir, "/matched_reads.fastq")
 
-config_file <- FLAMES::create_config(outdir, do_barcode_demultiplex = FALSE)
-config <- jsonlite::fromJSON(config_file)
+#config_file <- FLAMES::create_config(outdir, do_barcode_demultiplex = FALSE)
+config_file <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/bulk.json"
+config <- jsonlite::fromJSON("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/bulk.json")
 
-# variants <- find_variants(
-#   bam_path = genome_bam,
-#   reference = genome_fasta,
-#   annotation = gtf,
-#   min_nucleotide_depth = 100,
-#   homopolymer_window = 3,
-#   annotated_region_only = FALSE,
-#   names_from = "gene_name",
-#   threads = 1
-# )
-# 
+se <- bulk_long_pipeline(
+  annot = annot, fastq = fastq, outdir = outdir,
+  genome_fa = genome_fa, config_file = config_file
+)
+saveRDS(se, file = paste0(outdir, "/se.rds"))
 
 
-isoforms <- find_isoform(annotation = gtf, genome_fa = genome_fasta,
-  genome_bam = genome_bam,
-  outdir = outdir, config = config)
-  
+sessioninfo::session_info()
