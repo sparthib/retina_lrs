@@ -1,13 +1,18 @@
 **** Job starts ****
-2024-10-04 08:13:42
+2024-10-04 08:24:26
 **** JHPCE info ****
 User: sparthib
-Job id: 10018183
+Job id: 10018205
 Job name: isoquant_RO
 Node name: compute-115
 
-2024-10-04 08:13:46,736 - INFO - Running IsoQuant version 3.6.0
-2024-10-04 08:13:46,737 - WARNING - Output folder already exists, some files may be overwritten.
-2024-10-04 08:13:47,386 - CRITICAL - Input file /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_ROs_primary_over_30_sorted.bam does not exist
-**** Job ends ****
-2024-10-04 08:13:47
+2024-10-04 08:24:28,956 - INFO - Running IsoQuant version 3.6.0
+2024-10-04 08:24:28,957 - WARNING - Output folder already exists, some files may be overwritten.
+2024-10-04 08:24:30,549 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
+2024-10-04 08:24:30,550 - INFO -  === IsoQuant pipeline started === 
+2024-10-04 08:24:30,551 - INFO - gffutils version: 0.13
+2024-10-04 08:24:30,551 - INFO - pysam version: 0.22.1
+2024-10-04 08:24:30,551 - INFO - pyfaidx version: 0.8.1.2
+2024-10-04 08:24:30,552 - INFO - Checking input gene annotation
+2024-10-04 08:26:42,692 - INFO - Gene annotation seems to be correct
+2024-10-04 08:26:42,791 - INFO - Converting gene annotation file to .db format (takes a while)...
