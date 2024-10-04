@@ -4,24 +4,6 @@ library(Rsamtools)
 library(sessioninfo)
 library(ggplot2)
 
-# Define BAM file directory and sample name
-bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/supplementary_filtered"
-sample <- commandArgs(trailingOnly = TRUE)[1]
-bam <- file.path(bam_dir, paste0(sample, ".bam"))
-
-# Read alignments from BAM file
-aln <- GenomicAlignments::readGAlignments(bam, param = Rsamtools::ScanBamParam(mapqFilter = 5))
-
-# Get isoforms with more than 10 occurrences
-isoform <- names(table(seqnames(aln)))[table(seqnames(aln)) > 10]
-length(isoform)
-
-
-length_bins = c(0, 1, 2, 5, 10, Inf)
-
-
-
-
 # Define the transcript coverage function
 transcript_coverage <- function(bam, isoform, length_bins, weight_fn = "read_counts") {
   if (!is.null(isoform)) {
@@ -39,7 +21,7 @@ transcript_coverage <- function(bam, isoform, length_bins, weight_fn = "read_cou
   # Remove isoforms with zero read counts
   transcript_info <- transcript_info[transcript_info$read_counts != 0, ]
   transcript_info$length_bin <- cut(transcript_info$tr_length / 1000, length_bins)
-
+  
   cover <- bam |>
     GenomicRanges::granges() |>
     GenomicRanges::coverage() |>
@@ -63,17 +45,7 @@ transcript_coverage <- function(bam, isoform, length_bins, weight_fn = "read_cou
   return(transcript_info)
 }
 
-
-transcript_info <- transcript_coverage(aln, isoform, length_bins)
-nrow(transcript_info)
-
-
-output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/"
-
-# Ensure the directory exists
-if (!dir.exists(output_dir)) {
-  stop("Output directory does not exist: ", output_dir)
-}
+#Define plot_coverage function
 
 plot_coverage <- function(output_dir, transcript_info, sample, length_bin) {
   # Filter based on length_bin if provided
@@ -136,6 +108,33 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin) {
   
   # Close the PDF device (this will always be called by on.exit)
   on.exit()  # Manually close if not already closed
+}
+
+
+# Define BAM file directory and sample name
+bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/supplementary_filtered"
+sample <- commandArgs(trailingOnly = TRUE)[1]
+bam <- file.path(bam_dir, paste0(sample, ".bam"))
+
+# Read alignments from BAM file
+aln <- GenomicAlignments::readGAlignments(bam, param = Rsamtools::ScanBamParam(mapqFilter = 5))
+
+# Get isoforms with more than 10 occurrences
+isoform <- names(table(seqnames(aln)))[table(seqnames(aln)) > 10]
+length(isoform)
+
+
+length_bins = c(0, 1, 2, 5, 10, Inf)
+
+transcript_info <- transcript_coverage(aln, isoform, length_bins)
+nrow(transcript_info)
+
+
+output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/"
+
+# Ensure the directory exists
+if (!dir.exists(output_dir)) {
+  stop("Output directory does not exist: ", output_dir)
 }
 
 # Generate coverage plots for each length bin
