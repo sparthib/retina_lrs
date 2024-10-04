@@ -1,18 +1,53 @@
 **** Job starts ****
-2024-10-04 08:24:26
+2024-10-04 08:57:22
 **** JHPCE info ****
 User: sparthib
-Job id: 10018205
+Job id: 10018370
 Job name: isoquant_RO
-Node name: compute-115
+Node name: compute-149
 
-2024-10-04 08:24:28,956 - INFO - Running IsoQuant version 3.6.0
-2024-10-04 08:24:28,957 - WARNING - Output folder already exists, some files may be overwritten.
-2024-10-04 08:24:30,549 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
-2024-10-04 08:24:30,550 - INFO -  === IsoQuant pipeline started === 
-2024-10-04 08:24:30,551 - INFO - gffutils version: 0.13
-2024-10-04 08:24:30,551 - INFO - pysam version: 0.22.1
-2024-10-04 08:24:30,551 - INFO - pyfaidx version: 0.8.1.2
-2024-10-04 08:24:30,552 - INFO - Checking input gene annotation
-2024-10-04 08:26:42,692 - INFO - Gene annotation seems to be correct
-2024-10-04 08:26:42,791 - INFO - Converting gene annotation file to .db format (takes a while)...
+2024-10-04 08:57:24,107 - INFO - Running IsoQuant version 3.6.0
+2024-10-04 08:57:24,108 - WARNING - Output folder already contains a previous run, some files may be overwritten. Use --resume to resume a failed run. Use --force to avoid this message.
+2024-10-04 08:57:24,108 - WARNING - Press Ctrl+C to interrupt the run now.
+Resuming the run in 9 secondsResuming the run in 8 secondsResuming the run in 7 secondsResuming the run in 6 secondsResuming the run in 5 secondsResuming the run in 4 secondsResuming the run in 3 secondsResuming the run in 2 secondsResuming the run in 1 second2024-10-04 08:57:33,117 - INFO - Overwriting the previous run
+2024-10-04 08:57:35,887 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT folder already exists, some files may be overwritten
+2024-10-04 08:57:35,895 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux folder already exists, some files may be overwritten
+2024-10-04 08:57:35,896 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
+2024-10-04 08:57:35,896 - INFO -  === IsoQuant pipeline started === 
+2024-10-04 08:57:35,896 - INFO - gffutils version: 0.13
+2024-10-04 08:57:35,896 - INFO - pysam version: 0.22.1
+2024-10-04 08:57:35,896 - INFO - pyfaidx version: 0.8.1.2
+2024-10-04 08:57:35,897 - INFO - Checking input gene annotation
+2024-10-04 08:58:00,875 - INFO - Gene annotation seems to be correct
+2024-10-04 08:58:00,925 - INFO - Converting gene annotation file to .db format (takes a while)...
+2024-10-04 09:02:22,227 - INFO - Gene database written to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_assembly.gtf.db
+2024-10-04 09:02:22,230 - INFO - Provide this database next time to avoid excessive conversion
+2024-10-04 09:02:22,232 - INFO - Loading gene database from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_assembly.gtf.db
+2024-10-04 09:02:22,236 - INFO - Loading reference genome from /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
+2024-10-04 09:02:56,908 - INFO - Loading uncompressed reference from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_genome.fa
+2024-10-04 09:03:16,347 - INFO - Processing 1 experiment
+2024-10-04 09:03:16,347 - INFO - Processing experiment OUT
+2024-10-04 09:03:16,347 - INFO - Experiment has 7 BAM files: /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-BRN3B-RO_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_ROs_D45_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B-RO_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_ROs_D45_primary_over_30_sorted.bam
+2024-10-04 09:03:16,425 - INFO - Collecting read alignments
+2024-10-04 09:03:17,334 - INFO - Processing chromosome chrX
+2024-10-04 09:03:17,599 - INFO - Processing chromosome chr20
+2024-10-04 09:03:17,766 - INFO - Processing chromosome chr13
+2024-10-04 09:03:17,793 - INFO - Processing chromosome chr18
+2024-10-04 09:03:17,812 - INFO - Processing chromosome chr1
+2024-10-04 09:03:17,826 - INFO - Processing chromosome chr9
+2024-10-04 09:03:17,838 - INFO - Processing chromosome chr14
+2024-10-04 09:03:17,844 - INFO - Processing chromosome chr10
+2024-10-04 09:03:17,869 - INFO - Processing chromosome chr16
+2024-10-04 09:03:17,870 - INFO - Processing chromosome chr7
+2024-10-04 09:03:17,878 - INFO - Processing chromosome chr6
+2024-10-04 09:03:17,878 - INFO - Processing chromosome chr4
+2024-10-04 09:03:17,880 - INFO - Processing chromosome chr15
+2024-10-04 09:03:17,880 - INFO - Processing chromosome chr11
+2024-10-04 09:03:17,881 - INFO - Processing chromosome chr2
+2024-10-04 09:03:17,881 - INFO - Processing chromosome chr3
+2024-10-04 09:03:17,881 - INFO - Processing chromosome chr17
+2024-10-04 09:03:17,881 - INFO - Processing chromosome chr8
+2024-10-04 09:03:17,885 - INFO - Processing chromosome chr12
+2024-10-04 09:03:17,885 - INFO - Processing chromosome chr5
+2024-10-04 09:25:20,644 - INFO - Finished processing chromosome chr18
+2024-10-04 09:25:22,046 - INFO - Processing chromosome chr19
