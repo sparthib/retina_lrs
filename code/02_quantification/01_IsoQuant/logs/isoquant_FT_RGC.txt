@@ -1,425 +1,51 @@
 **** Job starts ****
-2024-10-03 17:41:55
+2024-10-04 08:13:47
 **** JHPCE info ****
 User: sparthib
-Job id: 10010362
+Job id: 10018184
 Job name: isoquant_FT_RGC
-Node name: compute-097
+Node name: compute-119
 
-2024-10-03 17:41:56,992 - INFO - Running IsoQuant version 3.6.0
-2024-10-03 17:41:56,992 - WARNING - Output folder already exists, some files may be overwritten.
-2024-10-03 17:41:57,745 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
-2024-10-03 17:41:57,745 - INFO -  === IsoQuant pipeline started === 
-2024-10-03 17:41:57,745 - INFO - gffutils version: 0.13
-2024-10-03 17:41:57,745 - INFO - pysam version: 0.22.1
-2024-10-03 17:41:57,745 - INFO - pyfaidx version: 0.8.1.2
-2024-10-03 17:41:57,746 - INFO - Checking input gene annotation
-2024-10-03 17:42:56,143 - INFO - Gene annotation seems to be correct
-2024-10-03 17:42:56,217 - INFO - Converting gene annotation file to .db format (takes a while)...
-2024-10-03 17:52:57,861 - INFO - Gene database written to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/release_46_primary_assembly.gtf.db
-2024-10-03 17:52:57,862 - INFO - Provide this database next time to avoid excessive conversion
-2024-10-03 17:52:57,876 - INFO - Loading gene database from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/release_46_primary_assembly.gtf.db
-2024-10-03 17:52:57,880 - INFO - Loading reference genome from /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
-2024-10-03 17:53:49,494 - INFO - Loading uncompressed reference from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/release_46_primary_genome.fa
-2024-10-03 17:54:33,783 - INFO - Processing 1 experiment
-2024-10-03 17:54:33,783 - INFO - Processing experiment OUT
-2024-10-03 17:54:33,783 - INFO - Experiment has 4 BAM files: /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-FT_1_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-FT_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-hRGC_1_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-hRGC_2_primary_over_30_sorted.bam
-2024-10-03 17:54:33,794 - INFO - Collecting read alignments
-2024-10-03 17:54:35,070 - INFO - Processing chromosome chr16
-2024-10-03 17:54:35,070 - INFO - Processing chromosome chrX
-2024-10-03 17:54:35,070 - INFO - Processing chromosome chr15
-2024-10-03 17:54:35,070 - INFO - Processing chromosome chr1
-2024-10-03 17:54:35,193 - INFO - Processing chromosome chr17
-2024-10-03 17:54:35,195 - INFO - Processing chromosome chr8
-2024-10-03 17:54:35,197 - INFO - Processing chromosome chr4
-2024-10-03 17:54:35,198 - INFO - Processing chromosome chr12
-2024-10-03 17:54:35,198 - INFO - Processing chromosome chr2
-2024-10-03 17:54:35,198 - INFO - Processing chromosome chr5
-2024-10-03 17:54:35,198 - INFO - Processing chromosome chr3
-2024-10-03 17:54:35,199 - INFO - Processing chromosome chr18
-2024-10-03 17:54:35,199 - INFO - Processing chromosome chr11
-2024-10-03 17:54:35,199 - INFO - Processing chromosome chr10
-2024-10-03 17:54:35,199 - INFO - Processing chromosome chr13
-2024-10-03 17:54:35,199 - INFO - Processing chromosome chr7
-2024-10-03 17:54:35,199 - INFO - Processing chromosome chr6
-2024-10-03 17:54:35,200 - INFO - Processing chromosome chr14
-2024-10-03 17:54:35,200 - INFO - Processing chromosome chr20
-2024-10-03 17:54:35,201 - INFO - Processing chromosome chr9
-2024-10-03 18:16:21,222 - INFO - Finished processing chromosome chr18
-2024-10-03 18:16:21,878 - INFO - Processing chromosome chr19
-2024-10-03 18:21:46,448 - INFO - Finished processing chromosome chr13
-2024-10-03 18:21:47,195 - INFO - Processing chromosome chrY
-2024-10-03 18:22:15,628 - INFO - Finished processing chromosome chrY
-2024-10-03 18:22:16,009 - INFO - Processing chromosome chr22
-2024-10-03 18:31:18,351 - INFO - Finished processing chromosome chr20
-2024-10-03 18:31:19,257 - INFO - Processing chromosome chr21
-2024-10-03 18:34:47,695 - INFO - Finished processing chromosome chr14
-2024-10-03 18:34:48,575 - INFO - Processing chromosome KI270728.1
-2024-10-03 18:34:52,133 - INFO - Finished processing chromosome KI270728.1
-2024-10-03 18:34:52,411 - INFO - Processing chromosome KI270727.1
-2024-10-03 18:34:55,463 - INFO - Finished processing chromosome KI270727.1
-2024-10-03 18:34:55,717 - INFO - Processing chromosome KI270442.1
-2024-10-03 18:34:56,847 - INFO - Finished processing chromosome KI270442.1
-2024-10-03 18:34:57,121 - INFO - Processing chromosome KI270729.1
-2024-10-03 18:34:58,071 - INFO - Finished processing chromosome KI270729.1
-2024-10-03 18:34:58,336 - INFO - Processing chromosome GL000225.1
-2024-10-03 18:34:59,636 - INFO - Finished processing chromosome GL000225.1
-2024-10-03 18:34:59,910 - INFO - Processing chromosome KI270743.1
-2024-10-03 18:35:01,733 - INFO - Finished processing chromosome KI270743.1
-2024-10-03 18:35:02,006 - INFO - Processing chromosome GL000008.2
-2024-10-03 18:35:04,004 - INFO - Finished processing chromosome GL000008.2
-2024-10-03 18:35:04,330 - INFO - Processing chromosome GL000009.2
-2024-10-03 18:35:09,233 - INFO - Finished processing chromosome GL000009.2
-2024-10-03 18:35:09,532 - INFO - Processing chromosome KI270747.1
-2024-10-03 18:35:11,054 - INFO - Finished processing chromosome KI270747.1
-2024-10-03 18:35:11,332 - INFO - Processing chromosome KI270722.1
-2024-10-03 18:35:16,663 - INFO - Finished processing chromosome KI270722.1
-2024-10-03 18:35:16,926 - INFO - Processing chromosome GL000194.1
-2024-10-03 18:35:19,289 - INFO - Finished processing chromosome GL000194.1
-2024-10-03 18:35:19,577 - INFO - Processing chromosome KI270742.1
-2024-10-03 18:35:21,166 - INFO - Finished processing chromosome KI270742.1
-2024-10-03 18:35:21,447 - INFO - Processing chromosome GL000205.2
-2024-10-03 18:35:22,776 - INFO - Finished processing chromosome GL000205.2
-2024-10-03 18:35:23,064 - INFO - Processing chromosome GL000195.1
-2024-10-03 18:35:25,158 - INFO - Finished processing chromosome GL000195.1
-2024-10-03 18:35:25,418 - INFO - Processing chromosome KI270736.1
-2024-10-03 18:35:26,102 - INFO - Finished processing chromosome KI270736.1
-2024-10-03 18:35:26,347 - INFO - Processing chromosome KI270733.1
-2024-10-03 18:36:08,001 - INFO - Finished processing chromosome KI270733.1
-2024-10-03 18:36:08,418 - INFO - Processing chromosome GL000224.1
-2024-10-03 18:36:09,914 - INFO - Finished processing chromosome GL000224.1
-2024-10-03 18:36:10,317 - INFO - Processing chromosome GL000219.1
-2024-10-03 18:36:10,986 - INFO - Finished processing chromosome GL000219.1
-2024-10-03 18:36:11,263 - INFO - Processing chromosome KI270719.1
-2024-10-03 18:36:15,197 - INFO - Finished processing chromosome KI270719.1
-2024-10-03 18:36:15,475 - INFO - Processing chromosome GL000216.2
-2024-10-03 18:36:18,618 - INFO - Finished processing chromosome GL000216.2
-2024-10-03 18:36:18,886 - INFO - Processing chromosome KI270712.1
-2024-10-03 18:36:21,418 - INFO - Finished processing chromosome KI270712.1
-2024-10-03 18:36:21,678 - INFO - Processing chromosome KI270706.1
-2024-10-03 18:36:22,184 - INFO - Finished processing chromosome KI270706.1
-2024-10-03 18:36:22,550 - INFO - Processing chromosome KI270725.1
-2024-10-03 18:36:25,067 - INFO - Finished processing chromosome KI270725.1
-2024-10-03 18:36:25,338 - INFO - Processing chromosome KI270744.1
-2024-10-03 18:36:27,671 - INFO - Finished processing chromosome KI270744.1
-2024-10-03 18:36:27,938 - INFO - Processing chromosome KI270734.1
-2024-10-03 18:36:29,344 - INFO - Finished processing chromosome KI270734.1
-2024-10-03 18:36:29,615 - INFO - Processing chromosome GL000213.1
-2024-10-03 18:36:30,597 - INFO - Finished processing chromosome GL000213.1
-2024-10-03 18:36:30,856 - INFO - Processing chromosome GL000220.1
-2024-10-03 18:36:33,762 - INFO - Finished processing chromosome GL000220.1
-2024-10-03 18:36:34,151 - INFO - Processing chromosome KI270715.1
-2024-10-03 18:36:35,120 - INFO - Finished processing chromosome KI270715.1
-2024-10-03 18:36:35,531 - INFO - Processing chromosome GL000218.1
-2024-10-03 18:36:41,406 - INFO - Finished processing chromosome GL000218.1
-2024-10-03 18:36:41,718 - INFO - Processing chromosome KI270749.1
-2024-10-03 18:36:44,041 - INFO - Finished processing chromosome KI270749.1
-2024-10-03 18:36:44,314 - INFO - Processing chromosome KI270741.1
-2024-10-03 18:36:45,106 - INFO - Finished processing chromosome KI270741.1
-2024-10-03 18:36:45,397 - INFO - Processing chromosome GL000221.1
-2024-10-03 18:36:46,867 - INFO - Finished processing chromosome GL000221.1
-2024-10-03 18:36:47,151 - INFO - Processing chromosome KI270716.1
-2024-10-03 18:36:48,079 - INFO - Finished processing chromosome KI270716.1
-2024-10-03 18:36:48,408 - INFO - Processing chromosome KI270731.1
-2024-10-03 18:36:49,691 - INFO - Finished processing chromosome KI270731.1
-2024-10-03 18:36:49,948 - INFO - Processing chromosome KI270751.1
-2024-10-03 18:36:50,612 - INFO - Finished processing chromosome KI270751.1
-2024-10-03 18:36:50,917 - INFO - Processing chromosome KI270750.1
-2024-10-03 18:36:55,955 - INFO - Finished processing chromosome KI270750.1
-2024-10-03 18:36:56,258 - INFO - Processing chromosome KI270519.1
-2024-10-03 18:36:56,780 - INFO - Finished processing chromosome KI270519.1
-2024-10-03 18:36:57,054 - INFO - Processing chromosome GL000214.1
-2024-10-03 18:36:58,647 - INFO - Finished processing chromosome GL000214.1
-2024-10-03 18:36:58,937 - INFO - Processing chromosome KI270708.1
-2024-10-03 18:37:04,988 - INFO - Finished processing chromosome KI270708.1
-2024-10-03 18:37:05,260 - INFO - Processing chromosome KI270730.1
-2024-10-03 18:37:05,955 - INFO - Finished processing chromosome KI270730.1
-2024-10-03 18:37:06,220 - INFO - Processing chromosome KI270438.1
-2024-10-03 18:37:07,955 - INFO - Finished processing chromosome KI270438.1
-2024-10-03 18:37:08,236 - INFO - Processing chromosome KI270737.1
-2024-10-03 18:37:09,691 - INFO - Finished processing chromosome KI270737.1
-2024-10-03 18:37:09,938 - INFO - Processing chromosome KI270721.1
-2024-10-03 18:37:10,540 - INFO - Finished processing chromosome KI270721.1
-2024-10-03 18:37:10,809 - INFO - Processing chromosome KI270738.1
-2024-10-03 18:37:14,483 - INFO - Finished processing chromosome KI270738.1
-2024-10-03 18:37:14,769 - INFO - Processing chromosome KI270748.1
-2024-10-03 18:37:15,540 - INFO - Finished processing chromosome KI270748.1
-2024-10-03 18:37:15,833 - INFO - Processing chromosome KI270435.1
-2024-10-03 18:37:16,480 - INFO - Finished processing chromosome KI270435.1
-2024-10-03 18:37:16,786 - INFO - Processing chromosome GL000208.1
-2024-10-03 18:37:18,081 - INFO - Finished processing chromosome GL000208.1
-2024-10-03 18:37:18,403 - INFO - Processing chromosome KI270538.1
-2024-10-03 18:37:18,898 - INFO - Finished processing chromosome KI270538.1
-2024-10-03 18:37:19,180 - INFO - Processing chromosome KI270756.1
-2024-10-03 18:37:19,954 - INFO - Finished processing chromosome KI270756.1
-2024-10-03 18:37:20,220 - INFO - Processing chromosome KI270739.1
-2024-10-03 18:37:20,814 - INFO - Finished processing chromosome KI270739.1
-2024-10-03 18:37:21,100 - INFO - Processing chromosome KI270757.1
-2024-10-03 18:37:21,596 - INFO - Finished processing chromosome KI270757.1
-2024-10-03 18:37:21,898 - INFO - Processing chromosome KI270709.1
-2024-10-03 18:37:24,728 - INFO - Finished processing chromosome KI270709.1
-2024-10-03 18:37:25,027 - INFO - Processing chromosome KI270746.1
-2024-10-03 18:37:26,750 - INFO - Finished processing chromosome KI270746.1
-2024-10-03 18:37:27,014 - INFO - Processing chromosome KI270753.1
-2024-10-03 18:37:28,294 - INFO - Finished processing chromosome KI270753.1
-2024-10-03 18:37:28,569 - INFO - Processing chromosome KI270589.1
-2024-10-03 18:37:29,341 - INFO - Finished processing chromosome KI270589.1
-2024-10-03 18:37:29,615 - INFO - Processing chromosome KI270726.1
-2024-10-03 18:37:30,015 - INFO - Finished processing chromosome KI270726.1
-2024-10-03 18:37:30,331 - INFO - Processing chromosome KI270735.1
-2024-10-03 18:37:31,313 - INFO - Finished processing chromosome KI270735.1
-2024-10-03 18:37:31,572 - INFO - Processing chromosome KI270711.1
-2024-10-03 18:37:32,782 - INFO - Finished processing chromosome KI270711.1
-2024-10-03 18:37:33,063 - INFO - Processing chromosome KI270745.1
-2024-10-03 18:37:34,100 - INFO - Finished processing chromosome KI270745.1
-2024-10-03 18:37:34,352 - INFO - Processing chromosome KI270714.1
-2024-10-03 18:37:35,109 - INFO - Finished processing chromosome KI270714.1
-2024-10-03 18:37:35,374 - INFO - Processing chromosome KI270732.1
-2024-10-03 18:37:37,200 - INFO - Finished processing chromosome KI270732.1
-2024-10-03 18:37:37,487 - INFO - Processing chromosome KI270713.1
-2024-10-03 18:37:38,560 - INFO - Finished processing chromosome KI270713.1
-2024-10-03 18:37:38,855 - INFO - Processing chromosome KI270754.1
-2024-10-03 18:37:39,916 - INFO - Finished processing chromosome KI270754.1
-2024-10-03 18:37:40,191 - INFO - Processing chromosome KI270710.1
-2024-10-03 18:37:41,310 - INFO - Finished processing chromosome KI270710.1
-2024-10-03 18:37:41,571 - INFO - Processing chromosome KI270717.1
-2024-10-03 18:37:42,657 - INFO - Finished processing chromosome KI270717.1
-2024-10-03 18:37:42,940 - INFO - Processing chromosome KI270724.1
-2024-10-03 18:37:45,027 - INFO - Finished processing chromosome KI270724.1
-2024-10-03 18:37:45,302 - INFO - Processing chromosome KI270720.1
-2024-10-03 18:37:46,427 - INFO - Finished processing chromosome KI270720.1
-2024-10-03 18:37:46,705 - INFO - Processing chromosome KI270723.1
-2024-10-03 18:37:48,994 - INFO - Finished processing chromosome KI270723.1
-2024-10-03 18:37:49,258 - INFO - Processing chromosome KI270718.1
-2024-10-03 18:37:49,679 - INFO - Finished processing chromosome KI270718.1
-2024-10-03 18:37:49,953 - INFO - Processing chromosome KI270317.1
-2024-10-03 18:37:50,178 - INFO - Finished processing chromosome KI270317.1
-2024-10-03 18:37:50,424 - INFO - Processing chromosome KI270740.1
-2024-10-03 18:37:50,645 - INFO - Finished processing chromosome KI270740.1
-2024-10-03 18:37:50,889 - INFO - Processing chromosome KI270755.1
-2024-10-03 18:37:51,621 - INFO - Finished processing chromosome KI270755.1
-2024-10-03 18:37:51,877 - INFO - Processing chromosome KI270707.1
-2024-10-03 18:37:54,177 - INFO - Finished processing chromosome KI270707.1
-2024-10-03 18:37:54,460 - INFO - Processing chromosome KI270579.1
-2024-10-03 18:37:55,378 - INFO - Finished processing chromosome KI270579.1
-2024-10-03 18:37:55,642 - INFO - Processing chromosome KI270752.1
-2024-10-03 18:37:55,866 - INFO - Finished processing chromosome KI270752.1
-2024-10-03 18:37:56,118 - INFO - Processing chromosome KI270512.1
-2024-10-03 18:37:57,584 - INFO - Finished processing chromosome KI270512.1
-2024-10-03 18:37:57,845 - INFO - Processing chromosome KI270322.1
-2024-10-03 18:37:58,252 - INFO - Finished processing chromosome KI270322.1
-2024-10-03 18:37:58,533 - INFO - Processing chromosome chrM
-2024-10-03 18:40:23,726 - INFO - Finished processing chromosome chrX
-2024-10-03 18:40:24,782 - INFO - Processing chromosome GL000226.1
-2024-10-03 18:40:24,999 - INFO - Finished processing chromosome GL000226.1
-2024-10-03 18:40:25,279 - INFO - Processing chromosome KI270311.1
-2024-10-03 18:40:25,502 - INFO - Finished processing chromosome KI270311.1
-2024-10-03 18:40:25,770 - INFO - Processing chromosome KI270366.1
-2024-10-03 18:40:25,988 - INFO - Finished processing chromosome KI270366.1
-2024-10-03 18:40:26,241 - INFO - Processing chromosome KI270511.1
-2024-10-03 18:40:27,181 - INFO - Finished processing chromosome KI270511.1
-2024-10-03 18:40:27,475 - INFO - Processing chromosome KI270448.1
-2024-10-03 18:40:27,900 - INFO - Finished processing chromosome KI270448.1
-2024-10-03 18:40:28,172 - INFO - Processing chromosome KI270521.1
-2024-10-03 18:40:28,542 - INFO - Finished processing chromosome KI270521.1
-2024-10-03 18:40:28,814 - INFO - Processing chromosome KI270581.1
-2024-10-03 18:40:29,040 - INFO - Finished processing chromosome KI270581.1
-2024-10-03 18:40:29,289 - INFO - Processing chromosome KI270582.1
-2024-10-03 18:40:29,673 - INFO - Finished processing chromosome KI270582.1
-2024-10-03 18:40:29,914 - INFO - Processing chromosome KI270515.1
-2024-10-03 18:40:30,411 - INFO - Finished processing chromosome KI270515.1
-2024-10-03 18:40:30,662 - INFO - Processing chromosome KI270588.1
-2024-10-03 18:40:31,074 - INFO - Finished processing chromosome KI270588.1
-2024-10-03 18:40:31,338 - INFO - Processing chromosome KI270591.1
-2024-10-03 18:40:31,910 - INFO - Finished processing chromosome KI270591.1
-2024-10-03 18:40:32,158 - INFO - Processing chromosome KI270522.1
-2024-10-03 18:40:32,938 - INFO - Finished processing chromosome KI270522.1
-2024-10-03 18:40:33,205 - INFO - Processing chromosome KI270507.1
-2024-10-03 18:40:33,752 - INFO - Finished processing chromosome KI270507.1
-2024-10-03 18:40:34,007 - INFO - Processing chromosome KI270590.1
-2024-10-03 18:40:34,405 - INFO - Finished processing chromosome KI270590.1
-2024-10-03 18:40:34,680 - INFO - Processing chromosome KI270584.1
-2024-10-03 18:40:35,251 - INFO - Finished processing chromosome KI270584.1
-2024-10-03 18:40:35,507 - INFO - Processing chromosome KI270320.1
-2024-10-03 18:40:35,724 - INFO - Finished processing chromosome KI270320.1
-2024-10-03 18:40:35,988 - INFO - Processing chromosome KI270382.1
-2024-10-03 18:40:36,376 - INFO - Finished processing chromosome KI270382.1
-2024-10-03 18:40:36,656 - INFO - Processing chromosome KI270468.1
-2024-10-03 18:40:37,063 - INFO - Finished processing chromosome KI270468.1
-2024-10-03 18:40:37,332 - INFO - Processing chromosome KI270467.1
-2024-10-03 18:40:39,196 - INFO - Finished processing chromosome KI270467.1
-2024-10-03 18:40:39,467 - INFO - Processing chromosome KI270362.1
-2024-10-03 18:40:39,676 - INFO - Finished processing chromosome KI270362.1
-2024-10-03 18:40:39,957 - INFO - Processing chromosome KI270517.1
-2024-10-03 18:40:40,370 - INFO - Finished processing chromosome KI270517.1
-2024-10-03 18:40:40,637 - INFO - Processing chromosome KI270593.1
-2024-10-03 18:40:41,050 - INFO - Finished processing chromosome KI270593.1
-2024-10-03 18:40:41,315 - INFO - Processing chromosome KI270528.1
-2024-10-03 18:40:41,514 - INFO - Finished processing chromosome KI270528.1
-2024-10-03 18:40:41,799 - INFO - Processing chromosome KI270587.1
-2024-10-03 18:40:42,240 - INFO - Finished processing chromosome KI270587.1
-2024-10-03 18:40:42,544 - INFO - Processing chromosome KI270364.1
-2024-10-03 18:40:42,942 - INFO - Finished processing chromosome KI270364.1
-2024-10-03 18:40:43,211 - INFO - Processing chromosome KI270371.1
-2024-10-03 18:40:43,432 - INFO - Finished processing chromosome KI270371.1
-2024-10-03 18:40:43,701 - INFO - Processing chromosome KI270333.1
-2024-10-03 18:40:44,140 - INFO - Finished processing chromosome KI270333.1
-2024-10-03 18:40:44,401 - INFO - Processing chromosome KI270374.1
-2024-10-03 18:40:44,613 - INFO - Finished processing chromosome KI270374.1
-2024-10-03 18:40:44,904 - INFO - Processing chromosome KI270411.1
-2024-10-03 18:40:45,126 - INFO - Finished processing chromosome KI270411.1
-2024-10-03 18:40:45,376 - INFO - Processing chromosome KI270414.1
-2024-10-03 18:40:45,773 - INFO - Finished processing chromosome KI270414.1
-2024-10-03 18:40:46,102 - INFO - Processing chromosome KI270510.1
-2024-10-03 18:40:46,677 - INFO - Finished processing chromosome KI270510.1
-2024-10-03 18:40:46,955 - INFO - Processing chromosome KI270390.1
-2024-10-03 18:40:47,394 - INFO - Finished processing chromosome KI270390.1
-2024-10-03 18:40:47,929 - INFO - Processing chromosome KI270375.1
-2024-10-03 18:40:48,142 - INFO - Finished processing chromosome KI270375.1
-2024-10-03 18:40:48,397 - INFO - Processing chromosome KI270420.1
-2024-10-03 18:40:48,613 - INFO - Finished processing chromosome KI270420.1
-2024-10-03 18:40:48,899 - INFO - Processing chromosome KI270509.1
-2024-10-03 18:40:49,480 - INFO - Finished processing chromosome KI270509.1
-2024-10-03 18:40:49,730 - INFO - Processing chromosome KI270315.1
-2024-10-03 18:40:49,970 - INFO - Finished processing chromosome KI270315.1
-2024-10-03 18:40:50,233 - INFO - Processing chromosome KI270302.1
-2024-10-03 18:40:50,442 - INFO - Finished processing chromosome KI270302.1
-2024-10-03 18:40:50,682 - INFO - Processing chromosome KI270518.1
-2024-10-03 18:40:51,070 - INFO - Finished processing chromosome KI270518.1
-2024-10-03 18:40:51,316 - INFO - Processing chromosome KI270530.1
-2024-10-03 18:40:51,749 - INFO - Finished processing chromosome KI270530.1
-2024-10-03 18:40:52,031 - INFO - Processing chromosome KI270304.1
-2024-10-03 18:40:52,261 - INFO - Finished processing chromosome KI270304.1
-2024-10-03 18:40:52,552 - INFO - Processing chromosome KI270418.1
-2024-10-03 18:40:52,980 - INFO - Finished processing chromosome KI270418.1
-2024-10-03 18:40:53,237 - INFO - Processing chromosome KI270424.1
-2024-10-03 18:40:53,479 - INFO - Finished processing chromosome KI270424.1
-2024-10-03 18:40:53,742 - INFO - Processing chromosome KI270417.1
-2024-10-03 18:40:54,132 - INFO - Finished processing chromosome KI270417.1
-2024-10-03 18:40:54,398 - INFO - Processing chromosome KI270508.1
-2024-10-03 18:40:55,153 - INFO - Finished processing chromosome KI270508.1
-2024-10-03 18:40:55,413 - INFO - Processing chromosome KI270303.1
-2024-10-03 18:40:55,633 - INFO - Finished processing chromosome KI270303.1
-2024-10-03 18:40:55,918 - INFO - Processing chromosome KI270381.1
-2024-10-03 18:40:56,146 - INFO - Finished processing chromosome KI270381.1
-2024-10-03 18:40:56,423 - INFO - Processing chromosome KI270529.1
-2024-10-03 18:40:56,643 - INFO - Finished processing chromosome KI270529.1
-2024-10-03 18:40:56,900 - INFO - Processing chromosome KI270425.1
-2024-10-03 18:40:57,109 - INFO - Finished processing chromosome KI270425.1
-2024-10-03 18:40:57,394 - INFO - Processing chromosome KI270396.1
-2024-10-03 18:40:57,627 - INFO - Finished processing chromosome KI270396.1
-2024-10-03 18:40:57,907 - INFO - Processing chromosome KI270363.1
-2024-10-03 18:40:58,345 - INFO - Finished processing chromosome KI270363.1
-2024-10-03 18:40:58,604 - INFO - Processing chromosome KI270386.1
-2024-10-03 18:40:58,815 - INFO - Finished processing chromosome KI270386.1
-2024-10-03 18:40:59,087 - INFO - Processing chromosome KI270465.1
-2024-10-03 18:40:59,464 - INFO - Finished processing chromosome KI270465.1
-2024-10-03 18:40:59,728 - INFO - Processing chromosome KI270383.1
-2024-10-03 18:40:59,951 - INFO - Finished processing chromosome KI270383.1
-2024-10-03 18:41:00,214 - INFO - Processing chromosome KI270384.1
-2024-10-03 18:41:00,424 - INFO - Finished processing chromosome KI270384.1
-2024-10-03 18:41:00,703 - INFO - Processing chromosome KI270330.1
-2024-10-03 18:41:01,292 - INFO - Finished processing chromosome KI270330.1
-2024-10-03 18:41:01,554 - INFO - Processing chromosome KI270372.1
-2024-10-03 18:41:01,779 - INFO - Finished processing chromosome KI270372.1
-2024-10-03 18:41:02,046 - INFO - Processing chromosome KI270548.1
-2024-10-03 18:41:02,265 - INFO - Finished processing chromosome KI270548.1
-2024-10-03 18:41:02,556 - INFO - Processing chromosome KI270580.1
-2024-10-03 18:41:02,985 - INFO - Finished processing chromosome KI270580.1
-2024-10-03 18:41:03,265 - INFO - Processing chromosome KI270387.1
-2024-10-03 18:41:03,494 - INFO - Finished processing chromosome KI270387.1
-2024-10-03 18:41:03,768 - INFO - Processing chromosome KI270391.1
-2024-10-03 18:41:03,993 - INFO - Finished processing chromosome KI270391.1
-2024-10-03 18:41:04,269 - INFO - Processing chromosome KI270305.1
-2024-10-03 18:41:04,457 - INFO - Finished processing chromosome KI270305.1
-2024-10-03 18:41:04,716 - INFO - Processing chromosome KI270373.1
-2024-10-03 18:41:04,944 - INFO - Finished processing chromosome KI270373.1
-2024-10-03 18:41:05,202 - INFO - Processing chromosome KI270422.1
-2024-10-03 18:41:05,407 - INFO - Finished processing chromosome KI270422.1
-2024-10-03 18:41:05,680 - INFO - Processing chromosome KI270316.1
-2024-10-03 18:41:05,969 - INFO - Finished processing chromosome KI270316.1
-2024-10-03 18:41:06,223 - INFO - Processing chromosome KI270338.1
-2024-10-03 18:41:06,431 - INFO - Finished processing chromosome KI270338.1
-2024-10-03 18:41:06,705 - INFO - Processing chromosome KI270340.1
-2024-10-03 18:41:06,914 - INFO - Finished processing chromosome KI270340.1
-2024-10-03 18:41:07,186 - INFO - Processing chromosome KI270583.1
-2024-10-03 18:41:07,613 - INFO - Finished processing chromosome KI270583.1
-2024-10-03 18:41:07,868 - INFO - Processing chromosome KI270334.1
-2024-10-03 18:41:08,104 - INFO - Finished processing chromosome KI270334.1
-2024-10-03 18:41:08,420 - INFO - Processing chromosome KI270429.1
-2024-10-03 18:41:08,839 - INFO - Finished processing chromosome KI270429.1
-2024-10-03 18:41:09,099 - INFO - Processing chromosome KI270393.1
-2024-10-03 18:41:09,284 - INFO - Finished processing chromosome KI270393.1
-2024-10-03 18:41:09,532 - INFO - Processing chromosome KI270516.1
-2024-10-03 18:41:09,927 - INFO - Finished processing chromosome KI270516.1
-2024-10-03 18:41:10,166 - INFO - Processing chromosome KI270389.1
-2024-10-03 18:41:10,362 - INFO - Finished processing chromosome KI270389.1
-2024-10-03 18:41:10,724 - INFO - Processing chromosome KI270466.1
-2024-10-03 18:41:11,206 - INFO - Finished processing chromosome KI270466.1
-2024-10-03 18:41:11,449 - INFO - Processing chromosome KI270388.1
-2024-10-03 18:41:11,680 - INFO - Finished processing chromosome KI270388.1
-2024-10-03 18:41:11,935 - INFO - Processing chromosome KI270544.1
-2024-10-03 18:41:12,169 - INFO - Finished processing chromosome KI270544.1
-2024-10-03 18:41:12,674 - INFO - Processing chromosome KI270310.1
-2024-10-03 18:41:12,879 - INFO - Finished processing chromosome KI270310.1
-2024-10-03 18:41:13,159 - INFO - Processing chromosome KI270412.1
-2024-10-03 18:41:13,584 - INFO - Finished processing chromosome KI270412.1
-2024-10-03 18:41:13,831 - INFO - Processing chromosome KI270395.1
-2024-10-03 18:41:14,053 - INFO - Finished processing chromosome KI270395.1
-2024-10-03 18:41:14,332 - INFO - Processing chromosome KI270376.1
-2024-10-03 18:41:14,541 - INFO - Finished processing chromosome KI270376.1
-2024-10-03 18:41:14,806 - INFO - Processing chromosome KI270337.1
-2024-10-03 18:41:15,207 - INFO - Finished processing chromosome KI270337.1
-2024-10-03 18:41:15,459 - INFO - Processing chromosome KI270335.1
-2024-10-03 18:41:15,677 - INFO - Finished processing chromosome KI270335.1
-2024-10-03 18:41:15,923 - INFO - Processing chromosome KI270378.1
-2024-10-03 18:41:16,119 - INFO - Finished processing chromosome KI270378.1
-2024-10-03 18:41:16,433 - INFO - Processing chromosome KI270379.1
-2024-10-03 18:41:16,761 - INFO - Finished processing chromosome KI270379.1
-2024-10-03 18:41:17,033 - INFO - Processing chromosome KI270329.1
-2024-10-03 18:41:17,260 - INFO - Finished processing chromosome KI270329.1
-2024-10-03 18:41:17,516 - INFO - Processing chromosome KI270419.1
-2024-10-03 18:41:17,725 - INFO - Finished processing chromosome KI270419.1
-2024-10-03 18:41:17,988 - INFO - Processing chromosome KI270336.1
-2024-10-03 18:41:18,393 - INFO - Finished processing chromosome KI270336.1
-2024-10-03 18:41:18,665 - INFO - Processing chromosome KI270312.1
-2024-10-03 18:41:18,883 - INFO - Finished processing chromosome KI270312.1
-2024-10-03 18:41:19,147 - INFO - Processing chromosome KI270539.1
-2024-10-03 18:41:19,269 - INFO - Finished processing chromosome chr4
-2024-10-03 18:41:19,397 - INFO - Finished processing chromosome KI270539.1
-2024-10-03 18:41:19,665 - INFO - Processing chromosome KI270385.1
-2024-10-03 18:41:19,955 - INFO - Finished processing chromosome KI270385.1
-2024-10-03 18:41:20,203 - INFO - Processing chromosome KI270423.1
-2024-10-03 18:41:20,379 - INFO - Processing chromosome KI270392.1
-2024-10-03 18:41:20,410 - INFO - Finished processing chromosome KI270423.1
-2024-10-03 18:41:20,580 - INFO - Finished processing chromosome KI270392.1
-2024-10-03 18:41:20,656 - INFO - Processing chromosome KI270394.1
-2024-10-03 18:41:20,857 - INFO - Finished processing chromosome KI270394.1
-2024-10-03 18:41:27,700 - INFO - Finished processing chromosome chr8
-2024-10-03 18:43:38,959 - INFO - Finished processing chromosome chr9
-2024-10-03 18:45:32,569 - INFO - Finished processing chromosome chr21
-2024-10-03 18:49:00,920 - INFO - Finished processing chromosome chr10
-2024-10-03 18:49:55,103 - INFO - Finished processing chromosome chr15
-2024-10-03 18:51:29,282 - INFO - Finished processing chromosome chr22
-2024-10-03 18:57:16,156 - INFO - Finished processing chromosome chr16
-2024-10-03 18:59:11,381 - INFO - Finished processing chromosome chr6
-2024-10-03 19:01:22,879 - INFO - Finished processing chromosome chr5
-2024-10-03 19:02:35,750 - INFO - Finished processing chromosome chrM
-2024-10-03 19:10:04,444 - INFO - Finished processing chromosome chr7
-2024-10-03 19:15:50,295 - INFO - Finished processing chromosome chr3
-2024-10-03 19:28:30,416 - INFO - Finished processing chromosome chr17
-2024-10-03 19:33:13,835 - INFO - Finished processing chromosome chr2
-2024-10-03 19:49:37,206 - INFO - Finished processing chromosome chr12
-2024-10-03 19:52:27,218 - INFO - Finished processing chromosome chr11
-2024-10-03 20:05:18,601 - INFO - Finished processing chromosome chr1
-2024-10-03 20:33:53,236 - INFO - Finished processing chromosome chr19
-2024-10-03 20:34:18,672 - INFO - Counting multimapped reads
-2024-10-03 20:34:18,673 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chr1
-2024-10-03 20:48:26,883 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chr2
-2024-10-03 20:57:36,880 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chr3
-2024-10-03 21:06:10,011 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chr4
-2024-10-03 21:10:15,551 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chr5
-2024-10-03 21:16:05,576 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chr6
-2024-10-03 21:21:50,869 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chr7
-2024-10-03 21:30:06,200 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chrX
-2024-10-03 21:34:40,320 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux/OUT.save_chr8
+2024-10-04 08:13:49,721 - INFO - Running IsoQuant version 3.6.0
+2024-10-04 08:13:49,735 - WARNING - Output folder already contains a previous run, some files may be overwritten. Use --resume to resume a failed run. Use --force to avoid this message.
+2024-10-04 08:13:49,735 - WARNING - Press Ctrl+C to interrupt the run now.
+Resuming the run in 9 secondsResuming the run in 8 secondsResuming the run in 7 secondsResuming the run in 6 secondsResuming the run in 5 secondsResuming the run in 4 secondsResuming the run in 3 secondsResuming the run in 2 secondsResuming the run in 1 second2024-10-04 08:13:58,744 - INFO - Overwriting the previous run
+2024-10-04 08:14:00,525 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT folder already exists, some files may be overwritten
+2024-10-04 08:14:00,525 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/aux folder already exists, some files may be overwritten
+2024-10-04 08:14:00,527 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
+2024-10-04 08:14:00,527 - INFO -  === IsoQuant pipeline started === 
+2024-10-04 08:14:00,527 - INFO - gffutils version: 0.13
+2024-10-04 08:14:00,528 - INFO - pysam version: 0.22.1
+2024-10-04 08:14:00,528 - INFO - pyfaidx version: 0.8.1.2
+2024-10-04 08:14:00,528 - INFO - Checking input gene annotation
+2024-10-04 08:14:29,806 - INFO - Gene annotation seems to be correct
+2024-10-04 08:14:29,921 - INFO - Converting gene annotation file to .db format (takes a while)...
+2024-10-04 08:19:25,538 - INFO - Gene database written to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/release_46_primary_assembly.gtf.db
+2024-10-04 08:19:25,539 - INFO - Provide this database next time to avoid excessive conversion
+2024-10-04 08:19:25,541 - INFO - Loading gene database from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/release_46_primary_assembly.gtf.db
+2024-10-04 08:19:25,546 - INFO - Loading reference genome from /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
+2024-10-04 08:20:01,822 - INFO - Loading uncompressed reference from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/release_46_primary_genome.fa
+2024-10-04 08:20:24,566 - INFO - Processing 1 experiment
+2024-10-04 08:20:24,566 - INFO - Processing experiment OUT
+2024-10-04 08:20:24,566 - INFO - Experiment has 4 BAM files: /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-FT_1_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-FT_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-hRGC_1_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-hRGC_2_primary_over_30_sorted.bam
+2024-10-04 08:20:24,684 - INFO - Collecting read alignments
+2024-10-04 08:20:32,086 - INFO - Processing chromosome chr17
+2024-10-04 08:20:32,086 - INFO - Processing chromosome chr18
+2024-10-04 08:20:32,086 - INFO - Processing chromosome chr11
+2024-10-04 08:20:32,091 - INFO - Processing chromosome chr2
+2024-10-04 08:20:32,092 - INFO - Processing chromosome chr10
+2024-10-04 08:20:32,092 - INFO - Processing chromosome chr4
+2024-10-04 08:20:32,101 - INFO - Processing chromosome chr5
+2024-10-04 08:20:32,101 - INFO - Processing chromosome chrX
+2024-10-04 08:20:32,101 - INFO - Processing chromosome chr12
+2024-10-04 08:20:32,104 - INFO - Processing chromosome chr13
+2024-10-04 08:20:32,104 - INFO - Processing chromosome chr9
+2024-10-04 08:20:32,106 - INFO - Processing chromosome chr1
+2024-10-04 08:20:32,107 - INFO - Processing chromosome chr8
+2024-10-04 08:20:32,108 - INFO - Processing chromosome chr3
+2024-10-04 08:20:32,114 - INFO - Processing chromosome chr7
+2024-10-04 08:20:32,118 - INFO - Processing chromosome chr15
+2024-10-04 08:20:32,118 - INFO - Processing chromosome chr20
+2024-10-04 08:20:32,119 - INFO - Processing chromosome chr16
+2024-10-04 08:20:32,132 - INFO - Processing chromosome chr14
+2024-10-04 08:20:32,132 - INFO - Processing chromosome chr6

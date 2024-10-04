@@ -1,13 +1,13 @@
 **** Job starts ****
-2024-10-03 17:41:55
+2024-10-04 08:13:42
 **** JHPCE info ****
 User: sparthib
-Job id: 10010361
+Job id: 10018183
 Job name: isoquant_RO
-Node name: compute-065
+Node name: compute-115
 
-2024-10-03 17:41:57,509 - INFO - Running IsoQuant version 3.6.0
-2024-10-03 17:41:57,509 - WARNING - Output folder already exists, some files may be overwritten.
-2024-10-03 17:41:57,947 - CRITICAL - Input file /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_ROs_primary_over_30_sorted.bam does not exist
+2024-10-04 08:13:46,736 - INFO - Running IsoQuant version 3.6.0
+2024-10-04 08:13:46,737 - WARNING - Output folder already exists, some files may be overwritten.
+2024-10-04 08:13:47,386 - CRITICAL - Input file /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_ROs_primary_over_30_sorted.bam does not exist
 **** Job ends ****
-2024-10-03 17:41:58
+2024-10-04 08:13:47
