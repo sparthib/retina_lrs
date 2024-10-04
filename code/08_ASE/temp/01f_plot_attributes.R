@@ -3,8 +3,8 @@ library(stringr)
 library(sessioninfo)
 
 sample <- commandArgs(trailingOnly = TRUE)[1]
-dir.create(paste0("/users/sparthib/retina_lrs/plots/", sample), showWarnings = FALSE)
-output_dir <- paste0("/users/sparthib/retina_lrs/plots/", sample)
+dir.create(paste0("/users/sparthib/retina_lrs/plots/longshot/", sample), showWarnings = FALSE)
+output_dir <- paste0("/users/sparthib/retina_lrs/plots/longshot/", sample)
 
 #Read Length distribution 
 seq_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/01_longshot_vcfs/",sample, "/")

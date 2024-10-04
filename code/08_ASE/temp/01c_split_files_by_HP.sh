@@ -33,13 +33,13 @@ longshot_output=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/01_longshot_vcfs/${
 
 #split files 
 #get all reads that have HP:i:1 tag
-samtools view -h $longshot_output/${sample}.bam | grep "HP:i:1" > /$longshot_output/${sample}.HP1.bam
+samtools view -h $longshot_output/${sample}.bam | grep "HP:i:1" > $longshot_output/${sample}.HP1.bam
 
 #get all reads that have HP:i:2 tag
-samtools view -h $longshot_output/${sample}.bam | grep "HP:i:2" > /$longshot_output/${sample}.HP2.bam
+samtools view -h $longshot_output/${sample}.bam | grep "HP:i:2" > $longshot_output/${sample}.HP2.bam
 
 #get all reads that don't have the HP tag 
-samtools view -h $longshot_output/${sample}.bam | grep -v "HP:i:" > /$longshot_output/${sample}.noHP.bam
+samtools view -h $longshot_output/${sample}.bam | grep -v "HP:i:" > $longshot_output/${sample}.noHP.bam
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"

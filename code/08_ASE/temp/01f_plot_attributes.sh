@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/plots.%a.txt
 #SBATCH -e logs/plots.%a.txt
-#SBATCH --array=9
+#SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
 
