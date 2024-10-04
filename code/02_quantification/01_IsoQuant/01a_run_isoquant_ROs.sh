@@ -31,7 +31,7 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_ass
 
 EP1_BRN3B_RO=$BAM_FOLDER/EP1-BRN3B-RO_primary_over_30_sorted.bam
 EP1_WT_hRO_2=$BAM_FOLDER/EP1-WT_hRO_2_primary_over_30_sorted.bam
-EP1_WT_ROs_D45=$BAM_FOLDER/EP1-WT_ROs_primary_over_30_sorted.bam
+EP1_WT_ROs_D45=$BAM_FOLDER/EP1-WT_ROs_D45_primary_over_30_sorted.bam
 H9_BRN3B_hRO_2=$BAM_FOLDER/H9-BRN3B_hRO_2_primary_over_30_sorted.bam
 H9_BRN3B_RO=$BAM_FOLDER/H9-BRN3B-RO_primary_over_30_sorted.bam
 H9_CRX_hRO_2=$BAM_FOLDER/H9-CRX_hRO_2_primary_over_30_sorted.bam
