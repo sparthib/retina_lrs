@@ -119,42 +119,42 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
     # Print the plot to the PDF
     print(p)
   }
-}
-
-
-# Define BAM file directory and sample name
-bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/supplementary_filtered"
-sample <- commandArgs(trailingOnly = TRUE)[1]
-bam <- file.path(bam_dir, paste0(sample, ".bam"))
-
-# Read alignments from BAM file
-aln <- GenomicAlignments::readGAlignments(bam, param = Rsamtools::ScanBamParam(mapqFilter = 5))
-
-# Get isoforms with more than 10 occurrences
-isoform <- names(table(seqnames(aln)))[table(seqnames(aln)) > 10]
-length(isoform)
-
-
-length_bins = c(0, 1, 2, 5, 10, Inf)
-
-transcript_info <- transcript_coverage(aln, isoform, length_bins)
-nrow(transcript_info)
-
-
-output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/"
-
-# Ensure the directory exists
-if (!dir.exists(output_dir)) {
-  stop("Output directory does not exist: ", output_dir)
-}
-
-# Generate coverage plots for each length bin
-length_bins_to_plot <- c("(10,Inf]", "(5,10]", "(2,5]", "(1,2]", "(0,1]")
-for (bin in length_bins_to_plot) {
-  plot_coverage(output_dir, transcript_info, sample, bin)
-}
-
-
-sessioninfo::session_info()
-
-
+# }
+# 
+# 
+# # Define BAM file directory and sample name
+# bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/supplementary_filtered"
+# sample <- commandArgs(trailingOnly = TRUE)[1]
+# bam <- file.path(bam_dir, paste0(sample, ".bam"))
+# 
+# # Read alignments from BAM file
+# aln <- GenomicAlignments::readGAlignments(bam, param = Rsamtools::ScanBamParam(mapqFilter = 5))
+# 
+# # Get isoforms with more than 10 occurrences
+# isoform <- names(table(seqnames(aln)))[table(seqnames(aln)) > 10]
+# length(isoform)
+# 
+# 
+# length_bins = c(0, 1, 2, 5, 10, Inf)
+# 
+# transcript_info <- transcript_coverage(aln, isoform, length_bins)
+# nrow(transcript_info)
+# 
+# 
+# output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/"
+# 
+# # Ensure the directory exists
+# if (!dir.exists(output_dir)) {
+#   stop("Output directory does not exist: ", output_dir)
+# }
+# 
+# # Generate coverage plots for each length bin
+# length_bins_to_plot <- c("(10,Inf]", "(5,10]", "(2,5]", "(1,2]", "(0,1]")
+# for (bin in length_bins_to_plot) {
+#   plot_coverage(output_dir, transcript_info, sample, bin)
+# }
+# 
+# 
+# sessioninfo::session_info()
+# 
+# 
