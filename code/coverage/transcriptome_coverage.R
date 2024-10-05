@@ -92,7 +92,7 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
     }
     
     # Extract and reverse coverage data
-    coverage <- rev(as.numeric(unlist(transcript_info[i, 4:103])))
+    coverage <- rev(as.numeric(unlist(transcript_info[i, 5:104])))
     
     # Check for invalid coverage values
     if (any(is.na(coverage))) {
