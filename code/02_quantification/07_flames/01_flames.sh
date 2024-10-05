@@ -25,8 +25,8 @@ mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/$sample/
 
 #create symlink for FASTQ and bam file 
 ln -s /dcs04/hicks/data/sparthib/retina_lrs/03a_nanofilt_fastqs/${sample}.fastq /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/$sample/matched_reads.fastq
-ln -s /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/${sample}_primary_over_30_sorted.bam /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/$sample/align2genome.bam
-ln -s /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/${sample}_primary_over_30_sorted.bam.bai /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/$sample/align2genome.bam.bai
+ln -s /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/${sample}_primary_over_30_sorted.bam /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/$sample/matched_reads_align2genome.bam
+ln -s /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/${sample}_primary_over_30_sorted.bam.bai /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/$sample/matched_reads_align2genome.bam.bai
 
 
 echo "**** Processing sample $sample ****"
