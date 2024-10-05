@@ -51,6 +51,12 @@ length(isoform)
 
 length_bins = c(0, 1, 2, 5, 10, Inf)
 #get coverage info of transcripts from aln
+if (exists("transcript_coverage")) {
+  print("The function 'transcript_coverage' exists!")
+} else {
+  print("The function 'transcript_coverage' does not exist.")
+}
+
 transcript_info <- transcript_coverage(aln, isoform, length_bins)
 
 #merge transcript info with annotLookup
