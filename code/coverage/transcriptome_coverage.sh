@@ -26,7 +26,8 @@ echo "$sample"
 
 
 ml load conda_R/4.4.x
-Rscript transcriptome_coverage.R $sample
+# Rscript transcriptome_coverage.R $sample
+Rscript by_gc_content.R
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
