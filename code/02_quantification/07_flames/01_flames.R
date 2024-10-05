@@ -13,7 +13,7 @@ config_file <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/b
 config <- jsonlite::fromJSON("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/bulk.json")
 
 se <- bulk_long_pipeline(
-  annot = gtf, fastq = fastq, outdir = outdir,
+  annotation = gtf, fastq = fastq, outdir = outdir,
   genome_fa = genome_fa, config_file = config_file
 )
 saveRDS(se, file = paste0(outdir, "/se.rds"))
