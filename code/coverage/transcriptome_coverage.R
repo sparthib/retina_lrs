@@ -45,8 +45,6 @@ transcript_coverage <- function(bam, isoform, length_bins, weight_fn = "read_cou
   return(transcript_info)
 }
 
-transcript_info
-
 #Define plot_coverage function
 plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL, gc_content = NULL) {
   
