@@ -119,7 +119,7 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
     # Print the plot to the PDF
     print(p)
   }
-# }
+}
 # 
 # 
 # # Define BAM file directory and sample name
@@ -156,5 +156,4 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
 # 
 # 
 # sessioninfo::session_info()
-# 
-# 
+
