@@ -26,7 +26,6 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo $sample
 
-
 ml load python/3.10.13
 python3 01_multi_exon_pcg.py $sample
 
