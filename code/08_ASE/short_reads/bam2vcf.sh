@@ -9,7 +9,6 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bam2vcf.txt
 #SBATCH -e logs/bam2vcf.txt
-#SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
@@ -34,7 +33,8 @@ bcftools mpileup -Ou --threads $SLURM_CPUS_PER_TASK \
 -b /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/bam_files.txt | bcftools call -mv -Ob > $output_dir/multi_sample.vcf
 
 
-
+echo "**** Job ends ****"
+date +"%Y-%m-%d %T"
 
 
 
