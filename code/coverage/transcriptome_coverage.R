@@ -82,7 +82,7 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
   
   # Iterate through each row (isoform) of transcript_info
   for (i in 1:nrow(transcript_info)) {
-    isoform <- rownames(transcript_info)[i]
+    isoform <- transcript_info$isoform[i]
     
     # Safeguard for potential data issues
     if (ncol(transcript_info) < 103) {
