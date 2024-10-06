@@ -7,8 +7,8 @@
 #SBATCH --job-name=pomoxis
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/pomoxis.%a.log
-#SBATCH -e logs/pomoxis.%a.log
+#SBATCH -o logs/pomoxis/pomoxis.%a.log
+#SBATCH -e logs/pomoxis/pomoxis.%a.log
 #SBATCH --array=1-15
 
 
@@ -26,7 +26,7 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo $sample
 
-BAM_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly${sample}_sorted.bam
+BAM_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/${sample}_sorted.bam
 OUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/$sample.stats
 
 stats_from_bam $BAM_FILE > $OUT_FILE
