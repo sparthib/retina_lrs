@@ -26,8 +26,11 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo $sample
 
+input_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/pomoxis_stats"
+output_dir="/users/sparthib/retina_lrs/plots/bam_qc/pomoxis_plots/"
+
 ml load python/3.10.13
-python3 01_multi_exon_pcg.py $sample
+python3 bam_stats_plots.py $sample $input_dir $output_dir
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"

@@ -7,7 +7,8 @@ from aplanat.hist import histogram
 from bokeh.layouts import gridplot
 
 sample = sys.argv[1]
-df = pd.read_csv(sample + ".alignment.bam.stats", sep="\t")
+input_dir = sys.argv[2]
+df = pd.read_csv(os.path.join(input_dir, sample + ".stats"), sep="\t")
 p1 = histogram(
     [df['read_length']], title="Read lengths",
     x_axis_label="read length / bases", y_axis_label="count")
@@ -23,5 +24,8 @@ p3=histogram(
     
 grid = gridplot((p1, p2, p3), ncols=2)
 # save the plot
-aplanat.save(grid, filename=sample + "_bam_stats.pdf")
+
+output_dir = sys.argv[3]
+filename = os.path.join(output_dir, sample + "_bam_qc.pdf")
+aplanat.save(grid, filename=filename)
 
