@@ -27,12 +27,12 @@ sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo $sample
 
 BAM_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/${sample}_sorted.bam
-OUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/$sample.stats
+OUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/pomoxis_stats/$sample.stats
 
 stats_from_bam $BAM_FILE > $OUT_FILE
 
 BAM_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/${sample}_primary_over_30_chr_only_sorted.bam
-OUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/$sample.stats
+OUT_FILE=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/pomoxis_stats/$sample.stats
 
 stats_from_bam $BAM_FILE > $OUT_FILE
 
