@@ -2,7 +2,7 @@
 
 #SBATCH -p shared
 #SBATCH --mem=50G
-#SBATCH -c 20
+#SBATCH -c 10
 #SBATCH --job-name=pomoxis_bam_qc
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
