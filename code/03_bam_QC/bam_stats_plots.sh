@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=50G
 #SBATCH -c 20
-#SBATCH --job-name=multi_exon_pcg
+#SBATCH --job-name=pomoxis_bam_qc
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/exon_exon/multi_exon_pcg.%a.txt
-#SBATCH -e logs/exon_exon/multi_exon_pcg.%a.txt
+#SBATCH -o logs/pomoxis/plots.%a.txt
+#SBATCH -e logs/pomoxis/plots.%a.txt
 #SBATCH --time=7-00:00:00
 #SBATCH --array=1-15
 
