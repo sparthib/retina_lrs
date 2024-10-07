@@ -1,0 +1,78 @@
+**** Job starts ****
+2024-09-28 23:15:04
+**** JHPCE info ****
+User: sparthib
+Job id: 9894909
+Job name: sqanti
+Node name: compute-119
+Array job ID: 9894907
+****
+**** Job starts ****
+**** Job starts ****
+2024-09-28 23:15:04
+2024-09-28 23:15:04
+**** JHPCE info ****
+User: sparthib
+Job id: 9894907
+Job name: sqanti
+Node name: compute-119
+Array job ID: 9894907
+****
+**** JHPCE info ****
+User: sparthib
+Job id: 9894910
+Job name: sqanti
+Node name: compute-119
+Array job ID: 9894907
+****
+Rscript (R) version 4.3.1 (2023-06-16)
+Rscript (R) version 4.3.1 (2023-06-16)
+Rscript (R) version 4.3.1 (2023-06-16)
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:74: DeprecationWarning: Use shutil.which instead of find_executable
+  if distutils.spawn.find_executable(GTF2GENEPRED_PROG) is None:
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:77: DeprecationWarning: Use shutil.which instead of find_executable
+  if distutils.spawn.find_executable(GFFREAD_PROG) is None:
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:107: DeprecationWarning: Use shutil.which instead of find_executable
+  RSCRIPTPATH = distutils.spawn.find_executable('Rscript')
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:74: DeprecationWarning: Use shutil.which instead of find_executable
+  if distutils.spawn.find_executable(GTF2GENEPRED_PROG) is None:
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:77: DeprecationWarning: Use shutil.which instead of find_executable
+  if distutils.spawn.find_executable(GFFREAD_PROG) is None:
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:107: DeprecationWarning: Use shutil.which instead of find_executable
+  RSCRIPTPATH = distutils.spawn.find_executable('Rscript')
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:74: DeprecationWarning: Use shutil.which instead of find_executable
+  if distutils.spawn.find_executable(GTF2GENEPRED_PROG) is None:
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:77: DeprecationWarning: Use shutil.which instead of find_executable
+  if distutils.spawn.find_executable(GFFREAD_PROG) is None:
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:107: DeprecationWarning: Use shutil.which instead of find_executable
+  RSCRIPTPATH = distutils.spawn.find_executable('Rscript')
+Traceback (most recent call last):
+  File "/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py", line 2525, in <module>
+    main()
+  File "/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py", line 2422, in main
+    os.makedirs(args.dir)
+  File "/users/sparthib/.conda/envs/isoquant/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/sqanti3_qc'
+Traceback (most recent call last):
+  File "/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py", line 2525, in <module>
+    main()
+  File "/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py", line 2422, in main
+    os.makedirs(args.dir)
+  File "/users/sparthib/.conda/envs/isoquant/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/sqanti3_qc'
+Traceback (most recent call last):
+  File "/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py", line 2525, in <module>
+    main()
+  File "/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py", line 2422, in main
+    os.makedirs(args.dir)
+  File "/users/sparthib/.conda/envs/isoquant/lib/python3.8/os.py", line 223, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/sqanti3_qc'
+**** Job ends ****
+**** Job ends ****
+2024-09-28 23:15:09
+2024-09-28 23:15:09
+**** Job ends ****
+2024-09-28 23:15:09
