@@ -45,7 +45,6 @@ transcript_coverage <- function(bam, isoform, length_bins, weight_fn = "read_cou
   return(transcript_info)
 }
 
-#Define plot_coverage function
 # Define plot_coverage function
 plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL, gc_content = NULL, transcript_biotype = NULL) {
   
@@ -74,7 +73,7 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
   } else {
     biotype_str <- "all_biotypes"
   }
-  
+
   # Create filename for the PDF output
   pdf_file <- paste0(output_dir, sample, "_", length_bin_str, "_", gc_content_str, "_", biotype_str, "_coverage.pdf")
   
@@ -127,6 +126,3 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
     print(p)
   }
 }
-
-
-

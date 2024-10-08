@@ -6,7 +6,7 @@ library(dplyr)
 
 
 annotation <- readRDS("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/annotations.rds")
-bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/GENCODE_splice/primary_over_30_chr_only/"
+bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality"
 fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa"
 
 root_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output"

@@ -3,11 +3,11 @@
 #SBATCH -p shared
 #SBATCH --mem=200G
 #SBATCH -c 20
-#SBATCH --job-name=test_bambu
+#SBATCH --job-name=generate_RCs
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/track_reads.%a.txt
-#SBATCH -e logs/track_reads.%a.txt
+#SBATCH -o logs/generate_RCs.%a.txt
+#SBATCH -e logs/generate_RCs.%a.txt
 #SBATCH --time=7-00:00:00
 #SBATCH --array=1-15
 
