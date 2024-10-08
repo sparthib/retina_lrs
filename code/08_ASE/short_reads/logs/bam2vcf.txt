@@ -1,0 +1,11 @@
+**** Job starts ****
+2024-10-06 19:16:39
+**** JHPCE info ****
+User: sparthib
+Job id: 10031352
+Job name: bam2vcf.txt
+Node name: compute-150
+Loading LIBD SLURM module for BCFTools/1.18
+Note: none of --samples-file, --ploidy or --ploidy-file given, assuming all sites are diploid
+[mpileup] 3 samples in 3 input files
+[mpileup] maximum number of reads per input file set to -d 250

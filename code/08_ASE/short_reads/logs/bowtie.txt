@@ -1,0 +1,56 @@
+**** Job starts ****
+2024-10-03 11:59:46
+**** JHPCE info ****
+User: sparthib
+Job id: 10006194
+Job name: bowtie
+Node name: compute-065
+****
+Loading bowtie.
+129753088 reads; of these:
+  129753088 (100.00%) were paired; of these:
+    4864454 (3.75%) aligned concordantly 0 times
+    91404413 (70.44%) aligned concordantly exactly 1 time
+    33484221 (25.81%) aligned concordantly >1 times
+    ----
+    4864454 pairs aligned concordantly 0 times; of these:
+      1015123 (20.87%) aligned discordantly 1 time
+    ----
+    3849331 pairs aligned 0 times concordantly or discordantly; of these:
+      7698662 mates make up the pairs; of these:
+        3720301 (48.32%) aligned 0 times
+        2275213 (29.55%) aligned exactly 1 time
+        1703148 (22.12%) aligned >1 times
+98.57% overall alignment rate
+137145665 reads; of these:
+  137145665 (100.00%) were paired; of these:
+    7392370 (5.39%) aligned concordantly 0 times
+    94189171 (68.68%) aligned concordantly exactly 1 time
+    35564124 (25.93%) aligned concordantly >1 times
+    ----
+    7392370 pairs aligned concordantly 0 times; of these:
+      1069307 (14.47%) aligned discordantly 1 time
+    ----
+    6323063 pairs aligned 0 times concordantly or discordantly; of these:
+      12646126 mates make up the pairs; of these:
+        8303409 (65.66%) aligned 0 times
+        2388669 (18.89%) aligned exactly 1 time
+        1954048 (15.45%) aligned >1 times
+96.97% overall alignment rate
+20238318 reads; of these:
+  20238318 (100.00%) were paired; of these:
+    445188 (2.20%) aligned concordantly 0 times
+    14503998 (71.67%) aligned concordantly exactly 1 time
+    5289132 (26.13%) aligned concordantly >1 times
+    ----
+    445188 pairs aligned concordantly 0 times; of these:
+      64057 (14.39%) aligned discordantly 1 time
+    ----
+    381131 pairs aligned 0 times concordantly or discordantly; of these:
+      762262 mates make up the pairs; of these:
+        366955 (48.14%) aligned 0 times
+        262477 (34.43%) aligned exactly 1 time
+        132830 (17.43%) aligned >1 times
+99.09% overall alignment rate
+**** Job ends ****
+2024-10-03 17:05:18

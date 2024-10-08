@@ -1,15 +1,19 @@
 **** Job starts ****
-2024-10-03 13:54:44
+2024-10-03 17:22:22
 **** JHPCE info ****
 User: sparthib
-Job id: 10007328
+Job id: 10009951
 Job name: test_bambu
-Node name: compute-067
+Node name: compute-065
 Array ID: 8
-mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/YZ-15T_hRGC/’: No such file or directory
+mkdir: cannot create directory ‘/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/YZ-15T_hRGC/’: File exists
 **** Processing sample YZ-15T_hRGC ****
-Loading conda_R/4.4.x
-To install colorout use: remotes::install_github("jalvesaq/colorout")
+Unloading conda_R/4.4.x
+Loading conda_R/4.3.x
+
+The following have been reloaded with a version change:
+  1) conda/3-24.3.0 => conda/3-23.3.1     2) conda_R/4.4.x => conda_R/4.3.x
+
 Loading required package: SummarizedExperiment
 Loading required package: MatrixGenerics
 Loading required package: matrixStats
@@ -50,7 +54,7 @@ The following objects are masked from ‘package:base’:
     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    Position, rank, rbind, Reduce, rownames, sapply, saveRDS, setdiff,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
     table, tapply, union, unique, unsplit, which.max, which.min
 
 Loading required package: S4Vectors
@@ -156,10 +160,7 @@ The following objects are masked from ‘package:base’:
 
     intersect, setdiff, setequal, union
 
-[1] "YZ-15T_hRGC"
-Error in checkInputs(annotations, reads, readClass.outputDir = rcOutDir,  : 
-  output folder does not exist
-Calls: bambu -> checkInputs
+Error: Bam file does not exist
 Execution halted
 **** Job ends ****
-Thu Oct  3 01:55:05 PM EDT 2024
+Thu Oct  3 05:22:42 PM EDT 2024

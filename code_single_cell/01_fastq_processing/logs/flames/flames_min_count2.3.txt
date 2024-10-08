@@ -1,0 +1,485 @@
+**** Job starts ****
+2024-09-21 19:29:38
+**** JHPCE info ****
+User: sparthib
+Job id: 9812227
+Job name: flames
+Node name: compute-114
+Array task ID: 3
+10x_D100-EP1_B1
+Loading conda_R/4.4.x
+Registered S3 method overwritten by 'GGally':
+  method from   
+  +.gg   ggplot2
+07:30:20 PM Sat Sep 21 2024 Start running
+Skipping Demultiplexing step...
+Please make sure the ` /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/10x_D100-EP1_B1/matched_reads.fastq `` is the demultiplexing output from previous FLAMES call.
+Running FLAMES pipeline...
+#### Input parameters:
+{
+  "pipeline_parameters": {
+    "seed": [2022],
+    "threads": [20],
+    "do_barcode_demultiplex": [false],
+    "do_gene_quantification": [false],
+    "do_genome_alignment": [true],
+    "do_isoform_identification": [true],
+    "bambu_isoform_identification": [true],
+    "multithread_isoform_identification": [false],
+    "do_read_realignment": [true],
+    "do_transcript_quantification": [true]
+  },
+  "barcode_parameters": {
+    "max_bc_editdistance": [2],
+    "max_flank_editdistance": [8],
+    "pattern": {
+      "primer": ["CTACACGACGCTCTTCCGATCT"],
+      "BC": ["NNNNNNNNNNNNNNNN"],
+      "UMI": ["NNNNNNNNNNNN"],
+      "polyT": ["TTTTTTTTT"]
+    },
+    "TSO_seq": ["CCCATGTACTCTGCGTTGATACCACTGCTT"],
+    "TSO_prime": [3],
+    "full_length_only": [false]
+  },
+  "isoform_parameters": {
+    "generate_raw_isoform": [false],
+    "max_dist": [10],
+    "max_ts_dist": [100],
+    "max_splice_match_dist": [10],
+    "min_fl_exon_len": [40],
+    "max_site_per_splice": [3],
+    "min_sup_cnt": [2],
+    "min_cnt_pct": [0.001],
+    "min_sup_pct": [0.2],
+    "bambu_trust_reference": [true],
+    "strand_specific": [0],
+    "remove_incomp_reads": [4],
+    "downsample_ratio": [1]
+  },
+  "alignment_parameters": {
+    "use_junctions": [true],
+    "no_flank": [false]
+  },
+  "realign_parameters": {
+    "use_annotation": [true]
+  },
+  "transcript_counting": {
+    "min_tr_coverage": [0.4],
+    "min_read_coverage": [0.4]
+  }
+} 
+gene annotation: /dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf 
+genome fasta: /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa 
+input fastq: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/10x_D100-EP1_B1/matched_reads.fastq 
+output directory: /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/10x_D100-EP1_B1 
+minimap2 path: 
+k8 path: 
+#### Aligning reads to genome using minimap2
+07:30:20 PM Sat Sep 21 2024 minimap2_align
+[M::mm_idx_gen::81.852*1.84] collected minimizers
+[M::mm_idx_gen::91.709*3.61] sorted minimizers
+[M::main::91.709*3.61] loaded/built the index for 706 target sequence(s)
+[M::mm_mapopt_update::93.506*3.56] mid_occ = 2173
+[M::mm_idx_stat] kmer size: 14; skip: 5; is_hpc: 0; #seq: 706
+[M::mm_idx_stat::94.763*3.53] distinct minimizers: 65649907 (22.01% are singletons); average occurrences: 16.223; average spacing: 3.091; total length: 3291585349
+[M::worker_pipeline::803.734*17.65] mapped 463331 sequences
+[M::worker_pipeline::1477.098*18.64] mapped 464784 sequences
+[M::worker_pipeline::2152.964*19.01] mapped 462682 sequences
+[M::worker_pipeline::2821.643*19.20] mapped 461840 sequences
+[M::worker_pipeline::3488.405*19.31] mapped 464046 sequences
+[M::worker_pipeline::4158.092*19.39] mapped 461853 sequences
+[M::worker_pipeline::4828.857*19.45] mapped 464794 sequences
+[M::worker_pipeline::5503.285*19.50] mapped 463106 sequences
+[M::worker_pipeline::6169.173*19.53] mapped 464069 sequences
+[M::worker_pipeline::6842.119*19.56] mapped 462946 sequences
+[M::worker_pipeline::7513.840*19.58] mapped 462938 sequences
+[M::worker_pipeline::8179.547*19.60] mapped 464552 sequences
+[M::worker_pipeline::8848.524*19.61] mapped 463498 sequences
+[M::worker_pipeline::9514.297*19.63] mapped 464720 sequences
+[M::worker_pipeline::10184.402*19.64] mapped 461414 sequences
+[M::worker_pipeline::10850.215*19.65] mapped 463277 sequences
+[M::worker_pipeline::11520.416*19.66] mapped 463537 sequences
+[M::worker_pipeline::12188.613*19.67] mapped 462740 sequences
+[M::worker_pipeline::12859.590*19.67] mapped 465730 sequences
+[M::worker_pipeline::13528.378*19.68] mapped 463865 sequences
+[M::worker_pipeline::14197.460*19.69] mapped 467662 sequences
+[M::worker_pipeline::14866.381*19.69] mapped 465807 sequences
+[M::worker_pipeline::15534.112*19.70] mapped 472736 sequences
+[M::worker_pipeline::16199.310*19.70] mapped 473864 sequences
+[M::worker_pipeline::16870.271*19.71] mapped 472963 sequences
+[M::worker_pipeline::17532.301*19.71] mapped 465343 sequences
+[M::worker_pipeline::18205.826*19.72] mapped 460791 sequences
+[M::worker_pipeline::18871.433*19.72] mapped 460333 sequences
+[M::worker_pipeline::19541.734*19.72] mapped 459958 sequences
+[M::worker_pipeline::20213.032*19.73] mapped 462867 sequences
+[M::worker_pipeline::20882.849*19.73] mapped 462704 sequences
+[M::worker_pipeline::21550.155*19.73] mapped 463475 sequences
+[M::worker_pipeline::22220.811*19.73] mapped 463481 sequences
+[M::worker_pipeline::22897.694*19.74] mapped 463407 sequences
+[M::worker_pipeline::23625.303*19.74] mapped 456768 sequences
+[M::worker_pipeline::24368.385*19.74] mapped 461638 sequences
+[M::worker_pipeline::25032.952*19.74] mapped 472167 sequences
+[M::worker_pipeline::25696.533*19.74] mapped 471320 sequences
+[M::worker_pipeline::26357.556*19.74] mapped 470286 sequences
+[M::worker_pipeline::27020.135*19.75] mapped 470655 sequences
+[M::worker_pipeline::27682.883*19.75] mapped 469610 sequences
+[M::worker_pipeline::28356.309*19.75] mapped 469508 sequences
+[M::worker_pipeline::29024.454*19.75] mapped 468698 sequences
+[M::worker_pipeline::29690.220*19.75] mapped 467870 sequences
+[M::worker_pipeline::30354.162*19.75] mapped 468482 sequences
+[M::worker_pipeline::31021.114*19.75] mapped 466705 sequences
+[M::worker_pipeline::31686.059*19.76] mapped 467664 sequences
+[M::worker_pipeline::32350.815*19.76] mapped 466359 sequences
+[M::worker_pipeline::33011.275*19.76] mapped 467258 sequences
+[M::worker_pipeline::33674.786*19.76] mapped 466256 sequences
+[M::worker_pipeline::34340.059*19.76] mapped 465666 sequences
+[M::worker_pipeline::35006.326*19.76] mapped 465754 sequences
+[M::worker_pipeline::35668.364*19.76] mapped 465641 sequences
+[M::worker_pipeline::36332.057*19.76] mapped 465840 sequences
+[M::worker_pipeline::36996.250*19.76] mapped 464192 sequences
+[M::worker_pipeline::37658.964*19.77] mapped 465416 sequences
+[M::worker_pipeline::38322.957*19.77] mapped 463516 sequences
+[M::worker_pipeline::38990.999*19.77] mapped 463834 sequences
+[M::worker_pipeline::39652.864*19.77] mapped 464767 sequences
+[M::worker_pipeline::40319.844*19.77] mapped 462919 sequences
+[M::worker_pipeline::40986.816*19.77] mapped 464122 sequences
+[M::worker_pipeline::41654.508*19.77] mapped 463686 sequences
+[M::worker_pipeline::42322.040*19.77] mapped 463649 sequences
+[M::worker_pipeline::42988.516*19.77] mapped 462005 sequences
+[M::worker_pipeline::43654.209*19.77] mapped 463688 sequences
+[M::worker_pipeline::44321.102*19.77] mapped 463800 sequences
+[M::worker_pipeline::44982.296*19.77] mapped 462755 sequences
+[M::worker_pipeline::45648.737*19.77] mapped 464316 sequences
+[M::worker_pipeline::46313.254*19.78] mapped 461419 sequences
+[M::worker_pipeline::46945.053*19.77] mapped 456119 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: /users/sparthib/minimap2/minimap2 -ax splice -t 20 -k14 --secondary=no --seed 2022 --junc-bed /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/10x_D100-EP1_B1/tmp_splice_anno.bed12 --junc-bonus 1 /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/10x_D100-EP1_B1/matched_reads.fastq
+[M::main] Real time: 46945.229 sec; CPU: 928232.358 sec; Peak RSS: 30.202 GB
+[bam_sort_core] merging from 15 files and 1 in-memory blocks...
+#### Skip gene quantification and UMI deduplication
+09:45:28 AM Sun Sep 22 2024 Start isoform identificaiton
+09:45:28 AM Sun Sep 22 2024 find_isoform
+--- Start generating read class files ---
+'getOption("repos")' replaces Bioconductor standard repositories, see
+'help("repositories", package = "BiocManager")' for details.
+Replacement repositories:
+    CRAN: https://cran.rstudio.com
+[10:43:25] WARNING: src/learner.cc:553: 
+  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
+  older XGBoost, please export the model by calling `Booster.save_model` from that version
+  first, then load it back in current version. See:
+
+    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
+
+  for more details about differences between saving model and serializing.
+
+[10:43:25] WARNING: src/learner.cc:553: 
+  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
+  older XGBoost, please export the model by calling `Booster.save_model` from that version
+  first, then load it back in current version. See:
+
+    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
+
+  for more details about differences between saving model and serializing.
+
+[10:43:25] WARNING: src/learner.cc:553: 
+  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
+  older XGBoost, please export the model by calling `Booster.save_model` from that version
+  first, then load it back in current version. See:
+
+    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
+
+  for more details about differences between saving model and serializing.
+
+[10:43:25] WARNING: src/learner.cc:553: 
+  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
+  older XGBoost, please export the model by calling `Booster.save_model` from that version
+  first, then load it back in current version. See:
+
+    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
+
+  for more details about differences between saving model and serializing.
+
+[11:51:37] WARNING: src/learner.cc:553: 
+  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
+  older XGBoost, please export the model by calling `Booster.save_model` from that version
+  first, then load it back in current version. See:
+
+    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
+
+  for more details about differences between saving model and serializing.
+
+[11:51:40] WARNING: src/learner.cc:553: 
+  If you are loading a serialized model (like pickle in Python, RDS in R) generated by
+  older XGBoost, please export the model by calling `Booster.save_model` from that version
+  first, then load it back in current version. See:
+
+    https://xgboost.readthedocs.io/en/latest/tutorials/saving_model.html
+
+  for more details about differences between saving model and serializing.
+
+Detected 2 warnings across the samples during read class construction. Access warnings with metadata(bambuOutput)$warnings
+--- Start extending annotations ---
+Using a novel discovery rate (NDR) of: 0.051
+--- Start isoform quantification ---
+--- Finished running Bambu ---
+Import genomic features from the file as a GRanges object ... OK
+Prepare the 'metadata' data frame ... OK
+Make the TxDb object ... OK
+12:57:02 PM Sun Sep 22 2024 Isoform identificaiton done
+#### Realigning deduplicated reads to transcript using minimap2
+12:57:02 PM Sun Sep 22 2024 minimap2_realign
+[M::mm_idx_gen::6.785*1.44] collected minimizers
+[M::mm_idx_gen::7.212*2.34] sorted minimizers
+[M::main::7.289*2.32] loaded/built the index for 101775 target sequence(s)
+[M::mm_mapopt_update::7.740*2.24] mid_occ = 83
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 101775
+[M::mm_idx_stat::8.102*2.18] distinct minimizers: 16589952 (47.63% are singletons); average occurrences: 2.780; average spacing: 5.377; total length: 247960109
+[M::worker_pipeline::107.359*16.67] mapped 463331 sequences
+[M::worker_pipeline::169.575*17.58] mapped 464784 sequences
+[M::worker_pipeline::230.423*17.98] mapped 462682 sequences
+[M::worker_pipeline::291.984*18.23] mapped 461840 sequences
+[M::worker_pipeline::353.087*18.38] mapped 464046 sequences
+[M::worker_pipeline::413.287*18.49] mapped 461853 sequences
+[M::worker_pipeline::475.448*18.57] mapped 464794 sequences
+[M::worker_pipeline::534.990*18.63] mapped 463106 sequences
+[M::worker_pipeline::597.011*18.69] mapped 464069 sequences
+[M::worker_pipeline::658.379*18.73] mapped 462946 sequences
+[M::worker_pipeline::720.052*18.76] mapped 462938 sequences
+[M::worker_pipeline::780.713*18.79] mapped 464552 sequences
+[M::worker_pipeline::843.137*18.82] mapped 463498 sequences
+[M::worker_pipeline::903.817*18.84] mapped 464720 sequences
+[M::worker_pipeline::965.262*18.86] mapped 461414 sequences
+[M::worker_pipeline::1026.770*18.87] mapped 463277 sequences
+[M::worker_pipeline::1087.454*18.89] mapped 463537 sequences
+[M::worker_pipeline::1148.066*18.90] mapped 462740 sequences
+[M::worker_pipeline::1209.795*18.91] mapped 465730 sequences
+[M::worker_pipeline::1270.107*18.92] mapped 463865 sequences
+[M::worker_pipeline::1331.642*18.93] mapped 467662 sequences
+[M::worker_pipeline::1393.058*18.94] mapped 465807 sequences
+[M::worker_pipeline::1455.284*18.95] mapped 472736 sequences
+[M::worker_pipeline::1515.712*18.96] mapped 473864 sequences
+[M::worker_pipeline::1576.262*18.96] mapped 472963 sequences
+[M::worker_pipeline::1636.930*18.97] mapped 465343 sequences
+[M::worker_pipeline::1699.809*18.98] mapped 460791 sequences
+[M::worker_pipeline::1760.493*18.98] mapped 460333 sequences
+[M::worker_pipeline::1820.557*18.99] mapped 459958 sequences
+[M::worker_pipeline::1882.091*18.99] mapped 462867 sequences
+[M::worker_pipeline::1942.998*18.99] mapped 462704 sequences
+[M::worker_pipeline::2003.617*19.00] mapped 463475 sequences
+[M::worker_pipeline::2064.491*19.00] mapped 463481 sequences
+[M::worker_pipeline::2123.914*19.01] mapped 463407 sequences
+[M::worker_pipeline::2182.723*19.01] mapped 456768 sequences
+[M::worker_pipeline::2244.675*19.01] mapped 461638 sequences
+[M::worker_pipeline::2305.763*19.01] mapped 472167 sequences
+[M::worker_pipeline::2366.997*19.02] mapped 471320 sequences
+[M::worker_pipeline::2429.510*19.02] mapped 470286 sequences
+[M::worker_pipeline::2491.000*19.02] mapped 470655 sequences
+[M::worker_pipeline::2551.638*19.03] mapped 469610 sequences
+[M::worker_pipeline::2613.579*19.03] mapped 469508 sequences
+[M::worker_pipeline::2674.872*19.03] mapped 468698 sequences
+[M::worker_pipeline::2735.986*19.03] mapped 467870 sequences
+[M::worker_pipeline::2797.681*19.04] mapped 468482 sequences
+[M::worker_pipeline::2858.564*19.04] mapped 466705 sequences
+[M::worker_pipeline::2920.136*19.04] mapped 467664 sequences
+[M::worker_pipeline::2982.070*19.04] mapped 466359 sequences
+[M::worker_pipeline::3043.291*19.04] mapped 467258 sequences
+[M::worker_pipeline::3104.117*19.04] mapped 466256 sequences
+[M::worker_pipeline::3166.729*19.05] mapped 465666 sequences
+[M::worker_pipeline::3227.034*19.05] mapped 465754 sequences
+[M::worker_pipeline::3289.841*19.05] mapped 465641 sequences
+[M::worker_pipeline::3349.837*19.05] mapped 465840 sequences
+[M::worker_pipeline::3411.853*19.05] mapped 464192 sequences
+[M::worker_pipeline::3472.561*19.05] mapped 465416 sequences
+[M::worker_pipeline::3534.780*19.06] mapped 463516 sequences
+[M::worker_pipeline::3596.586*19.06] mapped 463834 sequences
+[M::worker_pipeline::3656.391*19.06] mapped 464767 sequences
+[M::worker_pipeline::3718.669*19.06] mapped 462919 sequences
+[M::worker_pipeline::3779.682*19.06] mapped 464122 sequences
+[M::worker_pipeline::3841.115*19.06] mapped 463686 sequences
+[M::worker_pipeline::3901.932*19.06] mapped 463649 sequences
+[M::worker_pipeline::3963.906*19.06] mapped 462005 sequences
+[M::worker_pipeline::4024.467*19.06] mapped 463688 sequences
+[M::worker_pipeline::4086.416*19.07] mapped 463800 sequences
+[M::worker_pipeline::4147.455*19.07] mapped 462755 sequences
+[M::worker_pipeline::4209.429*19.07] mapped 464316 sequences
+[M::worker_pipeline::4270.453*19.07] mapped 461419 sequences
+[M::worker_pipeline::4307.165*19.03] mapped 456119 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: /users/sparthib/minimap2/minimap2 -ax map-ont -p 0.9 --end-bonus 10 -N 3 -t 20 --seed 2022 /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/10x_D100-EP1_B1/transcript_assembly.fa /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05b_flames_output_min_cnt_1/10x_D100-EP1_B1/matched_reads.fastq
+[M::main] Real time: 4307.440 sec; CPU: 81979.643 sec; Peak RSS: 5.171 GB
+[bam_sort_core] merging from 23 files and 1 in-memory blocks...
+#### Generating transcript count matrix
+03:29:13 PM Sun Sep 22 2024 quantify transcripts 
+Found realignment file(s): 	realign2transcript.bam
+	Counter({'counted_reads': 14683355, 'unmapped': 10071309, 'no_good_match': 4686825, 'not_enough_coverage': 3097891, 'ambigious_reads': 81})
+shared splice chain: {'ENSG00000274112.2', 'ENSG00000272835.3', 'ENSG00000272901.5'}
+(2250, 4269, 4410, 5463)
+shared splice chain: {'ENSG00000272765.2', 'ENSG00000277365.3', 'ENSG00000273397.4'}
+(8659, 9404, 9520, 12950)
+shared splice chain: {'ENSG00000275724.1', 'ENSG00000275605.1', 'ENSG00000276220.1', 'ENSG00000276766.1', 'ENSG00000277722.1', 'ENSG00000278365.1', 'ENSG00000276061.4', 'ENSG00000274359.1', 'ENSG00000273642.1'}
+(77309, 77534, 77609, 80353, 80431, 81230)
+shared splice chain: {'ENSG00000276263.1', 'ENSG00000275086.1', 'ENSG00000274073.1', 'ENSG00000276296.1', 'ENSG00000276323.1'}
+(81589, 82445, 82664, 82745, 82815, 84546, 84617, 88934, 89193, 89739)
+shared splice chain: {'ENSG00000274176.4', 'ENSG00000277600.4', 'ENSG00000276082.4', 'ENSG00000273943.4', 'ENSG00000274941.4', 'ENSG00000275979.4'}
+(112822, 117777, 117852, 117967, 118035, 118290, 118365, 118508, 118598, 118854, 118983, 119085, 119181, 120446, 120666, 120758, 120892, 121449, 121506, 122995, 123383, 123467, 123591, 124407, 124606, 127075, 127175, 127277, 127476, 127716, 127849, 128564, 128690, 130159)
+shared splice chain: {'ENSG00000277457.1', 'ENSG00000275935.1', 'ENSG00000276774.1', 'ENSG00000278516.1', 'ENSG00000276628.1'}
+(130791, 131613, 131876, 133132, 133312, 134414)
+shared splice chain: {'ENSG00000275118.4', 'ENSG00000278322.4', 'ENSG00000277733.4', 'ENSG00000277025.4', 'ENSG00000278519.4'}
+(149239, 153595, 153772, 155603, 155964, 158517, 158677, 162156, 162283, 163184, 163314, 163400, 163479, 164302)
+shared splice chain: {'ENSG00000277359.3', 'ENSG00000274626.3', 'ENSG00000278081.3', 'ENSG00000275323.3', 'ENSG00000277079.3', 'ENSG00000274005.3', 'ENSG00000278270.4'}
+(175870, 176141, 176263, 176468, 176591, 181257, 181444, 182379)
+shared splice chain: {'ENSG00000277079.3', 'ENSG00000274005.3', 'ENSG00000275323.3', 'ENSG00000278081.3'}
+(175870, 176141, 176263, 176468, 176591, 181257, 181444, 181534)
+shared splice chain: {'ENSG00000280512.2', 'ENSG00000282953.1'}
+(28662, 32252, 32338, 33067, 33230, 34582, 34747, 36562, 36711, 39015, 39138, 41628, 41797, 42980, 43176, 44314, 44484, 48223, 48345, 51686, 51798, 52032, 52163, 54248, 54362, 59029)
+shared splice chain: {'ENSG00000280512.2', 'ENSG00000282953.1'}
+(28662, 32252, 32338, 33067, 33230, 34582, 34747, 36562, 36711, 39015, 39138, 41628)
+shared splice chain: {'ENSG00000290534.1', 'ENSG00000290527.1'}
+(10396, 11067, 11224, 13179, 13384, 16904, 17066, 17187, 17288, 18202)
+shared splice chain: {'ENSG00000274843.3', 'ENSG00000277753.3'}
+(65052, 68127)
+shared splice chain: {'ENSG00000292344.1', 'ENSG00000182378.15'}
+(276394, 281481, 281684, 284166, 284314, 288732, 288869, 290647, 290776, 291498, 291654, 293034, 293218, 299096)
+shared splice chain: {'ENSG00000226179.6', 'ENSG00000292342.1'}
+(321248, 321682)
+shared splice chain: {'ENSG00000167393.18', 'ENSG00000292327.1'}
+(334517, 338603, 338710, 338777, 338896, 340764, 340940, 341306, 341396, 341882, 341931, 345515, 345672, 346173, 346260, 346700, 346775, 347233, 347336, 347589, 347693, 361404, 361590, 386367)
+shared splice chain: {'ENSG00000292334.1', 'ENSG00000169100.14'}
+(1386759, 1387278, 1387419, 1389240, 1389727, 1391898)
+shared splice chain: {'ENSG00000169093.16', 'ENSG00000292339.1'}
+(1403489, 1412731, 1412854, 1417972, 1418116, 1418981, 1419114, 1421657, 1421842, 1425524, 1425687, 1427733, 1428121, 1432268, 1432377, 1435021, 1435083, 1435693, 1435758, 1442185, 1442317, 1452747)
+shared splice chain: {'ENSG00000292343.1', 'ENSG00000197976.12'}
+(1591769, 1593443, 1594224, 1595383, 1595532, 1599191)
+shared splice chain: {'ENSG00000169084.15', 'ENSG00000292338.1'}
+(2266947, 2291501, 2291603, 2408744, 2408813, 2425196, 2425304, 2500310)
+shared splice chain: {'ENSG00000169084.15', 'ENSG00000292338.1'}
+(2291603, 2392353, 2392474, 2408744, 2408813, 2425196, 2425304, 2500310)
+shared splice chain: {'ENSG00000292345.1', 'ENSG00000214717.12'}
+(2490772, 2500310)
+shared splice chain: {'ENSG00000292362.1', 'ENSG00000291040.1'}
+(2609481, 2610995, 2611038, 2612149, 2612218, 2615815, 2615969, 2618739, 2618784, 2619428, 2619497, 2623384, 2623453, 2626596, 2626642, 2637973)
+shared splice chain: {'ENSG00000292348.1', 'ENSG00000002586.20'}
+(2691695, 2714421, 2714454, 2717604, 2717652, 2719660, 2719705, 2720355, 2720424, 2722626, 2722674, 2723313, 2723364, 2726259)
+There were 50 or more warnings (use warnings() to see the first 50)
+R version 4.4.1 Patched (2024-09-18 r87184)
+Platform: x86_64-conda-linux-gnu
+Running under: Rocky Linux 9.4 (Blue Onyx)
+
+Matrix products: default
+BLAS:   /jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/lib/libRblas.so 
+LAPACK: /jhpce/shared/community/core/conda_R/4.4.x/R/lib64/R/lib/libRlapack.so;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: US/Eastern
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+[1] IRanges_2.39.2      S4Vectors_0.43.2    BiocGenerics_0.51.1
+[4] sessioninfo_1.2.2   FLAMES_1.11.1      
+
+loaded via a namespace (and not attached):
+  [1] BiocIO_1.15.2               bitops_1.0-8               
+  [3] filelock_1.0.3              tibble_3.2.1               
+  [5] R.oo_1.26.0                 basilisk.utils_1.17.3      
+  [7] bambu_3.7.0                 graph_1.83.0               
+  [9] XML_3.99-0.17               rpart_4.1.23               
+ [11] httr2_1.0.4                 lifecycle_1.0.4            
+ [13] edgeR_4.3.15                doParallel_1.0.17          
+ [15] globals_0.16.3              lattice_0.22-6             
+ [17] ensembldb_2.29.1            OrganismDbi_1.47.0         
+ [19] MultiAssayExperiment_1.31.5 backports_1.5.0            
+ [21] magrittr_2.0.3              limma_3.61.9               
+ [23] Hmisc_5.1-3                 rmarkdown_2.28             
+ [25] yaml_2.3.10                 metapod_1.13.0             
+ [27] reticulate_1.39.0           ggbio_1.53.0               
+ [29] cowplot_1.1.3               DBI_1.2.3                  
+ [31] RColorBrewer_1.1-3          abind_1.4-8                
+ [33] zlibbioc_1.51.1             GenomicRanges_1.57.1       
+ [35] purrr_1.0.2                 R.utils_2.12.3             
+ [37] AnnotationFilter_1.29.0     biovizBase_1.53.0          
+ [39] RCurl_1.98-1.16             nnet_7.3-19                
+ [41] rappdirs_0.3.3              VariantAnnotation_1.51.0   
+ [43] circlize_0.4.16             GenomeInfoDbData_1.2.12    
+ [45] ggrepel_0.9.6               irlba_2.3.5.1              
+ [47] listenv_0.9.1               dqrng_0.4.1                
+ [49] parallelly_1.38.0           DelayedMatrixStats_1.27.3  
+ [51] codetools_0.2-20            DropletUtils_1.25.2        
+ [53] DelayedArray_0.31.11        xml2_1.3.6                 
+ [55] scuttle_1.15.4              tidyselect_1.2.1           
+ [57] shape_1.4.6.1               UCSC.utils_1.1.0           
+ [59] viridis_0.6.5               ScaledMatrix_1.13.0        
+ [61] BiocFileCache_2.13.0        matrixStats_1.4.1          
+ [63] base64enc_0.1-3             GenomicAlignments_1.41.0   
+ [65] jsonlite_1.8.9              BiocNeighbors_1.99.0       
+ [67] GetoptLong_1.0.5            Formula_1.2-5              
+ [69] scater_1.33.4               iterators_1.0.14           
+ [71] foreach_1.5.2               progress_1.2.3             
+ [73] tools_4.4.1                 Rcpp_1.0.13                
+ [75] glue_1.7.0                  gridExtra_2.3              
+ [77] SparseArray_1.5.37          xfun_0.47                  
+ [79] MatrixGenerics_1.17.0       GenomeInfoDb_1.41.1        
+ [81] dplyr_1.1.4                 HDF5Array_1.33.6           
+ [83] withr_3.0.1                 BiocManager_1.30.25        
+ [85] fastmap_1.2.0               GGally_2.2.1               
+ [87] basilisk_1.17.2             bluster_1.15.1             
+ [89] rhdf5filters_1.17.0         fansi_1.0.6                
+ [91] rsvd_1.0.5                  digest_0.6.37              
+ [93] R6_2.5.1                    colorspace_2.1-1           
+ [95] dichromat_2.0-0.1           biomaRt_2.61.3             
+ [97] RSQLite_2.3.7               R.methodsS3_1.8.2          
+ [99] utf8_1.2.4                  tidyr_1.3.1                
+[101] generics_0.1.3              data.table_1.16.0          
+[103] rtracklayer_1.65.0          prettyunits_1.2.0          
+[105] httr_1.4.7                  htmlwidgets_1.6.4          
+[107] S4Arrays_1.5.7              ggstats_0.6.0              
+[109] pkgconfig_2.0.3             gtable_0.3.5               
+[111] blob_1.2.4                  ComplexHeatmap_2.21.0      
+[113] SingleCellExperiment_1.27.2 XVector_0.45.0             
+[115] htmltools_0.5.8.1           RBGL_1.81.0                
+[117] ProtGenerics_1.37.1         clue_0.3-65                
+[119] scales_1.3.0                Biobase_2.65.1             
+[121] png_0.1-8                   scran_1.33.2               
+[123] knitr_1.48                  rstudioapi_0.16.0          
+[125] reshape2_1.4.4              rjson_0.2.23               
+[127] checkmate_2.3.2             curl_5.2.3                 
+[129] cachem_1.1.0                rhdf5_2.49.0               
+[131] GlobalOptions_0.1.2         stringr_1.5.1              
+[133] vipor_0.4.7                 parallel_4.4.1             
+[135] foreign_0.8-87              AnnotationDbi_1.67.0       
+[137] restfulr_0.0.15             pillar_1.9.0               
+[139] grid_4.4.1                  vctrs_0.6.5                
+[141] BiocSingular_1.21.3         dbplyr_2.5.0               
+[143] beachmat_2.21.6             cluster_2.1.6              
+[145] beeswarm_0.4.0              htmlTable_2.4.3            
+[147] evaluate_1.0.0              GenomicFeatures_1.57.0     
+[149] cli_3.6.3                   locfit_1.5-9.10            
+[151] compiler_4.4.1              Rsamtools_2.21.1           
+[153] rlang_1.1.4                 crayon_1.5.3               
+[155] ggbeeswarm_0.7.2            plyr_1.8.9                 
+[157] stringi_1.8.4               viridisLite_0.4.2          
+[159] BiocParallel_1.39.0         txdbmaker_1.1.1            
+[161] munsell_0.5.1               Biostrings_2.73.1          
+[163] lazyeval_0.2.2              Matrix_1.7-0               
+[165] dir.expiry_1.13.0           BSgenome_1.73.1            
+[167] hms_1.1.3                   sparseMatrixStats_1.17.2   
+[169] bit64_4.0.5                 future_1.34.0              
+[171] ggplot2_3.5.1               Rhdf5lib_1.27.0            
+[173] KEGGREST_1.45.1             statmod_1.5.0              
+[175] SummarizedExperiment_1.35.1 igraph_2.0.3               
+[177] memoise_2.0.1               bit_4.5.0                  
+[179] xgboost_1.7.8.1            
+**** Job ends ****
+2024-09-22 16:23:46

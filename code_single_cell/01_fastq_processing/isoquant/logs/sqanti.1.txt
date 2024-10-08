@@ -1,0 +1,41 @@
+**** Job starts ****
+2024-09-28 23:20:04
+**** JHPCE info ****
+User: sparthib
+Job id: 9894920
+Job name: sqanti
+Node name: compute-159
+Array job ID: 9894919
+****
+Rscript (R) version 4.3.1 (2023-06-16)
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:74: DeprecationWarning: Use shutil.which instead of find_executable
+  if distutils.spawn.find_executable(GTF2GENEPRED_PROG) is None:
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:77: DeprecationWarning: Use shutil.which instead of find_executable
+  if distutils.spawn.find_executable(GFFREAD_PROG) is None:
+/users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:107: DeprecationWarning: Use shutil.which instead of find_executable
+  RSCRIPTPATH = distutils.spawn.find_executable('Rscript')
+**** Parsing Isoforms....
+**** RT-switching computation....
+Full-length read abundance files not provided.
+Isoforms expression files not provided.
+**** Writing output files....
+Removing temporary files....
+SQANTI3 complete in 51942.18778133299 sec.
+Write arguments to //dcs04/hicks/data/sparthib/retina_single_cell_lrs/quantification_alternatives/01_IsoQuant/10x_D100-EP1/OUT/sqanti3_qc/sqanti3_qc/10x_D100-EP1.params.txt...
+**** Running SQANTI3...
+**** Parsing provided files....
+Reading genome fasta /dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa....
+Skipping aligning of sequences because GTF file was provided.
+
+Indels will be not calculated since you ran SQANTI3 without alignment step (SQANTI3 with gtf format as transcriptome input).
+**** Predicting ORF sequences...
+**** Parsing Reference Transcriptome....
+Splice Junction Coverage files not provided.
+**** TSS ratio will not be calculated since SR information was not provided
+**** Reading CAGE Peak data.
+**** Reading polyA Peak data.
+**** Reading PolyA motif list.
+**** Performing Classification of Isoforms....
+Number of classified isoforms: 305491
+**** Job ends ****
+2024-09-29 13:45:54
