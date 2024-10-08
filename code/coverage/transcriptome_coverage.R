@@ -46,7 +46,8 @@ transcript_coverage <- function(bam, isoform, length_bins, weight_fn = "read_cou
 }
 
 #Define plot_coverage function
-plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL, gc_content = NULL) {
+# Define plot_coverage function
+plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL, gc_content = NULL, transcript_biotype = NULL) {
   
   # Filter based on length_bin if provided
   if (!is.null(length_bin)) {
@@ -66,8 +67,16 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
     gc_content_str <- "all_gc_content"
   }
   
+  # Filter based on transcript_biotype if provided
+  if (!is.null(transcript_biotype)) {
+    transcript_info <- transcript_info[transcript_info$transcript_biotype == transcript_biotype, ]
+    biotype_str <- transcript_biotype
+  } else {
+    biotype_str <- "all_biotypes"
+  }
+  
   # Create filename for the PDF output
-  pdf_file <- paste0(output_dir, sample, "_", length_bin_str, "_", gc_content_str, "_coverage.pdf")
+  pdf_file <- paste0(output_dir, sample, "_", length_bin_str, "_", gc_content_str, "_", biotype_str, "_coverage.pdf")
   
   # Ensure there are rows to plot
   if (nrow(transcript_info) == 0) {
@@ -85,8 +94,8 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
     isoform <- transcript_info$isoform[i]
     
     # Safeguard for potential data issues
-    if (ncol(transcript_info) < 103) {
-      stop("transcript_info does not have enough columns (expected 103)")
+    if (ncol(transcript_info) < 104) {
+      stop("transcript_info does not have enough columns (expected at least 104 columns)")
     }
     
     # Extract and reverse coverage data
@@ -118,40 +127,6 @@ plot_coverage <- function(output_dir, transcript_info, sample, length_bin = NULL
     print(p)
   }
 }
-# 
-# 
-# # Define BAM file directory and sample name
-# bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/supplementary_filtered"
-# sample <- commandArgs(trailingOnly = TRUE)[1]
-# bam <- file.path(bam_dir, paste0(sample, ".bam"))
-# 
-# # Read alignments from BAM file
-# aln <- GenomicAlignments::readGAlignments(bam, param = Rsamtools::ScanBamParam(mapqFilter = 5))
-# 
-# # Get isoforms with more than 10 occurrences
-# isoform <- names(table(seqnames(aln)))[table(seqnames(aln)) > 10]
-# length(isoform)
-# 
-# 
-# length_bins = c(0, 1, 2, 5, 10, Inf)
-# 
-# transcript_info <- transcript_coverage(aln, isoform, length_bins)
-# nrow(transcript_info)
-# 
-# 
-# output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/"
-# 
-# # Ensure the directory exists
-# if (!dir.exists(output_dir)) {
-#   stop("Output directory does not exist: ", output_dir)
-# }
-# 
-# # Generate coverage plots for each length bin
-# length_bins_to_plot <- c("(10,Inf]", "(5,10]", "(2,5]", "(1,2]", "(0,1]")
-# for (bin in length_bins_to_plot) {
-#   plot_coverage(output_dir, transcript_info, sample, bin)
-# }
-# 
-# 
-# sessioninfo::session_info()
+
+
 
