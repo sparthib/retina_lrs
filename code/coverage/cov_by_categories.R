@@ -30,8 +30,8 @@ seqlevels(aln) <- gsub("\\..*", "", seqlevels(aln))
 seqnames(aln) <- gsub("\\..*", "", seqnames(aln))
 
 #get GC content of each transcript
-us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
-mart <- useDataset("hsapiens_gene_ensembl", us_mart)
+mart <- useEnsembl(biomart = "ensembl")
+mart <- useDataset("hsapiens_gene_ensembl", mart)
 
 annotLookup <- getBM(
   mart=mart,
