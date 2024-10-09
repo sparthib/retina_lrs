@@ -28,7 +28,7 @@ mkdir /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/$sample/
 
 echo "**** Processing sample $sample ****"
 module load conda_R/4.4.x
-Rscript 02_flames.R
+Rscript 02_multisample.R
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
