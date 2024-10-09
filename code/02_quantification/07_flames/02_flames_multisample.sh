@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH -p shared
 #SBATCH --mem=150G
-#SBATCH --job-name=flames
+#SBATCH --job-name=flames_multisample
 #SBATCH -c 20
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/flames_min_count2.%a.txt
-#SBATCH -e logs/flames_min_count2.%a.txt
+#SBATCH -o logs/multisample.%a.txt
+#SBATCH -e logs/multisample.%a.txt
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
