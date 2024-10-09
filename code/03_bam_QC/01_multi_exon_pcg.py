@@ -32,7 +32,7 @@ genic_gtf = genic_gtf.iloc[:, 0:14]
 if len(sys.argv) > 1:
     sample = sys.argv[1]
     print(f"sample: {sample}")
-    alignment_file = f'/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/{sample}_primary_over_30_sorted.bam'
+    alignment_file = f'/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/{sample}_primary_over_30_chr_only_sorted.bam'
     alignment = list()
     alignment.append(alignment_file)
     alignment.sort()
@@ -40,7 +40,7 @@ else:
     alignment_dir = '/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/'
     alignment = list()
     for file in os.listdir(alignment_dir):
-        if file.endswith("primary_over_30_sorted.bam"):
+        if file.endswith("primary_over_30_chr_only_sorted.bam"):
             alignment.append(os.path.join(alignment_dir, file))
     alignment.sort()
 

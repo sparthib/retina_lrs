@@ -1,53 +1,1237 @@
 **** Job starts ****
-2024-10-04 08:57:22
+2024-10-07 11:09:17
 **** JHPCE info ****
 User: sparthib
-Job id: 10018370
+Job id: 10040658
 Job name: isoquant_RO
-Node name: compute-149
+Node name: compute-162
 
-2024-10-04 08:57:24,107 - INFO - Running IsoQuant version 3.6.0
-2024-10-04 08:57:24,108 - WARNING - Output folder already contains a previous run, some files may be overwritten. Use --resume to resume a failed run. Use --force to avoid this message.
-2024-10-04 08:57:24,108 - WARNING - Press Ctrl+C to interrupt the run now.
-Resuming the run in 9 secondsResuming the run in 8 secondsResuming the run in 7 secondsResuming the run in 6 secondsResuming the run in 5 secondsResuming the run in 4 secondsResuming the run in 3 secondsResuming the run in 2 secondsResuming the run in 1 second2024-10-04 08:57:33,117 - INFO - Overwriting the previous run
-2024-10-04 08:57:35,887 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT folder already exists, some files may be overwritten
-2024-10-04 08:57:35,895 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux folder already exists, some files may be overwritten
-2024-10-04 08:57:35,896 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
-2024-10-04 08:57:35,896 - INFO -  === IsoQuant pipeline started === 
-2024-10-04 08:57:35,896 - INFO - gffutils version: 0.13
-2024-10-04 08:57:35,896 - INFO - pysam version: 0.22.1
-2024-10-04 08:57:35,896 - INFO - pyfaidx version: 0.8.1.2
-2024-10-04 08:57:35,897 - INFO - Checking input gene annotation
-2024-10-04 08:58:00,875 - INFO - Gene annotation seems to be correct
-2024-10-04 08:58:00,925 - INFO - Converting gene annotation file to .db format (takes a while)...
-2024-10-04 09:02:22,227 - INFO - Gene database written to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_assembly.gtf.db
-2024-10-04 09:02:22,230 - INFO - Provide this database next time to avoid excessive conversion
-2024-10-04 09:02:22,232 - INFO - Loading gene database from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_assembly.gtf.db
-2024-10-04 09:02:22,236 - INFO - Loading reference genome from /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
-2024-10-04 09:02:56,908 - INFO - Loading uncompressed reference from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_genome.fa
-2024-10-04 09:03:16,347 - INFO - Processing 1 experiment
-2024-10-04 09:03:16,347 - INFO - Processing experiment OUT
-2024-10-04 09:03:16,347 - INFO - Experiment has 7 BAM files: /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-BRN3B-RO_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_ROs_D45_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B-RO_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_ROs_D45_primary_over_30_sorted.bam
-2024-10-04 09:03:16,425 - INFO - Collecting read alignments
-2024-10-04 09:03:17,334 - INFO - Processing chromosome chrX
-2024-10-04 09:03:17,599 - INFO - Processing chromosome chr20
-2024-10-04 09:03:17,766 - INFO - Processing chromosome chr13
-2024-10-04 09:03:17,793 - INFO - Processing chromosome chr18
-2024-10-04 09:03:17,812 - INFO - Processing chromosome chr1
-2024-10-04 09:03:17,826 - INFO - Processing chromosome chr9
-2024-10-04 09:03:17,838 - INFO - Processing chromosome chr14
-2024-10-04 09:03:17,844 - INFO - Processing chromosome chr10
-2024-10-04 09:03:17,869 - INFO - Processing chromosome chr16
-2024-10-04 09:03:17,870 - INFO - Processing chromosome chr7
-2024-10-04 09:03:17,878 - INFO - Processing chromosome chr6
-2024-10-04 09:03:17,878 - INFO - Processing chromosome chr4
-2024-10-04 09:03:17,880 - INFO - Processing chromosome chr15
-2024-10-04 09:03:17,880 - INFO - Processing chromosome chr11
-2024-10-04 09:03:17,881 - INFO - Processing chromosome chr2
-2024-10-04 09:03:17,881 - INFO - Processing chromosome chr3
-2024-10-04 09:03:17,881 - INFO - Processing chromosome chr17
-2024-10-04 09:03:17,881 - INFO - Processing chromosome chr8
-2024-10-04 09:03:17,885 - INFO - Processing chromosome chr12
-2024-10-04 09:03:17,885 - INFO - Processing chromosome chr5
-2024-10-04 09:25:20,644 - INFO - Finished processing chromosome chr18
-2024-10-04 09:25:22,046 - INFO - Processing chromosome chr19
+2024-10-07 11:09:19,635 - INFO - Running IsoQuant version 3.6.0
+2024-10-07 11:09:19,635 - WARNING - Output folder already contains a previous run, some files may be overwritten. Use --resume to resume a failed run. Use --force to avoid this message.
+2024-10-07 11:09:19,635 - WARNING - Press Ctrl+C to interrupt the run now.
+Resuming the run in 9 secondsResuming the run in 8 secondsResuming the run in 7 secondsResuming the run in 6 secondsResuming the run in 5 secondsResuming the run in 4 secondsResuming the run in 3 secondsResuming the run in 2 secondsResuming the run in 1 second2024-10-07 11:09:28,645 - INFO - Overwriting the previous run
+2024-10-07 11:09:31,575 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT folder already exists, some files may be overwritten
+2024-10-07 11:09:31,593 - WARNING - /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux folder already exists, some files may be overwritten
+2024-10-07 11:09:31,595 - INFO - Novel unspliced transcripts will not be reported, set --report_novel_unspliced true to discover them
+2024-10-07 11:09:31,595 - INFO -  === IsoQuant pipeline started === 
+2024-10-07 11:09:31,595 - INFO - gffutils version: 0.13
+2024-10-07 11:09:31,595 - INFO - pysam version: 0.22.1
+2024-10-07 11:09:31,595 - INFO - pyfaidx version: 0.8.1.2
+2024-10-07 11:09:31,597 - INFO - Checking input gene annotation
+2024-10-07 11:09:53,683 - INFO - Gene annotation seems to be correct
+2024-10-07 11:09:53,739 - INFO - Converting gene annotation file to .db format (takes a while)...
+2024-10-07 11:13:29,936 - INFO - Gene database written to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_assembly.gtf.db
+2024-10-07 11:13:29,937 - INFO - Provide this database next time to avoid excessive conversion
+2024-10-07 11:13:29,941 - INFO - Loading gene database from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_assembly.gtf.db
+2024-10-07 11:13:29,950 - INFO - Loading reference genome from /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
+2024-10-07 11:14:04,358 - INFO - Loading uncompressed reference from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/release_46_primary_genome.fa
+2024-10-07 11:14:17,397 - INFO - Processing 1 experiment
+2024-10-07 11:14:17,397 - INFO - Processing experiment OUT
+2024-10-07 11:14:17,397 - INFO - Experiment has 7 BAM files: /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-BRN3B-RO_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_ROs_D45_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B-RO_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_hRO_2_primary_over_30_sorted.bam, /dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_ROs_D45_primary_over_30_sorted.bam
+2024-10-07 11:14:17,469 - INFO - Collecting read alignments
+2024-10-07 11:14:23,906 - INFO - Processing chromosome chr8
+2024-10-07 11:14:24,593 - INFO - Processing chromosome chr16
+2024-10-07 11:14:24,819 - INFO - Processing chromosome chr4
+2024-10-07 11:14:24,829 - INFO - Processing chromosome chr3
+2024-10-07 11:14:24,855 - INFO - Processing chromosome chr18
+2024-10-07 11:14:24,859 - INFO - Processing chromosome chr7
+2024-10-07 11:14:24,873 - INFO - Processing chromosome chr15
+2024-10-07 11:14:24,891 - INFO - Processing chromosome chr5
+2024-10-07 11:14:24,898 - INFO - Processing chromosome chr9
+2024-10-07 11:14:24,898 - INFO - Processing chromosome chr20
+2024-10-07 11:14:24,898 - INFO - Processing chromosome chr13
+2024-10-07 11:14:24,898 - INFO - Processing chromosome chr6
+2024-10-07 11:14:24,899 - INFO - Processing chromosome chr11
+2024-10-07 11:14:24,899 - INFO - Processing chromosome chr1
+2024-10-07 11:14:24,899 - INFO - Processing chromosome chr17
+2024-10-07 11:14:24,900 - INFO - Processing chromosome chr14
+2024-10-07 11:14:24,900 - INFO - Processing chromosome chr2
+2024-10-07 11:14:24,900 - INFO - Processing chromosome chr10
+2024-10-07 11:14:24,900 - INFO - Processing chromosome chrX
+2024-10-07 11:14:24,901 - INFO - Processing chromosome chr12
+2024-10-07 11:33:03,580 - INFO - Finished processing chromosome chr18
+2024-10-07 11:33:05,264 - INFO - Processing chromosome chr19
+2024-10-07 11:39:44,148 - INFO - Finished processing chromosome chr13
+2024-10-07 11:39:45,361 - INFO - Processing chromosome chrY
+2024-10-07 11:40:21,768 - INFO - Finished processing chromosome chrY
+2024-10-07 11:40:22,084 - INFO - Processing chromosome chr22
+2024-10-07 11:48:56,751 - INFO - Finished processing chromosome chr20
+2024-10-07 11:48:58,789 - INFO - Processing chromosome chr21
+2024-10-07 12:05:47,803 - INFO - Finished processing chromosome chrX
+2024-10-07 12:05:50,114 - INFO - Processing chromosome KI270728.1
+2024-10-07 12:05:52,369 - INFO - Finished processing chromosome KI270728.1
+2024-10-07 12:05:52,697 - INFO - Processing chromosome KI270727.1
+2024-10-07 12:05:55,598 - INFO - Finished processing chromosome KI270727.1
+2024-10-07 12:05:55,921 - INFO - Processing chromosome KI270442.1
+2024-10-07 12:05:57,613 - INFO - Finished processing chromosome KI270442.1
+2024-10-07 12:05:58,146 - INFO - Processing chromosome KI270729.1
+2024-10-07 12:05:59,550 - INFO - Finished processing chromosome KI270729.1
+2024-10-07 12:06:00,164 - INFO - Processing chromosome GL000225.1
+2024-10-07 12:06:02,984 - INFO - Finished processing chromosome chr14
+2024-10-07 12:06:05,165 - INFO - Finished processing chromosome GL000225.1
+2024-10-07 12:06:05,248 - INFO - Processing chromosome KI270743.1
+2024-10-07 12:06:05,472 - INFO - Processing chromosome GL000008.2
+2024-10-07 12:06:06,840 - INFO - Finished processing chromosome KI270743.1
+2024-10-07 12:06:07,140 - INFO - Processing chromosome GL000009.2
+2024-10-07 12:06:08,579 - INFO - Finished processing chromosome GL000008.2
+2024-10-07 12:06:08,936 - INFO - Processing chromosome KI270747.1
+2024-10-07 12:06:09,895 - INFO - Finished processing chromosome GL000009.2
+2024-10-07 12:06:10,232 - INFO - Processing chromosome KI270722.1
+2024-10-07 12:06:10,255 - INFO - Finished processing chromosome KI270747.1
+2024-10-07 12:06:10,534 - INFO - Processing chromosome GL000194.1
+2024-10-07 12:06:11,335 - INFO - Finished processing chromosome KI270722.1
+2024-10-07 12:06:11,589 - INFO - Processing chromosome KI270742.1
+2024-10-07 12:06:12,218 - INFO - Finished processing chromosome GL000194.1
+2024-10-07 12:06:12,527 - INFO - Processing chromosome GL000205.2
+2024-10-07 12:06:13,593 - INFO - Finished processing chromosome KI270742.1
+2024-10-07 12:06:13,779 - INFO - Finished processing chromosome GL000205.2
+2024-10-07 12:06:13,944 - INFO - Processing chromosome GL000195.1
+2024-10-07 12:06:14,065 - INFO - Processing chromosome KI270736.1
+2024-10-07 12:06:15,145 - INFO - Finished processing chromosome KI270736.1
+2024-10-07 12:06:15,412 - INFO - Processing chromosome KI270733.1
+2024-10-07 12:06:16,968 - INFO - Finished processing chromosome GL000195.1
+2024-10-07 12:06:17,236 - INFO - Processing chromosome GL000224.1
+2024-10-07 12:06:17,718 - INFO - Finished processing chromosome GL000224.1
+2024-10-07 12:06:17,977 - INFO - Processing chromosome GL000219.1
+2024-10-07 12:06:18,509 - INFO - Finished processing chromosome GL000219.1
+2024-10-07 12:06:18,790 - INFO - Processing chromosome KI270719.1
+2024-10-07 12:06:20,200 - INFO - Finished processing chromosome KI270719.1
+2024-10-07 12:06:20,573 - INFO - Processing chromosome GL000216.2
+2024-10-07 12:06:22,333 - INFO - Finished processing chromosome GL000216.2
+2024-10-07 12:06:22,605 - INFO - Processing chromosome KI270712.1
+2024-10-07 12:06:25,640 - INFO - Finished processing chromosome KI270712.1
+2024-10-07 12:06:25,903 - INFO - Processing chromosome KI270706.1
+2024-10-07 12:06:26,440 - INFO - Finished processing chromosome KI270706.1
+2024-10-07 12:06:26,752 - INFO - Processing chromosome KI270725.1
+2024-10-07 12:06:27,953 - INFO - Finished processing chromosome KI270725.1
+2024-10-07 12:06:28,203 - INFO - Processing chromosome KI270744.1
+2024-10-07 12:06:31,003 - INFO - Finished processing chromosome KI270744.1
+2024-10-07 12:06:31,285 - INFO - Processing chromosome KI270734.1
+2024-10-07 12:06:32,580 - INFO - Finished processing chromosome KI270734.1
+2024-10-07 12:06:32,825 - INFO - Processing chromosome GL000213.1
+2024-10-07 12:06:36,414 - INFO - Finished processing chromosome GL000213.1
+2024-10-07 12:06:36,701 - INFO - Processing chromosome GL000220.1
+2024-10-07 12:06:40,592 - INFO - Finished processing chromosome GL000220.1
+2024-10-07 12:06:41,194 - INFO - Processing chromosome KI270715.1
+2024-10-07 12:06:42,476 - INFO - Finished processing chromosome KI270715.1
+2024-10-07 12:06:42,714 - INFO - Processing chromosome GL000218.1
+2024-10-07 12:06:45,801 - INFO - Finished processing chromosome GL000218.1
+2024-10-07 12:06:46,389 - INFO - Processing chromosome KI270749.1
+2024-10-07 12:06:47,319 - INFO - Finished processing chromosome KI270749.1
+2024-10-07 12:06:47,593 - INFO - Processing chromosome KI270741.1
+2024-10-07 12:06:48,443 - INFO - Finished processing chromosome KI270741.1
+2024-10-07 12:06:48,723 - INFO - Processing chromosome GL000221.1
+2024-10-07 12:06:50,661 - INFO - Finished processing chromosome GL000221.1
+2024-10-07 12:06:51,186 - INFO - Processing chromosome KI270716.1
+2024-10-07 12:06:52,320 - INFO - Finished processing chromosome KI270716.1
+2024-10-07 12:06:52,607 - INFO - Processing chromosome KI270731.1
+2024-10-07 12:06:53,950 - INFO - Finished processing chromosome KI270731.1
+2024-10-07 12:06:54,187 - INFO - Processing chromosome KI270751.1
+2024-10-07 12:06:54,797 - INFO - Finished processing chromosome KI270751.1
+2024-10-07 12:06:55,071 - INFO - Processing chromosome KI270750.1
+2024-10-07 12:06:59,873 - INFO - Finished processing chromosome KI270750.1
+2024-10-07 12:07:00,176 - INFO - Processing chromosome KI270519.1
+2024-10-07 12:07:01,223 - INFO - Finished processing chromosome KI270519.1
+2024-10-07 12:07:01,613 - INFO - Processing chromosome GL000214.1
+2024-10-07 12:07:02,631 - INFO - Finished processing chromosome GL000214.1
+2024-10-07 12:07:02,890 - INFO - Processing chromosome KI270708.1
+2024-10-07 12:07:06,958 - INFO - Finished processing chromosome KI270708.1
+2024-10-07 12:07:07,203 - INFO - Finished processing chromosome KI270733.1
+2024-10-07 12:07:07,247 - INFO - Processing chromosome KI270730.1
+2024-10-07 12:07:08,009 - INFO - Finished processing chromosome KI270730.1
+2024-10-07 12:07:08,013 - INFO - Processing chromosome KI270438.1
+2024-10-07 12:07:08,264 - INFO - Processing chromosome KI270737.1
+2024-10-07 12:07:09,907 - INFO - Finished processing chromosome KI270737.1
+2024-10-07 12:07:10,170 - INFO - Processing chromosome KI270721.1
+2024-10-07 12:07:11,131 - INFO - Finished processing chromosome KI270721.1
+2024-10-07 12:07:11,398 - INFO - Processing chromosome KI270738.1
+2024-10-07 12:07:12,382 - INFO - Finished processing chromosome KI270438.1
+2024-10-07 12:07:12,484 - INFO - Finished processing chromosome KI270738.1
+2024-10-07 12:07:12,708 - INFO - Processing chromosome KI270748.1
+2024-10-07 12:07:12,727 - INFO - Processing chromosome KI270435.1
+2024-10-07 12:07:13,190 - INFO - Finished processing chromosome KI270435.1
+2024-10-07 12:07:13,459 - INFO - Processing chromosome GL000208.1
+2024-10-07 12:07:13,498 - INFO - Finished processing chromosome chr8
+2024-10-07 12:07:13,656 - INFO - Finished processing chromosome KI270748.1
+2024-10-07 12:07:14,075 - INFO - Processing chromosome KI270538.1
+2024-10-07 12:07:14,547 - INFO - Finished processing chromosome GL000208.1
+2024-10-07 12:07:14,810 - INFO - Processing chromosome KI270756.1
+2024-10-07 12:07:14,837 - INFO - Finished processing chromosome KI270538.1
+2024-10-07 12:07:15,086 - INFO - Processing chromosome KI270739.1
+2024-10-07 12:07:15,200 - INFO - Finished processing chromosome KI270756.1
+2024-10-07 12:07:15,446 - INFO - Processing chromosome KI270757.1
+2024-10-07 12:07:15,580 - INFO - Finished processing chromosome KI270739.1
+2024-10-07 12:07:15,820 - INFO - Processing chromosome KI270709.1
+2024-10-07 12:07:16,003 - INFO - Finished processing chromosome KI270757.1
+2024-10-07 12:07:16,540 - INFO - Finished processing chromosome KI270709.1
+2024-10-07 12:07:16,653 - INFO - Processing chromosome KI270746.1
+2024-10-07 12:07:16,675 - INFO - Processing chromosome KI270753.1
+2024-10-07 12:07:16,804 - INFO - Processing chromosome KI270589.1
+2024-10-07 12:07:17,506 - INFO - Finished processing chromosome KI270589.1
+2024-10-07 12:07:17,658 - INFO - Finished processing chromosome KI270746.1
+2024-10-07 12:07:17,791 - INFO - Processing chromosome KI270726.1
+2024-10-07 12:07:17,909 - INFO - Processing chromosome KI270735.1
+2024-10-07 12:07:18,306 - INFO - Finished processing chromosome KI270735.1
+2024-10-07 12:07:18,484 - INFO - Finished processing chromosome KI270726.1
+2024-10-07 12:07:18,595 - INFO - Processing chromosome KI270711.1
+2024-10-07 12:07:18,760 - INFO - Processing chromosome KI270745.1
+2024-10-07 12:07:19,512 - INFO - Finished processing chromosome KI270753.1
+2024-10-07 12:07:19,626 - INFO - Finished processing chromosome KI270711.1
+2024-10-07 12:07:19,707 - INFO - Finished processing chromosome KI270745.1
+2024-10-07 12:07:19,847 - INFO - Processing chromosome KI270714.1
+2024-10-07 12:07:19,880 - INFO - Processing chromosome KI270732.1
+2024-10-07 12:07:19,960 - INFO - Processing chromosome KI270713.1
+2024-10-07 12:07:20,494 - INFO - Finished processing chromosome KI270714.1
+2024-10-07 12:07:20,964 - INFO - Processing chromosome KI270754.1
+2024-10-07 12:07:21,064 - INFO - Finished processing chromosome KI270732.1
+2024-10-07 12:07:21,140 - INFO - Finished processing chromosome KI270713.1
+2024-10-07 12:07:21,619 - INFO - Processing chromosome KI270710.1
+2024-10-07 12:07:21,791 - INFO - Processing chromosome KI270717.1
+2024-10-07 12:07:22,309 - INFO - Finished processing chromosome KI270754.1
+2024-10-07 12:07:22,592 - INFO - Processing chromosome KI270724.1
+2024-10-07 12:07:22,786 - INFO - Finished processing chromosome KI270717.1
+2024-10-07 12:07:23,067 - INFO - Processing chromosome KI270720.1
+2024-10-07 12:07:23,726 - INFO - Finished processing chromosome KI270710.1
+2024-10-07 12:07:23,738 - INFO - Finished processing chromosome KI270720.1
+2024-10-07 12:07:23,963 - INFO - Processing chromosome KI270723.1
+2024-10-07 12:07:24,000 - INFO - Processing chromosome KI270718.1
+2024-10-07 12:07:24,434 - INFO - Finished processing chromosome KI270718.1
+2024-10-07 12:07:24,650 - INFO - Finished processing chromosome KI270724.1
+2024-10-07 12:07:24,732 - INFO - Processing chromosome KI270317.1
+2024-10-07 12:07:24,895 - INFO - Finished processing chromosome KI270317.1
+2024-10-07 12:07:24,918 - INFO - Processing chromosome KI270740.1
+2024-10-07 12:07:25,113 - INFO - Finished processing chromosome KI270740.1
+2024-10-07 12:07:25,161 - INFO - Processing chromosome KI270755.1
+2024-10-07 12:07:25,380 - INFO - Processing chromosome KI270707.1
+2024-10-07 12:07:25,702 - INFO - Finished processing chromosome KI270755.1
+2024-10-07 12:07:25,970 - INFO - Processing chromosome KI270579.1
+2024-10-07 12:07:26,530 - INFO - Finished processing chromosome KI270723.1
+2024-10-07 12:07:26,542 - INFO - Finished processing chromosome KI270707.1
+2024-10-07 12:07:27,186 - INFO - Processing chromosome KI270512.1
+2024-10-07 12:07:27,186 - INFO - Processing chromosome KI270752.1
+2024-10-07 12:07:27,378 - INFO - Finished processing chromosome KI270752.1
+2024-10-07 12:07:27,601 - INFO - Finished processing chromosome KI270512.1
+2024-10-07 12:07:27,628 - INFO - Processing chromosome KI270322.1
+2024-10-07 12:07:27,724 - INFO - Finished processing chromosome KI270579.1
+2024-10-07 12:07:27,927 - INFO - Processing chromosome chrM
+2024-10-07 12:07:27,971 - INFO - Finished processing chromosome KI270322.1
+2024-10-07 12:07:28,027 - INFO - Processing chromosome GL000226.1
+2024-10-07 12:07:28,225 - INFO - Finished processing chromosome GL000226.1
+2024-10-07 12:07:28,234 - INFO - Processing chromosome KI270311.1
+2024-10-07 12:07:28,508 - INFO - Processing chromosome KI270366.1
+2024-10-07 12:07:28,596 - INFO - Finished processing chromosome KI270311.1
+2024-10-07 12:07:28,868 - INFO - Processing chromosome KI270511.1
+2024-10-07 12:07:28,900 - INFO - Finished processing chromosome KI270366.1
+2024-10-07 12:07:29,130 - INFO - Processing chromosome KI270448.1
+2024-10-07 12:07:29,231 - INFO - Finished processing chromosome KI270511.1
+2024-10-07 12:07:29,476 - INFO - Processing chromosome KI270521.1
+2024-10-07 12:07:29,476 - INFO - Finished processing chromosome KI270448.1
+2024-10-07 12:07:29,743 - INFO - Processing chromosome KI270581.1
+2024-10-07 12:07:29,950 - INFO - Finished processing chromosome KI270581.1
+2024-10-07 12:07:30,013 - INFO - Finished processing chromosome KI270521.1
+2024-10-07 12:07:30,212 - INFO - Processing chromosome KI270582.1
+2024-10-07 12:07:30,264 - INFO - Processing chromosome KI270515.1
+2024-10-07 12:07:30,764 - INFO - Finished processing chromosome KI270515.1
+2024-10-07 12:07:30,830 - INFO - Finished processing chromosome KI270582.1
+2024-10-07 12:07:31,044 - INFO - Processing chromosome KI270588.1
+2024-10-07 12:07:31,092 - INFO - Processing chromosome KI270591.1
+2024-10-07 12:07:31,465 - INFO - Finished processing chromosome KI270588.1
+2024-10-07 12:07:31,473 - INFO - Finished processing chromosome KI270591.1
+2024-10-07 12:07:31,782 - INFO - Processing chromosome KI270522.1
+2024-10-07 12:07:31,783 - INFO - Processing chromosome KI270507.1
+2024-10-07 12:07:32,139 - INFO - Finished processing chromosome KI270507.1
+2024-10-07 12:07:32,371 - INFO - Processing chromosome KI270590.1
+2024-10-07 12:07:32,780 - INFO - Finished processing chromosome KI270522.1
+2024-10-07 12:07:32,837 - INFO - Finished processing chromosome KI270590.1
+2024-10-07 12:07:33,027 - INFO - Processing chromosome KI270584.1
+2024-10-07 12:07:33,378 - INFO - Processing chromosome KI270320.1
+2024-10-07 12:07:33,425 - INFO - Finished processing chromosome KI270584.1
+2024-10-07 12:07:33,685 - INFO - Processing chromosome KI270382.1
+2024-10-07 12:07:33,703 - INFO - Finished processing chromosome KI270320.1
+2024-10-07 12:07:33,956 - INFO - Processing chromosome KI270468.1
+2024-10-07 12:07:34,062 - INFO - Finished processing chromosome KI270382.1
+2024-10-07 12:07:34,322 - INFO - Finished processing chromosome KI270468.1
+2024-10-07 12:07:34,352 - INFO - Processing chromosome KI270467.1
+2024-10-07 12:07:34,584 - INFO - Processing chromosome KI270362.1
+2024-10-07 12:07:35,080 - INFO - Finished processing chromosome KI270362.1
+2024-10-07 12:07:35,339 - INFO - Processing chromosome KI270517.1
+2024-10-07 12:07:35,902 - INFO - Finished processing chromosome KI270517.1
+2024-10-07 12:07:36,173 - INFO - Processing chromosome KI270593.1
+2024-10-07 12:07:36,582 - INFO - Finished processing chromosome KI270593.1
+2024-10-07 12:07:36,713 - INFO - Finished processing chromosome KI270467.1
+2024-10-07 12:07:37,059 - INFO - Processing chromosome KI270528.1
+2024-10-07 12:07:37,246 - INFO - Processing chromosome KI270587.1
+2024-10-07 12:07:37,409 - INFO - Finished processing chromosome KI270528.1
+2024-10-07 12:07:37,655 - INFO - Processing chromosome KI270364.1
+2024-10-07 12:07:37,895 - INFO - Finished processing chromosome KI270587.1
+2024-10-07 12:07:38,148 - INFO - Finished processing chromosome KI270364.1
+2024-10-07 12:07:38,157 - INFO - Processing chromosome KI270371.1
+2024-10-07 12:07:38,518 - INFO - Finished processing chromosome KI270371.1
+2024-10-07 12:07:38,683 - INFO - Processing chromosome KI270333.1
+2024-10-07 12:07:38,820 - INFO - Processing chromosome KI270374.1
+2024-10-07 12:07:39,090 - INFO - Finished processing chromosome KI270333.1
+2024-10-07 12:07:39,173 - INFO - Finished processing chromosome KI270374.1
+2024-10-07 12:07:39,320 - INFO - Processing chromosome KI270411.1
+2024-10-07 12:07:39,406 - INFO - Processing chromosome KI270414.1
+2024-10-07 12:07:39,747 - INFO - Finished processing chromosome KI270414.1
+2024-10-07 12:07:39,851 - INFO - Finished processing chromosome KI270411.1
+2024-10-07 12:07:39,999 - INFO - Processing chromosome KI270510.1
+2024-10-07 12:07:40,120 - INFO - Processing chromosome KI270390.1
+2024-10-07 12:07:40,331 - INFO - Finished processing chromosome KI270390.1
+2024-10-07 12:07:40,396 - INFO - Finished processing chromosome KI270510.1
+2024-10-07 12:07:40,632 - INFO - Processing chromosome KI270375.1
+2024-10-07 12:07:40,693 - INFO - Processing chromosome KI270420.1
+2024-10-07 12:07:41,055 - INFO - Finished processing chromosome KI270420.1
+2024-10-07 12:07:41,115 - INFO - Finished processing chromosome KI270375.1
+2024-10-07 12:07:41,294 - INFO - Processing chromosome KI270509.1
+2024-10-07 12:07:41,407 - INFO - Processing chromosome KI270315.1
+2024-10-07 12:07:41,644 - INFO - Finished processing chromosome KI270509.1
+2024-10-07 12:07:41,920 - INFO - Processing chromosome KI270302.1
+2024-10-07 12:07:42,056 - INFO - Finished processing chromosome KI270315.1
+2024-10-07 12:07:42,196 - INFO - Finished processing chromosome KI270302.1
+2024-10-07 12:07:42,439 - INFO - Processing chromosome KI270518.1
+2024-10-07 12:07:42,451 - INFO - Processing chromosome KI270530.1
+2024-10-07 12:07:42,644 - INFO - Finished processing chromosome KI270530.1
+2024-10-07 12:07:42,900 - INFO - Finished processing chromosome KI270518.1
+2024-10-07 12:07:42,903 - INFO - Processing chromosome KI270304.1
+2024-10-07 12:07:43,133 - INFO - Finished processing chromosome KI270304.1
+2024-10-07 12:07:43,227 - INFO - Processing chromosome KI270418.1
+2024-10-07 12:07:43,369 - INFO - Processing chromosome KI270424.1
+2024-10-07 12:07:43,847 - INFO - Finished processing chromosome KI270424.1
+2024-10-07 12:07:43,916 - INFO - Finished processing chromosome KI270418.1
+2024-10-07 12:07:44,158 - INFO - Processing chromosome KI270417.1
+2024-10-07 12:07:44,276 - INFO - Processing chromosome KI270508.1
+2024-10-07 12:07:44,476 - INFO - Finished processing chromosome KI270417.1
+2024-10-07 12:07:44,720 - INFO - Processing chromosome KI270303.1
+2024-10-07 12:07:44,745 - INFO - Finished processing chromosome KI270508.1
+2024-10-07 12:07:45,062 - INFO - Processing chromosome KI270381.1
+2024-10-07 12:07:45,231 - INFO - Finished processing chromosome KI270303.1
+2024-10-07 12:07:45,313 - INFO - Finished processing chromosome KI270381.1
+2024-10-07 12:07:45,482 - INFO - Processing chromosome KI270529.1
+2024-10-07 12:07:45,630 - INFO - Processing chromosome KI270425.1
+2024-10-07 12:07:45,835 - INFO - Finished processing chromosome KI270529.1
+2024-10-07 12:07:45,915 - INFO - Finished processing chromosome KI270425.1
+2024-10-07 12:07:46,097 - INFO - Processing chromosome KI270396.1
+2024-10-07 12:07:46,202 - INFO - Processing chromosome KI270363.1
+2024-10-07 12:07:46,472 - INFO - Finished processing chromosome KI270396.1
+2024-10-07 12:07:46,689 - INFO - Finished processing chromosome KI270363.1
+2024-10-07 12:07:46,795 - INFO - Processing chromosome KI270386.1
+2024-10-07 12:07:46,990 - INFO - Finished processing chromosome KI270386.1
+2024-10-07 12:07:47,006 - INFO - Processing chromosome KI270465.1
+2024-10-07 12:07:47,330 - INFO - Processing chromosome KI270383.1
+2024-10-07 12:07:47,486 - INFO - Finished processing chromosome KI270465.1
+2024-10-07 12:07:47,540 - INFO - Finished processing chromosome KI270383.1
+2024-10-07 12:07:47,778 - INFO - Processing chromosome KI270330.1
+2024-10-07 12:07:47,801 - INFO - Processing chromosome KI270384.1
+2024-10-07 12:07:48,278 - INFO - Finished processing chromosome KI270384.1
+2024-10-07 12:07:48,301 - INFO - Finished processing chromosome KI270330.1
+2024-10-07 12:07:48,570 - INFO - Processing chromosome KI270548.1
+2024-10-07 12:07:48,603 - INFO - Processing chromosome KI270372.1
+2024-10-07 12:07:49,104 - INFO - Finished processing chromosome KI270548.1
+2024-10-07 12:07:49,453 - INFO - Finished processing chromosome KI270372.1
+2024-10-07 12:07:49,647 - INFO - Processing chromosome KI270580.1
+2024-10-07 12:07:49,776 - INFO - Processing chromosome KI270387.1
+2024-10-07 12:07:49,998 - INFO - Finished processing chromosome KI270580.1
+2024-10-07 12:07:50,015 - INFO - Finished processing chromosome KI270387.1
+2024-10-07 12:07:50,477 - INFO - Processing chromosome KI270391.1
+2024-10-07 12:07:50,666 - INFO - Processing chromosome KI270305.1
+2024-10-07 12:07:50,672 - INFO - Finished processing chromosome KI270391.1
+2024-10-07 12:07:50,920 - INFO - Processing chromosome KI270373.1
+2024-10-07 12:07:50,929 - INFO - Finished processing chromosome KI270305.1
+2024-10-07 12:07:51,260 - INFO - Finished processing chromosome KI270373.1
+2024-10-07 12:07:51,565 - INFO - Processing chromosome KI270422.1
+2024-10-07 12:07:51,588 - INFO - Processing chromosome KI270316.1
+2024-10-07 12:07:51,761 - INFO - Finished processing chromosome KI270316.1
+2024-10-07 12:07:51,997 - INFO - Processing chromosome KI270338.1
+2024-10-07 12:07:52,038 - INFO - Finished processing chromosome KI270422.1
+2024-10-07 12:07:52,219 - INFO - Finished processing chromosome KI270338.1
+2024-10-07 12:07:52,355 - INFO - Processing chromosome KI270340.1
+2024-10-07 12:07:52,453 - INFO - Processing chromosome KI270583.1
+2024-10-07 12:07:52,615 - INFO - Finished processing chromosome KI270340.1
+2024-10-07 12:07:52,884 - INFO - Finished processing chromosome KI270583.1
+2024-10-07 12:07:52,941 - INFO - Processing chromosome KI270334.1
+2024-10-07 12:07:53,125 - INFO - Processing chromosome KI270429.1
+2024-10-07 12:07:53,412 - INFO - Finished processing chromosome KI270334.1
+2024-10-07 12:07:53,483 - INFO - Finished processing chromosome KI270429.1
+2024-10-07 12:07:53,728 - INFO - Processing chromosome KI270393.1
+2024-10-07 12:07:53,732 - INFO - Processing chromosome KI270516.1
+2024-10-07 12:07:53,960 - INFO - Finished processing chromosome KI270393.1
+2024-10-07 12:07:54,079 - INFO - Finished processing chromosome KI270516.1
+2024-10-07 12:07:54,264 - INFO - Processing chromosome KI270389.1
+2024-10-07 12:07:54,424 - INFO - Processing chromosome KI270466.1
+2024-10-07 12:07:54,494 - INFO - Finished processing chromosome KI270389.1
+2024-10-07 12:07:54,789 - INFO - Processing chromosome KI270388.1
+2024-10-07 12:07:54,935 - INFO - Finished processing chromosome KI270466.1
+2024-10-07 12:07:55,097 - INFO - Finished processing chromosome KI270388.1
+2024-10-07 12:07:55,265 - INFO - Processing chromosome KI270544.1
+2024-10-07 12:07:55,391 - INFO - Processing chromosome KI270310.1
+2024-10-07 12:07:55,432 - INFO - Finished processing chromosome KI270544.1
+2024-10-07 12:07:55,689 - INFO - Processing chromosome KI270412.1
+2024-10-07 12:07:55,950 - INFO - Finished processing chromosome KI270310.1
+2024-10-07 12:07:56,021 - INFO - Finished processing chromosome KI270412.1
+2024-10-07 12:07:56,228 - INFO - Processing chromosome KI270395.1
+2024-10-07 12:07:56,244 - INFO - Processing chromosome KI270376.1
+2024-10-07 12:07:56,414 - INFO - Finished processing chromosome KI270376.1
+2024-10-07 12:07:56,507 - INFO - Finished processing chromosome KI270395.1
+2024-10-07 12:07:56,694 - INFO - Processing chromosome KI270337.1
+2024-10-07 12:07:56,879 - INFO - Processing chromosome KI270335.1
+2024-10-07 12:07:57,294 - INFO - Finished processing chromosome KI270335.1
+2024-10-07 12:07:57,305 - INFO - Finished processing chromosome KI270337.1
+2024-10-07 12:07:57,644 - INFO - Processing chromosome KI270379.1
+2024-10-07 12:07:57,667 - INFO - Processing chromosome KI270378.1
+2024-10-07 12:07:58,024 - INFO - Finished processing chromosome KI270379.1
+2024-10-07 12:07:58,052 - INFO - Finished processing chromosome KI270378.1
+2024-10-07 12:07:58,276 - INFO - Processing chromosome KI270329.1
+2024-10-07 12:07:58,398 - INFO - Processing chromosome KI270419.1
+2024-10-07 12:07:58,467 - INFO - Finished processing chromosome KI270329.1
+2024-10-07 12:07:58,629 - INFO - Finished processing chromosome KI270419.1
+2024-10-07 12:07:58,697 - INFO - Processing chromosome KI270336.1
+2024-10-07 12:07:58,859 - INFO - Finished processing chromosome KI270336.1
+2024-10-07 12:07:58,930 - INFO - Processing chromosome KI270312.1
+2024-10-07 12:07:59,133 - INFO - Processing chromosome KI270539.1
+2024-10-07 12:07:59,157 - INFO - Finished processing chromosome KI270312.1
+2024-10-07 12:07:59,333 - INFO - Finished processing chromosome KI270539.1
+2024-10-07 12:07:59,511 - INFO - Processing chromosome KI270385.1
+2024-10-07 12:07:59,588 - INFO - Processing chromosome KI270423.1
+2024-10-07 12:07:59,967 - INFO - Finished processing chromosome KI270385.1
+2024-10-07 12:08:00,016 - INFO - Finished processing chromosome KI270423.1
+2024-10-07 12:08:00,245 - INFO - Processing chromosome KI270394.1
+2024-10-07 12:08:00,261 - INFO - Processing chromosome KI270392.1
+2024-10-07 12:08:00,414 - INFO - Finished processing chromosome KI270394.1
+2024-10-07 12:08:00,816 - INFO - Finished processing chromosome KI270392.1
+2024-10-07 12:09:41,899 - INFO - Finished processing chromosome chr9
+2024-10-07 12:12:53,332 - INFO - Finished processing chromosome chr21
+2024-10-07 12:15:25,261 - INFO - Finished processing chromosome chr4
+2024-10-07 12:21:56,503 - INFO - Finished processing chromosome chr10
+2024-10-07 12:23:15,236 - INFO - Finished processing chromosome chr15
+2024-10-07 12:26:28,164 - INFO - Finished processing chromosome chr22
+2024-10-07 12:28:37,153 - INFO - Finished processing chromosome chr6
+2024-10-07 12:29:00,847 - INFO - Finished processing chromosome chr5
+2024-10-07 12:31:36,148 - INFO - Finished processing chromosome chr16
+2024-10-07 12:31:46,862 - INFO - Finished processing chromosome chrM
+2024-10-07 12:42:51,773 - INFO - Finished processing chromosome chr2
+2024-10-07 12:43:11,990 - INFO - Finished processing chromosome chr3
+2024-10-07 12:43:12,649 - INFO - Finished processing chromosome chr7
+2024-10-07 12:46:48,038 - INFO - Finished processing chromosome chr17
+2024-10-07 12:56:00,477 - INFO - Finished processing chromosome chr12
+2024-10-07 13:00:41,610 - INFO - Finished processing chromosome chr11
+2024-10-07 13:31:14,290 - INFO - Finished processing chromosome chr1
+2024-10-07 13:46:43,812 - INFO - Finished processing chromosome chr19
+2024-10-07 13:47:23,612 - INFO - Counting multimapped reads
+2024-10-07 13:47:23,612 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr1
+2024-10-07 13:59:32,360 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr2
+2024-10-07 14:06:57,736 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr3
+2024-10-07 14:14:40,425 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr4
+2024-10-07 14:18:53,803 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr5
+2024-10-07 14:23:45,468 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr6
+2024-10-07 14:28:54,453 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr7
+2024-10-07 14:36:36,983 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chrX
+2024-10-07 14:40:24,775 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr8
+2024-10-07 14:44:10,695 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr9
+2024-10-07 14:49:11,593 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr11
+2024-10-07 14:58:31,669 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr10
+2024-10-07 15:03:08,023 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr12
+2024-10-07 15:11:02,294 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr13
+2024-10-07 15:12:53,602 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr14
+2024-10-07 15:16:45,599 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr15
+2024-10-07 15:21:45,200 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr16
+2024-10-07 15:28:25,009 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr17
+2024-10-07 15:37:43,540 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr18
+2024-10-07 15:38:58,936 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr20
+2024-10-07 15:41:53,588 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr19
+2024-10-07 15:56:35,557 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chrY
+2024-10-07 15:56:35,647 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr22
+2024-10-07 15:59:57,634 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr21
+2024-10-07 16:01:14,623 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270728.1
+2024-10-07 16:01:14,666 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270727.1
+2024-10-07 16:01:14,671 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270442.1
+2024-10-07 16:01:14,728 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270729.1
+2024-10-07 16:01:14,769 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000225.1
+2024-10-07 16:01:14,837 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270743.1
+2024-10-07 16:01:14,857 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000008.2
+2024-10-07 16:01:14,890 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000009.2
+2024-10-07 16:01:14,913 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270747.1
+2024-10-07 16:01:14,923 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270722.1
+2024-10-07 16:01:14,932 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000194.1
+2024-10-07 16:01:14,948 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270742.1
+2024-10-07 16:01:14,993 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000205.2
+2024-10-07 16:01:15,029 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000195.1
+2024-10-07 16:01:15,136 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270736.1
+2024-10-07 16:01:15,180 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270733.1
+2024-10-07 16:01:18,616 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000224.1
+2024-10-07 16:01:18,636 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000219.1
+2024-10-07 16:01:18,659 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270719.1
+2024-10-07 16:01:18,679 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000216.2
+2024-10-07 16:01:18,720 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270712.1
+2024-10-07 16:01:18,739 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270706.1
+2024-10-07 16:01:18,753 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270725.1
+2024-10-07 16:01:18,758 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270744.1
+2024-10-07 16:01:18,768 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270734.1
+2024-10-07 16:01:18,787 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000213.1
+2024-10-07 16:01:18,796 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000220.1
+2024-10-07 16:01:18,937 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270715.1
+2024-10-07 16:01:18,957 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000218.1
+2024-10-07 16:01:18,980 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270749.1
+2024-10-07 16:01:18,987 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270741.1
+2024-10-07 16:01:18,996 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000221.1
+2024-10-07 16:01:19,008 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270716.1
+2024-10-07 16:01:19,013 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270731.1
+2024-10-07 16:01:19,024 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270751.1
+2024-10-07 16:01:19,033 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270750.1
+2024-10-07 16:01:19,039 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270519.1
+2024-10-07 16:01:19,051 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000214.1
+2024-10-07 16:01:19,065 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270708.1
+2024-10-07 16:01:19,070 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270730.1
+2024-10-07 16:01:19,082 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270438.1
+2024-10-07 16:01:19,358 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270737.1
+2024-10-07 16:01:19,377 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270721.1
+2024-10-07 16:01:19,380 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270738.1
+2024-10-07 16:01:19,397 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270748.1
+2024-10-07 16:01:19,398 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270435.1
+2024-10-07 16:01:19,404 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000208.1
+2024-10-07 16:01:19,418 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270538.1
+2024-10-07 16:01:19,439 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270756.1
+2024-10-07 16:01:19,447 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270739.1
+2024-10-07 16:01:19,448 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270757.1
+2024-10-07 16:01:19,464 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270709.1
+2024-10-07 16:01:19,472 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270746.1
+2024-10-07 16:01:19,490 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270753.1
+2024-10-07 16:01:19,492 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270589.1
+2024-10-07 16:01:19,508 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270726.1
+2024-10-07 16:01:19,510 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270735.1
+2024-10-07 16:01:19,529 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270711.1
+2024-10-07 16:01:19,571 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270745.1
+2024-10-07 16:01:19,588 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270714.1
+2024-10-07 16:01:19,597 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270732.1
+2024-10-07 16:01:19,613 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270713.1
+2024-10-07 16:01:19,616 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270754.1
+2024-10-07 16:01:19,618 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270710.1
+2024-10-07 16:01:19,621 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270717.1
+2024-10-07 16:01:19,622 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270724.1
+2024-10-07 16:01:19,624 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270720.1
+2024-10-07 16:01:19,638 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270723.1
+2024-10-07 16:01:19,652 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270718.1
+2024-10-07 16:01:19,655 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270317.1
+2024-10-07 16:01:19,656 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270740.1
+2024-10-07 16:01:19,669 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270755.1
+2024-10-07 16:01:19,682 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270707.1
+2024-10-07 16:01:19,692 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270579.1
+2024-10-07 16:01:19,693 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270752.1
+2024-10-07 16:01:19,699 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270512.1
+2024-10-07 16:01:19,702 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270322.1
+2024-10-07 16:01:19,703 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chrM
+2024-10-07 16:03:06,884 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000226.1
+2024-10-07 16:03:06,890 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270311.1
+2024-10-07 16:03:06,891 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270366.1
+2024-10-07 16:03:06,892 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270511.1
+2024-10-07 16:03:06,904 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270448.1
+2024-10-07 16:03:06,907 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270521.1
+2024-10-07 16:03:06,916 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270581.1
+2024-10-07 16:03:06,926 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270582.1
+2024-10-07 16:03:06,927 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270515.1
+2024-10-07 16:03:06,930 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270588.1
+2024-10-07 16:03:06,945 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270591.1
+2024-10-07 16:03:06,956 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270522.1
+2024-10-07 16:03:06,957 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270507.1
+2024-10-07 16:03:06,959 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270590.1
+2024-10-07 16:03:06,968 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270584.1
+2024-10-07 16:03:06,969 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270320.1
+2024-10-07 16:03:06,971 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270382.1
+2024-10-07 16:03:06,971 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270468.1
+2024-10-07 16:03:06,973 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270467.1
+2024-10-07 16:03:07,094 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270362.1
+2024-10-07 16:03:07,110 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270517.1
+2024-10-07 16:03:07,111 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270593.1
+2024-10-07 16:03:07,112 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270528.1
+2024-10-07 16:03:07,123 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270587.1
+2024-10-07 16:03:07,136 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270364.1
+2024-10-07 16:03:07,137 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270371.1
+2024-10-07 16:03:07,150 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270333.1
+2024-10-07 16:03:07,167 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270374.1
+2024-10-07 16:03:07,180 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270411.1
+2024-10-07 16:03:07,182 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270414.1
+2024-10-07 16:03:07,183 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270510.1
+2024-10-07 16:03:07,184 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270390.1
+2024-10-07 16:03:07,184 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270375.1
+2024-10-07 16:03:07,185 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270420.1
+2024-10-07 16:03:07,186 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270509.1
+2024-10-07 16:03:07,186 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270315.1
+2024-10-07 16:03:07,194 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270302.1
+2024-10-07 16:03:07,194 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270518.1
+2024-10-07 16:03:07,195 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270530.1
+2024-10-07 16:03:07,196 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270304.1
+2024-10-07 16:03:07,197 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270418.1
+2024-10-07 16:03:07,206 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270424.1
+2024-10-07 16:03:07,206 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270417.1
+2024-10-07 16:03:07,219 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270508.1
+2024-10-07 16:03:07,238 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270303.1
+2024-10-07 16:03:07,253 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270381.1
+2024-10-07 16:03:07,272 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270529.1
+2024-10-07 16:03:07,273 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270425.1
+2024-10-07 16:03:07,274 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270396.1
+2024-10-07 16:03:07,286 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270363.1
+2024-10-07 16:03:07,287 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270386.1
+2024-10-07 16:03:07,287 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270465.1
+2024-10-07 16:03:07,288 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270383.1
+2024-10-07 16:03:07,289 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270384.1
+2024-10-07 16:03:07,292 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270330.1
+2024-10-07 16:03:07,293 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270372.1
+2024-10-07 16:03:07,294 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270548.1
+2024-10-07 16:03:07,295 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270580.1
+2024-10-07 16:03:07,296 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270387.1
+2024-10-07 16:03:07,310 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270391.1
+2024-10-07 16:03:07,311 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270305.1
+2024-10-07 16:03:07,312 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270373.1
+2024-10-07 16:03:07,319 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270422.1
+2024-10-07 16:03:07,320 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270316.1
+2024-10-07 16:03:07,326 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270338.1
+2024-10-07 16:03:07,327 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270340.1
+2024-10-07 16:03:07,327 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270583.1
+2024-10-07 16:03:07,329 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270334.1
+2024-10-07 16:03:07,330 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270429.1
+2024-10-07 16:03:07,347 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270393.1
+2024-10-07 16:03:07,348 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270516.1
+2024-10-07 16:03:07,350 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270389.1
+2024-10-07 16:03:07,350 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270466.1
+2024-10-07 16:03:07,364 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270388.1
+2024-10-07 16:03:07,375 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270544.1
+2024-10-07 16:03:07,376 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270310.1
+2024-10-07 16:03:07,377 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270412.1
+2024-10-07 16:03:07,385 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270395.1
+2024-10-07 16:03:07,386 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270376.1
+2024-10-07 16:03:07,387 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270337.1
+2024-10-07 16:03:07,388 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270335.1
+2024-10-07 16:03:07,397 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270378.1
+2024-10-07 16:03:07,398 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270379.1
+2024-10-07 16:03:07,399 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270329.1
+2024-10-07 16:03:07,400 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270419.1
+2024-10-07 16:03:07,401 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270336.1
+2024-10-07 16:03:07,402 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270312.1
+2024-10-07 16:03:07,402 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270539.1
+2024-10-07 16:03:07,403 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270385.1
+2024-10-07 16:03:07,404 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270423.1
+2024-10-07 16:03:07,433 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270392.1
+2024-10-07 16:03:07,434 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270394.1
+2024-10-07 16:03:07,435 - INFO - Resolving multimappers
+2024-10-07 16:03:20,633 - INFO - Multimappers resolved
+2024-10-07 16:03:21,697 - INFO - Alignments collected, overall alignment statistics:
+2024-10-07 16:03:21,698 - INFO - primary: 90540926
+2024-10-07 16:03:21,698 - INFO - unaligned: 0
+2024-10-07 16:03:21,762 - INFO - Finishing read assignment, total assignments 90543347, polyA percentage 67.2
+2024-10-07 16:03:24,430 - INFO - Read assignments files saved to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save*. 
+2024-10-07 16:03:24,430 - INFO - To keep these intermediate files for debug purposes use --keep_tmp flag
+2024-10-07 16:03:24,431 - INFO - Total assignments used for analysis: 90543347, polyA tail detected in 60834335 (67.2%)
+2024-10-07 16:03:24,431 - INFO - Processing assigned reads OUT
+2024-10-07 16:03:24,431 - INFO - Transcript models construction is turned on
+2024-10-07 16:03:24,792 - INFO - Transcript construction options:
+2024-10-07 16:03:24,792 - INFO -   Novel monoexonic transcripts will be reported: no
+2024-10-07 16:03:24,792 - INFO -   PolyA tails are required for multi-exon transcripts to be reported: no
+2024-10-07 16:03:24,792 - INFO -   PolyA tails are required for 2-exon transcripts to be reported: yes
+2024-10-07 16:03:24,792 - INFO -   PolyA tails are required for known monoexon transcripts to be reported: yes
+2024-10-07 16:03:24,792 - INFO -   PolyA tails are required for novel monoexon transcripts to be reported: yes
+2024-10-07 16:03:24,792 - INFO -   Splice site reporting level: only_stranded
+2024-10-07 16:03:25,061 - INFO - Processing chromosome chr1
+2024-10-07 16:03:25,062 - INFO - Processing chromosome chr2
+2024-10-07 16:03:25,062 - INFO - Processing chromosome chr3
+2024-10-07 16:03:25,062 - INFO - Processing chromosome chr4
+2024-10-07 16:03:25,062 - INFO - Processing chromosome chr5
+2024-10-07 16:03:25,063 - INFO - Processing chromosome chr6
+2024-10-07 16:03:25,063 - INFO - Processing chromosome chr7
+2024-10-07 16:03:25,063 - INFO - Processing chromosome chrX
+2024-10-07 16:03:25,063 - INFO - Processing chromosome chr8
+2024-10-07 16:03:25,063 - INFO - Processing chromosome chr9
+2024-10-07 16:03:25,064 - INFO - Processing chromosome chr11
+2024-10-07 16:03:25,064 - INFO - Processing chromosome chr10
+2024-10-07 16:03:25,064 - INFO - Processing chromosome chr12
+2024-10-07 16:03:25,064 - INFO - Processing chromosome chr13
+2024-10-07 16:03:25,065 - INFO - Processing chromosome chr14
+2024-10-07 16:03:25,065 - INFO - Processing chromosome chr15
+2024-10-07 16:03:25,065 - INFO - Processing chromosome chr16
+2024-10-07 16:03:25,065 - INFO - Processing chromosome chr17
+2024-10-07 16:03:25,066 - INFO - Processing chromosome chr18
+2024-10-07 16:03:25,066 - INFO - Processing chromosome chr20
+2024-10-07 16:03:27,564 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr18
+2024-10-07 16:03:28,087 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr13
+2024-10-07 16:03:28,376 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr20
+2024-10-07 16:03:30,367 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr15
+2024-10-07 16:03:31,325 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr14
+2024-10-07 16:03:38,659 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr8
+2024-10-07 16:03:39,822 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr16
+2024-10-07 16:03:40,956 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr9
+2024-10-07 16:03:43,484 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chrX
+2024-10-07 16:03:43,983 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr5
+2024-10-07 16:03:47,043 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr10
+2024-10-07 16:03:47,239 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr7
+2024-10-07 16:03:47,802 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr4
+2024-10-07 16:03:48,456 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr6
+2024-10-07 16:03:49,389 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr12
+2024-10-07 16:03:49,581 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr17
+2024-10-07 16:03:50,146 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr11
+2024-10-07 16:03:51,891 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr3
+2024-10-07 16:03:53,449 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr2
+2024-10-07 16:03:55,479 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr1
+2024-10-07 16:19:51,268 - INFO - Finished processing chromosome chr18
+2024-10-07 16:19:51,887 - INFO - Processing chromosome chr19
+2024-10-07 16:19:58,251 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr19
+2024-10-07 16:23:07,571 - INFO - Finished processing chromosome chr13
+2024-10-07 16:23:07,852 - INFO - Processing chromosome chrY
+2024-10-07 16:23:08,770 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chrY
+2024-10-07 16:23:16,801 - INFO - Finished processing chromosome chrY
+2024-10-07 16:23:16,961 - INFO - Processing chromosome chr22
+2024-10-07 16:23:19,060 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr22
+2024-10-07 16:41:00,867 - INFO - Finished processing chromosome chr20
+2024-10-07 16:41:01,114 - INFO - Processing chromosome chr21
+2024-10-07 16:41:02,400 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chr21
+2024-10-07 16:46:04,300 - INFO - Finished processing chromosome chr8
+2024-10-07 16:46:04,718 - INFO - Processing chromosome KI270728.1
+2024-10-07 16:46:05,283 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270728.1
+2024-10-07 16:46:06,890 - INFO - Finished processing chromosome KI270728.1
+2024-10-07 16:46:07,233 - INFO - Processing chromosome KI270727.1
+2024-10-07 16:46:07,694 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270727.1
+2024-10-07 16:46:08,179 - INFO - Finished processing chromosome KI270727.1
+2024-10-07 16:46:08,290 - INFO - Processing chromosome KI270442.1
+2024-10-07 16:46:08,670 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270442.1
+2024-10-07 16:46:10,527 - INFO - Finished processing chromosome KI270442.1
+2024-10-07 16:46:10,710 - INFO - Processing chromosome KI270729.1
+2024-10-07 16:46:11,249 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270729.1
+2024-10-07 16:46:12,463 - INFO - Finished processing chromosome KI270729.1
+2024-10-07 16:46:12,550 - INFO - Processing chromosome GL000225.1
+2024-10-07 16:46:13,030 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000225.1
+2024-10-07 16:46:14,748 - INFO - Finished processing chromosome GL000225.1
+2024-10-07 16:46:15,191 - INFO - Processing chromosome KI270743.1
+2024-10-07 16:46:15,729 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270743.1
+2024-10-07 16:46:16,514 - INFO - Finished processing chromosome KI270743.1
+2024-10-07 16:46:16,770 - INFO - Processing chromosome GL000008.2
+2024-10-07 16:46:17,248 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000008.2
+2024-10-07 16:46:18,029 - INFO - Finished processing chromosome GL000008.2
+2024-10-07 16:46:18,115 - INFO - Processing chromosome GL000009.2
+2024-10-07 16:46:18,491 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000009.2
+2024-10-07 16:46:19,906 - INFO - Finished processing chromosome GL000009.2
+2024-10-07 16:46:20,049 - INFO - Processing chromosome KI270747.1
+2024-10-07 16:46:21,087 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270747.1
+2024-10-07 16:46:22,136 - INFO - Finished processing chromosome KI270747.1
+2024-10-07 16:46:22,296 - INFO - Processing chromosome KI270722.1
+2024-10-07 16:46:22,782 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270722.1
+2024-10-07 16:46:23,366 - INFO - Finished processing chromosome KI270722.1
+2024-10-07 16:46:23,459 - INFO - Processing chromosome GL000194.1
+2024-10-07 16:46:23,813 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000194.1
+2024-10-07 16:46:24,656 - INFO - Finished processing chromosome GL000194.1
+2024-10-07 16:46:25,112 - INFO - Processing chromosome KI270742.1
+2024-10-07 16:46:25,694 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270742.1
+2024-10-07 16:46:26,273 - INFO - Finished processing chromosome KI270742.1
+2024-10-07 16:46:26,386 - INFO - Processing chromosome GL000205.2
+2024-10-07 16:46:27,530 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000205.2
+2024-10-07 16:46:28,742 - INFO - Finished processing chromosome GL000205.2
+2024-10-07 16:46:29,013 - INFO - Processing chromosome GL000195.1
+2024-10-07 16:46:29,423 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000195.1
+2024-10-07 16:46:34,873 - INFO - Finished processing chromosome GL000195.1
+2024-10-07 16:46:35,122 - INFO - Processing chromosome KI270736.1
+2024-10-07 16:46:35,502 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270736.1
+2024-10-07 16:46:36,873 - INFO - Finished processing chromosome KI270736.1
+2024-10-07 16:46:36,972 - INFO - Processing chromosome KI270733.1
+2024-10-07 16:46:37,364 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270733.1
+2024-10-07 16:48:13,077 - INFO - Finished processing chromosome KI270733.1
+2024-10-07 16:48:13,717 - INFO - Processing chromosome GL000224.1
+2024-10-07 16:48:14,192 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000224.1
+2024-10-07 16:48:14,850 - INFO - Finished processing chromosome GL000224.1
+2024-10-07 16:48:14,997 - INFO - Processing chromosome GL000219.1
+2024-10-07 16:48:15,336 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000219.1
+2024-10-07 16:48:15,971 - INFO - Finished processing chromosome GL000219.1
+2024-10-07 16:48:16,092 - INFO - Processing chromosome KI270719.1
+2024-10-07 16:48:16,479 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270719.1
+2024-10-07 16:48:16,925 - INFO - Finished processing chromosome KI270719.1
+2024-10-07 16:48:17,018 - INFO - Processing chromosome GL000216.2
+2024-10-07 16:48:17,408 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000216.2
+2024-10-07 16:48:18,472 - INFO - Finished processing chromosome GL000216.2
+2024-10-07 16:48:18,607 - INFO - Processing chromosome KI270712.1
+2024-10-07 16:48:18,999 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270712.1
+2024-10-07 16:48:19,854 - INFO - Finished processing chromosome KI270712.1
+2024-10-07 16:48:20,026 - INFO - Processing chromosome KI270706.1
+2024-10-07 16:48:20,370 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270706.1
+2024-10-07 16:48:20,937 - INFO - Finished processing chromosome KI270706.1
+2024-10-07 16:48:21,040 - INFO - Processing chromosome KI270725.1
+2024-10-07 16:48:21,479 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270725.1
+2024-10-07 16:48:21,880 - INFO - Finished processing chromosome KI270725.1
+2024-10-07 16:48:21,977 - INFO - Processing chromosome KI270744.1
+2024-10-07 16:48:22,356 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270744.1
+2024-10-07 16:48:22,844 - INFO - Finished processing chromosome KI270744.1
+2024-10-07 16:48:22,981 - INFO - Processing chromosome KI270734.1
+2024-10-07 16:48:23,769 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270734.1
+2024-10-07 16:48:25,149 - INFO - Finished processing chromosome KI270734.1
+2024-10-07 16:48:25,345 - INFO - Processing chromosome GL000213.1
+2024-10-07 16:48:25,930 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000213.1
+2024-10-07 16:48:26,431 - INFO - Finished processing chromosome GL000213.1
+2024-10-07 16:48:26,526 - INFO - Processing chromosome GL000220.1
+2024-10-07 16:48:27,079 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000220.1
+2024-10-07 16:48:31,158 - INFO - Finished processing chromosome GL000220.1
+2024-10-07 16:48:31,332 - INFO - Processing chromosome KI270715.1
+2024-10-07 16:48:32,086 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270715.1
+2024-10-07 16:48:32,753 - INFO - Finished processing chromosome KI270715.1
+2024-10-07 16:48:32,839 - INFO - Processing chromosome GL000218.1
+2024-10-07 16:48:33,520 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000218.1
+2024-10-07 16:48:34,017 - INFO - Finished processing chromosome GL000218.1
+2024-10-07 16:48:34,130 - INFO - Processing chromosome KI270749.1
+2024-10-07 16:48:35,194 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270749.1
+2024-10-07 16:48:35,612 - INFO - Finished processing chromosome KI270749.1
+2024-10-07 16:48:35,708 - INFO - Processing chromosome KI270741.1
+2024-10-07 16:48:36,581 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270741.1
+2024-10-07 16:48:37,077 - INFO - Finished processing chromosome KI270741.1
+2024-10-07 16:48:37,178 - INFO - Processing chromosome GL000221.1
+2024-10-07 16:48:37,707 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000221.1
+2024-10-07 16:48:38,083 - INFO - Finished processing chromosome GL000221.1
+2024-10-07 16:48:38,182 - INFO - Processing chromosome KI270716.1
+2024-10-07 16:48:39,092 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270716.1
+2024-10-07 16:48:40,097 - INFO - Finished processing chromosome KI270716.1
+2024-10-07 16:48:40,173 - INFO - Processing chromosome KI270731.1
+2024-10-07 16:48:40,780 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270731.1
+2024-10-07 16:48:41,459 - INFO - Finished processing chromosome KI270731.1
+2024-10-07 16:48:41,527 - INFO - Processing chromosome KI270751.1
+2024-10-07 16:48:41,965 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270751.1
+2024-10-07 16:48:42,495 - INFO - Finished processing chromosome KI270751.1
+2024-10-07 16:48:42,589 - INFO - Processing chromosome KI270750.1
+2024-10-07 16:48:42,986 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270750.1
+2024-10-07 16:48:43,658 - INFO - Finished processing chromosome KI270750.1
+2024-10-07 16:48:43,769 - INFO - Processing chromosome KI270519.1
+2024-10-07 16:48:44,270 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270519.1
+2024-10-07 16:48:44,901 - INFO - Finished processing chromosome KI270519.1
+2024-10-07 16:48:45,019 - INFO - Processing chromosome GL000214.1
+2024-10-07 16:48:45,472 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000214.1
+2024-10-07 16:48:46,396 - INFO - Finished processing chromosome GL000214.1
+2024-10-07 16:48:46,512 - INFO - Processing chromosome KI270708.1
+2024-10-07 16:48:46,908 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270708.1
+2024-10-07 16:48:47,281 - INFO - Finished processing chromosome KI270708.1
+2024-10-07 16:48:47,364 - INFO - Processing chromosome KI270730.1
+2024-10-07 16:48:47,894 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270730.1
+2024-10-07 16:48:48,602 - INFO - Finished processing chromosome KI270730.1
+2024-10-07 16:48:48,745 - INFO - Processing chromosome KI270438.1
+2024-10-07 16:48:49,171 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270438.1
+2024-10-07 16:48:56,816 - INFO - Finished processing chromosome KI270438.1
+2024-10-07 16:48:56,981 - INFO - Processing chromosome KI270737.1
+2024-10-07 16:48:57,416 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270737.1
+2024-10-07 16:48:58,155 - INFO - Finished processing chromosome KI270737.1
+2024-10-07 16:48:58,252 - INFO - Processing chromosome KI270721.1
+2024-10-07 16:48:58,748 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270721.1
+2024-10-07 16:48:59,478 - INFO - Finished processing chromosome KI270721.1
+2024-10-07 16:48:59,949 - INFO - Processing chromosome KI270738.1
+2024-10-07 16:49:00,392 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270738.1
+2024-10-07 16:49:00,957 - INFO - Finished processing chromosome KI270738.1
+2024-10-07 16:49:01,046 - INFO - Processing chromosome KI270748.1
+2024-10-07 16:49:01,460 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270748.1
+2024-10-07 16:49:02,173 - INFO - Finished processing chromosome KI270748.1
+2024-10-07 16:49:02,247 - INFO - Processing chromosome KI270435.1
+2024-10-07 16:49:02,662 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270435.1
+2024-10-07 16:49:03,088 - INFO - Finished processing chromosome KI270435.1
+2024-10-07 16:49:03,192 - INFO - Processing chromosome GL000208.1
+2024-10-07 16:49:03,566 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000208.1
+2024-10-07 16:49:04,003 - INFO - Finished processing chromosome GL000208.1
+2024-10-07 16:49:04,257 - INFO - Processing chromosome KI270538.1
+2024-10-07 16:49:05,819 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270538.1
+2024-10-07 16:49:06,479 - INFO - Finished processing chromosome KI270538.1
+2024-10-07 16:49:06,915 - INFO - Processing chromosome KI270756.1
+2024-10-07 16:49:07,439 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270756.1
+2024-10-07 16:49:07,848 - INFO - Finished processing chromosome KI270756.1
+2024-10-07 16:49:07,927 - INFO - Processing chromosome KI270739.1
+2024-10-07 16:49:08,286 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270739.1
+2024-10-07 16:49:08,663 - INFO - Finished processing chromosome KI270739.1
+2024-10-07 16:49:08,751 - INFO - Processing chromosome KI270757.1
+2024-10-07 16:49:09,436 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270757.1
+2024-10-07 16:49:10,091 - INFO - Finished processing chromosome KI270757.1
+2024-10-07 16:49:10,229 - INFO - Processing chromosome KI270709.1
+2024-10-07 16:49:10,629 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270709.1
+2024-10-07 16:49:11,053 - INFO - Finished processing chromosome KI270709.1
+2024-10-07 16:49:11,145 - INFO - Processing chromosome KI270746.1
+2024-10-07 16:49:11,650 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270746.1
+2024-10-07 16:49:12,443 - INFO - Finished processing chromosome KI270746.1
+2024-10-07 16:49:12,527 - INFO - Processing chromosome KI270753.1
+2024-10-07 16:49:12,894 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270753.1
+2024-10-07 16:49:13,227 - INFO - Finished processing chromosome KI270753.1
+2024-10-07 16:49:13,327 - INFO - Processing chromosome KI270589.1
+2024-10-07 16:49:14,646 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270589.1
+2024-10-07 16:49:15,750 - INFO - Finished processing chromosome KI270589.1
+2024-10-07 16:49:15,932 - INFO - Processing chromosome KI270726.1
+2024-10-07 16:49:16,419 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270726.1
+2024-10-07 16:49:16,855 - INFO - Finished processing chromosome KI270726.1
+2024-10-07 16:49:17,087 - INFO - Processing chromosome KI270735.1
+2024-10-07 16:49:17,682 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270735.1
+2024-10-07 16:49:18,228 - INFO - Finished processing chromosome KI270735.1
+2024-10-07 16:49:18,311 - INFO - Processing chromosome KI270711.1
+2024-10-07 16:49:18,708 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270711.1
+2024-10-07 16:49:19,977 - INFO - Finished processing chromosome KI270711.1
+2024-10-07 16:49:20,172 - INFO - Processing chromosome KI270745.1
+2024-10-07 16:49:21,045 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270745.1
+2024-10-07 16:49:21,981 - INFO - Finished processing chromosome KI270745.1
+2024-10-07 16:49:22,137 - INFO - Processing chromosome KI270714.1
+2024-10-07 16:49:22,663 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270714.1
+2024-10-07 16:49:23,157 - INFO - Finished processing chromosome KI270714.1
+2024-10-07 16:49:23,502 - INFO - Processing chromosome KI270732.1
+2024-10-07 16:49:24,199 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270732.1
+2024-10-07 16:49:25,847 - INFO - Finished processing chromosome KI270732.1
+2024-10-07 16:49:25,998 - INFO - Processing chromosome KI270713.1
+2024-10-07 16:49:26,782 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270713.1
+2024-10-07 16:49:27,464 - INFO - Finished processing chromosome KI270713.1
+2024-10-07 16:49:27,576 - INFO - Processing chromosome KI270754.1
+2024-10-07 16:49:27,857 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270754.1
+2024-10-07 16:49:28,215 - INFO - Finished processing chromosome KI270754.1
+2024-10-07 16:49:28,340 - INFO - Processing chromosome KI270710.1
+2024-10-07 16:49:29,058 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270710.1
+2024-10-07 16:49:29,441 - INFO - Finished processing chromosome KI270710.1
+2024-10-07 16:49:29,531 - INFO - Processing chromosome KI270717.1
+2024-10-07 16:49:29,901 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270717.1
+2024-10-07 16:49:30,553 - INFO - Finished processing chromosome KI270717.1
+2024-10-07 16:49:30,895 - INFO - Processing chromosome KI270724.1
+2024-10-07 16:49:31,962 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270724.1
+2024-10-07 16:49:32,629 - INFO - Finished processing chromosome KI270724.1
+2024-10-07 16:49:32,727 - INFO - Processing chromosome KI270720.1
+2024-10-07 16:49:33,077 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270720.1
+2024-10-07 16:49:33,440 - INFO - Finished processing chromosome KI270720.1
+2024-10-07 16:49:33,510 - INFO - Processing chromosome KI270723.1
+2024-10-07 16:49:33,845 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270723.1
+2024-10-07 16:49:34,209 - INFO - Finished processing chromosome KI270723.1
+2024-10-07 16:49:34,314 - INFO - Processing chromosome KI270718.1
+2024-10-07 16:49:34,695 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270718.1
+2024-10-07 16:49:35,270 - INFO - Finished processing chromosome KI270718.1
+2024-10-07 16:49:35,360 - INFO - Processing chromosome KI270317.1
+2024-10-07 16:49:35,792 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270317.1
+2024-10-07 16:49:36,606 - INFO - Finished processing chromosome KI270317.1
+2024-10-07 16:49:36,684 - INFO - Processing chromosome KI270740.1
+2024-10-07 16:49:37,353 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270740.1
+2024-10-07 16:49:37,831 - INFO - Finished processing chromosome KI270740.1
+2024-10-07 16:49:37,886 - INFO - Processing chromosome KI270755.1
+2024-10-07 16:49:38,153 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270755.1
+2024-10-07 16:49:38,745 - INFO - Finished processing chromosome KI270755.1
+2024-10-07 16:49:38,834 - INFO - Processing chromosome KI270707.1
+2024-10-07 16:49:39,264 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270707.1
+2024-10-07 16:49:39,661 - INFO - Finished processing chromosome KI270707.1
+2024-10-07 16:49:39,748 - INFO - Processing chromosome KI270579.1
+2024-10-07 16:49:40,112 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270579.1
+2024-10-07 16:49:41,008 - INFO - Finished processing chromosome KI270579.1
+2024-10-07 16:49:41,125 - INFO - Processing chromosome KI270752.1
+2024-10-07 16:49:41,783 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270752.1
+2024-10-07 16:49:42,346 - INFO - Finished processing chromosome KI270752.1
+2024-10-07 16:49:42,495 - INFO - Processing chromosome KI270512.1
+2024-10-07 16:49:43,202 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270512.1
+2024-10-07 16:49:43,548 - INFO - Finished processing chromosome KI270512.1
+2024-10-07 16:49:43,701 - INFO - Processing chromosome KI270322.1
+2024-10-07 16:49:44,481 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270322.1
+2024-10-07 16:49:44,878 - INFO - Finished processing chromosome KI270322.1
+2024-10-07 16:49:44,961 - INFO - Processing chromosome chrM
+2024-10-07 16:49:45,390 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_chrM
+2024-10-07 16:52:56,456 - INFO - Finished processing chromosome chr14
+2024-10-07 16:52:56,821 - INFO - Processing chromosome GL000226.1
+2024-10-07 16:52:57,660 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_GL000226.1
+2024-10-07 16:52:58,025 - INFO - Finished processing chromosome GL000226.1
+2024-10-07 16:52:58,083 - INFO - Processing chromosome KI270311.1
+2024-10-07 16:52:58,403 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270311.1
+2024-10-07 16:52:59,134 - INFO - Finished processing chromosome KI270311.1
+2024-10-07 16:52:59,354 - INFO - Processing chromosome KI270366.1
+2024-10-07 16:52:59,765 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270366.1
+2024-10-07 16:53:00,948 - INFO - Finished processing chromosome KI270366.1
+2024-10-07 16:53:01,638 - INFO - Processing chromosome KI270511.1
+2024-10-07 16:53:02,189 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270511.1
+2024-10-07 16:53:03,063 - INFO - Finished processing chromosome KI270511.1
+2024-10-07 16:53:03,321 - INFO - Processing chromosome KI270448.1
+2024-10-07 16:53:03,968 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270448.1
+2024-10-07 16:53:04,319 - INFO - Finished processing chromosome KI270448.1
+2024-10-07 16:53:04,408 - INFO - Processing chromosome KI270521.1
+2024-10-07 16:53:04,788 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270521.1
+2024-10-07 16:53:05,162 - INFO - Finished processing chromosome KI270521.1
+2024-10-07 16:53:05,257 - INFO - Processing chromosome KI270581.1
+2024-10-07 16:53:05,937 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270581.1
+2024-10-07 16:53:07,161 - INFO - Finished processing chromosome KI270581.1
+2024-10-07 16:53:07,391 - INFO - Processing chromosome KI270582.1
+2024-10-07 16:53:07,847 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270582.1
+2024-10-07 16:53:08,253 - INFO - Finished processing chromosome KI270582.1
+2024-10-07 16:53:08,310 - INFO - Processing chromosome KI270515.1
+2024-10-07 16:53:08,731 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270515.1
+2024-10-07 16:53:09,324 - INFO - Finished processing chromosome KI270515.1
+2024-10-07 16:53:09,400 - INFO - Processing chromosome KI270588.1
+2024-10-07 16:53:10,125 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270588.1
+2024-10-07 16:53:10,784 - INFO - Finished processing chromosome KI270588.1
+2024-10-07 16:53:10,881 - INFO - Processing chromosome KI270591.1
+2024-10-07 16:53:11,296 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270591.1
+2024-10-07 16:53:11,743 - INFO - Finished processing chromosome KI270591.1
+2024-10-07 16:53:11,839 - INFO - Processing chromosome KI270522.1
+2024-10-07 16:53:12,672 - INFO - Finished processing chromosome chr22
+2024-10-07 16:53:12,778 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270522.1
+2024-10-07 16:53:12,948 - INFO - Processing chromosome KI270507.1
+2024-10-07 16:53:13,294 - INFO - Finished processing chromosome KI270522.1
+2024-10-07 16:53:13,392 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270507.1
+2024-10-07 16:53:13,394 - INFO - Processing chromosome KI270590.1
+2024-10-07 16:53:13,827 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270590.1
+2024-10-07 16:53:13,905 - INFO - Finished processing chromosome KI270507.1
+2024-10-07 16:53:13,998 - INFO - Processing chromosome KI270584.1
+2024-10-07 16:53:14,305 - INFO - Finished processing chromosome KI270590.1
+2024-10-07 16:53:14,401 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270584.1
+2024-10-07 16:53:14,403 - INFO - Processing chromosome KI270320.1
+2024-10-07 16:53:14,798 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270320.1
+2024-10-07 16:53:14,938 - INFO - Finished processing chromosome KI270584.1
+2024-10-07 16:53:15,026 - INFO - Processing chromosome KI270382.1
+2024-10-07 16:53:15,344 - INFO - Finished processing chromosome KI270320.1
+2024-10-07 16:53:15,725 - INFO - Processing chromosome KI270468.1
+2024-10-07 16:53:16,230 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270382.1
+2024-10-07 16:53:17,140 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270468.1
+2024-10-07 16:53:17,889 - INFO - Finished processing chromosome KI270382.1
+2024-10-07 16:53:18,140 - INFO - Processing chromosome KI270467.1
+2024-10-07 16:53:18,421 - INFO - Finished processing chromosome KI270468.1
+2024-10-07 16:53:18,569 - INFO - Processing chromosome KI270362.1
+2024-10-07 16:53:18,759 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270467.1
+2024-10-07 16:53:18,914 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270362.1
+2024-10-07 16:53:19,577 - INFO - Finished processing chromosome KI270362.1
+2024-10-07 16:53:19,919 - INFO - Processing chromosome KI270517.1
+2024-10-07 16:53:20,500 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270517.1
+2024-10-07 16:53:20,861 - INFO - Finished processing chromosome KI270467.1
+2024-10-07 16:53:20,927 - INFO - Finished processing chromosome KI270517.1
+2024-10-07 16:53:21,024 - INFO - Processing chromosome KI270593.1
+2024-10-07 16:53:21,032 - INFO - Processing chromosome KI270528.1
+2024-10-07 16:53:21,714 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270593.1
+2024-10-07 16:53:21,758 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270528.1
+2024-10-07 16:53:22,600 - INFO - Finished processing chromosome KI270593.1
+2024-10-07 16:53:22,637 - INFO - Finished processing chromosome KI270528.1
+2024-10-07 16:53:22,860 - INFO - Processing chromosome KI270587.1
+2024-10-07 16:53:23,073 - INFO - Processing chromosome KI270364.1
+2024-10-07 16:53:23,739 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270587.1
+2024-10-07 16:53:23,774 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270364.1
+2024-10-07 16:53:24,091 - INFO - Finished processing chromosome KI270587.1
+2024-10-07 16:53:24,137 - INFO - Finished processing chromosome KI270364.1
+2024-10-07 16:53:24,166 - INFO - Processing chromosome KI270371.1
+2024-10-07 16:53:24,213 - INFO - Processing chromosome KI270333.1
+2024-10-07 16:53:24,859 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270371.1
+2024-10-07 16:53:25,229 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270333.1
+2024-10-07 16:53:26,530 - INFO - Finished processing chromosome KI270371.1
+2024-10-07 16:53:26,721 - INFO - Finished processing chromosome KI270333.1
+2024-10-07 16:53:26,722 - INFO - Processing chromosome KI270374.1
+2024-10-07 16:53:26,916 - INFO - Processing chromosome KI270411.1
+2024-10-07 16:53:27,477 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270374.1
+2024-10-07 16:53:27,651 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270411.1
+2024-10-07 16:53:27,974 - INFO - Finished processing chromosome KI270374.1
+2024-10-07 16:53:28,059 - INFO - Processing chromosome KI270414.1
+2024-10-07 16:53:28,219 - INFO - Finished processing chromosome KI270411.1
+2024-10-07 16:53:28,290 - INFO - Processing chromosome KI270510.1
+2024-10-07 16:53:28,414 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270414.1
+2024-10-07 16:53:28,726 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270510.1
+2024-10-07 16:53:28,821 - INFO - Finished processing chromosome KI270414.1
+2024-10-07 16:53:28,909 - INFO - Processing chromosome KI270390.1
+2024-10-07 16:53:29,134 - INFO - Finished processing chromosome KI270510.1
+2024-10-07 16:53:29,224 - INFO - Processing chromosome KI270375.1
+2024-10-07 16:53:29,257 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270390.1
+2024-10-07 16:53:29,646 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270375.1
+2024-10-07 16:53:29,691 - INFO - Finished processing chromosome KI270390.1
+2024-10-07 16:53:29,751 - INFO - Processing chromosome KI270420.1
+2024-10-07 16:53:30,361 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270420.1
+2024-10-07 16:53:30,708 - INFO - Finished processing chromosome KI270375.1
+2024-10-07 16:53:31,154 - INFO - Processing chromosome KI270509.1
+2024-10-07 16:53:31,652 - INFO - Finished processing chromosome KI270420.1
+2024-10-07 16:53:31,890 - INFO - Processing chromosome KI270315.1
+2024-10-07 16:53:32,405 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270509.1
+2024-10-07 16:53:32,667 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270315.1
+2024-10-07 16:53:33,006 - INFO - Finished processing chromosome KI270509.1
+2024-10-07 16:53:33,380 - INFO - Processing chromosome KI270302.1
+2024-10-07 16:53:33,720 - INFO - Finished processing chromosome KI270315.1
+2024-10-07 16:53:33,838 - INFO - Processing chromosome KI270518.1
+2024-10-07 16:53:34,401 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270302.1
+2024-10-07 16:53:34,822 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270518.1
+2024-10-07 16:53:35,114 - INFO - Finished processing chromosome KI270302.1
+2024-10-07 16:53:35,175 - INFO - Finished processing chromosome KI270518.1
+2024-10-07 16:53:35,177 - INFO - Processing chromosome KI270530.1
+2024-10-07 16:53:35,268 - INFO - Processing chromosome KI270304.1
+2024-10-07 16:53:36,202 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270530.1
+2024-10-07 16:53:36,265 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270304.1
+2024-10-07 16:53:37,185 - INFO - Finished processing chromosome KI270530.1
+2024-10-07 16:53:37,202 - INFO - Finished processing chromosome KI270304.1
+2024-10-07 16:53:37,270 - INFO - Processing chromosome KI270418.1
+2024-10-07 16:53:37,286 - INFO - Processing chromosome KI270424.1
+2024-10-07 16:53:37,981 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270424.1
+2024-10-07 16:53:38,013 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270418.1
+2024-10-07 16:53:38,520 - INFO - Finished processing chromosome KI270424.1
+2024-10-07 16:53:38,564 - INFO - Finished processing chromosome KI270418.1
+2024-10-07 16:53:38,577 - INFO - Processing chromosome KI270417.1
+2024-10-07 16:53:38,655 - INFO - Processing chromosome KI270508.1
+2024-10-07 16:53:39,188 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270417.1
+2024-10-07 16:53:39,261 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270508.1
+2024-10-07 16:53:39,787 - INFO - Finished processing chromosome KI270417.1
+2024-10-07 16:53:39,831 - INFO - Finished processing chromosome KI270508.1
+2024-10-07 16:53:39,849 - INFO - Processing chromosome KI270303.1
+2024-10-07 16:53:39,915 - INFO - Processing chromosome KI270381.1
+2024-10-07 16:53:40,566 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270303.1
+2024-10-07 16:53:40,696 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270381.1
+2024-10-07 16:53:40,978 - INFO - Finished processing chromosome KI270303.1
+2024-10-07 16:53:41,068 - INFO - Processing chromosome KI270529.1
+2024-10-07 16:53:41,109 - INFO - Finished processing chromosome KI270381.1
+2024-10-07 16:53:41,226 - INFO - Processing chromosome KI270425.1
+2024-10-07 16:53:41,657 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270529.1
+2024-10-07 16:53:42,219 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270425.1
+2024-10-07 16:53:42,463 - INFO - Finished processing chromosome KI270529.1
+2024-10-07 16:53:42,558 - INFO - Processing chromosome KI270396.1
+2024-10-07 16:53:42,715 - INFO - Finished processing chromosome KI270425.1
+2024-10-07 16:53:42,774 - INFO - Processing chromosome KI270363.1
+2024-10-07 16:53:42,993 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270396.1
+2024-10-07 16:53:43,344 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270363.1
+2024-10-07 16:53:43,470 - INFO - Finished processing chromosome KI270396.1
+2024-10-07 16:53:43,561 - INFO - Processing chromosome KI270386.1
+2024-10-07 16:53:43,871 - INFO - Finished processing chromosome KI270363.1
+2024-10-07 16:53:43,917 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270386.1
+2024-10-07 16:53:43,935 - INFO - Processing chromosome KI270465.1
+2024-10-07 16:53:44,325 - INFO - Finished processing chromosome KI270386.1
+2024-10-07 16:53:44,342 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270465.1
+2024-10-07 16:53:44,372 - INFO - Processing chromosome KI270383.1
+2024-10-07 16:53:45,003 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270383.1
+2024-10-07 16:53:45,187 - INFO - Finished processing chromosome KI270465.1
+2024-10-07 16:53:45,286 - INFO - Processing chromosome KI270384.1
+2024-10-07 16:53:45,464 - INFO - Finished processing chromosome KI270383.1
+2024-10-07 16:53:45,538 - INFO - Processing chromosome KI270330.1
+2024-10-07 16:53:46,602 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270384.1
+2024-10-07 16:53:47,185 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270330.1
+2024-10-07 16:53:47,666 - INFO - Finished processing chromosome KI270384.1
+2024-10-07 16:53:47,755 - INFO - Processing chromosome KI270372.1
+2024-10-07 16:53:47,819 - INFO - Finished processing chromosome KI270330.1
+2024-10-07 16:53:48,306 - INFO - Processing chromosome KI270548.1
+2024-10-07 16:53:49,181 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270372.1
+2024-10-07 16:53:49,386 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270548.1
+2024-10-07 16:53:49,657 - INFO - Finished processing chromosome KI270372.1
+2024-10-07 16:53:49,746 - INFO - Processing chromosome KI270580.1
+2024-10-07 16:53:49,784 - INFO - Finished processing chromosome KI270548.1
+2024-10-07 16:53:49,844 - INFO - Processing chromosome KI270387.1
+2024-10-07 16:53:50,383 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270580.1
+2024-10-07 16:53:50,463 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270387.1
+2024-10-07 16:53:51,326 - INFO - Finished processing chromosome KI270580.1
+2024-10-07 16:53:51,409 - INFO - Finished processing chromosome KI270387.1
+2024-10-07 16:53:51,411 - INFO - Processing chromosome KI270391.1
+2024-10-07 16:53:51,484 - INFO - Processing chromosome KI270305.1
+2024-10-07 16:53:52,247 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270391.1
+2024-10-07 16:53:52,298 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270305.1
+2024-10-07 16:53:52,660 - INFO - Finished processing chromosome KI270391.1
+2024-10-07 16:53:52,691 - INFO - Finished processing chromosome KI270305.1
+2024-10-07 16:53:52,744 - INFO - Processing chromosome KI270373.1
+2024-10-07 16:53:52,760 - INFO - Processing chromosome KI270422.1
+2024-10-07 16:53:53,921 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270422.1
+2024-10-07 16:53:53,952 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270373.1
+2024-10-07 16:53:54,770 - INFO - Finished processing chromosome KI270422.1
+2024-10-07 16:53:55,158 - INFO - Finished processing chromosome KI270373.1
+2024-10-07 16:53:55,280 - INFO - Processing chromosome KI270316.1
+2024-10-07 16:53:55,646 - INFO - Processing chromosome KI270338.1
+2024-10-07 16:53:56,971 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270316.1
+2024-10-07 16:53:57,090 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270338.1
+2024-10-07 16:53:57,422 - INFO - Finished processing chromosome KI270316.1
+2024-10-07 16:53:57,493 - INFO - Processing chromosome KI270340.1
+2024-10-07 16:53:57,510 - INFO - Finished processing chromosome KI270338.1
+2024-10-07 16:53:57,596 - INFO - Processing chromosome KI270583.1
+2024-10-07 16:53:58,072 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270340.1
+2024-10-07 16:53:58,622 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270583.1
+2024-10-07 16:53:59,300 - INFO - Finished processing chromosome KI270340.1
+2024-10-07 16:53:59,412 - INFO - Processing chromosome KI270334.1
+2024-10-07 16:53:59,481 - INFO - Finished processing chromosome KI270583.1
+2024-10-07 16:53:59,596 - INFO - Processing chromosome KI270429.1
+2024-10-07 16:54:00,255 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270334.1
+2024-10-07 16:54:00,944 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270429.1
+2024-10-07 16:54:01,560 - INFO - Finished processing chromosome KI270334.1
+2024-10-07 16:54:02,001 - INFO - Processing chromosome KI270393.1
+2024-10-07 16:54:02,163 - INFO - Finished processing chromosome KI270429.1
+2024-10-07 16:54:02,242 - INFO - Processing chromosome KI270516.1
+2024-10-07 16:54:02,436 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270393.1
+2024-10-07 16:54:03,438 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270516.1
+2024-10-07 16:54:03,585 - INFO - Finished processing chromosome KI270393.1
+2024-10-07 16:54:03,741 - INFO - Processing chromosome KI270389.1
+2024-10-07 16:54:04,674 - INFO - Finished processing chromosome KI270516.1
+2024-10-07 16:54:04,738 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270389.1
+2024-10-07 16:54:04,801 - INFO - Processing chromosome KI270466.1
+2024-10-07 16:54:05,379 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270466.1
+2024-10-07 16:54:05,409 - INFO - Finished processing chromosome KI270389.1
+2024-10-07 16:54:05,476 - INFO - Processing chromosome KI270388.1
+2024-10-07 16:54:05,851 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270388.1
+2024-10-07 16:54:06,069 - INFO - Finished processing chromosome KI270466.1
+2024-10-07 16:54:06,571 - INFO - Processing chromosome KI270544.1
+2024-10-07 16:54:06,692 - INFO - Finished processing chromosome KI270388.1
+2024-10-07 16:54:06,781 - INFO - Processing chromosome KI270310.1
+2024-10-07 16:54:08,306 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270544.1
+2024-10-07 16:54:08,749 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270310.1
+2024-10-07 16:54:09,157 - INFO - Finished processing chromosome KI270544.1
+2024-10-07 16:54:09,237 - INFO - Finished processing chromosome KI270310.1
+2024-10-07 16:54:09,239 - INFO - Processing chromosome KI270412.1
+2024-10-07 16:54:09,345 - INFO - Processing chromosome KI270395.1
+2024-10-07 16:54:09,993 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270412.1
+2024-10-07 16:54:10,041 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270395.1
+2024-10-07 16:54:10,350 - INFO - Finished processing chromosome KI270412.1
+2024-10-07 16:54:10,380 - INFO - Finished processing chromosome KI270395.1
+2024-10-07 16:54:10,490 - INFO - Processing chromosome KI270376.1
+2024-10-07 16:54:10,509 - INFO - Processing chromosome KI270337.1
+2024-10-07 16:54:11,148 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270337.1
+2024-10-07 16:54:11,184 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270376.1
+2024-10-07 16:54:12,823 - INFO - Finished processing chromosome KI270337.1
+2024-10-07 16:54:12,866 - INFO - Finished processing chromosome KI270376.1
+2024-10-07 16:54:12,884 - INFO - Processing chromosome KI270335.1
+2024-10-07 16:54:12,953 - INFO - Processing chromosome KI270378.1
+2024-10-07 16:54:13,643 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270335.1
+2024-10-07 16:54:13,726 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270378.1
+2024-10-07 16:54:14,039 - INFO - Finished processing chromosome KI270335.1
+2024-10-07 16:54:14,426 - INFO - Processing chromosome KI270379.1
+2024-10-07 16:54:14,453 - INFO - Finished processing chromosome KI270378.1
+2024-10-07 16:54:14,793 - INFO - Processing chromosome KI270329.1
+2024-10-07 16:54:15,859 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270379.1
+2024-10-07 16:54:15,978 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270329.1
+2024-10-07 16:54:16,498 - INFO - Finished processing chromosome KI270379.1
+2024-10-07 16:54:16,569 - INFO - Processing chromosome KI270419.1
+2024-10-07 16:54:16,610 - INFO - Finished processing chromosome KI270329.1
+2024-10-07 16:54:16,681 - INFO - Processing chromosome KI270336.1
+2024-10-07 16:54:17,469 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270419.1
+2024-10-07 16:54:17,640 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270336.1
+2024-10-07 16:54:17,924 - INFO - Finished processing chromosome KI270419.1
+2024-10-07 16:54:18,016 - INFO - Processing chromosome KI270312.1
+2024-10-07 16:54:18,182 - INFO - Finished processing chromosome KI270336.1
+2024-10-07 16:54:18,246 - INFO - Processing chromosome KI270539.1
+2024-10-07 16:54:18,482 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270312.1
+2024-10-07 16:54:18,749 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270539.1
+2024-10-07 16:54:19,382 - INFO - Finished processing chromosome KI270312.1
+2024-10-07 16:54:19,458 - INFO - Processing chromosome KI270385.1
+2024-10-07 16:54:19,650 - INFO - Finished processing chromosome KI270539.1
+2024-10-07 16:54:19,703 - INFO - Processing chromosome KI270423.1
+2024-10-07 16:54:19,841 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270385.1
+2024-10-07 16:54:20,410 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270423.1
+2024-10-07 16:54:20,488 - INFO - Finished processing chromosome KI270385.1
+2024-10-07 16:54:20,562 - INFO - Processing chromosome KI270392.1
+2024-10-07 16:54:20,946 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270392.1
+2024-10-07 16:54:20,962 - INFO - Finished processing chromosome KI270423.1
+2024-10-07 16:54:21,055 - INFO - Processing chromosome KI270394.1
+2024-10-07 16:54:21,455 - INFO - Finished processing chromosome KI270392.1
+2024-10-07 16:54:21,539 - INFO - Loading read assignments from /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/aux/OUT.save_KI270394.1
+2024-10-07 16:54:21,901 - INFO - Finished processing chromosome KI270394.1
+2024-10-07 16:54:37,367 - INFO - Finished processing chromosome chrX
+2024-10-07 16:55:54,932 - INFO - Finished processing chromosome chr5
+2024-10-07 16:56:59,843 - INFO - Finished processing chromosome chr4
+2024-10-07 16:57:21,365 - INFO - Finished processing chromosome chr9
+2024-10-07 17:01:10,722 - INFO - Finished processing chromosome chr10
+2024-10-07 17:02:43,540 - INFO - Finished processing chromosome chr15
+2024-10-07 17:04:32,143 - INFO - Finished processing chromosome chr6
+2024-10-07 17:14:28,692 - INFO - Finished processing chromosome chr7
+2024-10-07 17:14:35,900 - INFO - Finished processing chromosome chr16
+2024-10-07 17:17:29,954 - INFO - Finished processing chromosome chrM
+2024-10-07 17:20:33,268 - INFO - Finished processing chromosome chr3
+2024-10-07 17:21:05,405 - INFO - Finished processing chromosome chr21
+2024-10-07 17:21:38,867 - INFO - Finished processing chromosome chr2
+2024-10-07 17:35:30,861 - INFO - Finished processing chromosome chr11
+2024-10-07 17:38:21,081 - INFO - Finished processing chromosome chr17
+2024-10-07 17:43:15,853 - INFO - Finished processing chromosome chr12
+2024-10-07 18:01:17,919 - INFO - Finished processing chromosome chr1
+2024-10-07 18:19:39,852 - INFO - Finished processing chromosome chr19
+2024-10-07 18:25:18,794 - INFO - Transcript model file /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/OUT.transcript_models.gtf
+2024-10-07 18:25:23,434 - INFO - Extended annotation is saved to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/OUT.extended_annotation.gtf
+2024-10-07 18:25:23,435 - INFO - Transcript model statistics
+2024-10-07 18:25:23,435 - INFO - known: 37047
+2024-10-07 18:25:23,435 - INFO - novel_in_catalog: 11968
+2024-10-07 18:25:23,435 - INFO - novel_not_in_catalog: 27484
+2024-10-07 18:47:33,002 - INFO - Gene counts are stored in /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/OUT.gene_counts.tsv
+2024-10-07 18:47:33,003 - INFO - Transcript counts are stored in /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/OUT.transcript_counts.tsv
+2024-10-07 18:47:33,003 - INFO - Read assignments are stored in /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/OUT.read_assignments.tsv.gz
+2024-10-07 18:47:33,003 - INFO - Read assignment statistics
+2024-10-07 18:47:33,003 - INFO - ambiguous: 8705362
+2024-10-07 18:47:33,003 - INFO - inconsistent: 7476030
+2024-10-07 18:47:33,003 - INFO - inconsistent_ambiguous: 9037977
+2024-10-07 18:47:33,003 - INFO - inconsistent_non_intronic: 11699800
+2024-10-07 18:47:33,003 - INFO - intergenic: 163897
+2024-10-07 18:47:33,003 - INFO - noninformative: 30482736
+2024-10-07 18:47:33,003 - INFO - unique: 20615692
+2024-10-07 18:47:33,004 - INFO - unique_minor_difference: 2361853
+2024-10-07 18:48:17,008 - INFO - Processed experiment OUT
+2024-10-07 18:48:17,009 - INFO - Processed 1 experiment
+2024-10-07 18:48:17,009 - INFO -  === IsoQuant pipeline finished === 
+**** Job ends ****
+2024-10-07 18:48:17
