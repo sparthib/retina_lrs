@@ -6,7 +6,6 @@ source("/users/sparthib/retina_lrs/code/coverage/transcriptome_coverage.R")
 # Define BAM file directory and sample name
 bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/supplementary_filtered"
 sample <- commandArgs(trailingOnly = TRUE)[1]
-sample <- "H9-FT_1"
 bam <- file.path(bam_dir, paste0(sample, ".bam"))
 
 # Read alignments from BAM file
@@ -73,39 +72,39 @@ transcript_info <- merge(transcript_info, annotLookup, by.x = "isoform",
 transcript_info <- transcript_info |> 
   dplyr::mutate(gc_content_bin = cut(percentage_gene_gc_content, breaks = seq(0, 100, 10))) 
 
-
-
-# Generate coverage plots for each gc content bin
-output_plot_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/gc_content"
-if (!dir.exists(output_plot_dir)) {
-  dir.create(output_plot_dir, recursive = TRUE)
-}
-
-for (bin in unique(transcript_info$gc_content_bin)) {
-  plot_coverage(output_plot_dir, transcript_info, sample, gc_content = bin)
-}
-
-output_plot_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/transcript_biotype"
-if (!dir.exists(output_plot_dir)) {
-  dir.create(output_plot_dir, recursive = TRUE)
-}
-
-for (bin in unique(transcript_info$transcript_biotype)) {
-  plot_coverage(output_plot_dir, transcript_info, sample, transcript_biotype = bin)
-}
-
-output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/length_bins"
-
-# Ensure the directory exists
-if (!dir.exists(output_dir)) {
-  stop("Output directory does not exist: ", output_dir)
-}
-
-# Generate coverage plots for each length bin
-length_bins_to_plot <- c("(10,Inf]", "(5,10]", "(2,5]", "(1,2]", "(0,1]")
-for (bin in length_bins_to_plot) {
-  plot_coverage(output_dir, transcript_info, sample, bin)
-}
+saveRDS(transcript_info, file = file.path(output_dir, paste0(sample_transcript_info, ".rds")))
+# 
+# # Generate coverage plots for each gc content bin
+# output_plot_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/gc_content"
+# if (!dir.exists(output_plot_dir)) {
+#   dir.create(output_plot_dir, recursive = TRUE)
+# }
+# 
+# for (bin in unique(transcript_info$gc_content_bin)) {
+#   plot_coverage(output_plot_dir, transcript_info, sample, gc_content = bin)
+# }
+# 
+# output_plot_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/transcript_biotype"
+# if (!dir.exists(output_plot_dir)) {
+#   dir.create(output_plot_dir, recursive = TRUE)
+# }
+# 
+# for (bin in unique(transcript_info$transcript_biotype)) {
+#   plot_coverage(output_plot_dir, transcript_info, sample, transcript_biotype = bin)
+# }
+# 
+# output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/length_bins"
+# 
+# # Ensure the directory exists
+# if (!dir.exists(output_dir)) {
+#   stop("Output directory does not exist: ", output_dir)
+# }
+# 
+# # Generate coverage plots for each length bin
+# length_bins_to_plot <- c("(10,Inf]", "(5,10]", "(2,5]", "(1,2]", "(0,1]")
+# for (bin in length_bins_to_plot) {
+#   plot_coverage(output_dir, transcript_info, sample, bin)
+# }
 
 
 sessioninfo::session_info()

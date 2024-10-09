@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/coverage.%a.txt
 #SBATCH -e logs/coverage.%a.txt
-#SBATCH --array=2,7,10,11,15
+#SBATCH --array=1-12
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
