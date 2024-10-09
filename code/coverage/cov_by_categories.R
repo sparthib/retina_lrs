@@ -72,7 +72,7 @@ transcript_info <- merge(transcript_info, annotLookup, by.x = "isoform",
 transcript_info <- transcript_info |> 
   dplyr::mutate(gc_content_bin = cut(percentage_gene_gc_content, breaks = seq(0, 100, 10))) 
 
-saveRDS(transcript_info, file = file.path(output_dir, paste0(sample_transcript_info, ".rds")))
+saveRDS(transcript_info, file = file.path(output_dir, paste0(sample, "_transcript_info", ".rds")))
 # 
 # # Generate coverage plots for each gc content bin
 # output_plot_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/08_coverage/coverage_plots/gc_content"
