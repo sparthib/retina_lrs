@@ -108,6 +108,3 @@ saveRDS(transcript_info, file = file.path(output_dir, paste0(sample, "_transcrip
 
 
 sessioninfo::session_info()
-
-
-

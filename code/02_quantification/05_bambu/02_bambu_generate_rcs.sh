@@ -3,7 +3,7 @@
 #SBATCH -p shared
 #SBATCH --mem=200G
 #SBATCH -c 10
-#SBATCH --job-name=test_bambu
+#SBATCH --job-name=extended_annotation
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/extended_annotation.txt
@@ -21,8 +21,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 
 module load conda_R/4.3.x
-Rscript 02a_bambu_generate_rcs_ROs.R 
-Rscript 02b_bambu_generate_rcs_RGC_FT.R
-
+Rscript 02_bambu_generate_rcs.R 
 echo "**** Job ends ****"
-date
+date +"%Y-%m-%d %T"
+
