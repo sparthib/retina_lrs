@@ -1,7 +1,20 @@
+Unloading conda_R/4.4.x
 Loading conda_R/4.3
-INFO [2024-01-30 09:42:43] Loading input file: /dcs04/hicks/data/globus/casey/230912_Casey/EP1-BRN3B-ROs/20230912_1413_3C_PAQ25549_580ccca1/sequencing_summary_PAQ25549_580ccca1_aa394d34.txt
-INFO [2024-01-30 09:43:55] PromethION flowcell detected
-/var/spool/slurm/d/job1807594/slurm_script: line 24: 3732983 Killed                  Rscript 02_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
+
+The following have been reloaded with a version change:
+  1) conda/3-24.3.0 => conda/3-23.3.1     2) conda_R/4.4.x => conda_R/4.3
+
+To install colorout use: remotes::install_github("jalvesaq/colorout")
+INFO [2024-10-10 16:36:43] Loading input file: /dcs04/hicks/data/globus/casey/230912_Casey/EP1-BRN3B-ROs/20230912_1413_3C_PAQ25549_580ccca1/sequencing_summary_PAQ25549_580ccca1_aa394d34.txt
+INFO [2024-10-10 16:37:11] PromethION flowcell detected
+INFO [2024-10-10 16:42:03] 20230912_1413_3C_PAQ25549_580ccca1: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/EP1-BRN3B-RO/20230912_1413_3C_PAQ25549_580ccca1
+INFO [2024-10-10 16:42:03] 20230912_1413_3C_PAQ25549_580ccca1: summarising input file for flowcell
+INFO [2024-10-10 16:42:47] 20230912_1413_3C_PAQ25549_580ccca1: plotting length histogram
+INFO [2024-10-10 16:43:23] 20230912_1413_3C_PAQ25549_580ccca1: plotting mean Q score histogram
+INFO [2024-10-10 16:43:53] 20230912_1413_3C_PAQ25549_580ccca1: plotting flowcell yield over time
+INFO [2024-10-10 16:46:19] 20230912_1413_3C_PAQ25549_580ccca1: plotting flowcell yield by read length
+INFO [2024-10-10 16:49:38] 20230912_1413_3C_PAQ25549_580ccca1: plotting sequence length over time
+/var/spool/slurm/d/job10085449/slurm_script: line 24: 3182913 Killed                  Rscript 02_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
 **** Job ends ****
-2024-01-30 09:52:27
-slurmstepd: error: Detected 1 oom-kill event(s) in StepId=1807594.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
+2024-10-10 16:55:13
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=10085449.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
