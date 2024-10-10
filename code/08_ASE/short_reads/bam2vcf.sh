@@ -20,17 +20,40 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 
-ml load bcftools/1.18
+ml load gatk
 
 # https://samtools.github.io/bcftools/howtos/variant-calling.html
 
 ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
-bam_files=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/bam_files.txt
+bam_files=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/
 output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 
-bcftools mpileup -Ou --threads $SLURM_CPUS_PER_TASK \
--f /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa \
--b /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/bam_files.txt | bcftools call -mv -Ob > $output_dir/multi_sample.vcf
+# bcftools mpileup -Ou --threads $SLURM_CPUS_PER_TASK \
+# -f /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa \
+# -b /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/bam_files.txt | bcftools call -mv -Ob > $output_dir/multi_sample.vcf
+
+# gatk commands from here https://www.biostars.org/p/405702/
+sample_names=(SRR1091088 SRR1091091 SRR1091092)
+for sample in ${sample_names[@]}; do
+    echo "Processing $sample"
+    gatk --java-options "-Xmx4g" HaplotypeCaller \
+    -R $ref_fa \
+    -I $bam_files/$sample.sorted.bam \
+    -O $output_dir/$sample.g.vcf.gz \
+    -ERC GVCF
+done
+
+gatk --java-options "-Xmx96g -Xms96g" CombineGVCFs \
+-R $reference \
+--variant $output_dir/SRR1091088.g.vcf.gz \
+--variant $output_dir/SRR1091091.g.vcf.gz \
+--variant $output_dir/SRR1091092.g.vcf.gz \
+-O $output_dir/combined.g.vcf.gz
+
+gatk --java-options "-Xmx96g -Xms96g" GenotypeGVCFs \
+-R $reference \
+-V $output_dir/combined.g.vcf.gz \
+-O $output_dir/combined.vcf.gz
 
 
 echo "**** Job ends ****"
