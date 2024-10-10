@@ -1,35 +1,37 @@
 **** Job starts ****
-2024-10-10 13:28:29
+2024-10-10 13:31:31
 **** JHPCE info ****
 User: sparthib
-Job id: 10084698
+Job id: 10084713
 Job name: bam2vcf.txt
 Node name: compute-106
+Loading LIBD SLURM module for samtools/1.18
 Loading LIBD SLURM module for gatk/4.5.0.0
+/var/spool/slurm/d/job10084713/slurm_script: line 30: gatk-launch: command not found
 Processing SRR1091088
-13:28:36.167 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
-13:28:36.373 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:36.376 INFO  HaplotypeCaller - The Genome Analysis Toolkit (GATK) v4.5.0.0
-13:28:36.376 INFO  HaplotypeCaller - For support and documentation go to https://software.broadinstitute.org/gatk/
-13:28:36.377 INFO  HaplotypeCaller - Executing as sparthib@compute-106.cm.cluster on Linux v5.14.0-427.13.1.el9_4.x86_64 amd64
-13:28:36.377 INFO  HaplotypeCaller - Java runtime: Java HotSpot(TM) 64-Bit Server VM v19.0.1+10-21
-13:28:36.377 INFO  HaplotypeCaller - Start Date/Time: October 10, 2024 at 1:28:36 PM EDT
-13:28:36.377 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:36.377 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:36.378 INFO  HaplotypeCaller - HTSJDK Version: 4.1.0
-13:28:36.378 INFO  HaplotypeCaller - Picard Version: 3.1.1
-13:28:36.378 INFO  HaplotypeCaller - Built for Spark Version: 3.5.0
-13:28:36.378 INFO  HaplotypeCaller - HTSJDK Defaults.COMPRESSION_LEVEL : 2
-13:28:36.378 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
-13:28:36.378 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
-13:28:36.379 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
-13:28:36.379 INFO  HaplotypeCaller - Deflater: IntelDeflater
-13:28:36.379 INFO  HaplotypeCaller - Inflater: IntelInflater
-13:28:36.379 INFO  HaplotypeCaller - GCS max retries/reopens: 20
-13:28:36.379 INFO  HaplotypeCaller - Requester pays: disabled
-13:28:36.379 INFO  HaplotypeCaller - Initializing engine
-13:28:36.383 INFO  HaplotypeCaller - Shutting down engine
-[October 10, 2024 at 1:28:36 PM EDT] org.broadinstitute.hellbender.tools.walkers.haplotypecaller.HaplotypeCaller done. Elapsed time: 0.00 minutes.
+13:32:06.617 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+13:32:06.776 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:06.780 INFO  HaplotypeCaller - The Genome Analysis Toolkit (GATK) v4.5.0.0
+13:32:06.780 INFO  HaplotypeCaller - For support and documentation go to https://software.broadinstitute.org/gatk/
+13:32:06.780 INFO  HaplotypeCaller - Executing as sparthib@compute-106.cm.cluster on Linux v5.14.0-427.13.1.el9_4.x86_64 amd64
+13:32:06.780 INFO  HaplotypeCaller - Java runtime: Java HotSpot(TM) 64-Bit Server VM v19.0.1+10-21
+13:32:06.780 INFO  HaplotypeCaller - Start Date/Time: October 10, 2024 at 1:32:06 PM EDT
+13:32:06.780 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:06.780 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:06.781 INFO  HaplotypeCaller - HTSJDK Version: 4.1.0
+13:32:06.781 INFO  HaplotypeCaller - Picard Version: 3.1.1
+13:32:06.781 INFO  HaplotypeCaller - Built for Spark Version: 3.5.0
+13:32:06.781 INFO  HaplotypeCaller - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+13:32:06.782 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+13:32:06.782 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+13:32:06.782 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+13:32:06.782 INFO  HaplotypeCaller - Deflater: IntelDeflater
+13:32:06.782 INFO  HaplotypeCaller - Inflater: IntelInflater
+13:32:06.782 INFO  HaplotypeCaller - GCS max retries/reopens: 20
+13:32:06.782 INFO  HaplotypeCaller - Requester pays: disabled
+13:32:06.783 INFO  HaplotypeCaller - Initializing engine
+13:32:06.785 INFO  HaplotypeCaller - Shutting down engine
+[October 10, 2024 at 1:32:06 PM EDT] org.broadinstitute.hellbender.tools.walkers.haplotypecaller.HaplotypeCaller done. Elapsed time: 0.00 minutes.
 Runtime.totalMemory()=111149056
 ***********************************************************************
 
@@ -41,29 +43,29 @@ Using GATK jar /jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-lo
 Running:
     java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx4g -jar /jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar HaplotypeCaller -R /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa -I /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams//SRR1091088.sorted.bam -O /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf/SRR1091088.g.vcf.gz -ERC GVCF
 Processing SRR1091091
-13:28:38.325 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
-13:28:38.465 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:38.469 INFO  HaplotypeCaller - The Genome Analysis Toolkit (GATK) v4.5.0.0
-13:28:38.469 INFO  HaplotypeCaller - For support and documentation go to https://software.broadinstitute.org/gatk/
-13:28:38.469 INFO  HaplotypeCaller - Executing as sparthib@compute-106.cm.cluster on Linux v5.14.0-427.13.1.el9_4.x86_64 amd64
-13:28:38.469 INFO  HaplotypeCaller - Java runtime: Java HotSpot(TM) 64-Bit Server VM v19.0.1+10-21
-13:28:38.469 INFO  HaplotypeCaller - Start Date/Time: October 10, 2024 at 1:28:38 PM EDT
-13:28:38.469 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:38.470 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:38.470 INFO  HaplotypeCaller - HTSJDK Version: 4.1.0
-13:28:38.470 INFO  HaplotypeCaller - Picard Version: 3.1.1
-13:28:38.470 INFO  HaplotypeCaller - Built for Spark Version: 3.5.0
-13:28:38.471 INFO  HaplotypeCaller - HTSJDK Defaults.COMPRESSION_LEVEL : 2
-13:28:38.471 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
-13:28:38.471 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
-13:28:38.471 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
-13:28:38.471 INFO  HaplotypeCaller - Deflater: IntelDeflater
-13:28:38.471 INFO  HaplotypeCaller - Inflater: IntelInflater
-13:28:38.471 INFO  HaplotypeCaller - GCS max retries/reopens: 20
-13:28:38.471 INFO  HaplotypeCaller - Requester pays: disabled
-13:28:38.472 INFO  HaplotypeCaller - Initializing engine
-13:28:38.474 INFO  HaplotypeCaller - Shutting down engine
-[October 10, 2024 at 1:28:38 PM EDT] org.broadinstitute.hellbender.tools.walkers.haplotypecaller.HaplotypeCaller done. Elapsed time: 0.00 minutes.
+13:32:08.721 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+13:32:08.855 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:08.858 INFO  HaplotypeCaller - The Genome Analysis Toolkit (GATK) v4.5.0.0
+13:32:08.859 INFO  HaplotypeCaller - For support and documentation go to https://software.broadinstitute.org/gatk/
+13:32:08.859 INFO  HaplotypeCaller - Executing as sparthib@compute-106.cm.cluster on Linux v5.14.0-427.13.1.el9_4.x86_64 amd64
+13:32:08.859 INFO  HaplotypeCaller - Java runtime: Java HotSpot(TM) 64-Bit Server VM v19.0.1+10-21
+13:32:08.859 INFO  HaplotypeCaller - Start Date/Time: October 10, 2024 at 1:32:08 PM EDT
+13:32:08.859 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:08.859 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:08.860 INFO  HaplotypeCaller - HTSJDK Version: 4.1.0
+13:32:08.860 INFO  HaplotypeCaller - Picard Version: 3.1.1
+13:32:08.860 INFO  HaplotypeCaller - Built for Spark Version: 3.5.0
+13:32:08.860 INFO  HaplotypeCaller - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+13:32:08.860 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+13:32:08.860 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+13:32:08.861 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+13:32:08.861 INFO  HaplotypeCaller - Deflater: IntelDeflater
+13:32:08.861 INFO  HaplotypeCaller - Inflater: IntelInflater
+13:32:08.861 INFO  HaplotypeCaller - GCS max retries/reopens: 20
+13:32:08.861 INFO  HaplotypeCaller - Requester pays: disabled
+13:32:08.861 INFO  HaplotypeCaller - Initializing engine
+13:32:08.864 INFO  HaplotypeCaller - Shutting down engine
+[October 10, 2024 at 1:32:08 PM EDT] org.broadinstitute.hellbender.tools.walkers.haplotypecaller.HaplotypeCaller done. Elapsed time: 0.00 minutes.
 Runtime.totalMemory()=111149056
 ***********************************************************************
 
@@ -75,29 +77,29 @@ Using GATK jar /jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-lo
 Running:
     java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx4g -jar /jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar HaplotypeCaller -R /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa -I /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams//SRR1091091.sorted.bam -O /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf/SRR1091091.g.vcf.gz -ERC GVCF
 Processing SRR1091092
-13:28:40.416 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
-13:28:40.553 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:40.556 INFO  HaplotypeCaller - The Genome Analysis Toolkit (GATK) v4.5.0.0
-13:28:40.556 INFO  HaplotypeCaller - For support and documentation go to https://software.broadinstitute.org/gatk/
-13:28:40.556 INFO  HaplotypeCaller - Executing as sparthib@compute-106.cm.cluster on Linux v5.14.0-427.13.1.el9_4.x86_64 amd64
-13:28:40.556 INFO  HaplotypeCaller - Java runtime: Java HotSpot(TM) 64-Bit Server VM v19.0.1+10-21
-13:28:40.557 INFO  HaplotypeCaller - Start Date/Time: October 10, 2024 at 1:28:40 PM EDT
-13:28:40.557 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:40.557 INFO  HaplotypeCaller - ------------------------------------------------------------
-13:28:40.557 INFO  HaplotypeCaller - HTSJDK Version: 4.1.0
-13:28:40.558 INFO  HaplotypeCaller - Picard Version: 3.1.1
-13:28:40.558 INFO  HaplotypeCaller - Built for Spark Version: 3.5.0
-13:28:40.558 INFO  HaplotypeCaller - HTSJDK Defaults.COMPRESSION_LEVEL : 2
-13:28:40.558 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
-13:28:40.558 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
-13:28:40.558 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
-13:28:40.558 INFO  HaplotypeCaller - Deflater: IntelDeflater
-13:28:40.558 INFO  HaplotypeCaller - Inflater: IntelInflater
-13:28:40.559 INFO  HaplotypeCaller - GCS max retries/reopens: 20
-13:28:40.559 INFO  HaplotypeCaller - Requester pays: disabled
-13:28:40.559 INFO  HaplotypeCaller - Initializing engine
-13:28:40.561 INFO  HaplotypeCaller - Shutting down engine
-[October 10, 2024 at 1:28:40 PM EDT] org.broadinstitute.hellbender.tools.walkers.haplotypecaller.HaplotypeCaller done. Elapsed time: 0.00 minutes.
+13:32:10.840 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+13:32:10.981 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:10.985 INFO  HaplotypeCaller - The Genome Analysis Toolkit (GATK) v4.5.0.0
+13:32:10.985 INFO  HaplotypeCaller - For support and documentation go to https://software.broadinstitute.org/gatk/
+13:32:10.985 INFO  HaplotypeCaller - Executing as sparthib@compute-106.cm.cluster on Linux v5.14.0-427.13.1.el9_4.x86_64 amd64
+13:32:10.985 INFO  HaplotypeCaller - Java runtime: Java HotSpot(TM) 64-Bit Server VM v19.0.1+10-21
+13:32:10.985 INFO  HaplotypeCaller - Start Date/Time: October 10, 2024 at 1:32:10 PM EDT
+13:32:10.985 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:10.985 INFO  HaplotypeCaller - ------------------------------------------------------------
+13:32:10.986 INFO  HaplotypeCaller - HTSJDK Version: 4.1.0
+13:32:10.986 INFO  HaplotypeCaller - Picard Version: 3.1.1
+13:32:10.986 INFO  HaplotypeCaller - Built for Spark Version: 3.5.0
+13:32:10.987 INFO  HaplotypeCaller - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+13:32:10.987 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+13:32:10.987 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+13:32:10.987 INFO  HaplotypeCaller - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+13:32:10.987 INFO  HaplotypeCaller - Deflater: IntelDeflater
+13:32:10.987 INFO  HaplotypeCaller - Inflater: IntelInflater
+13:32:10.987 INFO  HaplotypeCaller - GCS max retries/reopens: 20
+13:32:10.987 INFO  HaplotypeCaller - Requester pays: disabled
+13:32:10.988 INFO  HaplotypeCaller - Initializing engine
+13:32:10.990 INFO  HaplotypeCaller - Shutting down engine
+[October 10, 2024 at 1:32:10 PM EDT] org.broadinstitute.hellbender.tools.walkers.haplotypecaller.HaplotypeCaller done. Elapsed time: 0.00 minutes.
 Runtime.totalMemory()=111149056
 ***********************************************************************
 
@@ -1031,4 +1033,4 @@ Using GATK jar /jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-lo
 Running:
     java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx96g -Xms96g -jar /jhpce/shared/libd/core/gatk/4.5.0.0/gatk/gatk-package-4.5.0.0-local.jar GenotypeGVCFs -R -V /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf/combined.g.vcf.gz -O /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf/combined.vcf.gz
 **** Job ends ****
-2024-10-10 13:28:44
+2024-10-10 13:32:15
