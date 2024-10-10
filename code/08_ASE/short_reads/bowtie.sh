@@ -32,7 +32,8 @@ samples=(SRR1091088 SRR1091091 SRR1091092)
 for sample in ${samples[@]}
 do
     bowtie2 -x $BT_INDEX_PATH -p ${SLURM_CPUS_PER_TASK} \
-    -1 $INPUT_DIR/${sample}_1.fastq -2 $INPUT_DIR/${sample}_2.fastq -S $OUTPUT_DIR/${sample}.sam
+    -1 $INPUT_DIR/${sample}_1.fastq -2 $INPUT_DIR/${sample}_2.fastq -S $OUTPUT_DIR/${sample}.sam \
+    --rg-id ${sample} --rg "SM:${sample}" --rg "PL:ILLUMINA" 
 done
 
 echo "**** Job ends ****"
