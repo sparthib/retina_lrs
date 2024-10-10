@@ -20,11 +20,16 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 
-ml load gatk
-
-# https://samtools.github.io/bcftools/howtos/variant-calling.html
 
 ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
+
+ml load samtools 
+samtools faidx $ref_fa
+
+ml load gatk
+gatk-launch CreateSequenceDictionary -R $ref_fa
+# https://samtools.github.io/bcftools/howtos/variant-calling.html
+
 bam_files=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/
 output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 
