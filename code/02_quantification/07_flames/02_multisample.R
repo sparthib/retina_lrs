@@ -21,7 +21,7 @@ names(RO_fastqs) <- c("EP1-BRN3B-RO", "EP1-WT_hRO_2", "EP1-WT_ROs_D45",
 
 se <- bulk_long_pipeline(
   annotation = gtf, 
-  fastq= RO_fastqs,
+  fastq= RO_fastq_path,
   outdir = outdir,
   genome_fa = genome_fa, config_file = config_file
 )
@@ -34,7 +34,7 @@ names(FT_vs_RGC_fastqs) <- c("H9-FT_1","H9-FT_2" , "H9-hRGC_1" ,"H9-hRGC_2")
 outdir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/FT_vs_RGC"
 se <- bulk_long_pipeline(
   annotation = gtf,
-  fastq = FT_vs_RGC_fastqs,
+  fastq = FT_vs_RGC_fastq_path,
   outdir = outdir,
   genome_fa = genome_fa, config_file = config_file
 )
