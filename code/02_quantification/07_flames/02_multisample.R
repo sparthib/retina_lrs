@@ -11,7 +11,7 @@ config_file <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/b
 config <- jsonlite::fromJSON("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/bulk.json")
 
 RO_fastq_path = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/ROs/fastqs"
-RO_fastqs <- list.files(RO_fastq_path)
+RO_fastqs <- list.files(RO_fastq_path, full.names = TRUE)
 
 #name filepaths in list 
 names(RO_fastqs) <- c("EP1-BRN3B-RO", "EP1-WT_hRO_2", "EP1-WT_ROs_D45",
@@ -28,7 +28,7 @@ se <- bulk_long_pipeline(
 saveRDS(se, file = paste0(outdir, "/se.rds"))
 
 FT_vs_RGC_fastq_path = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/FT_vs_RGC/fastqs/"
-FT_vs_RGC_fastqs <- list.files(FT_vs_RGC_fastq_path)
+FT_vs_RGC_fastqs <- list.files(FT_vs_RGC_fastq_path, full.names = TRUE)
 names(FT_vs_RGC_fastqs) <- c("H9-FT_1","H9-FT_2" , "H9-hRGC_1" ,"H9-hRGC_2")
  
 outdir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/flames/FT_vs_RGC"
