@@ -67,21 +67,25 @@ for fn in alignment:
                 nums.append(num)
         
     tmp_counter = Counter(nums)
-    tmp_num = [tmp_counter.get(i, 0) for i
-    
-    in range(max_junction)]  # Handle missing keys
+    tmp_num = [tmp_counter.get(i, 0) for i in range(max_junction)]  # Handle missing keys
     df_dic[fn] = tmp_num
     nums = []
 
 df = pd.DataFrame(df_dic).transpose()
 per_df = df.div(df.sum(axis=1), axis=0)
 
+# Check if a sample was passed as a command line argument
 if len(sys.argv) > 1:
+    sample = sys.argv[1]
     print(f"Done for {sample}")
-    per_df.to_csv('/users/sparthib/retina_lrs/processed_data/exon_exon/{sample}_junction_per_read.csv')
+    output_file = f'/users/sparthib/retina_lrs/processed_data/exon_exon/{sample}_junction_per_read.csv'
 else:
-    per_df.to_csv('/users/sparthib/retina_lrs/processed_data/exon_exon/junction_per_read.csv')
     print("Done for all samples")
+    output_file = '/users/sparthib/retina_lrs/processed_data/exon_exon/junction_per_read.csv'
+
+# Save the DataFrame to the appropriate file
+per_df.to_csv(output_file)
+
 
     
   
