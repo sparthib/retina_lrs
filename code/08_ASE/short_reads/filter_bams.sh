@@ -25,7 +25,7 @@ OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered
 
 ml load samtools
 
-samples=(SRR1091088 SRR1091091 SRR1091092)
+samples=(SRR1091088 SRR1091091)
 
 for sample in ${samples[@]}
 do
