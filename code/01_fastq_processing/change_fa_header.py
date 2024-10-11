@@ -1,5 +1,5 @@
 updated_lines = []
-with open('/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts.fa', 'r') as file:
+with open('/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts.fa', 'r') as file:
     for line in file:
         if line.startswith('>'):
             header_fields = line.strip().split('|')
@@ -9,6 +9,6 @@ with open('/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v
             updated_lines.append(line)
 
 # Write the updated content back to the file
-with open('/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa', 'w') as file:
+with open('/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts_short_header.fa', 'w') as file:
     file.writelines(updated_lines)
 
