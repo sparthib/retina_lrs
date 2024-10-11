@@ -28,7 +28,7 @@ BT_INDEX_PATH=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/GRCh3
 
 # Aligning paired reads
 # samples=(SRR1091088 SRR1091091 SRR1091092)
-samples = (SRR1091092)
+samples=(SRR1091092)
 
 for sample in ${samples[@]}
 do
