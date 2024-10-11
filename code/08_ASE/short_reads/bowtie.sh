@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=100G
+#SBATCH --mem=200G
 #SBATCH -c 20
 #SBATCH --job-name=bowtie
 #SBATCH --mail-user=sparthi1@jhu.edu
@@ -27,7 +27,8 @@ ml load bowtie/2.5.1
 BT_INDEX_PATH=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/GRCh38_noalt_as/GRCh38_noalt_as
 
 # Aligning paired reads
-samples=(SRR1091088 SRR1091091 SRR1091092)
+# samples=(SRR1091088 SRR1091091 SRR1091092)
+samples = (SRR1091092)
 
 for sample in ${samples[@]}
 do
