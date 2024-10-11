@@ -67,7 +67,9 @@ for fn in alignment:
                 nums.append(num)
         
     tmp_counter = Counter(nums)
-    tmp_num = [tmp_counter.get(i, 0) for i in range(max_junction)]  # Handle missing keys
+    tmp_num = [tmp_counter.get(i, 0) for i
+    
+    in range(max_junction)]  # Handle missing keys
     df_dic[fn] = tmp_num
     nums = []
 
