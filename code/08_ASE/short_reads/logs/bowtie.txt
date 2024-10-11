@@ -1,11 +1,9 @@
 **** Job starts ****
-2024-10-10 21:30:59
+2024-10-10 21:45:05
 **** JHPCE info ****
 User: sparthib
-Job id: 10087188
+Job id: 10087215
 Job name: bowtie
-Node name: compute-120
+Node name: compute-093
 ****
 Loading bowtie.
-/var/spool/slurm/d/job10087188/slurm_script: line 31: syntax error near unexpected token `('
-/var/spool/slurm/d/job10087188/slurm_script: line 31: `samples = (SRR1091092)'
