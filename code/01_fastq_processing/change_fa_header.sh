@@ -16,7 +16,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 
-ml load python/3.10.13
+ml load python
 python change_fa_header.py
 
 echo "**** Job ends ****"
