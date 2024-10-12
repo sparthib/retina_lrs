@@ -22,18 +22,19 @@ echo "****"
 
 
 #reference genome 
-REFERENCE_GENOME_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/GRCh38.p14.genome.fa
-REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/gencode.v44.chr_patch_hapl_scaff.annotation.gtf
+REFERENCE_GENOME_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
+REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
 #reference transcriptome 
-REFERENCE_TRANSCRIPTOME=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa
+REFERENCE_TRANSCRIPTOME=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts.fa
 
 #sample transcriptome
-ROs_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs/OUT/OUT.extended_annotation.gtf
-FT_vs_RGC_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC/OUT/OUT.extended_annotation.gtf
+ROs_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/OUT.extended_annotation.gtf
+FT_vs_RGC_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/OUT.extended_annotation.gtf
+
 # GTF (default): by default, SQANTI3 expects the transcriptome to be provided as a GTF file, 
 # and we recommend to stick to this format if your transcriptome construction pipeline allows it
-RO_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs/
-FT_vs_RGC_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC/
+RO_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/
+FT_vs_RGC_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_vs_RGC/
 
 
 source activate /users/sparthib/.conda/envs/SQANTI3
