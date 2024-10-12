@@ -24,7 +24,7 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 LOGS_FOLDER=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/bam_stats_transcriptome_gencode
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-INPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs
+INPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/03a_nanofilt_fastqs
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts_short_header.fa
 
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
