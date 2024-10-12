@@ -10,7 +10,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/bam_stats_transcriptome_gencode/minimap_log.%a.txt
 #SBATCH -e logs/bam_stats_transcriptome_gencode/minimap_log.%a.txt
-#SBATCH --array=13-15
+#SBATCH --array=1-15
 
 
 echo "**** Job starts ****"
@@ -25,19 +25,19 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 LOGS_FOLDER=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/bam_stats_transcriptome_gencode
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 INPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/03_processed_fastqs
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/transcriptome/GENCODE/gencode.v44.transcripts_short_header.fa
+REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts_short_header.fa
+
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
-SAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/04_sams/transcriptome/GENCODE
-BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE
+SAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/04_sams/transcriptome/ver_46/
+BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/ver_46/
+mkdir -p ${SAM_FOLDER}
+mkdir -p ${BAM_FOLDER}
 
 cd ~/minimap2
 
 #remove older sam version 
-./minimap2 -ax map-ont -N 50 --secondary=no -t 40 $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
-
-
-
+./minimap2 -ax map-ont -N 100 --secondary=no -t 20 $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
 ml load samtools
 
@@ -50,24 +50,19 @@ samtools index ${BAM_FOLDER}/${sample}_sorted.bam ${BAM_FOLDER}/${sample}_sorted
 index stats ${sample}_index_stats.txt
 samtools idxstats ${BAM_FOLDER}/${sample}_sorted.bam > ${LOGS_FOLDER}/${sample}_index_stats.txt
 
-#bam stats ${sample}_bam.stats for plotting bam stats using plot-bamstats command in samtools
-samtools stats ${BAM_FOLDER}/${sample}_sorted.bam > ${LOGS_FOLDER}/${sample}_bam.stats
-
-echo "finished computing stats for plotting"
 
 echo "flagstat" > ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
 samtools flagstat ${BAM_FOLDER}/${sample}_sorted.bam >> ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
 
 echo "finished computing flagstats: contains percentage mapped reads"
-
-echo "depth of coverage" > ${LOGS_FOLDER}/${sample}_depth_stats.txt
-samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++;s+=$3}END{print s/c}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
-
-echo "breadth of coverage" >> ${sample}_depth_stats.txt
-samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
-
-echo "raw depth output" >> ${sample}_depth_stats.txt
-samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
+# echo "depth of coverage" > ${LOGS_FOLDER}/${sample}_depth_stats.txt
+# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++;s+=$3}END{print s/c}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
+# 
+# echo "breadth of coverage" >> ${sample}_depth_stats.txt
+# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
+# 
+# echo "raw depth output" >> ${sample}_depth_stats.txt
+# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
 
 echo "finished computing depth stats"
 
