@@ -16,7 +16,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 ml purge
-ml load python/3.11.8
+source activate python_3.10 
 python change_fa_header.py
 
 echo "**** Job ends ****"
