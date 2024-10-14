@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=20G
+#SBATCH --mem=200G
 #SBATCH -c 15
 #SBATCH --job-name=sqanti
 #SBATCH --mail-user=sparthi1@jhu.edu
@@ -28,28 +28,24 @@ REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assem
 REFERENCE_TRANSCRIPTOME=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts.fa
 
 #sample transcriptome
-ROs_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/OUT/OUT.extended_annotation.gtf
-FT_vs_RGC_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC/OUT/OUT.extended_annotation.gtf
+SAMPLE_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/OUT/OUT.extended_annotation.gtf
 
-# GTF (default): by default, SQANTI3 expects the transcriptome to be provided as a GTF file, 
-# and we recommend to stick to this format if your transcriptome construction pipeline allows it
-RO_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/ROs/
-FT_vs_RGC_OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_vs_RGC/
+OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/
 
 
 source activate /users/sparthib/.conda/envs/SQANTI3
 SQANTI_DIR=~/SQANTI3-5.2.1
 
-python $SQANTI_DIR/sqanti3_qc.py  ${ROs_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
-    -o ROs -d $RO_OUTPUT_DIR/sqanti3_qc --saturation \
-    -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits \
-    --CAGE_peak /users/sparthib/retina_lrs/raw_data/cage/human.refTSS_v3.1.hg38.bed \
-    --polyA_motif /users/sparthib/retina_lrs/raw_data/polya/mouse_and_human.polyA_motif.txt \
-    --polyA_peak /users/sparthib/retina_lrs/raw_data/polya/atlas.clusters.2.0.GRCh38.96.bed
-     ##positional arguments
+# python $SQANTI_DIR/sqanti3_qc.py  ${ROs_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
+#     -o ROs -d $RO_OUTPUT_DIR/sqanti3_qc --saturation \
+#     -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits \
+#     --CAGE_peak /users/sparthib/retina_lrs/raw_data/cage/human.refTSS_v3.1.hg38.bed \
+#     --polyA_motif /users/sparthib/retina_lrs/raw_data/polya/mouse_and_human.polyA_motif.txt \
+#     --polyA_peak /users/sparthib/retina_lrs/raw_data/polya/atlas.clusters.2.0.GRCh38.96.bed
+#      ##positional arguments
      
-python $SQANTI_DIR/sqanti3_qc.py  ${FT_vs_RGC_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
-     -o FT_vs_RGC -d $FT_vs_RGC_OUTPUT_DIR/sqanti3_qc --saturation \
+python $SQANTI_DIR/sqanti3_qc.py  ${SAMPLE_GTF} ${REFERENCE_GTF} ${REFERENCE_GENOME_FASTA} \
+     -o all_samples -d $OUTPUT_DIR/sqanti3_qc --saturation \
     -t $SLURM_CPUS_PER_TASK --report skip --isoform_hits\
     --CAGE_peak /users/sparthib/retina_lrs/raw_data/cage/human.refTSS_v3.1.hg38.bed \
     --polyA_motif /users/sparthib/retina_lrs/raw_data/polya/mouse_and_human.polyA_motif.txt \
