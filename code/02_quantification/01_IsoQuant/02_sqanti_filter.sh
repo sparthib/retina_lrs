@@ -25,7 +25,7 @@ SQANTI_DIR=~/SQANTI3-5.2.1
 
 INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/sqanti3_qc
 
-python $SQANTI_DIR/sqanti3_filter.py ML --gtf $INPUT_DIR/all_samples_corrected.gtf \
+python $SQANTI_DIR/sqanti3_filter.py ml --gtf $INPUT_DIR/all_samples_corrected.gtf \
  -d $INPUT_DIR/SQANTI3_ML_out --filter_mono_exonic \
 $INPUT_DIR/all_samples_classification.txt
 
