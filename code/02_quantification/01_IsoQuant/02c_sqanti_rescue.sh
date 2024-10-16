@@ -27,7 +27,7 @@ INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_
 REFERENCE_GENOME_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 ISOFORMS=$INPUT_DIR/all_samples_corrected.fasta
 GTF=$INPUT_DIR/all_samples.filtered.gtf
-REFGTF=$INPUT_DIR/all_samples.filtered.refonly.gtf
+REFGTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
 REFCLASSIF=$INPUT_DIR/all_samples_classification.txt
 FITLER_CLASSIFICATION=$INPUT_DIR/all_samples_MLresult_classification.txt
 
