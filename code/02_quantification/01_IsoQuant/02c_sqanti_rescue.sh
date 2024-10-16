@@ -33,7 +33,7 @@ FITLER_CLASSIFICATION=$INPUT_DIR/all_samples_MLresult_classification.txt
 
 python $SQANTI_DIR/sqanti3_rescue.py ml --isoforms $ISOFORMS --gtf $GTF \
 -g $REFGTF -f $REFERENCE_GENOME_FASTA -k $REFCLASSIF \
--d $INPUT_DIR -o post_rescue $FITLER_CLASSIFICATION
+-d $INPUT_DIR -o post_rescue --randomforest $INPUT_DIR/randomforest.RData $FITLER_CLASSIFICATION 
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
