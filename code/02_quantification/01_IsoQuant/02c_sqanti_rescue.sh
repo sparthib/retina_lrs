@@ -29,10 +29,11 @@ ISOFORMS=$INPUT_DIR/all_samples_corrected.fasta
 GTF=$INPUT_DIR/all_samples.filtered.gtf
 REFGTF=$INPUT_DIR/all_samples.filtered.refonly.gtf
 REFCLASSIF=$INPUT_DIR/all_samples_classification.txt
+FITLER_CLASSIFICATION=$INPUT_DIR/all_samples_MLresult_classification.txt
 
 python $SQANTI_DIR/sqanti3_rescue.py ml --isoforms $ISOFORMS --gtf $GTF \
 -g $REFGTF -f $REFERENCE_GENOME_FASTA -k $REFCLASSIF \
--d $INPUT_DIR -o post_rescue 
+-d $INPUT_DIR -o post_rescue $FITLER_CLASSIFICATION
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
