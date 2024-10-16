@@ -25,8 +25,9 @@ SQANTI_DIR=~/SQANTI3-5.2.1
 
 INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/sqanti3_qc
 
-python $SQANTI_DIR/sqanti3_filter.py rules $INPUT_DIR/all_samples_classification.txt --skip_report \
--d $INPUT_DIR
+# less $INPUT_DIR/all_samples_classification.txt
+
+python $SQANTI_DIR/sqanti3_filter.py ml $INPUT_DIR/all_samples_classification.txt 
 
 
 echo "**** Job ends ****"
