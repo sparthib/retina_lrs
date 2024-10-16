@@ -24,10 +24,11 @@ source activate /users/sparthib/.conda/envs/SQANTI3
 SQANTI_DIR=~/SQANTI3-5.2.1
 
 INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/sqanti3_qc
-
+REF_GTF=$INPUT_DIR/all_samples_corrected.gtf
 # less $INPUT_DIR/all_samples_classification.txt
 
-python $SQANTI_DIR/sqanti3_filter.py ml $INPUT_DIR/all_samples_classification.txt --skip_report
+python $SQANTI_DIR/sqanti3_filter.py ml $INPUT_DIR/all_samples_classification.txt --skip_report \
+--gtf $REF_GTF
 
 
 echo "**** Job ends ****"
