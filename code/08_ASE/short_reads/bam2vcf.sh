@@ -38,7 +38,7 @@ output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 # -b /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/bam_files.txt | bcftools call -mv -Ob > $output_dir/multi_sample.vcf
 
 # gatk commands from here https://www.biostars.org/p/405702/
-sample_names=(SRR1091088 SRR1091091 SRR1091092)
+sample_names=(SRR1091088 SRR1091091)
 for sample in ${sample_names[@]}; do
     echo "Processing $sample"
     gatk --java-options "-Xmx4g" HaplotypeCaller \
