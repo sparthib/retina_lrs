@@ -52,7 +52,6 @@ gatk --java-options "-Xmx96g -Xms96g" CombineGVCFs \
 -R $reference \
 --variant $output_dir/SRR1091088.g.vcf.gz \
 --variant $output_dir/SRR1091091.g.vcf.gz \
---variant $output_dir/SRR1091092.g.vcf.gz \
 -O $output_dir/combined.g.vcf.gz
 
 gatk --java-options "-Xmx96g -Xms96g" GenotypeGVCFs \
