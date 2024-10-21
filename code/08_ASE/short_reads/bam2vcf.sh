@@ -50,14 +50,14 @@ sample_names=(SRR1091088 SRR1091091)
 
 echo "Combining GVCFs"
 gatk --java-options "-Xmx96g -Xms96g" CombineGVCFs \
--R $reference \
+-R /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa \
 --variant $output_dir/SRR1091088.g.vcf.gz \
 --variant $output_dir/SRR1091091.g.vcf.gz \
 -O $output_dir/combined.g.vcf.gz
 
 echo "Genotyping"
 gatk --java-options "-Xmx96g -Xms96g" GenotypeGVCFs \
--R $reference \
+-R $ref_fa \
 -V $output_dir/combined.g.vcf.gz \
 -O $output_dir/combined.vcf.gz
 
