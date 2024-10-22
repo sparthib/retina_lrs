@@ -50,25 +50,35 @@ echo "convert vcf to vci"
 singularity exec $SIF_PATH g2gtools vcf2vci --help
 
 # Run the actual vcf2vci command with proper directory bindings
-singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_INPUT_DIR}:${VCF_INPUT_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
-g2gtools vcf2vci -i $unfiltered_vcf -f $FASTA -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
+# singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_INPUT_DIR}:${VCF_INPUT_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
+# g2gtools vcf2vci -i $unfiltered_vcf -f $FASTA -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
 
 
-# echo "patching genome"
-# singularity exec $SIF_PATH g2gtools patch -i $REF -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa 
-# 
-# echo "transforming genome to diploid"
-# singularity exec $SIF_PATH g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa 
-# 
-# echo "convert vci to gtf"
-# singularity exec $SIF_PATH g2gtools convert -c ${STRAIN1_DIR}/output.vci -i ${GTF} -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf 
-# 
-# echo "create gtf database"
-# singularity exec $SIF_PATH g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db 
-# 
-# # extract transcripts from NOD genome
-# echo "extract transcripts"
-# singularity exec $SIF_PATH g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa -db ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db > ${STRAIN1_DIR}/${STRAIN1_NAME}.transcripts.fa
+# Patching the genome with SNPs from the VCI
+echo "patching genome"
+singularity exec --bind ${REF_DIR}:${REF_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
+g2gtools patch -i $FASTA -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
+
+# Transforming the patched genome to diploid
+echo "transforming genome to diploid"
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
+g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
+
+# Converting the VCI to GTF format
+echo "convert vci to gtf"
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR},${REF_DIR}:${REF_DIR} $SIF_PATH \
+g2gtools convert -c ${STRAIN1_DIR}/output.vci -i $GTF -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf
+
+# Creating a GTF database
+echo "create gtf database"
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
+g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db
+
+# Extracting transcripts from the diploid genome
+echo "extract transcripts"
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
+g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa -db ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db > ${STRAIN1_DIR}/${STRAIN1_NAME}.transcripts.fa
+
 
 # use prepare-emase function  from emase package (not in g2gtools)
 # to create diploid transcriptome from NOD and PWk genome and GTF files
