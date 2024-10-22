@@ -28,8 +28,10 @@ SIF_PATH=/users/sparthib/retina_lrs/code/08_ASE/g2g_tools/g2gtools.sif
 VCF_INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 SNP=${VCF_INPUT_DIR}/filtered_SNP.vcf
 INDEL=${VCF_INPUT_DIR}/filtered_INDEL.vcf
-GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
-REF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fasta
+
+REF_DIR=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly
+FASTA=${REF_DIR}/release_46_primary_genome.fasta
+GTF=${REF_DIR}/release_46_primary_assembly.gtf
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools
 
 # strain name (usually a column name in the vcf file), e.g., CAST_EiJ
@@ -53,7 +55,8 @@ mkdir -p $STRAIN2_DIR
 
 echo "convert vcf to vci"
 singularity exec $SIF_PATH g2gtools vcf2vci --help
-singularity exec $SIF_PATH g2gtools vcf2vci -i $unfiltered_vcf -f None -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
+singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_DIR}:${VCF_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH $SIF_PATH\
+g2gtools vcf2vci -i $unfiltered_vcf -f None -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
 
 
 # echo "patching genome"
