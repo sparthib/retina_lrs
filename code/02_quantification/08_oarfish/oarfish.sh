@@ -24,7 +24,7 @@ CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 
-bam_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/GENCODE/"
+bam_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/ver_46"
 bam=$bam_dir/${sample}.bam
 
 source activate oarfish
