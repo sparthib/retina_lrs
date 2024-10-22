@@ -35,7 +35,7 @@ GTF=${REF_DIR}/release_46_primary_assembly.gtf
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools
 
 # Define strain names and output directories
-unfiltered_vcf=${VCF_INPUT_DIR}/genotyped.vcf
+unfiltered_vcf=${VCF_INPUT_DIR}/genotyped.vcf.gz
 STRAIN1_NAME=SRR1091088
 STRAIN2_NAME=SRR1091091
 STRAIN1_DIR=$OUTPUT_DIR/SRR1091088
