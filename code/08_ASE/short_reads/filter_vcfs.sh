@@ -30,12 +30,12 @@ output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 #split VCFs into SNPs and Indels
 
 gatk SelectVariants \
---variant $output_dir/multi_sample.vcf \
+--variant $output_dir/genotyped.vcf \
 -select-type SNP \
 --output $output_dir/SNP.vcf
 
 gatk SelectVariants \
---variant $output_dir/multi_sample.vcf \
+--variant $output_dir/genotyped.vcf \
 -select-type INDEL \
 --output $output_dir/INDEL.vcf
 
@@ -50,7 +50,6 @@ gatk VariantFiltration \
 --filter-expression "ReadPosRankSum < -8.0" --filter-name "ReadPosRankSum-8" \
 --output $output_dir/filtered_SNP.vcf
 
-
 gatk VariantFiltration \
 --variant $output_dir/INDEL.vcf \
 --filter-expression "QD < 2.0" --filter-name "QD2" \
@@ -58,7 +57,6 @@ gatk VariantFiltration \
 --filter-expression "FS > 200.0" --filter-name "FS200" \
 --filter-expression "ReadPosRankSum < -20.0" --filter-name "ReadPosRankSum-20" \
 --output $output_dir/filtered_INDEL.vcf
-
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
