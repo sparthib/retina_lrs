@@ -41,10 +41,3 @@ date +"%Y-%m-%d %T"
 
 
 
-
-
-
-
-
-
-samtools view -h -F 256 -q 20 file.bam
