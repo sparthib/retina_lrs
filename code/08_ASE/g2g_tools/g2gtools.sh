@@ -55,8 +55,8 @@ mkdir -p $STRAIN2_DIR
 
 echo "convert vcf to vci"
 singularity exec $SIF_PATH g2gtools vcf2vci --help
-singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_DIR}:${VCF_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH $SIF_PATH\
-g2gtools vcf2vci -i $unfiltered_vcf -f None -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
+singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_DIR}:${VCF_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH\
+g2gtools vcf2vci -i $unfiltered_vcf -f $FASTA -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
 
 
 # echo "patching genome"
