@@ -56,27 +56,27 @@ singularity exec $SIF_PATH g2gtools vcf2vci --help
 
 # Patching the genome with SNPs from the VCI
 echo "patching genome"
-singularity exec --bind ${REF_DIR}:${REF_DIR},${STRAIN1_DIR}:${STRAIN1_DIR},${OUTPUT_DIR}:${OUTPUT_DIR} $SIF_PATH \
+singularity exec --bind ${REF_DIR}:${REF_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
 g2gtools patch -i $FASTA -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
 
 # Transforming the patched genome to diploid
 echo "transforming genome to diploid"
-singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR},${OUTPUT_DIR}:${OUTPUT_DIR} $SIF_PATH \
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
 g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
 
 # Converting the VCI to GTF format
 echo "convert vci to gtf"
-singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR},${REF_DIR}:${REF_DIR},${OUTPUT_DIR}:${OUTPUT_DIR} $SIF_PATH \
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR},${REF_DIR}:${REF_DIR} $SIF_PATH \
 g2gtools convert -c ${STRAIN1_DIR}/output.vci -i $GTF -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf
 
 # Creating a GTF database
 echo "create gtf database"
-singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR},${OUTPUT_DIR}:${OUTPUT_DIR} $SIF_PATH \
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
 g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db
 
 # Extracting transcripts from the diploid genome
 echo "extract transcripts"
-singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR},${OUTPUT_DIR}:${OUTPUT_DIR} $SIF_PATH \
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
 g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa -db ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db > ${STRAIN1_DIR}/${STRAIN1_NAME}.transcripts.fa
 
 
