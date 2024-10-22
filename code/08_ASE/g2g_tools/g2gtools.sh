@@ -29,7 +29,7 @@ VCF_INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 SNP=${VCF_INPUT_DIR}/filtered_SNP.vcf
 INDEL=${VCF_INPUT_DIR}/filtered_INDEL.vcf
 GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
-REF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts.fa
+REF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools
 
 # strain name (usually a column name in the vcf file), e.g., CAST_EiJ
