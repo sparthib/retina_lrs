@@ -59,7 +59,7 @@ echo "Genotyping"
 gatk --java-options "-Xmx96g -Xms96g" GenotypeGVCFs \
 -R $ref_fa \
 -V $output_dir/combined.g.vcf.gz \
--O $output_dir/combined.vcf.gz
+-O $output_dir/genotyped.vcf.gz
 
 
 echo "**** Job ends ****"
