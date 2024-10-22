@@ -52,23 +52,25 @@ mkdir -p $STRAIN2_DIR
 ## try using vci instead 
 
 echo "convert vcf to vci"
-singularity exec $SIF_PATH g2gtools vcf2vci -i $unfiltered_vcf -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid 
+singularity exec $SIF_PATH g2gtools vcf2vci --help
+# singularity exec $SIF_PATH g2gtools vcf2vci -i $unfiltered_vcf -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid 
 
-echo "patching genome"
-singularity exec $SIF_PATH g2gtools patch -i $REF -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa 
 
-echo "transforming genome to diploid"
-singularity exec $SIF_PATH g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa 
-
-echo "convert vci to gtf"
-singularity exec $SIF_PATH g2gtools convert -c ${STRAIN1_DIR}/output.vci -i ${GTF} -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf 
-
-echo "create gtf database"
-singularity exec $SIF_PATH g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db 
-
-# extract transcripts from NOD genome
-echo "extract transcripts"
-singularity exec $SIF_PATH g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa -db ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db > ${STRAIN1_DIR}/${STRAIN1_NAME}.transcripts.fa
+# echo "patching genome"
+# singularity exec $SIF_PATH g2gtools patch -i $REF -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa 
+# 
+# echo "transforming genome to diploid"
+# singularity exec $SIF_PATH g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa 
+# 
+# echo "convert vci to gtf"
+# singularity exec $SIF_PATH g2gtools convert -c ${STRAIN1_DIR}/output.vci -i ${GTF} -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf 
+# 
+# echo "create gtf database"
+# singularity exec $SIF_PATH g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db 
+# 
+# # extract transcripts from NOD genome
+# echo "extract transcripts"
+# singularity exec $SIF_PATH g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa -db ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db > ${STRAIN1_DIR}/${STRAIN1_NAME}.transcripts.fa
 
 # use prepare-emase function  from emase package (not in g2gtools)
 # to create diploid transcriptome from NOD and PWk genome and GTF files
