@@ -64,15 +64,20 @@ singularity exec $SIF_PATH g2gtools vcf2vci --help
 # singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
 # g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci.gz -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
 
+# grep -v '*' output.vci  > output_filtered.vci #remove lines that have * allele
+# gzip output_filtered.vci #compress the file
+
+
 # Converting the VCI to GTF format
 echo "convert vci to gtf"
 singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR},${REF_DIR}:${REF_DIR} $SIF_PATH \
-g2gtools convert -c ${STRAIN1_DIR}/output.vci.gz -i $GTF -f GTF -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf
+g2gtools convert -c ${STRAIN1_DIR}/output_filtered.vci.gz -i $GTF -f GTF -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf
 
 # Creating a GTF database
 echo "create gtf database"
 singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
 g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db
+
 
 # Extracting transcripts from the diploid genome
 echo "extract transcripts"
