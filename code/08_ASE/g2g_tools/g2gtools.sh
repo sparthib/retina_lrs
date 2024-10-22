@@ -20,7 +20,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "****"
 
 ml load singularity 
-SIF_PATH=/users/sparthib/retina_lrs/code/08_ASE/g2g_tools/g2gtools.sif 
+SIF_PATH=/users/sparthib/retina_lrs/code/08_ASE/g2g_tools/g2gtools.sif
 
 # adapted from https://github.com/narayananr/diploid_txome/blob/master/create_diploid_transcriptome.sh
 
@@ -55,7 +55,7 @@ mkdir -p $STRAIN2_DIR
 
 echo "convert vcf to vci"
 singularity exec $SIF_PATH g2gtools vcf2vci --help
-singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_DIR}:${VCF_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH\
+singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_INPUT_DIR}:${VCF_INPUT_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH\
 g2gtools vcf2vci -i $unfiltered_vcf -f $FASTA -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
 
 
