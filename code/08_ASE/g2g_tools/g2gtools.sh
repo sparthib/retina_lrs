@@ -29,7 +29,7 @@ VCF_INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 SNP=${VCF_INPUT_DIR}/filtered_SNP.vcf
 INDEL=${VCF_INPUT_DIR}/filtered_INDEL.vcf
 GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
-REF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
+REF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fasta
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools
 
 # strain name (usually a column name in the vcf file), e.g., CAST_EiJ
@@ -52,7 +52,7 @@ mkdir -p $STRAIN2_DIR
 ## try using vci instead 
 
 echo "convert vcf to vci"
-singularity exec $SIF_PATH g2gtools vcf2vci -f ${REF} -i $unfiltered_vcf -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid
+singularity exec $SIF_PATH g2gtools vcf2vci -f ${REF} -i $unfiltered_vcf -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci
 
 echo "patching genome"
 singularity exec $SIF_PATH g2gtools patch -i $REF -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
