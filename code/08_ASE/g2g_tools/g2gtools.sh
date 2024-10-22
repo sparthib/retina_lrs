@@ -20,11 +20,10 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "****"
 
 ml load singularity 
+# Define the path to the g2gtools Singularity image
 SIF_PATH=/users/sparthib/retina_lrs/code/08_ASE/g2g_tools/g2gtools.sif
 
-# adapted from https://github.com/narayananr/diploid_txome/blob/master/create_diploid_transcriptome.sh
-
-# get SNP and INDEL VCF files 
+# Define input directories and files
 VCF_INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 SNP=${VCF_INPUT_DIR}/filtered_SNP.vcf
 INDEL=${VCF_INPUT_DIR}/filtered_INDEL.vcf
@@ -32,30 +31,26 @@ INDEL=${VCF_INPUT_DIR}/filtered_INDEL.vcf
 REF_DIR=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly
 FASTA=${REF_DIR}/release_46_primary_genome.fasta
 GTF=${REF_DIR}/release_46_primary_assembly.gtf
+
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools
 
-# strain name (usually a column name in the vcf file), e.g., CAST_EiJ
+# Define strain names and output directories
 unfiltered_vcf=${VCF_INPUT_DIR}/genotyped.vcf
 STRAIN1_NAME=SRR1091088
 STRAIN2_NAME=SRR1091091
 STRAIN1_DIR=$OUTPUT_DIR/SRR1091088
 STRAIN2_DIR=$OUTPUT_DIR/SRR1091091
+
+# Create output directories
 mkdir -p $STRAIN1_DIR
 mkdir -p $STRAIN2_DIR
 
-# Create a chain file for mapping bases between two genomes. In this case, between reference and NOD
-# g2gtools vcf2chain -f ${REF} -i $INDEL -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/REF-to-${STRAIN1_NAME}.chain
-# 
-# # patch SNPs on to reference genome
-# g2gtools patch -i ${REF} -s ${STRAIN1_NAME} -v $SNP -o ${STRAIN1_DIR}/${STRAIN1_NAME}.patched.fa
-# g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}.patched.fa -c ${STRAIN1_DIR}/REF-to-${STRAIN1_NAME}.chain -o ${STRAIN1_DIR}/${STRAIN1_NAME}.fa
-
-
-## try using vci instead 
-
+# VCF to VCI conversion
 echo "convert vcf to vci"
 singularity exec $SIF_PATH g2gtools vcf2vci --help
-singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_INPUT_DIR}:${VCF_INPUT_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH\
+
+# Run the actual vcf2vci command with proper directory bindings
+singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_INPUT_DIR}:${VCF_INPUT_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
 g2gtools vcf2vci -i $unfiltered_vcf -f $FASTA -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
 
 
