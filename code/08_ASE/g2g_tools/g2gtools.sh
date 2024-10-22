@@ -42,8 +42,8 @@ STRAIN1_DIR=$OUTPUT_DIR/SRR1091088
 STRAIN2_DIR=$OUTPUT_DIR/SRR1091091
 
 # Create output directories
-mkdir -p $STRAIN1_DIR
-mkdir -p $STRAIN2_DIR
+# mkdir -p $STRAIN1_DIR
+# mkdir -p $STRAIN2_DIR
 
 # VCF to VCI conversion
 echo "convert vcf to vci"
@@ -56,18 +56,18 @@ singularity exec $SIF_PATH g2gtools vcf2vci --help
 
 # Patching the genome with SNPs from the VCI
 echo "patching genome"
-singularity exec --bind ${REF_DIR}:${REF_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
-g2gtools patch -i $FASTA -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
+singularity exec --bind ${REF_DIR}:${REF_DIR},$STRAIN1_DIR:$STRAIN1_DIR $SIF_PATH \
+g2gtools patch -i $FASTA -c ${STRAIN1_DIR}/output.vci.gz -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
 
 # Transforming the patched genome to diploid
 echo "transforming genome to diploid"
 singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
-g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
+g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci.gz -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
 
 # Converting the VCI to GTF format
 echo "convert vci to gtf"
 singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR},${REF_DIR}:${REF_DIR} $SIF_PATH \
-g2gtools convert -c ${STRAIN1_DIR}/output.vci -i $GTF -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf
+g2gtools convert -c ${STRAIN1_DIR}/output.vci.gz -i $GTF -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf
 
 # Creating a GTF database
 echo "create gtf database"
