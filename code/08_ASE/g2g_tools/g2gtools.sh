@@ -1,7 +1,24 @@
 #!/bin/bash
 
-source activate g2gtools
+#SBATCH -p shared
+#SBATCH --mem=50G
+#SBATCH -c 10
+#SBATCH --job-name=g2gtools
+#SBATCH --mail-user=sparthi1@jhu.edu
+#SBATCH --mail-type=ALL
+#SBATCH -o logs/g2gtools.txt
+#SBATCH -e logs/g2gtools.txt
+#SBATCH -t 7-00:00:00
 
+echo "**** Job starts ****"
+date +"%Y-%m-%d %T"
+echo "**** JHPCE info ****"
+echo "User: ${USER}"
+echo "Job id: ${SLURM_JOB_ID}"
+echo "Job name: ${SLURM_JOB_NAME}"
+echo "Node name: ${SLURMD_NODENAME}"
+echo "****"
+source activate g2gtools
 
 # adapted from https://github.com/narayananr/diploid_txome/blob/master/create_diploid_transcriptome.sh
 
@@ -31,15 +48,21 @@ mkdir -p $STRAIN2_DIR
 
 
 ## try using vci instead 
+echo "convert vcf to vci"
 g2gtools vcf2vci -f ${REF} -i $unfiltered_vcf -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid
+echo "patching genome"
 g2gtools patch -i $REF -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
+echo "transforming genome to diploid"
 g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
 
-
+echo "convert vci to gtf"
 g2gtools convert -c ${STRAIN1_DIR}/output.vci -i ${GTF}  -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf
+
+echo "create gtf database"
 g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db
 
 # extract transcripts from NOD genome
+echo "extract transcripts"
 g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa -db ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db > ${STRAIN1_DIR}/${STRAIN1_NAME}.transcripts.fa
 
 # use prepare-emase function  from emase package (not in g2gtools)
@@ -52,3 +75,6 @@ g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.
 # SUFFIX2=P
 # EMASE_DIR=NxP
 # prepare-emase -G ${GENOME1},${GENOME2} -g ${GTF1},${GTF2} -s ${SUFFIX1},${SUFFIX2} -o ${EMASE_DIR} -m
+
+echo "**** Job ends ****"
+date +"%Y-%m-%d %T"
