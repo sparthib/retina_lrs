@@ -52,19 +52,19 @@ mkdir -p $STRAIN2_DIR
 ## try using vci instead 
 
 echo "convert vcf to vci"
-singularity exec $SIF_PATH g2gtools vcf2vci -f ${REF} -i $unfiltered_vcf -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci
+singularity exec $SIF_PATH g2gtools vcf2vci -i $unfiltered_vcf -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid -p $SLURM_CPUS_PER_TASK
 
 echo "patching genome"
-singularity exec $SIF_PATH g2gtools patch -i $REF -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
+singularity exec $SIF_PATH g2gtools patch -i $REF -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -p $SLURM_CPUS_PER_TASK
 
 echo "transforming genome to diploid"
-singularity exec $SIF_PATH g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
+singularity exec $SIF_PATH g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa -p $SLURM_CPUS_PER_TASK
 
 echo "convert vci to gtf"
-singularity exec $SIF_PATH g2gtools convert -c ${STRAIN1_DIR}/output.vci -i ${GTF} -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf
+singularity exec $SIF_PATH g2gtools convert -c ${STRAIN1_DIR}/output.vci -i ${GTF} -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -p $SLURM_CPUS_PER_TASK
 
 echo "create gtf database"
-singularity exec $SIF_PATH g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db
+singularity exec $SIF_PATH g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db -p $SLURM_CPUS_PER_TASK
 
 # extract transcripts from NOD genome
 echo "extract transcripts"
