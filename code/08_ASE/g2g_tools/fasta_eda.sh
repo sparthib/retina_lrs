@@ -19,9 +19,11 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "****"
 
-ml load python
+ml load python/3.10.13 
 
-python extract_transcripts.py
+python3 extract_transcripts.py
 
-python compare_transcripts.py
+python3 compare_transcripts.py
 
+echo "**** Job ends ****"
+date +"%Y-%m-%d %T"
