@@ -53,20 +53,19 @@ singularity exec $SIF_PATH g2gtools vcf2vci --help
 # singularity exec --bind ${REF_DIR}:${REF_DIR},${VCF_INPUT_DIR}:${VCF_INPUT_DIR},${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
 # g2gtools vcf2vci -i $unfiltered_vcf -f $FASTA -s ${STRAIN1_NAME} -o ${STRAIN1_DIR}/output.vci --diploid --pass
 
+grep -v '*' ${STRAIN1_DIR}/output.vci  > ${STRAIN1_DIR}/output_filtered.vci #remove lines that have * allele
+gzip ${STRAIN1_DIR}/output_filtered.vci #compress the file
 
+output_filtered.vci.gz
 # Patching the genome with SNPs from the VCI
-# echo "patching genome"
-# singularity exec --bind ${REF_DIR}:${REF_DIR},$STRAIN1_DIR:$STRAIN1_DIR $SIF_PATH \
-# g2gtools patch -i $FASTA -c ${STRAIN1_DIR}/output.vci.gz -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
-# 
-# # Transforming the patched genome to diploid
-# echo "transforming genome to diploid"
-# singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
-# g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output.vci.gz -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
+echo "patching genome"
+singularity exec --bind ${REF_DIR}:${REF_DIR},$STRAIN1_DIR:$STRAIN1_DIR $SIF_PATH \
+g2gtools patch -i $FASTA -c ${STRAIN1_DIR}/output_filtered.vci.gz -o ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa
 
-# grep -v '*' output.vci  > output_filtered.vci #remove lines that have * allele
-# gzip output_filtered.vci #compress the file
-
+# Transforming the patched genome to diploid
+echo "transforming genome to diploid"
+singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
+g2gtools transform -i ${STRAIN1_DIR}/${STRAIN1_NAME}_patched.fa -c ${STRAIN1_DIR}/output_filtered.vci.gz -o ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa
 
 # Converting the VCI to GTF format
 echo "convert vci to gtf"
