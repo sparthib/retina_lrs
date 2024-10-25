@@ -22,7 +22,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 comparisons=("ROs")
 
 INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/$item/fastas
-OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/$item/external_protein_analyses
+OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/$item/external_protein_analyses
 
 source activate CPC2
 cd $CPC_HOME
