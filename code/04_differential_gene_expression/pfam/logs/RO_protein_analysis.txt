@@ -1,8 +1,8 @@
 **** Job starts ****
-2024-10-24 20:44:15
+2024-10-24 20:50:42
 **** JHPCE info ****
 User: sparthib
-Job id: 10207001
+Job id: 10207062
 Job name: protein_analysis
 Node name: compute-120
 ROs
@@ -22,4 +22,4 @@ Traceback (most recent call last):
     raise ValueError(f'Specified file path {args.fastafile} is not a existing file.')
 ValueError: Specified file path /users/sparthib/retina_lrs/processed_data/dtu/Isoquant//fastas/isoformSwitchAnalyzeR_isoform_AA.fasta is not a existing file.
 **** Job ends ****
-2024-10-24 20:44:19
+2024-10-24 20:50:46
