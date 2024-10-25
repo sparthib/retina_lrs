@@ -27,8 +27,8 @@ RO_tpm <- tpm[,1:8]
 
 myDesign  <- data.frame(sampleID = c("EP1-BRN3B-RO", "EP1-WT_ROs_D45", "EP1-WT_hRO_2", "H9-BRN3B-RO", 
                                      "H9-BRN3B_hRO_2", "H9-CRX_ROs_D45", "H9-CRX_hRO_2") ,
-                        condition = c("RO_D200", "RO_D45", "RO_D100", "RO_D200", 
-                                      "RO_D100", "RO_D45", "RO_D100"),
+                        condition = c("A_RO_D200", "C_RO_D45", "B_RO_D100", "A_RO_D200", 
+                                      "B_RO_D100", "C_RO_D45", "B_RO_D100"),
                         stringsAsFactors = FALSE)
 
 dir.create(here("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/rds"), showWarnings = T,
@@ -87,6 +87,10 @@ if(!file.exists(rdata_path)){
     isoformExpressionCutoff    = 1,     
     removeSingleIsoformGenes   = TRUE  # default
   )
+  
+  # The filtering removed 47986 ( 56.63% of ) transcripts. There is now 36751 isoforms left
+  # 36751 isoforms from 11146 genes
+  # 3 comparison from 3 conditions (in total 7 samples)
   
   saveRDS(SwitchListFiltered, file = rdata_path)
   #save DEXSeq switchlist
@@ -165,9 +169,7 @@ if(!file.exists("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/DGE_
   
   #check for duplicates 
   SwitchList_part1$isoformFeatures <- SwitchList_part1$isoformFeatures |> distinct() 
-  write_tsv(SwitchList_part1$isoformFeatures, file = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/isoformFeatures.tsv")
-  write_tsv(SwitchList_part1$isoformSwitchAnalysis, file = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/isoformSwitchAnalysis.tsv")
-  
+
   
   DGE_DTU_DTE = SwitchList_part1$isoformFeatures |>
     as_tibble() |>
@@ -286,31 +288,56 @@ splicing_summary <- extractSplicingSummary(SwitchList_part2,
 print(splicing_summary)
 dev.off()
 
+t <- extractSplicingSummary(SwitchList_part2,
+                            splicingToAnalyze = 'all',dIFcutoff = 0.1,
+                            onlySigIsoforms = T,
+                            returnResult = T,
+                            plot = F) 
+t |> write_tsv("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/Splicing_Summary.tsv")
+
+
 pdf("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/plots/Splicing_Enrichment.pdf",
     width = 10, height = 7)
 splicing_enrichment <- extractSplicingEnrichment(
   SwitchList_part2,
-  returnResult = F ,
+  returnResult = F,
   onlySigIsoforms = T,
-  countGenes = F
+  countGenes = F,
+  plot = T
 )
 print(splicing_enrichment)
 dev.off()
+
+splicing_enrichment <- extractSplicingEnrichment(
+  SwitchList_part2,
+  returnResult = T,
+  onlySigIsoforms = T,
+  countGenes = F,
+  plot = F
+)
+
+write_tsv(splicing_enrichment, file = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/Splicing_Enrichment.tsv")
+
 
 ################################################################################
 SwitchList_part2 <- readRDS("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/rds/SwitchList_part2.rds")
 
 dir.create("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/external_protein_analyses/", showWarnings = T, recursive = T)
 
+## convert pfam output to right format
+read_csv("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/external_protein_analyses/pfam_results.csv") |> 
+  write_tsv("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/external_protein_analyses/pfam_results.txt")
+
+
 SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
   n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
   removeNoncodinORFs        = TRUE,
-  pathToCPC2resultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/CPC2_output.txt",
-  pathToPFAMresultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/pfam_results.txt",
-  pathToSignalPresultFile   = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/prediction_results.txt",
+  pathToCPC2resultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/external_protein_analyses/CPC2_output.txt",
+  pathToPFAMresultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/external_protein_analyses/pfam_results.txt",
+  pathToSignalPresultFile   = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/external_protein_analyses/prediction_results.txt",
   outputPlots               = TRUE,
-  pathToOutput              = "/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/switchplots_with_consequences",
+  pathToOutput              = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/external_protein_analyses/switchplots_with_consequences",
   consequencesToAnalyze = c(
     'intron_retention',
     'coding_potential',
@@ -323,18 +350,19 @@ SwitchList_part2 <- isoformSwitchAnalysisPart2(
   
 )
 
-saveRDS(SwitchList_part2, file = "./processed_data/dtu/DTU_gandall/bambu/ROs/rds/SwitchList_part2.rds")
-
-
 # The number of isoform switches with functional consequences identified were:
 #   Comparison nrIsoforms nrSwitches nrGenes
-# 1  RO_D100 vs RO_D45       1299       1168     898
-# 2 RO_D100 vs RO_D200       1044       1027     773
-# 3  RO_D200 vs RO_D45       1545       1473    1046
-# 4           Combined       3050       3232    1977
+# 1  A_RO_D200 vs C_RO_D45       1595       1195     985
+# 2  B_RO_D100 vs C_RO_D45       1726       1151    1031
+# 3 A_RO_D200 vs B_RO_D100       1458        965     859
+# 4               Combined       3567       2766    2038
+
+saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/rds/SwitchList_part2.rds")
+
 
 pdf("./processed_data/dtu/DTU_gandall/bambu/ROs/plots/Consequence_Enrichment.pdf",
     width = 10, height = 7)
+
 p <- extractConsequenceEnrichment(
   SwitchList_part2,
   consequencesToAnalyze = c(
@@ -348,11 +376,49 @@ p <- extractConsequenceEnrichment(
   ),
   analysisOppositeConsequence = TRUE,
   localTheme = theme_bw(base_size = 14), # Increase font size in vignette
-  returnResult = FALSE, # if TRUE returns a data.frame with the summary statistics
-  countGenes = F
+  returnResult = T, # if TRUE returns a data.frame with the summary statistics
+  countGenes = F,
+  plot = FALSE
+  
 )
 print(p)
 dev.off()
 
-# to convert pfam output to right format
-# write.table(pfam_results, file = "/Users/sparthib/Documents/retina_lrs/processed_data/dtu/DTU_gandall/bambu/ROs/external_protein_analyses/pfam_results.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+write_tsv(p, file = "/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/Consequence_Enrichment.tsv")
+
+
+t <- extractSwitchSummary(
+  SwitchList_part2,
+  filterForConsequences=FALSE,
+  alpha=0.05,
+  dIFcutoff = 0.1,
+  onlySigIsoforms = FALSE)
+
+t |> write_tsv("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/SwitchSummary.tsv")
+
+# SwitchList_part2$isoformFeatures              SwitchList_part2$isoformRepIF
+# SwitchList_part2$exons                        SwitchList_part2$ntSequence
+# SwitchList_part2$conditions                   SwitchList_part2$isoformSwitchAnalysis
+# SwitchList_part2$designMatrix                 SwitchList_part2$aaSequence
+# SwitchList_part2$sourceId                     SwitchList_part2$AlternativeSplicingAnalysis
+# SwitchList_part2$isoformCountMatrix           SwitchList_part2$domainAnalysis
+# SwitchList_part2$isoformRepExpression         SwitchList_part2$signalPeptideAnalysis
+# SwitchList_part2$runInfo                      SwitchList_part2$switchConsequence
+# SwitchList_part2$orfAnalysis   
+
+
+SwitchList_part2$AlternativeSplicingAnalysis |> write_tsv("/users/sparthib/retina_lrs/processed_data/dtu/Isoquant/ROs/isoform_spec_AlternativeSplicingAnalysis.tsv")
+# The classification of alternative splicing is always compared to the
+#hypothetical pre-mRNA constructed by concatenating all exons from
+#isoforms of the same gene.
+# number of alternative splicing events found as well as the genomic coordinates of the affected region(s), is added to the switchAnalyzeRlist. In this data.frame genomic
+# coordinates for each splice event are separated by ";" except for cases where there are multiple
+# MES, then each set of coordinates belonging to a MES is separated by ’,’ (and then the coordinates
+#                                                                           belong to a specific MES is separated by ’;’).
+SwitchList_part2$AlternativeSplicingAnalysis |> dplyr::select(MEE) |> table()
+SwitchList_part2$AlternativeSplicingAnalysis |> dplyr::select(MES) |> table()
+SwitchList_part2$AlternativeSplicingAnalysis |> dplyr::select(A3) |> table()
+SwitchList_part2$AlternativeSplicingAnalysis |> dplyr::select(A5) |> table()
+SwitchList_part2$AlternativeSplicingAnalysis |> dplyr::select(RI) |> table()
+
+

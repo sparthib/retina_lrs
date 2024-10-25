@@ -20,7 +20,7 @@ colnames(tpm) <- c("gene_id", sample_names)
 # Select RO samples and define group factors
 RO_counts <- counts[,1:8]
 RO_tpm <- tpm[,1:8]
-group <- factor(c("RO_D200", "RO_D45", "RO_D100", "RO_D200", "RO_D100", "RO_D45", "RO_D100"))
+group <- factor(c("A_RO_D200", "C_RO_D45", "B_RO_D100", "A_RO_D200", "B_RO_D100", "C_RO_D45", "B_RO_D100"))
 
 # Create DGEList object and filter
 y <- DGEList(counts=RO_counts, group=group, genes=RO_counts$gene_id, samples=sample_names[1:7])
@@ -36,9 +36,9 @@ y <- estimateDisp(y, design, robust=TRUE)
 # Fit the model and create contrasts
 fit <- glmQLFit(y, design, robust=TRUE)
 
-contr <- makeContrasts(D200_vs_D100 = RO_D200 - RO_D100, 
-                       D200_vs_D45 = RO_D200 - RO_D45, 
-                       D100_vs_D45 = RO_D100 - RO_D45, 
+contr <- makeContrasts(D200_vs_D100 = A_RO_D200 - B_RO_D100, 
+                       D200_vs_D45 = A_RO_D200 - C_RO_D45, 
+                       D100_vs_D45 = B_RO_D100 - C_RO_D45, 
                        levels=design)
 
 # Create output directory for DGE results
