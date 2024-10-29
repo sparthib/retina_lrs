@@ -50,6 +50,6 @@ if __name__ == "__main__":
     fasta_file = "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools/SRR1091088/SRR1091088_diploid_genome.fa"
     
     # Output file for sequences with mismatches
-    output_file = "mismatched_genome_L_R_sequences.fasta"
+    output_file = "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools/SRR1091088/mismatched_genome_L_R_sequences.fasta"
     
     compare_L_R_sequences(fasta_file, output_file)
