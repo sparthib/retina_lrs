@@ -120,3 +120,9 @@ if __name__ == "__main__":
     output_fasta = "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools/SRR1091088/differing_transcripts.fasta"
     
     find_differences(transcripts_file, output_fasta)
+    
+
+    
+    
+    
+    

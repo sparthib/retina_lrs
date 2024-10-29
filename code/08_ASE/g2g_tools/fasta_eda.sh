@@ -21,9 +21,9 @@ echo "****"
 
 ml load python/3.10.13 
 
-python3 extract_transcripts.py
+# python3 extract_transcripts.py
 
-python3 compare_transcripts.py
+python3 compare_genome.py
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
