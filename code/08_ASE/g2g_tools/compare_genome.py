@@ -64,6 +64,8 @@ def compare_L_R_sequences(fasta_file, output_file):
         print(f"Total mismatched L-R pairs: {mismatches}")
         if total > 0:
             print(f"Proportion of mismatched pairs: {mismatches / total:.2%}")
+        else:
+            print("No L-R pairs found in the input file.")
 
 if __name__ == "__main__":
     # Path to your genome FASTA file
