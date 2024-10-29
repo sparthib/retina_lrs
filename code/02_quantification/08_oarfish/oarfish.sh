@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/oarfish.%a.txt
 #SBATCH -e logs/oarfish.%a.txt
-#SBATCH --array=1-12
+#SBATCH --array=1-15
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
@@ -29,6 +29,6 @@ bam=$bam_dir/${sample}.bam
 
 source activate oarfish
 
-output_dir="/dcs04/hicks/data/sparthib/06_quantification/oarfish/$sample"
+output_dir="/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/oarfish/$sample"
 mkdir -p $output_dir
 oarfish --verbose --output $output_dir --alignments $bam --model-coverage 
