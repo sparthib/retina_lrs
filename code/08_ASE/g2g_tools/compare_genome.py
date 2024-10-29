@@ -1,4 +1,24 @@
-from Bio import SeqIO
+def parse_fasta(fasta_file):
+    """
+    Parse a FASTA file and return a dictionary of sequences with headers.
+
+    Args:
+    fasta_file (str): Path to the input FASTA file.
+
+    Returns:
+    dict: A dictionary with headers as keys and sequences as values.
+    """
+    sequences = {}
+    header = None
+    with open(fasta_file, 'r') as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith(">"):
+                header = line[1:]  # Remove '>'
+                sequences[header] = ""
+            elif header:
+                sequences[header] += line
+    return sequences
 
 def compare_L_R_sequences(fasta_file, output_file):
     """
@@ -9,35 +29,35 @@ def compare_L_R_sequences(fasta_file, output_file):
     fasta_file (str): Path to the input FASTA file.
     output_file (str): Path to the output FASTA file with mismatched sequences.
     """
-    sequences = {}
+    sequences = parse_fasta(fasta_file)
+    lr_pairs = {}
     
-    # Read the sequences and store them by their headers
-    for record in SeqIO.parse(fasta_file, "fasta"):
-        header = record.id
-        seq = str(record.seq)
-        
-        # Classify as 'L' or 'R' based on the header
+    # Organize sequences by chromosome
+    for header, sequence in sequences.items():
         if "_L" in header:
             chrom = header.split("_L")[0]
-            sequences.setdefault(chrom, {})['L'] = seq
+            lr_pairs.setdefault(chrom, {})['L'] = (header, sequence)
         elif "_R" in header:
             chrom = header.split("_R")[0]
-            sequences.setdefault(chrom, {})['R'] = seq
+            lr_pairs.setdefault(chrom, {})['R'] = (header, sequence)
 
     # Open the output file to write mismatched sequences
     with open(output_file, 'w') as outfile:
         total = 0
         mismatches = 0
         
-        for chrom, lr_seqs in sequences.items():
+        for chrom, lr_seqs in lr_pairs.items():
             if 'L' in lr_seqs and 'R' in lr_seqs:
                 total += 1
+                l_header, l_seq = lr_seqs['L']
+                r_header, r_seq = lr_seqs['R']
+                
                 # Compare the L and R sequences
-                if lr_seqs['L'] != lr_seqs['R']:
+                if l_seq != r_seq:
                     mismatches += 1
                     # Write mismatched L and R sequences to the output file
-                    outfile.write(f">{chrom}_L\n{lr_seqs['L']}\n")
-                    outfile.write(f">{chrom}_R\n{lr_seqs['R']}\n")
+                    outfile.write(f">{l_header}\n{l_seq}\n")
+                    outfile.write(f">{r_header}\n{r_seq}\n")
 
         # Print summary
         print(f"Total L-R pairs compared: {total}")
