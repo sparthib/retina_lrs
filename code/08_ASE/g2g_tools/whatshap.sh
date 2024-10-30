@@ -22,8 +22,16 @@ echo "Node name: ${SLURMD_NODENAME}"
 ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 vcf_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 source activate whatshap-env
+genome_bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly
+transcriptome_bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/ver_46
 
-whatshap phase -o $vcf_dir/SRR1091088.vcf --reference=$ref_fa $vcf_dir/SRR1091088.genotyped.vcf
+ml load bcftools 
+bcftools view -g ^miss -i 'GT[*]~"|"' $vcf_dir/SRR1091088.genotyped.vcf -o $vcf_dir/SRR1091088.phased.vcf
+
+# whatshap haplotag -o haplotagged.bam --reference $ref_fa \
+# $vcf_dir/SRR1091088.phased.vcf $genome_bam_dir/H9-hRGC_1_sorted.bam
+
+
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
