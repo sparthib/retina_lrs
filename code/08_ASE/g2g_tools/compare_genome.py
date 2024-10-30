@@ -32,6 +32,7 @@ def compare_L_R_sequences(fasta_file, output_file):
     sequences = parse_fasta(fasta_file)
     lr_pairs = {}
     
+    print("Parsing sequences...")
     # Organize sequences by chromosome
     for header, sequence in sequences.items():
         if "_L" in header:
@@ -74,4 +75,6 @@ if __name__ == "__main__":
     # Output file for sequences with mismatches
     output_file = "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/g2gtools/SRR1091088/mismatched_genome_L_R_sequences.fasta"
     
+    print("start...")
     compare_L_R_sequences(fasta_file, output_file)
+    print("Done.")
