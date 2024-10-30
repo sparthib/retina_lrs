@@ -22,7 +22,7 @@ echo "****"
 ml load python/3.10.13 
 
 # python3 extract_transcripts.py
-
+echo "**** Compare genome sequences ****"
 python3 compare_genome.py
 
 echo "**** Job ends ****"
