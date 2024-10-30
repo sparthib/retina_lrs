@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=20G
-#SBATCH -c 2
+#SBATCH --mem=50G
+#SBATCH -c 10
 #SBATCH --job-name=fasta_eda
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
