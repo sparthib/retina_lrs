@@ -38,7 +38,7 @@ output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
 # -b /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/bam_files.txt | bcftools call -mv -Ob > $output_dir/multi_sample.vcf
 
 # gatk commands from here https://www.biostars.org/p/405702/
-sample_names=(SRR1091088 SRR1091091)
+# sample_names=(SRR1091088 SRR1091091)
 # for sample in ${sample_names[@]}; do
 #     echo "Processing $sample"
 #     gatk --java-options "-Xmx4g" HaplotypeCaller \
@@ -48,18 +48,25 @@ sample_names=(SRR1091088 SRR1091091)
 #     -ERC GVCF
 # done
 
-echo "Combining GVCFs"
-gatk --java-options "-Xmx96g -Xms96g" CombineGVCFs \
--R /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa \
---variant $output_dir/SRR1091088.g.vcf.gz \
---variant $output_dir/SRR1091091.g.vcf.gz \
--O $output_dir/combined.g.vcf.gz
+# echo "Combining GVCFs"
+# gatk --java-options "-Xmx96g -Xms96g" CombineGVCFs \
+# -R /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa \
+# --variant $output_dir/SRR1091088.g.vcf.gz \
+# --variant $output_dir/SRR1091091.g.vcf.gz \
+# -O $output_dir/combined.g.vcf.gz
+
+# echo "Genotyping"
+# gatk --java-options "-Xmx96g -Xms96g" GenotypeGVCFs \
+# -R $ref_fa \
+# -V $output_dir/combined.g.vcf.gz \
+# -O $output_dir/genotyped.vcf.gz
+
 
 echo "Genotyping"
 gatk --java-options "-Xmx96g -Xms96g" GenotypeGVCFs \
 -R $ref_fa \
--V $output_dir/combined.g.vcf.gz \
--O $output_dir/genotyped.vcf.gz
+-V $output_dir/SRR1091088.g.vcf.gz \
+-O $output_dir/SRR1091088.genotyped.vcf.gz
 
 
 echo "**** Job ends ****"
