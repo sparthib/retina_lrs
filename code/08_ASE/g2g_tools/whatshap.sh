@@ -21,13 +21,14 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 vcf_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
-source activate whatshap-env
 genome_bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly
 transcriptome_bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/ver_46
 
-ml load bcftools 
+source activate whatshap-env
+
+# ml load bcftools 
 # bcftools view -g ^miss -i 'GT[*]~"|"' $vcf_dir/SRR1091088.genotyped.vcf -o $vcf_dir/SRR1091088.phased.vcf
-ml load  htslib
+# ml load  htslib
 
 # bgzip -c $vcf_dir/SRR1091088.phased.vcf > $vcf_dir/SRR1091088.phased.vcf.gz
 # tabix -p vcf $vcf_dir/SRR1091088.phased.vcf.gz
