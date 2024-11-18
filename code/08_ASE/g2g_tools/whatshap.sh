@@ -32,10 +32,13 @@ source activate whatshap-env
 
 # bgzip -c $vcf_dir/SRR1091088.phased.vcf > $vcf_dir/SRR1091088.phased.vcf.gz
 # tabix -p vcf $vcf_dir/SRR1091088.phased.vcf.gz
+echo $vcf_dir
+echo $ref_fa
+
 
 whatshap haplotag -o $vcf_dir/H9-hRGC_1_sorted_haplotagged.bam --reference $ref_fa \
-$vcf_dir/SRR1091088.phased.vcf.gz /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf/H9-hRGC_1_rg.bam \
---ignore-read-groups --skip-missing-contigs
+$vcf_dir/SRR1091088.phased.vcf.gz $vcf_dir/H9-hRGC_1_rg.bam \
+--ignore-read-groups --skip-missing-contigs 
 
 # samtools addreplacerg -r 'ID:RG1 LB:lib1 PL:ONT SM:sample1' $genome_bam_dir/H9-hRGC_1_sorted.bam \
 # -o $vcf_dir/H9-hRGC_1_rg.bam
