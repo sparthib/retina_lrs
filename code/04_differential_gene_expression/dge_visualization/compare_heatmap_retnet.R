@@ -74,11 +74,9 @@ ro_genes <- c("PRRT2", "CUX2", "POLD1", "CERK", "ODC1", "DEPDC1B", "HMMR",
               "GULP1", "KRT8", "TMPO-AS1", "STK26", "NHSL1-AS1", "HMGA1", "NA", "VSX2",
               "PAUPAR", "KCNMB4", "SYT7", "TGIF1", "MIR17HG", "MYCN", "GPX8", "ELL2",
               "MN1", "DANCR", "ACVR2B", "ISYNA1", "IGFBPL1", "MIR5688", "FGF19",
-              "C14ORF132", "CD24", "GAP43", "MYBL1", "TAGLN3", "FMC1", "CNTN2", 
-              "SCALED", "TMM", "EXPRESSION", "TOP", "DE", "GENES", "TYPE", "PPIAP41",
+              "C14ORF132", "CD24", "GAP43", "MYBL1", "TAGLN3", "FMC1", "CNTN2", "PPIAP41",
               "NA", "NA", "DHRS3", "RXRG", "SLC38A5", "IGSF21", "PFKP", "PDE6H", "SNAP25",
-              "PDC", "GNB3", "RO_D100", "RO_D200", "RO_D45", "ALDOC", "ESPN", "TAFA3",
-              "MPP4", "EOGT", "SLC17A7", "SH3GL2", "MAOA", "PYGL", "NAV2", "SYP", "EGFLAM",
+              "PDC", "GNB3", "ALDOC", "ESPN", "TAFA3", "MPP4", "EOGT", "SLC17A7", "SH3GL2", "MAOA", "PYGL", "NAV2", "SYP", "EGFLAM",
               "LMOD1", "KCNH6", "DIRAS2", "SEPTIN4", "CHST9", "CRX", "CLIP4", "ARFGEF3", 
               "CYP26B1", "LARGE1", "AANAT", "NA", "USP2", "FAM107A", "NCOA7", "EML5", "CDKL5",
               "TULP1", "SLC38A3", "EPB41L2", "ARAP2", "NTM", "SYNE1", "UNC13C", "EGF", 
@@ -89,7 +87,7 @@ ro_genes <- c("PRRT2", "CUX2", "POLD1", "CERK", "ODC1", "DEPDC1B", "HMMR",
               "RS1", "GUCA1B", "ABCA4", "FSTL5", "CNGB3", "AIPL1", "CDHR1", "FRMPD1", "SV2B",
               "ARHGAP42", "ABCA7", "ZNF385B", "RAX2", "COBLL1", "KIFC3", "ARR3", "DSCAML1",
               "NA", "USH2A", "NA", "ANO2", "ROM1", "YWHAQP4", "KCNB1", "SLC1A2", "IMPDH1",
-              "GNAT1", "PRPH2", "RP1", "CNGB1", "NA", "RDH12")
+              "GNAT1", "PRPH2", "RP1", "CNGB1", "RDH12")
 intersect(ro_genes, RetNet_gene_list$Symbol)
 
 # Initialize an empty list to store results

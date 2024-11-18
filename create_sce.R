@@ -8,46 +8,29 @@ library(bluster)
 library(scran)
 
 
-                               
-# gene_mat <- scuttle::readSparseCounts(gene_file,sep = ",")
-# # assign gene counts to assays slot
-# assay(sample_sce, "gene_counts",withDimnames=FALSE) <- gene_mat 
-
-sce_dir <- "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/quantification_alternatives/01_IsoQuant/sce_files"
-
-load_sce <- function(sample) {
-  # Replace invalid characters (e.g., '-') with '_'
-  sanitized_sample <- gsub("-", "_", sample)
-  sce_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/05_flames_output/", paste0(sample, "/sce.rds"))
-  sample_sce <- readRDS(sce_file)
-  colData(sample_sce)$sample <- sanitized_sample
-  # Dynamically create a variable named after the sanitized sample + "_sce"
-  assign(paste0("sce_", sanitized_sample), sample_sce, envir = .GlobalEnv)
-}
+sample_names <- c( "10x_D100-EP1",
+                   "10x_D200-EP1-1",
+                   "10x_D200-EP1-2")
 
 sanitized_sample_names <- gsub("-", "_", sample_names)
 
-sce_list <- sample_names |> lapply(load_sce)
+load_sce <- function(sample) {
+  mat_file <- file.path("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/06_sce_rds_files/transcriptome/isoquant/merged_matrices", paste0("mat_", sample, ".rds"))
+  mat <- readRDS(mat_file)
+  # Dynamically create a variable named after the sanitized sample + "_sce"
+  sce <- SingleCellExperiment(assays = list(counts = mat))
+  assign(paste0("sce_", sample), sce, envir = .GlobalEnv)
+}
 
+sce_list <- sanitized_sample_names |> lapply(load_sce)
+
+names(sce_list) <- sanitized_sample_names
 #add sample name to sce
-sce_list <- Map(function(x, sample_name) {
-  colData(x)$sample_replicate <- sample_name
-  x
-}, sce_list, sanitized_sample_names)
-
-non_replicate_names <- c("10x_D100_EP1","10x_D100_EP1","10x_D100_EP1","10x_D100_EP1",
-                         "10x_D200_EP1_1","10x_D200_EP1_1","10x_D200_EP1_1","10x_D200_EP1_1",
-                         "10x_D200_EP1_2","10x_D200_EP1_2","10x_D200_EP1_2","10x_D200_EP1_2")
-
-sce_list <- Map(function(x, sample_name) {
-  colData(x)$sample_replicate <- sample_name
-  x
-}, sce_list, sanitized_sample_names)
-
 sce_list <- Map(function(x, sample_name) {
   colData(x)$sample <- sample_name
   x
-}, sce_list, non_replicate_names)
+}, sce_list, sanitized_sample_names)
+
 
 
 input_dimensions <- lapply(sce_list, function(x) {
@@ -221,7 +204,7 @@ range(all_colData$detected)
 
 sce_list <- lapply(sce_list, function(x) {
   x$discard <- perCellQCFilters(colData(x), 
-                                 sub.fields="subsets_Mito_percent")$discard
+                                sub.fields="subsets_Mito_percent")$discard
   x
 })
 
@@ -239,7 +222,7 @@ names(post_qc_dimensions) <- sanitized_sample_names
 # state.
 
 saveRDS(sce_list,
-     file = "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/06_sce_rds_files/transcriptome/01_quality_controlled/sce_list.rds")
+        file = "/dcs04/hicks/data/sparthib/retina_single_cell_lrs/06_sce_rds_files/transcriptome/01_quality_controlled/sce_list.rds")
 
 sce_list <- readRDS("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/06_sce_rds_files/transcriptome/01_quality_controlled/sce_list.rds")
 
@@ -255,10 +238,6 @@ common_names <- intersect(colnames(sce_list[[1]]), colnames(sce_list[[2]]))
 
 
 
-
-
-                          
-                          
 ## Reproducibility information
 print("Reproducibility information:")
 Sys.time()

@@ -8,10 +8,6 @@ library("DGEobj.utils")
 library(grid)
 
 
-FT_vs_RGC_bambu_tpm <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/CPM_transcript.txt",
-                                  sep = "\t", row.names = 1, header = TRUE)
-ROs_bambu_tpm <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/ROs_extended_annotation/CPM_transcript.txt",
-                            sep = "\t", row.names = 1, header = TRUE)
 FT_vs_RGC_isoquant_tpm <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/FT_RGC/OUT/OUT.transcript_model_grouped_tpm.tsv",
                                      sep = "\t", row.names = 1)
 ROs_isoquant_tpm <-read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/ROs/OUT/OUT.transcript_model_grouped_tpm.tsv",
@@ -49,6 +45,7 @@ ROs_isoquant_tpm <- removeZeroVarRows(ROs_isoquant_tpm)
 FT_vs_RGC_bambu_samples <- c("H9_FT_1", "H9_FT_2", "H9_RGC_1", "H9_RGC_2")
 ROs_bambu_samples <- c("EP1_BRN3B_RO", "EP1_WT_hRO_2", "EP1_WT_ROs_D45",
                               "H9_BRN3B_hRO_2", "H9_BRN3B_RO", "H9_CRX_hRO_2", "H9_CRX_ROs_D45")
+
 FT_vs_RGC_isoquant_samples <- c("H9_FT_1", "H9_FT_2", "H9_RGC_1", "H9_RGC_2")
 ROs_isoquant_samples <-c("EP_1_BRN3B_RO",  "EP1_WT_ROs_D45", "EP1_WT_hRO_2",
                                 "H9_BRN3B_RO", "H9_BRN3B_hRO_2", "H9_CRX_ROs_D45", "H9_CRX_hRO_2")
