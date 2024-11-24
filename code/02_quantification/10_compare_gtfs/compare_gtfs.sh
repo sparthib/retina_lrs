@@ -7,7 +7,7 @@
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH --output=logs/gffcompare.out  # Standard output log
-#SBATCH --error=logs/gffcompare.err   # Standard error log
+#SBATCH --error=logs/gffcompare.out   # Standard error log
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
