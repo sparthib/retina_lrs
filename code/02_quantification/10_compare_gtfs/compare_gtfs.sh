@@ -28,5 +28,8 @@ mkdir -p $OUTPUT_DIR
 /users/sparthib/gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_isoquant $isoquant_gtf
 /users/sparthib/gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_bambu $bambu_gtf
 
+
+/users/sparthib/gffcompare/gffcompare -R -r $isoquant_gtf -o $OUTPUT_DIR/isoquant_ref_bambu_ext $bambu_gtf
+/users/sparthib/gffcompare/gffcompare -R -r $bambu_gtf -o $OUTPUT_DIR/bambu_ref_isoquant_ext $isoquant_gtf
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
