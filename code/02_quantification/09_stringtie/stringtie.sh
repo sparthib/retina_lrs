@@ -1,13 +1,14 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=200G
+#SBATCH --mem=100G
 #SBATCH -c 10
 #SBATCH --job-name=stringtie
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/stringtie.txt
-#SBATCH -e logs/stringtie.txt
+#SBATCH --array=0-10 
+#SBATCH --output=logs/stringtie_%A_%a.out  # Standard output log
+#SBATCH --error=logs/stringtie_%A_%a.err   # Standard error log
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
@@ -22,24 +23,18 @@ BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/gencode.v46.chr_patch_hapl_scaff.basic.annotation.gtf.gz
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
 
-EP1_BRN3B_RO=$BAM_FOLDER/EP1-BRN3B-RO_primary_over_30_sorted.bam
-EP1_WT_hRO_2=$BAM_FOLDER/EP1-WT_hRO_2_primary_over_30_sorted.bam
-EP1_WT_ROs_D45=$BAM_FOLDER/EP1-WT_ROs_D45_primary_over_30_sorted.bam
-H9_BRN3B_hRO_2=$BAM_FOLDER/H9-BRN3B_hRO_2_primary_over_30_sorted.bam
-H9_BRN3B_RO=$BAM_FOLDER/H9-BRN3B-RO_primary_over_30_sorted.bam
-H9_CRX_hRO_2=$BAM_FOLDER/H9-CRX_hRO_2_primary_over_30_sorted.bam
-H9_CRX_ROs_D45=$BAM_FOLDER/H9-CRX_ROs_D45_primary_over_30_sorted.bam
-H9_FT_1=$BAM_FOLDER/H9-FT_1_primary_over_30_sorted.bam
-H9_FT_2=$BAM_FOLDER/H9-FT_2_primary_over_30_sorted.bam
-H9_hRGC_1=$BAM_FOLDER/H9-hRGC_1_primary_over_30_sorted.bam
-H9_hRGC_2=$BAM_FOLDER/H9-hRGC_2_primary_over_30_sorted.bam
 
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/stringtie
-mkdir -p $OUTPUT_FOLDER
+# Define an array of sample names
+SAMPLES=("EP1-BRN3B-RO" "EP1-WT_hRO_2" "EP1-WT_ROs_D45" "H9-BRN3B_hRO_2" "H9-BRN3B-RO" \
+"H9-CRX_hRO_2" "H9-CRX_ROs_D45" "H9-FT_1" "H9-FT_2" "H9-hRGC_1" "H9-hRGC_2")
 
-~/stringtie/stringtie --merge -L -G $REFERENCE_GTF -o $OUTPUT_FOLDER/stringtie.gtf \
-    $EP1_BRN3B_RO $EP1_WT_hRO_2 $EP1_WT_ROs_D45 $H9_BRN3B_hRO_2 $H9_BRN3B_RO $H9_CRX_hRO_2 \
-    $H9_CRX_ROs_D45 $H9_FT_1 $H9_FT_2 $H9_hRGC_1 $H9_hRGC_2
+# Get the sample name based on the SLURM_ARRAY_TASK_ID
+SAMPLE=${SAMPLES[$SLURM_ARRAY_TASK_ID]}
 
-echo "**** Job ends ****"
-date +"%Y-%m-%d %T"
+# Define input BAM and output GTF paths
+BAM_FILE="${BAM_FOLDER}/${SAMPLE}_primary_over_30_sorted.bam"
+OUTPUT_FILE="${OUTPUT_FOLDER}/${SAMPLE}.gtf"
+
+# Run stringtie
+echo "Running stringtie for sample: $SAMPLE"
+~/stringtie/stringtie --merge -L -G $REFERENCE_GTF -o $OUTPUT_FILE $BAM_FILE
