@@ -6,7 +6,6 @@
 #SBATCH --job-name=gffcompare
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH --array=0-10 
 #SBATCH --output=logs/gffcompare.out  # Standard output log
 #SBATCH --error=logs/gffcompare.err   # Standard error log
 #SBATCH --time=7-00:00:00
