@@ -37,9 +37,7 @@ H9_hRGC_2=$BAM_FOLDER/H9-hRGC_2_primary_over_30_sorted.bam
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/stringtie
 mkdir -p $OUTPUT_FOLDER
 
-
-cd ~/stringtie
-./stringtie --merge -L -G $REFERENCE_GTF -o $OUTPUT_FOLDER/stringtie.gtf \
+~/stringtie/stringtie --merge -L -G $REFERENCE_GTF -o $OUTPUT_FOLDER/stringtie.gtf \
     $EP1_BRN3B_RO $EP1_WT_hRO_2 $EP1_WT_ROs_D45 $H9_BRN3B_hRO_2 $H9_BRN3B_RO $H9_CRX_hRO_2 \
     $H9_CRX_ROs_D45 $H9_FT_1 $H9_FT_2 $H9_hRGC_1 $H9_hRGC_2
 
