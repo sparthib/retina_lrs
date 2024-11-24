@@ -37,4 +37,4 @@ OUTPUT_FILE="${OUTPUT_FOLDER}/${SAMPLE}.gtf"
 
 # Run stringtie
 echo "Running stringtie for sample: $SAMPLE"
-~/stringtie/stringtie --merge -L -G $REFERENCE_GTF -o $OUTPUT_FILE $BAM_FILE
+~/stringtie/stringtie -o $OUTPUT_FILE --merge -L -G $REFERENCE_GTF $BAM_FILE
