@@ -7,8 +7,8 @@
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH --array=0-10 
-#SBATCH --output=logs/stringtie_%A_%a.out  # Standard output log
-#SBATCH --error=logs/stringtie_%A_%a.err   # Standard error log
+#SBATCH --output=logs/stringtie_%a.out  # Standard output log
+#SBATCH --error=logs/stringtie_%a.err   # Standard error log
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
