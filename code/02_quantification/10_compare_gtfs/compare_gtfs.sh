@@ -25,8 +25,8 @@ gencode_gtf=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembl
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/gffcompare
 
 mkdir -p $OUTPUT_DIR
-~gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_isoquant $isoquant_gtf
-~gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_bambu $bambu_gtf
+/users/sparthib/gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_isoquant $isoquant_gtf
+/users/sparthib/gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_bambu $bambu_gtf
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
