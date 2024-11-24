@@ -20,8 +20,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality
-REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/gencode.v46.chr_patch_hapl_scaff.basic.annotation.gtf.gz
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
+REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/gencode.v46.chr_patch_hapl_scaff.basic.annotation.gtf
 OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/stringtie
 
 # Define an array of sample names
@@ -38,3 +37,13 @@ OUTPUT_FILE="${OUTPUT_FOLDER}/${SAMPLE}.gtf"
 # Run stringtie
 echo "Running stringtie for sample: $SAMPLE"
 ~/stringtie/stringtie -o $OUTPUT_FILE  -L -G $REFERENCE_GTF $BAM_FILE
+
+
+# 
+# 
+# # gffread human-chr19_P.gtf -o human-chr19_P.gff
+# # gffread v0.11.4
+# ##gff-version 3
+# chr19   hg38_knownGene  transcript      68403   69178   .       +       .       ID=uc284pki.1;geneID=uc284pki.1
+# chr19   hg38_knownGene  exon    68403   69178   0.000000        +       .       Parent=uc284pki.1
+# chr19   hg38_knownGene  transcript      69167   69972   .       +       .       ID=uc284pkj.1;geneID=uc284pkj.1
