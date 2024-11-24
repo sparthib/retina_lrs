@@ -38,6 +38,9 @@ OUTPUT_FILE="${OUTPUT_FOLDER}/${SAMPLE}.gtf"
 echo "Running stringtie for sample: $SAMPLE"
 ~/stringtie/stringtie -o $OUTPUT_FILE  -L -G $REFERENCE_GTF $BAM_FILE
 
+echo "**** Job ends ****"
+date +"%Y-%m-%d %T"
+
 
 # 
 # 
