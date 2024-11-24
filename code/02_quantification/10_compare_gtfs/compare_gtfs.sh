@@ -19,10 +19,11 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 
-$isoquant_gtf=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/OUT/OUT.extended_annotation.gtf
-$bambu_gtf=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/extended_annotations.gtf
-$gencode_gtf=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/gencode.v46.chr_patch_hapl_scaff.basic.annotation.gtf
-$OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/gffcompare
+isoquant_gtf=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/OUT/OUT.extended_annotation.gtf
+bambu_gtf=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/extended_annotations.gtf
+gencode_gtf=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/gencode.v46.chr_patch_hapl_scaff.basic.annotation.gtf
+OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/gffcompare
+
 mkdir -p $OUTPUT_DIR
 ~gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_isoquant $isoquant_gtf
 ~gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_bambu $bambu_gtf
