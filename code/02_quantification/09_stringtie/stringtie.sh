@@ -22,7 +22,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality
 REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/gencode.v46.chr_patch_hapl_scaff.basic.annotation.gtf.gz
 REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
-
+OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/stringtie
 
 # Define an array of sample names
 SAMPLES=("EP1-BRN3B-RO" "EP1-WT_hRO_2" "EP1-WT_ROs_D45" "H9-BRN3B_hRO_2" "H9-BRN3B-RO" \
