@@ -30,7 +30,8 @@ REFERENCE_TRANSCRIPTOME=/dcs04/hicks/data/sparthib/references/genome/GENCODE/pri
 #sample transcriptome
 SAMPLE_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/OUT/OUT.extended_annotation.gtf
 
-OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/
+OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/temp/
+mkdir -p $OUTPUT_DIR
 
 
 source activate /users/sparthib/.conda/envs/SQANTI3
