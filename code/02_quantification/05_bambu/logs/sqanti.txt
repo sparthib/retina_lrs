@@ -1,10 +1,10 @@
 **** Job starts ****
-2024-11-25 14:49:39
+2024-11-25 15:10:45
 **** JHPCE info ****
 User: sparthib
-Job id: 10908916
+Job id: 10909132
 Job name: sqanti
-Node name: compute-155
+Node name: compute-163
 ****
 Rscript (R) version 4.3.1 (2023-06-16)
 /users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:74: DeprecationWarning: Use shutil.which instead of find_executable
@@ -22,4 +22,4 @@ Write arguments to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu
 Reading genome fasta /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa....
 Skipping aligning of sequences because GTF file was provided.
 **** Job ends ****
-2024-11-25 14:50:08
+2024-11-25 15:11:02
