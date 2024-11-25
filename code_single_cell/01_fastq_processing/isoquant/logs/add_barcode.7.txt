@@ -1,13 +1,9 @@
 **** Job starts ****
-2024-09-27 10:00:01
+2024-11-25 13:06:41
 **** JHPCE info ****
 User: sparthib
-Job id: 9869116
+Job id: 10897686
 Job name: add_barcode
-Node name: compute-120
+Node name: compute-107
 Array task ID: 7
 10X_D200-EP1-1_B1
-Loading LIBD SLURM module for samtools/1.18
-[bam_sort_core] merging from 14 files and 1 in-memory blocks...
-**** Job ends ****
-2024-09-27 11:37:56
