@@ -28,7 +28,7 @@ REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assem
 REFERENCE_TRANSCRIPTOME=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts.fa
 
 #sample transcriptome
-BAMBU_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/extended_annotation.gtf
+BAMBU_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/extended_annotations.gtf
 
 # GTF (default): by default, SQANTI3 expects the transcriptome to be provided as a GTF file, 
 # and we recommend to stick to this format if your transcriptome construction pipeline allows it
