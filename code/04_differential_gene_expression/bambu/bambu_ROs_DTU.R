@@ -4,7 +4,7 @@ library(readr)
 library(sessioninfo)
 library(here)
 
-bambu_dir <- here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation")
+bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
 
 #read counts_transcript.txt table from bambu_dir
 
@@ -17,6 +17,8 @@ colnames(counts) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(counts
 colnames(counts)[1] <- "isoform_id"
 #remove GENE_ID (2nd column)
 counts <- counts[, -2]
+##keep only ROs
+counts <- counts[,1:8]
 head(counts)
 
 
@@ -26,6 +28,7 @@ cpm <- read.table(file.path(bambu_dir, "CPM_transcript.txt"),
 colnames(cpm) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(cpm))
 colnames(cpm)[1] <- "isoform_id"
 cpm <- cpm[, -2]
+cpm <- cpm[,1:8]
 head(cpm)
 
 myDesign  <- data.frame(sampleID = c("EP1.BRN3B.RO" , "EP1.WT_hRO_2", "EP1.WT_ROs_D45", 
@@ -33,24 +36,24 @@ myDesign  <- data.frame(sampleID = c("EP1.BRN3B.RO" , "EP1.WT_hRO_2", "EP1.WT_RO
                         condition = c("RO_D200", "RO_D100", "RO_D45", "RO_D100", "RO_D200", "RO_D100", "RO_D45"),
                         stringsAsFactors = FALSE)
 
-dir.create(here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/"), showWarnings = T,
+dir.create(here("processed_data/dtu//bambu/ROs/rds/"), showWarnings = T,
            recursive = T)
-rdata_path = here("processed_data/dtu/DTU_gandall/bambu/ROs/rds/SwitchList.rds")
+rdata_path = here("processed_data/dtu/bambu/ROs/rds/SwitchList.rds")
 
 if(!file.exists(rdata_path)){
 SwitchList <- importRdata(isoformCountMatrix   = counts,
                           isoformRepExpression = cpm,
                           designMatrix         = myDesign,
-                          isoformExonAnnoation = here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/extended_annotations.gtf"),
-                          isoformNtFasta       = here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.fasta"),
+                          isoformExonAnnoation = here("processed_data/bambu/ROs_extended_annotation/extended_annotations.gtf"),
+                          isoformNtFasta       = here("processed_data/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.fasta"),
                           removeNonConvensionalChr = TRUE,
                           ignoreAfterBar = TRUE,
                           ignoreAfterPeriod = FALSE,
                           showProgress = TRUE)
 #if cds gtf doesn't exist, convert gff to gtf
-if(!file.exists(here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf"))) {
-  gff <- rtracklayer::import(here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gff"))
-  rtracklayer::export(gff, here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf"),
+if(!file.exists(here("processed_data/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf"))) {
+  gff <- rtracklayer::import(here("processed_data/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gff"))
+  rtracklayer::export(gff, here("processed_data/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf"),
                       "gtf")
   rm(gff)
 }
@@ -58,7 +61,7 @@ if(!file.exists(here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/s
 
 SwitchList <- addORFfromGTF(
   switchAnalyzeRlist     = SwitchList,
-  pathToGTF              = here("processed_data/DTU_Gandall/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf")
+  pathToGTF              = here("processed_data/bambu/ROs_extended_annotation/sqanti3_qc/ROs_corrected.gtf.cds.gtf")
 )
 
 SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "", SwitchList$isoformFeatures$gene_id)
