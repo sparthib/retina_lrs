@@ -29,7 +29,9 @@ mkdir -p $OUTPUT_DIR
 /users/sparthib/gffcompare/gffcompare -R -r $gencode_gtf -o $OUTPUT_DIR/gencode_bambu $bambu_gtf
 
 
-/users/sparthib/gffcompare/gffcompare -R -r $isoquant_gtf -o $OUTPUT_DIR/isoquant_ref_bambu_ext $bambu_gtf
 /users/sparthib/gffcompare/gffcompare -R -r $bambu_gtf -o $OUTPUT_DIR/bambu_ref_isoquant_ext $isoquant_gtf
+
+#only keep one instance of the same intron-chain between the two methods
+/users/sparthib/gffcompare/gffcompare -R -r $bambu_gtf -o $OUTPUT_DIR/bambu_ref_gencode_ext_nodups $gencode_gtf -D
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
