@@ -8,3 +8,4 @@ Node name: compute-143
 Array task ID: 12
 10x_D200-EP1-2_B2
 Loading LIBD SLURM module for samtools/1.18
+[bam_sort_core] merging from 1 files and 1 in-memory blocks...
