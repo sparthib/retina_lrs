@@ -1,8 +1,8 @@
 **** Job starts ****
-2024-11-25 13:09:12
+2024-11-25 13:18:45
 **** JHPCE info ****
 User: sparthib
-Job id: 10897699
+Job id: 10897709
 Job name: sqanti
 Node name: compute-160
 ****
@@ -14,6 +14,12 @@ Rscript (R) version 4.3.1 (2023-06-16)
 /users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:107: DeprecationWarning: Use shutil.which instead of find_executable
   RSCRIPTPATH = distutils.spawn.find_executable('Rscript')
 WARNING: output directory /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/sqanti3_qc already exists. Overwriting!
-ERROR: Input isoforms /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/extended_annotation.gtf doesn't exist. Abort!
+
+ERROR: gtf "GL000209.2" chromosome not found in genome reference file.
+Write arguments to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/sqanti3_qc/all_samples.params.txt...
+**** Running SQANTI3...
+**** Parsing provided files....
+Reading genome fasta /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa....
+Skipping aligning of sequences because GTF file was provided.
 **** Job ends ****
-2024-11-25 13:09:15
+2024-11-25 13:19:23
