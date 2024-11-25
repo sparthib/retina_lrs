@@ -22,7 +22,7 @@ echo "****"
 
 #reference genome 
 REFERENCE_GENOME_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
-REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/gencode.v46.chr_patch_hapl_scaff.basic.annotation.gtf     
+REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/gencode.v46.basic.annotation.gtf    
 #reference transcriptome 
 REFERENCE_TRANSCRIPTOME=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts.fa
 
@@ -30,7 +30,8 @@ REFERENCE_TRANSCRIPTOME=/dcs04/hicks/data/sparthib/references/genome/GENCODE/pri
 BAMBU_GTF=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/extended_annotations.gtf
 
 # GTF (default): by default, SQANTI3 expects the transcriptome to be provided as a GTF file, 
-# and we recommend to stick to this format if your transcriptome construction pipeline allows it
+# and we recommend to stick to this format if your transcriptome construction pipeline allows it.
+
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/
 
 source activate /users/sparthib/.conda/envs/SQANTI3
