@@ -1,8 +1,8 @@
 **** Job starts ****
-2024-11-25 13:18:45
+2024-11-25 14:00:26
 **** JHPCE info ****
 User: sparthib
-Job id: 10897709
+Job id: 10907838
 Job name: sqanti
 Node name: compute-160
 ****
@@ -22,4 +22,4 @@ Write arguments to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu
 Reading genome fasta /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa....
 Skipping aligning of sequences because GTF file was provided.
 **** Job ends ****
-2024-11-25 13:19:23
+2024-11-25 14:00:55
