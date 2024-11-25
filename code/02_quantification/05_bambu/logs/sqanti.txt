@@ -1,10 +1,10 @@
 **** Job starts ****
-2024-11-25 12:51:07
+2024-11-25 13:09:12
 **** JHPCE info ****
 User: sparthib
-Job id: 10897604
+Job id: 10897699
 Job name: sqanti
-Node name: compute-163
+Node name: compute-160
 ****
 Rscript (R) version 4.3.1 (2023-06-16)
 /users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:74: DeprecationWarning: Use shutil.which instead of find_executable
@@ -13,6 +13,7 @@ Rscript (R) version 4.3.1 (2023-06-16)
   if distutils.spawn.find_executable(GFFREAD_PROG) is None:
 /users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:107: DeprecationWarning: Use shutil.which instead of find_executable
   RSCRIPTPATH = distutils.spawn.find_executable('Rscript')
+WARNING: output directory /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/sqanti3_qc already exists. Overwriting!
 ERROR: Input isoforms /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/extended_annotation.gtf doesn't exist. Abort!
 **** Job ends ****
-2024-11-25 12:51:10
+2024-11-25 13:09:15
