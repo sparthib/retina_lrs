@@ -1,10 +1,10 @@
 **** Job starts ****
-2024-11-25 15:10:45
+2024-11-25 18:01:41
 **** JHPCE info ****
 User: sparthib
-Job id: 10909132
+Job id: 10911307
 Job name: sqanti
-Node name: compute-163
+Node name: compute-168
 ****
 Rscript (R) version 4.3.1 (2023-06-16)
 /users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:74: DeprecationWarning: Use shutil.which instead of find_executable
@@ -14,12 +14,28 @@ Rscript (R) version 4.3.1 (2023-06-16)
 /users/sparthib/SQANTI3-5.2.1/sqanti3_qc.py:107: DeprecationWarning: Use shutil.which instead of find_executable
   RSCRIPTPATH = distutils.spawn.find_executable('Rscript')
 WARNING: output directory /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/sqanti3_qc already exists. Overwriting!
-
-ERROR: gtf "GL000209.2" chromosome not found in genome reference file.
+**** Parsing Isoforms....
+**** RT-switching computation....
+Full-length read abundance files not provided.
+Isoforms expression files not provided.
+**** Writing output files....
+Removing temporary files....
+SQANTI3 complete in 22571.758449822664 sec.
 Write arguments to /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/sqanti3_qc/all_samples.params.txt...
 **** Running SQANTI3...
 **** Parsing provided files....
 Reading genome fasta /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa....
 Skipping aligning of sequences because GTF file was provided.
+
+Indels will be not calculated since you ran SQANTI3 without alignment step (SQANTI3 with gtf format as transcriptome input).
+**** Predicting ORF sequences...
+**** Parsing Reference Transcriptome....
+Splice Junction Coverage files not provided.
+**** TSS ratio will not be calculated since SR information was not provided
+**** Reading CAGE Peak data.
+**** Reading polyA Peak data.
+**** Reading PolyA motif list.
+**** Performing Classification of Isoforms....
+Number of classified isoforms: 254012
 **** Job ends ****
-2024-11-25 15:11:02
+2024-11-26 00:17:59
