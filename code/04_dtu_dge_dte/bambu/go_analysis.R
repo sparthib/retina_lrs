@@ -8,11 +8,12 @@ library(tidyr)
 ### import functions from helper.R
 source("/users/sparthib/retina_lrs/code/04_dtu_dge_dte/bambu/helper.R")
 
-
+comparison <- "ROs"
+method <- "bambu"
 # Define constants
 base_dir <- "/users/sparthib/retina_lrs/processed_data"
-output_dir <- file.path(base_dir, "dtu", "bambu", "ROs", "plots", "go")
-input_file <- file.path(base_dir, "dtu", "bambu", "ROs", "DGE_DTU_DTE.tsv")
+output_dir <- file.path(base_dir, "dtu", method, comparison, "plots", "go")
+input_file <- file.path(base_dir, "dtu", method, comparison, "DGE_DTU_DTE.tsv")
 
 
 # Load data for different comparisons
@@ -30,10 +31,9 @@ onts <- c("MF", "BP", "CC")
 for (comparison in names(gene_lists)) {
   genelist <- gene_lists[[comparison]]
   for (ont in onts) {
-    output_data_dir <- file.path(base_dir, "isoquant", "go", comparison)
-    output_plot_dir <- file.path(output_dir, comparison)
-    
-    run_ora(genelist, ont, output_data_dir)
-    run_ora_plots(genelist, ont, output_plot_dir)
+    run_ora(genelist, ont, output_dir)
+    run_ora_plots(genelist, ont, output_dir)
   }
 }
+
+
