@@ -18,75 +18,43 @@ library(edgeR)
 
 plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots"
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
+input_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs"
+input_gene_counts <- "gene_counts_ROs.RDS"
+input_isoform_counts <- "isoform_counts_ROs.RDS"
+input_isoform_cpm <- "isoform_cpm_ROs.RDS"
 
-gene_counts <- read.table(file.path(bambu_dir, "counts_gene.txt"),
-                     header = TRUE)
-#remove "_primary_over_30_chr_only_sorted" in column names 
-colnames(gene_counts) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(gene_counts))
+gene_counts <- readRDS(file.path(input_dir, input_gene_counts))
+isoform_counts <- readRDS(file.path(input_dir, input_isoform_counts))
+isoform_cpm <- readRDS(file.path(input_dir, input_isoform_cpm))
+
+
 colnames(gene_counts)[1] <- "gene_id"
 
-dge <- DGEList(counts= gene_counts )
+dge <- DGEList(counts=gene_counts)
 
 ## calculate norm. factors
 dge <- calcNormFactors(dge)
 
 ## get normalized counts
 gene_cpm <- cpm(dge)
-rownames(gene_cpm) <- gene_counts$gene_id
+
+gene_counts <- remove_zero_var_rows(gene_counts)
+isoform_counts <- remove_zero_var_rows(isoform_counts)
+isoform_cpm <- remove_zero_var_rows(isoform_cpm)
+gene_cpm <- remove_zero_var_rows(gene_cpm)
 
 
-# CPM data
+samples <- colnames(gene_counts)
+groups <- c("RO_D45", "RO_D45", "RO_D100","RO_D100", 
+                        "RO_D100", "RO_D200", "RO_D200")
 
-head(cpm)
-
-myDesign  <- data.frame(sampleID = c("EP1.BRN3B.RO" , "EP1.WT_hRO_2", "EP1.WT_ROs_D45", 
-                                     "H9.BRN3B_hRO_2",  "H9.BRN3B.RO", "H9.CRX_hRO_2", "H9.CRX_ROs_D45") ,
-                        condition = c("A_RO_D200", "B_RO_D100", "C_RO_D45", "B_RO_D100", "A_RO_D200", "B_RO_D100", "C_RO_D45"),
-                        stringsAsFactors = FALSE)
-
-samples = c("EP1.BRN3B.RO" , "EP1.WT_hRO_2", "EP1.WT_ROs_D45", 
-             "H9.BRN3B_hRO_2",  "H9.BRN3B.RO", "H9.CRX_hRO_2", "H9.CRX_ROs_D45")
-
-
-# Function to load data
-load_expression_data <- function(data_type) {
-  counts <- read.table(file.path(bambu_dir, "counts_transcript.txt"),
-                       header = TRUE)
-  #remove "_primary_over_30_chr_only_sorted" in column names 
-  colnames(counts) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(counts))
-  colnames(counts)[1] <- "isoform_id"
-  #remove GENE_ID (2nd column)
-  counts <- counts[, -2]
-  ##keep only ROs
-  counts <- counts[,1:8]
-  
-  cpm <- read.table(file.path(bambu_dir, "CPM_transcript.txt"),
-                    header = TRUE)
-  
-  #remove "_primary_over_30_chr_only_sorted" in column names 
-  colnames(cpm) <- gsub("_primary_over_30_chr_only_sorted", "", colnames(cpm))
-  colnames(cpm)[1] <- "isoform_id"
-  
-  #remove GENE_ID (2nd column)
-  cpm  <- cpm[, -2]
-  ##keep only ROs
-  cpm <- cpm[,1:8]
-
-  list(counts = counts, cpm = cpm)
-}
 
 # Function to filter rows with zero variance
 remove_zero_var_rows <- function(mat) {
   mat[apply(mat, 1, function(x) min(x) != max(x)), ]
 }
 
-# Function to prepare TPM data for PCA
-prepare_tpm <- function(tpm) {
-  rownames(tpm) <- tpm$isoform_id
-  selected_tpm <- tpm[, 2:8]
-  remove_zero_var_rows(selected_tpm)
-}
+
 
 # PCA and plotting function
 pca_plots_dir <- file.path(plots_dir, "pca")
@@ -128,23 +96,9 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
 }
 
 # Prepare data and plot for isoforms
-isoform_data <- load_expression_data("transcript")
-RO_isoform_tpm <- prepare_tpm(isoform_data$cpm)
-
-#remove isoform id version 
-RO_isoform_tpm <- RO_isoform_tpm |> rownames_to_column(var = "isoform_id") |>
-  mutate(isoform_id = gsub("\\..*", "", isoform_id)) |> column_to_rownames(var = "isoform_id")
-
-RO_isoquant_groups <- factor(c("RO_D200", "RO_D100", "RO_D45", "RO_D100", "RO_D200", "RO_D100", "RO_D45"))
 pca_plots_dir <- file.path(plots_dir, "pca")
-plot_pca(RO_isoform_tpm, samples, RO_isoquant_groups, "isoform", pca_plots_dir)
-
-# Prepare data and plot for genes
-gene_data <- load_expression_data("gene")
-RO_gene_tpm <- gene_cpm[ , c(1:7)]
-RO_gene_tpm <- remove_zero_var_rows(RO_gene_tpm)
-plot_pca(RO_gene_tpm, samples, RO_isoquant_groups, "gene", pca_plots_dir)
-
+plot_pca(isoform_cpm, samples, groups, "isoform", pca_plots_dir)
+plot_pca(gene_cpm, samples, groups, "gene", pca_plots_dir)
 
 ######## HEATMAPS ########
 
@@ -242,52 +196,63 @@ plot_heatmap(input_data_dir, "isoquant", "ROs", ROs_isoquant_tpm, ROs_isoquant_g
 input_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs"
 DGE_DTU_DTE <- read_tsv(file.path(input_data_dir, "DGE_DTU_DTE.tsv"))
 
-gene_overlaps = DGE_DTU_DTE |> dplyr::select( gene_id, 
-                                              condition_1, condition_2,DGE, DTU )
+
+gene_overlaps = new_DGE_DTE_DTU |> dplyr::select( gene_id, isoform_id,
+                                                  condition_1, condition_2,DGE, DTU , DTE )
 
 gene_overlaps <- gene_overlaps |>
   mutate(condition = case_when(
     condition_1 == "B_RO_D100" & condition_2 == "C_RO_D45" ~ "RO_D100_vs_RO_D45",
     condition_1 == "A_RO_D200" & condition_2 == "C_RO_D45" ~ "RO_D200_vs_RO_D45",
-    condition_1 == "A_RO_D200" & condition_2 == "B_RO_D100" ~ "RO_D100_vs_RO_D200",
+    condition_1 == "A_RO_D200" & condition_2 == "B_RO_D100" ~ "RO_D200_vs_RO_D100",
     TRUE ~ NA_character_  # This line handles any other cases that don't match the above
   ))
 
 gene_overlaps <- gene_overlaps |> mutate(DTU_RO_D100_vs_RO_D45 = ifelse(DTU == TRUE & condition == "RO_D100_vs_RO_D45", TRUE, FALSE),
                                          DTU_RO_D200_vs_RO_D45 = ifelse(DTU == TRUE & condition == "RO_D200_vs_RO_D45", TRUE, FALSE),
-                                         DTU_RO_D100_vs_RO_D200 = ifelse(DTU == TRUE & condition == "RO_D100_vs_RO_D200", TRUE, FALSE),
-                                         DGE_RO_D100_vs_RO_D200 = ifelse(DGE == TRUE & condition == "RO_D100_vs_RO_D200", TRUE, FALSE),
+                                         DTU_RO_D200_vs_RO_D100 = ifelse(DTU == TRUE & condition == "RO_D200_vs_RO_D100", TRUE, FALSE),
+                                         DGE_RO_D200_vs_RO_D100 = ifelse(DGE == TRUE & condition == "RO_D200_vs_RO_D100", TRUE, FALSE),
                                          DGE_RO_D200_vs_RO_D45 = ifelse(DGE == TRUE & condition == "RO_D200_vs_RO_D45", TRUE, FALSE),
-                                         DGE_RO_D100_vs_RO_D45 = ifelse(DGE == TRUE & condition == "RO_D100_vs_RO_D45", TRUE, FALSE))
+                                         DGE_RO_D100_vs_RO_D45 = ifelse(DGE == TRUE & condition == "RO_D100_vs_RO_D45", TRUE, FALSE),
+                                         DTE_RO_D100_vs_RO_D45 = ifelse(DTE == TRUE & condition == "RO_D100_vs_RO_D45", TRUE, FALSE),
+                                         DTE_RO_D200_vs_RO_D45 = ifelse(DTE == TRUE & condition == "RO_D200_vs_RO_D45", TRUE, FALSE),
+                                         DTE_RO_D200_vs_RO_D100 = ifelse(DTE == TRUE & condition == "RO_D200_vs_RO_D100", TRUE, FALSE))
 
 gene_overlaps  <- gene_overlaps |> distinct()
-gene_overlaps <- gene_overlaps |> dplyr::select(-c( DGE, DTU,  condition )) 
+gene_overlaps <- gene_overlaps |> dplyr::select(-c( DGE, DTU, DTE,  condition )) 
 
 gene_overlaps = gene_overlaps |> group_by(gene_id) |> 
   summarise(DTU_RO_D100_vs_RO_D45 = any(DTU_RO_D100_vs_RO_D45), 
             DTU_RO_D200_vs_RO_D45 = any(DTU_RO_D200_vs_RO_D45), 
-            DTU_RO_D100_vs_RO_D200 = any(DTU_RO_D100_vs_RO_D200), 
-            DGE_RO_D100_vs_RO_D200 = any(DGE_RO_D100_vs_RO_D200), 
+            DTU_RO_D200_vs_RO_D100 = any(DTU_RO_D200_vs_RO_D100), 
+            DGE_RO_D200_vs_RO_D100 = any(DGE_RO_D200_vs_RO_D100), 
             DGE_RO_D200_vs_RO_D45 = any(DGE_RO_D200_vs_RO_D45), 
-            DGE_RO_D100_vs_RO_D45 = any(DGE_RO_D100_vs_RO_D45)) 
+            DGE_RO_D100_vs_RO_D45 = any(DGE_RO_D100_vs_RO_D45),
+            DTE_RO_D100_vs_RO_D45 = any(DTE_RO_D100_vs_RO_D45),
+            DTE_RO_D200_vs_RO_D45 = any(DTE_RO_D200_vs_RO_D45),
+            DTE_RO_D200_vs_RO_D100 = any(DTE_RO_D200_vs_RO_D100)) 
 
 rownames(gene_overlaps) <- gene_overlaps$gene_id
-
-
 
 
 # Prepare data for VennDiagram
 venn_data <- list(
   DTU_RO_D100_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DTU_RO_D100_vs_RO_D45],
   DTU_RO_D200_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DTU_RO_D200_vs_RO_D45],
-  DTU_RO_D100_vs_RO_D200 = rownames(gene_overlaps)[gene_overlaps$DTU_RO_D100_vs_RO_D200],
-  DGE_RO_D100_vs_RO_D200 = rownames(gene_overlaps)[gene_overlaps$DGE_RO_D100_vs_RO_D200],
+  DTU_RO_D200_vs_RO_D100 = rownames(gene_overlaps)[gene_overlaps$DTU_RO_D200_vs_RO_D100],
+  DGE_RO_D200_vs_RO_D100 = rownames(gene_overlaps)[gene_overlaps$DGE_RO_D200_vs_RO_D100],
   DGE_RO_D200_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DGE_RO_D200_vs_RO_D45],
-  DGE_RO_D100_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DGE_RO_D100_vs_RO_D45]
+  DGE_RO_D100_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DGE_RO_D100_vs_RO_D45],
+  DTE_RO_D100_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DTE_RO_D100_vs_RO_D45],
+  DTE_RO_D200_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DTE_RO_D200_vs_RO_D45],
+  DTE_RO_D200_vs_RO_D100 = rownames(gene_overlaps)[gene_overlaps$DTE_RO_D200_vs_RO_D100]
 )
 
 
 library("UpSetR")
+
+output_plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots"
+
 upset_path <- file.path(output_plots_dir, "DGE_DTU_ROs_upset.pdf")
 pdf(upset_path, width = 10, height = 6)
 p <- upset(fromList(venn_data), nsets = 15,order.by = "freq", 
@@ -382,7 +347,6 @@ results_df <- data.frame(
   stringsAsFactors = FALSE
 )
 
-# If you want to view the dataframe, you can use:
 ##### Volcano plots ###### 
 
 DTE_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/DTE"
@@ -391,7 +355,6 @@ DTE_table <- DTE_table |> mutate(genes = gsub("\\..*", "", genes))
 
 
 #remove DTE_table isoform_id version number
-
 DTE_table$isoform_id <- gsub("\\..*", "", DTE_table$isoform_id)
 
 #get gene names from biomart
