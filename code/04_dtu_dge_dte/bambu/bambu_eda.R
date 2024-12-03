@@ -13,15 +13,18 @@ library(stringr)
 library(EnhancedVolcano)
 library(edgeR)
 
+### import functions from helper.R
+source("/users/sparthib/retina_lrs/code/04_dtu_dge_dte/bambu/helper.R")
+
 
 # Define directories and common variables
 
 plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots"
 
 input_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs"
-input_gene_counts <- "gene_counts_ROs.RDS"
-input_isoform_counts <- "isoform_counts_ROs.RDS"
-input_isoform_cpm <- "isoform_cpm_ROs.RDS"
+input_gene_counts <- "gene_counts.RDS"
+input_isoform_counts <- "isoform_counts.RDS"
+input_isoform_cpm <- "isoform_cpm.RDS"
 
 gene_counts <- readRDS(file.path(input_dir, input_gene_counts))
 isoform_counts <- readRDS(file.path(input_dir, input_isoform_counts))
@@ -37,6 +40,7 @@ dge <- calcNormFactors(dge)
 
 ## get normalized counts
 gene_cpm <- cpm(dge)
+saveRDS(gene_cpm, file.path(input_dir, "gene_cpm.RDS"))
 
 gene_counts <- remove_zero_var_rows(gene_counts)
 isoform_counts <- remove_zero_var_rows(isoform_counts)
@@ -49,50 +53,10 @@ groups <- c("RO_D45", "RO_D45", "RO_D100","RO_D100",
                         "RO_D100", "RO_D200", "RO_D200")
 
 
-# Function to filter rows with zero variance
-remove_zero_var_rows <- function(mat) {
-  mat[apply(mat, 1, function(x) min(x) != max(x)), ]
-}
-
-
-
 # PCA and plotting function
 pca_plots_dir <- file.path(plots_dir, "pca")
 if (!dir.exists(pca_plots_dir)) {
   dir.create(pca_plots_dir, recursive = TRUE)
-}
-plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
-  pc <- prcomp(t(log2(tpm + 1)), scale = TRUE)
-  pcr <- data.frame(pc$x[, 1:2], row.names = samples)  # PC scores
-  
-  # PCA plot
-  p <- ggplot(pcr, aes(PC1, PC2, color = groups)) +  
-    geom_point(size = 2) +
-    theme_bw() +
-    ggtitle(paste("PCA on", output_name, "Expression")) +
-    xlab(paste("PC1 (", round(pc$sdev[1]^2 / sum(pc$sdev^2) * 100, 2), "%)")) +
-    ylab(paste("PC2 (", round(pc$sdev[2]^2 / sum(pc$sdev^2) * 100, 2), "%)")) +
-    geom_label(aes(label = rownames(pcr)), size = 2, fill = "white", alpha = 0.7)
-  
-  # Scree plot
-  var_explained <- pc$sdev[1:10]^2 / sum(pc$sdev^2)
-  var_explained_df <- data.frame(
-    Principal_Component = factor(1:length(var_explained)),
-    Variance_Explained = var_explained
-  )
-  
-  q <- ggplot(var_explained_df, aes(x = Principal_Component, y = Variance_Explained)) + 
-    geom_bar(stat = "identity", fill = "skyblue") +
-    xlab("Principal Component") +  
-    ylab("Variance Explained") +  
-    ggtitle("Scree Plot") +
-    ylim(0, 1) +
-    theme_minimal()
-  
-  # Save plots
-  pdf(file.path(output_dir, paste0(output_name, "_level_pca.pdf")), width = 12, height = 6)
-  print(p + q)
-  dev.off()
 }
 
 # Prepare data and plot for isoforms
@@ -100,94 +64,6 @@ pca_plots_dir <- file.path(plots_dir, "pca")
 plot_pca(isoform_cpm, samples, groups, "isoform", pca_plots_dir)
 plot_pca(gene_cpm, samples, groups, "gene", pca_plots_dir)
 
-######## HEATMAPS ########
-
-heatmap_plots_dir <- file.path(plots_dir, "heatmaps")
-if (!dir.exists(heatmap_plots_dir)) {
-  dir.create(heatmap_plots_dir, recursive = TRUE)
-}
-
-input_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs"
-
-isoformFeatures <- read_tsv(file.path(input_data_dir, "isoformFeatures.tsv"))
-isoformFeatures$isoform_switch_q_value
-
-
-
-
-plot_heatmap <- function(input_data_dir, quant_name, compare, tmm, groups, output_plots_dir, type) {
-  # Read the DEXSeqSwitchList file
-  switch_file <- read_tsv(file.path(input_data_dir, "isoformFeatures.tsv"))
-  if(type == "dtu"){
-    significant_DTUs <- switch_file |> dplyr::group_by(isoform_id ) |>
-      filter(isoform_switch_q_value < 0.05 & abs(dIF) >= 0.1) |>
-      arrange(isoform_switch_q_value) |> 
-      dplyr::select(isoform_id, gene_name) |>
-      distinct() |> 
-      head(n = 200)
-    
-    # Keep only tmm rows that are in DTU_isoforms based on its rownames
-    tpm <- RO_isoform_tpm
-    tpm <- as.data.frame(tpm)
-    tpm$isoform_id <- rownames(tpm)
-    #remove version number 
-    tpm$isoform_id <- gsub("\\..*", "", tpm$isoform_id)
-    significant_DTUs$isoform_id <- gsub("\\..*", "", significant_DTUs$isoform_id)
-    TPM_significant_isoforms <- tpm |>
-      inner_join(significant_DTUs, by = "isoform_id") }
-  
-  else if(type == "dte"){ 
-    
-    }
-  
-  
-  
-  
-  
-  
-  # Create a new column with gene name and isoform name
-  TPM_significant_isoforms <- TPM_significant_isoforms |> 
-    mutate(gene_isoform = paste(gene_name, isoform_id, sep = "_")) |>
-    column_to_rownames(var = "gene_isoform") |>
-    dplyr::select(-isoform_id, -gene_name)
-  
-  
-  # Convert to matrix and scale
-  TPM_matrix <- as.matrix( TPM_significant_isoforms )
-  TPM_matrix <- t(scale(t(TPM_matrix), center = TRUE, scale = TRUE))
-  
-  # Color function for heatmap
-  col_fun <- colorRamp2(c(-2.5, 0, 2.5), c("blue", "white", "red"))
-  
-  # Heatmap annotation
-  compare = "ROs"
-  groups = RO_isoquant_groups
-  ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left")
-  if (compare == "FT_vs_RGC"){
-    ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                            col = list(type = c("FT" = "lightgreen", "RGC" = "brown")
-                            ))
-  }else if(compare == "ROs"){
-    ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                            col = list(type = c("RO_D200" = "purple", "RO_D45" = "orange", "RO_D100" = "seagreen")
-                            ))
-  }
-  
-  
-  # Generate and draw heatmap
-  pdf(file.path(heatmap_plots_dir, paste0(compare, "_DTU_heatmap.pdf")))
-  ht_list <- Heatmap(TPM_matrix , name = paste0("scaled TPM expression of top", nrow(TPM_matrix), " DTU isoforms"),  row_km = 5,
-                     col = col_fun, top_annotation = ha, show_row_names = TRUE,
-                     show_column_names = TRUE, row_title = "isoforms",
-                     row_names_gp = gpar(fontsize = 2.2),
-                     column_names_gp = gpar(fontsize = 5),
-                     show_row_dend = TRUE, show_column_dend = TRUE)
-  draw(ht_list)
-  dev.off()
-  
-}
-
-plot_heatmap(input_data_dir, "isoquant", "ROs", ROs_isoquant_tpm, ROs_isoquant_groups, heatmap_plots_dir)
 
 
 ####### Upset Plot ########
@@ -263,47 +139,6 @@ dev.off()
 
 
 
-plot_barplot <- function(df, condition){ 
-  
-  dge_overlaps = df |> group_by(gene_id) |> dplyr::select( -DTE) |> 
-    summarise(DGE=any(DGE), DTU=any(DTU))  
-  
-  dte_overlaps = df |> group_by(gene_id) |> dplyr::select(-DGE) |> 
-    summarise(DTE = any(DTE), DTU=any(DTU)) 
-  
-  dge_contingency_table <- as_tibble(xtabs(~ DGE + DTU, data = dge_overlaps))
-  dge_contingency_table <- plyr::ddply(dge_contingency_table, ~DGE, transform, Prop = n / sum(n))
-  
-  
-  dge_bar <- ggplot(dge_contingency_table, aes(x = DGE, y = n, fill = DTU)) +
-    geom_bar(stat = "identity", position = "stack") +
-    labs(title = "DGE and DTU genes", x = "DGE", y = "Count") + 
-    scale_y_continuous(labels = scales::comma) +  # Display y-axis as percentage
-    theme_minimal() +
-    geom_text(aes(label = n), 
-              position = position_stack(vjust = 0.5), 
-              size = 2)
-  
-  dte_contingency_table <- xtabs(~ DTE + DTU, data = dte_overlaps)
-  dte_contingency_table <- plyr::ddply(as_tibble(dte_contingency_table), ~DTE, transform, Prop = n / sum(n))
-  
-  dte_bar <- ggplot(dte_contingency_table, aes(x = DTE, y = n, fill = DTU)) +
-    geom_bar(stat = "identity", position = "stack") +
-    labs(title = "DTE and DTU genes", x = "DTE", y = "Count") + 
-    scale_y_continuous(labels = scales::comma) +   # Display y-axis as percentage
-    theme_minimal() +
-    geom_text(aes(label = n), 
-              position = position_stack(vjust = 0.5), 
-              size = 2)
-  
-  library(patchwork)
-  p <- dge_bar + dte_bar + plot_annotation(title = condition)
-  ggsave(path = output_plots_dir, 
-         device = "pdf", 
-         plot = p, 
-         filename = paste0(condition, "df_barplot.pdf"))
-  
-}
 
 plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "B_RO_D100" &
                                      condition_2 == "C_RO_D45"), "RO_D100_vs_RO_D45")
@@ -530,8 +365,6 @@ ggplot(D200_vs_D100_DGEs, aes(x = PValue)) +
   labs(title = "P Value Distribution for D200 vs D100 DGEs", x = "P Value", y = "Count") +
   theme_minimal()
 dev.off()
-
-######## GO Analysis #########
 
 
 

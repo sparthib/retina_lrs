@@ -142,50 +142,58 @@ ora_plots <- function(genelist, ont, output_plot_dir){
   print(dotplot(ego, showCategory = 15))
   dev.off()
   
-  #cnetplot
-  # pdf(file.path(output_plot_dir, paste0("ora_cnetplot_", ont, ".pdf")))
-  # print(cnetplot(ego, foldChange=genelist, colorEdge = TRUE))
-  # dev.off()
-  # 
-  # #emapplot
-  # ego <- enrichplot::pairwise_termsim(ego)
-  # pdf(file.path(output_plot_dir, paste0("ora_emapplot_", ont, ".pdf")))
-  # print(emapplot(ego, layout="kk", showCategory=15))
-  # dev.off()
-  # 
-  #goplot
-  # pdf(file.path(output_plot_dir, paste0("DGE_ora_goplot_", ont, ".pdf")))
-  # print(goplot(ego, showCategory = 8))
-  # dev.off()
+ 
 
 }
 
+
 ora_plots(FT_vs_RGC_geneList, "MF", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                "FT_vs_RGC"))
+                                              "FT_vs_RGC"))
 ora_plots(D100_vs_D45_geneList, "MF", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                  "RO_D100_vs_D45"))
+                                                "RO_D100_vs_D45"))
 ora_plots(D200_vs_D45_geneList, "MF", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                  "RO_D200_vs_D45"))
+                                                "RO_D200_vs_D45"))
 ora_plots(D200_vs_D100_geneList, "MF", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                   "RO_D200_vs_D100"))
+                                                 "RO_D200_vs_D100"))
 
 ora_plots(FT_vs_RGC_geneList, "BP", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                "FT_vs_RGC"))
+                                              "FT_vs_RGC"))
 ora_plots(D100_vs_D45_geneList, "BP", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                  "RO_D100_vs_D45"))
+                                                "RO_D100_vs_D45"))
 ora_plots(D200_vs_D45_geneList, "BP", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                  "RO_D200_vs_D45"))
+                                                "RO_D200_vs_D45"))
 ora_plots(D200_vs_D100_geneList, "BP", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                   "RO_D200_vs_D100"))
+                                                 "RO_D200_vs_D100"))
 
 ora_plots(FT_vs_RGC_geneList, "CC", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                "FT_vs_RGC"))
+                                              "FT_vs_RGC"))
 ora_plots(D100_vs_D45_geneList, "CC", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                  "RO_D100_vs_D45"))
+                                                "RO_D100_vs_D45"))
 ora_plots(D200_vs_D45_geneList, "CC", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                  "RO_D200_vs_D45"))
+                                                "RO_D200_vs_D45"))
 ora_plots(D200_vs_D100_geneList, "CC", file.path("/users", "sparthib", "retina_lrs", "plots", "go_analysis", "isoquant",
-                                                   "RO_D200_vs_D100"))
+                                                 "RO_D200_vs_D100"))
+
+
+
+#cnetplot
+# pdf(file.path(output_plot_dir, paste0("ora_cnetplot_", ont, ".pdf")))
+# print(cnetplot(ego, foldChange=genelist, colorEdge = TRUE))
+# dev.off()
+# 
+# #emapplot
+# ego <- enrichplot::pairwise_termsim(ego)
+# pdf(file.path(output_plot_dir, paste0("ora_emapplot_", ont, ".pdf")))
+# print(emapplot(ego, layout="kk", showCategory=15))
+# dev.off()
+# 
+#goplot
+# pdf(file.path(output_plot_dir, paste0("DGE_ora_goplot_", ont, ".pdf")))
+# print(goplot(ego, showCategory = 8))
+# dev.off()
+
+
+
 
 # 
 # 
