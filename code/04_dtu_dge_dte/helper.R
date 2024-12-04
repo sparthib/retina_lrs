@@ -40,7 +40,7 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
 }
 
 
-plot_barplot <- function(df, condition){ 
+plot_barplot <- function(df, condition, output_plots_dir){ 
   
   dge_overlaps = df |> group_by(gene_id) |> dplyr::select( -DTE) |> 
     summarise(DGE=any(DGE), DTU=any(DTU))  

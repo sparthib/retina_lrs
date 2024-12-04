@@ -1,6 +1,7 @@
 library(IsoformSwitchAnalyzeR)
+library(dplyr)
 
-method <- "bambu"
+method <- "Isoquant"
 comparison <- "FT_vs_RGC"
 SwitchList <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                         method, comparison, "/rds/SwitchList_part2.rds")
@@ -11,7 +12,7 @@ isoformFeatures <- isoformFeatures |> distinct()
 
 colnames(isoformFeatures)
 
-isoformFeatures <- isoformFeatures |> select( 
+isoformFeatures <- isoformFeatures |> dplyr::select( 
   gene_id, isoform_id, condition_1, condition_2, 
   gene_name, gene_biotype, iso_biotype,gene_value_1, gene_value_2, 
   iso_value_1, iso_value_2, 
@@ -98,10 +99,10 @@ colnames(new_DGE_DTE_DTU)
 
 httr::set_config(httr::timeout(300)) 
 library(biomaRt)
-us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
+
+us_mart <- useEnsembl(biomart = "ensembl", mirror = "asia")
 
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
-listEnsemblArchives()
 
 
 annotLookup <- getBM(
@@ -123,6 +124,7 @@ new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> dplyr::select(-c(gene_name, gene_biotype, 
 new_DGE_DTE_DTU
 
 write_tsv(new_DGE_DTE_DTU, file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
+
 
 
 
