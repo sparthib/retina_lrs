@@ -1,6 +1,8 @@
 library(IsoformSwitchAnalyzeR)
 
-SwitchList <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/rds/SwitchList_part2.rds"
+method <- "bambu"
+comparison <- "FT_vs_RGC"
+SwitchList <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "/rds/DexSeqDTUDGESwitchList.rds")
 SwitchList <- readRDS(SwitchList) 
 
 isoformFeatures <- SwitchList$isoformFeatures

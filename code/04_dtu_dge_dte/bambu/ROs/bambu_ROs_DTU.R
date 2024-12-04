@@ -77,7 +77,7 @@ SwitchList <- addORFfromGTF(
 
 SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "", SwitchList$isoformFeatures$gene_id)
 require("biomaRt")
-us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
+us_mart <- useMart("ensembl", host = "uswest")
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 
 annotLookup <- getBM(
