@@ -2,7 +2,8 @@ library(IsoformSwitchAnalyzeR)
 
 method <- "bambu"
 comparison <- "FT_vs_RGC"
-SwitchList <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "/rds/DexSeqDTUDGESwitchList.rds")
+SwitchList <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                        method, comparison, "/rds/SwitchList_part2.rds")
 SwitchList <- readRDS(SwitchList) 
 
 isoformFeatures <- SwitchList$isoformFeatures
@@ -29,29 +30,32 @@ colnames(isoformFeatures) <- c("gene_id", "isoform_id", "condition_1", "conditio
                             "signal_peptide_identified", "switchConsequencesGene")
 
 
-input_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs"
-DTE_table <- read_tsv(file.path(input_data_dir, "DTE_table.tsv"))
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                            method, comparison)
 
-DGE_table <- read_tsv(file.path(input_data_dir, "DGE_table.tsv"))
 
 colnames(isoformFeatures)
-
 isoformFeatures$gene_id <- gsub("\\..*", "", isoformFeatures$gene_id)
 isoformFeatures$isoform_id <- gsub("\\..*", "", isoformFeatures$isoform_id)
 
+
+DTE_table <- read_tsv(file.path(input_data_dir, "DTE_table.tsv"))
 colnames(DTE_table)
-
-DTE_table$gene_id <- gsub("\\..*", "", DTE_table$gene_id)
 DTE_table$isoform_id <- gsub("\\..*", "", DTE_table$isoform_id)
-
+if (comparison == "FT_vs_RGC") {
+  DTE_table$condition_1 <- "FT"
+  DTE_table$condition_2 <- "RGC"
+}
 DTE_table <- DTE_table |> dplyr::select(c( "isoform_id", "logFC", "logCPM", "F", "PValue", "FDR",  "condition_1", "condition_2"))
 colnames(DTE_table) <- c("isoform_id", "DTE_log2FC", "DTE_logCPM", "DTE_F", "DTE_pval", "DTE_qval", "condition_1", "condition_2")
 
-
+DGE_table <- read_tsv(file.path(input_data_dir, "DGE_table.tsv"))
 colnames(DGE_table)
-
 DGE_table$gene_id <- gsub("\\..*", "", DGE_table$gene_id)
-
+if (comparison == "FT_vs_RGC") {
+  DGE_table$condition_1 <- "FT"
+  DGE_table$condition_2 <- "RGC"
+}
 DGE_table <- DGE_table |> dplyr::select(c("gene_id", "logFC", "logCPM", "F", "PValue", "FDR", "condition_1", "condition_2"))
 colnames(DGE_table) <- c("gene_id", "DGE_log2FC", "DGE_logCPM", "DGE_F", "DGE_pval", "DGE_qval", "condition_1", "condition_2")
 
@@ -59,7 +63,6 @@ isoformFeatures <- isoformFeatures |> distinct()
 colnames(isoformFeatures)
 
 DTE_table <- DTE_table |> distinct()
-
 new_DGE_DTE_DTU <- left_join(isoformFeatures, DTE_table, 
             by = c("isoform_id", "condition_1", "condition_2"))
 
@@ -93,9 +96,13 @@ new_DGE_DTE_DTU$DTU_qval <- new_DGE_DTE_DTU$isoform_switch_q_value
 
 colnames(new_DGE_DTE_DTU)
 
+httr::set_config(httr::timeout(300)) 
 library(biomaRt)
 us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
+
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
+listEnsemblArchives()
+
 
 annotLookup <- getBM(
   mart=mart,

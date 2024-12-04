@@ -260,9 +260,9 @@ SwitchList_part2 <- analyzeAlternativeSplicing(
 switchlist_part2_path = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                   method, comparison, "rds", "SwitchList_part2.rds")
 
-saveRDS(SwitchList_part2, file = switchlist_part2_path)
 
-SwitchList_part2 <- readRDS(switchlist_part2_path)
+# 
+# SwitchList_part2 <- readRDS(switchlist_part2_path)
 
 plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                        method, comparison, "plots")
@@ -294,10 +294,13 @@ splicing_enrichment <- extractSplicingEnrichment(
 print(splicing_enrichment)
 dev.off()
 
-pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"),
-    width = 10, height = 7)
 
 
+
+external_protein_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                                           method, comparison, "external_protein_analyses")
+read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) |> 
+  write_tsv(file.path(external_protein_analyses_dir, "pfam_results.txt"))
 
 #### Consequence Switch Plots ####
 
@@ -305,11 +308,11 @@ SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
   n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
   removeNoncodinORFs        = TRUE,
-  pathToCPC2resultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/bambu/FT_vs_RGC/external_protein_analyses/CPC2_output.txt",
-  pathToPFAMresultFile      = "/users/sparthib/retina_lrs/processed_data/dtu/bambu/FT_vs_RGC/external_protein_analyses/pfam_results.txt",
-  pathToSignalPresultFile   = "/users/sparthib/retina_lrs/processed_data/dtu/bambu/FT_vs_RGC/external_protein_analyses/prediction_results.txt",
+  pathToCPC2resultFile      = file.path(external_protein_analyses_dir, "CPC2_output.txt"),
+  pathToPFAMresultFile      = file.path(external_protein_analyses_dir,"pfam_results.txt"),
+  pathToSignalPresultFile   = file.path(external_protein_analyses_dir,"prediction_results.txt"),
   outputPlots               = TRUE,
-  pathToOutput              = "/users/sparthib/retina_lrs/processed_data/dtu/bambu/FT_vs_RGC/external_protein_analyses/switchplots_with_consequences",
+  pathToOutput              = file.path(external_protein_analyses_dir,"switchplots_with_consequences"),
   consequencesToAnalyze = c(
     'intron_retention',
     'coding_potential',
@@ -320,7 +323,7 @@ SwitchList_part2 <- isoformSwitchAnalysisPart2(
     'signal_peptide_identified'
   ))
 
-saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/bambu/FT_vs_RGC/rds/SwitchList_part2.rds")
+saveRDS(SwitchList_part2, file = switchlist_part2_path)
 
 
 # The number of isoform switches with functional consequences identified were:
@@ -328,7 +331,8 @@ saveRDS(SwitchList_part2, file = "/users/sparthib/retina_lrs/processed_data/dtu/
 # 1  FT vs RGC        864        899     608
 
 #### Switch Consequence plots  ####
-pdf("./processed_data/dtu/bambu/FT_vs_RGC/plots/Splicing_Summary.pdf")
+
+pdf(file.path(plots_dir, "Splicing_Summary.pdf"))
 splicing_summary <- extractSplicingSummary(SwitchList_part2,
                                            splicingToAnalyze = 'all',dIFcutoff = 0.1,
                                            onlySigIsoforms = T,
@@ -337,9 +341,15 @@ splicing_summary <- extractSplicingSummary(SwitchList_part2,
 print(splicing_summary)
 dev.off()
 
+splicing_summary <- extractSplicingSummary(SwitchList_part2,
+                                           splicingToAnalyze = 'all',dIFcutoff = 0.1,
+                                           onlySigIsoforms = T,
+                                           returnResult = T,
+                                           plot = F)  
+write_tsv(splicing_summary, file = file.path(plots_dir, "Splicing_Summary.tsv"))
 
 
-pdf("/users/sparthib/retina_lrs/processed_data/dtu/bambu/FT_vs_RGC/plots/Splicing_Enrichment.pdf")
+pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"))
 splicing_enrichment <- extractSplicingEnrichment(
   SwitchList_part2,
   returnResult = F ,
@@ -349,7 +359,15 @@ splicing_enrichment <- extractSplicingEnrichment(
 print(splicing_enrichment)
 dev.off()
 
-pdf("./processed_data/dtu/bambu/FT_vs_RGC/plots/Consequence_Enrichment.pdf",
+splicing_enrichment <- extractSplicingEnrichment(
+  SwitchList_part2,
+  returnResult = T,
+  onlySigIsoforms = T,
+  countGenes = F
+)
+write_tsv(splicing_enrichment, file = file.path(plots_dir, "Splicing_Enrichment.tsv"))
+
+pdf(file.path(plots_dir, "Consequence_Enrichment.pdf"),
     width = 10, height = 7)
 p <- extractConsequenceEnrichment(
   SwitchList_part2,
@@ -364,8 +382,27 @@ p <- extractConsequenceEnrichment(
   ),
   analysisOppositeConsequence = TRUE,
   localTheme = theme_bw(base_size = 14), # Increase font size in vignette
-  returnResult = FALSE, # if TRUE returns a data.frame with the summary statistics
+  returnResult = F, # if TRUE returns a data.frame with the summary statistics
   countGenes = F
 )
 print(p)
 dev.off()
+
+consequences <- extractConsequenceEnrichment(
+  SwitchList_part2,
+  consequencesToAnalyze = c(
+    'intron_retention',
+    'coding_potential',
+    'ORF_seq_similarity',
+    'NMD_status',
+    'domains_identified',
+    'domain_isotype',
+    'signal_peptide_identified'
+  ),
+  analysisOppositeConsequence = TRUE,
+  localTheme = theme_bw(base_size = 14), # Increase font size in vignette
+  returnResult = T, # if TRUE returns a data.frame with the summary statistics
+  countGenes = F
+)
+
+write_tsv(consequences, file = file.path(plots_dir, "Consequence_Enrichment.tsv"))

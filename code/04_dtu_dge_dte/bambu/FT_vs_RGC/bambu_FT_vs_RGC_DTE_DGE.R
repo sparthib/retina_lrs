@@ -57,6 +57,7 @@ output_path <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
 
 write.table(tt$table, file = output_path,
             sep = "\t", quote = FALSE, row.names = FALSE)
+
 ##### DGE ######
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
                         method, comparison)
