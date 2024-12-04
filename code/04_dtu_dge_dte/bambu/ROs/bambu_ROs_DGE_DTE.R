@@ -123,9 +123,3 @@ for (i in seq_len(ncol(contr))) {
 }
 
 sessionInfo()
-
-
-
-DTE_table <- read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/DTE_table.tsv")
-
-filter(DTE_table, FDR < 0.05)

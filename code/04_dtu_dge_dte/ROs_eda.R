@@ -14,14 +14,16 @@ library(EnhancedVolcano)
 library(edgeR)
 
 ### import functions from helper.R
-source("/users/sparthib/retina_lrs/code/04_dtu_dge_dte/bambu/helper.R")
-
+source("/users/sparthib/retina_lrs/code/04_dtu_dge_dte/helper.R")
 
 # Define directories and common variables
+method <- "bambu"
+comparison <- "ROs"
+plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                       method, comparison, "plots")
 
-plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots"
-
-input_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs"
+input_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+                       method,comparison) 
 input_gene_counts <- "gene_counts.RDS"
 input_isoform_counts <- "isoform_counts.RDS"
 input_isoform_cpm <- "isoform_cpm.RDS"
@@ -69,7 +71,8 @@ plot_pca(gene_cpm, samples, groups, "gene", pca_plots_dir)
 ####### Upset Plot ########
 
 # save venn diagram as pdf 
-input_data_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs"
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                            method, comparison)
 DGE_DTU_DTE <- read_tsv(file.path(input_data_dir, "DGE_DTU_DTE.tsv"))
 
 
@@ -127,17 +130,13 @@ venn_data <- list(
 
 library("UpSetR")
 
-output_plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots"
-
-upset_path <- file.path(output_plots_dir, "DGE_DTU_ROs_upset.pdf")
+upset_path <- file.path(plots_dir, "DGE_DTU_ROs_upset.pdf")
 pdf(upset_path, width = 10, height = 6)
 p <- upset(fromList(venn_data), nsets = 15,order.by = "freq", 
            main.bar.color = "steelblue",
            matrix.color = "darkorange")
 print(p)
 dev.off()
-
-
 
 
 plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "B_RO_D100" &
@@ -184,8 +183,7 @@ results_df <- data.frame(
 
 ##### Volcano plots ###### 
 
-DTE_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/DTE"
-DTE_table <- read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/DTE_table.tsv")
+DTE_table <- read_tsv(file.path(input_path_dir, "DTE_table.tsv"))
 DTE_table <- DTE_table |> mutate(genes = gsub("\\..*", "", genes))
 
 
@@ -208,7 +206,7 @@ results <- results |> distinct()
 DTE_table <- merge(DTE_table, results, by.x = "isoform_id", by.y = "ensembl_transcript_id", all.x = TRUE)
 
 
-DTE_plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/plots/DTE"
+DTE_plots_dir <- file.path(plots_dir, "DTE")
 if (!dir.exists(DTE_plots_dir)) {
   dir.create(DTE_plots_dir, recursive = TRUE)
 }
@@ -245,8 +243,6 @@ EnhancedVolcano(D200_vs_D100_DTEs,
                 pCutoff = 10e-16,
                 FCcutoff = 1.5)
 dev.off()
-
-
 
 
 ####### DGE Volcano #########

@@ -97,8 +97,6 @@ summary(SwitchList)
 DTE_table <- readr::read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", 
                              method, comparison, "DTE_table.tsv"))
 
-
-
 #### DGE ####
 DGE_table <- readr::read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", 
                                          method, comparison, "DGE_table.tsv"))
@@ -148,7 +146,7 @@ if(!file.exists(dtu_rdata_path)){
 summary(SwitchList_part1)
 
 
-
+###### extra #######
   
 # #similar to table s3 in the paper
 # 
@@ -326,11 +324,6 @@ SwitchList_part2 <- isoformSwitchAnalysisPart2(
 saveRDS(SwitchList_part2, file = switchlist_part2_path)
 
 
-# The number of isoform switches with functional consequences identified were:
-#   Comparison nrIsoforms nrSwitches nrGenes
-# 1  FT vs RGC        864        899     608
-
-#### Switch Consequence plots  ####
 
 pdf(file.path(plots_dir, "Splicing_Summary.pdf"))
 splicing_summary <- extractSplicingSummary(SwitchList_part2,
@@ -404,5 +397,4 @@ consequences <- extractConsequenceEnrichment(
   returnResult = T, # if TRUE returns a data.frame with the summary statistics
   countGenes = F
 )
-
 write_tsv(consequences, file = file.path(plots_dir, "Consequence_Enrichment.tsv"))
