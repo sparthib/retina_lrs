@@ -236,7 +236,7 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
 
 load_and_plot_data("bambu", "ROs", counts_matrix_dir)
 load_and_plot_data("bambu", "FT_vs_RGC", counts_matrix_dir)
-load_and_plot_data("isoquant", "ROs", counts_matrix_dir)
-load_and_plot_data("isoquant", "FT_vs_RGC", counts_matrix_dir)
+load_and_plot_data("Isoquant", "ROs", counts_matrix_dir)
+load_and_plot_data("Isoquant", "FT_vs_RGC", counts_matrix_dir)
 
 
