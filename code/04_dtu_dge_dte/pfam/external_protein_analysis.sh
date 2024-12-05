@@ -20,13 +20,14 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 # comparisons=("FT_vs_RGC" "RO_D100_vs_RO_D45" "RO_D100_vs_RO_D200" "RO_D200_vs_RO_D45")
 comparisons=("FT_vs_RGC")
+method="Isoquant"
 
 source activate CPC2
 cd $CPC_HOME
 for item in ${comparisons[@]}; do
     echo $item
-    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/bambu/$item/fastas
-    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/bambu/$item/external_protein_analyses
+    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/fastas
+    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/external_protein_analyses
     mkdir $OUTPUT_DIR
     NT_FASTA=$INPUT_DIR/isoformSwitchAnalyzeR_isoform_nt.fasta
     CPC2_OUTPUT=$OUTPUT_DIR/CPC2_output
@@ -43,8 +44,8 @@ source activate pfam
 cd /dcs04/hicks/data/sparthib/retina_lrs/PfamScan/pfam_scan
 for item in ${comparisons[@]}; do
     echo $item
-    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/bambu/$item/fastas
-    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/bambu/$item/external_protein_analyses
+    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/fastas
+    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/external_protein_analyses
     ./pfam_scan.py $INPUT_DIR/isoformSwitchAnalyzeR_isoform_AA.fasta \
     ../ -out $OUTPUT_DIR/pfam_results.csv -cpu $SLURM_CPUS_PER_TASK
 done
@@ -55,8 +56,8 @@ conda deactivate
 source activate SignalP
 for item in ${comparisons[@]}; do
     echo $item
-    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/bambu/$item/fastas
-    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/bambu/$item/external_protein_analyses
+    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/fastas
+    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/external_protein_analyses
     signalp6 --fastafile $INPUT_DIR/isoformSwitchAnalyzeR_isoform_AA.fasta \
     --organism eukarya --output_dir $OUTPUT_DIR --format txt --mode fast
 done
