@@ -61,8 +61,8 @@ if(!file.exists(rdata_path)){
   )
   
   SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "", SwitchList$isoformFeatures$gene_id)
+  
   require("biomaRt")
-  biomartCacheClear()
   us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
   mart <- useDataset("hsapiens_gene_ensembl", us_mart)
   

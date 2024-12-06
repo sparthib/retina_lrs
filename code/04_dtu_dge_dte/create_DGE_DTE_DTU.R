@@ -1,13 +1,12 @@
-library(IsoformSwitchAnalyzeR)
 library(dplyr)
+library(readr)
 
-method <- "Isoquant"
+method <- "bambu"
 comparison <- "FT_vs_RGC"
-SwitchList <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                        method, comparison, "/rds/SwitchList_part2.rds")
-SwitchList <- readRDS(SwitchList) 
 
-isoformFeatures <- SwitchList$isoformFeatures
+isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                                      method, comparison, "isoformFeatures.tsv"))
+
 isoformFeatures <- isoformFeatures |> distinct()
 
 colnames(isoformFeatures)
@@ -20,7 +19,6 @@ isoformFeatures <- isoformFeatures |> dplyr::select(
  PTC, IR, codingPotential, domain_identified, signal_peptide_identified,
   switchConsequencesGene
   )
-
 
 colnames(isoformFeatures) <- c("gene_id", "isoform_id", "condition_1", "condition_2", 
                                "gene_name", "gene_biotype", "isoform_biotype", 
@@ -37,12 +35,16 @@ input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
 
 colnames(isoformFeatures)
 isoformFeatures$gene_id <- gsub("\\..*", "", isoformFeatures$gene_id)
-isoformFeatures$isoform_id <- gsub("\\..*", "", isoformFeatures$isoform_id)
+isoformFeatures$isoform_id <- ifelse(
+  grepl("^ENST", isoformFeatures$isoform_id),  # Check if isoform_id starts with "ENST"
+  gsub("\\..*", "", isoformFeatures$isoform_id),  # Remove everything after the first dot
+  isoformFeatures$isoform_id  # Keep other isoform_id values unchanged
+)
+
 
 
 DTE_table <- read_tsv(file.path(input_data_dir, "DTE_table.tsv"))
 colnames(DTE_table)
-DTE_table$isoform_id <- gsub("\\..*", "", DTE_table$isoform_id)
 if (comparison == "FT_vs_RGC") {
   DTE_table$condition_1 <- "FT"
   DTE_table$condition_2 <- "RGC"
@@ -52,7 +54,6 @@ colnames(DTE_table) <- c("isoform_id", "DTE_log2FC", "DTE_logCPM", "DTE_F", "DTE
 
 DGE_table <- read_tsv(file.path(input_data_dir, "DGE_table.tsv"))
 colnames(DGE_table)
-DGE_table$gene_id <- gsub("\\..*", "", DGE_table$gene_id)
 if (comparison == "FT_vs_RGC") {
   DGE_table$condition_1 <- "FT"
   DGE_table$condition_2 <- "RGC"
@@ -60,8 +61,6 @@ if (comparison == "FT_vs_RGC") {
 DGE_table <- DGE_table |> dplyr::select(c("gene_id", "logFC", "logCPM", "F", "PValue", "FDR", "condition_1", "condition_2"))
 colnames(DGE_table) <- c("gene_id", "DGE_log2FC", "DGE_logCPM", "DGE_F", "DGE_pval", "DGE_qval", "condition_1", "condition_2")
 
-isoformFeatures <- isoformFeatures |> distinct()
-colnames(isoformFeatures)
 
 DTE_table <- DTE_table |> distinct()
 new_DGE_DTE_DTU <- left_join(isoformFeatures, DTE_table, 
@@ -97,10 +96,8 @@ new_DGE_DTE_DTU$DTU_qval <- new_DGE_DTE_DTU$isoform_switch_q_value
 
 colnames(new_DGE_DTE_DTU)
 
-httr::set_config(httr::timeout(300)) 
 library(biomaRt)
-
-us_mart <- useEnsembl(biomart = "ensembl", mirror = "asia")
+us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
 
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 

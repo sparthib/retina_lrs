@@ -169,6 +169,8 @@ plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 
 counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/"
 
+method <- "Isoquant"
+compare <- "ROs"
 load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- readRDS(file.path(counts_matrix_dir,
                                    method,
