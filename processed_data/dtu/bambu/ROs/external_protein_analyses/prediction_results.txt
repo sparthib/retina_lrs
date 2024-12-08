@@ -1,4 +1,4 @@
-# SignalP-6.0	Organism: Eukarya	Timestamp: 20241127133614
+# SignalP-6.0	Organism: Eukarya	Timestamp: 20241206174743
 # ID	Prediction	OTHER	SP(Sec/SPI)	CS Position
 BambuTx1	OTHER	0.999839	0.000163	
 BambuTx100	OTHER	0.807718	0.192289	
