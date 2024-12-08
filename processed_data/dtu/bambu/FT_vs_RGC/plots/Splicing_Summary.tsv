@@ -1,0 +1,17 @@
+Comparison	AStype	splicingResult	nrGenesWithConsequences	nrIsoWithConsequences
+FT vs RGC	A3	A3 in isoform used less	107	114
+FT vs RGC	A3	A3 in isoform used more	93	97
+FT vs RGC	A5	A5 in isoform used less	105	109
+FT vs RGC	A5	A5 in isoform used more	109	110
+FT vs RGC	ATSS	ATSS in isoform used less	210	220
+FT vs RGC	ATSS	ATSS in isoform used more	237	250
+FT vs RGC	ATTS	ATTS in isoform used less	185	195
+FT vs RGC	ATTS	ATTS in isoform used more	173	181
+FT vs RGC	ES	ES in isoform used less	180	191
+FT vs RGC	ES	ES in isoform used more	161	166
+FT vs RGC	IR	IR in isoform used less	23	23
+FT vs RGC	IR	IR in isoform used more	35	35
+FT vs RGC	MEE	MEE in isoform used less	2	2
+FT vs RGC	MEE	MEE in isoform used more	2	2
+FT vs RGC	MES	MES in isoform used less	72	77
+FT vs RGC	MES	MES in isoform used more	68	70
