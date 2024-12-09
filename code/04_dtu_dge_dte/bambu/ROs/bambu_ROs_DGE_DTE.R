@@ -6,37 +6,38 @@ library(readr)
 us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 
+
+method <- "bambu"
+comparison <- "ROs"
+
 # Set directories
 bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
-dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/DGE/"
-dte_output_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/DTE/"
+dge_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DGE/")
+dte_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DTE/")
 
-#### DGE Analysis ####
+#### DTE Analysis ####
 # Load data
-counts <- read.table(file.path(bambu_dir, "counts_gene.txt"), header = TRUE)
-# tpm <- read.table(file.path(bambu_dir, "OUT.gene_grouped_tpm.tsv"), header = TRUE)
-
-# Define sample names and subset data for RO samples
-
-                        
-sample_names <- c("EP1.BRN3B.RO" , "EP1.WT_hRO_2", "EP1.WT_ROs_D45", 
-                  "H9.BRN3B_hRO_2",  "H9.BRN3B.RO", "H9.CRX_hRO_2", "H9.CRX_ROs_D45")
+matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+                        method, comparison)
+counts <- file.path(matrix_dir, "isoform_counts.RDS") 
+counts <- readRDS(counts)
 
 
+isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                                      method, comparison, "isoformFeatures.tsv"))
 
-# Select RO samples and define group factors
-RO_counts <- counts[,1:8]
-colnames(RO_counts) <- c("gene_id", sample_names)
+counts <- counts[rownames(counts) %in% isoformFeatures$isoform_id,]
+nrow(counts)
 
-group <- factor(c("A_RO_D200", "B_RO_D100", "C_RO_D45", "B_RO_D100", "A_RO_D200", "B_RO_D100", "C_RO_D45"))
+groups  = c("C_RO_D45", "C_RO_D45", "B_RO_D100","B_RO_D100","B_RO_D100", "A_RO_D200","A_RO_D200" )
+y <- DGEList(counts = counts,
+             samples = colnames(counts),
+             group = groups,
+             genes = rownames(counts))
 
-# Create DGEList object and filter
-y <- DGEList(counts=RO_counts, group=group, genes=RO_counts$gene_id, samples=sample_names)
-keep <- filterByExpr(y, min.count = 3)
-y <- y[keep, , keep.lib.sizes=FALSE]
+y <- normLibSizes(y)
 
 # Normalize and estimate dispersion
-y <- calcNormFactors(y)
 design <- model.matrix(~ 0 + group, data = y$samples)
 colnames(design) <- gsub("group", "", colnames(design))
 y <- estimateDisp(y, design, robust=TRUE)
@@ -50,54 +51,7 @@ contr <- makeContrasts(D200_vs_D100 = A_RO_D200 - B_RO_D100,
                        levels=design)
 
 # Create output directory for DGE results
-dir.create(dge_output_dir, showWarnings = FALSE, recursive = TRUE)
-
-
-# Loop through contrasts and save DGE results
-for (i in seq_len(ncol(contr))) {
-  qlf <- glmQLFTest(fit, contrast = contr[,i])
-  is.de <- decideTests(qlf, p.value=0.05)
-  
-  tt <- topTags(qlf, n = Inf)$table
-  tt$gene_id <- gsub("\\..*", "", tt$gene_id)
-  
-  annotLookup <- getBM(mart=mart, 
-                       attributes=c("ensembl_gene_id", "external_gene_name", "gene_biotype"), 
-                       filter="ensembl_gene_id", 
-                       values=tt$gene_id, uniqueRows=TRUE)
-  colnames(annotLookup) <- c("gene_id", "gene_name", "gene_biotype")
-  
-  tt <- merge(tt, annotLookup, by="gene_id", all.x=TRUE)
-  tt <- tt[order(tt$FDR), ]
-  
-  tt$condition_1 <- names(contr[,i])[contr[,i] == 1]
-  tt$condition_2 <- names(contr[,i])[contr[,i] == -1]
-  
-  file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
-  write_tsv(tt, file)
-}
-
-# DTE Analysis (similar to DGE)
 dir.create(dte_output_dir, showWarnings = FALSE, recursive = TRUE)
-
-counts <- read.table(file.path(bambu_dir, "counts_transcript.txt"), header = TRUE)
-
-RO_counts <- counts[,-2] 
-RO_counts <- RO_counts[,1:8]
-colnames(RO_counts) <- c("isoform_id", sample_names)
-# RO_tpm <- tpm[,1:8]
-
-y <- DGEList(counts=RO_counts[,2:8], group=group, 
-             genes=RO_counts$isoform_id, 
-             samples=sample_names)
-keep <- filterByExpr(y, min.count = 1)
-y <- y[keep, , keep.lib.sizes=FALSE]
-
-y <- calcNormFactors(y)
-design <- model.matrix(~ 0 + group, data = y$samples)
-colnames(design) <- gsub("group", "", colnames(design))
-y <- estimateDisp(y, design, robust=TRUE)
-fit <- glmQLFit(y, design, robust=TRUE)
 
 for (i in seq_len(ncol(contr))) {
   qlf <- glmQLFTest(fit, contrast = contr[,i])
@@ -121,5 +75,52 @@ for (i in seq_len(ncol(contr))) {
   file <- paste0(dte_output_dir, colnames(contr)[i], "_DTEs.tsv")
   write_tsv(tt, file)
 }
+
+# DGE Analysis
+dir.create(dge_output_dir, showWarnings = FALSE, recursive = TRUE)
+
+counts <- file.path(matrix_dir, "gene_counts.RDS") 
+counts <- readRDS(counts)
+
+y <- DGEList(counts = counts,
+             samples = colnames(counts),
+             group = groups,
+             genes = rownames(counts))
+
+keep <- filterByExpr(y, )
+table(keep)
+y <- y[keep, , keep.lib.sizes=FALSE]
+y <- normLibSizes(y)
+
+design <- model.matrix(~ 0 + group, data = y$samples)
+colnames(design) <- gsub("group", "", colnames(design))
+y <- estimateDisp(y, design, robust=TRUE)
+fit <- glmQLFit(y, design, robust=TRUE)
+
+
+# Loop through contrasts and save DGE results
+for (i in seq_len(ncol(contr))) {
+  qlf <- glmQLFTest(fit, contrast = contr[,i])
+  is.de <- decideTests(qlf, p.value=0.05)
+  
+  tt <- topTags(qlf, n = Inf)$table
+  tt$gene_id <- gsub("\\..*", "", tt$genes)
+  
+  annotLookup <- getBM(mart=mart, 
+                       attributes=c("ensembl_gene_id", "external_gene_name", "gene_biotype"), 
+                       filter="ensembl_gene_id", 
+                       values=tt$gene_id, uniqueRows=TRUE)
+  colnames(annotLookup) <- c("gene_id", "gene_name", "gene_biotype")
+  
+  tt <- merge(tt, annotLookup, by="gene_id", all.x=TRUE)
+  tt <- tt[order(tt$FDR), ]
+  
+  tt$condition_1 <- names(contr[,i])[contr[,i] == 1]
+  tt$condition_2 <- names(contr[,i])[contr[,i] == -1]
+  
+  file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
+  write_tsv(tt, file)
+}
+
 
 sessionInfo()

@@ -17,7 +17,7 @@ library(edgeR)
 source("/users/sparthib/retina_lrs/code/04_dtu_dge_dte/helper.R")
 
 # Define directories and common variables
-method <- "bambu"
+method <- "Isoquant"
 comparison <- "ROs"
 plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                        method, comparison, "plots")
@@ -73,11 +73,12 @@ plot_pca(gene_cpm, samples, groups, "gene", pca_plots_dir)
 # save venn diagram as pdf 
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                             method, comparison)
+
 DGE_DTU_DTE <- read_tsv(file.path(input_data_dir, "DGE_DTU_DTE.tsv"))
 
-
-gene_overlaps = new_DGE_DTE_DTU |> dplyr::select( gene_id, isoform_id,
-                                                  condition_1, condition_2,DGE, DTU , DTE )
+gene_overlaps = DGE_DTU_DTE |> dplyr::select( gene_id, isoform_id,
+                                                  condition_1, condition_2,DGE, 
+                                                  DTU , DTE )
 
 gene_overlaps <- gene_overlaps |>
   mutate(condition = case_when(
@@ -140,14 +141,16 @@ dev.off()
 
 
 plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "B_RO_D100" &
-                                     condition_2 == "C_RO_D45"), "RO_D100_vs_RO_D45")
+                                     condition_2 == "C_RO_D45"), "RO_D100_vs_RO_D45",
+             plots_dir)
 
 plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "A_RO_D200" &
-                                     condition_2 == "C_RO_D45"), "RO_D200_vs_RO_D45")
+                                     condition_2 == "C_RO_D45"), "RO_D200_vs_RO_D45",
+             plots_dir)
 
 plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "A_RO_D200" &
-                                     condition_2 == "B_RO_D100"), "RO_D100_vs_RO_D200")
-
+                                     condition_2 == "B_RO_D100"), "RO_D100_vs_RO_D200",
+             plots_dir)
 
 
 ######## RetNet Plots #######
@@ -182,16 +185,22 @@ results_df <- data.frame(
 )
 
 ##### Volcano plots ###### 
-
-DTE_table <- read_tsv(file.path(input_path_dir, "DTE_table.tsv"))
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                            method, comparison)
+DTE_table <- read_tsv(file.path(input_data_dir, "DTE_table.tsv"))
 DTE_table <- DTE_table |> mutate(genes = gsub("\\..*", "", genes))
 
 
 #remove DTE_table isoform_id version number
-DTE_table$isoform_id <- gsub("\\..*", "", DTE_table$isoform_id)
+DTE_table$isoform_id <- ifelse(
+  grepl("^ENST", DTE_table$isoform_id),  # Check if isoform_id starts with "ENST"
+  gsub("\\..*", "", DTE_table$isoform_id),  # Remove everything after the first dot
+  DTE_table$isoform_id  # Keep other isoform_id values unchanged
+)
 
 #get gene names from biomart
 isoform_id <- DTE_table$isoform_id
+
 library(biomaRt)
 ensembl <- useMart("ensembl", dataset = "hsapiens_gene_ensembl") 
 
@@ -203,7 +212,8 @@ results <- getBM(
 )
 results <- results |> distinct()
 
-DTE_table <- merge(DTE_table, results, by.x = "isoform_id", by.y = "ensembl_transcript_id", all.x = TRUE)
+DTE_table <- merge(DTE_table, results, by.x = "isoform_id",
+                   by.y = "ensembl_transcript_id", all.x = TRUE)
 
 
 DTE_plots_dir <- file.path(plots_dir, "DTE")
@@ -213,7 +223,8 @@ if (!dir.exists(DTE_plots_dir)) {
 
 DTE_table$external_gene_name[is.na(DTE_table$external_gene_name)] <- "unknown"
 
-D100_vs_D45_DTEs <- DTE_table |> filter(condition_1 == "B_RO_D100" & condition_2 == "C_RO_D45")
+D100_vs_D45_DTEs <- DTE_table |> filter(condition_1 == "B_RO_D100" &
+                                          condition_2 == "C_RO_D45")
 
 pdf(paste0(DTE_plots_dir, "D100_vs_D45_DTEs_volcano.pdf"))
 EnhancedVolcano(D100_vs_D45_DTEs,
@@ -247,7 +258,11 @@ dev.off()
 
 ####### DGE Volcano #########
 # Define directories and read in the DGE table
-DGE_table <- read_tsv("/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/DGE_table.tsv")
+
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                            method, comparison)
+DGE_table <- read_tsv(file.path(input_data_dir, "DGE_table.tsv"))
+
 
 # Remove version number from gene_id
 DGE_table <- DGE_table |>
@@ -266,10 +281,11 @@ results <- getBM(
 results <- results |> distinct()
 
 # Merge gene names into DGE_table
-DGE_table <- merge(DGE_table, results, by.x = "gene_id", by.y = "ensembl_gene_id", all.x = TRUE)
+DGE_table <- merge(DGE_table, results, by.x = "gene_id",
+                   by.y = "ensembl_gene_id", all.x = TRUE)
 
 # Set up directory for plots
-DGE_plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots/DGE"
+DGE_plots_dir <- file.path(plots_dir, "DGE")
 if (!dir.exists(DGE_plots_dir)) {
   dir.create(DGE_plots_dir, recursive = TRUE)
 }
@@ -278,7 +294,8 @@ if (!dir.exists(DGE_plots_dir)) {
 DGE_table$external_gene_name[is.na(DGE_table$external_gene_name)] <- "unknown"
 
 # Generate volcano plots for different comparisons
-D100_vs_D45_DGEs <- DGE_table |> filter(condition_1 == "B_RO_D100" & condition_2 == "C_RO_D45")
+D100_vs_D45_DGEs <- DGE_table |> filter(condition_1 == "B_RO_D100" &
+                                          condition_2 == "C_RO_D45")
 
 pdf(paste0(DGE_plots_dir, "D100_vs_D45_DGEs_volcano.pdf"))
 EnhancedVolcano(D100_vs_D45_DGEs,
@@ -287,7 +304,8 @@ EnhancedVolcano(D100_vs_D45_DGEs,
                 y = 'PValue')
 dev.off()
 
-D200_vs_D45_DGEs <- DGE_table |> filter(condition_1 == "A_RO_D200" & condition_2 == "C_RO_D45")
+D200_vs_D45_DGEs <- DGE_table |> filter(condition_1 == "A_RO_D200" & 
+                                          condition_2 == "C_RO_D45")
 pdf(paste0(DGE_plots_dir, "D200_vs_D45_DGEs_volcano.pdf"))
 EnhancedVolcano(D200_vs_D45_DGEs,
                 lab = D200_vs_D45_DGEs$external_gene_name,
@@ -295,7 +313,8 @@ EnhancedVolcano(D200_vs_D45_DGEs,
                 y = 'PValue')
 dev.off()
 
-D200_vs_D100_DGEs <- DGE_table |> filter(condition_1 == "A_RO_D200" & condition_2 == "B_RO_D100")
+D200_vs_D100_DGEs <- DGE_table |> filter(condition_1 == "A_RO_D200" &
+                                           condition_2 == "B_RO_D100")
 pdf(paste0(DGE_plots_dir, "D200_vs_D100_DGEs_volcano.pdf"))
 EnhancedVolcano(D200_vs_D100_DGEs,
                 lab = D200_vs_D100_DGEs$external_gene_name,
@@ -308,27 +327,23 @@ dev.off()
 ####### p value distribution######
 
 # Set up directory for plots
-pval_plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots/dte"
-if (!dir.exists(pval_plots_dir)) {
-  dir.create(pval_plots_dir, recursive = TRUE)
-}
 
 # Generate p value distribution plots for different comparisons
-pdf(paste0(pval_plots_dir, "D100_vs_D45_DTEs_pval_dist.pdf"))
+pdf(paste0(DTE_plots_dir, "D100_vs_D45_DTEs_pval_dist.pdf"))
 ggplot(D100_vs_D45_DTEs, aes(x = PValue)) +
   geom_histogram(binwidth = 0.05, fill = "skyblue", color = "black") +
   labs(title = "P Value Distribution for D100 vs D45 DTEs", x = "P Value", y = "Count") +
   theme_minimal()
 dev.off()
 
-pdf(paste0(pval_plots_dir, "D200_vs_D45_DTEs_pval_dist.pdf"))
+pdf(paste0(DTE_plots_dir, "D200_vs_D45_DTEs_pval_dist.pdf"))
 ggplot(D200_vs_D45_DTEs, aes(x = PValue)) +
   geom_histogram(binwidth = 0.05, fill = "skyblue", color = "black") +
   labs(title = "P Value Distribution for D200 vs D45 DTEs", x = "P Value", y = "Count") +
   theme_minimal()
 dev.off()
 
-pdf(paste0(pval_plots_dir, "D200_vs_D100_DTEs_pval_dist.pdf"))
+pdf(paste0(DTE_plots_dir, "D200_vs_D100_DTEs_pval_dist.pdf"))
 ggplot(D200_vs_D100_DTEs, aes(x = PValue)) +
   geom_histogram(binwidth = 0.05, fill = "skyblue", color = "black") +
   labs(title = "P Value Distribution for D200 vs D100 DTEs", x = "P Value", y = "Count") +
@@ -339,7 +354,7 @@ dev.off()
 #pvalue plots for DGE
 D100_vs_D45_DGEs <- DGE_table |> filter(condition_1 == "B_RO_D100" & condition_2 == "C_RO_D45")
 dge_plots_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots/dge"
-pdf(paste0(dge_plots_dir, "D100_vs_D45_DGEs_pval_dist.pdf"))
+pdf(paste0(DGE_plots_dir, "D100_vs_D45_DGEs_pval_dist.pdf"))
 ggplot(D100_vs_D45_DGEs, aes(x = PValue)) +
   geom_histogram(binwidth = 0.05, fill = "skyblue", color = "black") +
   labs(title = "P Value Distribution for D100 vs D45 DGEs", x = "P Value", y = "Count") +
@@ -347,7 +362,7 @@ ggplot(D100_vs_D45_DGEs, aes(x = PValue)) +
 dev.off()
 
 D200_vs_D45_DGEs <- DGE_table |> filter(condition_1 == "A_RO_D200" & condition_2 == "C_RO_D45")
-pdf(paste0(dge_plots_dir, "D200_vs_D45_DGEs_pval_dist.pdf"))
+pdf(paste0(DGE_plots_dir, "D200_vs_D45_DGEs_pval_dist.pdf"))
 ggplot(D200_vs_D45_DGEs, aes(x = PValue)) +
   geom_histogram(binwidth = 0.05, fill = "skyblue", color = "black") +
   labs(title = "P Value Distribution for D200 vs D45 DGEs", x = "P Value", y = "Count") +
@@ -355,7 +370,7 @@ ggplot(D200_vs_D45_DGEs, aes(x = PValue)) +
 dev.off()
 
 D200_vs_D100_DGEs <- DGE_table |> filter(condition_1 == "A_RO_D200" & condition_2 == "B_RO_D100")
-pdf(paste0(dge_plots_dir, "D200_vs_D100_DGEs_pval_dist.pdf"))
+pdf(paste0(DGE_plots_dir, "D200_vs_D100_DGEs_pval_dist.pdf"))
 ggplot(D200_vs_D100_DGEs, aes(x = PValue)) +
   geom_histogram(binwidth = 0.05, fill = "skyblue", color = "black") +
   labs(title = "P Value Distribution for D200 vs D100 DGEs", x = "P Value", y = "Count") +

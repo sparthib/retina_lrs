@@ -94,7 +94,7 @@ load_dge_data <- function(file_path, cond1, cond2) {
 
 get_gene_list <- function(dge, fdr = 0.05, log2fc_cutoff = 1) {
   filtered <- dge %>%
-    select(DGE_log2FC, DGE_qval, gene_id) %>%
+    dplyr::select(DGE_log2FC, DGE_qval, gene_id) %>%
     distinct() %>%
     filter(DGE_qval < fdr, abs(DGE_log2FC) >= log2fc_cutoff)
   

@@ -6,7 +6,7 @@ library(dplyr)
 library(tidyr)
 
 ### import functions from helper.R
-source("/users/sparthib/retina_lrs/code/04_dtu_dge_dte/bambu/helper.R")
+source("/users/sparthib/retina_lrs/code/04_dtu_dge_dte/helper.R")
 
 comparison <- "ROs"
 method <- "bambu"

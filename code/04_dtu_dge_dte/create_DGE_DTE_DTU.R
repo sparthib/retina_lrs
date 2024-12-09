@@ -1,8 +1,14 @@
 library(dplyr)
 library(readr)
 
-method <- "bambu"
-comparison <- "FT_vs_RGC"
+method <- "Isoquant"
+comparison <- "ROs"
+
+if( comparison == "ROs") {
+  groups  = c("C_RO_D45", "C_RO_D45", "B_RO_D100","B_RO_D100",
+              "B_RO_D100", "A_RO_D200","A_RO_D200" )
+} 
+
 
 isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                       method, comparison, "isoformFeatures.tsv"))
@@ -15,23 +21,14 @@ isoformFeatures <- isoformFeatures |> dplyr::select(
   gene_id, isoform_id, condition_1, condition_2, 
   gene_name, gene_biotype, iso_biotype,gene_value_1, gene_value_2, 
   iso_value_1, iso_value_2, 
-  dIF, IF1, IF2, isoform_switch_q_value,
- PTC, IR, codingPotential, domain_identified, signal_peptide_identified,
-  switchConsequencesGene
+  dIF, IF1, IF2, isoform_switch_q_value
   )
 
 colnames(isoformFeatures) <- c("gene_id", "isoform_id", "condition_1", "condition_2", 
                                "gene_name", "gene_biotype", "isoform_biotype", 
                                "gene_value_1", "gene_value_2", 
                             "iso_value_1", "iso_value_2",  
-                            "dIF", "IF1", "IF2", "isoform_switch_q_value", 
-                            "PTC", "IR", "codingPotential","domain_identified", 
-                            "signal_peptide_identified", "switchConsequencesGene")
-
-
-input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                            method, comparison)
-
+                            "dIF", "IF1", "IF2", "isoform_switch_q_value")
 
 colnames(isoformFeatures)
 isoformFeatures$gene_id <- gsub("\\..*", "", isoformFeatures$gene_id)
@@ -41,9 +38,16 @@ isoformFeatures$isoform_id <- ifelse(
   isoformFeatures$isoform_id  # Keep other isoform_id values unchanged
 )
 
+DTE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                                method, comparison, "DTE_table.tsv"))
+DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                                method, comparison, "DGE_table.tsv"))
 
-
-DTE_table <- read_tsv(file.path(input_data_dir, "DTE_table.tsv"))
+DTE_table$isoform_id <- ifelse(
+  grepl("^ENST", DTE_table$isoform_id),  # Check if isoform_id starts with "ENST"
+  gsub("\\..*", "", DTE_table$isoform_id),  # Remove everything after the first dot
+  DTE_table$isoform_id  # Keep other isoform_id values unchanged
+)
 colnames(DTE_table)
 if (comparison == "FT_vs_RGC") {
   DTE_table$condition_1 <- "FT"
@@ -52,7 +56,8 @@ if (comparison == "FT_vs_RGC") {
 DTE_table <- DTE_table |> dplyr::select(c( "isoform_id", "logFC", "logCPM", "F", "PValue", "FDR",  "condition_1", "condition_2"))
 colnames(DTE_table) <- c("isoform_id", "DTE_log2FC", "DTE_logCPM", "DTE_F", "DTE_pval", "DTE_qval", "condition_1", "condition_2")
 
-DGE_table <- read_tsv(file.path(input_data_dir, "DGE_table.tsv"))
+
+DGE_table$gene_id <- gsub("\\..*", "", DGE_table$gene_id)
 colnames(DGE_table)
 if (comparison == "FT_vs_RGC") {
   DGE_table$condition_1 <- "FT"
@@ -97,10 +102,9 @@ new_DGE_DTE_DTU$DTU_qval <- new_DGE_DTE_DTU$isoform_switch_q_value
 colnames(new_DGE_DTE_DTU)
 
 library(biomaRt)
+
 us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
-
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
-
 
 annotLookup <- getBM(
   mart=mart,
@@ -112,15 +116,19 @@ annotLookup <- getBM(
   uniqueRows=TRUE)
 
 head(annotLookup)
-colnames(annotLookup) <- c("isoform_id", "gene_name","gene_biotype", "isoform_biotype")
+colnames(annotLookup) <- c("isoform_id", "gene_name","gene_biotype",
+                           "isoform_biotype")
 
 annotLookup <- annotLookup |> distinct()
 
 new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> dplyr::select(-c(gene_name, gene_biotype, isoform_biotype)) |> 
   left_join(annotLookup, by = "isoform_id")
 new_DGE_DTE_DTU
-
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison)
 write_tsv(new_DGE_DTE_DTU, file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
+
+
+
 
 
 

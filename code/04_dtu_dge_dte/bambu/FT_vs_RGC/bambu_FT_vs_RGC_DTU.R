@@ -6,8 +6,7 @@ library(rtracklayer)
 library(edgeR)
 library(tidyr)
 library(dplyr)
-library(ggVennDiagram)
-library('BSgenome.Hsapiens.UCSC.hg38')
+# library('BSgenome.Hsapiens.UCSC.hg38')
 
 
 method <- "bambu"
@@ -84,6 +83,9 @@ if(!file.exists(rdata_path)){
   )
   
   saveRDS(SwitchListFiltered, file = rdata_path)
+  SwitchListFiltered$isoformFeatures <- SwitchListFiltered$isoformFeatures |> 
+    distinct(across(-gene_name), .keep_all = TRUE)
+  
   write_tsv(SwitchListFiltered$isoformFeatures,
             file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                              method, comparison, "isoformFeatures.tsv"))
