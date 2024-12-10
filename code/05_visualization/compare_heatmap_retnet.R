@@ -116,3 +116,36 @@ print(results_df)
 
 ## all rows with Retinitis Pigmentosa in the Disease Category column
  
+
+
+######## RetNet Plots #######
+
+RetNet_gene_list <- read_excel(file.path("/users", "sparthib", "retina_lrs" ,"raw_data", "RetNet.xlsx"),
+                               sheet = "genes_and_locations")
+
+genes_and_diseases <- read_excel(file.path("/users", "sparthib", "retina_lrs" ,"raw_data", "RetNet.xlsx"),
+                                 sheet = "diseases_and_genes")
+colnames(genes_and_diseases) <- c("disease_category", "mapped_loci",
+                                  "mapped_and_identified_genes")
+
+significant_DTUs <- DGE_DTU_DTE |> filter(DTU)
+
+intersect(significant_DTUs$gene_name, RetNet_gene_list$Symbol)
+
+# Initialize an empty list to store results
+results_list <- list()
+for (gene in intersect(significant_DTUs$gene_name, RetNet_gene_list$Symbol)) {
+  # Filter the data
+  result <- genes_and_diseases |>
+    dplyr::filter(str_detect(mapped_and_identified_genes, gene))
+  
+  # Append results to the list
+  results_list[[gene]] <- result$disease_category
+}
+
+# Convert the list to a dataframe
+results_df <- data.frame(
+  Gene = names(results_list),
+  Disease_Category = I(results_list),
+  stringsAsFactors = FALSE
+)
