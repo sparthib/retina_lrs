@@ -255,3 +255,105 @@ ggplot(DGE_table, aes(x = PValue)) +
 dev.off()
 
 
+
+generate_volcano_plots <- function(input_data_dir, plots_dir, comparison, table_type, conditions) {
+  # Set up the file path and read the appropriate table
+  table_file <- file.path(input_data_dir, paste0(table_type, "_table.tsv"))
+  analysis_table <- read_tsv(table_file)
+  
+  # Remove version number and harmonize identifiers
+  if (table_type == "DTE") {
+    analysis_table$isoform_id <- ifelse(
+      grepl("^ENST", analysis_table$isoform_id),  # Check if isoform_id starts with "ENST"
+      gsub("\\..*", "", analysis_table$isoform_id),  # Remove everything after the first dot
+      analysis_table$isoform_id  # Keep other isoform_id values unchanged
+    )
+  }
+  
+  # Harmonize gene IDs for DGE
+  if (table_type == "DGE") {
+    analysis_table <- analysis_table |> 
+      mutate(gene_id = gsub("\\..*", "", gene_id))
+  }
+  
+  # Use biomaRt to map IDs to gene names
+  library(biomaRt)
+  ensembl <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+  id_column <- ifelse(table_type == "DTE", "isoform_id", "gene_id")
+  filters <- ifelse(table_type == "DTE", "ensembl_transcript_id", "ensembl_gene_id")
+  attributes <- switch(
+    table_type,
+    "DTE" = c("ensembl_transcript_id", "external_gene_name"),
+    "DGE" = c("ensembl_gene_id", "external_gene_name")
+  )
+  results <- getBM(
+    attributes = attributes,
+    filters = filters,
+    values = analysis_table[[id_column]],
+    mart = ensembl
+  )
+  
+  results <- results |> distinct()
+  colnames(results) <-  c(id_column, "external_gene_name")
+  
+  # Merge gene names into the table
+  analysis_table <- merge(analysis_table, results, by.x = id_column, 
+                          by.y = id_column, all.x = TRUE)
+  analysis_table$external_gene_name[is.na(analysis_table$external_gene_name)] <- "unknown"
+  
+  # Set up directory for plots
+  plots_dir <- file.path(input_data_dir, "plots", "volcano")
+  if (!dir.exists(plots_dir)) {
+    dir.create(plots_dir, recursive = TRUE)
+  }
+  
+  # Generate volcano plots for specified conditions
+  for (condition_pair in conditions) {
+    condition_1 <- condition_pair[[1]]
+    condition_2 <- condition_pair[[2]]
+    filtered_table <- analysis_table |> filter(condition_1 == !!condition_1 & 
+                                                 condition_2 == !!condition_2)
+    
+    output_file <- file.path(plots_dir, paste0(condition_1, "_vs_", condition_2, "_", table_type, "_volcano.pdf"))
+    pdf(output_file)
+    EnhancedVolcano(
+      filtered_table,
+      lab = filtered_table$external_gene_name,
+      x = "logFC",
+      y = "PValue",
+      pCutoff = 10e-16,
+      FCcutoff = 1.5
+    )
+    dev.off()
+  }
+}
+
+# Example usage:
+method <- "bambu"
+comparison <- "ROs"
+
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                            method, comparison) 
+
+plots_dir <- file.path(input_data_dir, "plots", "volcano")
+if (!dir.exists(plots_dir)) {
+  dir.create(plots_dir, recursive = TRUE)
+}
+
+# Define condition pairs for DTE and DGE
+conditions <- list(
+  c("A_RO_D200", "C_RO_D45"),
+  c("B_RO_D100", "C_RO_D45"),
+  c("A_RO_D200", "B_RO_D100")
+)
+
+# Generate plots for DTE
+generate_volcano_plots(input_data_dir, plots_dir, 
+                       comparison, "DTE", conditions)
+
+# Generate plots for DGE
+generate_volcano_plots(input_data_dir, plots_dir,
+                       comparison, "DGE", conditions)
+
+
+

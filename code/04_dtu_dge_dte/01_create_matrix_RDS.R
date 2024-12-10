@@ -18,7 +18,10 @@ process_table <- function(filepath, output_subdir, file_prefix, remove_gene_id =
     data <- data[, -1]
   }
   data <- data[, new_order]
-  rownames(data) <- sub("\\..*", "", rownames(data))
+  rownames(data) <- ifelse(
+    grepl("^ENST", rownames(data)),  # Check if isoform_id starts with "ENST"
+    gsub("\\..*", "", rownames(data)),  # Remove everything after the first dot
+    rownames(data))
   
   # Split into subsets
   ROs <- data[, 1:7]
@@ -35,8 +38,8 @@ process_table(file.path(bambu_dir, "counts_transcript.txt"), "bambu", "isoform_c
 process_table(file.path(bambu_dir, "CPM_transcript.txt"), "bambu", "isoform_cpm", remove_gene_id = TRUE)
 
 # Isoquant processing
-process_table(file.path(isoquant_dir, "OUT.gene_grouped_counts.tsv"), "isoquant", "gene_counts")
-process_table(file.path(isoquant_dir, "OUT.gene_grouped_tpm.tsv"), "isoquant", "gene_cpm")
+process_table(file.path(isoquant_dir, "OUT.gene_grouped_counts.tsv"), "Isoquant", "gene_counts")
+process_table(file.path(isoquant_dir, "OUT.gene_grouped_tpm.tsv"), "Isoquant", "gene_cpm")
 
 
 
@@ -57,9 +60,9 @@ RO_isoquant_isoform_counts <- isoquant_isoform_counts[,1:7]
 FT_vs_RGC_isoquant_isoform_counts <- isoquant_isoform_counts[,8:11]
 
 saveRDS(RO_isoquant_isoform_counts, 
-        file.path(output_dir, "isoquant", "ROs", "isoform_counts.RDS"))
+        file.path(output_dir, "Isoquant", "ROs", "isoform_counts.RDS"))
 saveRDS(FT_vs_RGC_isoquant_isoform_counts,
-        file.path(output_dir, "isoquant", "FT_vs_RGC", "isoform_counts.RDS"))
+        file.path(output_dir, "Isoquant", "FT_vs_RGC", "isoform_counts.RDS"))
 
 
 ###isoquant isoform cpm 
@@ -78,12 +81,9 @@ RO_isoquant_isoform_cpm <- isoquant_isoform_cpm[,1:7]
 FT_vs_RGC_isoquant_isoform_cpm <- isoquant_isoform_cpm[,8:11]
 
 saveRDS(RO_isoquant_isoform_cpm, 
-        file.path(output_dir, "isoquant", "ROs", "isoform_cpm.RDS"))
+        file.path(output_dir, "Isoquant", "ROs", "isoform_cpm.RDS"))
 saveRDS(FT_vs_RGC_isoquant_isoform_cpm, 
-        file.path(output_dir, "isoquant", "FT_vs_RGC", "isoform_cpm.RDS"))
-
-
-
+        file.path(output_dir, "Isoquant", "FT_vs_RGC", "isoform_cpm.RDS"))
 
 
 

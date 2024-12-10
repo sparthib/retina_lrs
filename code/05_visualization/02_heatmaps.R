@@ -6,17 +6,25 @@ library(circlize)
 library(grid)
 
 ######## HEATMAP FUNCTIONS ########
-###DTU heatmap, top 200 isoforms had significant switching in atleast one of the
-###conditions. 
 plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, output_plots_dir, type) {
     tpm <- as.data.frame(tpm)
+    if(compare == "FT_vs_RGC"){ 
+      colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
+    else if(compare == "ROs"){
+      colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
+                         "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
     tpm$isoform_id <- rownames(tpm)
     #remove version number 
     tpm$isoform_id <- gsub("\\..*", "", tpm$isoform_id)
+    
     # Keep only tmm rows that are in DTU_isoforms based on its rownames
-    significant_DTUs$isoform_id <- gsub("\\..*", "", significant_DTUs$isoform_id)
+    significant_DTUs$isoform_id <-  ifelse(
+      grepl("^ENST", significant_DTUs$isoform_id),  # Check if isoform_id starts with "ENST"
+      gsub("\\..*", "", significant_DTUs$isoform_id),  # Remove everything after the first dot
+      significant_DTUs$isoform_id  # Keep other isoform_id values unchanged
+    )
     TPM_significant_isoforms <- tpm |>
-      inner_join(significant_DTUs, by = "isoform_id")
+      inner_join(significant_DTUs, by = "isoform_id") 
     
     # Create a new column with gene name and isoform name
     TPM_significant_isoforms <- TPM_significant_isoforms |> 
@@ -62,12 +70,22 @@ plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 
 plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, output_plots_dir, type) {
   tpm <- isoform_tpm
+  if(compare == "FT_vs_RGC"){ 
+    colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
+  else if(compare == "ROs"){
+    colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
+                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
   tpm <- as.data.frame(tpm)
   tpm$isoform_id <- rownames(tpm)
   #remove version number 
   tpm$isoform_id <- gsub("\\..*", "", tpm$isoform_id)
+  
   # Keep only tmm rows that are in DTU_isoforms based on its rownames
-  significant_DTEs$isoform_id <- gsub("\\..*", "", significant_DTEs$isoform_id)
+  significant_DTEs$isoform_id <- ifelse(
+    grepl("^ENST", significant_DTEs$isoform_id),  # Check if isoform_id starts with "ENST"
+    gsub("\\..*", "", significant_DTEs$isoform_id),  # Remove everything after the first dot
+    significant_DTEs$isoform_id  # Keep other isoform_id values unchanged
+  )
   TPM_significant_isoforms <- tpm |>
     inner_join(significant_DTEs, by = "isoform_id")
   
@@ -77,6 +95,7 @@ plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
     column_to_rownames(var = "gene_isoform") |>
     dplyr::select(-isoform_id, -gene_name)
   
+
   # Convert to matrix and scale
   TPM_matrix <- as.matrix( TPM_significant_isoforms )
   TPM_matrix <- t(scale(t(TPM_matrix), center = TRUE, scale = TRUE))
@@ -115,11 +134,21 @@ plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 
 plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, output_plots_dir, type) {
   tpm <- as.data.frame(tpm)
+  if(compare == "FT_vs_RGC"){ 
+    colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
+  else if(compare == "ROs"){
+    colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
+                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
   tpm$gene_id <- rownames(tpm)
   #remove version number 
   tpm$gene_id <- gsub("\\..*", "", tpm$gene_id)
+  
   # Keep only tmm rows that are in DTU_isoforms based on its rownames
-  significant_DGEs$gene_id <- gsub("\\..*", "", significant_DGEs$gene_id)
+  significant_DGEs$gene_id <- ifelse(
+    grepl("^ENST", significant_DGEs$gene_id),  # Check if isoform_id starts with "ENST"
+    gsub("\\..*", "",  significant_DGEs$gene_id),  # Remove everything after the first dot
+    significant_DGEs$gene_id  # Keep other isoform_id values unchanged
+  )
   TPM_significant_genes <- tpm |>
     inner_join(significant_DGEs, by = "gene_id")
   
@@ -180,9 +209,11 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
                                 method,
                                 compare,
                                 "gene_cpm.RDS"))
+  
   samples <- colnames(isoform_tpm)
   if (compare == "FT_vs_RGC"){
     groups <- c("FT", "FT", "RGC", "RGC")
+   colnames(gene_tpm) <- samples
   }else if (compare == "ROs"){
     groups <- c("RO_D45", "RO_D45", "RO_D100","RO_D100", 
                 "RO_D100", "RO_D200", "RO_D200")
@@ -197,37 +228,37 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
     input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                              method, compare)
     
-    DGE_DTU_DTE <- read_tsv(file.path(input_data_dir, "DGE_DTU_DTE.tsv"))
+    DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
     
-    significant_DTUs <- DGE_DTU_DTE|> dplyr::group_by(isoform_id) |>
+    significant_DTUs <- DGE_DTE_DTU |> dplyr::group_by(isoform_id) |>
       filter(DTU == TRUE) |>
       arrange(DTU_qval) |> 
       dplyr::select(isoform_id, gene_name) |>
       distinct() |> 
-      head(n = 200)
+      head(n = 50)
     
     plot_DTU_heatmap(input_data_dir, method, compare, 
                      isoform_tpm, groups, heatmap_plots_dir)
     
     write_tsv(significant_DTUs, file.path(heatmap_plots_dir, "significant_DTUs.tsv"))
     
-    significant_DTEs <- DGE_DTU_DTE|> dplyr::group_by(isoform_id) |>
+    significant_DTEs <- DGE_DTE_DTU|> dplyr::group_by(isoform_id) |>
       filter(DTE == TRUE) |>
       arrange(DTE_qval) |> 
       dplyr::select(isoform_id, gene_name) |>
       distinct() |> 
-      head(n = 200)
+      head(n = 50)
     plot_DTE_heatmap(input_data_dir, method, compare, 
                      isoform_tpm, groups, heatmap_plots_dir)
     
     write_tsv(significant_DTEs, file.path(heatmap_plots_dir, "significant_DTEs.tsv"))
     
-    significant_DGEs <- DGE_DTU_DTE|> dplyr::group_by(gene_id) |>
+    significant_DGEs <- DGE_DTE_DTU |> dplyr::group_by(gene_id) |>
       filter(DGE == TRUE) |>
       arrange(DGE_qval) |> 
       dplyr::select(gene_name) |>
       distinct() |> 
-      head(n = 200)
+      head(n = 50)
     
     plot_DGE_heatmap(input_data_dir, method, compare, 
                      gene_tpm, groups, heatmap_plots_dir)

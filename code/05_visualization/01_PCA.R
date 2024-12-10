@@ -2,6 +2,8 @@ library(dplyr)
 library(tibble)
 library(readr)
 library(grid)
+library(patchwork)
+library(ggplot2)
 
 counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/"
 
@@ -16,6 +18,11 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
                                 method,
                                 compare,
                                 "gene_cpm.RDS"))
+  
+  isoform_tpm <- remove_zero_var_rows(isoform_tpm)
+  gene_tpm <- remove_zero_var_rows(gene_tpm)
+  
+  
   samples <- colnames(isoform_tpm)
   if (compare == "FT_vs_RGC"){
     groups <- c("FT", "FT", "RGC", "RGC")
