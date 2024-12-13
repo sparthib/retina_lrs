@@ -7,14 +7,15 @@ refmap_path <- paste(refmap_dir, refmap, sep="")
 
 refmap <- read.table(refmap_path, header=TRUE, sep="\t")
 
-refmap[1:5,1:4]
-
 #filter out ref_id where isoform doesn't start with ENST
 
 bambu_novel_refmap <- refmap[!grepl("^ENST", refmap$ref_id), ]
 nrow(bambu_novel_refmap)
 
 bambu_novel_refmap <- refmap[!grepl("^ENST", refmap$ref_id) & refmap$class_code == "=", ]
+
+head(bambu_novel_refmap)
+
 
 # nrow(bambu_novel_refmap)
 #599 
