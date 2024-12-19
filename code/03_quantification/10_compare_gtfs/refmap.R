@@ -16,6 +16,12 @@ bambu_novel_refmap <- refmap[!grepl("^ENST", refmap$ref_id) & refmap$class_code 
 
 head(bambu_novel_refmap)
 
+#split qry_id_list based on | 
+
+data_split <- separate(bambu_novel_refmap, qry_id_list, 
+                       into = c("isoquant_gene_id", "isoquant_isoform_id"), sep = "\\|")
+
+
 
 # nrow(bambu_novel_refmap)
 #599 
@@ -23,5 +29,5 @@ head(bambu_novel_refmap)
 #write out the refmap
 # /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/gffcompare
 output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/"
-write.table(bambu_novel_refmap, file=paste(output_dir, "bambu_isoform_novel_refmap.txt", sep=""), sep="\t", quote=FALSE, row.names=FALSE)
+write.table(data_split, file=paste(output_dir, "bambu_isoquant_refmap.txt", sep=""), sep="\t", quote=FALSE, row.names=FALSE)
 
