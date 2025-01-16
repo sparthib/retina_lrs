@@ -12,7 +12,7 @@ library(dplyr)
 method <- "bambu"
 comparison <- "FT_vs_RGC"
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                        method, comparison)
+                        method, comparison, "filtered")
 counts <- file.path(matrix_dir, "isoform_counts.RDS") 
 counts <- readRDS(counts)
 cpm <- file.path(matrix_dir, "isoform_cpm.RDS")
@@ -89,6 +89,7 @@ if(!file.exists(rdata_path)){
   write_tsv(SwitchListFiltered$isoformFeatures,
             file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                              method, comparison, "isoformFeatures.tsv"))
+  
   #save DEXSeq switchlist
   
 }else { 
@@ -225,7 +226,8 @@ SwitchList_part2 <- isoformSwitchAnalysisPart2(
 
 saveRDS(SwitchList_part2, file = switchlist_part2_path)
 
-SwitchList_part2$isoformFeatures <- SwitchList_part2$isoformFeatures |> distinct(across(-gene_name), .keep_all = TRUE)
+SwitchList_part2$isoformFeatures <- SwitchList_part2$isoformFeatures |>
+  distinct(across(-gene_name), .keep_all = TRUE)
 
 write_tsv(SwitchList_part2$isoformFeatures, file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                                              method, comparison, "isoformFeatures.tsv"))

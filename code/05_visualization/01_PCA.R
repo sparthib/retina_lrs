@@ -3,6 +3,7 @@ library(tibble)
 library(readr)
 library(grid)
 library(patchwork)
+library(ggrepel)
 library(ggplot2)
 
 counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/"
@@ -12,11 +13,11 @@ source("/users/sparthib/retina_lrs/code/05_visualization/helper.R")
 load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- readRDS(file.path(counts_matrix_dir,
                                    method,
-                                   compare,
+                                   compare, "filtered",
                                    "isoform_cpm.RDS"))
   gene_tpm <- readRDS(file.path(counts_matrix_dir,
                                 method,
-                                compare,
+                                compare, "filtered",
                                 "gene_cpm.RDS"))
   
   isoform_tpm <- remove_zero_var_rows(isoform_tpm)
@@ -27,8 +28,8 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   if (compare == "FT_vs_RGC"){
     groups <- c("FT", "FT", "RGC", "RGC")
   }else if (compare == "ROs"){
-    groups <- c("RO_D45", "RO_D45", "RO_D100","RO_D100", 
-                "RO_D100", "RO_D200", "RO_D200")
+    groups <- c("Stage_1", "Stage_1", "Stage_2","Stage_2", 
+                "Stage_2", "Stage_3", "Stage_3")
   }
   
   pca_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
@@ -44,5 +45,6 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
 
 load_and_plot_data("bambu", "ROs", counts_matrix_dir)
 load_and_plot_data("bambu", "FT_vs_RGC", counts_matrix_dir)
+
 load_and_plot_data("Isoquant", "ROs", counts_matrix_dir)
 load_and_plot_data("Isoquant", "FT_vs_RGC", counts_matrix_dir)

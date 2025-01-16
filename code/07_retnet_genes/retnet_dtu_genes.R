@@ -1,19 +1,17 @@
-library(IsoformSwitchAnalyzeR)
-library(tximeta)
 library(readr)
-library(sessioninfo)
-library(rtracklayer)
-library(edgeR)
 library(tidyr)
 library(dplyr)
 library(readxl)
-library(here)
 library(biomaRt)
+library(stringr)
+library(purrr)
+raw_data_dir <- "/users/sparthib/retina_lrs/raw_data"
 
 
-RetNet_gene_list <- read_excel(here("raw_data", "RetNet.xlsx"),
+RetNet_gene_list <- read_excel(file.path(raw_data_dir, "RetNet.xlsx"),
                                sheet = "genes_and_locations")
-genes_and_diseases <- read_excel(here("raw_data", "RetNet.xlsx"),
+
+genes_and_diseases <- read_excel(file.path(raw_data_dir, "RetNet.xlsx"),
                                  sheet = "diseases_and_genes")
 colnames(genes_and_diseases) <- c("disease_category", "mapped_loci",
                                   "mapped_and_identified_genes")
@@ -59,71 +57,16 @@ gene_vector <- c(
 )
 
 disease_genes <- tibble(gene = gene_vector) |> distinct()
-disease_gene_id <- getBM(attributes = c("ensembl_gene_id", "hgnc_symbol"),
-                 filters = "hgnc_symbol",
-                 values = disease_genes$gene,
-                 mart = mart)
-# nrow(disease_genes)
-#get rows with duplicate gene ids in gene_id
-duplicated_gene_id <- disease_gene_id[duplicated(disease_gene_id$hgnc_symbol),]
+# disease_gene_id <- getBM(attributes = c("ensembl_gene_id", "hgnc_symbol"),
+#                  filters = "hgnc_symbol",
+#                  values = disease_genes$gene,
+#                  mart = mart)
+# # nrow(disease_genes)
+# #get rows with duplicate gene ids in gene_id
+# duplicated_gene_id <- disease_gene_id[duplicated(disease_gene_id$hgnc_symbol),]
 
-# > duplicated_gene_id 
-# ensembl_gene_id hgnc_symbol
-# 3   ENSG00000091262       ABCC6
-# 8   ENSG00000282230       ADAM9
-# 42  ENSG00000151062    CACNA2D4
-# 104 ENSG00000277399      GPR179
-# 106 ENSG00000185974        GRK1
-# 107 ENSG00000281988        GRK1
-# 116 ENSG00000215612        HMX1
-# 173 ENSG00000129535         NRL
-# 214 ENSG00000274894      PRPF31
-# 215 ENSG00000274651      PRPF31
-# 216 ENSG00000276421      PRPF31
-# 217 ENSG00000274144      PRPF31
-# 218 ENSG00000275117      PRPF31
-# 219 ENSG00000277953      PRPF31
-# 220 ENSG00000277707      PRPF31
-# 221 ENSG00000275885      PRPF31
-# 222 ENSG00000105618      PRPF31
-# 226 ENSG00000174231       PRPF8
-# 250 ENSG00000183638       RP1L1
-# 260 ENSG00000130561         SAG
-# 263 ENSG00000054282     SDCCAG8
-# 286 ENSG00000134160       TRPM1
-  
-
-DGE_DTU_DTE <- readr::read_tsv("./processed_data/dtu/DTU_gandall/bambu/ROs/DGE_DTU_DTE.tsv")
-
-DGE_DTU_DTE <- readr::read_tsv("./processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC/DGE_DTU_DTE.tsv")
-
-DGE_DTU <- DGE_DTU_DTE |> dplyr::select(gene_id) |> distinct()
-#get hgnc symbol
-DGE_DTU_gene_id <- getBM(attributes = c("ensembl_gene_id", "hgnc_symbol"),
-                 filters = "ensembl_gene_id",
-                 values = DGE_DTU$gene_id,
-                 mart = mart)
-DGE_DTU_gene_id |> dplyr::filter(hgnc_symbol %in% duplicated_gene_id$hgnc_symbol)
-# ensembl_gene_id hgnc_symbol
-# 1 ENSG00000168615       ADAM9
-
-# 7   ENSG00000168615       ADAM9
-# 8   ENSG00000282230       ADAM9
-
-##### for both ROs and FT_vs_RGC the only gene with duplicated gene id was ADAM9
-
-
-
-#remove rows with duplicated gene ids from disease_gene_id
-disease_gene_id <- disease_gene_id |> dplyr::filter(!hgnc_symbol %in% duplicated_gene_id$hgnc_symbol)
-#add ENSG00000168615       ADAM9 to disease_gene_id
-disease_gene_id <- rbind(disease_gene_id, data.frame(ensembl_gene_id = "ENSG00000168615", hgnc_symbol = "ADAM9"))
-
-
-# for each gene in disease_gene_id$hgnc_symbol, get the corresponding disease category if that string is found in
-# genes_and_diseases$mapped_and_identified_genes
 results_list <- list()
-for (gene in disease_gene_id$hgnc_symbol) {
+for (gene in disease_genes$gene) {
   # Filter the data
   result <- genes_and_diseases |>
     dplyr::filter(str_detect(mapped_and_identified_genes, gene))
@@ -131,6 +74,7 @@ for (gene in disease_gene_id$hgnc_symbol) {
   # Append results to the list 
   results_list[[gene]] <- result$disease_category
 }
+
 length(results_list)
 
 
@@ -141,53 +85,95 @@ results_df <- data.frame(
   stringsAsFactors = FALSE
 )
 
-#merge results_df with disease_gene_id
-results_df <- merge(results_df, disease_gene_id, by.x = "gene_name", by.y = "hgnc_symbol", all.x = TRUE)
-results_df <- results_df |> dplyr::select(-gene_name)
 
 
-save_retnet_dtu_genes <- function(comparison, cond1, cond2) {
-  
-  if (comparison == "FT_vs_RGC") {
-    retn <- read_tsv(here("processed_data", "dtu", "DTU_gandall",
-                          "bambu", comparison, "DGE_DTU_DTE.tsv"))
-    retn <- retn |> filter(DTU_qval < 0.05 & abs(DTU_dIF) > 0.1)
-    # Merge retn with results_df if needed here
-    
-    retn <- merge(retn, results_df, by.x = "gene_id", by.y = "ensembl_gene_id", 
-                  all.x = TRUE)
-    retn <- retn |> filter(!is.na(gene_name)) |> 
-      dplyr::select(gene_id, isoform_id, DTU_dIF, DTU_qval, gene_name, disease_category)
-    
-    retn <- retn |> filter(!is.na(disease_category))
-    
-    write_tsv(retn, here("processed_data", "dtu", "DTU_gandall",
-                         "bambu",comparison, "retnet_DTU", paste0(cond1, "_vs_", cond2, ".tsv")))
-    
-    
-  } else {
-    retn <- read_tsv(here("processed_data", "dtu", "DTU_gandall",
-                          "bambu", "ROs", "DGE_DTU_DTE.tsv"))
-    retn <- retn |> filter(DTU_qval < 0.05 & abs(DTU_dIF) > 0.1) |>
-      filter(condition_1 == cond1 & condition_2 == cond2)
-
-    retn <- merge(retn, results_df, by.x = "gene_id", by.y = "ensembl_gene_id", 
-                  all.x = TRUE)
-    retn <- retn |> filter(!is.na(gene_name)) |> 
-      dplyr::select(gene_id, isoform_id, DTU_dIF, DTU_qval, gene_name, disease_category)
-    
-    retn <- retn |> filter(!is.na(disease_category))
-    
-    write_tsv(retn, here("processed_data", "dtu", "DTU_gandall",
-                         "bambu","ROs", "retnet_DTU", paste0(cond1, "_vs_", cond2, ".tsv")))
+save_retnet_dtu_genes <- function(method, comparison) {
+  # Define input and output directories
+  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison)
+  plots_dir <- file.path(input_data_dir, "plots", "retnet")
+  if (!dir.exists(plots_dir)){
+    dir.create(plots_dir, recursive = TRUE, showWarnings = FALSE)
   }
   
+  # Read and filter data
+  retn <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv")) |> 
+    dplyr::filter(DTU == TRUE)
+  
+  # Merge with results_df
+  retn <- dplyr::inner_join(retn, results_df, by = "gene_name")
+
+  write_tsv(retn, file.path(plots_dir, paste0(comparison, "_retnet_DTU_genes.tsv")))
+
 }
 
+parameters <- list(
+  list("bambu", "ROs"),
+  list("bambu", "FT_vs_RGC"),
+  list("Isoquant", "ROs"),
+  list("Isoquant", "FT_vs_RGC")
+)
 
-save_retnet_dtu_genes("FT_vs_RGC", "FT", "RGC")
-save_retnet_dtu_genes("RO_D100_vs_RO_D45", "RO_D100", "RO_D45")
-save_retnet_dtu_genes("RO_D100_vs_RO_D200", "RO_D100", "RO_D200")
-save_retnet_dtu_genes("RO_D200_vs_RO_D45", "RO_D200", "RO_D45")
+# Execute save_retnet_dtu_genes for each parameter set
+purrr::walk(parameters, ~ save_retnet_dtu_genes(.x[[1]], .x[[2]]))
+
+
+#Prepare for heatmap 
+
+
+# Read all the files
+files <- list.files("/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots/retnet", full.names = TRUE)
+
+
+
+plot_heatmap <- function(method, comparison){ 
+  
+  
+  co
+
+  
+  }
+
+
+
+load_gene_counts_matrix <- function(analysis_type, quant_method, counts_matrix_dir, splicing_factors_path,
+                                    table_type = "DTE") {
+  # Validate inputs
+  if (!analysis_type %in% c("FT_vs_RGC", "ROs")) {
+    stop("Invalid analysis_type. Choose 'FT_vs_RGC' or 'ROs'.")
+  }
+  if (!quant_method %in% c("bambu", "Isoquant")) {
+    stop("Invalid quant_method. Choose 'bambu' or 'isoquant'.")
+  }
+  
+  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type)
+  plots_dir <- file.path(input_data_dir, "plots", "retnet")
+  DGE_DTE_DTU <- read_tsv(file.path(plots_dir, paste0(analysis_type, "_retnet_DTU_genes.tsv")))
+
+  gene_file <- file.path(counts_matrix_dir, quant_method, analysis_type, "gene_cpm.RDS")
+  
+  # Load and process gene TPM
+  gene_tpm <- readRDS(gene_file)
+  rownames(gene_tpm) <- gsub("\\..*", "", rownames(gene_tpm))
+  gene_tpm <- gene_tpm[rownames(gene_tpm) %in%  DGE_DTE_DTU$gene_id, ]
+  
+  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type)
+  DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
+  
+  gene_tpm <- gene_tpm[rownames(gene_tpm) %in% significant_genes, ]
+  gene_tpm <- remove_zero_var_rows(gene_tpm)
+  
+  # Define groups and output directory
+  groups <- if (analysis_type == "ROs") {
+    c("RO_D45", "RO_D45", "RO_D100", "RO_D100", "RO_D100", "RO_D200", "RO_D200")
+  } else {
+    c("FT", "FT", "RGC", "RGC")
+  }
+  
+  output_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu", 
+                                quant_method, analysis_type, "plots", "retnet")
+  return(list( gene_tpm = gene_tpm, 
+               splicing_factors = splicing_factors, groups = groups, 
+               output_plots_dir = output_plots_dir))
+}
 
 

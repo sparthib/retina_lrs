@@ -9,14 +9,41 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
   pc <- prcomp(t(log2(tpm + 1)), scale = TRUE)
   pcr <- data.frame(pc$x[, 1:2], row.names = samples)  # PC scores
   
+  # Dynamically assign colors based on groups
+  if (all(groups %in% c("FT", "RGC"))) {
+    color_mapping <- c("FT" = "lightgreen", "RGC" = "brown")
+  } else if (all(groups %in% c("Stage_1", "Stage_2", "Stage_3"))) {
+    color_mapping <- c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
+  } else {
+    stop("Unexpected group names. Please provide a valid group list.")
+  }
+  
+  # Dynamically extend x and y limits for label space
+  x_range <- range(pcr$PC1)
+  y_range <- range(pcr$PC2)
+  x_extend <- diff(x_range) * 0.1  # Add 10% padding
+  y_extend <- diff(y_range) * 0.1
+  
   # PCA plot
+  
+  
   p <- ggplot(pcr, aes(PC1, PC2, color = groups)) +  
-    geom_point(size = 2) +
+    geom_point(size = 0.1) +
     theme_bw() +
     ggtitle(paste("PCA on", output_name, "Expression")) +
     xlab(paste("PC1 (", round(pc$sdev[1]^2 / sum(pc$sdev^2) * 100, 2), "%)")) +
     ylab(paste("PC2 (", round(pc$sdev[2]^2 / sum(pc$sdev^2) * 100, 2), "%)")) +
-    geom_label(aes(label = rownames(pcr)), size = 2, fill = "white", alpha = 0.7)
+    geom_label_repel(aes(label = rownames(pcr)), 
+                     size = 2, 
+                     fill = "white", 
+                     alpha = 0.7, 
+                     max.overlaps = Inf, 
+                     box.padding = 0.5, 
+                     point.padding = 0.2, 
+                     segment.color = "grey50") +
+    xlim(x_range[1] - x_extend, x_range[2] + x_extend) +  # Extend x-axis
+    ylim(y_range[1] - y_extend, y_range[2] + y_extend) +  # Extend y-axis
+    scale_color_manual(values = color_mapping)  # Apply custom colors
   
   # Scree plot
   var_explained <- pc$sdev[1:10]^2 / sum(pc$sdev^2)

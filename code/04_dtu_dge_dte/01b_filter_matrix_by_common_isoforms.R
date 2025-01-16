@@ -1,10 +1,5 @@
 counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
 
-bambu_ROs <- file.path(counts_dir, "bambu", "ROs")
-bambu_FT_vs_RGC <- file.path(counts_dir, "bambu", "FT_vs_RGC")
-isoquant_ROs <- file.path(counts_dir, "Isoquant", "ROs")
-isoquant_FT_vs_RGC <- file.path(counts_dir, "Isoquant", "FT_vs_RGC")
-
 common_isoforms <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu",
                              "bambu_isoquant_refmap.txt")
 common_isoforms <- read.table(common_isoforms, header=TRUE, sep="\t")
@@ -33,7 +28,7 @@ filter_counts <- function( method, comparison ) {
         ]
         output_file <- dir.create(file.path(counts_dir, "filtered"), showWarnings=FALSE, recursive=TRUE)
         output_file <- file.path(counts_dir, "filtered", basename(file))
-        write.table(counts, output_file, sep="\t", quote=FALSE)
+        saveRDS(counts, output_file)
       }
     }
     
@@ -43,7 +38,7 @@ filter_counts <- function( method, comparison ) {
         counts <- readRDS(file)
         counts <- counts[grepl("^ENSG", rownames(counts)),]
         output_file <- file.path(counts_dir, "filtered", basename(file))
-        write.table(counts, output_file, sep="\t", quote=FALSE)
+        saveRDS(counts, output_file)
       }
     }
 }

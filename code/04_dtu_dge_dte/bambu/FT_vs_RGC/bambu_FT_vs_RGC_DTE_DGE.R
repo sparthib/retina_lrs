@@ -6,7 +6,7 @@ comparison <- "FT_vs_RGC"
 groups <- c( "FT", "FT", "RGC", "RGC")
 ##### DTE ######
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                        method, comparison)
+                        method, comparison, "filtered")
 counts <- file.path(matrix_dir, "isoform_counts.RDS") 
 counts <- readRDS(counts)
 

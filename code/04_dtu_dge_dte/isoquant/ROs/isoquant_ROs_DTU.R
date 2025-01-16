@@ -11,14 +11,14 @@ sqanti_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/
 method <- "Isoquant"
 comparison <- "ROs"
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                        method, comparison)
+                        method, comparison, "filtered")
 counts <- file.path(matrix_dir, "isoform_counts.RDS") 
 counts <- readRDS(counts)
 cpm <- file.path(matrix_dir, "isoform_cpm.RDS")
 cpm <- readRDS(cpm)
 
 myDesign  <- data.frame(sampleID = colnames(counts) ,
-                        condition = c("C_RO_D45", "C_RO_D45", "B_RO_D100","B_RO_D100","B_RO_D100", "A_RO_D200","A_RO_D200" ),
+                        condition = c("Stage_1", "Stage_1", "Stage_2","Stage_2","Stage_2", "Stage_3","Stage_3"),
                         stringsAsFactors = FALSE)
 
 
@@ -37,7 +37,7 @@ if(!file.exists(rdata_path)){
   SwitchList <- importRdata(isoformCountMatrix   = counts,
                             isoformRepExpression = cpm,
                             designMatrix         = myDesign,
-                            isoformExonAnnoation = file.path(isoquant_dir, "OUT",  "OUT.transcript_models.gtf"),
+                            isoformExonAnnoation = file.path(isoquant_dir, "OUT",  "ROs_filtered_isoforms.gtf"),
                             isoformNtFasta       = file.path(sqanti_dir, "all_samples_corrected.fasta"),
                             removeNonConvensionalChr = TRUE,
                             ignoreAfterBar = TRUE,
@@ -61,7 +61,6 @@ if(!file.exists(rdata_path)){
   require("biomaRt")
   us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
   mart <- useDataset("hsapiens_gene_ensembl", us_mart)
-  
   
   annotLookup <- getBM(
     mart=mart,

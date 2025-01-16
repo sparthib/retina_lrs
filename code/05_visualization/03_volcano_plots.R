@@ -3,6 +3,7 @@ library(readr)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(ggrepel)
 
 source("/users/sparthib/retina_lrs/code/05_visualization/helper.R")
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
@@ -52,7 +53,18 @@ volcano_plot <- function(data, x_col = "logFC", y_col = "FDR", gene_label_col = 
   plot
 }
 
+
 generate_volcano_plots <- function(input_data_dir, comparison, table_type, conditions) {
+  method <- "bambu"
+  comparison <- "ROs"
+  input_data_dir <- file.path(input_base_dir, method, comparison) 
+  table_type <- "DGE"
+  conditions <- if (comparison == "ROs") {
+      list(c("Stage_1", "Stage_2"), c("Stage_1", "Stage_3"), c("Stage_2", "Stage_3"))
+    } else {
+      list(c("FT", "RGC"))
+    }
+  
   # Load analysis table
   table_file <- file.path(input_data_dir, paste0(table_type, "_table.tsv"))
   analysis_table <- read_tsv(table_file)
@@ -74,7 +86,8 @@ generate_volcano_plots <- function(input_data_dir, comparison, table_type, condi
   
   # Map IDs to gene names using biomaRt
   library(biomaRt)
-  ensembl <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+  us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
+  mart <- useDataset("hsapiens_gene_ensembl", us_mart)
   id_column <- if (table_type == "DTE") "isoform_id" else "gene_id"
   filters <- if (table_type == "DTE") "ensembl_transcript_id" else "ensembl_gene_id"
   attributes <- if (table_type == "DTE") c("ensembl_transcript_id", "external_gene_name") else c("ensembl_gene_id", "external_gene_name")
@@ -83,7 +96,7 @@ generate_volcano_plots <- function(input_data_dir, comparison, table_type, condi
     attributes = attributes,
     filters = filters,
     values = analysis_table[[id_column]],
-    mart = ensembl
+    mart = mart
   ) |> distinct()
   
   colnames(results) <- c(id_column, "external_gene_name")
@@ -112,14 +125,14 @@ generate_volcano_plots <- function(input_data_dir, comparison, table_type, condi
 }
 
 # Generate plots for each method and comparison
-methods <- c("bambu", "Isoquant")
+methods <- c("bambu")
 comparisons <- c("ROs", "FT_vs_RGC")
 input_base_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/"
 
 for (method in methods) {
   for (comparison in comparisons) {
     conditions <- if (comparison == "ROs") {
-      list(c("B_RO_D100", "C_RO_D45"), c("A_RO_D200", "C_RO_D45"), c("A_RO_D200", "B_RO_D100"))
+      list(c("Stage_1", "Stage_2"), c("Stage_1", "Stage_3"), c("Stage_2", "Stage_3"))
     } else {
       list(c("FT", "RGC"))
     }

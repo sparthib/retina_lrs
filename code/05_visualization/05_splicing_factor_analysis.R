@@ -50,7 +50,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, counts_matrix_d
     rename(gene_id = ensembl_gene_id, gene_name = `Gene Symbol`) |>
     distinct(gene_id, .keep_all = TRUE)
   
-  gene_file <- file.path(counts_matrix_dir, quant_method, analysis_type, "gene_cpm.RDS")
+  gene_file <- file.path(counts_matrix_dir, quant_method, analysis_type, "filtered", "gene_cpm.RDS")
   
   # Load and process gene TPM
   gene_tpm <- readRDS(gene_file)

@@ -7,14 +7,16 @@ library(here)
 method <- "bambu"
 comparison <- "ROs"
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                        method, comparison)
+                        method, comparison, "filtered")
+
 counts <- file.path(matrix_dir, "isoform_counts.RDS") 
 counts <- readRDS(counts)
 cpm <- file.path(matrix_dir, "isoform_cpm.RDS")
 cpm <- readRDS(cpm)
 
+
 myDesign  <- data.frame(sampleID = colnames(counts) ,
-                        condition = c("C_RO_D45", "C_RO_D45", "B_RO_D100","B_RO_D100","B_RO_D100", "A_RO_D200","A_RO_D200" ),
+                        condition = c("Stage_1", "Stage_1", "Stage_2","Stage_2","Stage_2", "Stage_3","Stage_3"),
                         stringsAsFactors = FALSE)
 
 if(!dir.exists(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
@@ -98,20 +100,20 @@ write_tsv(SwitchListFiltered$isoformFeatures,
 }
 
 ### load DTEs ###
-D200_vs_D100_DTE_table <- read_tsv(  file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DTE" , "D200_vs_D100_DTEs.tsv"))
-D200_vs_D45_DTE_table <- read_tsv(  file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DTE" , "D200_vs_D45_DTEs.tsv"))
-D100_vs_D45_DTE_table <- read_tsv(  file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DTE" , "D100_vs_D45_DTEs.tsv"))
+D100_vs_D200_DTE_table <- read_tsv(  file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DTE" , "D100_vs_D200_DTEs.tsv"))
+D45_vs_D200_DTE_table <- read_tsv(  file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DTE" , "D45_vs_D200_DTEs.tsv"))
+D45_vs_D100_DTE_table <- read_tsv(  file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DTE" , "D45_vs_D100_DTEs.tsv"))
 
-DTE_table <- rbind(D200_vs_D100_DTE_table, D200_vs_D45_DTE_table, D100_vs_D45_DTE_table)
+DTE_table <- rbind(D100_vs_D200_DTE_table, D45_vs_D200_DTE_table, D45_vs_D100_DTE_table)
 write_tsv(DTE_table, file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/", 
                                       method, comparison, "DTE_table.tsv"))
 
 ### load DGEs ###
-D200_vs_D100_DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DGE" , "D200_vs_D100_DGEs.tsv"))
-D200_vs_D45_DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DGE" , "D200_vs_D45_DGEs.tsv"))
-D100_vs_D45_DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DGE" , "D100_vs_D45_DGEs.tsv"))
+D100_vs_D200_DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DGE" , "D100_vs_D200_DGEs.tsv"))
+D45_vs_D200_DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DGE" , "D45_vs_D200_DGEs.tsv"))
+D45_vs_D100_DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "DGE" , "D45_vs_D100_DGEs.tsv"))
 
-DGE_table <- rbind( D200_vs_D100_DGE_table, D200_vs_D45_DGE_table, D100_vs_D45_DGE_table)
+DGE_table <- rbind(D100_vs_D200_DGE_table, D45_vs_D200_DGE_table, D45_vs_D100_DGE_table)
 write_tsv(DGE_table, file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/", 
                                       method, comparison, "DGE_table.tsv"))
 
@@ -166,8 +168,6 @@ if(!file.exists(dtu_rdata_path)){
   SwitchList_part1 <- readRDS(dtu_rdata_path)
 }
 
-
-  
   #check for duplicates 
   SwitchList_part1$isoformFeatures <- SwitchList_part1$isoformFeatures |> 
     distinct(across(-gene_name), .keep_all = TRUE)
@@ -217,7 +217,6 @@ external_protein_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed
                                            method, comparison, "external_protein_analyses")
 read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) |> 
   write_tsv(file.path(external_protein_analyses_dir, "pfam_results.txt"))
-
 
 SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 

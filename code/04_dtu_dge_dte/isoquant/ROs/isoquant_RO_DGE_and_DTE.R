@@ -17,9 +17,10 @@ dte_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", me
 #### DTE Analysis ####
 # Load data
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                        method, comparison)
+                        method, comparison, "filtered")
 counts <- file.path(matrix_dir, "isoform_counts.RDS") 
 counts <- readRDS(counts)
+nrow(counts)
 
 
 isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
@@ -28,7 +29,7 @@ isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data
 counts <- counts[rownames(counts) %in% isoformFeatures$isoform_id,]
 nrow(counts)
 
-groups  = c("C_RO_D45", "C_RO_D45", "B_RO_D100","B_RO_D100","B_RO_D100", "A_RO_D200","A_RO_D200" )
+groups  = c("Stage_1", "Stage_1", "Stage_2","Stage_2","Stage_2", "Stage_3","Stage_3")
 y <- DGEList(counts = counts,
              samples = colnames(counts),
              group = groups,
@@ -44,9 +45,9 @@ y <- estimateDisp(y, design, robust=TRUE)
 # Fit the model and create contrasts
 fit <- glmQLFit(y, design, robust=TRUE)
 
-contr <- makeContrasts(D200_vs_D100 = A_RO_D200 - B_RO_D100, 
-                       D200_vs_D45 = A_RO_D200 - C_RO_D45, 
-                       D100_vs_D45 = B_RO_D100 - C_RO_D45, 
+contr <- makeContrasts(D200_vs_D100 = Stage_3 - Stage_2, 
+                       D200_vs_D45 = Stage_3 - Stage_1, 
+                       D100_vs_D45 = Stage_2 - Stage_1, 
                        levels=design)
 
 # Create output directory for DGE results
@@ -85,6 +86,13 @@ dir.create(dge_output_dir, showWarnings = FALSE, recursive = TRUE)
 
 counts <- file.path(matrix_dir, "gene_counts.RDS") 
 counts <- readRDS(counts)
+nrow(counts)
+
+counts
+#check if there are counts named novel genes in the counts matrix
+if("novel" %in% rownames(counts)){
+  counts <- counts[!grepl("novel", rownames(counts)),]
+}
 
 y <- DGEList(counts = counts,
              samples = colnames(counts),

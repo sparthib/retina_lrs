@@ -24,34 +24,53 @@ yaml_data <- as_tibble(yaml_data)
 yaml_data <- yaml_data %>%
   mutate(across(-c(1, ncol(yaml_data)), as.numeric))
 
-sample_names <- c( "DG-WT-hRGCs"  , "EP1-BRN3B-ROs", "EP1-WT_hRO_2" ,  "EP1-WT_ROs_D45" ,"H9-BRN3B_hRO_2" ,"H9-BRN3B-ROs",
+sample_names <- c( "DG-WT-hRGCs", "EP1-BRN3B-ROs", "EP1-WT_hRO_2" ,  "EP1-WT_ROs_D45" ,"H9-BRN3B_hRO_2" ,"H9-BRN3B-ROs",
                   "H9-CRX_hRO_2" ,  "H9-CRX_ROs_D45", "H9-FT_1" ,     "H9-FT_2"   ,     "H9-hRGC_1"  ,    
                   "H9-hRGC_2" , "hRGCs", "YZ-15T_hRGC","YZ-3T_hRGC"   )
 
 yaml_data$sample <- sample_names
 
+RO_samples <- c("EP1-BRN3B-ROs", "EP1-WT_hRO_2" ,  "EP1-WT_ROs_D45" ,"H9-BRN3B_hRO_2" ,"H9-BRN3B-ROs",
+                "H9-CRX_hRO_2" ,  "H9-CRX_ROs_D45")
 
-columns_of_interest <- c("All reads.mean.length", "All reads.median.q", "All reads.N50.length", "All reads.total.reads")
+FT_RGC_samples <- c("H9-FT_1" ,  "H9-FT_2" ,"H9-hRGC_1"  ,    
+                    "H9-hRGC_2")
+
+yaml_data <- yaml_data |>
+  rename(
+    "Mean Length of all reads" = "All reads.mean.length",
+    "Median q value of all reads" = "All reads.median.q",
+    "Median N50 of all reads" = "All reads.N50.length",
+    "Total number of reads" = "All reads.total.reads"
+  )
+
+columns_of_interest <- c("Mean Length of all reads", "Median q value of all reads", 
+                         "Median N50 of all reads", "Total number of reads")
+
 # Pivot data to long format
-yaml_long <- yaml_data %>%
+yaml_long <- yaml_data |>
   pivot_longer(cols = all_of(columns_of_interest), 
                names_to = "Metric", 
                values_to = "Value")
 
 
-custom_palette <- c(
-  "darkgreen", "#377EB8", "#4DAF4A", "seagreen", "#FFFF33", 
-  "#A65628", "#984EA3", "#999999", "#D95F02", "pink",
-  "#4575B4", "#91BFDB", "#313695", "#A500D8", "violet",
-  "#D73027"
-)
+
+custom_palette <- c("#000000","#E69F00" ,"#56B4E9", "#009E73" ,"#F0E442", "#0072B2",
+                    "#CC79A7", "#D55E00"  , "#999999")
 
 # Assuming `yaml_data$sample` is already set to `sample_names`
 yaml_data$sample <- factor(yaml_data$sample, levels = sample_names)
 
-# Columns to plot
-columns_of_interest <- c("All reads.mean.length", "All reads.median.q", "All reads.N50.length", "All reads.total.reads")
 
+
+RO_yaml_data <- yaml_data %>%
+  filter(sample %in% RO_samples)
+FT_RGC_yaml_data <- yaml_data %>%
+  filter(sample %in% FT_RGC_samples)
+
+
+df <- RO_yaml_data
+file <- "/users/sparthib/retina_lrs/plots/02_MinIONQC/ROs_combined_boxplots.pdf"
 # Create a list to hold all plots
 plots <- list()
 
@@ -60,7 +79,7 @@ for (i in seq_along(columns_of_interest)) {
   metric <- columns_of_interest[i]
   
   # Create the boxplot for the current metric with all samples together
-  p <- ggplot(yaml_data, aes(x = factor(1), y = !!sym(metric))) + # Color by sample
+  p <- ggplot(df, aes(x = factor(1), y = !!sym(metric))) + # Color by sample
     geom_boxplot(outlier.shape = NA) + # Boxplot without outliers
     geom_jitter(aes(color = sample), width = 0.2, size = 2, alpha = 0.9) + # Jittered points for each sample
     labs(title = metric, x = "", y = "Value") + # Title and y-axis label
@@ -81,7 +100,7 @@ for (i in seq_along(columns_of_interest)) {
 combined_plot <- wrap_plots(plots, ncol = 2) # You can change `ncol` to arrange in multiple columns
 
 # Save the combined plot to a PDF
-ggsave("/users/sparthib/retina_lrs/plots/02_MinIONQC/combined_boxplots.pdf", plot = combined_plot, width = 10, height = 12)
+ggsave(file , plot = combined_plot, width = 10, height = 12)
 
 
 

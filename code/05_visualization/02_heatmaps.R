@@ -48,7 +48,7 @@ plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
                             ))
   }else if(compare == "ROs"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                            col = list(type = c("RO_D200" = "purple", "RO_D45" = "orange", "RO_D100" = "seagreen")
+                            col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
                             ))
   }
   
@@ -67,12 +67,13 @@ plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 }
 
 
-
+tpm <- readRDS(file.path(counts_matrix_dir, "bambu", "ROs", "filtered", "isoform_cpm.RDS"))
 plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, output_plots_dir, type) {
-  tpm <- isoform_tpm
+  
   if(compare == "FT_vs_RGC"){ 
     colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
-  else if(compare == "ROs"){
+  
+  if(compare == "ROs"){
     colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
                        "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
   tpm <- as.data.frame(tpm)
@@ -112,7 +113,7 @@ plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
                             ))
   }else if(compare == "ROs"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                            col = list(type = c("RO_D200" = "purple", "RO_D45" = "orange", "RO_D100" = "seagreen")
+                            col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
                             ))
   }
   
@@ -129,8 +130,6 @@ plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
   dev.off()
   
 }
-
-
 
 plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, output_plots_dir, type) {
   tpm <- as.data.frame(tpm)
@@ -174,7 +173,7 @@ plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
                             ))
   }else if(compare == "ROs"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                            col = list(type = c("RO_D200" = "purple", "RO_D45" = "orange", "RO_D100" = "seagreen")
+                            col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
                             ))
   }
   
@@ -193,21 +192,18 @@ plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 }
 
 
-
-
-
 counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/"
 
-method <- "Isoquant"
-compare <- "ROs"
+method <- "bambu"
+compare <- "FT_vs_RGC"
 load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- readRDS(file.path(counts_matrix_dir,
                                    method,
-                                   compare,
+                                   compare, "filtered",
                                    "isoform_cpm.RDS"))
   gene_tpm <- readRDS(file.path(counts_matrix_dir,
                                 method,
-                                compare,
+                                compare, "filtered",
                                 "gene_cpm.RDS"))
   
   samples <- colnames(isoform_tpm)
@@ -215,8 +211,8 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
     groups <- c("FT", "FT", "RGC", "RGC")
    colnames(gene_tpm) <- samples
   }else if (compare == "ROs"){
-    groups <- c("RO_D45", "RO_D45", "RO_D100","RO_D100", 
-                "RO_D100", "RO_D200", "RO_D200")
+    groups <- c("Stage_1", "Stage_1", "Stage_2","Stage_2", 
+                "Stage_2", "Stage_3", "Stage_3")
   }
     
     heatmap_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
@@ -242,7 +238,7 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
     
     write_tsv(significant_DTUs, file.path(heatmap_plots_dir, "significant_DTUs.tsv"))
     
-    significant_DTEs <- DGE_DTE_DTU|> dplyr::group_by(isoform_id) |>
+    significant_DTEs <- DGE_DTE_DTU |> dplyr::group_by(isoform_id) |>
       filter(DTE == TRUE) |>
       arrange(DTE_qval) |> 
       dplyr::select(isoform_id, gene_name) |>

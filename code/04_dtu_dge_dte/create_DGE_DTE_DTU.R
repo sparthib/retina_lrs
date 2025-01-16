@@ -1,12 +1,12 @@
 library(dplyr)
 library(readr)
 
-method <- "Isoquant"
-comparison <- "ROs"
+method <- "bambu"
+comparison <- "FT_vs_RGC"
 
 if( comparison == "ROs") {
-  groups  = c("C_RO_D45", "C_RO_D45", "B_RO_D100","B_RO_D100",
-              "B_RO_D100", "A_RO_D200","A_RO_D200" )
+  groups  = c("Stage_1", "Stage_1", "Stage_2","Stage_2",
+              "Stage_2", "Stage_3","Stage_3" )
 } 
 
 
@@ -48,6 +48,7 @@ DTE_table$isoform_id <- ifelse(
   gsub("\\..*", "", DTE_table$isoform_id),  # Remove everything after the first dot
   DTE_table$isoform_id  # Keep other isoform_id values unchanged
 )
+
 colnames(DTE_table)
 if (comparison == "FT_vs_RGC") {
   DTE_table$condition_1 <- "FT"
