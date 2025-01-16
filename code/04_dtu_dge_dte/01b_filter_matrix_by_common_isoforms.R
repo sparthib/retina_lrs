@@ -1,4 +1,4 @@
-counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+
 
 common_isoforms <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu",
                              "bambu_isoquant_refmap.txt")
@@ -15,17 +15,22 @@ common_isoforms <- common_isoforms |> dplyr::filter(!grepl("^BambuGene", ref_gen
 colnames(common_isoforms)
 
 filter_counts <- function( method, comparison ) {
+    method <- "bambu"
+    comparison <- "ROs"
+    counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
     counts_dir <- file.path(counts_dir, method, comparison)
   
     for (file in list.files(counts_dir, full.names=TRUE)) {
       
       if(basename(file) == "isoform_counts.RDS" | basename(file) == "isoform_cpm.RDS") {
         counts <- readRDS(file)
+        print(paste("pre filter", nrow(counts)))
         counts <- counts[
             (grepl("^Bambu", rownames(counts)) & rownames(counts) %in% common_isoforms$ref_id) |
                 (grepl("^transcript", rownames(counts)) & rownames(counts) %in% common_isoforms$isoquant_isoform_id) |
                 grepl("^ENST", rownames(counts)),
         ]
+        print(paste("post filter", nrow(counts)))
         output_file <- dir.create(file.path(counts_dir, "filtered"), showWarnings=FALSE, recursive=TRUE)
         output_file <- file.path(counts_dir, "filtered", basename(file))
         saveRDS(counts, output_file)
