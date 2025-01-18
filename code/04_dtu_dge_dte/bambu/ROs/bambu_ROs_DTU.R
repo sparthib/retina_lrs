@@ -261,11 +261,13 @@ print(splicing_summary)
 dev.off()
 
 splicing_summary <- extractSplicingSummary(SwitchList_part2,
-                                           splicingToAnalyze = 'all',dIFcutoff = 0.1,
+                                           splicingToAnalyze = 'all',
+                                           dIFcutoff = 0.1,
                                            onlySigIsoforms = T,
                                            returnResult = T,
                                            plot = F)  
-write_tsv(splicing_summary, file = file.path(plots_dir, "Splicing_Summary.tsv"))
+write_tsv(splicing_summary, file = file.path(plots_dir, 
+                                             "Splicing_Summary.tsv"))
 
 
 pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"))
@@ -285,7 +287,8 @@ splicing_enrichment <- extractSplicingEnrichment(
   countGenes = F,
   plot = F
 )
-write_tsv(splicing_enrichment, file = file.path(plots_dir, "Splicing_Enrichment.tsv"))
+write_tsv(splicing_enrichment, 
+          file = file.path(plots_dir, "Splicing_Enrichment.tsv"))
 
 pdf(file.path(plots_dir, "Consequence_Enrichment.pdf"),
     width = 10, height = 7)

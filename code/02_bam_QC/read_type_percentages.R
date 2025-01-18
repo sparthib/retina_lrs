@@ -19,7 +19,8 @@ flagstat_data <- readLines(flagstat_file)
 sample_blocks <- split(flagstat_data, cumsum(grepl("^Sample:", flagstat_data)))
 
 # Initialize an empty data frame for results
-df <- data.frame(Sample = character(), Total_Reads = numeric(), Primary_Mapped = numeric(), Supplementary_Reads = numeric())
+df <- data.frame(Sample = character(), Total_Reads = numeric(),
+                 Primary_Mapped = numeric(), Supplementary_Reads = numeric())
 
 # Loop through each block (sample) and extract the data
 for (block in sample_blocks) {

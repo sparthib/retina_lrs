@@ -20,41 +20,38 @@ gene_overlaps = DGE_DTU_DTE |> dplyr::select( gene_id, isoform_id,
                                               condition_1, condition_2,DGE, 
                                               DTU , DTE )
 
-##get gene_id that doesn't start with ENSG 
-DGE_DTU_DTE |> filter(!grepl("^ENSG", gene_id))
-
 gene_overlaps <- gene_overlaps |>
   mutate(condition = case_when(
-    condition_1 == "B_RO_D100" & condition_2 == "C_RO_D45" ~ "RO_D100_vs_RO_D45",
-    condition_1 == "A_RO_D200" & condition_2 == "C_RO_D45" ~ "RO_D200_vs_RO_D45",
-    condition_1 == "A_RO_D200" & condition_2 == "B_RO_D100" ~ "RO_D200_vs_RO_D100",
+    condition_1 == "Stage_1" & condition_2 == "Stage_2" ~ "Stage_1_vs_Stage_2",
+    condition_1 == "Stage_1" & condition_2 == "Stage_3" ~ "Stage_1_vs_Stage_3",
+    condition_1 == "Stage_2" & condition_2 == "Stage_3" ~ "Stage_2_vs_Stage_3",
     TRUE ~ NA_character_  # This line handles any other cases that don't match the above
   ))
 
-gene_overlaps <- gene_overlaps |> mutate(DTU_RO_D100_vs_RO_D45 = ifelse(DTU == TRUE & condition == "RO_D100_vs_RO_D45", TRUE, FALSE),
-                                         DTU_RO_D200_vs_RO_D45 = ifelse(DTU == TRUE & condition == "RO_D200_vs_RO_D45", TRUE, FALSE),
-                                         DTU_RO_D200_vs_RO_D100 = ifelse(DTU == TRUE & condition == "RO_D200_vs_RO_D100", TRUE, FALSE),
-                                         # DGE_RO_D200_vs_RO_D100 = ifelse(DGE == TRUE & condition == "RO_D200_vs_RO_D100", TRUE, FALSE),
-                                         # DGE_RO_D200_vs_RO_D45 = ifelse(DGE == TRUE & condition == "RO_D200_vs_RO_D45", TRUE, FALSE),
-                                         # DGE_RO_D100_vs_RO_D45 = ifelse(DGE == TRUE & condition == "RO_D100_vs_RO_D45", TRUE, FALSE),
-                                         # DTE_RO_D100_vs_RO_D45 = ifelse(DTE == TRUE & condition == "RO_D100_vs_RO_D45", TRUE, FALSE),
-                                         # DTE_RO_D200_vs_RO_D45 = ifelse(DTE == TRUE & condition == "RO_D200_vs_RO_D45", TRUE, FALSE),
-                                         # DTE_RO_D200_vs_RO_D100 = ifelse(DTE == TRUE & condition == "RO_D200_vs_RO_D100", TRUE, FALSE))
+gene_overlaps <- gene_overlaps |> mutate(DTU_Stage_1_vs_Stage_2 = ifelse(DTU == TRUE & condition == "Stage_1_vs_Stage_2", TRUE, FALSE),
+                                         DTU_Stage_1_vs_Stage_3 = ifelse(DTU == TRUE & condition == "Stage_1_vs_Stage_3", TRUE, FALSE),
+                                         DTU_Stage_2_vs_Stage_3 = ifelse(DTU == TRUE & condition == "Stage_2_vs_Stage_3", TRUE, FALSE),
+                                         # DGE_Stage_2_vs_Stage_3 = ifelse(DGE == TRUE & condition == "Stage_2_vs_Stage_3", TRUE, FALSE),
+                                         # DGE_Stage_1_vs_Stage_3 = ifelse(DGE == TRUE & condition == "Stage_1_vs_Stage_3", TRUE, FALSE),
+                                         # DGE_Stage_1_vs_Stage_2 = ifelse(DGE == TRUE & condition == "Stage_1_vs_Stage_2", TRUE, FALSE),
+                                         # DTE_Stage_1_vs_Stage_2 = ifelse(DTE == TRUE & condition == "Stage_1_vs_Stage_2", TRUE, FALSE),
+                                         # DTE_Stage_1_vs_Stage_3 = ifelse(DTE == TRUE & condition == "Stage_1_vs_Stage_3", TRUE, FALSE),
+                                         # DTE_Stage_2_vs_Stage_3 = ifelse(DTE == TRUE & condition == "Stage_2_vs_Stage_3", TRUE, FALSE))
 )
 
 gene_overlaps  <- gene_overlaps |> distinct()
 gene_overlaps <- gene_overlaps |> dplyr::select(-c( DGE, DTU, DTE,  condition )) 
 
 gene_overlaps = gene_overlaps |> group_by(gene_id) |> 
-  summarise(DTU_RO_D100_vs_RO_D45 = any(DTU_RO_D100_vs_RO_D45), 
-            DTU_RO_D200_vs_RO_D45 = any(DTU_RO_D200_vs_RO_D45), 
-            DTU_RO_D200_vs_RO_D100 = any(DTU_RO_D200_vs_RO_D100), 
-            # DGE_RO_D200_vs_RO_D100 = any(DGE_RO_D200_vs_RO_D100), 
-            # DGE_RO_D200_vs_RO_D45 = any(DGE_RO_D200_vs_RO_D45), 
-            # DGE_RO_D100_vs_RO_D45 = any(DGE_RO_D100_vs_RO_D45),
-            # DTE_RO_D100_vs_RO_D45 = any(DTE_RO_D100_vs_RO_D45),
-            # DTE_RO_D200_vs_RO_D45 = any(DTE_RO_D200_vs_RO_D45),
-            # DTE_RO_D200_vs_RO_D100 = any(DTE_RO_D200_vs_RO_D100)
+  summarise(DTU_Stage_1_vs_Stage_2 = any(DTU_Stage_1_vs_Stage_2), 
+            DTU_Stage_1_vs_Stage_3 = any(DTU_Stage_1_vs_Stage_3), 
+            DTU_Stage_2_vs_Stage_3 = any(DTU_Stage_2_vs_Stage_3), 
+            # DGE_Stage_2_vs_Stage_3 = any(DGE_Stage_2_vs_Stage_3), 
+            # DGE_Stage_1_vs_Stage_3 = any(DGE_Stage_1_vs_Stage_3), 
+            # DGE_Stage_1_vs_Stage_2 = any(DGE_Stage_1_vs_Stage_2),
+            # DTE_Stage_1_vs_Stage_2 = any(DTE_Stage_1_vs_Stage_2),
+            # DTE_Stage_1_vs_Stage_3 = any(DTE_Stage_1_vs_Stage_3),
+            # DTE_Stage_2_vs_Stage_3 = any(DTE_Stage_2_vs_Stage_3)
             ) 
 
 rownames(gene_overlaps) <- gene_overlaps$gene_id
@@ -62,15 +59,15 @@ rownames(gene_overlaps) <- gene_overlaps$gene_id
 
 # Prepare data for VennDiagram
 venn_data <- list(
-  DTU_RO_D100_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DTU_RO_D100_vs_RO_D45],
-  DTU_RO_D200_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DTU_RO_D200_vs_RO_D45],
-  DTU_RO_D200_vs_RO_D100 = rownames(gene_overlaps)[gene_overlaps$DTU_RO_D200_vs_RO_D100] #,
-  # DGE_RO_D200_vs_RO_D100 = rownames(gene_overlaps)[gene_overlaps$DGE_RO_D200_vs_RO_D100],
-  # DGE_RO_D200_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DGE_RO_D200_vs_RO_D45],
-  # DGE_RO_D100_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DGE_RO_D100_vs_RO_D45],
-  # DTE_RO_D100_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DTE_RO_D100_vs_RO_D45],
-  # DTE_RO_D200_vs_RO_D45 = rownames(gene_overlaps)[gene_overlaps$DTE_RO_D200_vs_RO_D45],
-  # DTE_RO_D200_vs_RO_D100 = rownames(gene_overlaps)[gene_overlaps$DTE_RO_D200_vs_RO_D100]
+  DTU_Stage_1_vs_Stage_2 = rownames(gene_overlaps)[gene_overlaps$DTU_Stage_1_vs_Stage_2],
+  DTU_Stage_1_vs_Stage_3 = rownames(gene_overlaps)[gene_overlaps$DTU_Stage_1_vs_Stage_3],
+  DTU_Stage_2_vs_Stage_3 = rownames(gene_overlaps)[gene_overlaps$DTU_Stage_2_vs_Stage_3] #,
+  # DGE_Stage_2_vs_Stage_3 = rownames(gene_overlaps)[gene_overlaps$DGE_Stage_2_vs_Stage_3],
+  # DGE_Stage_1_vs_Stage_3 = rownames(gene_overlaps)[gene_overlaps$DGE_Stage_1_vs_Stage_3],
+  # DGE_Stage_1_vs_Stage_2 = rownames(gene_overlaps)[gene_overlaps$DGE_Stage_1_vs_Stage_2],
+  # DTE_Stage_1_vs_Stage_2 = rownames(gene_overlaps)[gene_overlaps$DTE_Stage_1_vs_Stage_2],
+  # DTE_Stage_1_vs_Stage_3 = rownames(gene_overlaps)[gene_overlaps$DTE_Stage_1_vs_Stage_3],
+  # DTE_Stage_2_vs_Stage_3 = rownames(gene_overlaps)[gene_overlaps$DTE_Stage_2_vs_Stage_3]
 )
 
 upset_path <- file.path(plots_dir, "DTU_genes_upset.pdf")
@@ -84,14 +81,14 @@ dev.off()
 
 
 
-# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "B_RO_D100" &
-#                                      condition_2 == "C_RO_D45"), "RO_D100_vs_RO_D45",
+# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "Stage_2" &
+#                                      condition_2 == "Stage_1"), "Stage_1_vs_Stage_2",
 #              plots_dir)
 # 
-# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "A_RO_D200" &
-#                                      condition_2 == "C_RO_D45"), "RO_D200_vs_RO_D45",
+# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "Stage_3" &
+#                                      condition_2 == "Stage_1"), "Stage_1_vs_Stage_3",
 #              plots_dir)
 # 
-# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "A_RO_D200" &
-#                                      condition_2 == "B_RO_D100"), "RO_D100_vs_RO_D200",
+# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "Stage_3" &
+#                                      condition_2 == "Stage_2"), "RO_D100_vs_RO_D200",
 #              plots_dir)

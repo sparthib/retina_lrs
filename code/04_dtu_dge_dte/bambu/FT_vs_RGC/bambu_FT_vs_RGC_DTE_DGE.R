@@ -91,7 +91,7 @@ y$common.dispersion
 fit <- glmQLFit(y, design, robust=TRUE)
 
 
-contr <- makeContrasts(FT - RGC, levels=design)
+contr <- makeContrasts(RGC - FT, levels=design)
 qlf <- glmQLFTest(fit, contrast=contr)
 
 is.de <- decideTests(qlf, p.value=0.05)

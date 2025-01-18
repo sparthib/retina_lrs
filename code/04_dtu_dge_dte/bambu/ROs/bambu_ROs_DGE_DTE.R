@@ -45,9 +45,9 @@ y <- estimateDisp(y, design, robust=TRUE)
 # Fit the model and create contrasts
 fit <- glmQLFit(y, design, robust=TRUE)
 
-contr <- makeContrasts(D100_vs_D200 = Stage_2 - Stage_3, 
-                       D45_vs_D200 = Stage_1 - Stage_3, 
-                       D45_vs_D100 = Stage_1 - Stage_2, 
+contr <- makeContrasts(D100_vs_D200 = Stage_3 - Stage_2, 
+                       D45_vs_D200 = Stage_3 - Stage_1, 
+                       D45_vs_D100 = Stage_2 - Stage_1, 
                        levels=design)
 
 # Create output directory for DGE results

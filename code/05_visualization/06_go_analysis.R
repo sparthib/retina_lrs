@@ -11,6 +11,9 @@ library(tidyr)
 
 ## or genes undergoing significant switching. 
 
+method <- "bambu"
+comparison <- "ROs"
+
 get_dge_genelist <- function(df) {
   values <- df |> select(DGE_log2FC, DGE, gene_id) |> distinct() |>
     filter(DGE == TRUE) |> filter(DGE_log2FC > 0) |>
@@ -68,10 +71,6 @@ ora_plot <- function(genelist, ont, output_plot_dir, analysis_type, conditions){
                   pvalueCutoff  = 0.01,
                   qvalueCutoff  = 0.01,
                   readable      = TRUE) 
-  
-  if (!dir.exists(output_data_dir)) {
-    dir.create(output_data_dir, recursive = TRUE)
-  }
   if(nrow(as.data.frame(ego)) != 0){
     write_tsv(as.data.frame(ego), file.path(output_plot_dir, paste0(conditions, analysis_type,"_ora_", ont, ".tsv")))
     
@@ -96,37 +95,37 @@ run_all_go <- function(method, comparison, ont = "BP"){
   }
   
   if (comparison == "ROs") { 
-    D100_vs_D45 <- DGE_DTU_DTE |> filter(condition_1 == "B_RO_D100" & condition_2 == "C_RO_D45")
-    D200_vs_D45 <- DGE_DTU_DTE |> filter(condition_1 == "A_RO_D200" & condition_2 == "C_RO_D45")
-    D200_vs_D100 <-DGE_DTU_DTE |> filter(condition_1 == "A_RO_D200" & condition_2 == "B_RO_D100")
+    D45_vs_D100 <- DGE_DTU_DTE |> filter(condition_1 == "Stage_1" & condition_2 == "Stage_2")
+    D45_vs_D200 <- DGE_DTU_DTE |> filter(condition_1 == "Stage_1" & condition_2 == "Stage_3")
+    D100_vs_D200 <-DGE_DTU_DTE |> filter(condition_1 == "Stage_2" & condition_2 == "Stage_3")
     
-    # D100_vs_D45_dge <- get_dge_genelist(D100_vs_D45)
-    # D200_vs_D45_dge <- get_dge_genelist(D200_vs_D45)
-    # D200_vs_D100_dge <- get_dge_genelist(D200_vs_D100)
-    # 
-    # 
-    # D100_vs_D45_dte <- get_dte_genelist(D100_vs_D45)
-    # D200_vs_D45_dte <- get_dte_genelist(D200_vs_D45)
-    # D200_vs_D100_dte <- get_dte_genelist(D200_vs_D100)
+    D45_vs_D100_dge <- get_dge_genelist(D45_vs_D100)
+    D45_vs_D200_dge <- get_dge_genelist(D45_vs_D200)
+    D100_vs_D200_dge <- get_dge_genelist(D100_vs_D200)
+
+
+    D45_vs_D100_dte <- get_dte_genelist(D45_vs_D100)
+    D45_vs_D200_dte <- get_dte_genelist(D45_vs_D200)
+    D100_vs_D200_dte <- get_dte_genelist(D100_vs_D200)
     
-    D100_vs_D45_dtu <- get_dtu_genelist(D100_vs_D45)
-    D200_vs_D45_dtu <- get_dtu_genelist(D200_vs_D45)
-    D200_vs_D100_dtu <- get_dtu_genelist(D200_vs_D100)
+    D45_vs_D100_dtu <- get_dtu_genelist(D45_vs_D100)
+    D45_vs_D200_dtu <- get_dtu_genelist(D45_vs_D200)
+    D100_vs_D200_dtu <- get_dtu_genelist(D100_vs_D200)
     
     
-    # ora_plot(D100_vs_D45_dge, ont, output_plot_dir, "DGE", "D100_vs_D45")
-    # ora_plot(D200_vs_D45_dge, ont, output_plot_dir, "DGE", "D200_vs_D45")
-    # ora_plot(D200_vs_D100_dge, ont, output_plot_dir, "DGE", "D200_vs_D100")
-    # 
-    # 
-    # 
-    # ora_plot(D100_vs_D45_dte, ont, output_plot_dir, "DTE", "D100_vs_D45")
-    # ora_plot(D200_vs_D45_dte, ont, output_plot_dir, "DTE", "D200_vs_D45")
-    # ora_plot(D200_vs_D100_dte, ont, output_plot_dir, "DTE", "D200_vs_D100")
+    ora_plot(D45_vs_D100_dge, ont, output_plot_dir, "DGE", "D45_vs_D100")
+    ora_plot(D45_vs_D200_dge, ont, output_plot_dir, "DGE", "D45_vs_D200")
+    ora_plot(D100_vs_D200_dge, ont, output_plot_dir, "DGE", "D100_vs_D200")
+
+
+
+    ora_plot(D45_vs_D100_dte, ont, output_plot_dir, "DTE", "D45_vs_D100")
+    ora_plot(D45_vs_D200_dte, ont, output_plot_dir, "DTE", "D45_vs_D200")
+    ora_plot(D100_vs_D200_dte, ont, output_plot_dir, "DTE", "D100_vs_D200")
     
-    ora_plot(D100_vs_D45_dtu, ont, output_plot_dir, "DTU", "D100_vs_D45")
-    ora_plot(D200_vs_D45_dtu, ont, output_plot_dir, "DTU", "D200_vs_D45")
-    ora_plot(D200_vs_D100_dtu, ont, output_plot_dir, "DTU", "D200_vs_D100")
+    ora_plot(D45_vs_D100_dtu, ont, output_plot_dir, "DTU", "D45_vs_D100")
+    ora_plot(D45_vs_D200_dtu, ont, output_plot_dir, "DTU", "D45_vs_D200")
+    ora_plot(D100_vs_D200_dtu, ont, output_plot_dir, "DTU", "D100_vs_D200")
     
   } else if (comparison == "FT_vs_RGC") {
     
@@ -159,6 +158,7 @@ for (method in methods) {
   }
 }
 
-
+run_all_go("bambu", "ROs", ont = "BP")
+# run_all_go("bambu", "FT_vs_RGC", ont = "CC")
 
 
