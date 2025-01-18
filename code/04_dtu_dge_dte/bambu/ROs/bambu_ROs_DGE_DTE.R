@@ -3,6 +3,7 @@ library(sessioninfo)
 library(biomaRt)
 library(readr)
 
+options(timeout = 999999)
 us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 
@@ -51,7 +52,8 @@ contr <- makeContrasts(D100_vs_D200 = Stage_3 - Stage_2,
                        levels=design)
 
 # Create output directory for DGE results
-dir.create(dte_output_dir, showWarnings = FALSE, recursive = TRUE)
+dir.create(dte_output_dir, 
+           showWarnings = FALSE, recursive = TRUE)
 
 for (i in seq_len(ncol(contr))) {
   qlf <- glmQLFTest(fit, contrast = contr[,i])
@@ -69,8 +71,8 @@ for (i in seq_len(ncol(contr))) {
   tt <- merge(tt, annotLookup, by="isoform_id", all.x=TRUE)
   tt <- tt[order(tt$FDR), ]
   
-  tt$condition_1 <- names(contr[,i])[contr[,i] == 1]
-  tt$condition_2 <- names(contr[,i])[contr[,i] == -1]
+  tt$condition_1 <- names(contr[,i])[contr[,i] == -1]
+  tt$condition_2 <- names(contr[,i])[contr[,i] == 1]
   
   file <- paste0(dte_output_dir, colnames(contr)[i], "_DTEs.tsv")
   write_tsv(tt, file)
@@ -115,8 +117,8 @@ for (i in seq_len(ncol(contr))) {
   tt <- merge(tt, annotLookup, by="gene_id", all.x=TRUE)
   tt <- tt[order(tt$FDR), ]
   
-  tt$condition_1 <- names(contr[,i])[contr[,i] == 1]
-  tt$condition_2 <- names(contr[,i])[contr[,i] == -1]
+  tt$condition_1 <- names(contr[,i])[contr[,i] == -1]
+  tt$condition_2 <- names(contr[,i])[contr[,i] == 1]
   
   file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
   write_tsv(tt, file)
