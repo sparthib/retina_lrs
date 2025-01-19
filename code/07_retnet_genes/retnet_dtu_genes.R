@@ -5,9 +5,10 @@ library(readxl)
 library(biomaRt)
 library(stringr)
 library(purrr)
+
+
+
 raw_data_dir <- "/users/sparthib/retina_lrs/raw_data"
-
-
 RetNet_gene_list <- read_excel(file.path(raw_data_dir, "RetNet.xlsx"),
                                sheet = "genes_and_locations")
 
@@ -25,8 +26,7 @@ genes <- getBM(attributes = c("ensembl_gene_id", "hgnc_symbol"),
                mart = mart)
 
 #from genes and diseases
-gene_vector <- c(
-  "ADIPOR1", "ARL6", "BBIP1", "BBS1", "BBS2", "BBS4", "BBS5", "BBS7", "BBS9", "BBS10", "BBS12", "C8orf37", "CEP19", "CEP290", "IFT172", "IFT27", "INPP5E", "LZTFL1", "MKKS", "MKS1", "NPHP1", "SDCCAG8", "TRIM32", "TTC8",
+gene_vector <- c("ADIPOR1", "ARL6", "BBIP1", "BBS1", "BBS2", "BBS4", "BBS5", "BBS7", "BBS9", "BBS10", "BBS12", "C8orf37", "CEP19", "CEP290", "IFT172", "IFT27", "INPP5E", "LZTFL1", "MKKS", "MKS1", "NPHP1", "SDCCAG8", "TRIM32", "TTC8",
   "PRDM13", "RGR", "TEAD1",
   "AIPL1", "CRX", "GUCA1A", "GUCY2D", "PITPNM3", "PROM1", "PRPH2", "RIMS1", "SEMA4A", "UNC119",
   "ABCA4", "ADAM9", "ATF6", "C21orf2", "C8orf37", "CACNA2D4", "CDHR1", "CEP78", "CERKL", "CNGA3", "CNGB3", "CNNM4", "DYNC2I2", "GNAT2", "IFT81", "KCNV2", "PDE6C", "PDE6H", "POC1B", "RAB28", "RAX2", "RDH5", "RPGRIP1", "SLC4A7", "TTLL5",
@@ -86,56 +86,7 @@ results_df <- data.frame(
 )
 
 
-
-save_retnet_dtu_genes <- function(method, comparison) {
-  # Define input and output directories
-  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison)
-  plots_dir <- file.path(input_data_dir, "plots", "retnet")
-  if (!dir.exists(plots_dir)){
-    dir.create(plots_dir, recursive = TRUE, showWarnings = FALSE)
-  }
-  
-  # Read and filter data
-  retn <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv")) |> 
-    dplyr::filter(DTU == TRUE)
-  
-  # Merge with results_df
-  retn <- dplyr::inner_join(retn, results_df, by = "gene_name")
-
-  write_tsv(retn, file.path(plots_dir, paste0(comparison, "_retnet_DTU_genes.tsv")))
-
-}
-
-parameters <- list(
-  list("bambu", "ROs"),
-  list("bambu", "FT_vs_RGC"),
-  list("Isoquant", "ROs"),
-  list("Isoquant", "FT_vs_RGC")
-)
-
-# Execute save_retnet_dtu_genes for each parameter set
-purrr::walk(parameters, ~ save_retnet_dtu_genes(.x[[1]], .x[[2]]))
-
-
-#Prepare for heatmap 
-
-
-# Read all the files
-files <- list.files("/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/plots/retnet", full.names = TRUE)
-
-
-
-plot_heatmap <- function(method, comparison){ 
-  
-  
-  co
-
-  
-  }
-
-
-
-load_gene_counts_matrix <- function(analysis_type, quant_method, counts_matrix_dir, splicing_factors_path,
+load_gene_counts_matrix <- function(analysis_type, quant_method,
                                     table_type = "DTE") {
   # Validate inputs
   if (!analysis_type %in% c("FT_vs_RGC", "ROs")) {
@@ -145,35 +96,113 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, counts_matrix_d
     stop("Invalid quant_method. Choose 'bambu' or 'isoquant'.")
   }
   
-  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type)
-  plots_dir <- file.path(input_data_dir, "plots", "retnet")
-  DGE_DTE_DTU <- read_tsv(file.path(plots_dir, paste0(analysis_type, "_retnet_DTU_genes.tsv")))
-
-  gene_file <- file.path(counts_matrix_dir, quant_method, analysis_type, "gene_cpm.RDS")
+  counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+                                 quant_method, analysis_type, "filtered")
   
-  # Load and process gene TPM
-  gene_tpm <- readRDS(gene_file)
-  rownames(gene_tpm) <- gsub("\\..*", "", rownames(gene_tpm))
-  gene_tpm <- gene_tpm[rownames(gene_tpm) %in%  DGE_DTE_DTU$gene_id, ]
+  isoform_file <- file.path(counts_matrix_dir, "isoform_cpm.RDS")
+  isoform_tpm <- readRDS(isoform_file)
+  rownames(isoform_tpm) <- gsub("\\..*", "", rownames(isoform_tpm))
   
   input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type)
   DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
   
-  gene_tpm <- gene_tpm[rownames(gene_tpm) %in% significant_genes, ]
-  gene_tpm <- remove_zero_var_rows(gene_tpm)
+  genes_and_isoforms <- DGE_DTE_DTU |> dplyr::select(c(gene_id, isoform_id, gene_name)) |> distinct()
+  genes_and_isoforms$gene_id <- gsub("\\..*", "", genes_and_isoforms$gene_id)
+  genes_and_isoforms$isoform_id <- gsub("\\..*", "", genes_and_isoforms$isoform_id)
+  nrow(genes_and_isoforms)
+  
+  genes_and_isoforms <- genes_and_isoforms |> filter(gene_name %in% results_df$gene_name)
+  nrow(genes_and_isoforms)
+  
+  isoform_tpm <- isoform_tpm[rownames(isoform_tpm) %in% genes_and_isoforms$isoform_id, ]
+  
+  
+  # Filter significant genes
+  if (table_type == "DTE") {
+    significant_genes <- DGE_DTE_DTU |> filter(DTE == TRUE) |> dplyr::select(gene_id, isoform_id) |> distinct()
+    significant_genes$gene_id <- gsub("\\..*", "", significant_genes$gene_id)
+    significant_genes$isoform_id <- gsub("\\..*", "", significant_genes$isoform_id)
+  } else if (table_type == "DTU") {
+    significant_genes <- DGE_DTE_DTU |> filter(DTU == TRUE) |> dplyr::select(gene_id, isoform_id) |> distinct()
+    significant_genes$gene_id <- gsub("\\..*", "", significant_genes$gene_id)
+    significant_genes$isoform_id <- gsub("\\..*", "", significant_genes$isoform_id) 
+  }
+  
+  isoform_tpm <- isoform_tpm[rownames(isoform_tpm) %in% significant_genes$isoform_id, ]
+  isoform_tpm <- remove_zero_var_rows(isoform_tpm)
   
   # Define groups and output directory
   groups <- if (analysis_type == "ROs") {
-    c("RO_D45", "RO_D45", "RO_D100", "RO_D100", "RO_D100", "RO_D200", "RO_D200")
+    c("Stage_1", "Stage_1", "Stage_2", "Stage_2", "Stage_2", "Stage_3", "Stage_3")
   } else {
     c("FT", "FT", "RGC", "RGC")
   }
   
   output_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu", 
                                 quant_method, analysis_type, "plots", "retnet")
-  return(list( gene_tpm = gene_tpm, 
-               splicing_factors = splicing_factors, groups = groups, 
-               output_plots_dir = output_plots_dir))
+  dir.create(output_plots_dir, recursive = TRUE, showWarnings = FALSE)
+  
+  return(list(isoform_tpm = isoform_tpm,
+              genes_and_isoforms = genes_and_isoforms,
+              groups = groups, 
+              output_plots_dir = output_plots_dir))
 }
+
+
+
+plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_dir, table_type) {
+  
+  if(compare == "FT_vs_RGC"){ 
+    colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
+  else if(compare == "ROs"){
+    colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
+                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
+  
+  tpm <- tpm |> 
+    as.data.frame() |>
+    rownames_to_column(var = "isoform_id") |>
+    inner_join(genes_and_isoforms, by = "isoform_id") |> 
+    mutate(isoform = paste(gene_name, isoform_id, sep = "_")) |>
+    column_to_rownames(var = "isoform") |>
+    dplyr::select(-isoform_id, -gene_id, -gene_name)
+  
+  tpm_matrix <- tpm |> as.matrix() |> t() |> scale(center = TRUE, scale = TRUE) |> t()
+  col_fun <- colorRamp2(c(-2.5, 0, 2.5), c("blue", "white", "red"))
+  
+  ha <- switch(
+    compare,
+    "FT_vs_RGC" = HeatmapAnnotation(type = groups, annotation_name_side = "left",
+                                    col = list(type = c("FT" = "lightgreen", "RGC" = "brown")),
+                                    annotation_name_gp = gpar(fontsize = 2)),
+    "ROs" = HeatmapAnnotation(type = groups, annotation_name_side = "left",
+                              col = list(type = c("Stage_3" = "purple", "Stage_2" = "orange", "Stage_1" = "seagreen")),
+                              annotation_name_gp = gpar(fontsize = 2))
+  )
+  
+  pdf(file.path(output_plots_dir, paste0(compare, "_", table_type, "_retnet_heatmap.pdf")))
+  ht_list <- Heatmap(
+    tpm_matrix, name = "Scaled TPM Expression of Splicing Factors", row_km = 5, col = col_fun,
+    top_annotation = ha, show_row_names = TRUE, show_column_names = TRUE, 
+    row_title = "Isoforms", row_names_gp = gpar(fontsize = 3),
+    column_names_gp = gpar(fontsize = 5), show_row_dend = TRUE, show_column_dend = TRUE
+  )
+  draw(ht_list)
+  dev.off()
+  
+  write.table(rownames(tpm), file = file.path(output_plots_dir, paste0(compare, "_", table_type, "_retnet_heatmap.tsv")), sep = "\t")
+}
+
+
+method <- "bambu"
+comparison <- "ROs"
+
+DTE_data <- load_gene_counts_matrix(comparison, method,  "DTE")
+DTU_data <- load_gene_counts_matrix(comparison, method, "DTU")
+# DGE_data <- load_gene_counts_matrix(comparison, method,splicing_factors_path, "DGE")
+
+plot_heatmap(DTE_data$isoform_tpm, DTE_data$genes_and_isoforms, DTE_data$groups, 
+             comparison, DTE_data$output_plots_dir,  "DTE")
+plot_heatmap(DTU_data$isoform_tpm, DTU_data$genes_and_isoforms, DTU_data$groups,
+             comparison, DTU_data$output_plots_dir,  "DTU")
 
 

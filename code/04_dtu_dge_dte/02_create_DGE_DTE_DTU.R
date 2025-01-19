@@ -2,7 +2,7 @@ library(dplyr)
 library(readr)
 
 method <- "bambu"
-comparison <- "FT_vs_RGC"
+comparison <- "ROs"
 
 if( comparison == "ROs") {
   groups  = c("Stage_1", "Stage_1", "Stage_2","Stage_2",
@@ -99,6 +99,17 @@ new_DGE_DTE_DTU$DTE[is.na(new_DGE_DTE_DTU$DTE)] <- FALSE
 
 new_DGE_DTE_DTU$DTU_qval <- new_DGE_DTE_DTU$isoform_switch_q_value
 
+
+# Add DTE column based on DTE_qval and DTE_log2FC
+new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> 
+  mutate(DTE_0.5 = DTE_qval < 0.05 & abs(DTE_log2FC) >= 0.5)
+
+# Add DGE column based on DGE_qval and DGE_log2FC
+new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> 
+  mutate(DGE_0.5 = DGE_qval < 0.05 & abs(DGE_log2FC) >= 0.5)
+
+table(new_DGE_DTE_DTU$DGE_0.5, useNA = "always")
+table(new_DGE_DTE_DTU$DTE_0.5, useNA = "always")
 
 colnames(new_DGE_DTE_DTU)
 

@@ -15,11 +15,11 @@ method <- "bambu"
 comparison <- "ROs"
 
 get_dge_genelist <- function(df) {
-  values <- df |> select(DGE_log2FC, DGE, gene_id) |> distinct() |>
+  values <- df |> dplyr::select(DGE_log2FC, DGE, gene_id) |> distinct() |>
     filter(DGE == TRUE) |> filter(DGE_log2FC > 0) |>
     pull(DGE_log2FC) |> as.vector()
   
-  names <- df |> select(DGE_log2FC, DGE, gene_id) |> distinct() |>
+  names <- df |> dplyr::select(DGE_log2FC, DGE, gene_id) |> distinct() |>
     filter(DGE == TRUE) |> filter(DGE_log2FC > 0) |>
     pull(gene_id) |> as.vector()
   names(values) <- names
@@ -31,10 +31,10 @@ get_dge_genelist <- function(df) {
 
 
 get_dtu_genelist <- function(df) {
-  values <- df|> select(dIF, DTU, gene_id) |> distinct() |>
+  values <- df|> dplyr::select(dIF, DTU, gene_id) |> distinct() |>
     filter(DTU) |> 
     pull(dIF) |> as.vector()
-  names <- df |> select(dIF, DTU, gene_id) |> distinct() |>
+  names <- df |> dplyr::select(dIF, DTU, gene_id) |> distinct() |>
     filter(DTU) |> 
     pull(gene_id) |> as.vector()
   names(values) <- names
@@ -46,10 +46,10 @@ get_dtu_genelist <- function(df) {
 
 
 get_dte_genelist <- function(df) {
-  values <- df |> select(DTE_log2FC, DTE, gene_id) |> distinct() |>
+  values <- df |> dplyr::select(DTE_log2FC, DTE, gene_id) |> distinct() |>
     filter(DTE) |> filter(DTE_log2FC > 0) |>
     pull(DTE_log2FC) |> as.vector()
-  names <- df |> select(DTE_log2FC, DTE, gene_id) |> distinct() |>
+  names <- df |> dplyr::select(DTE_log2FC, DTE, gene_id) |> distinct() |>
     filter(DTE) |> filter(DTE_log2FC > 0) |>
     pull(gene_id) |> as.vector()
   names(values) <- names

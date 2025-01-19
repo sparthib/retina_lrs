@@ -65,7 +65,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
   input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type)
   DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
   
-  genes_and_isoforms <- DGE_DTE_DTU |> select(gene_id, isoform_id) |> distinct()
+  genes_and_isoforms <- DGE_DTE_DTU |> select(c(gene_id, isoform_id)) |> distinct()
   genes_and_isoforms$gene_id <- gsub("\\..*", "", genes_and_isoforms$gene_id)
   genes_and_isoforms$isoform_id <- gsub("\\..*", "", genes_and_isoforms$isoform_id)
   nrow(genes_and_isoforms)
@@ -102,16 +102,15 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
   dir.create(output_plots_dir, recursive = TRUE, showWarnings = FALSE)
   
   return(list(isoform_tpm = isoform_tpm,
+              genes_and_isoforms = genes_and_isoforms,
               splicing_factors = splicing_factors, 
               groups = groups, 
               output_plots_dir = output_plots_dir))
 }
 
-load_gene_counts_matrix("ROs", "bambu", 
-                        splicing_factors_path, "DTE")
 
 # Function to plot heatmap
-plot_heatmap <- function(tpm, groups, compare, output_plots_dir, splicing_factors_df, table_type) {
+plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_dir, splicing_factors_df, table_type) {
  
   if(compare == "FT_vs_RGC"){ 
     colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
@@ -167,7 +166,7 @@ plot_heatmap <- function(tpm, groups, compare, output_plots_dir, splicing_factor
 # Wrapper function to plot all heatmaps
 plot_all_heatmaps <- function() {
   methods <- c("bambu")
-  comparisons <- c("ROs", "FT_vs_RGC")
+  comparisons <- c("ROs")
   
   for (method in methods) {
     for (comparison in comparisons) {
@@ -175,9 +174,9 @@ plot_all_heatmaps <- function() {
       DTU_data <- load_gene_counts_matrix(comparison, method, splicing_factors_path, "DTU")
       # DGE_data <- load_gene_counts_matrix(comparison, method,splicing_factors_path, "DGE")
       
-      plot_heatmap(DTE_data$isoform_tpm, DTE_data$groups, comparison, DTE_data$output_plots_dir, 
+      plot_heatmap(DTE_data$isoform_tpm, DTE_data$genes_and_isoforms, DTE_data$groups, comparison, DTE_data$output_plots_dir, 
                    DTE_data$splicing_factors, "DTE")
-      plot_heatmap(DTU_data$isoform_tpm, DTU_data$groups, comparison, DTU_data$output_plots_dir, 
+      plot_heatmap(DTU_data$isoform_tpm, DTU_data$genes_and_isoforms, DTU_data$groups, comparison, DTU_data$output_plots_dir, 
                    DTU_data$splicing_factors, "DTU")
       # plot_heatmap(DGE_data$isoform_tpm, DGE_data$groups, comparison, DGE_data$output_plots_dir, 
       #              DGE_data$splicing_factors, "DGE")
