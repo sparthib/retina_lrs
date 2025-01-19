@@ -31,7 +31,7 @@ remove_zero_var_rows <- function(mat) {
   mat[apply(mat, 1, var) != 0, , drop = FALSE]
 }
 
-analysis_type <- "ROs"
+analysis_type <- "FT_vs_RGC"
 quant_method <- "bambu"
 counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
                                quant_method, analysis_type, "filtered")
@@ -65,7 +65,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
   input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type)
   DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
   
-  genes_and_isoforms <- DGE_DTE_DTU |> select(c(gene_id, isoform_id)) |> distinct()
+  genes_and_isoforms <- DGE_DTE_DTU |> dplyr::select(c(gene_id, isoform_id)) |> distinct()
   genes_and_isoforms$gene_id <- gsub("\\..*", "", genes_and_isoforms$gene_id)
   genes_and_isoforms$isoform_id <- gsub("\\..*", "", genes_and_isoforms$isoform_id)
   nrow(genes_and_isoforms)
@@ -78,11 +78,11 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
 
   # Filter significant genes
   if (table_type == "DTE") {
-    significant_genes <- DGE_DTE_DTU |> filter(DTE == TRUE) |> select(gene_id, isoform_id) |> distinct()
+    significant_genes <- DGE_DTE_DTU |> filter(DTE == TRUE) |> dplyr::select(gene_id, isoform_id) |> distinct()
     significant_genes$gene_id <- gsub("\\..*", "", significant_genes$gene_id)
     significant_genes$isoform_id <- gsub("\\..*", "", significant_genes$isoform_id)
   } else if (table_type == "DTU") {
-    significant_genes <- DGE_DTE_DTU |> filter(DTU == TRUE) |> select(gene_id, isoform_id) |> distinct()
+    significant_genes <- DGE_DTE_DTU |> filter(DTU == TRUE) |> dplyr::select(gene_id, isoform_id) |> distinct()
     significant_genes$gene_id <- gsub("\\..*", "", significant_genes$gene_id)
     significant_genes$isoform_id <- gsub("\\..*", "", significant_genes$isoform_id) 
   }
@@ -166,7 +166,7 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
 # Wrapper function to plot all heatmaps
 plot_all_heatmaps <- function() {
   methods <- c("bambu")
-  comparisons <- c("ROs")
+  comparisons <- c("FT_vs_RGC")
   
   for (method in methods) {
     for (comparison in comparisons) {

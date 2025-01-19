@@ -2,13 +2,7 @@ library(dplyr)
 library(readr)
 
 method <- "bambu"
-comparison <- "ROs"
-
-if( comparison == "ROs") {
-  groups  = c("Stage_1", "Stage_1", "Stage_2","Stage_2",
-              "Stage_2", "Stage_3","Stage_3" )
-} 
-
+comparison <- "FT_vs_RGC"
 
 isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                       method, comparison, "isoformFeatures.tsv"))
@@ -50,20 +44,12 @@ DTE_table$isoform_id <- ifelse(
 )
 
 colnames(DTE_table)
-if (comparison == "FT_vs_RGC") {
-  DTE_table$condition_1 <- "FT"
-  DTE_table$condition_2 <- "RGC"
-}
 DTE_table <- DTE_table |> dplyr::select(c( "isoform_id", "logFC", "logCPM", "F", "PValue", "FDR",  "condition_1", "condition_2"))
 colnames(DTE_table) <- c("isoform_id", "DTE_log2FC", "DTE_logCPM", "DTE_F", "DTE_pval", "DTE_qval", "condition_1", "condition_2")
 
 
 DGE_table$gene_id <- gsub("\\..*", "", DGE_table$gene_id)
 colnames(DGE_table)
-if (comparison == "FT_vs_RGC") {
-  DGE_table$condition_1 <- "FT"
-  DGE_table$condition_2 <- "RGC"
-}
 DGE_table <- DGE_table |> dplyr::select(c("gene_id", "logFC", "logCPM", "F", "PValue", "FDR", "condition_1", "condition_2"))
 colnames(DGE_table) <- c("gene_id", "DGE_log2FC", "DGE_logCPM", "DGE_F", "DGE_pval", "DGE_qval", "condition_1", "condition_2")
 

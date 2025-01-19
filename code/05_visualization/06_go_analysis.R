@@ -12,7 +12,7 @@ library(tidyr)
 ## or genes undergoing significant switching. 
 
 method <- "bambu"
-comparison <- "ROs"
+comparison <- "FT_vs_RGC"
 
 get_dge_genelist <- function(df) {
   values <- df |> dplyr::select(DGE_log2FC, DGE, gene_id) |> distinct() |>
@@ -129,16 +129,16 @@ run_all_go <- function(method, comparison, ont = "BP"){
     
   } else if (comparison == "FT_vs_RGC") {
     
-    # dge <- get_dge_genelist(DGE_DTU_DTE)
+    dge <- get_dge_genelist(DGE_DTU_DTE)
     # 
-    # dte <- get_dte_genelist(DGE_DTU_DTE)
+    dte <- get_dte_genelist(DGE_DTU_DTE)
     
     dtu <- get_dtu_genelist(DGE_DTU_DTE)
     
     ora_plot(dge, ont, output_plot_dir, "DGE", "FT_vs_RGC")
     ora_plot(dte, ont, output_plot_dir, "DTE", "FT_vs_RGC")
     
-    # ora_plot(dtu, ont, output_plot_dir, "DTU", "FT_vs_RGC")
+    ora_plot(dtu, ont, output_plot_dir, "DTU", "FT_vs_RGC")
   
   }
   
@@ -146,19 +146,7 @@ run_all_go <- function(method, comparison, ont = "BP"){
   }
 
 
-methods <- c("bambu", "Isoquant")
-comparisons <- c("ROs", "FT_vs_RGC")
-ontologies <- c("BP", "CC", "MF")
 
-for (method in methods) {
-  for (comparison in comparisons) {
-    for (ont in ontologies) {
-      run_all_go(method, comparison, ont)
-    }
-  }
-}
-
-run_all_go("bambu", "ROs", ont = "BP")
-# run_all_go("bambu", "FT_vs_RGC", ont = "CC")
+run_all_go(method, comparison, ont = "BP")
 
 

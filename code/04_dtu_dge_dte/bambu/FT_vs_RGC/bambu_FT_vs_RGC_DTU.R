@@ -8,7 +8,6 @@ library(tidyr)
 library(dplyr)
 # library('BSgenome.Hsapiens.UCSC.hg38')
 
-
 method <- "bambu"
 comparison <- "FT_vs_RGC"
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
@@ -20,7 +19,6 @@ cpm <- readRDS(cpm)
 
 
 #read CPM_transcript.txt
-
 
 myDesign  <- data.frame(sampleID = colnames(counts) ,
                         condition = c( "FT", "FT", "RGC", "RGC"),
@@ -156,7 +154,6 @@ summary(SwitchList_part1)
 SwitchList_part2 <- analyzeAlternativeSplicing(
   switchAnalyzeRlist = SwitchList_part1
 )
-
 
 switchlist_part2_path = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                   method, comparison, "rds", "SwitchList_part2.rds")

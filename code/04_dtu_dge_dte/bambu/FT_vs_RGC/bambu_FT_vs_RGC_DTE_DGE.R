@@ -36,7 +36,7 @@ y$common.dispersion
 fit <- glmQLFit(y, design, robust=TRUE)
 
 
-contr <- makeContrasts(FT - RGC, levels=design)
+contr <- makeContrasts(RGC - FT, levels=design)
 qlf <- glmQLFTest(fit, contrast=contr)
 
 is.de <- decideTests(qlf, p.value=0.05)
@@ -55,7 +55,8 @@ colnames(tt$table) <- c("isoform_id", "logFC", "logCPM", "F" , "PValue", "FDR")
 
 tt$table$isoform_id <- gsub("\\..*", "", tt$table$isoform_id)
 tt$table <- tt$table[order(tt$table$FDR),]
-
+tt$table$condition_1 <- names(contr[,1])[contr[,1] == -1]
+tt$table$condition_2 <- names(contr[,1])[contr[,1] == 1]
 
 output_path <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                          method, comparison, "DTE_table.tsv" )
@@ -106,7 +107,8 @@ colnames(tt$table) <- c("gene_id", "logFC", "logCPM", "F" , "PValue", "FDR")
 
 tt$table$gene_id <- gsub("\\..*", "", tt$table$gene_id)
 tt$table <- tt$table[order(tt$table$FDR),]
-
+tt$table$condition_1 <- names(contr[,1])[contr[,1] == -1]
+tt$table$condition_2 <- names(contr[,1])[contr[,1] == 1]
 
 output_path <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                          method, comparison, "DGE_table.tsv" )
