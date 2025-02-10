@@ -5,6 +5,7 @@ library(httr)
 library(readr)
 library(jsonlite)
 library(stringr)
+library(reshape2)
 
 url <- "https://raw.githubusercontent.com/WahlinLab/Organoid_RNAseq_SciData22/refs/heads/main/Normalized_counts_D0-D280.tabular"
 short_read_data <- read.table(url, header = TRUE, sep = "\t", row.names = 1)
@@ -123,10 +124,11 @@ short_read_data_DGE_counts <- short_read_data[DGE_genes$gene_id, ]
 # sh_Isoquant <- intersect(Isoquant_genes, rownames(short_read_data_DGE_counts))
 
 
-
+method <- "bambu"
+comparison <- "ROs"
 load_data <- function(method) {
   long_read_counts <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                                method, "ROs", "gene_cpm.RDS")
+                                method, comparison, "filtered", "gene_cpm.RDS")
   
   long_read_counts <- readRDS(long_read_counts)
   
@@ -162,49 +164,6 @@ load_data <- function(method) {
 
 bambu_res <- load_data("bambu")
 
-
-######
-# long_read_counts <- load_data("bambu")$long_read_counts
-# short_read_counts <-  load_data("bambu")$short_read_counts
-# nrow(long_read_counts)
-# nrow(short_read_counts)
-# bambu_pearson_corr <- cor(short_read_counts, long_read_counts, method = "pearson") |> melt()
-# bambu_spearman_corr <- cor(short_read_counts, long_read_counts, method = "spearman") |> melt()
-# 
-# long_read_counts <- load_data("Isoquant")$long_read_counts
-# short_read_counts <-  load_data("Isoquant")$short_read_counts
-# nrow(long_read_counts)
-# nrow(short_read_counts)
-# Isoquant_pearson_corr <- cor(short_read_counts, long_read_counts, method = "pearson") |> melt()
-# Isoquant_spearman_corr <- cor(short_read_counts, long_read_counts, method = "spearman") |> melt()
-######
-
-
-###### get_correlation_data ######
-# get_correlation_data <- function(quant, corr) {
-#   long_read_counts <- load_data(quant)$long_read_counts
-#   short_read_counts <-  load_data(quant)$short_read_counts
-# 
-#   cor_matrix <- cor(short_read_counts, long_read_counts, method = corr)
-#   # Convert the correlation matrix to a long format for ggplot2
-#   cor_data <- melt(cor_matrix)
-# 
-#   return(cor_data)
-# }
-# 
-# bambu_pearson <- get_correlation_data("bambu", "pearson")
-# bambu_spearman <- get_correlation_data("bambu", "spearman")
-# 
-# isoquant_pearson <- get_correlation_data("Isoquant", "pearson")
-# isoquant_spearman <- get_correlation_data("Isoquant", "spearman")
-# 
-# range(bambu_pearson$value)
-# range(bambu_spearman$value)
-# range(isoquant_pearson$value)
-# range(isoquant_spearman$value)
-
-
-#####
 
 ##### make correlation plots ##### 
 
@@ -274,8 +233,9 @@ plot_scatter_plot <- function( method) {
 plot_scatter_plot("bambu")
 plot_scatter_plot("Isoquant")
 
-
-plot_correlation_heatmap <- function(method = "bambu", corr = "pearson") {
+method <- "bambu"
+corr <- "spearman"
+plot_correlation_heatmap <- function(method = "bambu", corr = "spearman") {
   
   long_read_counts <- load_data(method)$long_read_counts
   short_read_counts <-  load_data(method)$short_read_counts
@@ -288,13 +248,29 @@ plot_correlation_heatmap <- function(method = "bambu", corr = "pearson") {
   cor_matrix <- cor(short_read_counts, long_read_counts, method = corr)
   # Convert the correlation matrix to a long format for ggplot2
   cor_data <- melt(cor_matrix)
+  cor_data$Var1 <- gsub(".tabular.txt", "", cor_data$Var1)
+  ordered_levels <- c("D00.1", "D00.2", "D00.3",
+                      "D10.3", "D10.4", "D10.5", "D10.6",
+                      "D25.1", "D25.2", "D25.3", "D25.4",
+                      "D65.2", "D65.3", "D65.5", "D65.6",
+                      "D100.3", "D100.4", "D100.5", "D100.6",
+                      "D180.1", "D180.2", "D180.3", "D180.4", "D180.5", "D180.6",
+                      "D280.A2", "D280.B1", "D280.C1")
+  
+  # Convert cor_data$Var1 into a factor with the specified levels
+  cor_data$Var1 <- factor(cor_data$Var1, levels = ordered_levels)
+  
+  # Verify the factor levels
+  levels(cor_data$Var1)
+  
+  
 
   output_plot_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, "/ROs/plots/short_read_correlation/")
   if (!dir.exists(output_plot_dir)) {
     dir.create(output_plot_dir, recursive = TRUE)
   }
   
-  pdf(paste0(output_plot_dir, corr, "_short_read_correlation_heatmap.pdf"), width = 10, height = 10)
+  pdf(paste0(output_plot_dir, corr, "_short_read_correlation_heatmap.pdf"), width = 10, height = 6)
   p <- ggplot(cor_data, aes(Var1, Var2, fill = value)) +
     geom_tile() +
     geom_text(aes(label = sprintf("%.2f", value)), color = "black", size = 2) + # Add annotations
@@ -309,9 +285,6 @@ plot_correlation_heatmap <- function(method = "bambu", corr = "pearson") {
   dev.off()
 }
 
-plot_correlation_heatmap(method = "bambu", corr = "pearson")
 plot_correlation_heatmap(method = "bambu", corr ="spearman")
 
-plot_correlation_heatmap(method = "Isoquant", corr ="pearson")
-plot_correlation_heatmap(method = "Isoquant", corr ="spearman")
 

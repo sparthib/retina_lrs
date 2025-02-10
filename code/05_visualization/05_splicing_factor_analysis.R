@@ -31,13 +31,13 @@ remove_zero_var_rows <- function(mat) {
   mat[apply(mat, 1, var) != 0, , drop = FALSE]
 }
 
-analysis_type <- "FT_vs_RGC"
+analysis_type <- "ROs"
 quant_method <- "bambu"
 counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
                                quant_method, analysis_type, "filtered")
 splicing_factors_path <- "/users/sparthib/retina_lrs/raw_data/GeneCards-Pathway-Splicing.csv"
 
-
+read_csv(splicing_factors_path) |> nrow()
 # Load gene counts matrix function
 load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factors_path,
                                     table_type = "DTE") {
@@ -152,7 +152,7 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
   ht_list <- Heatmap(
     tpm_matrix, name = "Scaled TPM Expression of Splicing Factors", row_km = 5, col = col_fun,
     top_annotation = ha, show_row_names = TRUE, show_column_names = TRUE, 
-    row_title = "Isoforms", row_names_gp = gpar(fontsize = 3),
+    row_title = "Isoforms", row_names_gp = gpar(fontsize = 2),
     column_names_gp = gpar(fontsize = 5), show_row_dend = TRUE, show_column_dend = TRUE
   )
   draw(ht_list)
@@ -166,7 +166,7 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
 # Wrapper function to plot all heatmaps
 plot_all_heatmaps <- function() {
   methods <- c("bambu")
-  comparisons <- c("FT_vs_RGC")
+  comparisons <- c("ROs")
   
   for (method in methods) {
     for (comparison in comparisons) {

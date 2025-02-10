@@ -82,7 +82,7 @@ SwitchList$isoformFeatures$gene_name <- SwitchList$isoformFeatures$ensembl_gene_
 SwitchListFiltered <- preFilter(
   switchAnalyzeRlist         = SwitchList,
   geneExpressionCutoff       = 1,     # default
-  isoformExpressionCutoff    = 0,     # only keep the isoforms that are expressed more than 10 CPM in atleast one of the conditions
+  isoformExpressionCutoff    = 0,     # only keep the isoforms that are expressed more than 0 CPM in atleast one of the conditions
   removeSingleIsoformGenes   = TRUE  # default
 )
 
