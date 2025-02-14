@@ -7,17 +7,14 @@ library(UpSetR)
 method = "bambu"
 comparison = "ROs"
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                            method, comparison)
+                            method, comparison, "protein_coding")
 plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                       method, comparison, "plots", "upset")
+                       method, comparison,"protein_coding", "plots", "upset")
 if (!dir.exists(plots_dir)){
 dir.create(plots_dir, recursive = TRUE, showWarnings = FALSE)
 }
 
 DGE_DTU_DTE <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
-
-
-
 
 gene_overlaps = DGE_DTU_DTE |> dplyr::select( gene_id, isoform_id,
                                               condition_1, condition_2,DGE, 

@@ -164,6 +164,10 @@ if(!file.exists(dtu_rdata_path)){
   saveRDS(SwitchList_part1, file = dtu_rdata_path)
   saveRDS(SwitchList_part1$isoformFeatures, file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                                             method, comparison, "protein_coding" ,"rds", "isoformFeatures.rds"))
+  write_tsv(SwitchList_part1$isoformFeatures,
+            file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                             method, comparison, "protein_coding",  "isoformFeatures.tsv"))
+  
 }else{
   SwitchList_part1 <- readRDS(dtu_rdata_path)
 }

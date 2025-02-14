@@ -2,10 +2,10 @@ library(dplyr)
 library(readr)
 
 method <- "bambu"
-comparison <- "FT_vs_RGC"
+comparison <- "ROs"
 
 isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                      method, comparison, "isoformFeatures.tsv"))
+                                      method, comparison, "protein_coding", "isoformFeatures.tsv"))
 
 isoformFeatures <- isoformFeatures |> distinct()
 
@@ -33,9 +33,9 @@ isoformFeatures$isoform_id <- ifelse(
 )
 
 DTE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                method, comparison, "DTE_table.tsv"))
+                                method, comparison,"protein_coding",  "DTE_table.tsv"))
 DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                method, comparison, "DGE_table.tsv"))
+                                method, comparison,"protein_coding",  "DGE_table.tsv"))
 
 DTE_table$isoform_id <- ifelse(
   grepl("^ENST", DTE_table$isoform_id),  # Check if isoform_id starts with "ENST"
@@ -88,7 +88,7 @@ new_DGE_DTE_DTU$DTU_qval <- new_DGE_DTE_DTU$isoform_switch_q_value
 
 # Add DTE column based on DTE_qval and DTE_log2FC
 new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> 
-  mutate(DTE_0.5 = DTE_qval < 0.05 & abs(DTE_log2FC) >= 0.5)
+  mutate(DTE_0.5 = DTE_qval < 0.05 & abs(DTE_log2FC) >= 0.5) 
 
 # Add DGE column based on DGE_qval and DGE_log2FC
 new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> 
@@ -122,7 +122,7 @@ annotLookup <- annotLookup |> distinct()
 new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> dplyr::select(-c(gene_name, gene_biotype, isoform_biotype)) |> 
   left_join(annotLookup, by = "isoform_id")
 new_DGE_DTE_DTU
-input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison)
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding" )
 write_tsv(new_DGE_DTE_DTU, file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
 
 

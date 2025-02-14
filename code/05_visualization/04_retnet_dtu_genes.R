@@ -4,9 +4,14 @@ library(dplyr)
 library(readxl)
 library(biomaRt)
 library(stringr)
+library(tibble)
 library(purrr)
-
-
+library(ComplexHeatmap)
+library(circlize)
+library(grid)
+remove_zero_var_rows <- function(mat) {
+  mat[apply(mat, 1, function(x) min(x) != max(x)), ]
+}
 
 raw_data_dir <- "/users/sparthib/retina_lrs/raw_data"
 RetNet_gene_list <- read_excel(file.path(raw_data_dir, "RetNet.xlsx"),
@@ -91,6 +96,9 @@ write.table(results_df, file = "/users/sparthib/retina_lrs/processed_data/dtu/re
 
 load_gene_counts_matrix <- function(analysis_type, quant_method,
                                     table_type = "DTE") {
+  table_type = "DTE"
+  analysis_type = "FT_vs_RGC"
+  quant_method = "bambu"
   # Validate inputs
   if (!analysis_type %in% c("FT_vs_RGC", "ROs")) {
     stop("Invalid analysis_type. Choose 'FT_vs_RGC' or 'ROs'.")
@@ -100,13 +108,13 @@ load_gene_counts_matrix <- function(analysis_type, quant_method,
   }
   
   counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                                 quant_method, analysis_type, "filtered")
+                                 quant_method, analysis_type, "filtered_by_counts_and_biotype")
   
   isoform_file <- file.path(counts_matrix_dir, "isoform_cpm.RDS")
   isoform_tpm <- readRDS(isoform_file)
   rownames(isoform_tpm) <- gsub("\\..*", "", rownames(isoform_tpm))
   
-  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type)
+  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type, "protein_coding")
   DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
   
   genes_and_isoforms <- DGE_DTE_DTU |> dplyr::select(c(gene_id, isoform_id, gene_name)) |> distinct()
@@ -142,7 +150,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method,
   }
   
   output_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu", 
-                                quant_method, analysis_type, "plots", "retnet")
+                                quant_method, analysis_type, "protein_coding", "plots", "retnet")
   dir.create(output_plots_dir, recursive = TRUE, showWarnings = FALSE)
   
   return(list(isoform_tpm = isoform_tpm,

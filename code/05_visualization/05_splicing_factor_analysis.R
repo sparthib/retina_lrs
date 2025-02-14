@@ -34,7 +34,7 @@ remove_zero_var_rows <- function(mat) {
 analysis_type <- "ROs"
 quant_method <- "bambu"
 counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                               quant_method, analysis_type, "filtered")
+                               quant_method, analysis_type, "filtered_by_counts_and_biotype")
 splicing_factors_path <- "/users/sparthib/retina_lrs/raw_data/GeneCards-Pathway-Splicing.csv"
 
 read_csv(splicing_factors_path) |> nrow()
@@ -50,7 +50,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
   }
   
   counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                                 quant_method, analysis_type, "filtered")
+                                 quant_method, analysis_type, "filtered_by_counts_and_biotype")
   
   # Load splicing factors
   splicing_factors <- read_csv(splicing_factors_path) |>
@@ -62,7 +62,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
   isoform_tpm <- readRDS(isoform_file)
   rownames(isoform_tpm) <- gsub("\\..*", "", rownames(isoform_tpm))
   
-  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type)
+  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type, "protein_coding")
   DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
   
   genes_and_isoforms <- DGE_DTE_DTU |> dplyr::select(c(gene_id, isoform_id)) |> distinct()
@@ -98,7 +98,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
   }
   
   output_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu", 
-                                quant_method, analysis_type, "plots", "splicing_factor_analysis")
+                                quant_method, analysis_type, "protein_coding", "plots", "splicing_factor_analysis")
   dir.create(output_plots_dir, recursive = TRUE, showWarnings = FALSE)
   
   return(list(isoform_tpm = isoform_tpm,
@@ -158,7 +158,8 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
   draw(ht_list)
   dev.off()
   
-  write.table(rownames(tpm), file = file.path(output_plots_dir, paste0(compare, "_", table_type, "_splicing_factors_heatmap.tsv")), sep = "\t")
+  write.table(rownames(tpm), file = file.path(output_plots_dir, 
+                                              paste0(compare, "_", table_type, "_splicing_factors_heatmap.tsv")), sep = "\t")
 }
 
 

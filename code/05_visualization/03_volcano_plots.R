@@ -5,9 +5,11 @@ library(tidyr)
 library(ggplot2)
 library(ggrepel)
 
+method <- "bambu"
+comparison <- "FT_vs_RGC"
 source("/users/sparthib/retina_lrs/code/05_visualization/helper.R")
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                            method, comparison) 
+                            method, comparison, "protein_coding") 
 
 volcano_plot <- function(data, x_col = "logFC", y_col = "FDR", gene_label_col = "external_gene_name",
                          cutoff_qval = 0.05, cutoff_logFC = 1, condition_1, condition_2) {
@@ -138,14 +140,14 @@ for (method in methods) {
     }
     
     generate_volcano_plots(
-      input_data_dir = file.path(input_base_dir, method, comparison),
+      input_data_dir = file.path(input_base_dir, method, comparison,"protein_coding"),
       comparison = comparison,
       table_type = "DTE",
       conditions = conditions
     )
     
     generate_volcano_plots(
-      input_data_dir = file.path(input_base_dir, method, comparison),
+      input_data_dir = file.path(input_base_dir, method, comparison,"protein_coding"),
       comparison = comparison,
       table_type = "DGE",
       conditions = conditions

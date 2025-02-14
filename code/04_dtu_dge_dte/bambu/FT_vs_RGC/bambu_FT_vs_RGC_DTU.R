@@ -16,9 +16,7 @@ counts <- readRDS(counts)
 cpm <- file.path(matrix_dir, "isoform_cpm.RDS")
 cpm <- readRDS(cpm)
 
-
 #read CPM_transcript.txt
-
 myDesign  <- data.frame(sampleID = colnames(counts) ,
                         condition = c( "FT", "FT", "RGC", "RGC"),
                         stringsAsFactors = FALSE)

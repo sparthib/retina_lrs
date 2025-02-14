@@ -128,14 +128,13 @@ method <- "bambu"
 comparison <- "ROs"
 load_data <- function(method) {
   long_read_counts <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                                method, comparison, "filtered", "gene_cpm.RDS")
+                                method, comparison, "filtered_by_counts_and_biotype", "genes_cpm.RDS")
   
   long_read_counts <- readRDS(long_read_counts)
   
   # long_read_counts <- remove_zero_var_rows(long_read_counts)
 
-  rownames(long_read_counts) <-
-    gsub("\\.\\d+$", "", rownames(long_read_counts))
+  rownames(long_read_counts) <- gsub("\\.\\d+$", "", rownames(long_read_counts))
   
   long_read_counts <- as.data.frame(long_read_counts)
   
@@ -149,7 +148,7 @@ load_data <- function(method) {
   #common rows with short reads matrix 
   
   DTU_DTE_DGE <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                    method, "ROs", "DGE_DTE_DTU.tsv"))
+                                    method, "ROs", "protein_coding" , "DGE_DTE_DTU.tsv"))
   DGE_genes <- DTU_DTE_DGE |> filter(DGE == TRUE) |> select(gene_id) |> unique()
   DGE_genes <- gsub("\\.\\d+$", "", DGE_genes$gene_id)
   
@@ -175,7 +174,7 @@ method <- "bambu"
 
 plot_scatter_plot <- function( method) { 
 
-  output_plot_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, "/ROs/plots/short_read_correlation/")
+  output_plot_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, "/ROs/protein_coding/plots/short_read_correlation/")
   if (!dir.exists(output_plot_dir)) {
     dir.create(output_plot_dir, recursive = TRUE)
   }
@@ -230,9 +229,6 @@ plot_scatter_plot <- function( method) {
 }
   
 
-plot_scatter_plot("bambu")
-plot_scatter_plot("Isoquant")
-
 method <- "bambu"
 corr <- "spearman"
 plot_correlation_heatmap <- function(method = "bambu", corr = "spearman") {
@@ -265,7 +261,7 @@ plot_correlation_heatmap <- function(method = "bambu", corr = "spearman") {
   
   
 
-  output_plot_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, "/ROs/plots/short_read_correlation/")
+  output_plot_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, "/ROs/protein_coding/plots/short_read_correlation/")
   if (!dir.exists(output_plot_dir)) {
     dir.create(output_plot_dir, recursive = TRUE)
   }

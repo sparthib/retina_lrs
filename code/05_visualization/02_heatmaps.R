@@ -198,12 +198,12 @@ compare <- "FT_vs_RGC"
 load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- readRDS(file.path(counts_matrix_dir,
                                    method,
-                                   compare, "filtered",
+                                   compare, "filtered_by_counts_and_biotype",
                                    "isoform_cpm.RDS"))
   gene_tpm <- readRDS(file.path(counts_matrix_dir,
                                 method,
-                                compare, "filtered",
-                                "gene_cpm.RDS"))
+                                compare, "filtered_by_counts_and_biotype",
+                                "genes_cpm.RDS"))
   
   samples <- colnames(isoform_tpm)
   if (compare == "FT_vs_RGC"){
@@ -215,13 +215,13 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   }
     
     heatmap_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                   method, compare, "plots", "heatmaps")
+                                   method, compare, "protein_coding","plots", "heatmaps")
     if (!dir.exists(heatmap_plots_dir)) {
       dir.create(heatmap_plots_dir, recursive = TRUE)
     }
       
     input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                             method, compare)
+                             method, compare,"protein_coding" )
     
     DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
     

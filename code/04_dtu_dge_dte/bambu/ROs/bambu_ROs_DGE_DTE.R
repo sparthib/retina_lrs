@@ -81,7 +81,7 @@ for (i in seq_len(ncol(contr))) {
 
 # DGE Analysis
 
-counts <- file.path(matrix_dir, "gene_counts.RDS") 
+counts <- file.path(matrix_dir, "genes_counts.RDS") 
 counts <- readRDS(counts)
 
 y <- DGEList(counts = counts,

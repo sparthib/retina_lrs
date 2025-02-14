@@ -6,19 +6,19 @@ library(patchwork)
 library(ggrepel)
 library(ggplot2)
 
-counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/"
+counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
 
 source("/users/sparthib/retina_lrs/code/05_visualization/helper.R")
 
 load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- readRDS(file.path(counts_matrix_dir,
                                    method,
-                                   compare, "filtered",
+                                   compare, "filtered_by_counts_and_biotype",
                                    "isoform_cpm.RDS"))
   gene_tpm <- readRDS(file.path(counts_matrix_dir,
                                 method,
-                                compare, "filtered",
-                                "gene_cpm.RDS"))
+                                compare, "filtered_by_counts_and_biotype",
+                                "genes_cpm.RDS"))
   
   isoform_tpm <- remove_zero_var_rows(isoform_tpm)
   gene_tpm <- remove_zero_var_rows(gene_tpm)
@@ -33,7 +33,7 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   }
   
   pca_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                 method, compare, "plots", "PCA")
+                                 method, compare, "protein_coding",  "plots", "PCA")
   if (!dir.exists(pca_plots_dir)) {
     dir.create(pca_plots_dir, recursive = TRUE)
   }

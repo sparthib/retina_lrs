@@ -12,7 +12,7 @@ library(tidyr)
 ## or genes undergoing significant switching. 
 
 method <- "bambu"
-comparison <- "FT_vs_RGC"
+comparison <- "ROs"
 
 get_dge_genelist <- function(df) {
   values <- df |> dplyr::select(DGE_log2FC, DGE, gene_id) |> distinct() |>
@@ -85,11 +85,12 @@ ora_plot <- function(genelist, ont, output_plot_dir, analysis_type, conditions){
   
 run_all_go <- function(method, comparison, ont = "BP"){ 
   DGE_DTU_DTE <- read_tsv(file.path("/users", "sparthib", "retina_lrs", "processed_data","dtu",
-                                    method, comparison,
+                                    method, comparison, "protein_coding",
                                     "DGE_DTE_DTU.tsv"))
   
   output_plot_dir <- file.path("/users", "sparthib", "retina_lrs", "processed_data","dtu",
-                               method, comparison, "plots", "go_analysis")
+                               method, comparison, "protein_coding",
+                               "plots", "go_analysis")
   if (!dir.exists(output_plot_dir)) {
     dir.create(output_plot_dir, recursive = TRUE)
   }
