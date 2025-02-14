@@ -6,13 +6,13 @@ comparison <- "FT_vs_RGC"
 groups <- c( "FT", "FT", "RGC", "RGC")
 ##### DTE ######
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                        method, comparison, "filtered")
+                        method, comparison, "filtered_by_counts_and_biotype")
 counts <- file.path(matrix_dir, "isoform_counts.RDS") 
 counts <- readRDS(counts)
 
 
 isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                      method, comparison, "isoformFeatures.tsv"))
+                                      method, comparison, "protein_coding", "isoformFeatures.tsv"))
 
 counts <- counts[rownames(counts) %in% isoformFeatures$isoform_id,]
 nrow(counts)
@@ -59,25 +59,21 @@ tt$table$condition_1 <- names(contr[,1])[contr[,1] == -1]
 tt$table$condition_2 <- names(contr[,1])[contr[,1] == 1]
 
 output_path <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                         method, comparison, "DTE_table.tsv" )
+                         method, comparison, "protein_coding","DTE_table.tsv" )
 
 write.table(tt$table, file = output_path,
             sep = "\t", quote = FALSE, row.names = FALSE)
 
 ##### DGE ######
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                        method, comparison)
-counts <- file.path(matrix_dir, "gene_counts.RDS") 
+                        method, comparison, "filtered_by_counts_and_biotype")
+counts <- file.path(matrix_dir, "genes_counts.RDS") 
 counts <- readRDS(counts)
 
 y <- DGEList(counts = counts,
              samples = colnames(counts),
              group = groups,
              genes = rownames(counts))
-
-keep <- filterByExpr(y, )
-table(keep)
-y <- y[keep, , keep.lib.sizes=FALSE]
 y <- normLibSizes(y)
 
 
@@ -98,8 +94,6 @@ qlf <- glmQLFTest(fit, contrast=contr)
 is.de <- decideTests(qlf, p.value=0.05)
 summary(is.de)
 
-
-
 tt <- topTags(qlf,n = Inf)
 nrow(tt) #10261
 head(tt)
@@ -111,7 +105,7 @@ tt$table$condition_1 <- names(contr[,1])[contr[,1] == -1]
 tt$table$condition_2 <- names(contr[,1])[contr[,1] == 1]
 
 output_path <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                         method, comparison, "DGE_table.tsv" )
+                         method, comparison,"protein_coding", "DGE_table.tsv" )
 
 write.table(tt$table, file = output_path,
             sep = "\t", quote = FALSE, row.names = FALSE)
