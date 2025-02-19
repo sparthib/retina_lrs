@@ -12,6 +12,7 @@
 
 
 ml load singularity
+ml load nextflow
 
 reference_fasta=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 reference_gtf=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
