@@ -28,6 +28,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 singularity pull docker://lingminhao/bambusc:beta1.2
 nextflow run GoekeLab/bambu-singlecell-spatial \
+  -r main \
   --bams /users/sparthib/retina_lrs/raw_data/single_cell_samples.csv \
   --genome $reference_dir \
   --annotation $reference_gtf \
