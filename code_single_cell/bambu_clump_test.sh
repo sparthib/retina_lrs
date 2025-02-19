@@ -27,7 +27,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 singularity pull docker://lingminhao/bambusc:beta1.2
-nextflow run GoekeLab/bambu-singlecell-spatial \
+nextflow run /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05c_bambu_clump/bambu-singlecell-spatial \
   -r main \
   --bams /users/sparthib/retina_lrs/raw_data/single_cell_samples.csv \
   --genome $reference_dir \
