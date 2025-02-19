@@ -1,13 +1,13 @@
-sample,bam,,,,
-10x_D100-EP1_A1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D100-EP1_A1_deduped_sorted.bam,,,,
-10x_D100-EP1_A2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D100-EP1_A2_deduped_sorted.bam,,,,
-10x_D100-EP1_B1 ,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D100-EP1_B1_deduped_sorted.bam,,,,
-10x_D100-EP1_B2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D100-EP1_B2_deduped_sorted.bam,,,,
-10x_D200-EP1-1_A1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-1_A1_deduped_sorted.bam,,,,
-10x_D200-EP1-1_A2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-1_A2_deduped_sorted.bam,,,,
-10x_D200-EP1-1_B1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-1_B1_deduped_sorted.bam,,,,
-10x_D200-EP1-1_B2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-1_B2_deduped_sorted.bam,,,,
-10x_D200-EP1-2_A1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-2_A1_deduped_sorted.bam,,,,
-10x_D200-EP1-2_A2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-2_A2_deduped_sorted.bam,,,,
-10x_D200-EP1-2_B1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-2_B1_deduped_sorted.bam,,,,
-10x_D200-EP1-2_B2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-2_B2_deduped_sorted.bam,,,,
+sample,bam
+10x_D100-EP1_A1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D100-EP1_A1_deduped_sorted.bam
+10x_D100-EP1_A2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D100-EP1_A2_deduped_sorted.bam
+10x_D100-EP1_B1 ,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D100-EP1_B1_deduped_sorted.bam
+10x_D100-EP1_B2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D100-EP1_B2_deduped_sorted.bam
+10x_D200-EP1-1_A1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-1_A1_deduped_sorted.bam
+10x_D200-EP1-1_A2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-1_A2_deduped_sorted.bam
+10x_D200-EP1-1_B1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-1_B1_deduped_sorted.bam
+10x_D200-EP1-1_B2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-1_B2_deduped_sorted.bam
+10x_D200-EP1-2_A1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-2_A1_deduped_sorted.bam
+10x_D200-EP1-2_A2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-2_A2_deduped_sorted.bam
+10x_D200-EP1-2_B1,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-2_B1_deduped_sorted.bam
+10x_D200-EP1-2_B2,/dcs04/hicks/data/sparthib/retina_single_cell_lrs/04_minimap2_output/genome/bams/primary_over_30_chr_only/tagged/10x_D200-EP1-2_B2_deduped_sorted.bam
