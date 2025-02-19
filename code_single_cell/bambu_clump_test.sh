@@ -34,8 +34,7 @@ nextflow run GoekeLab/bambu-singlecell-spatial \
   --annotation $reference_gtf \
   --chemistry 10x3v2 \
   --ncore 19 --outdir $output_dir \
-  -with-singularity lingminhao/bambusc:beta1.2 \
-  -w $output_dir
+  -with-singularity lingminhao/bambusc:beta1.2 
   
 echo "****Job Ends****"
 date +"%Y-%m-%d %T"
