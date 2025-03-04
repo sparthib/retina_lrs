@@ -29,6 +29,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 # nextflow run /dcs04/hicks/data/sparthib/retina_single_cell_lrs/05c_bambu_clump/bambu-singlecell-spatial \
 singularity pull docker://lingminhao/bambusc:beta1.2
+rm -rf /users/sparthib/.nextflow/assets/GoekeLab/bambu-singlecell-spatial
 nextflow pull GoekeLab/bambu-singlecell-spatial
 
 nextflow run GoekeLab/bambu-singlecell-spatial \
