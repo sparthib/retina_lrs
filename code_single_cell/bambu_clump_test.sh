@@ -31,7 +31,6 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 
 nextflow run ~/bambu-singlecell-spatial \
-    -r main \
     --bams /users/sparthib/retina_lrs/raw_data/single_cell_samples.csv \
     --genome $reference_dir \
     --annotation $reference_gtf \
