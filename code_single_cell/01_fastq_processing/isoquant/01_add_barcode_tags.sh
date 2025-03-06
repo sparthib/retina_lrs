@@ -7,7 +7,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/add_barcode.%a.txt
 #SBATCH -e logs/add_barcode.%a.txt
-#SBATCH --array=1-12
+#SBATCH --array=7
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"

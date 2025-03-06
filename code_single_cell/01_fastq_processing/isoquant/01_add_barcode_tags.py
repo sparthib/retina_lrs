@@ -11,7 +11,6 @@ args = parser.parse_args()
 # Extract the sample name from the input BAM file name
 input_bam = args.input_bam
 output_bam = args.output_bam
-input_ban=
 
 # Extract the sample name up to the first occurrence of '_B' or '_A'
 basename = os.path.basename(input_bam)
