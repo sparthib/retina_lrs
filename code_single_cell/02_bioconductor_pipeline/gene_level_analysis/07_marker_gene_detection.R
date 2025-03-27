@@ -2,10 +2,8 @@ library(scran)
 library(scater)
 
 
-
-
 # Load the clustered sce object
-sce <- readRDS("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/06_sce_rds_files/gene_level/06_clustered_sce.rds")
+sce <- readRDS("/dcs04/hicks/data/sparthib/retina_single_cell_lrs/06_sce_rds_files/gene_level/06_clustered_sce_day100.rds")
 
 
 rowData(sce)$ENSEMBL_ID <- rownames(sce) 
@@ -33,11 +31,12 @@ marker.info <- scoreMarkers(sce,
 # of the magnitude of the expression values. 
 # metric <- "mean.AUC"
 
-metric <- "min.logFC.cohen"
-plot_dir <- "/users/sparthib/retina_lrs/single_cell_plots/01_sce_eda/06_marker_gene_detection/"
+metric <- "min.AUC"
+plot_dir <- "/users/sparthib/retina_lrs/single_cell_plots/01_sce_eda/06_marker_gene_detection/sce_d100/"
 dir.create(plot_dir, showWarnings = FALSE)
 
 cluster_num <- 9
+
 chosen <- marker.info[[as.character(cluster_num)]]
 
 if (is.null(chosen) || nrow(chosen) == 0) {
@@ -70,6 +69,8 @@ if (length(top_markers) > 0) {
 }
 
 dev.off()
+  
+
 
   
 
