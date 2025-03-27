@@ -164,10 +164,6 @@ load_data <- function(method) {
 bambu_res <- load_data("bambu")
 
 
-##### make correlation plots ##### 
-
-library(ggplot2)
-library(reshape2)
 
 
 method <- "bambu"
@@ -269,7 +265,7 @@ plot_correlation_heatmap <- function(method = "bambu", corr = "spearman") {
   pdf(paste0(output_plot_dir, corr, "_short_read_correlation_heatmap.pdf"), width = 10, height = 6)
   p <- ggplot(cor_data, aes(Var1, Var2, fill = value)) +
     geom_tile() +
-    geom_text(aes(label = sprintf("%.2f", value)), color = "black", size = 2) + # Add annotations
+    geom_text(aes(label = sprintf("%.2f", value)), color = "black", size = 3, angle = 45) + # Add annotations
     
     scale_fill_gradient2(low = "white", mid = "pink", high = "red", midpoint = 0.5, 
                          limits = c(0, 1), name = "Correlation") +

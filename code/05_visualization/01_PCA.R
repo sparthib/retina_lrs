@@ -23,11 +23,12 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- remove_zero_var_rows(isoform_tpm)
   gene_tpm <- remove_zero_var_rows(gene_tpm)
   
-  
-  samples <- colnames(isoform_tpm)
   if (compare == "FT_vs_RGC"){
+    samples <- c("FT_1", "FT_2", "RGC_1", "RGC_2")
     groups <- c("FT", "FT", "RGC", "RGC")
   }else if (compare == "ROs"){
+    samples <- c("Stage_1_1", "Stage_1_2", "Stage_2_1", 
+                 "Stage_2_2", "Stage_2_3", "Stage_3_1", "Stage_3_2")
     groups <- c("Stage_1", "Stage_1", "Stage_2","Stage_2", 
                 "Stage_2", "Stage_3", "Stage_3")
   }

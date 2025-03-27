@@ -8,9 +8,9 @@ library(ggplot2)
 method = "bambu"
 comparison = "ROs"
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                            method, comparison)
+                            method, comparison, "protein_coding")
 plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                       method, comparison, "plots", "upset")
+                       method, comparison,"protein_coding", "plots", "upset")
 if (!dir.exists(plots_dir)){
 dir.create(plots_dir, recursive = TRUE, showWarnings = FALSE)
 }
@@ -56,6 +56,8 @@ gene_overlaps = gene_overlaps |> group_by(gene_id) |>
             DTE_Stage_1_vs_Stage_3 = any(DTE_Stage_1_vs_Stage_3),
             DTE_Stage_2_vs_Stage_3 = any(DTE_Stage_2_vs_Stage_3)
             ) 
+
+readr::write_tsv(gene_overlaps, file.path(plots_dir, "gene_overlaps.tsv"))
 
 rownames(gene_overlaps) <- gene_overlaps$gene_id
 
