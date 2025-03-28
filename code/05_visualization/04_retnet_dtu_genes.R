@@ -96,9 +96,6 @@ write.table(results_df, file = "/users/sparthib/retina_lrs/processed_data/dtu/re
 
 load_gene_counts_matrix <- function(analysis_type, quant_method,
                                     table_type = "DTE") {
-  table_type = "DTE"
-  analysis_type = "FT_vs_RGC"
-  quant_method = "bambu"
   # Validate inputs
   if (!analysis_type %in% c("FT_vs_RGC", "ROs")) {
     stop("Invalid analysis_type. Choose 'FT_vs_RGC' or 'ROs'.")
@@ -192,7 +189,7 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
   
   pdf(file.path(output_plots_dir, paste0(compare, "_", table_type, "_retnet_heatmap.pdf")))
   ht_list <- Heatmap(
-    tpm_matrix, name = "Scaled TPM Expression of Splicing Factors", row_km = 5, col = col_fun,
+    tpm_matrix, name = paste0("Isoform TPM Expression of ", table_type, " RetNet Genes"), row_km = 5, col = col_fun,
     top_annotation = ha, show_row_names = TRUE, show_column_names = TRUE, 
     row_title = "Isoforms", row_names_gp = gpar(fontsize = 3),
     column_names_gp = gpar(fontsize = 5), show_row_dend = TRUE, show_column_dend = TRUE
@@ -205,7 +202,7 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
 
 
 method <- "bambu"
-comparison <- "FT_vs_RGC"
+comparison <- "ROs"
 
 DTE_data <- load_gene_counts_matrix(comparison, method,  "DTE")
 DTU_data <- load_gene_counts_matrix(comparison, method, "DTU")

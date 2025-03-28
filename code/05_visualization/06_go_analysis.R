@@ -146,8 +146,6 @@ run_all_go <- function(method, comparison, ont = "BP"){
   
   }
 
-
-
 run_all_go(method, comparison, ont = "BP")
 
 

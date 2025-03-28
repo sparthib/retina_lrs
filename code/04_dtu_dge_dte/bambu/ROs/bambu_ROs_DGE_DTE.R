@@ -39,10 +39,20 @@ y <- DGEList(counts = counts,
 
 y <- normLibSizes(y)
 
+pdf(file = "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/protein_coding/plots/isoform_MDS.pdf")
+plotMDS(y, labels = y$samples$group, )
+dev.off()
 # Normalize and estimate dispersion
 design <- model.matrix(~ 0 + group, data = y$samples)
 colnames(design) <- gsub("group", "", colnames(design))
-y <- estimateDisp(y, design, robust=TRUE)
+# y <- estimateDisp(y, design, robust=TRUE)
+y <- estimateCommonDisp(y, design)
+y <- estimateTagwiseDisp(y)
+
+
+pdf(file = "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/protein_coding/plots/isoform_BCV.pdf")
+plotBCV(y, col.common="red", col.trend="blue", col.tagwise="black")
+dev.off()
 
 # Fit the model and create contrasts
 fit <- glmQLFit(y, design, robust=TRUE)
@@ -93,6 +103,13 @@ y <- normLibSizes(y)
 design <- model.matrix(~ 0 + group, data = y$samples)
 colnames(design) <- gsub("group", "", colnames(design))
 y <- estimateDisp(y, design, robust=TRUE)
+y <- estimateTagwiseDisp(y)
+
+pdf(file = "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/protein_coding/plots/gene_BCV.pdf")
+plotBCV(y, col.common="red", col.trend="blue", col.tagwise="black")
+dev.off()
+
+
 fit <- glmQLFit(y, design, robust=TRUE)
 
 
