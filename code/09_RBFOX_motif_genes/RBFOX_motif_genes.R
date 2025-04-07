@@ -40,10 +40,6 @@ saveRDS(df, "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assemb
 
 ### get gtf file 
 
-gtf <- rtracklayer::import("/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly_protein_coding_lncRNA.gtf")
-gtf_df <- as.data.frame(gtf)
-gtf_df <- gtf_df |> dplyr::filter(gene_type == "protein_coding")
-gtf_df |> colnames()
 
 
 # head(df)
@@ -63,41 +59,6 @@ gtf_df |> colnames()
 # 4     chr1 57598  64116  6519      + HAVANA gene    NA    NA ENSG00000290826.1
 # 5     chr1 65419  71585  6167      + HAVANA gene    NA    NA ENSG00000186092.7
 # 6     chr1 89295 133723 44429      - HAVANA gene    NA    NA ENSG00000238009.6
-
-library(data.table)
-
-# Convert data.frames to data.tables
-setDT(df)
-setDT(gtf_df)
-
-# Rename columns to match foverlaps convention
-setnames(df, c("start", "end"), c("query_start", "query_end"))
-setnames(gtf_df, c("start", "end"), c("subject_start", "subject_end"))
-
-# Add keys for overlap
-setkey(gtf_df, seqnames, subject_start, subject_end)
-setkey(df, seqnames, query_start, query_end)
-
-# Perform the overlap join
-result <- foverlaps(df, gtf_df, by.x = c("seqnames", "query_start", "query_end"),
-                    by.y = c("seqnames", "subject_start", "subject_end"),
-                    type = "within", nomatch = 0)
-
-# If needed, restore original column names
-setnames(result, c("query_start", "query_end", "subject_start", "subject_end"),
-         c("motif_start", "motif_end", "gene_start", "gene_end"))
-
-
-result_df <- as.data.frame(result)
-result_df <- result_df |> dplyr::select(seqnames, motif_start, 
-                                        motif_end, motif, gene_id, 
-                                        gene_start, gene_end,
-                                        gene_name, strand)
-
-nrow(result_df)
-
-readr::write_csv(result_df, 
-          "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/motif_gene_overlap.csv")
 
 
 

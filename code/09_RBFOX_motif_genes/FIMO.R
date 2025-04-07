@@ -17,15 +17,41 @@ chroms <- chroms[1:25]
 
 dna_set <- Biostrings::getSeq(hm_genome, names = chroms)
 
-motif <- universalmotif::create_motif("GCATG", 
-                      nsites = 50,
-                      pseudocount = 1)
+
+# https://rnasysu.com/encori/motif_short/hg38/SBDH1753/homerResults/motif1.motif
+
+
+# Create the 6x4 matrix
+mat <- matrix(c(
+  0.001, 0.050, 0.001, 0.948,
+  0.001, 0.001, 0.997, 0.001,
+  0.001, 0.997, 0.001, 0.001,
+  0.997, 0.001, 0.001, 0.001,
+  0.001, 0.001, 0.001, 0.997,
+  0.001, 0.001, 0.997, 0.001
+), nrow = 6, ncol = 4, byrow = TRUE)
+
+# Transpose the matrix
+t_mat <- t(mat)
+
+# Print the transposed matrix
+print(t_mat)
+
+motif <- universalmotif::create_motif(t_mat, 
+                                      alphabet = "DNA",
+                                      type = "PPM")
 
 
 fimo_results <- runFimo(dna_set, motif, thresh = 1e-3)
 class(fimo_results)
 fimo_df <- fimo_results %>% as.data.frame()
-write.csv(fimo_df, "/users/sparthib/retina_lrs/processed_data/dtu/fimo_results.csv", row.names = FALSE)
+fimo_df <- fimo_df |> dplyr::filter(matched_sequence == "TGCATG")
+nrow(fimo_df)
+### grep for TGCATG in attribute column
+fimo_df$matched_sequence <- grepl("TGCATG", fimo_df$attribute)
+write.csv(fimo_df, "/users/sparthib/retina_lrs/processed_data/dtu/fimo_results.csv",
+          row.names = FALSE)
+fimo_df <- readr::read_csv("/users/sparthib/retina_lrs/processed_data/dtu/fimo_results.csv")
 
 ### save genomic ranges as gtf file
 library(rtracklayer)
@@ -53,66 +79,57 @@ export(fimo_results, "/users/sparthib/retina_lrs/processed_data/dtu/fimo_motifs.
 
 
 
-# tutorial
-# data("example_chip_summits", package = "memes")
-# 
-# dm.genome <- BSgenome.Dmelanogaster.UCSC.dm3::BSgenome.Dmelanogaster.UCSC.dm3
-# 
-# # Take 100bp windows around ChIP-seq summits
-# summit_flank <- example_chip_summits %>% 
-#   plyranges::anchor_center() %>% 
-#   plyranges::mutate(width = 100) 
-# 
-# # Get sequences in peaks as Biostring::BStringSet
-# sequences <- summit_flank %>% 
-#   get_sequence(dm.genome)
-# 
-# names(sequences)[1:2]
-# 
-# 
-# e93_motif <- MotifDb::MotifDb %>% 
-#   # Query the database for the E93 motif using it's gene name
-#   MotifDb::query("Eip93F") %>% 
-#   # Convert from motifdb format to universalmotif format
-#   universalmotif::convert_motifs() %>% 
-#   # The result is a list, to simplify the object, return it as a single universalmotif
-#   .[[1]]
-# 
-# e93_motif["name"] <- "E93_FlyFactor"
-# 
-# fimo_results <- runFimo(sequences, e93_motif)
-# 
-# fimo_results |> dplyr::select(pvalue, matched_sequence) |> unique()
-# 
-# fimo_results |> dplyr::select( matched_sequence) |> unique() 
-# 
+
+##### add gene ID info ####
+
+library(data.table)
+
+gtf <- rtracklayer::import("/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly_protein_coding_lncRNA.gtf")
+gtf_df <- as.data.frame(gtf)
+gtf_df <- gtf_df |> dplyr::filter(gene_type == "protein_coding")
+gtf_df |> colnames()
 
 
+# Convert data.frames to data.tables
+setDT(fimo_df)
+setDT(gtf_df)
+
+# Rename columns to match foverlaps convention
+setnames(fimo_df, c("start", "end"), c("motif_start", "motif_end"))
+setnames(gtf_df, c("start", "end"), c("gene_start", "gene_end"))
+
+# Add keys for overlap
+setkey(gtf_df, seqnames, gene_start, gene_end)
+setkey(fimo_df, seqnames, motif_start, motif_end)
+
+colnames(fimo_df) <- c("seqnames", "motif_start", "motif_end", "width",
+                       "motif_strand", "motif_id", "motif_alt_id","score",
+                       "pvalue", "qvalue", "matched_sequence")
+
+gtf_df <- gtf_df |> dplyr::select(seqnames, gene_start, gene_end, 
+                                   gene_id, gene_name)
+# Perform the overlap join
+result <- foverlaps(fimo_df, gtf_df, by.x = c("seqnames", "motif_start", "motif_end"),
+                    by.y = c("seqnames", "gene_start", "gene_end"),
+                    type = "within", nomatch = 0)
+
+# If needed, restore original column names
+setnames(result, c("query_start", "query_end", "subject_start", "subject_end"),
+         c("motif_start", "motif_end", "gene_start", "gene_end"))
 
 
-#### matrix ####
+result_df <- as.data.frame(result)
+result_df <- result_df |> dplyr::select(seqnames, motif_start, score,
+                                        motif_end,  gene_id, 
+                                        gene_start, gene_end,
+                                        gene_name)
+result_df <- result_df |> dplyr::filter(score == 11.87)
+nrow(result_df)
+# > nrow(result_df)
+# [1] 816394
+readr::write_csv(result_df, 
+                 "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/motif_gene_overlap.csv")
 
-motif_probabilities <- as.matrix(rbind(
-  c(0, 0, 1, 0, 0),
-  c(0, 1, 0, 0, 0),
-  c(1, 0, 0, 0, 1),
-  c(0, 0, 0, 1, 0)
-))
-
-background_probabilities <- as.matrix(rbind(
-  c(0.25, 0.25, 0.25, 0.25),
-  c(0.25, 0.25, 0.25, 0.25),
-  c(0.25, 0.25, 0.25, 0.25),
-  c(0.25, 0.25, 0.25, 0.25)
-))
-
-log2(0.99^5 / 0.25^5)
-
-# create a position weight matrix (PWM) for these sequences
-# 
-# ATTTCAGCGA
-# ATATGGCGAA
-# AGTTCAGCGA
 
 
 
