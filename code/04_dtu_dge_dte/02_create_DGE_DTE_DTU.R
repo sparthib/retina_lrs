@@ -2,7 +2,7 @@ library(dplyr)
 library(readr)
 library(IsoformSwitchAnalyzeR)
 method <- "bambu"
-comparison <- "ROs"
+comparison <- "RO_vs_RGC"
 
 
 switchlist_part2_path = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
@@ -10,9 +10,9 @@ switchlist_part2_path = file.path("/users/sparthib/retina_lrs/processed_data/dtu
 
 SwitchList_part2 <- readRDS(switchlist_part2_path)
 
-# 
-# isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-#                                       method, comparison,  "isoformFeatures.tsv"))
+
+isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                                      method, comparison, "protein_coding",  "isoformFeatures.tsv"))
 
 isoformFeatures <- SwitchList_part2$isoformFeatures
 isoformFeatures |> filter(isoform_switch_q_value < 0.05 & abs(dIF) >= 0.1) |> nrow()
@@ -158,7 +158,7 @@ new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> dplyr::select(-c(gene_name, gene_biotype,
                                                        isoform_biotype)) |> 
   left_join(annotLookup, by = "isoform_id")
 nrow(new_DGE_DTE_DTU)
-input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison )
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding" )
 write_tsv(new_DGE_DTE_DTU, file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
 
 library(dplyr)
