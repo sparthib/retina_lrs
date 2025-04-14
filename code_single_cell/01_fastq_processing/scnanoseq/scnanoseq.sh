@@ -40,7 +40,7 @@ nextflow run nf-core/scnanoseq \
    --transcript_fasta $ref_transcript_fa \
    --gtf $ref_gtf \
    --barcode_format 10X_3v3 \
-   --dedup_tool umi_tools \
+   --dedup_tool umitools \
    --quantifier isoquant,oarfish
    
 
