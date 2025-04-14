@@ -25,13 +25,24 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 ml load nextflow/24.10.5
 ml load singularity
 
+ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
+ref_gtf=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
+ref_transcript_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts_short_header.fa
+
 output_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/scnanoseq
 
 nextflow run nf-core/scnanoseq \
    -profile singularity \
    --input /users/sparthib/retina_lrs/code_single_cell/01_fastq_processing/scnanoseq/samplesheet.csv \
    --outdir $output_dir \
-   -work-dir $output_dir/work 
+   -work-dir $output_dir/work \
+   --genome_fasta $ref_fa \
+   --transcript_fasta $ref_transcript_fa \
+   --gtf $ref_gtf \
+   --barcode_format 10X_3v3 \
+   --dedup_tool umi_tools \
+   --quantifier isoquant,oarfish
+   
 
 
 echo "**** Job ends ****"
