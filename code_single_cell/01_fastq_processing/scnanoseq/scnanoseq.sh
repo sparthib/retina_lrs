@@ -22,7 +22,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
 
-ml load nextflow
+ml load nextflow/24.10.5
 ml load singularity
 
 output_dir=/dcs04/hicks/data/sparthib/retina_single_cell_lrs/scnanoseq
@@ -31,8 +31,7 @@ nextflow run nf-core/scnanoseq \
    -profile singularity \
    --input /users/sparthib/retina_lrs/code_single_cell/01_fastq_processing/scnanoseq/samplesheet.csv \
    --outdir $output_dir \
-   -work-dir $output_dir/work \ 
-  | tee $output_dir/nextflow.log
+   -work-dir $output_dir/work 
 
 
 echo "**** Job ends ****"
