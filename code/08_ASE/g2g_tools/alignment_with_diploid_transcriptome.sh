@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=80G
-#SBATCH -c 20
+#SBATCH --mem=10G
+#SBATCH -c 2
 #SBATCH --job-name=fastq2bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -32,38 +32,34 @@ SAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/04_sams/ase_transcriptome/sams/
 BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/ase_transcriptome/bams/
 mkdir -p ${SAM_FOLDER}
 mkdir -p ${BAM_FOLDER}
-
-cd ~/minimap2
-
-#remove older sam version 
-./minimap2 -ax map-ont -N 100 --secondary=yes -t 20 $REFERENCE_FASTA ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
+# 
+# cd ~/minimap2
+# 
+# #remove older sam version 
+# ./minimap2 -ax map-ont -N 100 --secondary=yes -t 20 $REFERENCE_FASTA \
+# ${INPUT_FOLDER}/${sample}.fastq.gz > ${SAM_FOLDER}/${sample}.sam
 
 ml load samtools
-
-samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
-samtools sort ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/${sample}_sorted.bam
-# rm ${BAM_FOLDER}/${sample}.bam
-samtools index ${BAM_FOLDER}/${sample}_sorted.bam ${BAM_FOLDER}/${sample}_sorted.bam.bai
-
-# echo "finished indexing bam"
-index stats ${sample}_index_stats.txt
-samtools idxstats ${BAM_FOLDER}/${sample}_sorted.bam > ${LOGS_FOLDER}/${sample}_index_stats.txt
-
-
-echo "flagstat" > ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
-samtools flagstat ${BAM_FOLDER}/${sample}_sorted.bam >> ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
-
-echo "finished computing flagstats: contains percentage mapped reads"
-# echo "depth of coverage" > ${LOGS_FOLDER}/${sample}_depth_stats.txt
-# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++;s+=$3}END{print s/c}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
 # 
-# echo "breadth of coverage" >> ${sample}_depth_stats.txt
-# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
+# samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
+# samtools sort ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/${sample}_sorted.bam
+# # rm ${BAM_FOLDER}/${sample}.bam
+# samtools index ${BAM_FOLDER}/${sample}_sorted.bam ${BAM_FOLDER}/${sample}_sorted.bam.bai
 # 
-# echo "raw depth output" >> ${sample}_depth_stats.txt
-# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
+# # echo "finished indexing bam"
+# index stats ${sample}_index_stats.txt
+# samtools idxstats ${BAM_FOLDER}/${sample}_sorted.bam > ${LOGS_FOLDER}/${sample}_index_stats.txt
+# 
+# echo "flagstat" > ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
+# samtools flagstat ${BAM_FOLDER}/${sample}_sorted.bam >> ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
+# 
+# echo "finished computing flagstats: contains percentage mapped reads"
 
-echo "finished computing depth stats"
+
+### get uniquely mapped primary reads 
+
+samtools view -h -b -q 30 -F 0x904 ${BAM_FOLDER}/${sample}_sorted.bam > ${BAM_FOLDER}/${sample}_primary_over_30.bam
+echo "finished filtering bam by mapping quality and removing duplicates"
 
 
 echo "**** Job ends ****"
