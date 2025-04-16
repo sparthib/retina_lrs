@@ -14,14 +14,14 @@ The goal of this section is to have as output a VCF file with the variants for e
 
 If we don't have matched short-read DNA-seq, we can use the our own **long-read RNA-seq** data to call variants. Specifially, we can use the following algorithms: 
 
-- [Claire3RNA](https://github.com/HKU-BAL/Clair3-RNA): too to call variants from long-read RNA (mentions PCR-cDNA and direct RNA, not direct cDNA though).
+- [Claire3RNA](https://github.com/HKU-BAL/Clair3-RNA): tool to call variants from long-read RNA (mentions PCR-cDNA and direct RNA, not direct cDNA though).
 
 [More details here on softwares that can be used for VCF generation](https://docs.google.com/spreadsheets/d/1pfP4qprIkk7LFlwLUgiI0IDjMSSvInDqeaqIRpeLpek/edit?gid=0#gid=0)
 
 
 ## VC with RNA-Seq advantages
-Low cost
-Allele guaranteed to be expressed in contrast to DNA variant calling 
+- Low cost
+- Allele guaranteed to be expressed in contrast to DNA variant calling 
 
 ## Disadvantages:
 - Highly non-uniform coverage (coverage is assumed to be uniform across the genome for DNA-Seq) 
