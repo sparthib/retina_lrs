@@ -16,7 +16,9 @@ If we don't have matched short-read DNA-seq, we can use the our own **long-read 
 
 - [Claire3RNA](https://github.com/HKU-BAL/Clair3-RNA: too to call variants from long-read RNA (mentions PCR-cDNA and direct RNA, not direct cDNA though).
   - From the Claire3RNA paper: "RNA-seq offers advantages for variant calling and interpretation, such as that the identified allele is guaranteed to be expressed in contrast to DNA variant calling. Nevertheless, several disadvantages need to be considered such as a higher error rate than DNA-seq, which averages a 1-5% error rate. This necessitates robust variant-calling systems for distinguishing true variants from sequencing artifacts. Second, unlike the uniform read coverage typically observed in DNA-seq data [4], the coverage is uneven across genomic regions in RNA-seq, and the variable coverage poses challenges for accurate variant calling, particularly in regions characterized by inadequate read support or excessive read coverage that is not accounted for in neural network training. Additionally, RNA-seq faces RNA editing events, especially A-to-I editing catalyzed by adenosine deaminases acting on RNA (ADAR) [16], leading to A-to-G or T-to-C substitutions that can resemble genuine variants, thus introducing false positives in RNA-seq. Moreover, while phasing has been demonstrated to be advantageous for lrDNA-seq analyses [13, 14], no studies have yet investigated the impact of phasing on variant calling performance in lrRNA-seq, particularly when reads are shorter and zygosity switching can happen."
-- are there others? 
+- Non-uniform coverage coupled with not enough coverage for a given gene increases probability of not capturing a truly heterozygous site, introducing false negatives.
+- At the same time, sequencing errors can induce false positives for heterozygous sites.
+  
 
 ## Phase variants using aligned reads
 
