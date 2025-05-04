@@ -6,8 +6,8 @@
 #SBATCH --job-name=protein_analysis
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/RO_vs_RGC_protein_analysis.txt
-#SBATCH -e logs/RO_vs_RGC_protein_analysis.txt
+#SBATCH -o logs/RO_FT_RGC_protein_analysis.txt
+#SBATCH -e logs/RO_FT_RGC_protein_analysis.txt
 #SBATCH --time=2-00:00:00
 
 echo "**** Job starts ****"
@@ -18,8 +18,8 @@ echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
-# comparisons=("FT_vs_RGC" "RO_D100_vs_RO_D45" "RO_D100_vs_RO_D200" "RO_D200_vs_RO_D45")
-comparisons=("RO_vs_RGC")
+
+comparisons=("FT_vs_RGC", "ROs")
 method="bambu"
 
 source activate CPC2
