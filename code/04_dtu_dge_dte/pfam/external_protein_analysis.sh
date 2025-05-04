@@ -19,7 +19,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 
-comparisons=("FT_vs_RGC", "ROs")
+comparisons=("RO_vs_RGC")
 method="bambu"
 
 source activate CPC2
