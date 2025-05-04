@@ -8,11 +8,12 @@ method <- "bambu"
 comparison <- "ROs"
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs/filtered_by_counts_and_biotype")
 
-counts <- file.path(matrix_dir, "isoform_counts.RDS") 
+counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)
-cpm <- file.path(matrix_dir, "isoform_cpm.RDS")
+cpm <- file.path(matrix_dir, "filtered_isoform_counts_cpm.RDS")
 cpm <- readRDS(cpm)
 
+nrow(counts)
 
 myDesign  <- data.frame(sampleID = colnames(counts) ,
                         condition = c("Stage_1", "Stage_1", "Stage_2","Stage_2","Stage_2", "Stage_3","Stage_3"),
@@ -42,7 +43,7 @@ SwitchList <- importRdata(isoformCountMatrix   = counts,
                           isoformNtFasta       = paste0(bambu_dir, "/sqanti3_qc/all_samples_corrected.fasta"),
                           removeNonConvensionalChr = TRUE,
                           ignoreAfterBar = TRUE,
-                          ignoreAfterPeriod = FALSE,
+                          ignoreAfterPeriod = TRUE,
                           showProgress = TRUE)
 #if cds gtf doesn't exist, convert gff to gtf
 if(!file.exists( paste0( bambu_dir, "/sqanti3_qc/all_samples_corrected.gtf.cds.gtf"))) {
@@ -57,7 +58,8 @@ SwitchList <- addORFfromGTF(
   pathToGTF              =  paste0( bambu_dir, "/sqanti3_qc/all_samples_corrected.gtf.cds.gtf")
 )
 
-SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "", SwitchList$isoformFeatures$gene_id)
+SwitchList$isoformFeatures$gene_id <- gsub("\\..*", "",
+                                           SwitchList$isoformFeatures$gene_id)
 
 require("biomaRt")
 us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
@@ -82,18 +84,20 @@ SwitchList$isoformFeatures$gene_name <- SwitchList$isoformFeatures$ensembl_gene_
 
 SwitchListFiltered <- preFilter(
   switchAnalyzeRlist         = SwitchList,
-  geneExpressionCutoff       = 0,    
-  isoformExpressionCutoff    = 0,     
-  removeSingleIsoformGenes   = TRUE  # default
-)
+  geneExpressionCutoff       = NULL,    
+  isoformExpressionCutoff    = NULL,     
+  IFcutoff=0,
+  removeSingleIsoformGenes   = FALSE)
 
-saveRDS(SwitchListFiltered, file = rdata_path)
 SwitchListFiltered$isoformFeatures <- SwitchListFiltered$isoformFeatures |> 
   distinct(across(-gene_name), .keep_all = TRUE)
+saveRDS(SwitchListFiltered, file = rdata_path)
+
 
 write_tsv(SwitchListFiltered$isoformFeatures,
           file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                            method, comparison, "protein_coding",  "isoformFeatures.tsv"))
+
 #save DEXSeq switchlist
 
 }else { 
@@ -141,10 +145,10 @@ if(!file.exists(dtu_rdata_path)){
   
   # Switching features:
   #   Comparison Isoforms Switches Genes
-  # 1  B_RO_D100 vs C_RO_D45     2151     1679  1561
-  # 2 A_RO_D200 vs B_RO_D100     1785     1490  1357
-  # 3  A_RO_D200 vs C_RO_D45     2508     2102  1788
-  # 4               Combined     4983     4572  3306
+  # 1 Stage_1 vs Stage_2     2230     1590  1573
+  # 2 Stage_1 vs Stage_3     2547     1922  1737
+  # 3 Stage_2 vs Stage_3     1786     1382  1317
+  # 4           Combined     4986     4179  3161
   
   SwitchList_part1 <- analyzeORF(SwitchList_part1, genomeObject = Hsapiens)
   
@@ -225,6 +229,7 @@ read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) |>
 external_protein_ptc_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                            method, comparison, "protein_coding", "external_protein_analyses")
 dir.create(external_protein_ptc_analyses_dir, showWarnings = FALSE, recursive = TRUE)
+
 SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
   n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
@@ -254,7 +259,7 @@ SwitchList_part2$isoformFeatures <- SwitchList_part2$isoformFeatures |>
   distinct(across(-gene_name), .keep_all = TRUE)
 
 write_tsv(SwitchList_part2$isoformFeatures, file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                                             method, comparison,"protein_coding", "isoformFeatures.tsv"))
+                                                             method, comparison,"protein_coding", "isoformFeatures_part2.tsv"))
 
 
 
@@ -275,7 +280,6 @@ splicing_summary <- extractSplicingSummary(SwitchList_part2,
                                            plot = F)  
 write_tsv(splicing_summary, file = file.path(plots_dir, 
                                              "Splicing_Summary.tsv"))
-
 
 pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"))
 splicing_enrichment <- extractSplicingEnrichment(

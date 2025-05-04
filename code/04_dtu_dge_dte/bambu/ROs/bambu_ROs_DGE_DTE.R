@@ -4,7 +4,7 @@ library(biomaRt)
 library(readr)
 
 options(timeout = 999999)
-us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
+us_mart <- useEnsembl(biomart = "ensembl")
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 
 
@@ -12,7 +12,6 @@ method <- "bambu"
 comparison <- "ROs"
 
 # Set directories
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
 dge_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding", "DGE/")
 dte_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison,"protein_coding",  "DTE/")
 dir.create(dge_output_dir, showWarnings = FALSE, recursive = TRUE)
@@ -21,15 +20,18 @@ dir.create(dte_output_dir, showWarnings = FALSE, recursive = TRUE)
 # Load data
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
                         method, comparison, "filtered_by_counts_and_biotype")
-counts <- file.path(matrix_dir, "isoform_counts.RDS") 
+counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)
 
+nrow(counts)
 
 isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                       method, comparison,"protein_coding",  "isoformFeatures.tsv"))
 
+rownames(counts) <- gsub("\\..*", "", rownames(counts))
 counts <- counts[rownames(counts) %in% isoformFeatures$isoform_id,]
 nrow(counts)
+
 
 groups  = c("Stage_1", "Stage_1", "Stage_2","Stage_2","Stage_2", "Stage_3","Stage_3" )
 y <- DGEList(counts = counts,
@@ -91,7 +93,7 @@ for (i in seq_len(ncol(contr))) {
 
 # DGE Analysis
 
-counts <- file.path(matrix_dir, "genes_counts.RDS") 
+counts <- file.path(matrix_dir, "filtered_gene_counts.RDS") 
 counts <- readRDS(counts)
 
 y <- DGEList(counts = counts,

@@ -161,10 +161,25 @@ nrow(new_DGE_DTE_DTU)
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding" )
 write_tsv(new_DGE_DTE_DTU, file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
 
-library(dplyr)
-df <- readr::read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
+##### check ADD 
+
+df <- readr::read_tsv(file.path(input_data_dir,
+                                "DGE_DTE_DTU.tsv"))
+
+ADD_df <- df |> filter(gene_name == "ADD1")
+ADD_df |> dplyr::select(isoform_id) |> table()
 
 
+ADD_df |> dplyr::select(isoform_id, condition_1, condition_2, 
+                 gene_value_1, gene_value_2, iso_value_1, 
+                 iso_value_2, IF1, IF2) 
 
-
+ADD_df |> group_by(condition_1, condition_2) |> summarise(
+  gene_value_1 = mean(gene_value_1),
+  gene_value_2 = mean(gene_value_2),
+  iso_value_1 = sum(iso_value_1),
+  iso_value_2 = sum(iso_value_2),
+  IF1 = sum(IF1),
+  IF2 = sum(IF2)
+) 
 

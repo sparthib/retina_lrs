@@ -1,12 +1,31 @@
 library(biomaRt)
+library(edgeR)
+library(GenomicRanges)
+library(rtracklayer)
+library(dplyr)
+
+bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
+# Define file paths
+gtf_file <- paste0(bambu_dir, "/extended_annotations.gtf")
+gtf <- import(gtf_file)
+
+#match isoforms to genes
+isoforms_and_genes <- as.data.frame(gtf) |> 
+  dplyr::select(transcript_id, gene_id) 
+isoforms_and_genes$transcript_id <- gsub("\\..*", "", isoforms_and_genes$transcript_id)
+isoforms_and_genes$gene_id <- gsub("\\..*", "", isoforms_and_genes$gene_id)
 
 us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)  
 
-# Function to remove rows with zero variance
-remove_zero_variance <- function(mat) {
-  mat[rowSums(mat != mat[, 1]) > 0, , drop = FALSE]  # Keep rows with at least one differing value
-}
+common_isoforms <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu",
+                             "bambu_isoquant_refmap.txt")
+common_isoforms <- read.table(common_isoforms, header=TRUE, sep="\t")
+head(common_isoforms)
+
+common_isoforms <- common_isoforms |> dplyr::filter(!grepl("^BambuGene", ref_gene) & 
+                                                      !grepl("^BambuGene", isoquant_gene_id))
+
 
 # Function to load and filter gene counts or CPM data
 filter_genes <- function(counts_file, mart) {
@@ -26,15 +45,15 @@ filter_genes <- function(counts_file, mart) {
   
   #remove genes$gene_nums column
   genes$gene_nums <- NULL
-  # Remove rows with zero variance
-  genes <- remove_zero_variance(genes)
   
   return(genes)
 }
 
+
 # Function to load and filter isoform counts or CPM data
-filter_isoforms <- function(counts_file, mart) {
-  isoforms <- readRDS(counts_file)
+filter_isoforms <- function(counts_path, mart) {
+  
+  isoforms <- readRDS(counts_path)
   isoforms$isoform_nums <- gsub("\\..*", "", rownames(isoforms))  # Remove Ensembl version numbers
   
   isoform_annotLookup <- getBM(
@@ -48,137 +67,213 @@ filter_isoforms <- function(counts_file, mart) {
   # Identify isoforms belonging to protein-coding genes
   protein_coding_isoforms <- isoform_annotLookup$ensembl_transcript_id[isoform_annotLookup$gene_biotype == "protein_coding"]
   
-  # Identify isoforms with "Bambu" in their rownames
-  bambu_isoforms <- grepl("Bambu", rownames(isoforms))
+  # Identify isoforms with "Bambu" in their rownames from PTC genes
+  bambu_isoforms = novel_isoforms_from_protein_coding_genes
   
-  # Keep only isoforms that belong to protein-coding genes or contain "Bambu"
-  isoforms <- isoforms[ isoforms$isoform_nums %in% protein_coding_isoforms | bambu_isoforms, ]
+  all_isoforms <- c(protein_coding_isoforms, bambu_isoforms)
+  
+  isoforms <- isoforms[ isoforms$isoform_nums %in% all_isoforms, ]
   
   # Remove isoforms$isoform_nums column
   isoforms$isoform_nums <- NULL
-  
-  
-  # Remove rows with zero variance
-  isoforms <- remove_zero_variance(isoforms)
-  
   return(isoforms)
 }
 
-# Function to process gene and isoform counts or CPM data for a given dataset
-process_counts_or_cpm <- function(mat_dir, data_type, mart) {
-  # Define file paths
-  genes_file <- file.path(mat_dir, paste0("gene_", data_type, ".RDS"))
-  isoforms_file <- file.path(mat_dir, paste0("isoform_", data_type, ".RDS"))
-  
-  # Process data
-  genes <- filter_genes(genes_file, mart)
-  isoforms <- filter_isoforms(isoforms_file, mart)
-  
-  return(list(genes = genes, isoforms = isoforms))
-}
-
-
-# Dataset directories
-ROs_mat_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs/filtered"
-FT_vs_RGC_mat_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered"
-
-# Process both counts and CPM for ROs dataset
-ROs_counts <- process_counts_or_cpm(ROs_mat_dir, "counts", mart)
-
-# Process both counts and CPM for FT_vs_RGC dataset
-FT_vs_RGC_counts <- process_counts_or_cpm(FT_vs_RGC_mat_dir, "counts", mart)
-
-# Check number of rows
-cat("ROs Counts - Genes:", nrow(ROs_counts$genes), " | Isoforms:", nrow(ROs_counts$isoforms), "\n")
-cat("FT_vs_RGC Counts - Genes:", nrow(FT_vs_RGC_counts$genes), " | Isoforms:", nrow(FT_vs_RGC_counts$isoforms), "\n")
-
-# Calculate size factors and convert to CPM in edgeR
-library(edgeR)
-
-# Function to compute size factors and convert counts to CPM
-convert_to_cpm <- function(counts_matrix, group) {
-  # Create a DGEList object
+# Calculate size factors and convert to CPM in edgeR, and filter based on counts
+filter_gene_counts <- function(counts_matrix, group ){ 
+  min_counts <- 10
   dge <- DGEList(counts = counts_matrix)
-  keep <- filterByExpr(dge, group = group)
+  keep <- filterByExpr(dge, group = group, min.count = min_counts)
   dge <- dge[keep, ]
-  
-  # Calculate normalization factors using TMM (Trimmed Mean of M-values)
   dge <- calcNormFactors(dge)
-  
   # Convert to CPM (Counts Per Million)
   cpm_matrix <- cpm(dge, normalized.lib.sizes = TRUE)
-  
   return(list(filtered_counts = counts_matrix[keep, ], cpm = cpm_matrix))
-}
+  
+  }
+  
+
+filter_isoform_counts <- function(isoform_gene_df, gene_counts, isoform_counts, group) { 
+
+  genes_in_comparison <- rownames(gene_counts)
+  #remove version numbers
+  genes_in_comparison <- gsub("\\..*", "", genes_in_comparison)
+  
+  isoforms_in_comparison <- isoform_gene_df$transcript_id[ 
+    isoform_gene_df$gene_id %in% genes_in_comparison
+  ]
+  rownames(isoform_counts) <- gsub("\\..*", "", rownames(isoform_counts))
+  isoform_counts <- isoform_counts[rownames(isoform_counts) %in% isoforms_in_comparison, ]
+  nrow(isoform_counts)
+
+  dge <- DGEList(counts = isoform_counts)
+  keep <- filterByExpr(dge, group = group, min.count = 2) #since we already filtered
+  dge <- dge[keep, ]
+  # Calculate normalization factors using TMM (Trimmed Mean of M-values)
+  dge <- calcNormFactors(dge)
+  # Convert to CPM (Counts Per Million)
+  cpm_matrix <- cpm(dge, normalized.lib.sizes = TRUE)
+  return(list(filtered_counts = isoform_counts[keep, ], cpm = cpm_matrix))
+  
+  
+  }
+
 
 RO_group <- c("Stage_1", "Stage_1", "Stage_2", "Stage_2","Stage_2", "Stage_3", "Stage_3")
 FT_vs_RGC_group <- c("FT", "FT", "RGC", "RGC")
 
-# Convert gene and isoform counts to CPM
-ROs_genes_result <- convert_to_cpm(ROs_counts$genes, group = RO_group)
-ROs_isoforms_result <- convert_to_cpm(ROs_counts$isoforms, group = RO_group)
 
-FT_vs_RGC_genes_result <- convert_to_cpm(FT_vs_RGC_counts$genes, group = FT_vs_RGC_group)
-FT_vs_RGC_isoforms_result <- convert_to_cpm(FT_vs_RGC_counts$isoforms, group = FT_vs_RGC_group)
 
-# Save filtered counts and CPM matrices
-dirs <- list(
-  ROs = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs/filtered_by_counts_and_biotype",
-  FT_vs_RGC = "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype"
-)
+##### ROs filter genes and isoforms based on PTC #####
 
-lapply(dirs, dir.create, showWarnings = FALSE)
+counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
 
-saveRDS(ROs_genes_result$filtered_counts, file.path(dirs$ROs, "genes_counts.RDS"))
-saveRDS(ROs_genes_result$cpm, file.path(dirs$ROs, "genes_cpm.RDS"))
+method <- "bambu"
+comparison <- "ROs"
+counts_dir <- file.path(counts_dir, method, comparison, "filtered")
+isoform_counts_path <- file.path(counts_dir, "isoform_counts.RDS")
+gene_counts_path <- file.path(counts_dir, "gene_counts.RDS")
 
-saveRDS(ROs_isoforms_result$filtered_counts, file.path(dirs$ROs, "isoform_counts.RDS"))
-saveRDS(ROs_isoforms_result$cpm, file.path(dirs$ROs, "isoform_cpm.RDS"))
+### don't remove zero variance rows in genes or isoforms. 
+genes <- filter_genes(gene_counts_path, mart)
+nrow(genes)
 
-saveRDS(FT_vs_RGC_genes_result$filtered_counts, file.path(dirs$FT_vs_RGC, "genes_counts.RDS"))
-saveRDS(FT_vs_RGC_genes_result$cpm, file.path(dirs$FT_vs_RGC, "genes_cpm.RDS"))
+novel_isoforms_from_protein_coding_genes <- common_isoforms$ref_id[
+  common_isoforms$ref_gene %in% rownames(genes) 
+]
 
-saveRDS(FT_vs_RGC_isoforms_result$filtered_counts, file.path(dirs$FT_vs_RGC, "isoform_counts.RDS"))
-saveRDS(FT_vs_RGC_isoforms_result$cpm, file.path(dirs$FT_vs_RGC, "isoform_cpm.RDS"))
+isoforms <- filter_isoforms(isoform_counts_path, mart)
 
-###### 
+nrow(isoforms)
 
-library(GenomicRanges)
-library(rtracklayer)
+#### final gene and isoform counts ####
+ROs_genes_result <- filter_gene_counts(genes, RO_group)
+ROs_gene_counts <- ROs_genes_result$filtered_counts
+ROs_genes_cpm <- ROs_genes_result$cpm
 
+ROs_isoforms_result <- filter_isoform_counts(isoforms_and_genes, 
+                                             ROs_gene_counts, 
+                                             isoforms, 
+                                             RO_group)
+
+
+ROs_isoform_counts <- ROs_isoforms_result$filtered_counts
+ROs_isoforms_cpm <- ROs_isoforms_result$cpm
+
+
+nrow(ROs_isoforms_cpm)
+nrow(ROs_genes_cpm)
+nrow(ROs_isoform_counts)
+nrow(ROs_gene_counts)
+
+ROs_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs/filtered_by_counts_and_biotype/"
+
+saveRDS(ROs_isoforms_cpm, file.path(ROs_output_dir, "filtered_isoform_cpm.RDS"))
+saveRDS(ROs_genes_cpm, file.path(ROs_output_dir, "filtered_gene_counts_cpm.RDS"))
+saveRDS(ROs_isoform_counts, file.path(ROs_output_dir, "filtered_isoform_counts.RDS"))
+saveRDS(ROs_gene_counts, file.path(ROs_output_dir, "filtered_gene_counts.RDS"))
+
+##### FT vs RGC filter genes and isoforms based on PTC #####
+
+method <- "bambu"
+comparison <- "FT_vs_RGC"
+counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+counts_dir <- file.path(counts_dir, method, comparison, "filtered")
+isoform_counts_path <- file.path(counts_dir, "isoform_counts.RDS")
+gene_counts_path <- file.path(counts_dir, "gene_counts.RDS")
+
+genes <- filter_genes(gene_counts_path, mart)
+nrow(genes)
+
+novel_isoforms_from_protein_coding_genes <- common_isoforms$ref_id[
+  common_isoforms$ref_gene %in% rownames(genes) 
+]
+
+isoforms <- filter_isoforms(isoform_counts_path, mart)
+
+nrow(isoforms)
+
+FT_vs_RGC_gene_result <- filter_gene_counts(genes, FT_vs_RGC_group)
+FT_vs_RGC_gene_counts <- FT_vs_RGC_gene_result$filtered_counts
+FT_vs_RGC_gene_cpm <- FT_vs_RGC_gene_result$cpm
+
+FT_vs_RGC_isoform_result <- filter_isoform_counts(isoforms_and_genes, 
+                                                  FT_vs_RGC_gene_counts, 
+                                                  isoforms, 
+                                                  FT_vs_RGC_group)
+
+FT_vs_RGC_isoform_counts <- FT_vs_RGC_isoform_result$filtered_counts
+FT_vs_RGC_isoform_cpm <- FT_vs_RGC_isoform_result$cpm
+
+
+nrow(FT_vs_RGC_isoform_counts)
+nrow(FT_vs_RGC_gene_counts)
+
+FT_vs_RGC_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype/"
+
+
+saveRDS(FT_vs_RGC_isoform_counts, file.path(FT_vs_RGC_output_dir, "filtered_isoform_counts.RDS"))
+saveRDS(FT_vs_RGC_gene_counts, file.path(FT_vs_RGC_output_dir, "filtered_gene_counts.RDS"))
+
+saveRDS(FT_vs_RGC_isoform_cpm, file.path(FT_vs_RGC_output_dir, "filtered_isoform_cpm.RDS"))
+saveRDS(FT_vs_RGC_gene_cpm, file.path(FT_vs_RGC_output_dir, "filtered_gene_counts_cpm.RDS"))
+
+
+
+
+###### filter gtf based on counts ######
 # Function to filter GTF based on transcripts in the counts matrix
 filter_gtf_by_counts <- function(gtf_file, counts_matrix, output_gtf) {
   # Load GTF
   gtf <- import(gtf_file)
-  
-  # Extract transcript IDs from the GTF file
-  gtf_transcripts <- gtf$transcript_id
+  #remove version numbers
+  gtf$transcript_id <- gsub("\\..*", "", gtf$transcript_id)
   
   # Get transcript IDs from counts matrix row names
   counts_transcripts <- rownames(counts_matrix)
+  counts_transcripts <- gsub("\\..*", "", counts_transcripts)  
   
   # Filter GTF to keep only matching transcript IDs
-  gtf_filtered <- gtf[gtf_transcripts %in% counts_transcripts]
-  
+  gtf_filtered <- gtf[gtf$transcript_id %in% counts_transcripts]
+
   # Save the filtered GTF file
   export(gtf_filtered, output_gtf)
   
   return(gtf_filtered)
 }
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
-
-# Define file paths
-gtf_file <- paste0(bambu_dir, "/extended_annotations.gtf")
-ROs_output_gtf <- paste0(bambu_dir, "/ROs_protein_coding_annotations.gtf")
-FT_vs_RGC_output_gtf <- paste0(bambu_dir, "/FT_vs_RGC_protein_coding_annotations.gtf")
 
 # Apply function to your isoform counts matrix
-ROs_filtered_gtf <- filter_gtf_by_counts(gtf_file, ROs_isoforms_result$filtered_counts, ROs_output_gtf)
-FT_vs_RGC_filtered_gtf <- filter_gtf_by_counts(gtf_file, FT_vs_RGC_isoforms_result$filtered_counts, FT_vs_RGC_output_gtf)
+ROs_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs/filtered_by_counts_and_biotype"
+ROs_counts <- readRDS(file.path(ROs_dir, "filtered_isoform_counts.RDS"))
+nrow(ROs_counts)
 
+ROs_output_gtf <- paste0(bambu_dir,
+                          "/ROs_protein_coding_annotations.gtf")
+ROs_filtered_gtf <- filter_gtf_by_counts(gtf_file, 
+                                          ROs_counts,
+                                          ROs_output_gtf)
 
+FT_vs_RGC_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype"
+FT_vs_RGC_counts <- readRDS(file.path(FT_vs_RGC_dir, "filtered_isoform_counts.RDS"))
+nrow(FT_vs_RGC_counts)
 
-cat("Filtered GTF saved to:", output_gtf, "\n")
+FT_vs_RGC_output_gtf <- paste0(bambu_dir,
+                                "/FT_vs_RGC_protein_coding_annotations.gtf")
+FT_vs_RGC_filtered_gtf <- filter_gtf_by_counts(gtf_file, 
+                                                FT_vs_RGC_counts,
+                                                FT_vs_RGC_output_gtf)
+
+RO_vs_RGC_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/RO_vs_RGC/filtered_by_counts_and_biotype"
+RO_vs_RGC_counts <- readRDS(file.path(RO_vs_RGC_dir, "filtered_isoform_counts.RDS"))
+nrow(RO_vs_RGC_counts)
+
+RO_vs_RGC_output_gtf <- paste0(bambu_dir,
+                               "/RO_vs_RGC_protein_coding_annotations.gtf")
+
+RO_vs_RGC_filtered_gtf <- filter_gtf_by_counts(gtf_file, 
+                                               RO_vs_RGC_counts,
+                                               RO_vs_RGC_output_gtf)
+
 
 

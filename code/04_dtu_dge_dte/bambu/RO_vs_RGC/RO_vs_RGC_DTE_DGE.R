@@ -7,12 +7,12 @@ options(timeout = 999999)
 us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 
-
 method <- "bambu"
 comparison <- "RO_vs_RGC"
 
 # Set directories
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
+#bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
+
 dge_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding", "DGE/")
 dte_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison,"protein_coding",  "DTE/")
 dir.create(dge_output_dir, showWarnings = FALSE, recursive = TRUE)
@@ -23,7 +23,7 @@ matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification
                         method, comparison, "filtered_by_counts_and_biotype")
 counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)
-
+nrow(counts)
 
 isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                       method, comparison,"protein_coding",  "isoformFeatures.tsv"))

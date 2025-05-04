@@ -11,11 +11,13 @@ library(dplyr)
 method <- "bambu"
 comparison <- "FT_vs_RGC"
 matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype")
-counts <- file.path(matrix_dir, "isoform_counts.RDS") 
+counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)
-cpm <- file.path(matrix_dir, "isoform_cpm.RDS")
+cpm <- file.path(matrix_dir, "filtered_isoform_cpm.RDS")
 cpm <- readRDS(cpm)
 
+nrow(counts)
+nrow(cpm)
 #read CPM_transcript.txt
 myDesign  <- data.frame(sampleID = colnames(counts) ,
                         condition = c( "FT", "FT", "RGC", "RGC"),
@@ -35,10 +37,9 @@ if(!file.exists(rdata_path)){
                             isoformNtFasta       = paste0(bambu_dir, "/sqanti3_qc/all_samples_corrected.fasta"),
                             removeNonConvensionalChr = TRUE,
                             ignoreAfterBar = TRUE,
-                            ignoreAfterPeriod = FALSE,
+                            ignoreAfterPeriod = TRUE,
                             showProgress = TRUE)
-  
-  
+ 
   #if cds gtf doesn't exist, convert gff to gtf
   if(!file.exists( paste0( bambu_dir, "/sqanti3_qc/all_samples_corrected.gtf.cds.gtf"))) {
     gff <- rtracklayer::import(paste0( bambu_dir, "/sqanti3_qc/all_samples_corrected.gtf.cds.gff"))
@@ -74,9 +75,10 @@ if(!file.exists(rdata_path)){
   
   SwitchListFiltered <- preFilter(
     switchAnalyzeRlist         = SwitchList,
-    geneExpressionCutoff       = 0,     # default
-    isoformExpressionCutoff    = 0,     # default
-    removeSingleIsoformGenes   = TRUE  # default
+    geneExpressionCutoff       = NULL,     
+    isoformExpressionCutoff    = NULL,     
+    removeSingleIsoformGenes   = FALSE,
+    IFcutoff=0
   )
   
   saveRDS(SwitchListFiltered, file = rdata_path)
@@ -93,7 +95,7 @@ if(!file.exists(rdata_path)){
   SwitchListFiltered <- readRDS(rdata_path)
     }
 
-summary(SwitchList)
+summary(SwitchListFiltered)
 
 #### DTE ####
 DTE_table <- readr::read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", 
@@ -132,7 +134,8 @@ if(!file.exists(dtu_rdata_path)){
   }
   SwitchList_part1 <- extractSequence(
     switchAnalyzeRlist = SwitchList_part1,
-    pathToOutput       = file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding","fastas"),
+    pathToOutput       = file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, 
+                                   comparison, "protein_coding","fastas"),
     extractNTseq       = TRUE,
     extractAAseq       = TRUE,
     removeShortAAseq   = TRUE,
@@ -148,6 +151,9 @@ if(!file.exists(dtu_rdata_path)){
 
 summary(SwitchList_part1)
 
+# Switching features:
+#   Comparison Isoforms Switches Genes
+# 1  FT vs RGC     1624     1314  1081
 
 #### Consequences ####
 
@@ -226,7 +232,7 @@ SwitchList_part2$isoformFeatures <- SwitchList_part2$isoformFeatures |>
   distinct(across(-gene_name), .keep_all = TRUE)
 
 write_tsv(SwitchList_part2$isoformFeatures, file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                                             method, comparison,"protein_coding", "isoformFeatures.tsv"))
+                                                             method, comparison,"protein_coding", "isoformFeatures_part2.tsv"))
 
 
 pdf(file.path(plots_dir, "Splicing_Summary.pdf"))
@@ -303,4 +309,5 @@ consequences <- extractConsequenceEnrichment(
   countGenes = F,
   plot = F
 )
-write_tsv(consequences, file = file.path(plots_dir, "Consequence_Enrichment.tsv"))
+write_tsv(consequences, file = file.path(plots_dir,
+                                         "Consequence_Enrichment.tsv"))

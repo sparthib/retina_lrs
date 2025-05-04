@@ -34,56 +34,21 @@ process_table <- function(filepath, output_subdir, file_prefix, remove_gene_id =
 
 # Bambu processing
 process_table(file.path(bambu_dir, "counts_gene.txt"), "bambu", "gene_counts")
-process_table(file.path(bambu_dir, "counts_transcript.txt"), "bambu", "isoform_counts", remove_gene_id = TRUE)
-process_table(file.path(bambu_dir, "CPM_transcript.txt"), "bambu", "isoform_cpm", remove_gene_id = TRUE)
-
-# Isoquant processing
-process_table(file.path(isoquant_dir, "OUT.gene_grouped_counts.tsv"), "Isoquant", "gene_counts")
-process_table(file.path(isoquant_dir, "OUT.gene_grouped_tpm.tsv"), "Isoquant", "gene_cpm")
+process_table(file.path(bambu_dir, "counts_transcript.txt"), "bambu",
+              "isoform_counts", remove_gene_id = TRUE)
 
 
+### load and check nrow 
+# Load the RDS files
+bambu_RO_genes <- readRDS(file.path(output_dir, "bambu", "ROs", "gene_counts_ROs.RDS"))
+bambu_FT_vs_RGC_genes <- readRDS(file.path(output_dir, "bambu", "FT_vs_RGC", "gene_counts_FT_vs_RGC.RDS"))
 
+bambu_RO_isoforms <- readRDS(file.path(output_dir, "bambu", "ROs", "isoform_counts_ROs.RDS"))
+bambu_FT_vs_RGC_isoforms <- readRDS(file.path(output_dir, "bambu", "FT_vs_RGC", "isoform_counts_FT_vs_RGC.RDS"))
 
-isoquant_isoform_counts <- read.table(file.path(isoquant_dir,
-                                                "OUT.transcript_model_grouped_counts.tsv"),
-                                      header = TRUE,
-                                      row.names = 1, sep = "\t", comment.char = "")
-colnames(isoquant_isoform_counts) <- gsub("_primary_over_30_sorted", "", 
-                                          colnames(isoquant_isoform_counts))
-colnames(isoquant_isoform_counts) <- gsub("\\.", "_", colnames(isoquant_isoform_counts))
+nrow(bambu_RO_isoforms)
+nrow(bambu_FT_vs_RGC_isoforms)
 
-# Rearrange the columns in the data frame
-isoquant_isoform_counts <- isoquant_isoform_counts[, new_order]
-
-##keep only ROs
-RO_isoquant_isoform_counts <- isoquant_isoform_counts[,1:7]
-FT_vs_RGC_isoquant_isoform_counts <- isoquant_isoform_counts[,8:11]
-
-saveRDS(RO_isoquant_isoform_counts, 
-        file.path(output_dir, "Isoquant", "ROs", "isoform_counts.RDS"))
-saveRDS(FT_vs_RGC_isoquant_isoform_counts,
-        file.path(output_dir, "Isoquant", "FT_vs_RGC", "isoform_counts.RDS"))
-
-
-###isoquant isoform cpm 
-
-isoquant_isoform_cpm <- read.table(file.path(isoquant_dir, "OUT.transcript_model_grouped_tpm.tsv"), header = TRUE,
-                                   row.names = 1, sep = "\t", comment.char = "")
-colnames(isoquant_isoform_cpm) <- gsub("_primary_over_30_sorted", "", 
-                                       colnames(isoquant_isoform_cpm))
-colnames(isoquant_isoform_cpm) <- gsub("\\.", "_", colnames(isoquant_isoform_cpm))
-
-# Rearrange the columns in the data frame
-isoquant_isoform_cpm <- isoquant_isoform_cpm[, new_order]
-
-##keep only ROs
-RO_isoquant_isoform_cpm <- isoquant_isoform_cpm[,1:7]
-FT_vs_RGC_isoquant_isoform_cpm <- isoquant_isoform_cpm[,8:11]
-
-saveRDS(RO_isoquant_isoform_cpm, 
-        file.path(output_dir, "Isoquant", "ROs", "isoform_cpm.RDS"))
-saveRDS(FT_vs_RGC_isoquant_isoform_cpm, 
-        file.path(output_dir, "Isoquant", "FT_vs_RGC", "isoform_cpm.RDS"))
 
 
 
