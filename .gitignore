@@ -16,3 +16,5 @@ single_cell_raw_data/
 processed_data/bambu_sqanti_annotation/
 processed_data/coverage/
 code/*/logs/*
+*.fasta
+*.rds
