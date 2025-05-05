@@ -128,7 +128,7 @@ method <- "bambu"
 comparison <- "ROs"
 load_data <- function(method) {
   long_read_counts <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                                method, comparison, "filtered_by_counts_and_biotype", "genes_cpm.RDS")
+                                method, comparison, "filtered_by_counts_and_biotype", "filtered_gene_cpm.RDS")
   
   long_read_counts <- readRDS(long_read_counts)
   
@@ -162,9 +162,6 @@ load_data <- function(method) {
 }
 
 bambu_res <- load_data("bambu")
-
-
-
 
 method <- "bambu"
 
