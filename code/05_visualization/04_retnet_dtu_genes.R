@@ -9,6 +9,7 @@ library(purrr)
 library(ComplexHeatmap)
 library(circlize)
 library(grid)
+
 remove_zero_var_rows <- function(mat) {
   mat[apply(mat, 1, function(x) min(x) != max(x)), ]
 }
@@ -81,7 +82,7 @@ for (gene in disease_genes$gene) {
 }
 
 length(results_list)
-
+#290
 
 #convert results_list to a dataframe
 results_df <- data.frame(
@@ -97,8 +98,8 @@ write.table(results_df, file = "/users/sparthib/retina_lrs/processed_data/dtu/re
 load_gene_counts_matrix <- function(analysis_type, quant_method,
                                     table_type = "DTE") {
   # Validate inputs
-  if (!analysis_type %in% c("FT_vs_RGC", "ROs")) {
-    stop("Invalid analysis_type. Choose 'FT_vs_RGC' or 'ROs'.")
+  if (!analysis_type %in% c("FT_vs_RGC", "ROs", "RO_vs_RGC")) {
+    stop("Invalid analysis_type. Choose 'FT_vs_RGC', 'ROs' or 'RO_vs_RGC'.")
   }
   if (!quant_method %in% c("bambu", "Isoquant")) {
     stop("Invalid quant_method. Choose 'bambu' or 'isoquant'.")
@@ -107,7 +108,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method,
   counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
                                  quant_method, analysis_type, "filtered_by_counts_and_biotype")
   
-  isoform_file <- file.path(counts_matrix_dir, "isoform_cpm.RDS")
+  isoform_file <- file.path(counts_matrix_dir, "filtered_isoform_cpm.RDS")
   isoform_tpm <- readRDS(isoform_file)
   rownames(isoform_tpm) <- gsub("\\..*", "", rownames(isoform_tpm))
   
@@ -142,8 +143,10 @@ load_gene_counts_matrix <- function(analysis_type, quant_method,
   # Define groups and output directory
   groups <- if (analysis_type == "ROs") {
     c("Stage_1", "Stage_1", "Stage_2", "Stage_2", "Stage_2", "Stage_3", "Stage_3")
-  } else {
+  } else if (analysis_type == "FT_vs_RGC") {
     c("FT", "FT", "RGC", "RGC")
+  } else if (analysis_type == "RO_vs_RGC") {
+    c("Stage_1", "Stage_1", "Stage_2", "Stage_2", "Stage_2", "Stage_3", "Stage_3", "RGC", "RGC")
   }
   
   output_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu", 
@@ -165,6 +168,10 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
   else if(compare == "ROs"){
     colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
                        "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
+  else if(compare == "RO_vs_RGC"){
+    colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
+                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO", "H9_hRGC_1", "H9_hRGC_2" )
+  } 
   
   tpm <- tpm |> 
     as.data.frame() |>
@@ -184,7 +191,10 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
                                     annotation_name_gp = gpar(fontsize = 2)),
     "ROs" = HeatmapAnnotation(type = groups, annotation_name_side = "left",
                               col = list(type = c("Stage_3" = "purple", "Stage_2" = "orange", "Stage_1" = "seagreen")),
-                              annotation_name_gp = gpar(fontsize = 2))
+                              annotation_name_gp = gpar(fontsize = 2)),
+    "RO_vs_RGC" = HeatmapAnnotation(type = groups, annotation_name_side = "left",
+                                   col = list(type = c("Stage_3" = "purple", "Stage_2" = "orange", "Stage_1" = "seagreen", "RGC" = "brown")),
+                                   annotation_name_gp = gpar(fontsize = 2))
   )
   
   pdf(file.path(output_plots_dir, paste0(compare, "_", table_type, "_retnet_heatmap.pdf")))
@@ -202,7 +212,7 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
 
 
 method <- "bambu"
-comparison <- "ROs"
+comparison <- "FT_vs_RGC"
 
 DTE_data <- load_gene_counts_matrix(comparison, method,  "DTE")
 DTU_data <- load_gene_counts_matrix(comparison, method, "DTU")
@@ -212,5 +222,7 @@ plot_heatmap(DTE_data$isoform_tpm, DTE_data$genes_and_isoforms, DTE_data$groups,
              comparison, DTE_data$output_plots_dir,  "DTE")
 plot_heatmap(DTU_data$isoform_tpm, DTU_data$genes_and_isoforms, DTU_data$groups,
              comparison, DTU_data$output_plots_dir,  "DTU")
+
+
 
 
