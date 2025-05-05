@@ -9,10 +9,6 @@ library(tidyr)
 ### GO Analysis of upregulated genes or genes associated to upregulated 
 ### DTE.
 
-## or genes undergoing significant switching. 
-
-method <- "bambu"
-comparison <- "ROs"
 
 get_dge_genelist <- function(df) {
   values <- df |> dplyr::select(DGE_log2FC, DGE, gene_id) |> distinct() |>
@@ -141,11 +137,50 @@ run_all_go <- function(method, comparison, ont = "BP"){
     
     ora_plot(dtu, ont, output_plot_dir, "DTU", "FT_vs_RGC")
   
+  } else if (comparison == "RO_vs_RGC") { 
+    
+
+    RGC_vs_D45 <- DGE_DTU_DTE |> filter(condition_1 == "RGC" & condition_2 == "Stage_1")
+    RGC_vs_D100 <- DGE_DTU_DTE |> filter(condition_1 == "RGC" & condition_2 == "Stage_2")
+    RGC_vs_D200 <-DGE_DTU_DTE |> filter(condition_1 == "RGC" & condition_2 == "Stage_3")
+    
+    RGC_vs_D45_dge <- get_dge_genelist(RGC_vs_D45)
+    RGC_vs_D100_dge <- get_dge_genelist(RGC_vs_D100)
+    RGC_vs_D200_dge <- get_dge_genelist(RGC_vs_D200)
+    
+    
+    RGC_vs_D45_dte <- get_dte_genelist(RGC_vs_D45)
+    RGC_vs_D100_dte <- get_dte_genelist(RGC_vs_D100)
+    RGC_vs_D200_dte <- get_dte_genelist(RGC_vs_D200)
+    
+    RGC_vs_D45_dtu <- get_dtu_genelist(RGC_vs_D45)
+    RGC_vs_D100_dtu <- get_dtu_genelist(RGC_vs_D100)
+    RGC_vs_D200_dtu <- get_dtu_genelist(RGC_vs_D200)
+    
+    
+    ora_plot(RGC_vs_D45_dge, ont, output_plot_dir, "DGE", "RGC_vs_D45")
+    ora_plot(RGC_vs_D100_dge, ont, output_plot_dir, "DGE", "RGC_vs_D100")
+    ora_plot(RGC_vs_D200_dge, ont, output_plot_dir, "DGE", "RGC_vs_D200")
+    
+    
+    
+    ora_plot(RGC_vs_D45_dte, ont, output_plot_dir, "DTE", "RGC_vs_D45")
+    ora_plot(RGC_vs_D100_dte, ont, output_plot_dir, "DTE", "RGC_vs_D100")
+    ora_plot(RGC_vs_D200_dte, ont, output_plot_dir, "DTE", "RGC_vs_D200")
+    
+    ora_plot(RGC_vs_D45_dtu, ont, output_plot_dir, "DTU", "RGC_vs_D45")
+    ora_plot(RGC_vs_D100_dtu, ont, output_plot_dir, "DTU", "RGC_vs_D100")
+    ora_plot(RGC_vs_D200_dtu, ont, output_plot_dir, "DTU", "RGC_vs_D200")
+    
   }
-  
   
   }
 
-run_all_go(method, comparison, ont = "BP")
+
+method <- "bambu"
+run_all_go(method, comparison = "ROs", ont = "BP")
+run_all_go(method, comparison = "RO_vs_RGC", ont = "BP")
+run_all_go(method, comparison = "FT_vs_RGC", ont = "BP")
+
 
 

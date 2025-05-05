@@ -4,106 +4,100 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(ggrepel)
+library(biomaRt)
 
-method <- "bambu"
-comparison <- "FT_vs_RGC"
 source("/users/sparthib/retina_lrs/code/05_visualization/helper.R")
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                             method, comparison, "protein_coding") 
 
-volcano_plot <- function(data, x_col = "logFC", y_col = "FDR", gene_label_col = "external_gene_name",
-                         cutoff_qval = 0.05, cutoff_logFC = 1, condition_1, condition_2) {
+volcano_plot <- function(data, x_col, y_col, gene_label_col = "gene_name",
+                         cutoff_log_qval =  1.30103, cutoff_logFC = 1, condition_1, condition_2, table_type) {
   # Classify points as significant or not
-  data <- data |> 
+  data <- data |>
     mutate(
-      significant = ifelse(
-        !!sym(y_col) < cutoff_qval & abs(!!sym(x_col)) >= cutoff_logFC,
-        "Significant",
-        "Not Significant"
+      significant = case_when(
+        !!sym(y_col) > cutoff_log_qval & !!sym(x_col) >= cutoff_logFC ~ "Upregulation in condition 2",
+        !!sym(y_col) > cutoff_log_qval & !!sym(x_col) <= -cutoff_logFC ~ "Upregulation in condition 1",
+        TRUE ~ "Not Significant"
       )
     )
   
-  # Define color scheme
-  colors <- c("Not Significant" = "gray", "Significant" = "darkgreen")
+  color_map <- list(
+    "FT|RGC"         = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown",  "Upregulation in condition 1" = "lightgreen"),
+    "RGC|Stage_1"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "seagreen",  "Upregulation in condition 1" = "brown"),
+    "RGC|Stage_2"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "orange",    "Upregulation in condition 1" = "brown"),
+    "RGC|Stage_3"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "brown"),
+    "Stage_1|Stage_2"= c("Not Significant" = "gray", "Upregulation in condition 2" = "orange",    "Upregulation in condition 1" = "seagreen"),
+    "Stage_1|Stage_3"= c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "seagreen"),
+    "Stage_2|Stage_3"= c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "orange")
+  )
+  
+  # Create key
+  pair_key <- paste(condition_1, condition_2, sep = "|")
+  
+  # Assign colors
+  colors <- color_map[[pair_key]]
+ 
+  
+  # Axis labels
+  x_label <- switch(table_type,
+                    "DTE" = "log2 Fold Change",
+                    "DGE" = "log2 Fold Change",
+                    "DTU" = "dIF",
+                    x_col)  # fallback
+  
+  y_label <- "-log10(FDR)"
   
   # Create the plot
-  plot <- ggplot(data, aes(x = !!sym(x_col), y = -log10(!!sym(y_col)), color = significant)) +
+  plot <- ggplot(data, aes(x = !!sym(x_col), y = !!sym(y_col), color = significant)) +
     geom_point(alpha = 0.6, size = 2) +
     scale_color_manual(values = colors) +
     geom_vline(xintercept = c(-cutoff_logFC, cutoff_logFC), linetype = "dashed", color = "pink") +
-    geom_hline(yintercept = -log10(cutoff_qval), linetype = "dashed", color = "pink") +
+    geom_hline(yintercept = cutoff_log_qval, linetype = "dashed", color = "pink") +
     labs(
       title = paste("Volcano Plot for", table_type, ":", method, condition_1, "vs", condition_2),
-      x = "Log2 Fold Change",
-      y = "-log10 FDR",
+      x = x_label,
+      y = y_label,
       color = "Significance"
     ) +
     theme_minimal() +
     theme(legend.position = "top")
   
   # Add gene labels for significant points
+  top_labels <- data |>
+    filter(!is.na(!!sym(x_col)), !is.na(!!sym(y_col))) |>
+    filter(!!sym(y_col) >= cutoff_log_qval) |>
+    mutate(logFC_sign = sign(!!sym(x_col))) |>
+    group_by(logFC_sign) |>
+    arrange(desc(!!sym(y_col))) |>
+    slice_head(n = 20) |>
+    ungroup()
+  
   plot <- plot +
     geom_text_repel(
-      data = data |> 
-        arrange(!!sym(y_col)) |> 
-        slice_head(n = 20),
-      aes(label = !!sym(gene_label_col)), 
+      data = top_labels,
+      aes(label = !!sym(gene_label_col)),
       size = 2,
-      color = "black",        # Set annotation text color to black
-      max.overlaps = Inf
-    )
-  plot
+      color = "black",
+      max.overlaps = Inf)
+plot
 }
 
 
-generate_volcano_plots <- function(input_data_dir, comparison, table_type, conditions) {
-  method <- "bambu"
-  comparison <- "ROs"
-  input_data_dir <- file.path(input_base_dir, method, comparison) 
-  table_type <- "DGE"
+generate_volcano_plots <- function(input_base_dir, comparison, table_type, conditions) {
+  
+  input_data_dir <- file.path(input_base_dir, method, comparison, "protein_coding") 
   conditions <- if (comparison == "ROs") {
       list(c("Stage_1", "Stage_2"), c("Stage_1", "Stage_3"), c("Stage_2", "Stage_3"))
-    } else {
+    } else if (comparison == "FT_vs_RGC") {
       list(c("FT", "RGC"))
-    }
+    } else if (comparison == "RO_vs_RGC") { 
+      list(c("RGC", "Stage_1"), c("RGC", "Stage_2"), c("RGC", "Stage_3"))
+      }
+
   
-  # Load analysis table
-  table_file <- file.path(input_data_dir, paste0(table_type, "_table.tsv"))
-  analysis_table <- read_tsv(table_file)
-  
-  # Process identifiers based on table type
-  if (table_type == "DTE") {
-    analysis_table <- analysis_table |> 
-      mutate(isoform_id = ifelse(
-        grepl("^ENST", isoform_id),
-        gsub("\\..*", "", isoform_id),
-        isoform_id
-      ))
-  }
-  
-  if (table_type == "DGE") {
-    analysis_table <- analysis_table |> 
-      mutate(gene_id = gsub("\\..*", "", gene_id))
-  }
-  
-  # Map IDs to gene names using biomaRt
-  library(biomaRt)
-  us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
-  mart <- useDataset("hsapiens_gene_ensembl", us_mart)
-  id_column <- if (table_type == "DTE") "isoform_id" else "gene_id"
-  filters <- if (table_type == "DTE") "ensembl_transcript_id" else "ensembl_gene_id"
-  attributes <- if (table_type == "DTE") c("ensembl_transcript_id", "external_gene_name") else c("ensembl_gene_id", "external_gene_name")
-  
-  results <- getBM(
-    attributes = attributes,
-    filters = filters,
-    values = analysis_table[[id_column]],
-    mart = mart
-  ) |> distinct()
-  
-  colnames(results) <- c(id_column, "external_gene_name")
-  analysis_table <- merge(analysis_table, results, by = id_column, all.x = TRUE) |>
-    mutate(external_gene_name = replace_na(external_gene_name, "unknown"))
+  DGE_DTE_DTU <- file.path(input_data_dir, "DGE_DTE_DTU.tsv")
+  analysis_table <- read_tsv(DGE_DTE_DTU)
   
   # Create plots directory
   plots_dir <- file.path(input_data_dir, "plots", "volcano")
@@ -118,36 +112,72 @@ generate_volcano_plots <- function(input_data_dir, comparison, table_type, condi
       filter(condition_1 == !!condition_1 & condition_2 == !!condition_2)
     
     output_file <- file.path(plots_dir, paste0(condition_1, "_vs_", condition_2, "_", table_type, "_volcano.pdf"))
-    pdf(output_file)
-    p <- volcano_plot(filtered_table, x_col = "logFC", y_col = "FDR", gene_label_col = "external_gene_name",
-                      cutoff_qval = 0.05, cutoff_logFC = 1, condition_1 = condition_1, condition_2 = condition_2)
-    print(p)
-    dev.off()
+    
+    if (table_type == "DTE"){ 
+      filtered_table$log10DTE_qval <- -log10(filtered_table$DTE_qval)
+      pdf(output_file)
+  
+      p <- volcano_plot(filtered_table, x_col = "DTE_log2FC", y_col = "log10DTE_qval", gene_label_col = "gene_name",
+                        cutoff_log_qval = 1.30103, cutoff_logFC = 1, condition_1 = condition_1, condition_2 = condition_2,
+                        table_type = table_type)
+      print(p)
+      dev.off()
+      
+      } else if (table_type == "DGE") {
+        filtered_table$log10DGE_qval <- -log10(filtered_table$DGE_qval)
+        pdf(output_file)
+        
+        p <- volcano_plot(filtered_table, x_col = "DGE_log2FC", y_col = "log10DGE_qval", gene_label_col = "gene_name",
+                          cutoff_log_qval = 1.30103, cutoff_logFC = 1, condition_1 = condition_1, condition_2 = condition_2,
+                          table_type = table_type)
+        print(p)
+        dev.off()
+      } else if (table_type == "DTU") {
+        filtered_table$log10DTU_qval <- -log10(filtered_table$DTU_qval)
+        pdf(output_file)
+        
+        p <- volcano_plot(filtered_table, x_col = "dIF", y_col = "log10DTU_qval", gene_label_col = "gene_name",
+                          cutoff_log_qval = 1.30103, cutoff_logFC = 0.1, condition_1 = condition_1, condition_2 = condition_2,
+                          table_type = table_type)
+        print(p)
+        dev.off()
+      }
+    
   }
 }
 
+
 # Generate plots for each method and comparison
 methods <- c("bambu")
-comparisons <- c("ROs", "FT_vs_RGC")
+comparisons <- c("ROs", "FT_vs_RGC", "RO_vs_RGC")
 input_base_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/"
 
 for (method in methods) {
   for (comparison in comparisons) {
     conditions <- if (comparison == "ROs") {
       list(c("Stage_1", "Stage_2"), c("Stage_1", "Stage_3"), c("Stage_2", "Stage_3"))
-    } else {
+    } else if( comparison == "FT_vs_RGC") { 
       list(c("FT", "RGC"))
+    } else if (comparison == "RO_vs_RGC") { 
+      list(c("RGC", "Stage_1"), c("RGC", "Stage_2"), c("RGC", "Stage_3"))
     }
     
     generate_volcano_plots(
-      input_data_dir = file.path(input_base_dir, method, comparison,"protein_coding"),
+      input_base_dir = input_base_dir,
       comparison = comparison,
       table_type = "DTE",
       conditions = conditions
     )
     
     generate_volcano_plots(
-      input_data_dir = file.path(input_base_dir, method, comparison,"protein_coding"),
+      input_base_dir = input_base_dir,
+      comparison = comparison,
+      table_type = "DTU",
+      conditions = conditions
+    )
+    
+    generate_volcano_plots(
+      input_base_dir = input_base_dir,
       comparison = comparison,
       table_type = "DGE",
       conditions = conditions
