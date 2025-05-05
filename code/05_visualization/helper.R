@@ -14,7 +14,10 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
     color_mapping <- c("FT" = "lightgreen", "RGC" = "brown")
   } else if (all(groups %in% c("Stage_1", "Stage_2", "Stage_3"))) {
     color_mapping <- c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
-  } else {
+  } else if (all(groups %in% c("Stage_1", "Stage_2", "Stage_3", "RGC"))) {
+    color_mapping <- c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen", 
+                       "RGC" = "brown")
+  }else {
     stop("Unexpected group names. Please provide a valid group list.")
   }
   
