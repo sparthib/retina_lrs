@@ -35,15 +35,18 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
     theme_bw() +
     ggtitle(paste("PCA on", output_name, "Expression")) +
     xlab(paste("PC1 (", round(pc$sdev[1]^2 / sum(pc$sdev^2) * 100, 2), "%)")) +
-    ylab(paste("PC2 (", round(pc$sdev[2]^2 / sum(pc$sdev^2) * 100, 2), "%)")) +
-    geom_label_repel(aes(label = rownames(pcr)), 
-                     size = 4, 
-                     fill = "white", 
-                     alpha = 0.7, 
-                     max.overlaps = Inf, 
-                     box.padding = 0.5, 
-                     point.padding = 0.2, 
-                     segment.color = "grey50") +
+    ylab(paste("PC2 (", round(pc$sdev[2]^2 / sum(pc$sdev^2) * 100, 2), "%)")) + 
+    geom_label_repel(
+      aes(label = rownames(pcr)),
+      size = 4,
+      fill = "white",
+      alpha = 0.7,
+      max.overlaps = Inf,
+      box.padding = 0.5,
+      point.padding = 0.2,
+      segment.color = "grey50",
+      show.legend = FALSE  # <-- suppress label text in legend
+    ) + 
     xlim(x_range[1] - x_extend, x_range[2] + x_extend) +  # Extend x-axis
     ylim(y_range[1] - y_extend, y_range[2] + y_extend) +  # Extend y-axis
     scale_color_manual(values = color_mapping)  # Apply custom colors
