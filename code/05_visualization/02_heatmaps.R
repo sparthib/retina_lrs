@@ -13,6 +13,9 @@ plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
     else if(compare == "ROs"){
       colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
                          "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
+    else if(compare == "RO_vs_RGC"){
+      colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
+                         "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO", "H9_hRGC_1", "H9_hRGC_2" ) }
     tpm$isoform_id <- rownames(tpm)
     #remove version number 
     tpm$isoform_id <- gsub("\\..*", "", tpm$isoform_id)
@@ -49,7 +52,12 @@ plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
   }else if(compare == "ROs"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
                             col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
-                            ))
+                            )) 
+    }else if(compare == "RO_vs_RGC"){
+      ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
+                              col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen",
+                                                  "RGC" = "brown")
+                              ))
   }
   
   
@@ -70,11 +78,13 @@ plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, output_plots_dir, type) {
   
   if(compare == "FT_vs_RGC"){ 
-    colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
-  
-  if(compare == "ROs"){
+    colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") 
+    } else if(compare == "ROs"){
     colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
-                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
+                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") 
+    }else if(compare == "RO_vs_RGC"){
+    colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
+                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO", "H9_hRGC_1", "H9_hRGC_2" ) }
   tpm <- as.data.frame(tpm)
   tpm$isoform_id <- rownames(tpm)
   #remove version number 
@@ -114,6 +124,11 @@ plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
                             col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
                             ))
+  }else if(compare == "RO_vs_RGC"){
+    ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
+                            col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen", 
+                                        "RGC" = "brown")
+                            ))
   }
   
   
@@ -133,10 +148,14 @@ plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, output_plots_dir, type) {
   tpm <- as.data.frame(tpm)
   if(compare == "FT_vs_RGC"){ 
-    colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
-  else if(compare == "ROs"){
+    colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") 
+    } else if(compare == "ROs"){
     colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
-                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") }
+                       "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO") 
+    } else if(compare == "RO_vs_RGC"){
+      colnames(tpm) <- c("EP1_WT_ROs_D45", "H9_CRX_ROs_D45" ,"EP1_WT_hRO_2" ,  "H9_BRN3B_hRO_2",
+                         "H9_CRX_hRO_2" ,  "EP1_BRN3B_RO"  , "H9_BRN3B_RO", "H9_hRGC_1", "H9_hRGC_2" ) }
+  
   tpm$gene_id <- rownames(tpm)
   #remove version number 
   tpm$gene_id <- gsub("\\..*", "", tpm$gene_id)
@@ -174,7 +193,10 @@ plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
                             col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
                             ))
-  }
+  } else if(compare == "RO_vs_RGC"){
+    ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
+                            col = list(type = c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen",
+                                                "RGC" = "brown"))) } 
   
   
   # Generate and draw heatmap
@@ -192,18 +214,18 @@ plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 
 
 counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/"
-
 method <- "bambu"
-compare <- "FT_vs_RGC"
+compare <- "RO_vs_RGC"
+
 load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- readRDS(file.path(counts_matrix_dir,
                                    method,
                                    compare, "filtered_by_counts_and_biotype",
-                                   "isoform_cpm.RDS"))
+                                   "filtered_isoform_cpm.RDS"))
   gene_tpm <- readRDS(file.path(counts_matrix_dir,
                                 method,
                                 compare, "filtered_by_counts_and_biotype",
-                                "genes_cpm.RDS"))
+                                "filtered_gene_cpm.RDS"))
   
   samples <- colnames(isoform_tpm)
   if (compare == "FT_vs_RGC"){
@@ -212,6 +234,9 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   }else if (compare == "ROs"){
     groups <- c("Stage_1", "Stage_1", "Stage_2","Stage_2", 
                 "Stage_2", "Stage_3", "Stage_3")
+  }else if (compare == "RO_vs_RGC"){
+    groups <- c("Stage_1", "Stage_1", "Stage_2","Stage_2", 
+                "Stage_2", "Stage_3", "Stage_3", "RGC", "RGC")
   }
     
     heatmap_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
@@ -264,7 +289,6 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
 
 load_and_plot_data("bambu", "ROs", counts_matrix_dir)
 load_and_plot_data("bambu", "FT_vs_RGC", counts_matrix_dir)
-load_and_plot_data("Isoquant", "ROs", counts_matrix_dir)
-load_and_plot_data("Isoquant", "FT_vs_RGC", counts_matrix_dir)
+load_and_plot_data("bambu", "RO_vs_RGC", counts_matrix_dir)
 
 
