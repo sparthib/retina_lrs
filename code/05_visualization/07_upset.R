@@ -57,9 +57,20 @@ gene_overlaps = gene_overlaps |> group_by(gene_id) |>
             DTE_Stage_2_vs_Stage_3 = any(DTE_Stage_2_vs_Stage_3)
             ) 
 
+#### the DTU columns have NAs in them, due to no expression of gene in the condition,
+#### so we need to replace them with FALSE
+gene_overlaps <- gene_overlaps |> 
+  mutate(
+    DTU_Stage_1_vs_Stage_2 = ifelse(is.na(DTU_Stage_1_vs_Stage_2), FALSE, DTU_Stage_1_vs_Stage_2),
+    DTU_Stage_1_vs_Stage_3 = ifelse(is.na(DTU_Stage_1_vs_Stage_3), FALSE, DTU_Stage_1_vs_Stage_3),
+    DTU_Stage_2_vs_Stage_3 = ifelse(is.na(DTU_Stage_2_vs_Stage_3), FALSE, DTU_Stage_2_vs_Stage_3)
+  )
+
+sum(is.na(gene_overlaps))
+
 readr::write_tsv(gene_overlaps, file.path(plots_dir, "gene_overlaps.tsv"))
 
-rownames(gene_overlaps) <- gene_overlaps$gene_id
+rownames(gene_overlaps) <- gene_overlaps$gene_id 
 
 nrow(gene_overlaps)
 
@@ -77,8 +88,6 @@ table(gene_overlaps$DTE_Stage_1_vs_Stage_3,
       gene_overlaps$DGE_Stage_1_vs_Stage_3)
 table(gene_overlaps$DTE_Stage_2_vs_Stage_3,
       gene_overlaps$DGE_Stage_2_vs_Stage_3)
-
-
 
 # Load required libraries
 
@@ -101,74 +110,6 @@ p <- upset(fromList(venn_data), nsets = 15,order.by = "freq",
            main.bar.color = "steelblue",
            matrix.color = "darkorange")
 print(p)
-dev.off()
-
-
-
-
-# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "Stage_2" &
-#                                      condition_2 == "Stage_1"), "Stage_1_vs_Stage_2",
-#              plots_dir)
-# 
-# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "Stage_3" &
-#                                      condition_2 == "Stage_1"), "Stage_1_vs_Stage_3",
-#              plots_dir)
-# 
-# plot_barplot(DGE_DTU_DTE |> filter(condition_1 == "Stage_3" &
-#                                      condition_2 == "Stage_2"), "RO_D100_vs_RO_D200",
-#              plots_dir)
-
-# Create the data frame
-DTE_bar <- data.frame(
-  Comparison = c("Stage1_vs_Stage2", "Stage1_vs_Stage3", "Stage2_vs_Stage3"),
-  FALSE_FALSE = c(8377, 6592, 8202),  # non-DGE & non-DTE
-  FALSE_TRUE = c(526, 869, 706),      # non-DGE & DTE
-  TRUE_FALSE = c(275, 809, 252),      # DGE & non-DTE
-  TRUE_TRUE = c(223, 1131, 241)       # DGE & DTE
-)
-
-# Reshape data into long format
-data_long <- DTE_bar %>%
-  pivot_longer(cols = -Comparison, names_to = "Category", values_to = "Count") %>%
-  mutate(DGE = ifelse(Category %in% c("TRUE_FALSE", "TRUE_TRUE"), "DGE", "Non-DGE"),
-         DTE = ifelse(Category %in% c("FALSE_TRUE", "TRUE_TRUE"), "DTE", "Non-DTE"))
-
-# Plot stacked bar chart
-stacked_DTE_path <- file.path(plots_dir, "stacked_DTE.pdf")
-pdf(stacked_DTE_path, width = 10, height = 6)
-ggplot(data_long, aes(x = DGE, y = Count, fill = DTE)) +
-  geom_bar(stat = "identity", position = "stack") +
-  facet_wrap(~Comparison) +
-  labs(title = "Stacked Bar Plot of DGE and DTE Overlaps",
-       x = "DGE Status", y = "Count") +
-  theme_minimal()
-dev.off()
-
-
-# Create the data frame for DTU vs DGE
-DTU_bar <- data.frame(
-  Comparison = c("Stage1_vs_Stage2", "Stage1_vs_Stage3", "Stage2_vs_Stage3"),
-  FALSE_FALSE = c(7206, 6989, 6400),  # non-DGE & non-DTU
-  FALSE_TRUE = c(628, 759, 1701),     # non-DTU & DGE
-  TRUE_FALSE = c(1446, 1465, 1001),   # non-DGE & DTU
-  TRUE_TRUE = c(121, 188, 299)        # DTU & DGE
-)
-
-# Reshape data into long format
-data_dtu_long <- DTU_bar %>%
-  pivot_longer(cols = -Comparison, names_to = "Category", values_to = "Count") %>%
-  mutate(DGE = ifelse(Category %in% c("FALSE_TRUE", "TRUE_TRUE") , "DGE", "Non-DGE"),
-         DTU = ifelse(Category %in% c("TRUE_FALSE", "TRUE_TRUE"), "DTU", "Non-DTU"))
-
-# Plot stacked bar chart
-stacked_DTU_path <- file.path(plots_dir, "stacked_DTU.pdf")
-pdf(stacked_DTU_path, width = 10, height = 6)
-ggplot(data_dtu_long, aes(x = DGE, y = Count, fill = DTU)) +
-  geom_bar(stat = "identity", position = "stack") +
-  facet_wrap(~Comparison) +
-  labs(title = "Stacked Bar Plot of DGE and DTU Overlaps",
-       x = "DGE Status", y = "Count") +
-  theme_minimal()
 dev.off()
 
 
