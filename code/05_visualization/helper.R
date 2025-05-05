@@ -49,7 +49,8 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
     ) + 
     xlim(x_range[1] - x_extend, x_range[2] + x_extend) +  # Extend x-axis
     ylim(y_range[1] - y_extend, y_range[2] + y_extend) +  # Extend y-axis
-    scale_color_manual(values = color_mapping)  # Apply custom colors
+    scale_color_manual(values = color_mapping) + 
+    guides(color = guide_legend(override.aes = list(size = 3))) # Apply custom colors
   
   # Scree plot
   var_explained <- pc$sdev[1:10]^2 / sum(pc$sdev^2)
