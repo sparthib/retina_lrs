@@ -1,29 +1,32 @@
 library(dplyr)
 library(readr)
 library(IsoformSwitchAnalyzeR)
+library(biomaRt)
 method <- "bambu"
 comparison <- "RO_vs_RGC"
-
-
-switchlist_part2_path = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                  method, comparison, "protein_coding", "rds", "SwitchList_part2.rds")
-
-SwitchList_part2 <- readRDS(switchlist_part2_path)
-
+#FT_vs_RGC
+#ROs
 
 isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                                      method, comparison, "protein_coding",  "isoformFeatures.tsv"))
+                                      method, comparison, "protein_coding", "isoformFeatures_part2.tsv"))
 
-isoformFeatures <- SwitchList_part2$isoformFeatures
-isoformFeatures |> filter(isoform_switch_q_value < 0.05 & abs(dIF) >= 0.1) |> nrow()
+matrix_dir <-  file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+                        method, comparison, "filtered_by_counts_and_biotype")
+counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
+counts <- readRDS(counts)
+nrow(counts)
+
+
+isoformFeatures |> filter(isoform_switch_q_value < 0.05 & 
+                            abs(dIF) >= 0.1) |> nrow()
 
 isoformFeatures <- isoformFeatures |> distinct()
 
+range(isoformFeatures$isoform_switch_q_value, na.rm = TRUE)
 
 colnames(isoformFeatures)
 
-nrow(isoformFeatures)
-# 101101
+nrow(isoformFeatures)/3
 
 isoformFeatures <- isoformFeatures |> dplyr::select( 
   gene_id, isoform_id, condition_1, condition_2, 
@@ -46,6 +49,7 @@ isoformFeatures$isoform_id <- ifelse(
   isoformFeatures$isoform_id  # Keep other isoform_id values unchanged
 )
 
+nrow(isoformFeatures)/3
 
 DTE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu",
                                  method, comparison, "protein_coding","DTE_table.tsv"))
@@ -70,29 +74,12 @@ colnames(DGE_table) <- c("gene_id", "DGE_log2FC", "DGE_logCPM", "DGE_F", "DGE_pv
 
 
 DTE_table <- DTE_table |> distinct()
-
+nrow(DTE_table)
 
 new_DGE_DTE_DTU <- left_join(isoformFeatures, DTE_table, 
             by = c("isoform_id", "condition_1", "condition_2"))
 
 nrow(new_DGE_DTE_DTU)
-
-
-
-
-# diff_isoforms <- setdiff( s2_s3_isoforms$isoform_id, s1_s3_isoforms$isoform_id) 
-
-## found in s2 vs s3 not in other comparisons 
-# [1] "BambuTx22"       "ENST00000375108" "ENST00000409110" "ENST00000471884"
-# [5] "ENST00000476500" "ENST00000393233" "ENST00000589681" "ENST00000458671"
-# [9] "ENST00000589272" "ENST00000447342" "ENST00000350427" "ENST00000393963"
-# [13] "ENST00000261047" "ENST00000370657" "BambuTx287"      "ENST00000590311"
-# [17] "ENST00000284425" "ENST00000511880" "ENST00000286719" "ENST00000546816"
-# [21] "ENST00000546386" "ENST00000428432" "ENST00000335556" "ENST00000703267"
-# [25] "ENST00000703266"
-
-# new_DGE_DTE_DTU |> filter(isoform_id %in% diff_isoforms) |> select(gene_name) |> unique()
-# 
 
 
 new_DGE_DTE_DTU <- left_join(new_DGE_DTE_DTU, DGE_table, 
@@ -113,11 +100,6 @@ new_DGE_DTE_DTU <- new_DGE_DTE_DTU |>
   mutate(DGE = DGE_qval < 0.05 & abs(DGE_log2FC) >= 1)
 
 
-#convert NA to FALSE
-new_DGE_DTE_DTU$DTU[is.na(new_DGE_DTE_DTU$DTU)] <- FALSE
-new_DGE_DTE_DTU$DGE[is.na(new_DGE_DTE_DTU$DGE)] <- FALSE
-new_DGE_DTE_DTU$DTE[is.na(new_DGE_DTE_DTU$DTE)] <- FALSE
-
 new_DGE_DTE_DTU$DTU_qval <- new_DGE_DTE_DTU$isoform_switch_q_value
 
 
@@ -134,52 +116,49 @@ table(new_DGE_DTE_DTU$DTE_0.5, useNA = "always")
 
 colnames(new_DGE_DTE_DTU)
 
-library(biomaRt)
-
 mart <- useEnsembl(biomart = "ensembl", 
                    dataset = "hsapiens_gene_ensembl")
 
+#### get isoform biotypes ####
 annotLookup <- getBM(
   mart=mart,
-  attributes=c( "ensembl_transcript_id",
-                "external_gene_name",
-                "gene_biotype", "transcript_biotype"),
+  attributes=c( "ensembl_transcript_id", "transcript_biotype"),
   filter="ensembl_transcript_id",
   values=new_DGE_DTE_DTU$isoform_id,
   uniqueRows=TRUE)
 
 head(annotLookup)
-colnames(annotLookup) <- c("isoform_id", "gene_name","gene_biotype",
-                           "isoform_biotype")
+colnames(annotLookup) <- c("isoform_id","isoform_biotype")
 
 annotLookup <- annotLookup |> distinct()
 
-new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> dplyr::select(-c(gene_name, gene_biotype,
-                                                       isoform_biotype)) |> 
+new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> dplyr::select(-c( isoform_biotype)) |> 
   left_join(annotLookup, by = "isoform_id")
+
 nrow(new_DGE_DTE_DTU)
-input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding" )
+
+#### get gene names and biotypes ####
+annotLookup <- getBM(
+  mart=mart,
+  attributes=c( 
+                "external_gene_name",
+                "gene_biotype", "ensembl_gene_id"),
+  filter="ensembl_gene_id",
+  values=new_DGE_DTE_DTU$gene_id,
+  uniqueRows=TRUE)
+
+head(annotLookup)
+colnames(annotLookup) <- c("gene_name","gene_biotype", "gene_id")
+annotLookup <- annotLookup |> distinct()
+
+new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> dplyr::select(-c(gene_biotype, gene_name)) |> 
+  left_join(annotLookup, by = "gene_id")
+
+new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> distinct()
+
+input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method,
+                            comparison, "protein_coding" )
 write_tsv(new_DGE_DTE_DTU, file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
 
-##### check ADD 
 
-df <- readr::read_tsv(file.path(input_data_dir,
-                                "DGE_DTE_DTU.tsv"))
-
-ADD_df <- df |> filter(gene_name == "ADD1")
-ADD_df |> dplyr::select(isoform_id) |> table()
-
-
-ADD_df |> dplyr::select(isoform_id, condition_1, condition_2, 
-                 gene_value_1, gene_value_2, iso_value_1, 
-                 iso_value_2, IF1, IF2) 
-
-ADD_df |> group_by(condition_1, condition_2) |> summarise(
-  gene_value_1 = mean(gene_value_1),
-  gene_value_2 = mean(gene_value_2),
-  iso_value_1 = sum(iso_value_1),
-  iso_value_2 = sum(iso_value_2),
-  IF1 = sum(IF1),
-  IF2 = sum(IF2)
-) 
 

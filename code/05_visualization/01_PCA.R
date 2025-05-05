@@ -14,11 +14,11 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- readRDS(file.path(counts_matrix_dir,
                                    method,
                                    compare, "filtered_by_counts_and_biotype",
-                                   "isoform_cpm.RDS"))
+                                   "filtered_isoform_cpm.RDS"))
   gene_tpm <- readRDS(file.path(counts_matrix_dir,
                                 method,
                                 compare, "filtered_by_counts_and_biotype",
-                                "genes_cpm.RDS"))
+                                "filtered_gene_cpm.RDS"))
   
   isoform_tpm <- remove_zero_var_rows(isoform_tpm)
   gene_tpm <- remove_zero_var_rows(gene_tpm)
@@ -30,8 +30,15 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
     samples <- c("Stage_1_1", "Stage_1_2", "Stage_2_1", 
                  "Stage_2_2", "Stage_2_3", "Stage_3_1", "Stage_3_2")
     groups <- c("Stage_1", "Stage_1", "Stage_2","Stage_2", 
-                "Stage_2", "Stage_3", "Stage_3")
-  }
+                "Stage_2", "Stage_3", "Stage_3")  }
+    else if (compare == "RO_vs_RGC"){ 
+      samples <- c("Stage_1_1", "Stage_1_2", "Stage_2_1", 
+                   "Stage_2_2", "Stage_2_3", "Stage_3_1", "Stage_3_2",
+                   "RGC_1", "RGC_2")
+      groups <- c("Stage_1", "Stage_1", "Stage_2","Stage_2", 
+                  "Stage_2", "Stage_3", "Stage_3", "RGC", "RGC")
+      }
+
   
   pca_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                  method, compare, "protein_coding",  "plots", "PCA")
@@ -46,3 +53,4 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
 
 load_and_plot_data("bambu", "ROs", counts_matrix_dir)
 load_and_plot_data("bambu", "FT_vs_RGC", counts_matrix_dir)
+load_and_plot_data("bambu", "RO_vs_RGC", counts_matrix_dir)

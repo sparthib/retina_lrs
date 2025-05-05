@@ -245,7 +245,7 @@ read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) |>
 SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
   n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
-  removeNoncodinORFs        = FALSE,
+  removeNoncodinORFs        = TRUE,
   pathToCPC2resultFile      = file.path(external_protein_analyses_dir, "CPC2_output.txt"),
   pathToPFAMresultFile      = file.path(external_protein_analyses_dir,"pfam_results.txt"),
   pathToSignalPresultFile   = file.path(external_protein_analyses_dir,"prediction_results.txt"),
