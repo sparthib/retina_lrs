@@ -20,21 +20,29 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "****"
 
 INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/fastq
-OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/sams
+OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/sams_ref_46
+mkdir -p $OUTPUT_DIR
 
 
 ml load bowtie/2.5.1
-BT_INDEX_PATH=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/GRCh38_noalt_as/GRCh38_noalt_as
+
+ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
+ref_fa_index_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/release_46_index
+mkdir -p $ref_fa_index_dir
+bowtie2-build $ref_fa /path/to/index/genome_index
+
+#BT_INDEX_PATH=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/GRCh38_noalt_as/
+#BT_INDEX_PATH was downloaded from bowtie2 reference
 
 # Aligning paired reads
-# samples=(SRR1091088 SRR1091091 SRR1091092)
-samples=(SRR1091092)
+samples=(SRR1091088 SRR1091091 SRR1091092)
 
 for sample in ${samples[@]}
 do
-    bowtie2 -x $BT_INDEX_PATH -p ${SLURM_CPUS_PER_TASK} \
+    bowtie2 -x $ref_fa_index_dir -p ${SLURM_CPUS_PER_TASK} \
     -1 $INPUT_DIR/${sample}_1.fastq -2 $INPUT_DIR/${sample}_2.fastq -S $OUTPUT_DIR/${sample}.sam \
     --rg-id ${sample} --rg "SM:${sample}" --rg "PL:ILLUMINA" 
+    echo "**** done aligning $sample ****"
 done
 
 echo "**** Job ends ****"
