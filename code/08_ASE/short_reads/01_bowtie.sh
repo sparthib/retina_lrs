@@ -22,6 +22,7 @@ echo "****"
 INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/fastq
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/sams_ref_46
 mkdir -p $OUTPUT_DIR
+##../H9_DNA_Seq_data/sams has outputs from aligning to GRCh38_noalt_as
 
 
 ml load bowtie/2.5.1
