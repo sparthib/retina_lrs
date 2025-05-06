@@ -30,7 +30,7 @@ ml load bowtie/2.5.1
 ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 ref_fa_index_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/release_46_index
 mkdir -p $ref_fa_index_dir
-bowtie2-build $ref_fa /path/to/index/genome_index
+bowtie2-build $ref_fa $ref_fa_index_dir
 
 #BT_INDEX_PATH=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/GRCh38_noalt_as/
 #BT_INDEX_PATH was downloaded from bowtie2 reference
