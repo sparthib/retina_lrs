@@ -1,9 +1,50 @@
 **** Job starts ****
-2024-10-10 21:45:05
+2025-05-06 11:00:54
 **** JHPCE info ****
 User: sparthib
-Job id: 10087215
+Job id: 16480477
 Job name: bowtie
-Node name: compute-093
+Node name: compute-070
 ****
 Loading bowtie.
+Settings:
+  Output files: "/path/to/index/genome_index.*.bt2"
+  Line rate: 6 (line is 64 bytes)
+  Lines per side: 1 (side is 64 bytes)
+  Offset rate: 4 (one in 16)
+  FTable chars: 10
+  Strings: unpacked
+  Max bucket size: default
+  Max bucket size, sqrt multiplier: default
+  Max bucket size, len divisor: 4
+  Difference-cover sample period: 1024
+  Endianness: little
+  Actual local endianness: little
+  Sanity checking: disabled
+  Assertions: disabled
+  Random seed: 0
+  Sizeofs: void*:8, int:4, long:8, size_t:8
+Input files DNA, FASTA:
+  /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
+Building a SMALL index
+Reading reference sizes
+Could not open index file for writing: "/path/to/index/genome_index.3.bt2.tmp"
+Please make sure the directory exists and that permissions allow writing by
+Bowtie.
+  Time reading reference sizes: 00:00:00
+Total time for call to driver() for forward index: 00:00:00
+Error: Encountered internal Bowtie 2 exception (#1)
+Command: /jhpce/shared/jhpce/core/bowtie/2.5.1/bin/bowtie2-build-s --wrapper basic-0 /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa /path/to/index/genome_index 
+Deleting "/path/to/index/genome_index.3.bt2" file written during aborted indexing attempt.
+Deleting "/path/to/index/genome_index.4.bt2" file written during aborted indexing attempt.
+(ERR): "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/release_46_index" does not exist or is not a Bowtie 2 index
+Exiting now ...
+**** done aligning SRR1091088 ****
+(ERR): "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/release_46_index" does not exist or is not a Bowtie 2 index
+Exiting now ...
+**** done aligning SRR1091091 ****
+(ERR): "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/release_46_index" does not exist or is not a Bowtie 2 index
+Exiting now ...
+**** done aligning SRR1091092 ****
+**** Job ends ****
+2025-05-06 11:00:55
