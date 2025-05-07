@@ -55,20 +55,20 @@ do
   echo "🔄 Processing sample: $sample"
 
   echo "🔹 Step 1: Sorting SAM to BAM"
-  java -Xmx4g -jar "$PICARD" SortSam \
+  gatk SortSam \
     I="${INPUT_DIR}/${sample}.sam" \
     O="${OUTPUT_DIR}/${sample}-sorted.bam" \
     SORT_ORDER=coordinate
     
     echo "🔹 Step 2: Marking duplicates"
-  java -Xmx4g -jar "$PICARD" MarkDuplicates \
+  gatk MarkDuplicates \
     I="${OUTPUT_DIR}/${sample}-sorted.bam" \
     O="${OUTPUT_DIR}/${sample}-dedup.bam" \
     M="${OUTPUT_DIR}/${sample}-metrics.txt" \
     CREATE_INDEX=true
 
   echo "🔹 Step 3: Adding read groups"
-  java -Xmx4g -jar "$PICARD" AddOrReplaceReadGroups \
+  gatk AddOrReplaceReadGroups \
     I="${OUTPUT_DIR}/${sample}-dedup.bam" \
     O="${OUTPUT_DIR}/${sample}-rg.bam" \
     RGID="${sample}" \
