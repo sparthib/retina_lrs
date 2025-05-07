@@ -1,14 +1,14 @@
 **** Job starts ****
-2025-05-06 22:57:28
+2025-05-06 23:03:29
 **** JHPCE info ****
 User: sparthib
-Job id: 16518806
+Job id: 16518817
 Job name: longshot
-Node name: compute-164
+Node name: compute-094
 Task id: 12
 ****
 H9-hRGC_2
 
-error: Variant output file already exists. Rerun with -F option to force overwrite.
-**** Job ends ****
-2025-05-06 22:57:29
+2025-05-06 23:03:31 Min read coverage set to 6.
+2025-05-06 23:03:31 Max read coverage set to 8000.
+2025-05-06 23:03:31 Estimating alignment parameters...

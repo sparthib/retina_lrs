@@ -1,14 +1,32 @@
 **** Job starts ****
-2025-05-06 22:57:28
+2025-05-06 23:03:29
 **** JHPCE info ****
 User: sparthib
-Job id: 16518809
+Job id: 16518819
 Job name: longshot
-Node name: compute-096
+Node name: compute-070
 Task id: 10
 ****
 H9-FT_2
 
-error: Variant output file already exists. Rerun with -F option to force overwrite.
-**** Job ends ****
-2025-05-06 22:57:30
+2025-05-06 23:03:30 Min read coverage set to 6.
+2025-05-06 23:03:30 Max read coverage set to 8000.
+2025-05-06 23:03:30 Estimating alignment parameters...
+2025-05-06 23:11:19 Done estimating alignment parameters.
+
+                    Transition Probabilities:
+                    match -> match:          0.990
+                    match -> insertion:      0.004
+                    match -> deletion:       0.006
+                    deletion -> match:       0.643
+                    deletion -> deletion:    0.357
+                    insertion -> match:      0.673
+                    insertion -> insertion:  0.327
+
+                    Emission Probabilities:
+                    match (equal):           0.992
+                    match (not equal):       0.003
+                    insertion:               1.000
+                    deletion:                1.000
+
+2025-05-06 23:11:19 Calling potential SNVs using pileup...
