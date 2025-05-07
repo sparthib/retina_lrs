@@ -54,24 +54,26 @@ for sample in "${samples[@]}"
 do
   echo "🔄 Processing sample: $sample"
 
-  echo "🔹 Step 1: Sorting SAM to BAM"
+  echo "🔹 Step 1a: Change SAM to BAM"
   samtools view -bS ${INPUT_DIR}/${sample}.sam > ${OUTPUT_DIR}/${sample}.bam
+  
+  echo "🔹 Step 1b: Sorting BAM"
   gatk SortSam \
     I="${OUTPUT_DIR}/${sample}.bam" \
-    O="${OUTPUT_DIR}/${sample}-sorted.bam" \
+    O="${OUTPUT_DIR}/${sample}_sorted.bam" \
     SORT_ORDER=coordinate
     
     echo "🔹 Step 2: Marking duplicates"
   gatk MarkDuplicates \
-    I="${OUTPUT_DIR}/${sample}-sorted.bam" \
-    O="${OUTPUT_DIR}/${sample}-dedup.bam" \
-    M="${OUTPUT_DIR}/${sample}-metrics.txt" \
+    I="${OUTPUT_DIR}/${sample}_sorted.bam" \
+    O="${OUTPUT_DIR}/${sample}_dedup.bam" \
+    M="${OUTPUT_DIR}/${sample}_metrics.txt" \
     CREATE_INDEX=true
 
   echo "🔹 Step 3: Adding read groups"
   gatk AddOrReplaceReadGroups \
-    I="${OUTPUT_DIR}/${sample}-dedup.bam" \
-    O="${OUTPUT_DIR}/${sample}-rg.bam" \
+    I="${OUTPUT_DIR}/${sample}_dedup.bam" \
+    O="${OUTPUT_DIR}/${sample}_rg.bam" \
     RGID="${sample}" \
     RGLB="lib1" \
     RGPL="illumina" \
@@ -81,21 +83,21 @@ do
     
     echo "🔹 Step 4a: Base recalibration (BQSR - BaseRecalibrator)"
   gatk BaseRecalibrator \
-    -I "${OUTPUT_DIR}/${sample}-rg.bam" \
+    -I "${OUTPUT_DIR}/${sample}_rg.bam" \
     -R "$REF" \
     --known-sites "$DBSNP" \
-    -O "${OUTPUT_DIR}/${sample}-recal_data.table"
+    -O "${OUTPUT_DIR}/${sample}_recal_data.table"
 
   echo "🔹 Step 4b: Apply BQSR"
   gatk ApplyBQSR \
     -R "$REF" \
-    -I "${OUTPUT_DIR}/${sample}-rg.bam" \
-    --bqsr-recal-file "${OUTPUT_DIR}/${sample}-recal_data.table" \
-    -O "${OUTPUT_DIR}/${sample}-recal.bam"
+    -I "${OUTPUT_DIR}/${sample}_rg.bam" \
+    --bqsr-recal-file "${OUTPUT_DIR}/${sample}_recal_data.table" \
+    -O "${OUTPUT_DIR}/${sample}_recal.bam"
 
   echo "🔹 Step 5: Filtering BAM (remove unmapped, secondary, supplementary; MAPQ < 20)"
-  samtools view -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}-recal.bam" > "${OUTPUT_DIR}/${sample}-filtered.bam"
-  samtools index "${OUTPUT_DIR}/${sample}-filtered.bam"
+  samtools view -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}_recal.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam"
+  samtools index "${OUTPUT_DIR}/${sample}_filtered.bam"
   
 done 
 # samples=(SRR1091088 SRR1091091 SRR1091092)
