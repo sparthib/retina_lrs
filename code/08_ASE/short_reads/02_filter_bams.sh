@@ -35,7 +35,10 @@ echo "****"
 # 
 # Runs joint genotyping to produce a final cohort VCF
 # 
-
+known_sites=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/known_sites
+DBSNP=${known_sites}/Homo_sapiens_assembly38.dbsnp138.vcf
+MANDG_INDELS=${known_sites}/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+SNPs_1000G=${known_sites}/1000G_phase1.snps.high_confidence.hg38.vcf.gz
 ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/sams_ref_46
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams_ref_46
@@ -82,9 +85,11 @@ do
     
     echo "🔹 Step 4a: Base recalibration (BQSR - BaseRecalibrator)"
   gatk BaseRecalibrator \
-    -I "${OUTPUT_DIR}/${sample}_rg.bam" \
-    -R "$ref_fa" \
+    -R $ref_fa \
+    -I ${OUTPUT_DIR}/${sample}_rg.bam \
     --known-sites "$DBSNP" \
+    --known-sites "$MANDG_INDELS" \
+    --known-sites "$SNPs_1000G" \
     -O "${OUTPUT_DIR}/${sample}_recal_data.table"
 
   echo "🔹 Step 4b: Apply BQSR"
