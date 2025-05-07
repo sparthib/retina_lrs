@@ -35,7 +35,7 @@ longshot_output=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/01_longshot_vcfs/${
 mkdir -p $longshot_output
 
 
-longshot  --out_bam $longshot_output/${sample}.bam  --bam $genome_bam \
+longshot -F --out_bam $longshot_output/${sample}.bam  --bam $genome_bam \
 --ref $REFERENCE_FASTA --out $longshot_output/${sample}.vcf
 
 echo "**** Job ends ****"
