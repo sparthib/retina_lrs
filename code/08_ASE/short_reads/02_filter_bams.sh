@@ -96,7 +96,7 @@ do
   samtools view -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}-recal.bam" > "${OUTPUT_DIR}/${sample}-filtered.bam"
   samtools index "${OUTPUT_DIR}/${sample}-filtered.bam"
   
-
+done 
 # samples=(SRR1091088 SRR1091091 SRR1091092)
 # 
 # for sample in ${samples[@]}
