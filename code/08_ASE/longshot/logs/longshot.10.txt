@@ -1,0 +1,14 @@
+**** Job starts ****
+2025-05-06 22:57:28
+**** JHPCE info ****
+User: sparthib
+Job id: 16518809
+Job name: longshot
+Node name: compute-096
+Task id: 10
+****
+H9-FT_2
+
+error: Variant output file already exists. Rerun with -F option to force overwrite.
+**** Job ends ****
+2025-05-06 22:57:30
