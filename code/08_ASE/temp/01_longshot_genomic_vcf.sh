@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/longshot.%a.txt
 #SBATCH -e logs/longshot.%a.txt
-#SBATCH --array=9
+#SBATCH --array=1-15
 #SBATCH --time=7-00:00:00
 
 
@@ -31,7 +31,9 @@ REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_ass
 genome_bam=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/${sample}_primary_over_30_chr_only_sorted.bam  
 source activate longshot
 
+
 longshot_output=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/01_longshot_vcfs/${sample}
+rm -r $longshot_output
 mkdir -p $longshot_output
 
 
