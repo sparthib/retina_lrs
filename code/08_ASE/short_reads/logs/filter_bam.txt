@@ -1,9 +1,11 @@
 **** Job starts ****
-2024-10-10 23:10:06
+2025-05-06 22:37:25
 **** JHPCE info ****
 User: sparthib
-Job id: 10087396
+Job id: 16518779
 Job name: filter_bam
-Node name: compute-120
+Node name: compute-163
 ****
+Loading LIBD SLURM module for gatk/4.5.0.0
 Loading LIBD SLURM module for samtools/1.18
+/var/spool/slurm/d/job16518779/slurm_script: line 116: syntax error: unexpected end of file
