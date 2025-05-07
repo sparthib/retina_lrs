@@ -36,7 +36,7 @@ echo "****"
 # Runs joint genotyping to produce a final cohort VCF
 # 
 
-
+ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/sams_ref_46
 OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams_ref_46
 mkdir -p $OUTPUT_DIR
@@ -53,42 +53,43 @@ mkdir -p "$OUTPUT_DIR"
 for sample in "${samples[@]}"
 do
   echo "🔄 Processing sample: $sample"
-
-  echo "🔹 Step 1a: Change SAM to BAM"
-  samtools view -@ 8 -bS ${INPUT_DIR}/${sample}.sam > ${OUTPUT_DIR}/${sample}.bam
   
-  echo "🔹 Step 1b: Sorting BAM"
-  samtools sort -@ 8 -o ${OUTPUT_DIR}/${sample}_sorted.bam ${OUTPUT_DIR}/${sample}.bam
-
-    
-    echo "🔹 Step 2: Marking duplicates"
-  gatk MarkDuplicates \
-    I="${OUTPUT_DIR}/${sample}_sorted.bam" \
-    O="${OUTPUT_DIR}/${sample}_dedup.bam" \
-    M="${OUTPUT_DIR}/${sample}_metrics.txt" \
-    CREATE_INDEX=true
-
-  echo "🔹 Step 3: Adding read groups"
-  gatk AddOrReplaceReadGroups \
-    I="${OUTPUT_DIR}/${sample}_dedup.bam" \
-    O="${OUTPUT_DIR}/${sample}_rg.bam" \
-    RGID="${sample}" \
-    RGLB="lib1" \
-    RGPL="illumina" \
-    RGPU="unit1" \
-    RGSM="${sample}" \
-    CREATE_INDEX=true
+## The following steps were run already
+#   echo "🔹 Step 1a: Change SAM to BAM"
+#   samtools view -@ 8 -bS ${INPUT_DIR}/${sample}.sam > ${OUTPUT_DIR}/${sample}.bam
+#   
+#   echo "🔹 Step 1b: Sorting BAM"
+#   samtools sort -@ 8 -o ${OUTPUT_DIR}/${sample}_sorted.bam ${OUTPUT_DIR}/${sample}.bam
+# 
+#     
+#     echo "🔹 Step 2: Marking duplicates"
+#   gatk MarkDuplicates \
+#     I="${OUTPUT_DIR}/${sample}_sorted.bam" \
+#     O="${OUTPUT_DIR}/${sample}_dedup.bam" \
+#     M="${OUTPUT_DIR}/${sample}_metrics.txt" \
+#     CREATE_INDEX=true
+# 
+#   echo "🔹 Step 3: Adding read groups"
+#   gatk AddOrReplaceReadGroups \
+#     I="${OUTPUT_DIR}/${sample}_dedup.bam" \
+#     O="${OUTPUT_DIR}/${sample}_rg.bam" \
+#     RGID="${sample}" \
+#     RGLB="lib1" \
+#     RGPL="illumina" \
+#     RGPU="unit1" \
+#     RGSM="${sample}" \
+#     CREATE_INDEX=true
     
     echo "🔹 Step 4a: Base recalibration (BQSR - BaseRecalibrator)"
   gatk BaseRecalibrator \
     -I "${OUTPUT_DIR}/${sample}_rg.bam" \
-    -R "$REF" \
+    -R "$ref_fa" \
     --known-sites "$DBSNP" \
     -O "${OUTPUT_DIR}/${sample}_recal_data.table"
 
   echo "🔹 Step 4b: Apply BQSR"
   gatk ApplyBQSR \
-    -R "$REF" \
+    -R "$ref_fa" \
     -I "${OUTPUT_DIR}/${sample}_rg.bam" \
     --bqsr-recal-file "${OUTPUT_DIR}/${sample}_recal_data.table" \
     -O "${OUTPUT_DIR}/${sample}_recal.bam"
