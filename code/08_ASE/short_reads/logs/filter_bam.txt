@@ -1,13 +1,13 @@
 **** Job starts ****
-2025-05-06 23:14:53
+2025-05-06 23:36:35
 **** JHPCE info ****
 User: sparthib
-Job id: 16518825
+Job id: 16518829
 Job name: filter_bam
 Node name: compute-162
 ****
 Loading LIBD SLURM module for gatk/4.5.0.0
 Loading LIBD SLURM module for samtools/1.18
 🔄 Processing sample: SRR1091088
-🔹 Step 1: Sorting SAM to BAM
-slurmstepd: error: *** JOB 16518825 ON compute-162 CANCELLED AT 2025-05-06T23:33:22 ***
+🔹 Step 1a: Change SAM to BAM
+slurmstepd: error: *** JOB 16518829 ON compute-162 CANCELLED AT 2025-05-06T23:45:54 ***
