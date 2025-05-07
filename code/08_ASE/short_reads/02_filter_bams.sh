@@ -49,8 +49,8 @@ ml load samtools
 
 ## first mark duplicates, then filter by MAPQ and uniquely mapped reads 
 
-samples=(SRR1091088 SRR1091091 SRR1091092)
-
+# samples=(SRR1091088 SRR1091091 SRR1091092)
+samples=(SRR1091092)
 mkdir -p "$OUTPUT_DIR"
 
 for sample in "${samples[@]}"
