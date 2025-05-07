@@ -8,7 +8,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/longshot.%a.txt
 #SBATCH -e logs/longshot.%a.txt
-#SBATCH --array=9-12
+#SBATCH --array=9
 #SBATCH --time=7-00:00:00
 
 
