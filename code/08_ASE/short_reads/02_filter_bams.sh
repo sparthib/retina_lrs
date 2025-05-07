@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=30G
-#SBATCH -c 5
+#SBATCH --mem=60G
+#SBATCH -c 10
 #SBATCH --job-name=filter_bam
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
@@ -55,8 +55,9 @@ do
   echo "🔄 Processing sample: $sample"
 
   echo "🔹 Step 1: Sorting SAM to BAM"
+  samtools view -bS ${INPUT_DIR}/${sample}.sam > ${OUTPUT_DIR}/${sample}.bam
   gatk SortSam \
-    I="${INPUT_DIR}/${sample}.sam" \
+    I="${OUTPUT_DIR}/${sample}.bam" \
     O="${OUTPUT_DIR}/${sample}-sorted.bam" \
     SORT_ORDER=coordinate
     
