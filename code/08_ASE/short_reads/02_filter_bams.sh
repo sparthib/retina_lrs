@@ -55,13 +55,11 @@ do
   echo "🔄 Processing sample: $sample"
 
   echo "🔹 Step 1a: Change SAM to BAM"
-  samtools view -bS ${INPUT_DIR}/${sample}.sam > ${OUTPUT_DIR}/${sample}.bam
+  samtools view -@ 8 -bS ${INPUT_DIR}/${sample}.sam > ${OUTPUT_DIR}/${sample}.bam
   
   echo "🔹 Step 1b: Sorting BAM"
-  gatk SortSam \
-    I="${OUTPUT_DIR}/${sample}.bam" \
-    O="${OUTPUT_DIR}/${sample}_sorted.bam" \
-    SORT_ORDER=coordinate
+  samtools sort -@ 8 -o ${OUTPUT_DIR}/${sample}_sorted.bam ${OUTPUT_DIR}/${sample}.bam
+
     
     echo "🔹 Step 2: Marking duplicates"
   gatk MarkDuplicates \
@@ -96,8 +94,8 @@ do
     -O "${OUTPUT_DIR}/${sample}_recal.bam"
 
   echo "🔹 Step 5: Filtering BAM (remove unmapped, secondary, supplementary; MAPQ < 20)"
-  samtools view -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}_recal.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam"
-  samtools index "${OUTPUT_DIR}/${sample}_filtered.bam"
+  samtools view -@ 8 -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}_recal.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam"
+  samtools -@ 8 index "${OUTPUT_DIR}/${sample}_filtered.bam"
   
 done 
 # samples=(SRR1091088 SRR1091091 SRR1091092)
