@@ -1,0 +1,34 @@
+**** Job starts ****
+2025-05-07 09:25:51
+**** JHPCE info ****
+User: sparthib
+Job id: 16519138
+Job name: longshot
+Node name: compute-124
+Task id: 4
+****
+DG-WT-hRGC
+
+2025-05-07 09:26:50 Min read coverage set to 6.
+2025-05-07 09:26:50 Max read coverage set to 8000.
+2025-05-07 09:26:50 Estimating alignment parameters...
+2025-05-07 09:37:05 Done estimating alignment parameters.
+
+                    Transition Probabilities:
+                    match -> match:          0.990
+                    match -> insertion:      0.004
+                    match -> deletion:       0.006
+                    deletion -> match:       0.647
+                    deletion -> deletion:    0.353
+                    insertion -> match:      0.680
+                    insertion -> insertion:  0.320
+
+                    Emission Probabilities:
+                    match (equal):           0.993
+                    match (not equal):       0.002
+                    insertion:               1.000
+                    deletion:                1.000
+
+2025-05-07 09:37:05 Calling potential SNVs using pileup...
+2025-05-07 11:30:25 460928 potential variants identified.
+2025-05-07 11:30:25 Generating haplotype fragments from reads...

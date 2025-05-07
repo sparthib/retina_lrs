@@ -2,26 +2,26 @@
 2025-05-07 09:25:51
 **** JHPCE info ****
 User: sparthib
-Job id: 16519146
+Job id: 16519137
 Job name: longshot
-Node name: compute-093
-Task id: 12
+Node name: compute-124
+Task id: 3
 ****
-H9-hRGC_2
+hRGC
 
 2025-05-07 09:26:50 Min read coverage set to 6.
 2025-05-07 09:26:50 Max read coverage set to 8000.
 2025-05-07 09:26:50 Estimating alignment parameters...
-2025-05-07 09:39:15 Done estimating alignment parameters.
+2025-05-07 09:39:36 Done estimating alignment parameters.
 
                     Transition Probabilities:
                     match -> match:          0.989
                     match -> insertion:      0.005
                     match -> deletion:       0.006
-                    deletion -> match:       0.643
-                    deletion -> deletion:    0.357
-                    insertion -> match:      0.677
-                    insertion -> insertion:  0.323
+                    deletion -> match:       0.648
+                    deletion -> deletion:    0.352
+                    insertion -> match:      0.675
+                    insertion -> insertion:  0.325
 
                     Emission Probabilities:
                     match (equal):           0.992
@@ -29,4 +29,4 @@ H9-hRGC_2
                     insertion:               1.000
                     deletion:                1.000
 
-2025-05-07 09:39:15 Calling potential SNVs using pileup...
+2025-05-07 09:39:36 Calling potential SNVs using pileup...

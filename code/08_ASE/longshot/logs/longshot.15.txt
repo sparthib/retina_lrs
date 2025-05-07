@@ -1,0 +1,63 @@
+**** Job starts ****
+2025-05-07 09:25:51
+**** JHPCE info ****
+User: sparthib
+Job id: 16519134
+Job name: longshot
+Node name: compute-164
+Task id: 15
+****
+H9-CRX_hRO_2
+
+2025-05-07 09:25:52 Min read coverage set to 6.
+2025-05-07 09:25:52 Max read coverage set to 8000.
+2025-05-07 09:25:52 Estimating alignment parameters...
+2025-05-07 09:30:03 Done estimating alignment parameters.
+
+                    Transition Probabilities:
+                    match -> match:          0.988
+                    match -> insertion:      0.005
+                    match -> deletion:       0.007
+                    deletion -> match:       0.648
+                    deletion -> deletion:    0.352
+                    insertion -> match:      0.679
+                    insertion -> insertion:  0.321
+
+                    Emission Probabilities:
+                    match (equal):           0.991
+                    match (not equal):       0.003
+                    insertion:               1.000
+                    deletion:                1.000
+
+2025-05-07 09:30:03 Calling potential SNVs using pileup...
+2025-05-07 09:53:57 264649 potential variants identified.
+2025-05-07 09:53:57 Generating haplotype fragments from reads...
+2025-05-07 09:54:19    10% of variants processed...
+2025-05-07 09:54:38    20% of variants processed...
+2025-05-07 09:54:54    30% of variants processed...
+2025-05-07 09:55:16    40% of variants processed...
+2025-05-07 09:55:36    50% of variants processed...
+2025-05-07 09:55:54    60% of variants processed...
+2025-05-07 09:56:24    70% of variants processed...
+2025-05-07 09:56:44    80% of variants processed...
+2025-05-07 09:57:12    90% of variants processed...
+2025-05-07 09:57:44    100% of variants processed.
+2025-05-07 09:57:44 Calling initial genotypes using pair-HMM realignment...
+2025-05-07 09:57:45 Iteratively assembling haplotypes and refining genotypes...
+2025-05-07 09:57:46    Round 1 of haplotype assembly...
+2025-05-07 09:57:46    (Before HapCUT2) Total phased heterozygous SNVs: 115559  Total likelihood (phred): 85900535.47
+2025-05-07 09:58:02    (After HapCUT2)  Total phased heterozygous SNVs: 115559  Total likelihood (phred): 19637288.25
+2025-05-07 09:58:08    (After Greedy)   Total phased heterozygous SNVs: 115559  Total likelihood (phred): 18359966.24
+2025-05-07 09:58:08    Round 2 of haplotype assembly...
+2025-05-07 09:58:08    (Before HapCUT2) Total phased heterozygous SNVs: 98014  Total likelihood (phred): 18359966.24
+2025-05-07 09:58:18    (After HapCUT2)  Total phased heterozygous SNVs: 98014  Total likelihood (phred): 18395120.71
+2025-05-07 09:58:23    (After Greedy)   Total phased heterozygous SNVs: 98014  Total likelihood (phred): 18344330.15
+2025-05-07 09:58:24 Calculating number of reads (filtered reads only) assigned to either haplotype...
+2025-05-07 09:58:24     532107 reads (6.61%) assigned to haplotype 1
+2025-05-07 09:58:24     535654 reads (6.66%) assigned to haplotype 2
+2025-05-07 09:58:24     6978110 reads (86.73%) unassigned.
+2025-05-07 09:58:24 Writing haplotype-assigned reads to bam files...
+Writing index file for output bam file -> /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/01_longshot_vcfs/H9-CRX_hRO_2/H9-CRX_hRO_2.bam.bai
+2025-05-07 10:20:38 Printing VCF file...
+**** Job ends ****
+2025-05-07 10:20:58

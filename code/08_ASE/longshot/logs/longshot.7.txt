@@ -1,0 +1,32 @@
+**** Job starts ****
+2025-05-07 09:25:51
+**** JHPCE info ****
+User: sparthib
+Job id: 16519141
+Job name: longshot
+Node name: compute-100
+Task id: 7
+****
+YZ-3T_hRGC
+
+2025-05-07 09:26:32 Min read coverage set to 6.
+2025-05-07 09:26:32 Max read coverage set to 8000.
+2025-05-07 09:26:32 Estimating alignment parameters...
+2025-05-07 09:41:16 Done estimating alignment parameters.
+
+                    Transition Probabilities:
+                    match -> match:          0.991
+                    match -> insertion:      0.004
+                    match -> deletion:       0.005
+                    deletion -> match:       0.633
+                    deletion -> deletion:    0.367
+                    insertion -> match:      0.657
+                    insertion -> insertion:  0.343
+
+                    Emission Probabilities:
+                    match (equal):           0.993
+                    match (not equal):       0.002
+                    insertion:               1.000
+                    deletion:                1.000
+
+2025-05-07 09:41:16 Calling potential SNVs using pileup...
