@@ -1,18 +1,15 @@
 **** Job starts ****
-2025-05-07 23:24:52
+2025-05-07 23:26:43
 **** JHPCE info ****
 User: sparthib
-Job id: 16525763
+Job id: 16525768
 Job name: filter_bam
 Node name: compute-121
 ****
 Loading LIBD SLURM module for gatk/4.5.0.0
 Loading LIBD SLURM module for samtools/1.18
 🔄 Processing sample: SRR1091088
-[main] unrecognized command '-@'
 🔄 Processing sample: SRR1091091
-[main] unrecognized command '-@'
 🔄 Processing sample: SRR1091092
-[main] unrecognized command '-@'
 **** Job ends ****
-2025-05-07 23:24:57
+2025-05-07 23:38:35
