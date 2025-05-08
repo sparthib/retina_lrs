@@ -101,7 +101,7 @@ do
 # 
 #   echo "🔹 Step 5: Filtering BAM (remove unmapped, secondary, supplementary; MAPQ < 20)"
 #   samtools view -@ 8 -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}_recal.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam"
-  samtools -@ 8 index "${OUTPUT_DIR}/${sample}_filtered.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam.bai"
+  samtools index "${OUTPUT_DIR}/${sample}_filtered.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam.bai"
   
 done 
 
