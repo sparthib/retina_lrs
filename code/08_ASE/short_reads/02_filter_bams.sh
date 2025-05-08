@@ -49,8 +49,8 @@ ml load samtools
 
 ## first mark duplicates, then filter by MAPQ and uniquely mapped reads 
 
-# samples=(SRR1091088 SRR1091091 SRR1091092)
-samples=(SRR1091091)
+samples=(SRR1091088 SRR1091091 SRR1091092)
+
 mkdir -p "$OUTPUT_DIR"
 
 for sample in "${samples[@]}"
@@ -104,15 +104,6 @@ do
   samtools -@ 8 index "${OUTPUT_DIR}/${sample}_filtered.bam"
   
 done 
-# samples=(SRR1091088 SRR1091091 SRR1091092)
-# 
-# for sample in ${samples[@]}
-# do
-#     samtools view -bS -h -F 0x904 -q 20 $INPUT_DIR/${sample}.sam > $OUTPUT_DIR/${sample}.bam
-#     samtools sort $OUTPUT_DIR/${sample}.bam -o $OUTPUT_DIR/${sample}.sorted.bam
-#     samtools index $OUTPUT_DIR/${sample}.sorted.bam $OUTPUT_DIR/${sample}.sorted.bam.bai
-#     rm $OUTPUT_DIR/${sample}.bam
-# done
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"

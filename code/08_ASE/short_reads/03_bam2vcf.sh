@@ -22,52 +22,94 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 
 ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
+INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams_ref_46
+OUTPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gvcf_ref_46
 
+mkdir -p $OUTPUT_DIR
 # ml load samtools 
 # samtools faidx $ref_fa
 
 ml load gatk
-# gatk CreateSequenceDictionary -R $ref_fa
-# # https://samtools.github.io/bcftools/howtos/variant-calling.html
+samples=(SRR1091088 SRR1091091 SRR1091092)
 
-bam_files=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/
-output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/vcf
+echo "🔹 Step 1: Haplotype calling to produce gVCF"
+for sample in "${samples[@]}"
+do 
+gatk HaplotypeCaller \
+    -R "$ref_fa" \
+    -I "${INPUT_DIR}/${sample}_filtered.bam" \
+    -O "${OUTPUT_DIR}/${sample}.g.vcf.gz" \
+    -ERC GVCF
+done
+  
+echo "🔹 Step 2: Combine gVCFs from multiple samples"
+gatk CombineGVCFs \
+  -R "$ref_fa" \
+  $(for sample in "${samples[@]}"; do echo -n "-V ${OUTPUT_DIR}/${sample}.g.vcf.gz "; done) \
+  -O "${OUTPUT_DIR}/combined.g.vcf.gz"
 
-# bcftools mpileup -Ou --threads $SLURM_CPUS_PER_TASK \
-# -f /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa \
-# -b /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/filtered_bams/bam_files.txt | bcftools call -mv -Ob > $output_dir/multi_sample.vcf
+echo "🔹 Step 3: Genotype the combined gVCF"
+gatk GenotypeGVCFs \
+  -R "$ref_fa" \
+  -V "${OUTPUT_DIR}/combined.g.vcf.gz" \
+  -O "${OUTPUT_DIR}/combined.vcf.gz"
 
-# gatk commands from here https://www.biostars.org/p/405702/
-# sample_names=(SRR1091088 SRR1091091)
-# for sample in ${sample_names[@]}; do
-#     echo "Processing $sample"
-#     gatk --java-options "-Xmx4g" HaplotypeCaller \
-#     -R $ref_fa \
-#     -I $bam_files/$sample.sorted.bam \
-#     -O $output_dir/$sample.g.vcf.gz \
-#     -ERC GVCF
-# done
+echo "🔹 Step 4a: Split VCF into SNPs and INDELs"
 
-# echo "Combining GVCFs"
-# gatk --java-options "-Xmx96g -Xms96g" CombineGVCFs \
-# -R /dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa \
-# --variant $output_dir/SRR1091088.g.vcf.gz \
-# --variant $output_dir/SRR1091091.g.vcf.gz \
-# -O $output_dir/combined.g.vcf.gz
+gatk SelectVariants \
+  -R "$ref_fa" \
+  -V "${OUTPUT_DIR}/combined.vcf.gz" \
+  --select-type-to-include SNP \
+  -O "${OUTPUT_DIR}/combined_SNPs.vcf.gz"
 
-# echo "Genotyping"
-# gatk --java-options "-Xmx96g -Xms96g" GenotypeGVCFs \
-# -R $ref_fa \
-# -V $output_dir/combined.g.vcf.gz \
-# -O $output_dir/genotyped.vcf.gz
-
-
-echo "Genotyping"
-gatk --java-options "-Xmx96g -Xms96g" GenotypeGVCFs \
--R $ref_fa \
--V $output_dir/SRR1091088.g.vcf.gz \
--O $output_dir/SRR1091088.genotyped.vcf.gz
-
+gatk SelectVariants \
+  -R "$ref_fa" \
+  -V "${OUTPUT_DIR}/combined.vcf.gz" \
+  --select-type-to-include INDEL \
+  -O "${OUTPUT_DIR}/combined_INDELs.vcf.gz"
+ 
+ echo "🔹 Step 4b: Filter SNPs and INDELs" 
+ 
+  gatk VariantFiltration \
+  -R "$ref_fa" \
+  -V "${OUTPUT_DIR}/combined_SNPs.vcf.gz" \
+   -filter "QD < 2.0" --filter-name "QD2" \
+   -filter "QUAL < 30.0" --filter-name "QUAL30" \
+   -filter "SOR > 3.0" --filter-name "SOR3" \
+   -filter "FS > 60.0" --filter-name "FS60" \
+   -filter "MQ < 40.0" --filter-name "MQ40" \
+   -filter "MQRankSum < -12.5" --filter-name "MQRankSum-12.5" \
+   -filter "ReadPosRankSum < -8.0" --filter-name "ReadPosRankSum-8" \
+  -O "${OUTPUT_DIR}/combined_SNPs_filtered.vcf.gz"
+  
+gatk VariantFiltration \
+  -R "$ref_fa" \
+  -V "${OUTPUT_DIR}/combined_INDELs.vcf.gz" \
+      -filter "QD < 2.0" --filter-name "QD2" \
+    -filter "QUAL < 30.0" --filter-name "QUAL30" \
+    -filter "FS > 200.0" --filter-name "FS200" \
+    -filter "ReadPosRankSum < -20.0" --filter-name "ReadPosRankSum-20" \
+    -O "${OUTPUT_DIR}/combined_INDELs_filtered.vcf.gz"
+  
+  
+  echo "🔹 Step 4c: only keep the PASS variants from the filtered files"
+gatk SelectVariants \
+  -R "$ref_fa" \
+  -V "${OUTPUT_DIR}/combined_SNPs_filtered.vcf.gz" \
+  --exclude-filtered \
+  -O "${OUTPUT_DIR}/combined_SNPs_filtered_PASS.vcf.gz"  
+  
+gatk SelectVariants \
+  -R "$ref_fa" \
+  -V "${OUTPUT_DIR}/combined_INDELs_filtered.vcf.gz" \
+  --exclude-filtered \
+  -O "${OUTPUT_DIR}/combined_INDELs_filtered_PASS.vcf.gz"
+  
+echo "🔹 Step 5: Merge SNPs and INDELs"
+gatk MergeVcfs \
+  -I "${OUTPUT_DIR}/combined_SNPs_filtered_PASS.vcf.gz" \
+  -I "${OUTPUT_DIR}/combined_INDELs_filtered_PASS.vcf.gz" \
+  -O "${OUTPUT_DIR}/merged_variants.vcf.gz"
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
