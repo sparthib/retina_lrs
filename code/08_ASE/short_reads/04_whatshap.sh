@@ -33,7 +33,7 @@ mkdir -p $phased_vcf_dir
 
 source activate whatshap-env
 
-whatshap --ignore-read-groups phase -o $phased_vcf_dir/phased.vcf --reference=$ref_fa $vcf_dir/merged_variants.vcf.gz \
+whatshap --ignore-read-groups --sample=SRR1091091 phase -o $phased_vcf_dir/phased.vcf --reference=$ref_fa $vcf_dir/merged_variants.vcf.gz \
 $genome_bam_dir/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam \
 $genome_bam_dir/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam \
 $genome_bam_dir/H9-FT_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-FT_2_primary_over_30_chr_only_sorted.bam \
