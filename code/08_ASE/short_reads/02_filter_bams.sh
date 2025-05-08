@@ -81,27 +81,27 @@ do
 #     RGPL="illumina" \
 #     RGPU="unit1" \
 #     RGSM="${sample}" \
-#     CREATE_INDEX=true
-    
-    echo "🔹 Step 4a: Base recalibration (BQSR - BaseRecalibrator)"
-  gatk BaseRecalibrator \
-    -R $ref_fa \
-    -I ${OUTPUT_DIR}/${sample}_rg.bam \
-    --known-sites "$DBSNP" \
-    --known-sites "$MANDG_INDELS" \
-    --known-sites "$SNPs_1000G" \
-    -O "${OUTPUT_DIR}/${sample}_recal_data.table"
-
-  echo "🔹 Step 4b: Apply BQSR"
-  gatk ApplyBQSR \
-    -R "$ref_fa" \
-    -I "${OUTPUT_DIR}/${sample}_rg.bam" \
-    --bqsr-recal-file "${OUTPUT_DIR}/${sample}_recal_data.table" \
-    -O "${OUTPUT_DIR}/${sample}_recal.bam"
-
-  echo "🔹 Step 5: Filtering BAM (remove unmapped, secondary, supplementary; MAPQ < 20)"
-  samtools view -@ 8 -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}_recal.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam"
-  samtools -@ 8 index "${OUTPUT_DIR}/${sample}_filtered.bam"
+#      CREATE_INDEX=true
+#     
+#     echo "🔹 Step 4a: Base recalibration (BQSR - BaseRecalibrator)"
+#   gatk BaseRecalibrator \
+#     -R $ref_fa \
+#     -I ${OUTPUT_DIR}/${sample}_rg.bam \
+#     --known-sites "$DBSNP" \
+#     --known-sites "$MANDG_INDELS" \
+#     --known-sites "$SNPs_1000G" \
+#     -O "${OUTPUT_DIR}/${sample}_recal_data.table"
+# 
+#   echo "🔹 Step 4b: Apply BQSR"
+#   gatk ApplyBQSR \
+#     -R "$ref_fa" \
+#     -I "${OUTPUT_DIR}/${sample}_rg.bam" \
+#     --bqsr-recal-file "${OUTPUT_DIR}/${sample}_recal_data.table" \
+#     -O "${OUTPUT_DIR}/${sample}_recal.bam"
+# 
+#   echo "🔹 Step 5: Filtering BAM (remove unmapped, secondary, supplementary; MAPQ < 20)"
+#   samtools view -@ 8 -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}_recal.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam"
+  samtools -@ 8 index "${OUTPUT_DIR}/${sample}_filtered.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam.bai"
   
 done 
 
