@@ -8,9 +8,9 @@
 #SBATCH --job-name=haplotag
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/haplotag.%a.txt
-#SBATCH -e logs/haplotag.%a.txt
-#SBATCH --array=1-8
+#SBATCH -o logs/haplotag.0.txt
+#SBATCH -e logs/haplotag.0.txt
+#SBATCH --array=1
 #SBATCH --time=7-00:00:00
 
 ### whatshap phases the variants we found using GATK with the help 
@@ -43,7 +43,7 @@ source activate whatshap-env
 
 samples=(H9-BRN3B_hRO_2 H9-BRN3B-RO H9-CRX_hRO_2 H9-CRX_ROs_D45 H9-FT_1 H9-FT_2 H9-hRGC_1 H9-hRGC_2) 
 
-lr_sample=${samples[$SLURM_ARRAY_TASK_ID]}
+lr_sample=${samples[$SLURM_ARRAY_TASK_ID - 1]}
 
 echo "Processing sample: $lr_sample"
 
