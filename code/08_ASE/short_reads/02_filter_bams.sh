@@ -56,51 +56,51 @@ mkdir -p "$OUTPUT_DIR"
 for sample in "${samples[@]}"
 do
   echo "🔄 Processing sample: $sample"
-  
-## The following steps were run already
-#   echo "🔹 Step 1a: Change SAM to BAM"
-#   samtools view -@ 8 -bS ${INPUT_DIR}/${sample}.sam > ${OUTPUT_DIR}/${sample}.bam
-#   
-#   echo "🔹 Step 1b: Sorting BAM"
-#   samtools sort -@ 8 -o ${OUTPUT_DIR}/${sample}_sorted.bam ${OUTPUT_DIR}/${sample}.bam
-# 
-#     
-#     echo "🔹 Step 2: Marking duplicates"
-#   gatk MarkDuplicates \
-#     I="${OUTPUT_DIR}/${sample}_sorted.bam" \
-#     O="${OUTPUT_DIR}/${sample}_dedup.bam" \
-#     M="${OUTPUT_DIR}/${sample}_metrics.txt" \
-#     CREATE_INDEX=true
-# 
-#   echo "🔹 Step 3: Adding read groups"
-#   gatk AddOrReplaceReadGroups \
-#     I="${OUTPUT_DIR}/${sample}_dedup.bam" \
-#     O="${OUTPUT_DIR}/${sample}_rg.bam" \
-#     RGID="${sample}" \
-#     RGLB="lib1" \
-#     RGPL="illumina" \
-#     RGPU="unit1" \
-#     RGSM="${sample}" \
-#      CREATE_INDEX=true
-#     
-#     echo "🔹 Step 4a: Base recalibration (BQSR - BaseRecalibrator)"
-#   gatk BaseRecalibrator \
-#     -R $ref_fa \
-#     -I ${OUTPUT_DIR}/${sample}_rg.bam \
-#     --known-sites "$DBSNP" \
-#     --known-sites "$MANDG_INDELS" \
-#     --known-sites "$SNPs_1000G" \
-#     -O "${OUTPUT_DIR}/${sample}_recal_data.table"
-# 
-#   echo "🔹 Step 4b: Apply BQSR"
-#   gatk ApplyBQSR \
-#     -R "$ref_fa" \
-#     -I "${OUTPUT_DIR}/${sample}_rg.bam" \
-#     --bqsr-recal-file "${OUTPUT_DIR}/${sample}_recal_data.table" \
-#     -O "${OUTPUT_DIR}/${sample}_recal.bam"
-# 
-#   echo "🔹 Step 5: Filtering BAM (remove unmapped, secondary, supplementary; MAPQ < 20)"
-#   samtools view -@ 8 -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}_recal.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam"
+
+
+  echo "🔹 Step 1a: Change SAM to BAM"
+  samtools view -@ 8 -bS ${INPUT_DIR}/${sample}.sam > ${OUTPUT_DIR}/${sample}.bam
+
+  echo "🔹 Step 1b: Sorting BAM"
+  samtools sort -@ 8 -o ${OUTPUT_DIR}/${sample}_sorted.bam ${OUTPUT_DIR}/${sample}.bam
+
+
+    echo "🔹 Step 2: Marking duplicates"
+  gatk MarkDuplicates \
+    I="${OUTPUT_DIR}/${sample}_sorted.bam" \
+    O="${OUTPUT_DIR}/${sample}_dedup.bam" \
+    M="${OUTPUT_DIR}/${sample}_metrics.txt" \
+    CREATE_INDEX=true
+
+  echo "🔹 Step 3: Adding read groups"
+  gatk AddOrReplaceReadGroups \
+    I="${OUTPUT_DIR}/${sample}_dedup.bam" \
+    O="${OUTPUT_DIR}/${sample}_rg.bam" \
+    RGID="${sample}" \
+    RGLB="lib1" \
+    RGPL="illumina" \
+    RGPU="unit1" \
+    RGSM="${sample}" \
+     CREATE_INDEX=true
+
+    echo "🔹 Step 4a: Base recalibration (BQSR - BaseRecalibrator)"
+  gatk BaseRecalibrator \
+    -R $ref_fa \
+    -I ${OUTPUT_DIR}/${sample}_rg.bam \
+    --known-sites "$DBSNP" \
+    --known-sites "$MANDG_INDELS" \
+    --known-sites "$SNPs_1000G" \
+    -O "${OUTPUT_DIR}/${sample}_recal_data.table"
+
+  echo "🔹 Step 4b: Apply BQSR"
+  gatk ApplyBQSR \
+    -R "$ref_fa" \
+    -I "${OUTPUT_DIR}/${sample}_rg.bam" \
+    --bqsr-recal-file "${OUTPUT_DIR}/${sample}_recal_data.table" \
+    -O "${OUTPUT_DIR}/${sample}_recal.bam"
+
+  echo "🔹 Step 5: Filtering BAM (remove unmapped, secondary, supplementary; MAPQ < 20)"
+  samtools view -@ 8 -b -F 2308 -q 20 "${OUTPUT_DIR}/${sample}_recal.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam"
   samtools index "${OUTPUT_DIR}/${sample}_filtered.bam" > "${OUTPUT_DIR}/${sample}_filtered.bam.bai"
   
 done 
