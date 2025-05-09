@@ -37,35 +37,35 @@ source activate whatshap-env
 
 whatshap haplotag -o $whatshap_output_dir/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam \
 --reference $ref_fa $whatshap_output_dir/phased.vcf $genome_bam_dir/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam \
---output-threads=19
+--output-threads=19 --ignore-read-groups --sample=SRR1091091
 
 whatshap haplotag -o $whatshap_output_dir/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam \
 --reference $ref_fa $whatshap_output_dir/phased.vcf $genome_bam_dir/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam \
---output-threads=19
+--output-threads=19 --ignore-read-groups --sample=SRR1091091
 
 whatshap haplotag -o $whatshap_output_dir/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam \
 --reference $ref_fa $whatshap_output_dir/phased.vcf $genome_bam_dir/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam \
---output-threads=19
+--output-threads=19 --ignore-read-groups --sample=SRR1091091
 
 whatshap haplotag -o $whatshap_output_dir/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam \
 --reference $ref_fa $whatshap_output_dir/phased.vcf $genome_bam_dir/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam \
---output-threads=19
+--output-threads=19 --ignore-read-groups --sample=SRR1091091
 
 whatshap haplotag -o $whatshap_output_dir/H9-FT_1_primary_over_30_chr_only_sorted.bam \
 --reference $ref_fa $whatshap_output_dir/phased.vcf $genome_bam_dir/H9-FT_1_primary_over_30_chr_only_sorted.bam \
---output-threads=19
+--output-threads=19 --ignore-read-groups --sample=SRR1091091
 
 whatshap haplotag -o $whatshap_output_dir/H9-FT_2_primary_over_30_chr_only_sorted.bam \
 --reference $ref_fa $whatshap_output_dir/phased.vcf $genome_bam_dir/H9-FT_2_primary_over_30_chr_only_sorted.bam \
---output-threads=19
+--output-threads=19 --ignore-read-groups --sample=SRR1091091
 
 whatshap haplotag -o $whatshap_output_dir/H9-hRGC_1_primary_over_30_chr_only_sorted.bam \
 --reference $ref_fa $whatshap_output_dir/phased.vcf $genome_bam_dir/H9-hRGC_1_primary_over_30_chr_only_sorted.bam \
---output-threads=19
+--output-threads=19 --ignore-read-groups --sample=SRR1091091
 
 whatshap haplotag -o $whatshap_output_dir/H9-hRGC_2_primary_over_30_chr_only_sorted.bam \
 --reference $ref_fa $whatshap_output_dir/phased.vcf $genome_bam_dir/H9-hRGC_2_primary_over_30_chr_only_sorted.bam \
---output-threads=19
+--output-threads=19 --ignore-read-groups
 
 
 echo "**** Job ends ****"
