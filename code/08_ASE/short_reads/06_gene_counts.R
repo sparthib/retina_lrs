@@ -35,7 +35,8 @@ fc_1 <- featureCounts(
   GTF.featureType     = "exon",
   GTF.attrType        = "gene_id",
   nthreads      = 19,
-  isLongRead     = TRUE
+  isLongRead     = TRUE,
+  allowMultiOverlap = TRUE
 )
 
 print("Finished featureCounts for h1")
@@ -51,7 +52,8 @@ fc_2 <- featureCounts(
   GTF.featureType     = "exon",
   GTF.attrType        = "gene_id",
   nthreads      = 19,
-  isLongRead     = TRUE
+  isLongRead     = TRUE,
+  allowMultiOverlap = TRUE
 )
 
 print("Finished featureCounts for h2")
