@@ -32,7 +32,8 @@ fc_1 <- featureCounts(
   GTF.featureType     = "exon",
   GTF.attrType        = "gene_id",
   nthreads      = 19,
-  isStrandSpecific = TRUE
+  strandSpecific = TRUE,
+  isLongRead     = TRUE
 )
 
 write.table(fc_1$counts, file = file.path(output_dir, paste0(sample, "_h1_counts.txt")),
@@ -46,8 +47,8 @@ fc_2 <- featureCounts(
   GTF.featureType     = "exon",
   GTF.attrType        = "gene_id",
   nthreads      = 19,
-  isStrandSpecific = TRUE,
-  islongRead     = TRUE
+  strandSpecific = TRUE,
+  isLongRead     = TRUE
 )
 
 write.table(fc_2$counts, file = file.path(output_dir, paste0(sample, "_h2_counts.txt")),
