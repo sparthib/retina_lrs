@@ -23,9 +23,6 @@ gtf <- import(gtf_file)
 
 print("Loaded GTF file")
 
-all_gene_gtf <- gtf[gtf$type == "gene"]
-genes <- gtf[gtf$type == "gene"]
-
 output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gene_counts"
 
 fc_1 <- featureCounts(
@@ -61,7 +58,7 @@ print("Finished featureCounts for h2")
 write.table(fc_2$counts, file = file.path(output_dir, paste0(sample, "_h2_counts.txt")),
             sep = "\t", quote = FALSE, col.names = NA)
 
-
+# https://www.biorxiv.org/content/10.1101/2019.12.18.880849v1.full for featureCounts args
 
 
 
