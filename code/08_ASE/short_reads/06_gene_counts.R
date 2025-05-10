@@ -4,7 +4,6 @@ library(rtracklayer)
 library(Rsubread)
 
 # Load BAM file
-array_id <- 5
 array_id <- as.integer(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 samples <- c("H9-BRN3B_hRO_2", "H9-BRN3B-RO", "H9-CRX_hRO_2", "H9-CRX_ROs_D45",
             "H9-FT_1" , "H9-FT_2", "H9-hRGC_1", "H9-hRGC_2") 
@@ -15,10 +14,6 @@ input_h1_bam <- file.path(whatshap_out_dir,
                           paste0(sample,"_h1.bam"))
 input_h2_bam <- file.path(whatshap_out_dir,
                           paste0(sample,"_h2.bam"))
-
-reads_h1 <- readGAlignments(input_h1_bam)
-reads_h2 <- readGAlignments(input_h2_bam)
-
 
 # Import GTF/GFF annotation
 gtf_file <- file.path("/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly",
@@ -36,10 +31,10 @@ fc_1 <- featureCounts(
   isGTFAnnotationFile = TRUE,
   GTF.featureType     = "exon",
   GTF.attrType        = "gene_id",
-  nthreads      = 8,
+  nthreads      = 19,
   longReads     = TRUE,   # enable long-read handling
   outFile       = file.path(output_dir,
-                          paste0(sample, "_longread_gene_counts_h1.txt"))
+                          paste0(sample, "_gene_counts_h1.txt"))
 )
 
 
@@ -49,10 +44,10 @@ fc_2 <- featureCounts(
   isGTFAnnotationFile = TRUE,
   GTF.featureType     = "exon",
   GTF.attrType        = "gene_id",
-  nthreads      = 8,
+  nthreads      = 19,
   longReads     = TRUE,   # enable long-read handling
   outFile       = file.path(output_dir,
-                            paste0(sample, "_longread_gene_counts_h2.txt"))
+                            paste0(sample, "_gene_counts_h2.txt"))
 )
 
 
