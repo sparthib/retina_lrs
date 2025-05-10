@@ -35,7 +35,6 @@ fc_1 <- featureCounts(
   GTF.featureType     = "exon",
   GTF.attrType        = "gene_id",
   nthreads      = 19,
-  strandSpecific = 1,
   isLongRead     = TRUE
 )
 
@@ -52,7 +51,6 @@ fc_2 <- featureCounts(
   GTF.featureType     = "exon",
   GTF.attrType        = "gene_id",
   nthreads      = 19,
-  strandSpecific = 1,
   isLongRead     = TRUE
 )
 
