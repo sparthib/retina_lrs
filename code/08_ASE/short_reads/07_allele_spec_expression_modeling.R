@@ -127,3 +127,32 @@ write_tsv(counts_matrix,
           file = file.path(gene_counts_dir, "H9_DNA_Seq_data_gene_counts.tsv"))
 write_tsv(merged_results,
           file = file.path(gene_counts_dir, "H9_DNA_Seq_data_DE_results.tsv"))
+
+
+#### visualization of ASE results (volcano plot)
+library(ggplot2)
+library(stringr)
+library(ggrepel)
+results <- merged_results
+results$significant <- with(results, FDR < 0.05 & abs(logFC) > 1)
+
+# remove pseudogenes and sort by FDR
+results <- results %>% 
+  filter(!str_detect(gene_biotype, "^_pseudogene")) %>%
+  arrange(FDR) 
+results$gene_biotype |> table()
+
+# volcano plot
+ggplot(results, aes(x = logFC, y = -log10(FDR), color = significant)) +
+  geom_point(alpha = 0.6) +
+  scale_color_manual(values = c("grey", "red")) +
+  geom_vline(xintercept = c(-1, 1), linetype = "dashed") +
+  geom_hline(yintercept = -log10(0.05), linetype = "dashed") +
+  geom_text_repel(data = results[results$significant, ], 
+                  aes(label = gene_name), 
+                  size = 3) +
+  labs(title = "Volcano Plot",
+       x = "log2 Fold Change",
+       y = "-log10 FDR") +
+  theme_minimal()
+
