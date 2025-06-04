@@ -18,7 +18,7 @@ curr_gene = ''
 goi = list()
 curr_num_exon = 0
 for i in range(gtf.shape[0]):
-    if gtf.iloc[i, 2] == 'gene' and 'protein_coding' in gtf.iloc[i, 8]:  # Adjust to check for 'protein_coding'
+    if gtf.iloc[i, 2] == 'gene':  # Adjust to check for 'protein_coding'
         if curr_num_exon > 1:
             goi.append(curr_gene) #only takes multi-exon genes into account
         curr_gene = gtf.iloc[i, 8].split(';')[0]  # Get the gene ID
@@ -79,14 +79,10 @@ per_df = df.div(df.sum(axis=1), axis=0)
 if len(sys.argv) > 1:
     sample = sys.argv[1]
     print(f"Done for {sample}")
-    output_file = f'/users/sparthib/retina_lrs/processed_data/exon_exon/{sample}_junction_per_read.csv'
+    output_file = f'/users/sparthib/retina_lrs/processed_data/exon_exon/{sample}_junction_per_read_all_genes.csv'
 else:
     print("Done for all samples")
-    output_file = '/users/sparthib/retina_lrs/processed_data/exon_exon/junction_per_read.csv'
+    output_file = '/users/sparthib/retina_lrs/processed_data/exon_exon/junction_per_read_all_genes.csv'
 
 # Save the DataFrame to the appropriate file
 per_df.to_csv(output_file)
-
-
-    
-  
