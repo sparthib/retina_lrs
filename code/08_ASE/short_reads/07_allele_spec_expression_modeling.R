@@ -158,7 +158,6 @@ write_tsv(merged_results,
 head(merged_results, n = 10)
 
 
-
 # Add -log10 FDR for plotting
 merged_results <- merged_results |> 
   mutate(neg_log10_FDR = -log10(FDR))
@@ -183,9 +182,6 @@ ggplot(merged_results, aes(x = logFC, y = neg_log10_FDR)) +
        x = "log2 Fold Change",
        y = "-log10 FDR") +
   theme_minimal()
-
 dev.off()
-
-
 
 
