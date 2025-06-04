@@ -28,6 +28,7 @@ echo $sample
 
 ml load python/3.10.13
 python3 01_multi_exon_pcg.py $sample
+python3 02_multi_exon_all_genes.py $sample
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
