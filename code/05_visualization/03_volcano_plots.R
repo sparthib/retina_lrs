@@ -6,7 +6,10 @@ library(ggplot2)
 library(ggrepel)
 library(biomaRt)
 
+method = "bambu"
+comparison = "ROs"
 source("/users/sparthib/retina_lrs/code/05_visualization/helper.R")
+
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                             method, comparison, "protein_coding") 
 
@@ -24,13 +27,14 @@ volcano_plot <- function(data, x_col, y_col, gene_label_col = "gene_name",
   
   color_map <- list(
     "FT|RGC"         = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown",  "Upregulation in condition 1" = "lightgreen"),
-    "RGC|Stage_1"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "seagreen",  "Upregulation in condition 1" = "brown"),
-    "RGC|Stage_2"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "orange",    "Upregulation in condition 1" = "brown"),
+    "RGC|Stage_1"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "orange",  "Upregulation in condition 1" = "brown"),
+    "RGC|Stage_2"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "seagreen",    "Upregulation in condition 1" = "brown"),
     "RGC|Stage_3"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "brown"),
-    "Stage_1|Stage_2"= c("Not Significant" = "gray", "Upregulation in condition 2" = "orange",    "Upregulation in condition 1" = "seagreen"),
-    "Stage_1|Stage_3"= c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "seagreen"),
-    "Stage_2|Stage_3"= c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "orange")
+    "Stage_1|Stage_2"= c("Not Significant" = "gray", "Upregulation in condition 2" = "seagreen",    "Upregulation in condition 1" = "orange"),
+    "Stage_1|Stage_3"= c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "orange"),
+    "Stage_2|Stage_3"= c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "seagreen")
   )
+  
   
   # Create key
   pair_key <- paste(condition_1, condition_2, sep = "|")
@@ -64,14 +68,29 @@ volcano_plot <- function(data, x_col, y_col, gene_label_col = "gene_name",
     theme(legend.position = "top")
   
   # Add gene labels for significant points
-  top_labels <- data |>
-    filter(!is.na(!!sym(x_col)), !is.na(!!sym(y_col))) |>
-    filter(!!sym(y_col) >= cutoff_log_qval) |>
-    mutate(logFC_sign = sign(!!sym(x_col))) |>
-    group_by(logFC_sign) |>
-    arrange(desc(!!sym(y_col))) |>
-    slice_head(n = 20) |>
-    ungroup()
+  if (table_type %in% c("DTU", "DTE")){
+    top_labels <- data |>
+      filter(!is.na(!!sym(x_col)), !is.na(!!sym(y_col))) |>
+      filter(!!sym(y_col) >= cutoff_log_qval) |>
+      mutate(logFC_sign = sign(!!sym(x_col))) |>
+      group_by(logFC_sign) |>
+      arrange(desc(!!sym(y_col))) |>
+      slice_head(n = 20) |>
+      ungroup()
+  }
+  
+  if (table_type == "DGE"){
+    top_labels <- data |> dplyr::select(!!sym(x_col), !!sym(y_col), !!sym(gene_label_col)) |>
+      distinct() |>
+      filter(!is.na(!!sym(x_col)), !is.na(!!sym(y_col))) |>
+      filter(!!sym(y_col) >= cutoff_log_qval) |>
+      mutate(logFC_sign = sign(!!sym(x_col))) |>
+      filter(logFC_sign != 0) |>  # Remove zero values
+      group_by(logFC_sign) |>
+      arrange(desc(!!sym(y_col))) |>
+      slice_head(n = 10) |>  # 10 from each group = 20 total (10 positive, 10 negative)
+      ungroup() 
+  }
   
   plot <- plot +
     geom_text_repel(
@@ -125,6 +144,7 @@ generate_volcano_plots <- function(input_base_dir, comparison, table_type, condi
       
       } else if (table_type == "DGE") {
         filtered_table$log10DGE_qval <- -log10(filtered_table$DGE_qval)
+        filtered_table <- filtered_table |> dplyr::select("gene_name", "DGE_log2FC", "log10DGE_qval") |> distinct()
         pdf(output_file)
         
         p <- volcano_plot(filtered_table, x_col = "DGE_log2FC", y_col = "log10DGE_qval", gene_label_col = "gene_name",

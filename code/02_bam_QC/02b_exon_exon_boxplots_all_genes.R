@@ -5,7 +5,7 @@ library(ggplot2)
 data_dir <- "/users/sparthib/retina_lrs/processed_data/exon_exon"
 
 # List all the CSV files in the directory
-csv_files <- list.files(data_dir, pattern = "_junction_per_read.csv$", full.names = TRUE)
+csv_files <- list.files(data_dir, pattern = "_junction_per_read_all_genes.csv$", full.names = TRUE)
 
 # Read each CSV file into a list
 junction_data_list <- lapply(csv_files, read.csv)
@@ -14,7 +14,7 @@ junction_data_list <- lapply(csv_files, read.csv)
 names(junction_data_list) <- gsub(".*/|\\.csv$", "", csv_files)
 
 # Now you can access each dataset by its name in the list
-head(junction_data_list[["DG-WT-hRGC_junction_per_read"]])
+head(junction_data_list[["DG-WT-hRGC_junction_per_read_all_genes"]])
 
 # To combine all datasets into a single dataframe, you can use do.call and rbind
 combined_junction_data <- do.call(rbind, junction_data_list)
@@ -26,17 +26,20 @@ colnames(combined_junction_data) <- c("sample", "junctions_0", "junction_1",
 
 combined_junction_data$sample <- rownames(combined_junction_data)
 #save the combined data
-write.csv(combined_junction_data, file = "/users/sparthib/retina_lrs/processed_data/exon_exon/combined_junction_data.csv", row.names = FALSE)
+write.csv(combined_junction_data, file = "/users/sparthib/retina_lrs/processed_data/exon_exon/combined_junction_data_all_genes.csv", row.names = FALSE)
 
 custom_palette <- c("#000000","#E69F00" ,"#56B4E9", "#009E73" ,"#F0E442", "#0072B2",
                     "#CC79A7", "#D55E00"  , "#999999")
 
 # plot the data
-combined_junction_data_long <- melt(combined_junction_data, id.vars = "sample", variable.name = "junctions", value.name = "percentage")
+combined_junction_data_long <- melt(combined_junction_data,
+                                    id.vars = "sample", variable.name = "junctions",
+                                    value.name = "percentage")
 #only plot junctions 1-10
 combined_junction_data_long <- combined_junction_data_long[combined_junction_data_long$junctions != "junctions_0",]
 
-combined_junction_data_long$sample <- gsub("_junction_per_read", "", combined_junction_data_long$sample)
+combined_junction_data_long$sample <- gsub("_junction_per_read_all_genes", "", 
+                                           combined_junction_data_long$sample)
 combined_junction_data_long$junctions <- gsub("junction_", "", combined_junction_data_long$junctions)
 combined_junction_data_long$junctions <- gsub("junctions_", "", combined_junction_data_long$junctions)
 combined_junction_data_long$junctions <- factor(
@@ -53,7 +56,7 @@ combined_junction_data_long$sample |> unique()
 RO_samples <- c("EP1-BRN3B-RO" ,  "EP1-WT_hRO_2" ,  "EP1-WT_ROs_D45",
                 "H9-BRN3B_hRO_2" ,"H9-BRN3B-RO"   , "H9-CRX_hRO_2" ,  "H9-CRX_ROs_D45")
 RO_samples_rename <- c("Stage_3_1", "Stage_2_1", "Stage_1_1", 
-                "Stage_2_2", "Stage_3_2", "Stage_2_3", "Stage_1_2")
+                       "Stage_2_2", "Stage_3_2", "Stage_2_3", "Stage_1_2")
 stages <- c("Stage_3, Stage_2, Stage_1", "Stage_2", "Stage_3", "Stage_2", "Stage_1")
 col <- list(type = c("Stage_3" = "purple", 
                      "Stage_1" = "orange", 
@@ -70,7 +73,7 @@ FT_RGC_combined_junction_data_long <- combined_junction_data_long |>
 df <- RO_combined_junction_data_long
 df$renamed_samples <- factor(df$sample, levels = RO_samples, labels = RO_samples_rename)
 
-file <- "/users/sparthib/retina_lrs/plots/exon_exon/RO_combined_boxplots.pdf"
+file <- "/users/sparthib/retina_lrs/plots/exon_exon/RO_combined_boxplots_all_genes.pdf"
 
 pdf(file)
 p <- ggplot(df, aes(x = junctions, y = percentage)) +
@@ -96,5 +99,3 @@ p <- ggplot(df, aes(x = junctions, y = percentage)) +
 print(p)
 dev.off()
 
-# Remove the lines that blank out the x-axis text and ticks
-# theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())

@@ -70,7 +70,7 @@ FT_RGC_combined_junction_data_long <- combined_junction_data_long |>
 df <- RO_combined_junction_data_long
 df$renamed_samples <- factor(df$sample, levels = RO_samples, labels = RO_samples_rename)
 
-file <- "/users/sparthib/retina_lrs/plots/exon_exon/RO_combined_boxplots.pdf"
+file <- "/users/sparthib/retina_lrs/plots/exon_exon/RO_combined_boxplots_pcg.pdf"
 
 pdf(file)
 p <- ggplot(df, aes(x = junctions, y = percentage)) +
@@ -95,6 +95,3 @@ p <- ggplot(df, aes(x = junctions, y = percentage)) +
 
 print(p)
 dev.off()
-
-# Remove the lines that blank out the x-axis text and ticks
-# theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())

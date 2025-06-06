@@ -1,5 +1,4 @@
 
-
 common_isoforms <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu",
                              "bambu_isoquant_refmap.txt")
 common_isoforms <- read.table(common_isoforms, header=TRUE, sep="\t")
@@ -11,7 +10,6 @@ head(common_isoforms)
 common_isoforms <- common_isoforms |> dplyr::filter(!grepl("^BambuGene", ref_gene) & 
                                              !grepl("^BambuGene", isoquant_gene_id))
 nrow(common_isoforms)
-
 
 colnames(common_isoforms)
 
