@@ -23,7 +23,6 @@ genes_and_diseases <- read_excel(file.path(raw_data_dir, "RetNet.xlsx"),
 colnames(genes_and_diseases) <- c("disease_category", "mapped_loci",
                                   "mapped_and_identified_genes")
 
-
 #convert gene name to gene ID and add to the data-frame using bio-maRt
 mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
 genes <- getBM(attributes = c("ensembl_gene_id", "hgnc_symbol"),
@@ -94,9 +93,13 @@ results_df <- data.frame(
 write.table(results_df, file = "/users/sparthib/retina_lrs/processed_data/dtu/retnet_disease_genes.tsv", 
             sep = "\t", quote = FALSE, row.names = FALSE)
 
+analysis_type <- "ROs"
+quant_method <- "bambu"
+table_type <- "DTE"
 
 load_gene_counts_matrix <- function(analysis_type, quant_method,
                                     table_type = "DTE") {
+  
   # Validate inputs
   if (!analysis_type %in% c("FT_vs_RGC", "ROs", "RO_vs_RGC")) {
     stop("Invalid analysis_type. Choose 'FT_vs_RGC', 'ROs' or 'RO_vs_RGC'.")
@@ -128,18 +131,74 @@ load_gene_counts_matrix <- function(analysis_type, quant_method,
   
   # Filter significant genes
   if (table_type == "DTE") {
-    significant_genes <- DGE_DTE_DTU |> filter(DTE == TRUE) |> dplyr::select(gene_id, isoform_id) |> distinct()
-    significant_genes$gene_id <- gsub("\\..*", "", significant_genes$gene_id)
-    significant_genes$isoform_id <- gsub("\\..*", "", significant_genes$isoform_id)
+    
+    significant_genes <- DGE_DTE_DTU |> 
+      dplyr::filter(DTE == TRUE) |>
+      distinct()
+    
+    # Keep only genes with multiple isoforms
+    significant_genes <- significant_genes |>
+      group_by(gene_id) |>
+      filter(n() > 1) |>
+      ungroup() |>
+      distinct()
+    
+    # only keep genes in genes_and_isoforms
+    significant_genes <- significant_genes |>
+      filter(gene_id %in% genes_and_isoforms$gene_id) |>
+      distinct()
+    
+    # Keep only isoforms from those top 30 genes
+    top_isoforms <- significant_genes |>
+      arrange(DTE_qval, desc(abs(DTE_log2FC))) |>
+      slice_head(n = 30) |>
+      pull(isoform_id)
+    
+    print("length of top DTE isoforms")
+    print(length(top_isoforms))
+    
+    significant_genes <- significant_genes |>
+      filter(isoform_id %in% top_isoforms) |>
+      dplyr::select(gene_id, isoform_id)
+    
+
   } else if (table_type == "DTU") {
-    significant_genes <- DGE_DTE_DTU |> filter(DTU == TRUE) |> dplyr::select(gene_id, isoform_id) |> distinct()
-    significant_genes$gene_id <- gsub("\\..*", "", significant_genes$gene_id)
-    significant_genes$isoform_id <- gsub("\\..*", "", significant_genes$isoform_id) 
+    
+    significant_genes <- DGE_DTE_DTU |> 
+      dplyr::filter(DTU == TRUE) |>
+      distinct()
+    
+    significant_genes <- significant_genes |>
+      group_by(gene_id) |>
+      filter(n() > 1) |>
+      ungroup() |>
+      distinct()
+    
+    # only keep genes in genes_and_isoforms
+    significant_genes <- significant_genes |>
+      filter(gene_id %in% genes_and_isoforms$gene_id) |>
+      distinct()
+    
+    top_isoforms <- significant_genes |>
+      arrange(DTU_qval, desc(abs(dIF))) |>
+      slice_head(n = 30) |>
+      pull(isoform_id)
+    
+    print("length of top DTU isoforms")
+    print(length(top_isoforms))
+    
+    significant_genes <- significant_genes |>
+      filter(isoform_id %in% top_isoforms) |>
+      dplyr::select(gene_id, isoform_id)
+    
+    print
+
   }
   
   isoform_tpm <- isoform_tpm[rownames(isoform_tpm) %in% significant_genes$isoform_id, ]
-  isoform_tpm <- remove_zero_var_rows(isoform_tpm)
-  
+
+  print("length of isoform_tpm")
+  print(length(rownames(isoform_tpm)))
   # Define groups and output directory
   groups <- if (analysis_type == "ROs") {
     c("Stage_1", "Stage_1", "Stage_2", "Stage_2", "Stage_2", "Stage_3", "Stage_3")
@@ -197,9 +256,9 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
                                    annotation_name_gp = gpar(fontsize = 2))
   )
   
-  pdf(file.path(output_plots_dir, paste0(compare, "_", table_type, "_retnet_heatmap.pdf")))
+  pdf(file.path(output_plots_dir, paste0(compare, "_", table_type, "_retnet_heatmap_top_30.pdf")))
   ht_list <- Heatmap(
-    tpm_matrix, name = paste0("Isoform TPM Expression of ", table_type, " RetNet Genes"), row_km = 5, col = col_fun,
+    tpm_matrix, name = paste0("Top 30 Isoform TPM Expression of ", table_type, " RetNet Genes"), row_km = 5, col = col_fun,
     top_annotation = ha, show_row_names = TRUE, show_column_names = TRUE, 
     row_title = "Isoforms", row_names_gp = gpar(fontsize = 3),
     column_names_gp = gpar(fontsize = 5), show_row_dend = TRUE, show_column_dend = TRUE
@@ -207,7 +266,7 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
   draw(ht_list)
   dev.off()
   
-  write.table(rownames(tpm), file = file.path(output_plots_dir, paste0(compare, "_", table_type, "_retnet_heatmap.tsv")), sep = "\t")
+  write.table(rownames(tpm), file = file.path(output_plots_dir, paste0(compare, "_", table_type, "_retnet_heatmap_top_30.tsv")), sep = "\t")
 }
 
 
