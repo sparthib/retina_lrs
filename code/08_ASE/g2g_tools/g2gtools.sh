@@ -81,19 +81,11 @@ g2gtools gtf2db -i ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf -o ${STRAIN1_DIR}/${STRAIN
 # Extracting transcripts from the diploid genome
 echo "extract transcripts"
 singularity exec --bind ${STRAIN1_DIR}:${STRAIN1_DIR} $SIF_PATH \
-g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa -db ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db > ${STRAIN1_DIR}/${STRAIN1_NAME}.transcripts.fa
+g2gtools extract --transcripts -i ${STRAIN1_DIR}/${STRAIN1_NAME}_diploid_genome.fa \
+-db ${STRAIN1_DIR}/${STRAIN1_NAME}.gtf.db > ${STRAIN1_DIR}/${STRAIN1_NAME}.transcripts.fa
 
 
-# use prepare-emase function  from emase package (not in g2gtools)
-# to create diploid transcriptome from NOD and PWk genome and GTF files
-# GENOME1=${STRAIN1}/${STRAIN1}.fa
-# GENOME2=${STRAIN2}/${STRAIN2}.fa
-# GTF1=${STRAIN1}/${STRAIN1}.gtf
-# GTF2=${STRAIN2}/${STRAIN2}.gtf
-# SUFFIX1=N
-# SUFFIX2=P
-# EMASE_DIR=NxP
-# prepare-emase -G ${GENOME1},${GENOME2} -g ${GTF1},${GTF2} -s ${SUFFIX1},${SUFFIX2} -o ${EMASE_DIR} -m
+
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"
