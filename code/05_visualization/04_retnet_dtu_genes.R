@@ -246,7 +246,7 @@ plot_heatmap <- function(tpm, genes_and_isoforms, groups, compare, output_plots_
   ha <- switch(
     compare,
     "FT_vs_RGC" = HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                                    col = list(type = c("FT" = "lightgreen", "RGC" = "brown")),
+                                    col = list(type = c("FT" = "skyblue", "RGC" = "brown")),
                                     annotation_name_gp = gpar(fontsize = 2)),
     "ROs" = HeatmapAnnotation(type = groups, annotation_name_side = "left",
                               col = list(type = c("Stage_3" = "purple", "Stage_2" = "orange", "Stage_1" = "seagreen")),

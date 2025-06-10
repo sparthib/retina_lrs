@@ -47,7 +47,7 @@ plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
   ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left")
   if (compare == "FT_vs_RGC"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                            col = list(type = c("FT" = "lightgreen", "RGC" = "brown")
+                            col = list(type = c("FT" = "skyblue", "RGC" = "brown")
                             ))
   }else if(compare == "ROs"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
@@ -118,7 +118,7 @@ plot_DTE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
   ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left")
   if (compare == "FT_vs_RGC"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                            col = list(type = c("FT" = "lightgreen", "RGC" = "brown")
+                            col = list(type = c("FT" = "skyblue", "RGC" = "brown")
                             ))
   }else if(compare == "ROs"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
@@ -187,7 +187,7 @@ plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
   ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left")
   if (compare == "FT_vs_RGC"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",
-                            col = list(type = c("FT" = "lightgreen", "RGC" = "brown")
+                            col = list(type = c("FT" = "skyblue", "RGC" = "brown")
                             ))
   }else if(compare == "ROs"){
     ha <- HeatmapAnnotation(type = groups, annotation_name_side = "left",

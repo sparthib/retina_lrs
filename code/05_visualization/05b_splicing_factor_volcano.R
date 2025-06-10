@@ -32,7 +32,7 @@ volcano_plot <- function(data, x_col, y_col, gene_label_col = "gene_name",
     )
   
   color_map <- list(
-    "FT|RGC"         = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown",  "Upregulation in condition 1" = "lightgreen"),
+    "FT|RGC"         = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown",  "Upregulation in condition 1" = "skyblue"),
     "RGC|Stage_1"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "orange",  "Upregulation in condition 1" = "brown"),
     "RGC|Stage_2"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "seagreen",    "Upregulation in condition 1" = "brown"),
     "RGC|Stage_3"    = c("Not Significant" = "gray", "Upregulation in condition 2" = "purple",    "Upregulation in condition 1" = "brown"),
