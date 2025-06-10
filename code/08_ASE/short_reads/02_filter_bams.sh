@@ -70,9 +70,11 @@ ml load samtools
 # samtools merge -@ 8 ${OUTPUT_DIR}/all_samples_merged.bam ${OUTPUT_DIR}/*_sorted.bam
 #   
 
+samtools sort -@ 8 -o "${OUTPUT_DIR}/all_samples_merged_sorted.bam" "${INPUT_DIR}"/all_samples_merged.bam
+
 echo "🔹 Step 2: Marking duplicates"
 gatk MarkDuplicates \
-  I="${OUTPUT_DIR}/all_samples_merged.bam" \
+  I="${OUTPUT_DIR}/all_samples_merged_sorted.bam" \
   O="${OUTPUT_DIR}/all_samples_dedup.bam" \
   M="${OUTPUT_DIR}/all_samples_metrics.txt" \
   CREATE_INDEX=true 
