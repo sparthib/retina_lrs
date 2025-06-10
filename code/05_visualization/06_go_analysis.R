@@ -162,8 +162,6 @@ run_all_go <- function(method, comparison, ont = "BP"){
     ora_plot(RGC_vs_D100_dge, ont, output_plot_dir, "DGE", "RGC_vs_D100")
     ora_plot(RGC_vs_D200_dge, ont, output_plot_dir, "DGE", "RGC_vs_D200")
     
-    
-    
     ora_plot(RGC_vs_D45_dte, ont, output_plot_dir, "DTE", "RGC_vs_D45")
     ora_plot(RGC_vs_D100_dte, ont, output_plot_dir, "DTE", "RGC_vs_D100")
     ora_plot(RGC_vs_D200_dte, ont, output_plot_dir, "DTE", "RGC_vs_D200")

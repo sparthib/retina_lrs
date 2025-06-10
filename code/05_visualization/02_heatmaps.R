@@ -7,7 +7,8 @@ library(grid)
 
 ######## HEATMAP FUNCTIONS ########
 plot_DTU_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, output_plots_dir, type) {
-    tpm <- as.data.frame(tpm)
+    
+  tpm <- as.data.frame(tpm)
     if(compare == "FT_vs_RGC"){ 
       colnames(tpm) <- c("H9_FT_1", "H9_FT_2", "H9_hRGC_1", "H9_hRGC_2") }
     else if(compare == "ROs"){
@@ -215,7 +216,7 @@ plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
 
 counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/"
 method <- "bambu"
-compare <- "RO_vs_RGC"
+compare <- "FT_vs_RGC"
 
 load_and_plot_data <- function(method,compare, counts_matrix_dir) {
   isoform_tpm <- readRDS(file.path(counts_matrix_dir,
@@ -246,7 +247,7 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
     }
       
     input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
-                             method, compare,"protein_coding" )
+                             method, compare,"protein_coding")
     
     DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
     
@@ -268,6 +269,7 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
       dplyr::select(isoform_id, gene_name) |>
       distinct() |> 
       head(n = 50)
+    
     plot_DTE_heatmap(input_data_dir, method, compare, 
                      isoform_tpm, groups, heatmap_plots_dir)
     

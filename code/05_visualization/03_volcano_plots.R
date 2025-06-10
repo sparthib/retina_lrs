@@ -7,7 +7,7 @@ library(ggrepel)
 library(biomaRt)
 
 method = "bambu"
-comparison = "ROs"
+comparison = "FT_vs_RGC"
 source("/users/sparthib/retina_lrs/code/05_visualization/helper.R")
 
 input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",

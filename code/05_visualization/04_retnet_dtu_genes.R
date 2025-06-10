@@ -93,7 +93,7 @@ results_df <- data.frame(
 write.table(results_df, file = "/users/sparthib/retina_lrs/processed_data/dtu/retnet_disease_genes.tsv", 
             sep = "\t", quote = FALSE, row.names = FALSE)
 
-analysis_type <- "ROs"
+analysis_type <- "FT_vs_RGC"
 quant_method <- "bambu"
 table_type <- "DTE"
 

@@ -31,7 +31,7 @@ remove_zero_var_rows <- function(mat) {
   mat[apply(mat, 1, var) != 0, , drop = FALSE]
 }
 
-analysis_type <- "RO_vs_RGC"
+analysis_type <- "FT_vs_RGC"
 quant_method <- "bambu"
 
 counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
