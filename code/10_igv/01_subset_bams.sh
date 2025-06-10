@@ -36,10 +36,13 @@ ml load samtools
 #REEP6 chromosome 	NC_000019.10 (1491181..1497927)
 #ADD1 chromosome 	NC_000004.12 (2843844..2930062)
 
-samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr19:1491181-1497927" > $output_dir/${sample}_REEP6.bam
-samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr4:2843844-2930062" > $output_dir/${sample}_ADD1.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr19:1491181-1497927" > $output_dir/REEP/${sample}_REEP6.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr4:2843844-2930062" > $output_dir/ADD1/${sample}_ADD1.bam
 
 ## index bam files
-samtools index $output_dir/${sample}_REEP6.bam > $output_dir/${sample}_REEP6.bam.bai
-samtools index $output_dir/${sample}_ADD1.bam > $output_dir/${sample}_ADD1.bam.bai
+for dir in REEP ADD1; do
+    mkdir -p $output_dir/$dir
+    samtools index $output_dir/$dir/${sample}_$dir.bam > $output_dir/$dir/${sample}_$dir.bam.bai
+done
+
 
