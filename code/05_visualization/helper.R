@@ -11,7 +11,7 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
   
   # Dynamically assign colors based on groups
   if (all(groups %in% c("FT", "RGC"))) {
-    color_mapping <- c("FT" = "lightgreen", "RGC" = "brown")
+    color_mapping <- c("FT" = "skyblue", "RGC" = "brown")
   } else if (all(groups %in% c("Stage_1", "Stage_2", "Stage_3"))) {
     color_mapping <- c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
   } else if (all(groups %in% c("Stage_1", "Stage_2", "Stage_3", "RGC"))) {
