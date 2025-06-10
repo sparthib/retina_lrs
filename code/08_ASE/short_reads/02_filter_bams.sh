@@ -66,20 +66,17 @@ ml load samtools
 # 
 # done 
 
-echo "Step 1c: Merging BAMs"
-samtools merge -@ 8 ${OUTPUT_DIR}/all_samples_merged.bam ${OUTPUT_DIR}/*_sorted.bam
-  
+# echo "Step 1c: Merging BAMs"
+# samtools merge -@ 8 ${OUTPUT_DIR}/all_samples_merged.bam ${OUTPUT_DIR}/*_sorted.bam
+#   
 
 echo "🔹 Step 2: Marking duplicates"
 gatk MarkDuplicates \
   I="${OUTPUT_DIR}/all_samples_merged.bam" \
   O="${OUTPUT_DIR}/all_samples_dedup.bam" \
   M="${OUTPUT_DIR}/all_samples_metrics.txt" \
-  CREATE_INDEX=true \
-  --QUIET true \
-  --verbosity ERROR
-  
-  
+  CREATE_INDEX=true 
+
 
 echo "🔹 Step 3: Adding read groups to merged BAM"
 gatk AddOrReplaceReadGroups \
@@ -100,18 +97,14 @@ gatk BaseRecalibrator \
   --known-sites "$DBSNP" \
   --known-sites "$MANDG_INDELS" \
   --known-sites "$SNPs_1000G" \
-  -O "${OUTPUT_DIR}/all_samples_recal_data.table" \
-  --verbosity ERROR \
-  --QUIET true
+  -O "${OUTPUT_DIR}/all_samples_recal_data.table" 
 
 echo "🔹 Step 4b: Apply BQSR"
 gatk ApplyBQSR \
   -R "$ref_fa" \
   -I "${OUTPUT_DIR}/all_samples_rg.bam" \
   --bqsr-recal-file "${OUTPUT_DIR}/all_samples_recal_data.table" \
-  -O "${OUTPUT_DIR}/all_samples_recal.bam" \
-  --verbosity ERROR \
-  --QUIET true
+  -O "${OUTPUT_DIR}/all_samples_recal.bam"
 
 
 echo "🔹 Step 5: Filtering BAM (remove unmapped, secondary, supplementary; MAPQ < 20)"
