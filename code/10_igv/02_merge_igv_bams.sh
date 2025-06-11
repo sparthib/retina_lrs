@@ -6,8 +6,8 @@
 #SBATCH --job-name=igv
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
-#SBATCH -o logs/merge_bams.txt
-#SBATCH -e logs/merge_bams.txt
+#SBATCH -o logs/merge_bams_SYNCRIP.txt
+#SBATCH -e logs/merge_bams_SYNCRIP.txt
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
