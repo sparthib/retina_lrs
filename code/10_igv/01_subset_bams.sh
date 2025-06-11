@@ -7,8 +7,8 @@
 #SBATCH --mail-user=sparthi1@jhu.edu
 #SBATCH --mail-type=ALL
 #SBATCH --array=1,2,5-6,9-15
-#SBATCH -o logs/igv.%a.txt
-#SBATCH -e logs/igv.%a.txt
+#SBATCH -o logs/igv_SYNCRIP.%a.txt
+#SBATCH -e logs/igv_SYNCRIP.%a.txt
 #SBATCH --time=7-00:00:00
 
 echo "**** Job starts ****"
@@ -35,14 +35,24 @@ ml load samtools
 
 #REEP6 chromosome 	NC_000019.10 (1491181..1497927)
 #ADD1 chromosome 	NC_000004.12 (2843844..2930062)
+#SYNCRIP chr6:85613976-85642991
+#BAK1 chr6:33572547-33580293
+#BSG  chr19:571277-583494
+# REEP6 ADD1 
+for dir in SYNCRIP BAK1 BSG; do
+    mkdir -p $output_dir/$dir
+done
 
-samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr19:1491181-1497927" > $output_dir/REEP/${sample}_REEP6.bam
-samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr4:2843844-2930062" > $output_dir/ADD1/${sample}_ADD1.bam
+# samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr19:1491181-1497927" > $output_dir/REEP6/${sample}_REEP6.bam
+# samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr4:2843844-2930062" > $output_dir/ADD1/${sample}_ADD1.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr6:85613976-85642991" > $output_dir/SYNCRIP/${sample}_SYNCRIP.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr6:33572547-33580293" > $output_dir/BAK1/${sample}_BAK1.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr19:571277-583494" > $output_dir/BSG/${sample}_BSG.bam
 
 ## index bam files
-for dir in REEP ADD1; do
-    mkdir -p $output_dir/$dir
+for dir in SYNCRIP BAK1 BSG; do
     samtools index $output_dir/$dir/${sample}_$dir.bam > $output_dir/$dir/${sample}_$dir.bam.bai
 done
+
 
 
