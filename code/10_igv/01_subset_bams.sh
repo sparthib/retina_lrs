@@ -54,5 +54,6 @@ for dir in SYNCRIP BAK1 BSG; do
     samtools index $output_dir/$dir/${sample}_$dir.bam > $output_dir/$dir/${sample}_$dir.bam.bai
 done
 
-
+echo "**** Job ends ****"
+date +"%Y-%m-%d %T"
 
