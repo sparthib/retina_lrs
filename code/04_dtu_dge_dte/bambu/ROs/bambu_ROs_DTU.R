@@ -254,6 +254,8 @@ switchlist_part2_path = file.path("/users/sparthib/retina_lrs/processed_data/dtu
 
 saveRDS(SwitchList_part2, file = switchlist_part2_path)
 
+SwitchList_part2 <- readRDS(switchlist_part2_path)
+
 
 SwitchList_part2$isoformFeatures <- SwitchList_part2$isoformFeatures |> 
   distinct(across(-gene_name), .keep_all = TRUE)
@@ -340,3 +342,21 @@ consequences <- extractConsequenceEnrichment(
   plot = F
 )
 write_tsv(consequences, file = file.path(plots_dir, "Consequence_Enrichment.tsv"))
+
+pdf(file.path(plots_dir, "Consequence_Enrichment_Comparison.pdf"),
+    width = 10, height = 7)
+consequence_comparison_plot <- extractSplicingEnrichmentComparison(
+  SwitchList_part2,
+  returnResult=FALSE # Preventing the summary statistics to be returned as a data.frame
+)
+print(consequence_comparison_plot)
+dev.off()
+
+
+consequence_comparison_data <- extractSplicingEnrichmentComparison(
+  SwitchList_part2,
+  returnResult=TRUE
+)
+write_tsv(consequence_comparison_data, 
+          file = file.path(plots_dir, "Consequence_Enrichment_Comparison.tsv"))
+
