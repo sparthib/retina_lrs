@@ -347,7 +347,9 @@ pdf(file.path(plots_dir, "Consequence_Enrichment_Comparison.pdf"),
     width = 10, height = 7)
 consequence_comparison_plot <- extractSplicingEnrichmentComparison(
   SwitchList_part2,
-  returnResult=FALSE # Preventing the summary statistics to be returned as a data.frame
+  returnResult=FALSE, # Preventing the summary statistics to be returned as a data.frame,
+  onlySigIsoforms = T,
+  countGenes = F
 )
 print(consequence_comparison_plot)
 dev.off()
