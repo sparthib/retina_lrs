@@ -1,0 +1,25 @@
+comparisonsCompared	AStype	propUp_comparison_1	propUp_comparison_2	fisherQvalue	Significant
+Stage_1 vs Stage_2 compared to Stage_1 vs Stage_3	A3 gain (paired with A3 loss)	0.20959147424511546	0.35094339622641507	4.101836919954503e-7	TRUE
+Stage_1 vs Stage_2 compared to Stage_1 vs Stage_3	A5 gain (paired with A5 loss)	0.3159340659340659	0.40707964601769914	0.011291748627023113	TRUE
+Stage_1 vs Stage_2 compared to Stage_1 vs Stage_3	ATSS gain (paired with ATSS loss)	0.7092760180995475	0.5826086956521739	1.786451344068726e-8	TRUE
+Stage_1 vs Stage_2 compared to Stage_1 vs Stage_3	ATTS gain (paired with ATTS loss)	0.4519906323185012	0.5341796875	6.825085738649426e-4	TRUE
+Stage_1 vs Stage_2 compared to Stage_1 vs Stage_3	ES (paired with EI)	0.3333333333333333	0.4016393442622951	0.008450384637303696	TRUE
+Stage_1 vs Stage_2 compared to Stage_1 vs Stage_3	IR gain (paired with IR loss)	0.7587301587301587	0.6717791411042945	0.0228312679217718	TRUE
+Stage_1 vs Stage_2 compared to Stage_1 vs Stage_3	MEE gain (paired with MEE loss)	0.5	0.6153846153846154	0.7472925513038582	FALSE
+Stage_1 vs Stage_2 compared to Stage_1 vs Stage_3	MES (paired with MEI)	0.3883495145631068	0.4065656565656566	0.7341606008454429	FALSE
+Stage_1 vs Stage_2 compared to Stage_2 vs Stage_3	A3 gain (paired with A3 loss)	0.20959147424511546	0.6724890829694323	2.564273013672676e-50	TRUE
+Stage_1 vs Stage_2 compared to Stage_2 vs Stage_3	A5 gain (paired with A5 loss)	0.3159340659340659	0.579250720461095	5.026857119066371e-12	TRUE
+Stage_1 vs Stage_2 compared to Stage_2 vs Stage_3	ATSS gain (paired with ATSS loss)	0.7092760180995475	0.39540816326530615	2.2900846504086708e-37	TRUE
+Stage_1 vs Stage_2 compared to Stage_2 vs Stage_3	ATTS gain (paired with ATTS loss)	0.4519906323185012	0.5542328042328042	9.529429271597762e-5	TRUE
+Stage_1 vs Stage_2 compared to Stage_2 vs Stage_3	ES (paired with EI)	0.3333333333333333	0.5561056105610561	2.8127262377286893e-15	TRUE
+Stage_1 vs Stage_2 compared to Stage_2 vs Stage_3	IR gain (paired with IR loss)	0.7587301587301587	0.3675889328063241	1.838233710068746e-20	TRUE
+Stage_1 vs Stage_2 compared to Stage_2 vs Stage_3	MEE gain (paired with MEE loss)	0.5	0.5833333333333334	1	FALSE
+Stage_1 vs Stage_2 compared to Stage_2 vs Stage_3	MES (paired with MEI)	0.3883495145631068	0.540268456375839	3.1337467571814984e-4	TRUE
+Stage_1 vs Stage_3 compared to Stage_2 vs Stage_3	A3 gain (paired with A3 loss)	0.35094339622641507	0.6724890829694323	4.179717726059138e-23	TRUE
+Stage_1 vs Stage_3 compared to Stage_2 vs Stage_3	A5 gain (paired with A5 loss)	0.40707964601769914	0.579250720461095	3.257921739875458e-6	TRUE
+Stage_1 vs Stage_3 compared to Stage_2 vs Stage_3	ATSS gain (paired with ATSS loss)	0.5826086956521739	0.39540816326530615	9.306774484834558e-15	TRUE
+Stage_1 vs Stage_3 compared to Stage_2 vs Stage_3	ATTS gain (paired with ATTS loss)	0.5341796875	0.5542328042328042	0.49613885483263104	FALSE
+Stage_1 vs Stage_3 compared to Stage_2 vs Stage_3	ES (paired with EI)	0.4016393442622951	0.5561056105610561	1.6422234152691673e-8	TRUE
+Stage_1 vs Stage_3 compared to Stage_2 vs Stage_3	IR gain (paired with IR loss)	0.6717791411042945	0.3675889328063241	1.137001975799813e-12	TRUE
+Stage_1 vs Stage_3 compared to Stage_2 vs Stage_3	MEE gain (paired with MEE loss)	0.6153846153846154	0.5833333333333334	1	FALSE
+Stage_1 vs Stage_3 compared to Stage_2 vs Stage_3	MES (paired with MEI)	0.4065656565656566	0.540268456375839	8.050235077363612e-4	TRUE
