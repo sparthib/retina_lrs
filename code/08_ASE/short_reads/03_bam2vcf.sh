@@ -45,29 +45,29 @@ gatk HaplotypeCaller \
 #   -R "$ref_fa" \
 #   $(for sample in "${samples[@]}"; do echo -n "-V ${OUTPUT_DIR}/${sample}.g.vcf.gz "; done) \
 #   -O "${OUTPUT_DIR}/combined.g.vcf.gz"
-
-echo "🔹 Step 3: Genotype the combined gVCF"
-gatk GenotypeGVCFs \
-  -R "$ref_fa" \
-  -V "${OUTPUT_DIR}/all_samples.g.vcf.gz" \
-  -O "${OUTPUT_DIR}/all_samples.vcf.gz"
-
-
-echo "🔹 Step 4a: Split VCF into SNPs and INDELs"
-
-gatk SelectVariants \
-  -R "$ref_fa" \
-  -V "${OUTPUT_DIR}/all_samples.vcf.gz" \
-  --select-type-to-include SNP \
-  -O "${OUTPUT_DIR}/all_samples_SNPs.vcf.gz"
-
-gatk SelectVariants \
-  -R "$ref_fa" \
-  -V "${OUTPUT_DIR}/all_samples.vcf.gz" \
-  --select-type-to-include INDEL \
-  -O "${OUTPUT_DIR}/all_samples_INDELs.vcf.gz"
- 
- echo "🔹 Step 4b: Filter SNPs and INDELs" 
+# 
+# echo "🔹 Step 3: Genotype the combined gVCF"
+# gatk GenotypeGVCFs \
+#   -R "$ref_fa" \
+#   -V "${OUTPUT_DIR}/all_samples.g.vcf.gz" \
+#   -O "${OUTPUT_DIR}/all_samples.vcf.gz"
+# 
+# 
+# echo "🔹 Step 4a: Split VCF into SNPs and INDELs"
+# 
+# gatk SelectVariants \
+#   -R "$ref_fa" \
+#   -V "${OUTPUT_DIR}/all_samples.vcf.gz" \
+#   --select-type-to-include SNP \
+#   -O "${OUTPUT_DIR}/all_samples_SNPs.vcf.gz"
+# 
+# gatk SelectVariants \
+#   -R "$ref_fa" \
+#   -V "${OUTPUT_DIR}/all_samples.vcf.gz" \
+#   --select-type-to-include INDEL \
+#   -O "${OUTPUT_DIR}/all_samples_INDELs.vcf.gz"
+#  
+  echo "🔹 Step 4b: Filter SNPs and INDELs" 
  
   gatk VariantFiltration \
   -R "$ref_fa" \
@@ -77,8 +77,9 @@ gatk SelectVariants \
    -filter "SOR > 3.0" --filter-name "SOR3" \
    -filter "FS > 60.0" --filter-name "FS60" \
    -filter "MQ < 40.0" --filter-name "MQ40" \
-   -filter "MQRankSum < -12.5" --filter-name "MQRankSum-12.5" \
-   -filter "ReadPosRankSum < -8.0" --filter-name "ReadPosRankSum-8" \
+   #may not work for single samples
+   # -filter "MQRankSum < -12.5" --filter-name "MQRankSum-12.5" \
+   # -filter "ReadPosRankSum < -8.0" --filter-name "ReadPosRankSum-8" \
   -O "${OUTPUT_DIR}/all_samples_SNPs_filtered.vcf.gz"
   
 gatk VariantFiltration \
@@ -87,7 +88,8 @@ gatk VariantFiltration \
       -filter "QD < 2.0" --filter-name "QD2" \
     -filter "QUAL < 30.0" --filter-name "QUAL30" \
     -filter "FS > 200.0" --filter-name "FS200" \
-    -filter "ReadPosRankSum < -20.0" --filter-name "ReadPosRankSum-20" \
+    # doens't work for single samples
+    # -filter "ReadPosRankSum < -20.0" --filter-name "ReadPosRankSum-20" \
     -O "${OUTPUT_DIR}/all_samples_INDELs_filtered.vcf.gz"
   
   
