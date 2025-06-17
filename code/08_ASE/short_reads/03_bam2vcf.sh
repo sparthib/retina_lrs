@@ -30,15 +30,14 @@ mkdir -p $OUTPUT_DIR
 # samtools faidx $ref_fa
 
 ml load gatk
-samples=(SRR1091088 SRR1091091)
 
-echo "🔹 Step 1: Haplotype calling to produce gVCF"
-gatk HaplotypeCaller \
-    -R "$ref_fa" \
-    -I "${INPUT_DIR}/all_samples_filtered.bam" \
-    -O "${OUTPUT_DIR}/all_samples.g.vcf.gz" \
-    -ERC GVCF
-    
+# echo "🔹 Step 1: Haplotype calling to produce gVCF"
+# gatk HaplotypeCaller \
+#     -R "$ref_fa" \
+#     -I "${INPUT_DIR}/all_samples_filtered.bam" \
+#     -O "${OUTPUT_DIR}/all_samples.g.vcf.gz" \
+#     -ERC GVCF
+#     
 # Uncomment the following lines if you want to run HaplotypeCaller for each sample individually
 # echo "🔹 Step 2: Combine gVCFs from multiple samples"
 # gatk CombineGVCFs \
