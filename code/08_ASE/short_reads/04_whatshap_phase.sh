@@ -32,8 +32,9 @@ phased_vcf_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/what
 mkdir -p $phased_vcf_dir
 
 source activate whatshap-env
-
-whatshap phase -o $phased_vcf_dir/phased.vcf --ignore-read-groups --sample=SRR1091091 --reference=$ref_fa $vcf_dir/merged_variants.vcf.gz \
+# input vcf where vcfs were merged from individual samples= merged_variants.vcf.gz 
+#corresponding output was phased.vcf instead of all_samples_phased.vcf
+whatshap phase -o $phased_vcf_dir/all_samples_phased.vcf --ignore-read-groups --sample=SRR1091091 --reference=$ref_fa $vcf_dir/all_samples_variants.vcf.gz \
 $genome_bam_dir/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam \
 $genome_bam_dir/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam \
 $genome_bam_dir/H9-FT_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-FT_2_primary_over_30_chr_only_sorted.bam \
