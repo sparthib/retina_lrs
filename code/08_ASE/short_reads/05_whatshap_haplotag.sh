@@ -29,7 +29,8 @@ echo "Node name: ${SLURMD_NODENAME}"
 ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 vcf_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gvcf_ref_46
 genome_bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality
-whatshap_output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output
+whatshap_output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_single_sample
+mkdir -p $whatshap_output_dir
 
 source activate whatshap-env
 
@@ -48,8 +49,8 @@ lr_sample=${samples[$SLURM_ARRAY_TASK_ID - 1]}
 echo "Processing sample: $lr_sample"
 
 whatshap haplotag -o $whatshap_output_dir/${lr_sample}.bam \
---reference $ref_fa $whatshap_output_dir/phased.vcf.gz $genome_bam_dir/${lr_sample}_primary_over_30_chr_only_sorted.bam \
---output-threads=19 --ignore-read-groups --sample=SRR1091091 --output-haplotag-list $whatshap_output_dir/${lr_sample}_haplotypes.tsv
+--reference $ref_fa $whatshap_output_dir/all_samples_phased.vcf $genome_bam_dir/${lr_sample}_primary_over_30_chr_only_sorted.bam \
+--output-threads=19 --ignore-read-groups --output-haplotag-list $whatshap_output_dir/${lr_sample}_haplotypes.tsv
 
 whatshap split --output-h1 $whatshap_output_dir/${lr_sample}_h1.bam \
 --output-h2 $whatshap_output_dir/${lr_sample}_h2.bam $whatshap_output_dir/${lr_sample}.bam $whatshap_output_dir/${lr_sample}_haplotypes.tsv
