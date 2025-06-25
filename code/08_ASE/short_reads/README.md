@@ -26,18 +26,19 @@ All relevant code is [here](https://github.com/sparthib/retina_lrs/tree/main/cod
 
 -   `05_whatshap_haplotag.sh` runs the `haplotag` command to tag the reads in our long read BAMs with their haplotype, and splits the reads into two separate BAM files, one for each haplotyp using the `split` command.
 
-## Step 6: Number of HP reads per sample
+
+## Step 6: Number of HP reads per sample (based on VCF of merged bam file)
 
 | Sample         | HP1 reads | HP2 reads | Total aligned reads | Haplotyped Reads % |
-|-----------------|---------------|---------------|---------------|---------------|
-| H9-BRN3B_hRO_2 | 1099492   | 1037639   | 9272631             | 23.04              |
-| H9-BRN3B-RO    | 2338537   | 2176963   | 14592201            | 30.95              |
-| H9-CRX_hRO_2   | 1005074   | 963019    | 6417395             | 30.70              |
-| H9-CRX_ROs_D45 | 1466690   | 1404057   | 10109987            | 28.38              |
-| H9-FT_1        | 1179483   | 1121926   | 6363243             | 36.19              |
-| H9-FT_2        | 1086558   | 1013173   | 6084602             | 34.58              |
-| H9-hRGC_1      | 430019    | 410060    | 2585901             | 32.46              |
-| H9-hRGC_2      | 1702447   | 1601349   | 12780770            | 25.82              |
+|--------------|--------------|--------------|---------------|---------------|
+| H9-BRN3B_hRO_2 | 1177170   | 1168236   | 9272631             | 23.04              |
+| H9-BRN3B-RO    | 2555844   | 2422337   | 19107701            | 26.05             |
+| H9-CRX_hRO_2   | 1084534   | 1072475   | 8385488             | 25.72             |
+| H9-CRX_ROs_D45 | 1571325   | 1572752   | 12980734            | 24.22             |
+| H9-FT_1        | 1266549   | 1266549   | 8664652             | 29.23              |
+| H9-FT_2        | 1168496   | 1131511   | 8184333             | 28.10              |
+| H9-hRGC_1      | 467341    | 453790    | 3425980             | 26.88              |
+| H9-hRGC_2      | 1825307   | 1770316   | 12780770            | 28.13  
 
 ## 
 
@@ -49,7 +50,7 @@ All relevant code is [here](https://github.com/sparthib/retina_lrs/tree/main/cod
 
 `07_allele_spec_expression_modeling.R` performs DGE analysis between the two haplotypes:
 
--    Down-regulated in H2: 614
+-   Down-regulated in H2: 614
 
 -   NotSig 41063
 
