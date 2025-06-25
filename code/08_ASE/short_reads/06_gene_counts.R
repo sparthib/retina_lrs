@@ -10,7 +10,7 @@ samples <- c("H9-BRN3B_hRO_2", "H9-BRN3B-RO", "H9-CRX_hRO_2", "H9-CRX_ROs_D45",
 sample <- samples[array_id]
 print(paste("Processing sample:", sample))
 
-whatshap_out_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output"
+whatshap_out_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_single_sample"
 input_h1_bam <- file.path(whatshap_out_dir,
                           paste0(sample,"_h1.bam"))
 input_h2_bam <- file.path(whatshap_out_dir,
@@ -23,7 +23,8 @@ gtf <- import(gtf_file)
 
 print("Loaded GTF file")
 
-output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gene_counts"
+output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gene_counts_all_samples"
+dir.create(output_dir, showWarnings = FALSE)
 
 fc_1 <- featureCounts(
   files         = input_h1_bam,
