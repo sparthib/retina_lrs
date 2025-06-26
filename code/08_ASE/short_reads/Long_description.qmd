@@ -54,7 +54,6 @@ samtools merge -@ ${SLURM_CPUS_PER_TASK} $OUTPUT_DIR/merged.bam $OUTPUT_DIR/*.so
 
 ```
 
-
 GATK also provides a set of commands to perform quality control on the BAM file. The first step is to mark duplicates using `MarkDuplicates`. This will help in removing PCR duplicates that can lead to false positives in variant calling (If we have a bunch of duplicate reads for a given region, we may wrongly call it homozygous).
 
 ```{bash}
@@ -70,7 +69,7 @@ The next step is to perform base quality score recalibration (BQSR) using `BaseR
 
 The `BaseRecalibrator` is done by refering to known variants in the genome, which can be obtained from a VCF file. This VCF file can be obtained from a previous variant calling step or from a public database such as dbSNP or the Mills and 1000G Gold standard database for INDELs.
 
-Here's how I downloaded them: 
+Here's how I downloaded them:
 
 ```{bash}
 known_sites=path_to_where_you_want_to_download_the_reference_VCFs
@@ -104,13 +103,11 @@ gatk ApplyBQSR \
   -O "${OUTPUT_DIR}/recal.bam"
 ```
 
-
 The final BAM QC step is to filter the BAM file using the `samtools view` command. This can be used to remove reads that are not properly paired, have low mapping quality, or are not primary alignments.
 
 ```{bash}
 samtools view -@ 8 -b -F 2308 -q 20 "${OUTPUT_DIR}/recal.bam" > "${OUTPUT_DIR}/filtered.bam"
 ```
-
 
 ### Step 3: Variant Calling
 
@@ -144,7 +141,6 @@ The `VariantFiltration` command can then be used to filter the variants based on
 
 The `SelectVariants` command can be used to select only the SNPs and INDELs that PASS the filters. So now we have two final files, `SNP_PASS.vcf` and `INDEL_PASS.vcf`, which can be used for downstream analysis.
 
-
 ```{bash}
 
 gatk VariantFiltration \
@@ -172,6 +168,7 @@ gatk VariantFiltration \
 ```
 
 Then, to only keep the `PASS` variants:
+
 ```{bash}
 gatk SelectVariants \
   -R "$ref_fa" \
@@ -201,8 +198,32 @@ Phasing is the process of determining which alleles are inherited together on th
 
 Phasing can be done using `whatshap` software. The `whatshap phase` command can be used to produce a phased VCF file. This command can take multiple long read BAM files and the VCF file at the end of step 3 as input and outputs a phased VCF file containing the phased variants.
 
-`whatshap haplotag` is then used to tag the reads in the BAM file with the haplotype information . This command takes the phased VCF file and our long read BAM files as input and outputs a new BAM file with the haplotype information tagged as `HP1` or `HP2` if they are heterozygous. These tags can be used to split the BAM file into two separate BAM files, one for each haplotype.
+```{bash}
 
+conda activate whatshap 
+
+whatshap phase -o $phased_vcf_dir/phased.vcf --reference=$ref_fa --ignore-read-groups ${OUTPUT_DIR}/all_variants.vcf.gz \ 
+# vcf from previous step
+$genome_bam_dir/input_bam1_for_phasing.bam $genome_bam_dir/input_bam2_for_phasing.bam
+# above we're providing a list of bam files that help with phasing our input VCF 
+# the same bams will be haplotagged in the next step
+```
+
+`whatshap haplotag` is then used to tag the reads in the BAM file with the haplotype information . This command takes the phased VCF file and our long read BAM files as input and outputs a new BAM file with the haplotype information tagged as `HP1` or `HP2` if they are heterozygous. These tags can be used to `split` the BAM file into two separate BAM files, one for each haplotype.
+
+```{bash}
+
+$input_bam_dir="/path/to/long_read_bam_files" # Directory containing the long read BAM files
+${lr_sample}=bam_1 # replace with your long read sample name
+whatshap haplotag -o $whatshap_output_dir/${lr_sample}.bam \
+--reference $ref_fa $phased_vcf $input_bam_dir/${lr_sample}.bam \
+--output-threads=19 --ignore-read-groups --output-haplotag-list $whatshap_output_dir/${lr_sample}_haplotypes.tsv
+
+echo "**** Splitting haplotagged BAM into haplotypes ****"
+whatshap split --output-h1 $whatshap_output_dir/${lr_sample}_h1.bam \
+--output-h2 $whatshap_output_dir/${lr_sample}_h2.bam $whatshap_output_dir/${lr_sample}.bam $whatshap_output_dir/${lr_sample}_haplotypes.tsv
+
+```
 ### Step 5: Allele-specific expression analysis
 
 Once we have the haplotype specific BAM file(s), we can use the `featureCounts` function from the `Rsubread` in `R` to count the reads for each gene/isoform. The `isLongRead` has to be set to `TRUE` to indicate that the input BAM file is a long read BAM file. It is unclear whether to set the `allowMultiOverlap` to `TRUE` or `FALSE`. The `featureCounts` function will output a count matrix with the counts for each gene/isoform for each haplotype.
