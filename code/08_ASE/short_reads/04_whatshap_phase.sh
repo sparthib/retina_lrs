@@ -35,11 +35,24 @@ source activate whatshap-env
 # input vcf where vcfs were merged from individual samples= merged_variants.vcf.gz 
 #corresponding output was phased.vcf instead of all_samples_phased.vcf
 ##--sample=SRR1091091 this tag comes right after -o if VCF has multiple samples
-whatshap phase -o $phased_vcf_dir/all_samples_phased.vcf --reference=$ref_fa --ignore-read-groups $vcf_dir/all_samples_variants.vcf.gz \
+
+#uncomment below if you want to phase only based on the H9 samples 
+# whatshap phase -o $phased_vcf_dir/all_samples_phased.vcf --reference=$ref_fa --ignore-read-groups $vcf_dir/all_samples_variants.vcf.gz \
+# $genome_bam_dir/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam \
+# $genome_bam_dir/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam \
+# $genome_bam_dir/H9-FT_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-FT_2_primary_over_30_chr_only_sorted.bam \
+# $genome_bam_dir/H9-hRGC_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-hRGC_2_primary_over_30_chr_only_sorted.bam 
+
+#uncomment below if you want to phase all samples in the VCF
+whatshap phase -o $phased_vcf_dir/all_samples_H9_and_EP1_phased.vcf --reference=$ref_fa --ignore-read-groups $vcf_dir/all_samples_variants.vcf.gz \
 $genome_bam_dir/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam \
 $genome_bam_dir/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam \
 $genome_bam_dir/H9-FT_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-FT_2_primary_over_30_chr_only_sorted.bam \
-$genome_bam_dir/H9-hRGC_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-hRGC_2_primary_over_30_chr_only_sorted.bam 
+$genome_bam_dir/H9-hRGC_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-hRGC_2_primary_over_30_chr_only_sorted.bam \
+$genome_bam_dir/EP1-BRN3B-RO_primary_over_30_chr_only_sorted.bam $genome_bam_dir/EP1-WT_hRO_2_primary_over_30_chr_only_sorted.bam \
+$genome_bam_dir/EP1-WT_ROs_D45_primary_over_30_chr_only_sorted.bam 
+
+
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"

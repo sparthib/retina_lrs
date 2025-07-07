@@ -2,6 +2,8 @@
 title: "Variant Calling in ONT RNA Seq"
 format: html
 editor: visual
+execute:
+  eval: false
 ---
 
 Variant calling works best with WGS data that has high coverage (\> 30x, i.e. 15x per haplotype in the human genome). It can be performed with RNA-Seq data as well, but this is not recommended for reasons such as:
@@ -224,6 +226,7 @@ whatshap split --output-h1 $whatshap_output_dir/${lr_sample}_h1.bam \
 --output-h2 $whatshap_output_dir/${lr_sample}_h2.bam $whatshap_output_dir/${lr_sample}.bam $whatshap_output_dir/${lr_sample}_haplotypes.tsv
 
 ```
+
 ### Step 5: Allele-specific expression analysis
 
 Once we have the haplotype specific BAM file(s), we can use the `featureCounts` function from the `Rsubread` in `R` to count the reads for each gene/isoform. The `isLongRead` has to be set to `TRUE` to indicate that the input BAM file is a long read BAM file. It is unclear whether to set the `allowMultiOverlap` to `TRUE` or `FALSE`. The `featureCounts` function will output a count matrix with the counts for each gene/isoform for each haplotype.

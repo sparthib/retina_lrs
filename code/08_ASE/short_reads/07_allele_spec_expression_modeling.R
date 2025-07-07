@@ -10,8 +10,8 @@ library(ggrepel)
 
 samples <- c("H9-BRN3B_hRO_2", "H9-BRN3B-RO", "H9-CRX_hRO_2", "H9-CRX_ROs_D45",
              "H9-FT_1" , "H9-FT_2", "H9-hRGC_1", "H9-hRGC_2") 
-
-gene_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gene_counts"
+samples_ROs <- samples[1:4]
+gene_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gene_counts_all_samples"
 
 # load all counts matrix in the directory
 files <- list.files(gene_counts_dir,
@@ -69,7 +69,7 @@ groups <- c("H1", "H2", "H1", "H2",
             "H1", "H2", "H1", "H2",
             "H1", "H2", "H1", "H2",
             "H1", "H2", "H1", "H2")
-
+groups_ROs <- groups[1:8]
 
 library(edgeR)
 
@@ -128,31 +128,14 @@ merged_results_sig <- merged_results |>
 
 merged_results_sig$gene_biotype |> table()
 
-
-
-# lncRNA                              miRNA
-# 186                                 10
-# misc_RNA               processed_pseudogene
-# 14                                 57
-# protein_coding                     rRNA
-# 497                                  2
-# rRNA_pseudogene                  snoRNA
-# 3                                 35
-# snRNA                                TEC
-# 6                                 10
-# transcribed_processed_pseudogene   transcribed_unitary_pseudogene
-# 16                                  5
-# transcribed_unprocessed_pseudogene  unprocessed_pseudogene
-# 13                                  7
-
 merged_results <- merged_results |>
   arrange(desc(abs(logFC)), FDR)
 
 write_tsv(counts_matrix,
-          file = file.path(gene_counts_dir, "H9_DNA_Seq_data_PTC_gene_counts.tsv"))
+          file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_gene_counts.tsv"))
 
 write_tsv(merged_results,
-          file = file.path(gene_counts_dir, "H9_DNA_Seq_data_PTC_DE_results.tsv"))
+          file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_results.tsv"))
 
 
 head(merged_results, n = 10)
@@ -169,7 +152,7 @@ merged_results$label[1:20] <- merged_results$gene_name[1:20]
 merged_results$significant <- merged_results$FDR < 0.05 & abs(merged_results$logFC) > 1
 
 # Volcano plot
-pdf(file = file.path(gene_counts_dir, "H9_DNA_Seq_data_PTC_DE_volcano_plot.pdf"),
+pdf(file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_volcano_plot.pdf"),
     width = 8, height = 6)
 
 ggplot(merged_results, aes(x = logFC, y = neg_log10_FDR)) +
@@ -178,10 +161,88 @@ ggplot(merged_results, aes(x = logFC, y = neg_log10_FDR)) +
   geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "gray") +
   geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "red") +
   scale_color_manual(values = c("gray", "red")) +
-  labs(title = "Volcano Plot",
+  labs(title = "H1 vs H2, all H9 samples",
        x = "log2 Fold Change",
        y = "-log10 FDR") +
   theme_minimal()
 dev.off()
+
+##### ROs only ####
+
+y_ROs <- DGEList(
+  counts = counts_matrix[, 1:8],
+  samples = data.frame(sample = colnames(counts_matrix)[1:8], group = groups_ROs),
+  genes = data.frame(gene_id = rownames(counts_matrix))
+)
+y_ROs <- normLibSizes(y_ROs)
+design_ROs <- model.matrix(~ 0 + group,data = y_ROs$samples)
+colnames(design_ROs) <- gsub("group", "", colnames(design_ROs))
+
+y_ROs <- estimateDisp(y_ROs, design_ROs, robust=TRUE)
+y_ROs$common.dispersion
+fit_ROs <- glmQLFit(y_ROs, design_ROs, robust=TRUE)
+contr_ROs <- makeContrasts(H2 - H1, levels=design_ROs)
+qlf_ROs <- glmQLFTest(fit_ROs, contrast=contr_ROs)
+is.de_ROs <- decideTests(qlf_ROs, p.value=0.05)
+summary(is.de_ROs)
+
+tt_ROs <- topTags(qlf_ROs, n = Inf)
+nrow(tt_ROs)
+head(tt_ROs)
+colnames(tt_ROs$table) <- c("gene_id", "logFC", "logCPM", "F", "PValue", "FDR")
+
+
+tt_ROs$table <- tt_ROs$table[order(tt_ROs$table$FDR),]
+tt_ROs$table$condition_1 <- names(contr[,1])[contr[,1] == -1]
+tt_ROs$table$condition_2 <- names(contr[,1])[contr[,1] == 1]
+
+
+# Merge the annotation with the results
+merged_results <- merge(tt_ROs$table, annotLookup,
+                        by = "gene_id", all.x = TRUE)
+
+merged_results_sig <- merged_results |> 
+  dplyr::filter(FDR < 0.05 & abs(logFC) >= 1)
+
+merged_results_sig$gene_biotype |> table()
+
+merged_results <- merged_results |>
+  arrange(desc(abs(logFC)), FDR)
+
+write_tsv(counts_matrix,
+          file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_gene_counts_ROs.tsv"))
+
+write_tsv(merged_results,
+          file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_results_ROs.tsv"))
+
+
+head(merged_results, n = 10)
+
+# Add -log10 FDR for plotting
+merged_results <- merged_results |> 
+  mutate(neg_log10_FDR = -log10(FDR))
+
+# Separate out the first 20 genes for labeling
+merged_results$label <- NA
+merged_results$label[1:20] <- merged_results$gene_name[1:20]
+
+merged_results$significant <- merged_results$FDR < 0.05 & abs(merged_results$logFC) > 1
+
+# Volcano plot
+pdf(file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_volcano_plot_ROs.pdf"),
+    width = 8, height = 6)
+
+ggplot(merged_results, aes(x = logFC, y = neg_log10_FDR)) +
+  geom_point(aes(color = significant), size = 1.5) +  # TRUE/FALSE coloring
+  geom_text_repel(aes(label = label), size = 2.5, max.overlaps = 20, na.rm = TRUE) +
+  geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "gray") +
+  geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "red") +
+  scale_color_manual(values = c("gray", "red")) +
+  labs(title = "H1 vs H2, H9 ROs only",
+       x = "log2 Fold Change",
+       y = "-log10 FDR") +
+  theme_minimal()
+dev.off()
+
 
 

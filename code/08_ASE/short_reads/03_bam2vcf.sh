@@ -84,7 +84,7 @@ ml load gatk
 gatk VariantFiltration \
   -R "$ref_fa" \
   -V "${OUTPUT_DIR}/all_samples_INDELs.vcf.gz" \
-      -filter "QD < 2.0" --filter-name "QD2" \
+    -filter "QD < 2.0" --filter-name "QD2" \
     -filter "QUAL < 30.0" --filter-name "QUAL30" \
     -filter "FS > 200.0" --filter-name "FS200" \
     # doens't work for single samples
