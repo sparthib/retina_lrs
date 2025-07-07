@@ -10,7 +10,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/haplotag.%a.txt
 #SBATCH -e logs/haplotag.%a.txt
-#SBATCH --array=1-11
+#SBATCH --array=1
 #SBATCH --time=7-00:00:00
 
 ### whatshap phases the variants we found using GATK with the help 
@@ -41,9 +41,9 @@ source activate whatshap-env
 
 ## input vcf file needs to be indexed prior to running whatshap
 # used bgzip from htslib module for zipping vcf and then tabix to index
-# ml load htslib
-# bgzip -c $phased_vcf_H9_EP1 > $phased_vcf_H9_EP1.gz
-# tabix -p vcf $phased_vcf_H9_EP1.gz
+ml load htslib
+bgzip -c $phased_vcf_H9_EP1 > $phased_vcf_H9_EP1.gz
+tabix -p vcf $phased_vcf_H9_EP1.gz
 
 samples=(H9-BRN3B_hRO_2 H9-BRN3B-RO H9-CRX_hRO_2 H9-CRX_ROs_D45 H9-FT_1 H9-FT_2 H9-hRGC_1 H9-hRGC_2 EP1-BRN3B-RO EP1-WT_hRO_2 EP1-WT_ROs_D45) 
 
