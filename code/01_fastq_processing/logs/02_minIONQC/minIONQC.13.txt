@@ -1,16 +1,17 @@
 Loading conda_R/4.3
 To install colorout use: remotes::install_github("jalvesaq/colorout")
-INFO [2024-04-10 11:22:23] Loading input file: /dcs04/hicks/data/sparthib/CK_D100-hRO_03112024/EP1-WT_hRO_2/20240311_1526_2E_PAW10400_8d87241c/sequencing_summary_PAW10400_8d87241c_296351b3.txt
-INFO [2024-04-10 11:22:33] PromethION flowcell detected
-INFO [2024-04-10 11:25:53] 20240311_1526_2E_PAW10400_8d87241c: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/EP1-WT_hRO_2/20240311_1526_2E_PAW10400_8d87241c
-INFO [2024-04-10 11:25:53] 20240311_1526_2E_PAW10400_8d87241c: summarising input file for flowcell
-INFO [2024-04-10 11:26:23] 20240311_1526_2E_PAW10400_8d87241c: plotting length histogram
-INFO [2024-04-10 11:26:49] 20240311_1526_2E_PAW10400_8d87241c: plotting mean Q score histogram
-INFO [2024-04-10 11:27:09] 20240311_1526_2E_PAW10400_8d87241c: plotting flowcell yield over time
-INFO [2024-04-10 11:28:53] 20240311_1526_2E_PAW10400_8d87241c: plotting flowcell yield by read length
-INFO [2024-04-10 11:31:21] 20240311_1526_2E_PAW10400_8d87241c: plotting sequence length over time
-INFO [2024-04-10 11:45:08] 20240311_1526_2E_PAW10400_8d87241c: plotting Q score over time
-/var/spool/slurm/d/job4206134/slurm_script: line 24: 317926 Killed                  Rscript 02_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
+INFO [2025-07-02 23:55:14] Loading input file: /dcs04/hicks/data/sparthib/CK_D100-hRO_03112024/EP1-WT_hRO_2/20240311_1526_2E_PAW10400_8d87241c/sequencing_summary_PAW10400_8d87241c_296351b3.txt
+INFO [2025-07-02 23:56:10] PromethION flowcell detected
+INFO [2025-07-03 00:01:05] 20240311_1526_2E_PAW10400_8d87241c: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/EP1-WT_hRO_2/20240311_1526_2E_PAW10400_8d87241c
+INFO [2025-07-03 00:01:05] 20240311_1526_2E_PAW10400_8d87241c: summarising input file for flowcell
+INFO [2025-07-03 00:01:50] 20240311_1526_2E_PAW10400_8d87241c: plotting length histogram
+INFO [2025-07-03 00:02:27] 20240311_1526_2E_PAW10400_8d87241c: plotting mean Q score histogram
+INFO [2025-07-03 00:02:59] 20240311_1526_2E_PAW10400_8d87241c: plotting flowcell yield over time
+INFO [2025-07-03 00:05:33] 20240311_1526_2E_PAW10400_8d87241c: plotting flowcell yield by read length
+INFO [2025-07-03 00:09:04] 20240311_1526_2E_PAW10400_8d87241c: plotting sequence length over time
+INFO [2025-07-03 00:21:46] 20240311_1526_2E_PAW10400_8d87241c: plotting Q score over time
+INFO [2025-07-03 00:34:24] 20240311_1526_2E_PAW10400_8d87241c: plotting reads per hour
+INFO [2025-07-03 00:36:35] 20240311_1526_2E_PAW10400_8d87241c: plotting flowcell channels summary histograms
+INFO [2025-07-03 00:37:02] 20240311_1526_2E_PAW10400_8d87241c: plotting physical overview of output per channel
 **** Job ends ****
-2024-04-10 11:49:08
-slurmstepd: error: Detected 1 oom-kill event(s) in StepId=4206134.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
+2025-07-03 00:37:05
