@@ -1,20 +1,17 @@
-Unloading conda_R/4.4.x
 Loading conda_R/4.3
-
-The following have been reloaded with a version change:
-  1) conda/3-24.3.0 => conda/3-23.3.1     2) conda_R/4.4.x => conda_R/4.3
-
 To install colorout use: remotes::install_github("jalvesaq/colorout")
-INFO [2024-10-10 16:36:42] Loading input file: /dcs04/hicks/data/globus/casey/230912_Casey/hRGCs/20230912_1413_3A_PAQ21465_65091f99/sequencing_summary_PAQ21465_65091f99_a56abcf5.txt
-INFO [2024-10-10 16:37:12] PromethION flowcell detected
-INFO [2024-10-10 16:42:22] 20230912_1413_3A_PAQ21465_65091f99: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/hRGC/20230912_1413_3A_PAQ21465_65091f99
-INFO [2024-10-10 16:42:22] 20230912_1413_3A_PAQ21465_65091f99: summarising input file for flowcell
-INFO [2024-10-10 16:43:13] 20230912_1413_3A_PAQ21465_65091f99: plotting length histogram
-INFO [2024-10-10 16:43:52] 20230912_1413_3A_PAQ21465_65091f99: plotting mean Q score histogram
-INFO [2024-10-10 16:44:23] 20230912_1413_3A_PAQ21465_65091f99: plotting flowcell yield over time
-INFO [2024-10-10 16:47:02] 20230912_1413_3A_PAQ21465_65091f99: plotting flowcell yield by read length
-INFO [2024-10-10 16:51:02] 20230912_1413_3A_PAQ21465_65091f99: plotting sequence length over time
-/var/spool/slurm/d/job10085448/slurm_script: line 24: 3090404 Killed                  Rscript 02_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
+INFO [2025-07-02 23:55:13] Loading input file: /dcs04/hicks/data/globus/casey/230912_Casey/hRGCs/20230912_1413_3A_PAQ21465_65091f99/sequencing_summary_PAQ21465_65091f99_a56abcf5.txt
+INFO [2025-07-02 23:56:51] PromethION flowcell detected
+INFO [2025-07-03 00:03:50] 20230912_1413_3A_PAQ21465_65091f99: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/hRGC/20230912_1413_3A_PAQ21465_65091f99
+INFO [2025-07-03 00:03:50] 20230912_1413_3A_PAQ21465_65091f99: summarising input file for flowcell
+INFO [2025-07-03 00:04:56] 20230912_1413_3A_PAQ21465_65091f99: plotting length histogram
+INFO [2025-07-03 00:05:48] 20230912_1413_3A_PAQ21465_65091f99: plotting mean Q score histogram
+INFO [2025-07-03 00:06:31] 20230912_1413_3A_PAQ21465_65091f99: plotting flowcell yield over time
+INFO [2025-07-03 00:09:54] 20230912_1413_3A_PAQ21465_65091f99: plotting flowcell yield by read length
+INFO [2025-07-03 00:14:44] 20230912_1413_3A_PAQ21465_65091f99: plotting sequence length over time
+INFO [2025-07-03 00:30:39] 20230912_1413_3A_PAQ21465_65091f99: plotting Q score over time
+INFO [2025-07-03 00:45:43] 20230912_1413_3A_PAQ21465_65091f99: plotting reads per hour
+INFO [2025-07-03 00:48:27] 20230912_1413_3A_PAQ21465_65091f99: plotting flowcell channels summary histograms
+INFO [2025-07-03 00:49:04] 20230912_1413_3A_PAQ21465_65091f99: plotting physical overview of output per channel
 **** Job ends ****
-2024-10-10 16:55:19
-slurmstepd: error: Detected 1 oom-kill event(s) in StepId=10085448.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
+2025-07-03 00:49:09
