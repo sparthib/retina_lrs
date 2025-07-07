@@ -10,7 +10,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/haplotag.%a.txt
 #SBATCH -e logs/haplotag.%a.txt
-#SBATCH --array=1
+#SBATCH --array=1-11
 #SBATCH --time=7-00:00:00
 
 ### whatshap phases the variants we found using GATK with the help 
@@ -33,7 +33,7 @@ phased_vcf=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap
 phased_vcf_H9_EP1=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output/all_samples_H9_and_EP1_phased.vcf
 whatshap_output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_single_sample
 whatshap_output_dir_H9_EP1=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1
-mkdir -p $whatshap_output_dir_H9_EP1
+#mkdir -p $whatshap_output_dir_H9_EP1
 
 source activate whatshap-env
 
