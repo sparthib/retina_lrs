@@ -7,6 +7,8 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
+library(clusterProfiler)
+library(org.Hs.eg.db)
 
 samples <- c("H9-FT_1" , "H9-FT_2", "H9-hRGC_1", "H9-hRGC_2") 
 gene_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gene_counts_all_samples"
@@ -143,3 +145,52 @@ for (i in seq_len(ncol(contr))) {
     theme_minimal()
   dev.off()
 }
+
+ora_plot <- function(genelist, ont, output_plot_dir, analysis_type){
+  
+  ego <- enrichGO(gene          = names(genelist),
+                  OrgDb         = org.Hs.eg.db,
+                  keyType  = "ENSEMBL",
+                  ont           = ont,
+                  pAdjustMethod = "fdr",
+                  minGSSize     = 100,
+                  pvalueCutoff  = 0.01,
+                  qvalueCutoff  = 0.01,
+                  readable      = TRUE) 
+  ego <- enrichplot::pairwise_termsim(ego)
+  ego2 <- simplify(ego, cutoff=0.7, by="p.adjust", select_fun=min)
+  if(nrow(as.data.frame(ego2)) != 0){
+    write_tsv(as.data.frame(ego2), file.path(output_plot_dir,
+                                            paste0("simplified_ORA_ASE_DGE_genes_",analysis_type, ont, ".tsv")))
+    
+    
+    pdf(file.path(output_plot_dir, paste0("simplified_ORA_all_ASE_DGE_genes_",analysis_type, ont, ".pdf")))
+    print(dotplot(ego2, showCategory = 15))
+    dev.off()
+    
+  }
+}
+
+go_plot_dir <- file.path(dge_output_dir, "GO_plots")
+if (!dir.exists(go_plot_dir)) {
+  dir.create(go_plot_dir, recursive = TRUE)
+}
+
+
+for (i in seq_len(ncol(contr))) {
+  read_file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
+  tt <- read_tsv(read_file)
+  tt <- tt |> filter(significant == TRUE)
+  
+  # GO plot 
+  names <- tt |> pull(gene_id)
+  values <- tt |> pull(logFC) |> sort(decreasing = TRUE)
+  names(values) <- names
+  head(values)
+  
+  ora_plot(genelist = values, 
+           ont = "BP", 
+           output_plot_dir = go_plot_dir,
+           analysis_type = colnames(contr)[i])
+}
+
