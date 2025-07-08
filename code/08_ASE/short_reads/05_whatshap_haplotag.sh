@@ -30,7 +30,7 @@ ref_fa=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/rel
 vcf_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gvcf_ref_46
 genome_bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality
 phased_vcf=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output/all_samples_phased.vcf.gz
-phased_vcf_H9_EP1=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output/all_samples_H9_and_EP1_phased.vcf
+phased_vcf_H9_EP1=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output/all_samples_H9_and_EP1_phased.vcf.gz
 whatshap_output_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_single_sample
 whatshap_output_dir_H9_EP1=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1
 #mkdir -p $whatshap_output_dir_H9_EP1
@@ -41,9 +41,9 @@ source activate whatshap-env
 
 ## input vcf file needs to be indexed prior to running whatshap
 ## used bgzip from htslib module for zipping vcf and then tabix to index
-# ml load htslib
-# bgzip -c $phased_vcf_H9_EP1 > $phased_vcf_H9_EP1.gz
-# tabix -p vcf $phased_vcf_H9_EP1.gz
+ml load htslib
+bgzip -c $phased_vcf_H9_EP1 > $phased_vcf_H9_EP1.gz
+tabix -p vcf $phased_vcf_H9_EP1.gz
 
 samples=(H9-BRN3B_hRO_2 H9-BRN3B-RO H9-CRX_hRO_2 H9-CRX_ROs_D45 H9-FT_1 H9-FT_2 H9-hRGC_1 H9-hRGC_2 EP1-BRN3B-RO EP1-WT_hRO_2 EP1-WT_ROs_D45) 
 
