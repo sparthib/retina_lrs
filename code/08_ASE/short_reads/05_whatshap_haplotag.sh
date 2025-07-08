@@ -40,10 +40,10 @@ source activate whatshap-env
 # whatshap stats --gtf=$whatshap_output_dir/phased.gtf $whatshap_output_dir/phased.vcf
 
 ## input vcf file needs to be indexed prior to running whatshap
-# used bgzip from htslib module for zipping vcf and then tabix to index
-ml load htslib
-bgzip -c $phased_vcf_H9_EP1 > $phased_vcf_H9_EP1.gz
-tabix -p vcf $phased_vcf_H9_EP1.gz
+## used bgzip from htslib module for zipping vcf and then tabix to index
+# ml load htslib
+# bgzip -c $phased_vcf_H9_EP1 > $phased_vcf_H9_EP1.gz
+# tabix -p vcf $phased_vcf_H9_EP1.gz
 
 samples=(H9-BRN3B_hRO_2 H9-BRN3B-RO H9-CRX_hRO_2 H9-CRX_ROs_D45 H9-FT_1 H9-FT_2 H9-hRGC_1 H9-hRGC_2 EP1-BRN3B-RO EP1-WT_hRO_2 EP1-WT_ROs_D45) 
 
@@ -52,12 +52,11 @@ lr_sample=${samples[$SLURM_ARRAY_TASK_ID - 1]}
 echo "**** Haplotagging sample: $lr_sample ****"
 whatshap haplotag -o $whatshap_output_dir_H9_EP1/${lr_sample}.bam \
 --reference $ref_fa $phased_vcf_H9_EP1 $genome_bam_dir/${lr_sample}_primary_over_30_chr_only_sorted.bam \
---output-threads=19 --output-haplotag-list $whatshap_output_dir_H9_EP1/${lr_sample}_haplotypes.tsv
+--output-threads=19 --ignore-read-groups --output-haplotag-list $whatshap_output_dir_H9_EP1/${lr_sample}_haplotypes.tsv
 
 echo "**** Splitting haplotagged BAM into haplotypes ****"
 whatshap split --output-h1 $whatshap_output_dir_H9_EP1/${lr_sample}_h1.bam \
 --output-h2 $whatshap_output_dir_H9_EP1/${lr_sample}_h2.bam $whatshap_output_dir_H9_EP1/${lr_sample}.bam $whatshap_output_dir_H9_EP1/${lr_sample}_haplotypes.tsv
-
 
 
 echo "**** Job ends ****"
