@@ -9,7 +9,7 @@
 #SBATCH -o logs/gene_counts.%a.txt
 #SBATCH -e logs/gene_counts.%a.txt
 #SBATCH --time=7-00:00:00
-#SBATCH --array=1-8
+#SBATCH --array=1-7
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
@@ -21,7 +21,8 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 module load conda_R/4.3.x
-Rscript 06_gene_counts.R 
+# Rscript 06_gene_counts.R 
+Rscript 06b_gene_count_ROs.R 
 
 echo "**** Job ends ****"
 date
