@@ -52,7 +52,7 @@ lr_sample=${samples[$SLURM_ARRAY_TASK_ID - 1]}
 echo "**** Haplotagging sample: $lr_sample ****"
 whatshap haplotag -o $whatshap_output_dir_H9_EP1/${lr_sample}.bam \
 --reference $ref_fa $phased_vcf_H9_EP1 $genome_bam_dir/${lr_sample}_primary_over_30_chr_only_sorted.bam \
---output-threads=19 --ignore-read-groups --output-haplotag-list $whatshap_output_dir_H9_EP1/${lr_sample}_haplotypes.tsv
+--output-threads=19 --output-haplotag-list $whatshap_output_dir_H9_EP1/${lr_sample}_haplotypes.tsv
 
 echo "**** Splitting haplotagged BAM into haplotypes ****"
 whatshap split --output-h1 $whatshap_output_dir_H9_EP1/${lr_sample}_h1.bam \
