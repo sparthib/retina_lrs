@@ -10,7 +10,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -o logs/haplotag.%a.txt
 #SBATCH -e logs/haplotag.%a.txt
-#SBATCH --array=1
+#SBATCH --array=1-11
 #SBATCH --time=7-00:00:00
 
 ### whatshap phases the variants we found using GATK with the help 
