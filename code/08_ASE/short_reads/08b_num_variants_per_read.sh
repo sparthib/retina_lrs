@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH -p shared
-#SBATCH --mem=30G
+#SBATCH --mem=50G
 #SBATCH -c 20
 #SBATCH --job-name=num_var_per_read
 #SBATCH --mail-user=sparthi1@jhu.edu
