@@ -2,7 +2,7 @@
 library(VariantAnnotation)
 library(Rsamtools)
 library(GenomicAlignments)
-library(tidyr)
+library(readr)
 
 # Read in BAM and VCF
 
