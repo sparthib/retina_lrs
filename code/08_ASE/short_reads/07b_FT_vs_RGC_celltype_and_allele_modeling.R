@@ -47,13 +47,13 @@ annotLookup <- getBM(
   mart=mart,
   attributes=c( 
     "external_gene_name",
-    "gene_biotype", "ensembl_gene_id"),
+    "gene_biotype", "ensembl_gene_id","chromosome_name"),
   filter="ensembl_gene_id",
   values=rownames(counts_matrix),
   uniqueRows=TRUE)
 
 head(annotLookup)
-colnames(annotLookup) <- c("gene_name","gene_biotype", "gene_id")
+colnames(annotLookup) <- c("gene_name","gene_biotype", "gene_id", "chromosome_name")
 annotLookup <- annotLookup |> dplyr::distinct()
 annotLookup |> nrow()
 annotLookup <- annotLookup |> 
@@ -67,28 +67,45 @@ counts_matrix <- counts_matrix[rownames(counts_matrix)
 #FT vs RGC samples 
 counts_matrix <- counts_matrix[, 9:16]
 
+sample_names <- colnames(counts_matrix)
 groups <- c("H1_FT", "H2_FT", "H1_FT", "H2_FT",
             "H1_RGC", "H2_RGC", "H1_RGC", "H2_RGC")
+cell_type <- c("FT", "FT", "FT", "FT",
+               "RGC", "RGC", "RGC", "RGC")
+allele_type <- c("H1", "H2", "H1", "H2",
+                 "H1", "H2", "H1", "H2")
+
+column_data <- data.frame(
+  row.names = sample_names,
+  cell_type = cell_type,
+  allele_type = allele_type,
+  group = groups
+)
+
 
 library(edgeR)
 
+# y <- DGEList(counts = counts_matrix,
+#              samples = colnames(counts_matrix),
+#              group = groups,
+#              genes = rownames(counts_matrix))
+
 y <- DGEList(counts = counts_matrix,
-             samples = colnames(counts_matrix),
-             group = groups,
              genes = rownames(counts_matrix))
 
 y <- normLibSizes(y)
 
-design <- model.matrix(~ 0 + group,data = y$samples)
+design <- model.matrix(~ 0 + cell_type*allele_type)
 
-colnames(design) <- gsub("group", "", colnames(design))
-design
+# colnames(design) <- gsub("group", "", colnames(design))
+# design
 
 y <- estimateDisp(y, design, robust=TRUE)
 y$common.dispersion
 
 # Fit the model and create contrasts
 fit <- glmQLFit(y, design, robust=TRUE)
+lrt <- glmLRT(fit, coef=2) 
 
 contr <- makeContrasts(H1_FT_vs_H2_FT = H2_FT - H1_FT, 
                        H1_RGC_vs_H2_RGC = H2_RGC - H1_RGC, 
@@ -107,10 +124,10 @@ for (i in seq_len(ncol(contr))) {
   tt$gene_id <- gsub("\\..*", "", tt$genes)
   
   annotLookup <- getBM(mart=mart, 
-                       attributes=c("ensembl_gene_id", "external_gene_name", "gene_biotype"), 
+                       attributes=c("ensembl_gene_id", "external_gene_name", "gene_biotype", "chromosome_name"), 
                        filter="ensembl_gene_id", 
                        values=tt$gene_id, uniqueRows=TRUE)
-  colnames(annotLookup) <- c("gene_id", "gene_name", "gene_biotype")
+  colnames(annotLookup) <- c("gene_id", "gene_name", "gene_biotype", "chromosome_name")
   
   tt <- merge(tt, annotLookup, by="gene_id", all.x=TRUE)
   tt <- tt[order(tt$FDR), ]

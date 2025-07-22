@@ -311,3 +311,11 @@ consequences <- extractConsequenceEnrichment(
 )
 write_tsv(consequences, file = file.path(plots_dir,
                                          "Consequence_Enrichment.tsv"))
+
+
+write_tsv(SwitchList_part2$switchConsequence,
+           file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                                      method, comparison, "protein_coding", "switchConsequence.tsv")
+)
+
+

@@ -47,13 +47,13 @@ annotLookup <- getBM(
   mart=mart,
   attributes=c( 
     "external_gene_name",
-    "gene_biotype", "ensembl_gene_id"),
+    "gene_biotype", "ensembl_gene_id",  "chromosome_name"),
   filter="ensembl_gene_id",
   values=rownames(counts_matrix),
   uniqueRows=TRUE)
 
 head(annotLookup)
-colnames(annotLookup) <- c("gene_name","gene_biotype", "gene_id")
+colnames(annotLookup) <- c("gene_name","gene_biotype", "gene_id", "chromosome_name" )
 annotLookup <- annotLookup |> dplyr::distinct()
 annotLookup |> nrow()
 annotLookup <- annotLookup |> 
@@ -97,15 +97,10 @@ summary(is.de)
 
 # > summary(is.de)
 # -1*H1 1*H2
-# Down          614
-# NotSig      41063
-# Up            291
+# Down          368
+# NotSig      16537
+# Up            211
 
-# > summary(is.de) after only keeping PTC genes
-# -1*H1 1*H2
-# Down          371
-# NotSig      16122
-# Up            166
 
 # Extract the results
 tt <- topTags(qlf,n = Inf)
@@ -131,11 +126,13 @@ merged_results_sig$gene_biotype |> table()
 merged_results <- merged_results |>
   arrange(desc(abs(logFC)), FDR)
 
+dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/"
+
 write_tsv(counts_matrix,
-          file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_gene_counts.tsv"))
+          file = file.path(dge_output_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_gene_counts.tsv"))
 
 write_tsv(merged_results,
-          file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_results.tsv"))
+          file = file.path(dge_output_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_results.tsv"))
 
 
 head(merged_results, n = 10)
@@ -152,7 +149,7 @@ merged_results$label[1:20] <- merged_results$gene_name[1:20]
 merged_results$significant <- merged_results$FDR < 0.05 & abs(merged_results$logFC) > 1
 
 # Volcano plot
-pdf(file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_volcano_plot.pdf"),
+pdf(file = file.path(dge_output_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_volcano_plot.pdf"),
     width = 8, height = 6)
 
 ggplot(merged_results, aes(x = logFC, y = neg_log10_FDR)) +
@@ -186,6 +183,11 @@ qlf_ROs <- glmQLFTest(fit_ROs, contrast=contr_ROs)
 is.de_ROs <- decideTests(qlf_ROs, p.value=0.05)
 summary(is.de_ROs)
 
+# -1*H1 1*H2
+# Down          202
+# NotSig      16790
+# Up            124
+
 tt_ROs <- topTags(qlf_ROs, n = Inf)
 nrow(tt_ROs)
 head(tt_ROs)
@@ -210,10 +212,10 @@ merged_results <- merged_results |>
   arrange(desc(abs(logFC)), FDR)
 
 write_tsv(counts_matrix,
-          file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_gene_counts_ROs.tsv"))
+          file = file.path(dge_output_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_gene_counts_ROs.tsv"))
 
 write_tsv(merged_results,
-          file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_results_ROs.tsv"))
+          file = file.path(dge_output_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_results_ROs.tsv"))
 
 
 head(merged_results, n = 10)
@@ -229,7 +231,7 @@ merged_results$label[1:20] <- merged_results$gene_name[1:20]
 merged_results$significant <- merged_results$FDR < 0.05 & abs(merged_results$logFC) > 1
 
 # Volcano plot
-pdf(file = file.path(gene_counts_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_volcano_plot_ROs.pdf"),
+pdf(file = file.path(dge_output_dir, "based_on_all_samples_H9_DNA_Seq_data_PTC_DE_volcano_plot_ROs.pdf"),
     width = 8, height = 6)
 
 ggplot(merged_results, aes(x = logFC, y = neg_log10_FDR)) +
