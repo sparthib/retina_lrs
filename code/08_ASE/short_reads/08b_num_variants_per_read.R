@@ -43,12 +43,13 @@ variant_counts <- table(queryHits(hits))
 # Convert to numeric
 counts_per_read <- as.integer(variant_counts)
 
+plot_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/H9_EP1/variants_per_read"
+
 write_tsv(data.frame(
   read_id = names(counts_per_read),
   variants_overlapped = counts_per_read
-))
+), file.path(plot_output_dir, paste0(sample, "_variants_per_read.tsv")))
 
-plot_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/H9_EP1/variants_per_read"
 dir.create(plot_output_dir, showWarnings = FALSE)
 # Plot histogram
 pdf(file.path(plot_output_dir, paste0(sample,
