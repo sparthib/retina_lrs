@@ -48,7 +48,7 @@ dir.create(plot_output_dir, showWarnings = FALSE)
 pdf(file.path(plot_output_dir, paste0(sample,
                                       "variants_per_read_histogram.pdf")))
 hist(counts_per_read,
-     breaks = 30,
+     breaks = seq(0, max(counts_per_read), by = 1),
      main = "Number of Variants per Read",
      xlab = "Variants Overlapped",
      ylab = "Number of Reads",
