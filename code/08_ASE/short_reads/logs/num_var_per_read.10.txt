@@ -1,0 +1,129 @@
+**** Job starts ****
+2025-07-22 16:53:36
+**** JHPCE info ****
+User: sparthib
+Job id: 20111060
+Job name: num_var_per_read
+Node name: compute-124
+Array ID: 10
+Unloading conda_R/4.3.x
+Loading conda_R/4.3.x
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomeInfoDb
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: SummarizedExperiment
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: Rsamtools
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+
+Attaching package: ‘VariantAnnotation’
+
+The following object is masked from ‘package:base’:
+
+    tabulate
+
+
+Attaching package: ‘tidyr’
+
+The following object is masked from ‘package:VariantAnnotation’:
+
+    expand
+
+The following object is masked from ‘package:S4Vectors’:
+
+    expand
+
+ [1] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam"
+ [2] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam"   
+ [3] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam"  
+ [4] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam"
+ [5] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-FT_1_primary_over_30_chr_only_sorted.bam"       
+ [6] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-FT_2_primary_over_30_chr_only_sorted.bam"       
+ [7] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-hRGC_1_primary_over_30_chr_only_sorted.bam"     
+ [8] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-hRGC_2_primary_over_30_chr_only_sorted.bam"     
+ [9] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-BRN3B-RO_primary_over_30_chr_only_sorted.bam"  
+[10] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_hRO_2_primary_over_30_chr_only_sorted.bam"  
+[11] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_ROs_D45_primary_over_30_chr_only_sorted.bam"
+Error in write_tsv(data.frame(read_id = names(counts_per_read), variants_overlapped = counts_per_read),  : 
+  could not find function "write_tsv"
+Execution halted
+**** Job ends ****
+Tue Jul 22 04:58:01 PM EDT 2025
