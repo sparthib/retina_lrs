@@ -1,4 +1,3 @@
-
 library(VariantAnnotation)
 library(Rsamtools)
 library(GenomicAlignments)
@@ -46,8 +45,8 @@ counts_per_read <- as.integer(variant_counts)
 plot_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/H9_EP1/variants_per_read"
 
 write_tsv(data.frame(
-  read_id = names(counts_per_read),
-  variants_overlapped = counts_per_read
+  read_id = names(table(counts_per_read)),
+  variants_overlapped = table(counts_per_read)
 ), file.path(plot_output_dir, paste0(sample, "_variants_per_read.tsv")))
 
 dir.create(plot_output_dir, showWarnings = FALSE)
