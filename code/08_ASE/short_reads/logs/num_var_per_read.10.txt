@@ -1,13 +1,13 @@
 **** Job starts ****
-2025-07-22 16:53:36
+2025-07-22 17:48:06
 **** JHPCE info ****
 User: sparthib
-Job id: 20111060
+Job id: 20111245
 Job name: num_var_per_read
-Node name: compute-124
+Node name: compute-127
 Array ID: 10
-Unloading conda_R/4.3.x
 Loading conda_R/4.3.x
+To install colorout use: remotes::install_github("jalvesaq/colorout")
 Loading required package: BiocGenerics
 
 Attaching package: ‘BiocGenerics’
@@ -100,17 +100,6 @@ The following object is masked from ‘package:base’:
 
     tabulate
 
-
-Attaching package: ‘tidyr’
-
-The following object is masked from ‘package:VariantAnnotation’:
-
-    expand
-
-The following object is masked from ‘package:S4Vectors’:
-
-    expand
-
  [1] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam"
  [2] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam"   
  [3] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam"  
@@ -122,8 +111,7 @@ The following object is masked from ‘package:S4Vectors’:
  [9] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-BRN3B-RO_primary_over_30_chr_only_sorted.bam"  
 [10] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_hRO_2_primary_over_30_chr_only_sorted.bam"  
 [11] "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/EP1-WT_ROs_D45_primary_over_30_chr_only_sorted.bam"
-Error in write_tsv(data.frame(read_id = names(counts_per_read), variants_overlapped = counts_per_read),  : 
-  could not find function "write_tsv"
-Execution halted
+null device 
+          1 
 **** Job ends ****
-Tue Jul 22 04:58:01 PM EDT 2025
+Tue Jul 22 05:54:43 PM EDT 2025
