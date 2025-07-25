@@ -9,7 +9,7 @@
 #SBATCH -o logs/gene_counts.%a.txt
 #SBATCH -e logs/gene_counts.%a.txt
 #SBATCH --time=7-00:00:00
-#SBATCH --array=1-7
+#SBATCH --array=1-11
 
 echo "**** Job starts ****"
 date +"%Y-%m-%d %T"
