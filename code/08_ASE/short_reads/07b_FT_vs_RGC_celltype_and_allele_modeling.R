@@ -1,7 +1,3 @@
-library(GenomicAlignments)
-library(GenomicFeatures)
-library(rtracklayer)
-library(Rsubread)
 library(biomaRt)
 library(readr)
 library(dplyr)
@@ -11,7 +7,7 @@ library(clusterProfiler)
 library(org.Hs.eg.db)
 
 samples <- c("H9-FT_1" , "H9-FT_2", "H9-hRGC_1", "H9-hRGC_2") 
-gene_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gene_counts_all_samples"
+gene_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_gene_counts_all_samples"
 
 # load all counts matrix in the directory
 files <- list.files(gene_counts_dir,
@@ -65,9 +61,10 @@ counts_matrix <- counts_matrix[rownames(counts_matrix)
                                %in% annotLookup$gene_id, ]
 
 #FT vs RGC samples 
-counts_matrix <- counts_matrix[, 9:16]
+counts_matrix <- counts_matrix[, 15:22]
 
 sample_names <- colnames(counts_matrix)
+
 groups <- c("H1_FT", "H2_FT", "H1_FT", "H2_FT",
             "H1_RGC", "H2_RGC", "H1_RGC", "H2_RGC")
 cell_type <- c("FT", "FT", "FT", "FT",
@@ -75,45 +72,36 @@ cell_type <- c("FT", "FT", "FT", "FT",
 allele_type <- c("H1", "H2", "H1", "H2",
                  "H1", "H2", "H1", "H2")
 
-column_data <- data.frame(
-  row.names = sample_names,
-  cell_type = cell_type,
-  allele_type = allele_type,
-  group = groups
-)
-
-
 library(edgeR)
 
-# y <- DGEList(counts = counts_matrix,
-#              samples = colnames(counts_matrix),
-#              group = groups,
-#              genes = rownames(counts_matrix))
-
 y <- DGEList(counts = counts_matrix,
-             genes = rownames(counts_matrix))
+             samples = colnames(counts_matrix),
+             genes = rownames(counts_matrix),
+             group = groups)
 
 y <- normLibSizes(y)
 
-design <- model.matrix(~ 0 + cell_type*allele_type)
+design <- model.matrix(~ 0 + group, 
+                       data = y$samples)
 
-# colnames(design) <- gsub("group", "", colnames(design))
-# design
+colnames(design) <- gsub("group", "", colnames(design))
+design
 
 y <- estimateDisp(y, design, robust=TRUE)
 y$common.dispersion
-
-# Fit the model and create contrasts
-fit <- glmQLFit(y, design, robust=TRUE)
-lrt <- glmLRT(fit, coef=2) 
+# 0.02222802
 
 contr <- makeContrasts(H1_FT_vs_H2_FT = H2_FT - H1_FT, 
                        H1_RGC_vs_H2_RGC = H2_RGC - H1_RGC, 
                        H1_FT_vs_H1_RGC = H1_RGC - H1_FT,
                        H2_FT_vs_H2_RGC = H2_RGC - H2_FT,
                        levels=design)
+fit <- glmQLFit(y, design, robust=TRUE)
 
-dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/"
+dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/FT_vs_RGC"
+if (!dir.exists(dge_output_dir)) {
+  dir.create(dge_output_dir, recursive = TRUE)
+}
 
 
 for (i in seq_len(ncol(contr))) {
@@ -140,15 +128,15 @@ for (i in seq_len(ncol(contr))) {
     arrange(desc(abs(logFC)), FDR)
   tt$label <- NA
   tt$label[1:20] <- tt$gene_name[1:20]
-  file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
+  file <- file.path(dge_output_dir, paste0( colnames(contr)[i], "_DGEs.tsv"))
   write_tsv(tt, file)
 }
 
-i = 4
+
 for (i in seq_len(ncol(contr))) {
-  read_file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
+  read_file <- file.path(dge_output_dir, paste0( colnames(contr)[i], "_DGEs.tsv"))
   tt <- read_tsv(read_file)
-  pdf(file = paste0(dge_output_dir, colnames(contr)[i], "_volcano_plot.pdf"),
+  pdf(file = file.path(dge_output_dir, paste0(colnames(contr)[i], "_volcano_plot.pdf")),
       width = 8, height = 6)
   ggplot(tt, aes(x = logFC, y = neg_log10_FDR)) +
     geom_point(aes(color = significant), size = 1.5) +  # TRUE/FALSE coloring
@@ -163,30 +151,29 @@ for (i in seq_len(ncol(contr))) {
   dev.off()
 }
 
-ora_plot <- function(genelist, ont, output_plot_dir, analysis_type){
+ora_plot <- function(genelist, output_plot_dir, analysis_type){
   
-  ego <- enrichGO(gene          = names(genelist),
+  ego <- enrichGO(gene          = names,
                   OrgDb         = org.Hs.eg.db,
                   keyType  = "ENSEMBL",
-                  ont           = ont,
+                  ont           = "BP",
                   pAdjustMethod = "fdr",
-                  minGSSize     = 100,
-                  pvalueCutoff  = 0.01,
-                  qvalueCutoff  = 0.01,
                   readable      = TRUE) 
-  ego <- enrichplot::pairwise_termsim(ego)
-  ego2 <- simplify(ego, cutoff=0.7, by="p.adjust", select_fun=min)
-  if(nrow(as.data.frame(ego2)) != 0){
-    write_tsv(as.data.frame(ego2), file.path(output_plot_dir,
-                                            paste0("simplified_ORA_ASE_DGE_genes_",analysis_type, ont, ".tsv")))
+  if(nrow(as.data.frame(ego)) != 0){
+    ego <- enrichplot::pairwise_termsim(ego)
+    # ego2 <- simplify(ego, cutoff=0.7, by="p.adjust", select_fun=min)
+    write_tsv(as.data.frame(ego), file.path(output_plot_dir,
+                                            paste0("simplified_ORA_ASE_DGE_genes_",analysis_type, "BP", ".tsv")))
     
     
-    pdf(file.path(output_plot_dir, paste0("simplified_ORA_all_ASE_DGE_genes_",analysis_type, ont, ".pdf")))
-    print(dotplot(ego2, showCategory = 15))
+    pdf(file.path(output_plot_dir, paste0("simplified_ORA_all_ASE_DGE_genes_",analysis_type, "BP", ".pdf")))
+    print(dotplot(ego, showCategory = 15))
     dev.off()
     
-  }
+  } else {
+    message("No significant GO terms found for ", analysis_type, " in ", "BP")}
 }
+
 
 go_plot_dir <- file.path(dge_output_dir, "GO_plots")
 if (!dir.exists(go_plot_dir)) {
@@ -195,7 +182,7 @@ if (!dir.exists(go_plot_dir)) {
 
 
 for (i in seq_len(ncol(contr))) {
-  read_file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
+  read_file <- file.path(dge_output_dir, paste0(colnames(contr)[i], "_DGEs.tsv"))
   tt <- read_tsv(read_file)
   tt <- tt |> filter(significant == TRUE)
   
@@ -203,10 +190,8 @@ for (i in seq_len(ncol(contr))) {
   names <- tt |> pull(gene_id)
   values <- tt |> pull(logFC) |> sort(decreasing = TRUE)
   names(values) <- names
-  head(values)
-  
-  ora_plot(genelist = values, 
-           ont = "BP", 
+
+  ora_plot(genelist = names, 
            output_plot_dir = go_plot_dir,
            analysis_type = colnames(contr)[i])
 }

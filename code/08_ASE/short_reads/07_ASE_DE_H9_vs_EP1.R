@@ -264,8 +264,6 @@ ggplot(merged_results_cell_line, aes(x = logFC, y = neg_log10_FDR)) +
   theme_minimal()
 dev.off()
 
-
-
 # GO plot 
 tt <- merged_results_allele
 tt <- tt |> filter(significant == TRUE)
@@ -288,97 +286,3 @@ head(values)
 ora_plot(genelist = names, 
          output_plot_dir = go_plot_dir,
          analysis_type = "H9_vs_EP1")
-
-
-##### H9 vs EP1 and H1 vs H2 ####
-dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/H9_vs_EP1/"
-dir.create(dge_output_dir, showWarnings = FALSE)
-
-
-contr <- makeContrasts( H9_H1_vs_H2 = H9_H2 - H9_H1, 
-                        EP1_H1_vs_H2 = EP1_H2 - EP1_H1, 
-                        H2_H9_vs_EP1 =  EP1_H2- H9_H2 ,
-                        H1_H9_vs_EP1 = EP1_H1- H9_H1 ,
-                        levels=design)
-
-for (i in seq_len(ncol(contr))) {
-  qlf <- glmQLFTest(fit, contrast = contr[,i])
-  is.de <- decideTests(qlf, p.value=0.05)
-  
-  tt <- topTags(qlf, n = Inf)$table
-  tt$gene_id <- gsub("\\..*", "", tt$genes)
-  
-  annotLookup <- getBM(mart=mart, 
-                       attributes=c("ensembl_gene_id", "external_gene_name", "gene_biotype", "chromosome_name"), 
-                       filter="ensembl_gene_id", 
-                       values=tt$gene_id, uniqueRows=TRUE)
-  colnames(annotLookup) <- c("gene_id", "gene_name", "gene_biotype", "chromosome_name")
-  
-  tt <- merge(tt, annotLookup, by="gene_id", all.x=TRUE)
-  tt <- tt[order(tt$FDR), ]
-  
-  tt$condition_1 <- names(contr[,i])[contr[,i] == -1]
-  tt$condition_2 <- names(contr[,i])[contr[,i] == 1]
-  tt$neg_log10_FDR <- -log10(tt$FDR)
-  tt$significant <- tt$FDR < 0.05 & abs(tt$logFC) > 1
-  tt <- tt |>
-    arrange(desc(abs(logFC)), FDR)
-  tt$label <- NA
-  tt$label[1:20] <- tt$gene_name[1:20]
-  file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
-  write_tsv(tt, file)
-}
-
-                       
-for (i in seq_len(ncol(contr))) {
-  read_file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
-  tt <- read_tsv(read_file)
-  pdf(file = paste0(dge_output_dir, colnames(contr)[i], "_volcano_plot.pdf"),
-      width = 8, height = 6)
-  
-  print(
-    ggplot(tt, aes(x = logFC, y = neg_log10_FDR)) +
-      geom_point(aes(color = significant), size = 1.5) +
-      geom_text_repel(aes(label = label), size = 2.5, max.overlaps = 20, na.rm = TRUE) +
-      geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "gray") +
-      geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "red") +
-      scale_color_manual(values = c("gray", "red")) +
-      labs(title = colnames(contr)[i],
-           x = "log2 Fold Change",
-           y = "-log10 FDR") +
-      theme_minimal()
-  )
-  
-  dev.off()
-}
-
-
-
-
-
-for (i in c(1,2,3,4)) {
-  read_file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
-  tt <- read_tsv(read_file)
-  tt <- tt |> filter(significant == TRUE)
-  # check for NAs in gene_id
-  if (any(is.na(tt$gene_id))) {
-    message("NAs found in gene_id column of the DGE results.")
-  }
-  
-  # GO plot 
-  names <- tt |> pull(gene_id)
-  values <- tt |> pull(logFC) |> sort(decreasing = TRUE)
-  names(values) <- names
-  head(values)
-  
-  ora_plot(genelist = names, 
-           output_plot_dir = go_plot_dir,
-           analysis_type = colnames(contr)[i])
-}
-
-
-
-
-
-
-
