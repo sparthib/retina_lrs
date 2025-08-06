@@ -44,14 +44,16 @@ source activate whatshap-env
 # $genome_bam_dir/H9-hRGC_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-hRGC_2_primary_over_30_chr_only_sorted.bam 
 
 #uncomment below if you want to phase all samples in the VCF
-whatshap phase -o $phased_vcf_dir/all_samples_H9_and_EP1_phased.vcf --reference=$ref_fa --ignore-read-groups $vcf_dir/all_samples_variants.vcf.gz \
-$genome_bam_dir/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam \
-$genome_bam_dir/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam \
-$genome_bam_dir/H9-FT_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-FT_2_primary_over_30_chr_only_sorted.bam \
-$genome_bam_dir/H9-hRGC_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-hRGC_2_primary_over_30_chr_only_sorted.bam \
-$genome_bam_dir/EP1-BRN3B-RO_primary_over_30_chr_only_sorted.bam $genome_bam_dir/EP1-WT_hRO_2_primary_over_30_chr_only_sorted.bam \
-$genome_bam_dir/EP1-WT_ROs_D45_primary_over_30_chr_only_sorted.bam 
+# whatshap phase -o $phased_vcf_dir/all_samples_H9_and_EP1_phased.vcf --reference=$ref_fa --ignore-read-groups $vcf_dir/all_samples_variants.vcf.gz \
+# $genome_bam_dir/H9-BRN3B_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-BRN3B-RO_primary_over_30_chr_only_sorted.bam \
+# $genome_bam_dir/H9-CRX_hRO_2_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-CRX_ROs_D45_primary_over_30_chr_only_sorted.bam \
+# $genome_bam_dir/H9-FT_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-FT_2_primary_over_30_chr_only_sorted.bam \
+# $genome_bam_dir/H9-hRGC_1_primary_over_30_chr_only_sorted.bam $genome_bam_dir/H9-hRGC_2_primary_over_30_chr_only_sorted.bam \
+# $genome_bam_dir/EP1-BRN3B-RO_primary_over_30_chr_only_sorted.bam $genome_bam_dir/EP1-WT_hRO_2_primary_over_30_chr_only_sorted.bam \
+# $genome_bam_dir/EP1-WT_ROs_D45_primary_over_30_chr_only_sorted.bam 
 
+# run whatshap stats 
+whatshap stats  $phased_vcf_dir/all_samples_H9_and_EP1_phased.vcf > $phased_vcf_dir/all_samples_H9_and_EP1_phased.stats
 
 
 echo "**** Job ends ****"
