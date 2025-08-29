@@ -1,0 +1,308 @@
+=== haplotag.10.txt ===
+**** Haplotagging sample: EP1-WT_hRO_2 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                   8169747
+Alignments that could be tagged:              1962033
+Alignments spanning multiple phase sets:            1
+Finished in 660.1 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 8169747
+Total number of haplo-tagged reads: 1962033
+Total number of untagged reads: 6207714
+
+== SUMMARY ==
+Total reads processed: 8169747
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 989807
+Number of output reads haplotype 2: 972226
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 6207714
+Time for processing haplotag list: 4.374 sec
+Time for total initial setup: 4.564 sec
+Time for iterating input reads: 503.478 sec
+Total run time: 508.128 sec
+**** Job ends ****
+2025-08-28 23:40:05
+
+=== haplotag.11.txt ===
+**** Haplotagging sample: EP1-WT_ROs_D45 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                  13964222
+Alignments that could be tagged:              3655772
+Alignments spanning multiple phase sets:            2
+Finished in 1133.6 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 13964222
+Total number of haplo-tagged reads: 3655772
+Total number of untagged reads: 10308450
+
+== SUMMARY ==
+Total reads processed: 13964222
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 1842023
+Number of output reads haplotype 2: 1813749
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 10308450
+Time for processing haplotag list: 8.826 sec
+Time for total initial setup: 9.023 sec
+Time for iterating input reads: 1123.538 sec
+Total run time: 1132.831 sec
+**** Job ends ****
+2025-08-28 23:58:28
+
+=== haplotag.1.txt ===
+**** Haplotagging sample: H9-BRN3B_hRO_2 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                   9272631
+Alignments that could be tagged:              2355028
+Alignments spanning multiple phase sets:           10
+Finished in 709.2 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 9272631
+Total number of haplo-tagged reads: 2355028
+Total number of untagged reads: 6917603
+
+== SUMMARY ==
+Total reads processed: 9272631
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 1187941
+Number of output reads haplotype 2: 1167087
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 6917603
+Time for processing haplotag list: 3.055 sec
+Time for total initial setup: 3.406 sec
+Time for iterating input reads: 564.449 sec
+Total run time: 568.148 sec
+**** Job ends ****
+2025-08-28 23:41:56
+
+=== haplotag.2.txt ===
+**** Haplotagging sample: H9-BRN3B-RO ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                  19107701
+Alignments that could be tagged:              5018247
+Alignments spanning multiple phase sets:           71
+Finished in 1262.7 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 19107701
+Total number of haplo-tagged reads: 5018247
+Total number of untagged reads: 14089454
+
+== SUMMARY ==
+Total reads processed: 19107701
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 2566365
+Number of output reads haplotype 2: 2451882
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 14089454
+Time for processing haplotag list: 9.996 sec
+Time for total initial setup: 10.243 sec
+Time for iterating input reads: 1140.802 sec
+Total run time: 1151.093 sec
+**** Job ends ****
+2025-08-29 00:00:59
+
+=== haplotag.3.txt ===
+**** Haplotagging sample: H9-CRX_hRO_2 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                   8385488
+Alignments that could be tagged:              2164521
+Alignments spanning multiple phase sets:            6
+Finished in 780.9 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 8385488
+Total number of haplo-tagged reads: 2164521
+Total number of untagged reads: 6220967
+
+== SUMMARY ==
+Total reads processed: 8385488
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 1087906
+Number of output reads haplotype 2: 1076615
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 6220967
+Time for processing haplotag list: 5.012 sec
+Time for total initial setup: 5.786 sec
+Time for iterating input reads: 614.415 sec
+Total run time: 620.521 sec
+**** Job ends ****
+2025-08-28 23:44:14
+
+=== haplotag.4.txt ===
+**** Haplotagging sample: H9-CRX_ROs_D45 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                  12980734
+Alignments that could be tagged:              3144401
+Alignments spanning multiple phase sets:            1
+Finished in 1026.0 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 12980734
+Total number of haplo-tagged reads: 3144401
+Total number of untagged reads: 9836333
+
+== SUMMARY ==
+Total reads processed: 12980734
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 1575521
+Number of output reads haplotype 2: 1568880
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 9836333
+Time for processing haplotag list: 7.554 sec
+Time for total initial setup: 7.657 sec
+Time for iterating input reads: 874.301 sec
+Total run time: 882.186 sec
+**** Job ends ****
+2025-08-28 23:52:47
+
+=== haplotag.5.txt ===
+**** Haplotagging sample: H9-FT_1 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                   8664652
+Alignments that could be tagged:              2518291
+Alignments spanning multiple phase sets:            6
+Finished in 1060.7 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 8664652
+Total number of haplo-tagged reads: 2518291
+Total number of untagged reads: 6146361
+
+== SUMMARY ==
+Total reads processed: 8664652
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 1274684
+Number of output reads haplotype 2: 1243607
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 6146361
+Time for processing haplotag list: 6.01 sec
+Time for total initial setup: 6.137 sec
+Time for iterating input reads: 943.046 sec
+Total run time: 949.355 sec
+**** Job ends ****
+2025-08-28 23:54:41
+
+=== haplotag.6.txt ===
+**** Haplotagging sample: H9-FT_2 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                   8184333
+Alignments that could be tagged:              2310135
+Alignments spanning multiple phase sets:            8
+Finished in 860.6 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 8184333
+Total number of haplo-tagged reads: 2310135
+Total number of untagged reads: 5874198
+
+== SUMMARY ==
+Total reads processed: 8184333
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 1175247
+Number of output reads haplotype 2: 1134888
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 5874198
+Time for processing haplotag list: 4.868 sec
+Time for total initial setup: 5.043 sec
+Time for iterating input reads: 744.755 sec
+Total run time: 749.922 sec
+**** Job ends ****
+2025-08-28 23:47:40
+
+=== haplotag.7.txt ===
+**** Haplotagging sample: H9-hRGC_1 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                   3425980
+Alignments that could be tagged:               925082
+Alignments spanning multiple phase sets:            6
+Finished in 409.9 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 3425980
+Total number of haplo-tagged reads: 925082
+Total number of untagged reads: 2500898
+
+== SUMMARY ==
+Total reads processed: 3425980
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 468486
+Number of output reads haplotype 2: 456596
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 2500898
+Time for processing haplotag list: 1.75 sec
+Time for total initial setup: 1.819 sec
+Time for iterating input reads: 258.341 sec
+Total run time: 260.453 sec
+**** Job ends ****
+2025-08-28 23:31:43
+
+=== haplotag.8.txt ===
+**** Haplotagging sample: H9-hRGC_2 ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                  12780770
+Alignments that could be tagged:              3612433
+Alignments spanning multiple phase sets:           14
+Finished in 1117.7 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 12780770
+Total number of haplo-tagged reads: 3612433
+Total number of untagged reads: 9168337
+
+== SUMMARY ==
+Total reads processed: 12780770
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 1832933
+Number of output reads haplotype 2: 1779500
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 9168337
+Time for processing haplotag list: 8.29 sec
+Time for total initial setup: 8.611 sec
+Time for iterating input reads: 1060.821 sec
+Total run time: 1069.598 sec
+**** Job ends ****
+2025-08-28 23:57:09
+
+=== haplotag.9.txt ===
+**** Haplotagging sample: EP1-BRN3B-RO ****
+Found 0 reads covering 0 variants
+
+== SUMMARY ==
+Total alignments processed:                  18288891
+Alignments that could be tagged:              4822754
+Alignments spanning multiple phase sets:           25
+Finished in 1427.5 s
+**** Splitting haplotagged BAM into haplotypes ****
+Total number of reads in haplotag list: 18288891
+Total number of haplo-tagged reads: 4822754
+Total number of untagged reads: 13466137
+
+== SUMMARY ==
+Total reads processed: 18288891
+Number of output reads "untagged": 0
+Number of output reads haplotype 1: 2473867
+Number of output reads haplotype 2: 2348887
+Number of unknown (dropped) reads: 0
+Number of skipped reads (per user request): 13466137
+Time for processing haplotag list: 12.703 sec
+Time for total initial setup: 12.917 sec
+Time for iterating input reads: 1277.692 sec
+Total run time: 1290.748 sec
+**** Job ends ****
+2025-08-29 00:06:05
+
