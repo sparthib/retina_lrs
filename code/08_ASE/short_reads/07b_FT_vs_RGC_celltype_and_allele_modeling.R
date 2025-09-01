@@ -81,7 +81,7 @@ y <- DGEList(counts = counts_matrix,
 
 y <- normLibSizes(y)
 
-design <- model.matrix(~ 0 + group, 
+design <- model.matrix(~ 0 + allele*stage + cell_line*stage + allele*cell_line, 
                        data = y$samples)
 
 colnames(design) <- gsub("group", "", colnames(design))
@@ -89,7 +89,7 @@ design
 
 y <- estimateDisp(y, design, robust=TRUE)
 y$common.dispersion
-# 0.02222802
+
 
 contr <- makeContrasts(H1_FT_vs_H2_FT = H2_FT - H1_FT, 
                        H1_RGC_vs_H2_RGC = H2_RGC - H1_RGC, 

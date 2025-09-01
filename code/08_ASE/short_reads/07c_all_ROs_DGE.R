@@ -1,7 +1,3 @@
-library(GenomicAlignments)
-library(GenomicFeatures)
-library(rtracklayer)
-library(Rsubread)
 library(biomaRt)
 library(readr)
 library(dplyr)
@@ -9,10 +5,11 @@ library(ggplot2)
 library(ggrepel)
 library(clusterProfiler)
 library(org.Hs.eg.db)
+library(edgeR)
 
 samples <- c("H9-BRN3B_hRO_2", "H9-BRN3B-RO", "H9-CRX_hRO_2", "H9-CRX_ROs_D45",
              "EP1-WT_ROs_D45", "EP1-BRN3B-RO", "EP1-WT_hRO_2") 
-gene_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/gene_counts_RO_samples"
+gene_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_gene_counts_all_samples"
 
 # load all counts matrix in the directory
 files <- list.files(gene_counts_dir,
@@ -35,13 +32,18 @@ counts_matrix <- counts_matrix[rowSums(counts_matrix) > 0, ]
 
 colnames(counts_matrix) <- gsub(".bam", "", colnames(counts_matrix))
 
-
 #remove version number from row names
 rownames(counts_matrix) <- gsub("\\..*", "", rownames(counts_matrix))
 
 # only keep PTC genes
+mart <- useEnsembl(biomart = "ensembl")
+datasets <- listDatasets(mart)
+datasets[grep("human|sapiens", 
+              datasets$description,
+              ignore.case = TRUE), ]
 
-mart <- useEnsembl(biomart = "ensembl", 
+# Use "genes" as the biomart name
+mart <- useEnsembl(biomart = "genes", 
                    dataset = "hsapiens_gene_ensembl")
 
 annotLookup <- getBM(
@@ -65,16 +67,16 @@ annotLookup |> nrow()
 counts_matrix <- counts_matrix[rownames(counts_matrix) 
                                %in% annotLookup$gene_id, ]
 
-# counts_matrix |> colnames()
-# "EP1.BRN3B.RO_h1"   "EP1.BRN3B.RO_h2"  
-#"EP1.WT_hRO_2_h1"   [4] "EP1.WT_hRO_2_h2" 
-#"EP1.WT_ROs_D45_h1" "EP1.WT_ROs_D45_h2"
-# "H9.BRN3B_hRO_2_h1" "H9.BRN3B_hRO_2_h2" 
-#"H9.BRN3B.RO_h1"    "H9.BRN3B.RO_h2"    
-# "H9.CRX_hRO_2_h1"   "H9.CRX_hRO_2_h2"  
-#  "H9.CRX_ROs_D45_h1" "H9.CRX_ROs_D45_h2"
+counts_matrix <- counts_matrix[, c(1:14)]
 
-groups <- c("H1_Stage3", "H2_Stage_3", 
+
+cell_lines <- c("EP1", "EP1", "EP1",
+                "EP1", "EP1", "EP1", 
+               "H9", "H9", "H9", 
+               "H9", "H9", "H9",
+               "H9", "H9")
+
+groups <- c("H1_Stage3", "H2_Stage3", 
             "H1_Stage2", "H2_Stage2",
             "H1_Stage1", "H2_Stage1",
             "H1_Stage2", "H2_Stage2",
@@ -86,6 +88,7 @@ alleles <- c("H1", "H2", "H1", "H2",
             "H1", "H2", "H1", "H2",
             "H1", "H2", "H1", "H2",
             "H1", "H2")
+
 stages <- c("Stage3", "Stage3", 
             "Stage2", "Stage2",
             "Stage1", "Stage1", 
@@ -94,126 +97,68 @@ stages <- c("Stage3", "Stage3",
             "Stage2", "Stage2",
             "Stage1", "Stage1")
 
-design <- data.frame(
+# Create a proper samples data frame
+samples_df <- data.frame(
   sample = colnames(counts_matrix),
-  group = groups,
+  cell_line = factor(cell_lines, levels = c("H9", "EP1")),
+  group = factor(groups),
   allele = factor(alleles, levels = c("H1", "H2")),
-  stage = factor(stages, levels = c("Stage1", "Stage2", "Stage3"))
+  stage = factor(stages, levels = c("Stage1", "Stage2", "Stage3")),
+  genes = rownames(counts_matrix)
 )
 
-design <- model.matrix(~ allele*stage, data = design)
+# Create DGEList with proper structure
+y <- DGEList(
+  counts = counts_matrix,
+  samples = samples_df
+)
 
-# > colnames(design)
-# [1] "(Intercept)"          "alleleH2"             "stageStage2"         
-# [4] "stageStage3"          "alleleH2:stageStage2" "alleleH2:stageStage3"
-
-#coefficient 2: H2 vs. H1 at stage 1 
-#coefficient 3: Stage 2 vs. Stage 1
-#coefficient 4: Stage 3 vs. Stage 1
-#coefficient 5: (H2 - H1 at Stage2) - (H2 - H1 at Stage1)
-#coefficient 6: (H2 - H1 at Stage3) - (H2 - H1 at Stage2)
-
-
+# Now create the design matrix
+design <- model.matrix(~ allele*stage + cell_line*stage + allele*cell_line, 
+                                      data = y$samples)
+y <- normLibSizes(y)
 y <- estimateDisp(y, design)
+
 fit <- glmQLFit(y, design)
 
-qlf_H1_vs_H2_stage_1 <- glmQLFTest(fit, coef=2) # H2 vs H1 across all samples 
-qlf_Stage_2_vs_Stage_1_H1 <- glmQLFTest(fit, coef=3) # Stage 2 vs Stage 1 across all samples
-qlf_Stage_3_vs_Stage_1_H1 <- glmQLFTest(fit, coef=4) # Stage 3 vs Stage 1 across all samples
-qlf_H2_vs_H1_stage2 <- glmQLFTest(fit, coef=5) # (H2 - H1 at Stage2) - (H2 - H1 at Stage1)
-qlf_H2_vs_H1_stage3 <- glmQLFTest(fit, coef=6) # (H2 - H1 at Stage3) - (H2 - H1 at Stage2)
-# Get top tags for each comparison
-top_H1_vs_H2_stage_1 <- topTags(qlf_H1_vs_H2_stage_1, n = Inf)$table
-top_Stage_2_vs_Stage_1_H1 <- topTags(qlf_Stage_2_vs_Stage_1_H1, n = Inf)$table
-top_Stage_3_vs_Stage_1_H1 <- topTags(qlf_Stage_3_vs_Stage_1_H1, n = Inf)$table
-top_H2_vs_H1_stage2 <- topTags(qlf_H2_vs_H1_stage2, n = Inf)$table
-top_H2_vs_H1_stage3 <- topTags(qlf_H2_vs_H1_stage3, n = Inf)$table
 
 dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/ROs/"
 dir.create(dge_output_dir, showWarnings = FALSE)
 
 
-add_gene_names <- function(tt, comparison_name) {
+# Fix the column names to make them syntactically valid
+colnames(design) <- make.names(colnames(design))
 
-  tt$gene_id <- gsub("\\..*", "", tt$genes)
+# Check the new names
+colnames(design)
+
+# Now create the contrasts using the new names
+contrasts <- makeContrasts(
+  # Between allele, within stage (H2 - H1)
+  H1_Stage1_vs_H2_Stage1 = alleleH2,
+  H1_Stage2_vs_H2_Stage2 = alleleH2 + alleleH2.stageStage2,
+  H1_Stage3_vs_H2_Stage3 = alleleH2 + alleleH2.stageStage3,
   
-  annotLookup <- getBM(mart=mart, 
-                       attributes=c("ensembl_gene_id", "external_gene_name", "gene_biotype", "chromosome_name"), 
-                       filter="ensembl_gene_id", 
-                       values=tt$gene_id, uniqueRows=TRUE)
-  colnames(annotLookup) <- c("gene_id", "gene_name", "gene_biotype", "chromosome_name")
+  # Between stage, within allele H1 (later stage - earlier stage)
+  H1_Stage1_vs_H1_Stage2 = stageStage2,
+  H1_Stage2_vs_H1_Stage3 = stageStage3 - stageStage2,
+  H1_Stage1_vs_H1_Stage3 = stageStage3,
   
-  tt <- merge(tt, annotLookup, by="gene_id", all.x=TRUE)
-  tt <- tt[order(tt$FDR), ]
-  tt$neg_log10_FDR <- -log10(tt$FDR)
-  tt$significant <- tt$FDR < 0.05 & abs(tt$logFC) > 1
-  tt <- tt |>
-    arrange(desc(abs(logFC)), FDR)
-  tt$label <- NA
-  tt$label[1:20] <- tt$gene_name[1:20]
-  file <- paste0(dge_output_dir, comparison_name, "_DGEs.tsv")
-  write_tsv(tt, file)
-}
+  # Between stage, within allele H2 (later stage - earlier stage)
+  H2_Stage1_vs_H2_Stage2 = stageStage2 + alleleH2.stageStage2,
+  H2_Stage2_vs_H2_Stage3 = stageStage3 + alleleH2.stageStage3 - stageStage2 - alleleH2.stageStage2,
+  H2_Stage1_vs_H2_Stage3 = stageStage3 + alleleH2.stageStage3,
+  
+  levels = design
+)
 
-# Save results to files
-add_gene_names(top_H1_vs_H2_stage_1,  "H1_vs_H2_stage_1")
-add_gene_names(top_Stage_2_vs_Stage_1_H1, "Stage_2_vs_Stage_1_H1")
-add_gene_names(top_Stage_3_vs_Stage_1_H1, "Stage_3_vs_Stage_1_H1")
-add_gene_names(top_H2_vs_H1_stage2, "H2_vs_H1_stage2")
-add_gene_names(top_H2_vs_H1_stage3,  "H2_vs_H1_stage3")
-
-###### manual #########
-y <- DGEList(counts = counts_matrix,
-             samples = colnames(counts_matrix),
-             group = groups,
-             genes = rownames(counts_matrix))
-
-y <- normLibSizes(y)
-
-
-colnames(design) <- gsub("group", "", colnames(design))
-
-library(edgeR)
-
-y <- DGEList(counts = counts_matrix,
-             samples = colnames(counts_matrix),
-             group = groups,
-             genes = rownames(counts_matrix))
-
-y <- normLibSizes(y)
-
-design <- model.matrix(~ 0 + group,data = y$samples)
-
-colnames(design) <- gsub("group", "", colnames(design))
-design
-
-y <- estimateDisp(y, design, robust=TRUE)
-y$common.dispersion
-
-# Fit the model and create contrasts
-fit <- glmQLFit(y, design, robust=TRUE)
-
-                       #within stage, between allele
-contr <- makeContrasts(H1_Stage1_vs_H2_Stage1 = H2_Stage1 - H1_Stage1, 
-                      H1_Stage2_vs_H2_Stage2 = H2_Stage2 - H1_Stage2,
-                      H1_Stage3_vs_H2_Stage3 = H2_Stage3 - H1_Stage3,
-                      #between stage, within allele
-                      H1_Stage1_vs_H1_Stage2 = H1_Stage2 - H1_Stage1,
-                      H1_Stage2_vs_H1_Stage3 = H1_Stage3 - H1_Stage2,
-                      H1_Stage1_vs_H1_Stage3 = H1_Stage3 - H1_Stage1,
-                      H2_Stage1_vs_H2_Stage2 = H2_Stage2 - H2_Stage1,
-                      H2_Stage2_vs_H2_Stage3 = H2_Stage3 - H2_Stage2,
-                      H2_Stage1_vs_H2_Stage3 = H2_Stage3 - H2_Stage1,
-                       levels=design)
-
-
-
-for (i in seq_len(ncol(contr))) {
-  qlf <- glmQLFTest(fit, contrast = contr[,i])
+for (i in seq_len(ncol(contrasts))) {
+  qlf <- glmQLFTest(fit, contrast = contrasts[,i])
   is.de <- decideTests(qlf, p.value=0.05)
   
   tt <- topTags(qlf, n = Inf)$table
-  tt$gene_id <- gsub("\\..*", "", tt$genes)
+  colnames(tt) <- c("logFC", "logCPM", "F" , "PValue", "FDR")
+  tt$gene_id <- rownames(tt)
   
   annotLookup <- getBM(mart=mart, 
                        attributes=c("ensembl_gene_id", "external_gene_name", "gene_biotype", "chromosome_name"), 
@@ -224,23 +169,23 @@ for (i in seq_len(ncol(contr))) {
   tt <- merge(tt, annotLookup, by="gene_id", all.x=TRUE)
   tt <- tt[order(tt$FDR), ]
   
-  tt$condition_1 <- names(contr[,i])[contr[,i] == -1]
-  tt$condition_2 <- names(contr[,i])[contr[,i] == 1]
+  tt$condition_1 <- gsub("_vs_.*", "", colnames(contrasts)[i])
+  tt$condition_2 <- gsub(".*_vs_", "", colnames(contrasts)[i])
   tt$neg_log10_FDR <- -log10(tt$FDR)
   tt$significant <- tt$FDR < 0.05 & abs(tt$logFC) > 1
   tt <- tt |>
     arrange(desc(abs(logFC)), FDR)
   tt$label <- NA
   tt$label[1:20] <- tt$gene_name[1:20]
-  file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
+  file <- file.path(dge_output_dir, paste0(colnames(contrasts)[i], "_DGEs.tsv"))
   write_tsv(tt, file)
 }
 
 
-for (i in seq_len(ncol(contr))) {
-  read_file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
+for (i in seq_len(ncol(contrasts))) {
+  read_file <- file.path(dge_output_dir, paste0(colnames(contrasts)[i], "_DGEs.tsv"))
   tt <- read_tsv(read_file)
-  pdf(file = paste0(dge_output_dir, colnames(contr)[i], "_volcano_plot.pdf"),
+  pdf(file = paste0(dge_output_dir, colnames(contrasts)[i], "_volcano_plot.pdf"),
       width = 8, height = 6)
   
   print(
@@ -250,7 +195,7 @@ for (i in seq_len(ncol(contr))) {
       geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "gray") +
       geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "red") +
       scale_color_manual(values = c("gray", "red")) +
-      labs(title = colnames(contr)[i],
+      labs(title = colnames(contrasts)[i],
            x = "log2 Fold Change",
            y = "-log10 FDR") +
       theme_minimal()
@@ -259,30 +204,31 @@ for (i in seq_len(ncol(contr))) {
   dev.off()
 }
 
-ora_plot <- function(genelist, ont, output_plot_dir, analysis_type){
+
+
+ora_plot <- function(genelist, output_plot_dir, analysis_type){
   
-  ego <- enrichGO(gene          = names(genelist),
+  ego <- enrichGO(gene          = names,
                   OrgDb         = org.Hs.eg.db,
                   keyType  = "ENSEMBL",
-                  ont           = ont,
+                  ont           = "BP",
                   pAdjustMethod = "fdr",
-                  minGSSize     = 100,
-                  pvalueCutoff  = 0.01,
-                  qvalueCutoff  = 0.01,
                   readable      = TRUE) 
-  ego <- enrichplot::pairwise_termsim(ego)
-  ego2 <- simplify(ego, cutoff=0.7, by="p.adjust", select_fun=min)
-  if(nrow(as.data.frame(ego2)) != 0){
-    write_tsv(as.data.frame(ego2), file.path(output_plot_dir,
-                                             paste0("simplified_ORA_ASE_DGE_genes_",analysis_type, ont, ".tsv")))
+  if(nrow(as.data.frame(ego)) != 0){
+    ego <- enrichplot::pairwise_termsim(ego)
+    # ego2 <- simplify(ego, cutoff=0.7, by="p.adjust", select_fun=min)
+    write_tsv(as.data.frame(ego), file.path(output_plot_dir,
+                                            paste0("simplified_ORA_ASE_DGE_genes_",analysis_type, "BP", ".tsv")))
     
     
-    pdf(file.path(output_plot_dir, paste0("simplified_ORA_all_ASE_DGE_genes_",analysis_type, ont, ".pdf")))
-    print(dotplot(ego2, showCategory = 15))
+    pdf(file.path(output_plot_dir, paste0("simplified_ORA_all_ASE_DGE_genes_",analysis_type, "BP", ".pdf")))
+    print(dotplot(ego, showCategory = 15))
     dev.off()
     
-  }
+  } else {
+    message("No significant GO terms found for ", analysis_type, " in ", "BP")}
 }
+
 
 go_plot_dir <- file.path(dge_output_dir, "GO_plots")
 if (!dir.exists(go_plot_dir)) {
@@ -290,8 +236,8 @@ if (!dir.exists(go_plot_dir)) {
 }
 
 
-for (i in seq_len(ncol(contr))) {
-  read_file <- paste0(dge_output_dir, colnames(contr)[i], "_DGEs.tsv")
+for (i in seq_len(ncol(contrasts))) {
+  read_file <- file.path(dge_output_dir, paste0(colnames(contrasts)[i], "_DGEs.tsv"))
   tt <- read_tsv(read_file)
   tt <- tt |> filter(significant == TRUE)
   
@@ -299,10 +245,8 @@ for (i in seq_len(ncol(contr))) {
   names <- tt |> pull(gene_id)
   values <- tt |> pull(logFC) |> sort(decreasing = TRUE)
   names(values) <- names
-  head(values)
   
-  ora_plot(genelist = values, 
-           ont = "BP", 
+  ora_plot(genelist = names, 
            output_plot_dir = go_plot_dir,
-           analysis_type = colnames(contr)[i])
+           analysis_type = colnames(contrasts)[i])
 }

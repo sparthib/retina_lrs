@@ -9,59 +9,75 @@ vcf <- readVcf("/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/wha
                "hg38")
 variants <- rowRanges(vcf)
 
-# Define samples
-array_id <- as.integer(Sys.getenv("SLURM_ARRAY_TASK_ID"))
-
 samples <- c(
   "H9-BRN3B_hRO_2", "H9-BRN3B-RO", "H9-CRX_hRO_2", "H9-CRX_ROs_D45",
   "H9-FT_1", "H9-FT_2", "H9-hRGC_1", "H9-hRGC_2",
   "EP1-BRN3B-RO", "EP1-WT_hRO_2", "EP1-WT_ROs_D45"
 )
 
-sample <- samples[array_id]
+array_id <- as.integer(Sys.getenv("SLURM_ARRAY_TASK_ID"))
+
 # Define BAM directory
-genome_bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality"
+genome_bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1"
 
 # Create full BAM file paths
-bam_files <- file.path(genome_bam_dir, paste0(samples, "_primary_over_30_chr_only_sorted.bam"))
+h1_bam_files <- file.path(genome_bam_dir, paste0(samples, "_h1.bam"))
+h2_bam_files <- file.path(genome_bam_dir,
+                          paste0(samples, "_h2.bam"))
+
 
 # Check result
-print(bam_files)
+print(h1_bam_files)
+print(h2_bam_files)
+
+
 
 # Extract reads and their positions
-bam <- BamFile(bam_files[array_id])
-reads <- readGAlignments(bam)
+h1_bam <- BamFile(h1_bam_files[array_id])
+h1_reads <- readGAlignments(h1_bam)
+#total number of aligned reads
+print(paste("Total aligned reads in h1:", length(h1_reads)))
 
 # Find overlaps
-hits <- findOverlaps(reads, variants)
+h1_hits <- findOverlaps(h1_reads, variants)
 
 # Count how many variants per read
-variant_counts <- table(queryHits(hits))
+h1_variant_counts <- table(queryHits(h1_hits))
 
 
 # Convert to numeric
-counts_per_read <- as.integer(variant_counts)
+h1_counts_per_read <- as.integer(h1_variant_counts)
+
+
+# Extract reads and their positions
+h2_bam <- BamFile(h2_bam_files[array_id])
+h2_reads <- readGAlignments(h2_bam)
+#total number of aligned reads
+print(paste("Total aligned reads in h2:", length(h2_reads)))
+
+# Find overlaps
+h2_hits <- findOverlaps(h2_reads, variants)
+
+# Count how many variants per read
+h2_variant_counts <- table(queryHits(h2_hits))
+
+
+# Convert to numeric
+h2_counts_per_read <- as.integer(h2_variant_counts)
+
 
 plot_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/H9_EP1/variants_per_read"
 
 write_tsv(data.frame(
-  read_id = names(table(counts_per_read)),
-  variants_overlapped = table(counts_per_read)
-), file.path(plot_output_dir, paste0(sample, "_variants_per_read.tsv")))
+  read_id = names(table(h1_counts_per_read)),
+  variants_overlapped = table(h1_counts_per_read)
+), file.path(plot_output_dir, paste0(sample, "_h1_variants_per_read.tsv")))
 
-dir.create(plot_output_dir, showWarnings = FALSE)
-# Plot histogram
-pdf(file.path(plot_output_dir, paste0(sample,
-                                      "variants_per_read_histogram.pdf")))
-hist(counts_per_read,
-     breaks = seq(0, max(counts_per_read), by = 1),
-     main = "Number of Variants per Read",
-     xlab = "Variants Overlapped",
-     ylab = "Number of Reads",
-     col = "steelblue",
-     border = "white")
+write_tsv(data.frame(
+  read_id = names(table(h2_counts_per_read)),
+  variants_overlapped = table(h2_counts_per_read)
+), file.path(plot_output_dir, paste0(sample, "_h2_variants_per_read.tsv")))
 
-dev.off()
 
 
 
