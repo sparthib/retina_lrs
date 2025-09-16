@@ -5,6 +5,7 @@ library(ggplot2)
 library(ggrepel)
 library(clusterProfiler)
 library(org.Hs.eg.db)
+library(edgeR)
 
 samples <- c("H9-FT_1" , "H9-FT_2", "H9-hRGC_1", "H9-hRGC_2") 
 gene_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_gene_counts_all_samples"
@@ -34,31 +35,14 @@ colnames(counts_matrix) <- gsub(".bam", "", colnames(counts_matrix))
 #remove version number from row names
 rownames(counts_matrix) <- gsub("\\..*", "", rownames(counts_matrix))
 
-# only keep PTC genes
+# only keep PTC genes in non ASE matrix
 
-mart <- useEnsembl(biomart = "ensembl", 
-                   dataset = "hsapiens_gene_ensembl")
+non_ase_matrix <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype"
+non_ase_matrix <- readRDS(file.path(non_ase_matrix, "filtered_gene_counts.RDS"))
+rownames(non_ase_matrix) <- gsub("\\..*", "", rownames(non_ase_matrix))
 
-annotLookup <- getBM(
-  mart=mart,
-  attributes=c( 
-    "external_gene_name",
-    "gene_biotype", "ensembl_gene_id","chromosome_name"),
-  filter="ensembl_gene_id",
-  values=rownames(counts_matrix),
-  uniqueRows=TRUE)
-
-head(annotLookup)
-colnames(annotLookup) <- c("gene_name","gene_biotype", "gene_id", "chromosome_name")
-annotLookup <- annotLookup |> dplyr::distinct()
-annotLookup |> nrow()
-annotLookup <- annotLookup |> 
-  dplyr::filter(gene_biotype == "protein_coding") 
-annotLookup |> nrow()
-
-# filter for protein coding genes
-counts_matrix <- counts_matrix[rownames(counts_matrix) 
-                               %in% annotLookup$gene_id, ]
+counts_matrix <- counts_matrix[rownames(counts_matrix) %in% rownames(non_ase_matrix), ]
+nrow(counts_matrix)
 
 #FT vs RGC samples 
 counts_matrix <- counts_matrix[, 15:22]
@@ -69,40 +53,53 @@ groups <- c("H1_FT", "H2_FT", "H1_FT", "H2_FT",
             "H1_RGC", "H2_RGC", "H1_RGC", "H2_RGC")
 cell_type <- c("FT", "FT", "FT", "FT",
                "RGC", "RGC", "RGC", "RGC")
-allele_type <- c("H1", "H2", "H1", "H2",
+alleles <- c("H1", "H2", "H1", "H2",
                  "H1", "H2", "H1", "H2")
 
-library(edgeR)
+column_data <- data.frame(
+  row.names = colnames(counts_matrix),
+  allele = alleles,
+  group = groups
+)
 
-y <- DGEList(counts = counts_matrix,
-             samples = colnames(counts_matrix),
-             genes = rownames(counts_matrix),
-             group = groups)
+y <- DGEList(
+  counts = counts_matrix,
+  samples = data.frame(
+    sample = colnames(counts_matrix),
+    group = groups,
+    allele = alleles,
+    row.names = colnames(counts_matrix)
+  ),
+  genes = rownames(counts_matrix)
+)
 
+keep <- filterByExpr(y, min.count = 3)
+y <- y[keep,, keep.lib.sizes = FALSE]
 y <- normLibSizes(y)
 
-design <- model.matrix(~ 0 + allele*stage + cell_line*stage + allele*cell_line, 
-                       data = y$samples)
+design <- model.matrix(~ 0 + cell_type:allele, data = y$samples)
+colnames(design) <- c("H1_FT",  "H1_RGC", "H2_FT", "H2_RGC")
 
-colnames(design) <- gsub("group", "", colnames(design))
-design
+y <- estimateDisp(y, design, robust = TRUE)
 
-y <- estimateDisp(y, design, robust=TRUE)
-y$common.dispersion
+contr <- makeContrasts(
+  H1_FT_vs_H2_FT   = H2_FT - H1_FT, 
+  H1_RGC_vs_H2_RGC = H2_RGC - H1_RGC, 
+  H1_FT_vs_H1_RGC  = H1_RGC - H1_FT,
+  H2_FT_vs_H2_RGC  = H2_RGC - H2_FT,
+  levels = design
+)
+
+fit <- glmQLFit(y, design, robust = TRUE)
 
 
-contr <- makeContrasts(H1_FT_vs_H2_FT = H2_FT - H1_FT, 
-                       H1_RGC_vs_H2_RGC = H2_RGC - H1_RGC, 
-                       H1_FT_vs_H1_RGC = H1_RGC - H1_FT,
-                       H2_FT_vs_H2_RGC = H2_RGC - H2_FT,
-                       levels=design)
-fit <- glmQLFit(y, design, robust=TRUE)
-
-dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/FT_vs_RGC"
+dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/FT_vs_RGC/filtered_counts"
 if (!dir.exists(dge_output_dir)) {
   dir.create(dge_output_dir, recursive = TRUE)
 }
 
+mart <- useEnsembl(biomart = "ensembl", 
+                   dataset = "hsapiens_gene_ensembl")
 
 for (i in seq_len(ncol(contr))) {
   qlf <- glmQLFTest(fit, contrast = contr[,i])
@@ -133,23 +130,20 @@ for (i in seq_len(ncol(contr))) {
 }
 
 
-for (i in seq_len(ncol(contr))) {
-  read_file <- file.path(dge_output_dir, paste0( colnames(contr)[i], "_DGEs.tsv"))
-  tt <- read_tsv(read_file)
-  pdf(file = file.path(dge_output_dir, paste0(colnames(contr)[i], "_volcano_plot.pdf")),
-      width = 8, height = 6)
-  ggplot(tt, aes(x = logFC, y = neg_log10_FDR)) +
-    geom_point(aes(color = significant), size = 1.5) +  # TRUE/FALSE coloring
-    geom_text_repel(aes(label = label), size = 2.5, max.overlaps = 20, na.rm = TRUE) +
-    geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "gray") +
-    geom_hline(yintercept = -log10(0.05), linetype = "dashed", color = "red") +
-    scale_color_manual(values = c("gray", "red")) +
-    labs(title = colnames(contr)[i],
-         x = "log2 Fold Change",
-         y = "-log10 FDR") +
-    theme_minimal()
-  dev.off()
-}
+source("/users/sparthib/retina_lrs/code/08_ASE/short_reads/07_volcano_helper.R")
+
+ft_rgc_contrast_names <- c(
+  "H1_FT_vs_H2_FT",
+  "H1_RGC_vs_H2_RGC", 
+  "H1_FT_vs_H1_RGC",
+  "H2_FT_vs_H2_RGC"
+)
+
+generate_allele_volcano_plots(
+  input_dir = "/users/sparthib/retina_lrs/processed_data/ASE/DGE/FT_vs_RGC/filtered_counts",
+  contrast_names = ft_rgc_contrast_names,
+  table_type = "DGE"
+)
 
 ora_plot <- function(genelist, output_plot_dir, analysis_type){
   
@@ -175,7 +169,7 @@ ora_plot <- function(genelist, output_plot_dir, analysis_type){
 }
 
 
-go_plot_dir <- file.path(dge_output_dir, "GO_plots")
+go_plot_dir <- file.path(dge_output_dir, "plots", "GO_plots")
 if (!dir.exists(go_plot_dir)) {
   dir.create(go_plot_dir, recursive = TRUE)
 }
