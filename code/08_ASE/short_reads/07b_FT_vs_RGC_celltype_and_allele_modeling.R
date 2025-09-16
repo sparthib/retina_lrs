@@ -29,6 +29,9 @@ counts_matrix <- do.call(cbind, counts_list)
 
 counts_matrix <- counts_matrix[rowSums(counts_matrix) > 0, ]
 
+nrow(counts_matrix)
+
+
 colnames(counts_matrix) <- gsub(".bam", "", colnames(counts_matrix))
 
 
@@ -75,6 +78,8 @@ y <- DGEList(
 
 keep <- filterByExpr(y, min.count = 3)
 y <- y[keep,, keep.lib.sizes = FALSE]
+nrow(y)
+# 11480
 y <- normLibSizes(y)
 
 design <- model.matrix(~ 0 + cell_type:allele, data = y$samples)

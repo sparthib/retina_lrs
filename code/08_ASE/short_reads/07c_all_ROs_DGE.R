@@ -29,6 +29,8 @@ counts_matrix <- do.call(cbind, counts_list)
 ## remove rows with 0 values
 
 counts_matrix <- counts_matrix[rowSums(counts_matrix) > 0, ]
+# nrow(counts_matrix)
+# 15678
 
 colnames(counts_matrix) <- gsub(".bam", "", colnames(counts_matrix))
 
@@ -42,8 +44,8 @@ non_ase_matrix <- readRDS(file.path(non_ase_matrix, "filtered_gene_counts.RDS"))
 rownames(non_ase_matrix) <- gsub("\\..*", "", rownames(non_ase_matrix))
 
 counts_matrix <- counts_matrix[rownames(counts_matrix) %in% rownames(non_ase_matrix), ]
-nrow(counts_matrix)
-
+# nrow(counts_matrix)
+# 15678
 counts_matrix <- counts_matrix[, c(1:14)]
 
 
@@ -94,6 +96,8 @@ design <- model.matrix(~ allele*stage + cell_line*stage + allele*cell_line,
                                       data = y$samples)
 keep <- filterByExpr(y, min.count = 3)
 y <- y[keep,, keep.lib.sizes = FALSE]
+# nrow(y)
+# 13100
 y <- normLibSizes(y)
 
 y <- estimateDisp(y, design)
