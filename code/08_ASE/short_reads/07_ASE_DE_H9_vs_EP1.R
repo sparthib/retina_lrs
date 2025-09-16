@@ -30,7 +30,8 @@ ora_plot <- function(genelist, output_plot_dir, analysis_type){
     message("No significant GO terms found for ", analysis_type, " in ", "BP")}
 }
 
-dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/"
+dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/H9_vs_EP1/filter_counts"
+dir.create(dge_output_dir, recursive = TRUE, showWarnings = FALSE)
 
 go_plot_dir <- file.path(dge_output_dir, "GO_plots")
 if (!dir.exists(go_plot_dir)) {
@@ -69,32 +70,18 @@ colnames(counts_matrix) <- gsub(".bam", "", colnames(counts_matrix))
 #remove version number from row names
 rownames(counts_matrix) <- gsub("\\..*", "", rownames(counts_matrix))
 
-# only keep PTC genes
-
-mart <- useEnsembl(biomart = "ensembl", 
-                   dataset = "hsapiens_gene_ensembl")
-
-annotLookup <- getBM(
-  mart=mart,
-  attributes=c( 
-    "external_gene_name",
-    "gene_biotype", "ensembl_gene_id",  "chromosome_name"),
-  filter="ensembl_gene_id",
-  values=rownames(counts_matrix),
-  uniqueRows=TRUE)
-
-head(annotLookup)
-colnames(annotLookup) <- c("gene_name","gene_biotype", "gene_id", "chromosome_name" )
-annotLookup <- annotLookup |> dplyr::distinct()
-annotLookup |> nrow()
-annotLookup <- annotLookup |> 
-  dplyr::filter(gene_biotype == "protein_coding") 
-annotLookup |> nrow()
-
-# filter for protein coding genes
-counts_matrix <- counts_matrix[rownames(counts_matrix) 
-                        %in% annotLookup$gene_id, ]
+# only keep PTC genes in the OG counts matrix
 nrow(counts_matrix)
+
+# remove rows that are not in the OG counts matrix
+non_ase_counts_matrix <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/RO_vs_RGC/filtered_by_counts_and_biotype"
+non_ase_counts_matrix <- readRDS(file.path(non_ase_counts_matrix, "filtered_gene_counts.RDS"))
+nrow(non_ase_counts_matrix)
+
+counts_matrix <- counts_matrix[rownames(counts_matrix) %in% rownames(non_ase_counts_matrix), ]
+nrow(counts_matrix)
+# [1] 15799
+
 
 culture_type <- c("EP1", "EP1", "EP1", "EP1", "EP1", "EP1",
                   "H9", "H9", "H9", "H9", "H9", "H9",
@@ -153,7 +140,13 @@ y <- DGEList(counts = counts_matrix,
              allele = alleles,
              genes = rownames(counts_matrix))
 
+# mincount = 3 given the seq depth is about 30% of the non-ASE specific samples. 
+keep <- filterByExpr(y, min.count = 3)  # or other threshold
+y <- y[keep, , keep.lib.sizes=FALSE]
 y <- normLibSizes(y)
+
+# > nrow(y)
+# [1] 12503
 
 
 y <- estimateDisp(y, design, robust=TRUE)
@@ -169,16 +162,16 @@ is.de_cell_line <- decideTests(qlf_cell_line, p.value=0.05)
 
 # summary(is.de_allele)
 # summary(is.de_cell_line)
-# > summary(is.de_allele)
+summary(is.de_allele)
 # alleleH2
-# Down        255
-# NotSig    17087
-# Up          175
-# > summary(is.de_cell_line)
+# Down        202
+# NotSig    12169
+# Up          132
+summary(is.de_cell_line)
 # culture_typeEP1
-# Down              2952
-# NotSig           12273
-# Up                2292
+# Down              2900
+# NotSig            7417
+# Up                2186
 
 
 # Extract the results
