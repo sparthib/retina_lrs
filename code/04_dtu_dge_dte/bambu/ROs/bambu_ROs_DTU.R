@@ -208,14 +208,33 @@ splicing_summary <- extractSplicingSummary(SwitchList_part2,
                                            plot = F)
 write_tsv(splicing_summary, file = file.path(plots_dir, "Splicing_Summary.tsv"))
 
-pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"))
+pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"), width = 10, height = 6)
 splicing_enrichment <- extractSplicingEnrichment(
   SwitchList_part2,
   returnResult = F ,
   onlySigIsoforms = T,
   countGenes = F
 )
-print(splicing_enrichment)
+
+splicing_enrichment <- splicing_enrichment +
+  # Change y-axis text size
+  theme(
+    axis.text.y = element_text(size = 8, angle = 45, hjust = 0.7, vjust = 1),   
+    axis.title.y = element_text(size = 16), 
+    axis.text.x = element_text(size = 8),  # Adjust size as needed
+    axis.title.x = element_text(size = 16)  # Also adjust y-axis title if desired
+  ) +
+  # Change the color scale to use light blue instead of red
+  scale_color_manual(
+    values = c("TRUE" = "black", "FALSE" = "lightgray"),  # Light blue for colorblind-friendly
+    name = "FDR < 0.05",
+    labels = c("TRUE" = "Significant", "FALSE" = "Not Significant")
+  ) +
+  # Wrap y-axis labels to multiple lines (alternative to angle)
+  scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 20))
+# Display the plot
+splicing_enrichment
+
 dev.off()
 
 
@@ -361,4 +380,14 @@ consequence_comparison_data <- extractSplicingEnrichmentComparison(
 )
 write_tsv(consequence_comparison_data, 
           file = file.path(plots_dir, "Consequence_Enrichment_Comparison.tsv"))
+
+genes <- c("PROM1", "RP1","CRB1","CRX") 
+for (gene in genes){
+switchPlot(
+  ### Core arguments
+  SwitchList_part2,
+  gene = "CRB1", 
+  condition1 = "Stage_2", condition2 = "Stage_3") 
+} 
+
 
