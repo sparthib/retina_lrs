@@ -38,8 +38,12 @@ ml load samtools
 #SYNCRIP chr6:85613976-85642991
 #BAK1 chr6:33572547-33580293
 #BSG  chr19:571277-583494
-# REEP6 ADD1 
-for dir in SYNCRIP BAK1 BSG; do
+#"PROM1", "RP1","CRB1","CRX"
+#RP1 8: 54,509,422-54,871,720
+#CRB1 1: 197,268,204-197,478,455
+#CRX
+
+for dir in SYNCRIP BAK1 BSG PROM1 RP1 CRB1 CRX; do
     mkdir -p $output_dir/$dir
 done
 
@@ -48,9 +52,13 @@ done
 samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr6:85613976-85642991" > $output_dir/SYNCRIP/${sample}_SYNCRIP.bam
 samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr6:33572547-33580293" > $output_dir/BAK1/${sample}_BAK1.bam
 samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr19:571277-583494" > $output_dir/BSG/${sample}_BSG.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr4:2850000-2855000" > $output_dir/PROM1/${sample}_PROM1.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr8:54509422-54871720" > $output_dir/RP1/${sample}_RP1.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr1:197268204-197478455" > $output_dir/CRB1/${sample}_CRB1.bam
+samtools view -b $bam_dir/${sample}_primary_over_30_chr_only_sorted.bam "chr19:47819779-47843330" > $output_dir/CRX/${sample}_CRX.bam
 
 ## index bam files
-for dir in SYNCRIP BAK1 BSG; do
+for dir in SYNCRIP BAK1 BSG PROM1 RP1 CRB1 CRX; do
     samtools index $output_dir/$dir/${sample}_$dir.bam > $output_dir/$dir/${sample}_$dir.bam.bai
 done
 
