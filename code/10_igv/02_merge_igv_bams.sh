@@ -23,7 +23,7 @@ output_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly
 ml load samtools 
 
 
-for dir in SYNCRIP BAK1 BSG; do
+for dir in SYNCRIP BAK1 BSG PROM1 RP1 CRB1 CRX; do
    samtools merge $output_dir/${dir}/Stage_3_${dir}.bam $output_dir/${dir}/EP1-BRN3B-RO_$dir.bam $output_dir/$dir/H9-BRN3B-RO_$dir.bam
    samtools sort -@ 10 -o $output_dir/${dir}/Stage_3_${dir}_sorted.bam $output_dir/${dir}/Stage_3_${dir}.bam
    samtools index $output_dir/${dir}/Stage_3_${dir}_sorted.bam > $output_dir/${dir}/Stage_3_${dir}.bam.bai
