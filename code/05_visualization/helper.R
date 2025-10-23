@@ -9,20 +9,35 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
   pc <- prcomp(t(log2(tpm + 1)), scale = TRUE)
   pcr <- data.frame(pc$x[, 1:2], row.names = samples)  # PC scores
   
-  # Dynamically assign colors based on groups
-  if (all(groups %in% c("FT", "RGC"))) {
+  # Parse groups to separate stage/group from H1/H2
+  # Assuming format like "Stage_1_H1", "RGC_H2", etc.
+  stage_group <- gsub("_(H1|H2)$", "", groups)  # Remove _H1 or _H2 suffix
+  haplotype <- ifelse(grepl("H1$", groups), "H1", 
+                      ifelse(grepl("H2$", groups), "H2", "Unknown"))
+  
+  # Add to dataframe
+  pcr$stage_group <- stage_group
+  pcr$haplotype <- haplotype
+  
+  # Dynamically assign colors based on stage/groups
+  unique_stages <- unique(stage_group)
+  
+  if (all(unique_stages %in% c("FT", "RGC"))) {
     color_mapping <- c("FT" = "skyblue", "RGC" = "brown")
-  } else if (all(groups %in% c("Stage_1", "Stage_2", "Stage_3"))) {
+  } else if (all(unique_stages %in% c("Stage_1", "Stage_2", "Stage_3"))) {
     color_mapping <- c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen")
-  } else if (all(groups %in% c("Stage_1", "Stage_2", "Stage_3", "RGC"))) {
+  } else if (all(unique_stages %in% c("Stage_1", "Stage_2", "Stage_3", "RGC"))) {
     color_mapping <- c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen", 
                        "RGC" = "brown")
-  }else if (all(groups %in% c("Stage_1", "Stage_2", "Stage_3", "RGC", "FT"))) {
+  } else if (all(unique_stages %in% c("Stage_1", "Stage_2", "Stage_3", "RGC", "FT"))) {
     color_mapping <- c("Stage_3" = "purple", "Stage_1" = "orange", "Stage_2" = "seagreen", 
                        "RGC" = "brown", "FT" = "skyblue")
-  }else {
+  } else {
     stop("Unexpected group names. Please provide a valid group list.")
   }
+  
+  # Shape mapping for H1/H2
+  shape_mapping <- c("H1" = 16, "H2" = 17)  # 16 = circle, 17 = triangle
   
   # Dynamically extend x and y limits for label space
   x_range <- range(pcr$PC1)
@@ -30,11 +45,9 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
   x_extend <- diff(x_range) * 0.1  # Add 10% padding
   y_extend <- diff(y_range) * 0.1
   
-  # PCA plot
-  
-  
-  p <- ggplot(pcr, aes(PC1, PC2, color = groups)) +  
-    geom_point(size = 0.1) +
+  # PCA plot with both color and shape
+  p <- ggplot(pcr, aes(PC1, PC2, color = stage_group, shape = haplotype)) +  
+    geom_point(size = 3) +  # Increased size to make shapes visible
     theme_bw() +
     ggtitle(paste("PCA on", output_name, "Expression")) +
     xlab(paste("PC1 (", round(pc$sdev[1]^2 / sum(pc$sdev^2) * 100, 2), "%)")) +
@@ -49,11 +62,15 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
       point.padding = 0.2,
       segment.color = "grey50",
       show.legend = FALSE  # <-- suppress label text in legend
-    ) + 
+    ) +
     xlim(x_range[1] - x_extend, x_range[2] + x_extend) +  # Extend x-axis
     ylim(y_range[1] - y_extend, y_range[2] + y_extend) +  # Extend y-axis
-    scale_color_manual(values = color_mapping) + 
-    guides(color = guide_legend(override.aes = list(size = 3))) # Apply custom colors
+    scale_color_manual(values = color_mapping, name = "Group") +  # Apply custom colors
+    scale_shape_manual(values = shape_mapping, name = "Haplotype") +  # Apply custom shapes
+    guides(
+      color = guide_legend(override.aes = list(size = 3)),
+      shape = guide_legend(override.aes = list(size = 3))
+    )
   
   # Scree plot
   var_explained <- pc$sdev[1:10]^2 / sum(pc$sdev^2)
