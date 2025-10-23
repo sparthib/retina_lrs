@@ -223,9 +223,9 @@ write_tsv(merged_results_allele,
 write_tsv(merged_results_cell_line,
           file = file.path(dge_output_dir, "ASE_H9_vs_EP1_PTC_DE_results.tsv"))
 
-write_tsv(counts_matrix,
-          file = file.path(dge_output_dir, "ASE_H1_vs_H2_PTC_gene_counts.tsv"))
-
+write.table(counts_matrix,
+            file = file.path(dge_output_dir, "ASE_H1_vs_H2_PTC_gene_counts.txt"),
+            sep = "\t", quote = FALSE)
 # Volcano plot
 pdf(file = file.path(dge_output_dir, "ASE_H1_vs_H2_PTC_DE_volcano_plot.pdf"),
     width = 8, height = 6)
