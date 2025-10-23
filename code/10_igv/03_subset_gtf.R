@@ -28,7 +28,8 @@ transcripts_of_interest <- c("ENST00000678899", "ENST00000616122", "ENST00000369
                               "ENST00000355238", "ENST00000398125", "ENST00000264758", 
                               "ENST00000442998", "ENST00000374467", 
                               "ENST00000353555", "ENST00000333511",
-                             "ENST00000395479", "ENST00000233596")
+                             "ENST00000395479", "ENST00000233596",
+                             )
 
 transcripts_of_interest_gtf <- gtf[
     str_remove(mcols(gtf)$transcript_id, "\\.\\d+$") %in% transcripts_of_interest
