@@ -208,53 +208,46 @@ splicing_summary <- extractSplicingSummary(SwitchList_part2,
                                            plot = F)
 write_tsv(splicing_summary, file = file.path(plots_dir, "Splicing_Summary.tsv"))
 
-pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"), width = 10, height = 6)
-splicing_enrichment <- extractSplicingEnrichment(
-  SwitchList_part2,
-  returnResult = F ,
-  onlySigIsoforms = T,
-  countGenes = F
-)
-
-splicing_enrichment <- splicing_enrichment +
-  # Change y-axis text size
-  theme(
-    axis.text.y = element_text(size = 8, angle = 45, hjust = 0.7, vjust = 1),   
-    axis.title.y = element_text(size = 16), 
-    axis.text.x = element_text(size = 8),  # Adjust size as needed
-    axis.title.x = element_text(size = 16)  # Also adjust y-axis title if desired
-  ) +
-  # Change the color scale to use light blue instead of red
-  scale_color_manual(
-    values = c("TRUE" = "black", "FALSE" = "lightgray"),  # Light blue for colorblind-friendly
-    name = "FDR < 0.05",
-    labels = c("TRUE" = "Significant", "FALSE" = "Not Significant")
-  ) +
-  # Wrap y-axis labels to multiple lines (alternative to angle)
-  scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 20))
-# Display the plot
-splicing_enrichment
-
-dev.off()
-
 
 #### Consequence Switch Plots ####
 
 external_protein_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                            method, comparison, "external_protein_analyses")
-read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) |> 
-  write_tsv(file.path(external_protein_analyses_dir, "pfam_results.txt"))
+protein_analysis <- read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) 
+protein_analysis$`seq_id` <- gsub("\\..*", "", protein_analysis$`seq_id`)
+write_tsv(protein_analysis, 
+          file = file.path(external_protein_analyses_dir, "pfam_results.txt"), 
+          col_names = TRUE)
+#### CPC2 output ####
+cpc2_output <- read_tsv(file.path(external_protein_analyses_dir, "CPC2_output.txt"))
+cpc2_output$`#ID` <- gsub("\\..*", "", cpc2_output$`#ID`)
+write_tsv(cpc2_output, 
+          file = file.path(external_protein_analyses_dir, "CPC2_output.txt"), 
+          col_names = TRUE)
+
+#### SignalP output ####
+signalp_output <- read_tsv(file.path(external_protein_analyses_dir, "prediction_results.txt"),
+                           skip = 1)
+signalp_output$`# ID` <- gsub("\\..*", "", signalp_output$`# ID`)
+write_tsv(signalp_output, 
+          file = file.path(external_protein_analyses_dir, "prediction_results.txt"), 
+          col_names = TRUE)
+
+read_tsv(file.path(external_protein_analyses_dir, "prediction_results.txt")) |> pull(`# ID`)
+read_tsv(file.path(external_protein_analyses_dir, "CPC2_output.txt")) |> pull(`#ID`)
+read_tsv(file.path(external_protein_analyses_dir, "pfam_results.txt")) |> pull(`seq_id`)
 
 external_protein_ptc_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                            method, comparison, "protein_coding", "external_protein_analyses")
 dir.create(external_protein_ptc_analyses_dir, showWarnings = FALSE, recursive = TRUE)
 
+
 SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
-  n                         = 50,    # if plotting was enabled, it would only output the top 10 switches
+  n                         = 50,   
   removeNoncodinORFs        = TRUE,
-  pathToCPC2resultFile      = file.path(external_protein_analyses_dir, "CPC2_output.txt"),
-  pathToPFAMresultFile      = file.path(external_protein_analyses_dir,"pfam_results.txt"),
+   pathToCPC2resultFile      = file.path(external_protein_analyses_dir, "CPC2_output.txt"),
+   pathToPFAMresultFile      = file.path(external_protein_analyses_dir,"pfam_results.txt"),
   pathToSignalPresultFile   = file.path(external_protein_analyses_dir,"prediction_results.txt"),
   outputPlots               = TRUE,
   pathToOutput              = file.path(external_protein_ptc_analyses_dir,"switchplots_with_consequences"),
@@ -283,33 +276,33 @@ write_tsv(SwitchList_part2$isoformFeatures, file = file.path("/users/sparthib/re
                                                              method, comparison,"protein_coding", "isoformFeatures_part2.tsv"))
 
 
-
-pdf(file.path(plots_dir, "Splicing_Summary.pdf"))
-splicing_summary <- extractSplicingSummary(SwitchList_part2,
-                                           splicingToAnalyze = 'all',dIFcutoff = 0.1,
-                                           onlySigIsoforms = T,
-                                           returnResult = F,
-                                           plot = T)  
-print(splicing_summary)
-dev.off()
-
-splicing_summary <- extractSplicingSummary(SwitchList_part2,
-                                           splicingToAnalyze = 'all',
-                                           dIFcutoff = 0.1,
-                                           onlySigIsoforms = T,
-                                           returnResult = T,
-                                           plot = F)  
-write_tsv(splicing_summary, file = file.path(plots_dir, 
-                                             "Splicing_Summary.tsv"))
-
-pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"))
+pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"), width = 10, height = 6)
 splicing_enrichment <- extractSplicingEnrichment(
   SwitchList_part2,
   returnResult = F ,
   onlySigIsoforms = T,
   countGenes = F
 )
-print(splicing_enrichment)
+
+splicing_enrichment <- splicing_enrichment +
+  # Change y-axis text size
+  theme(
+    axis.text.y = element_text(size = 8, angle = 45, hjust = 0.7, vjust = 1),   
+    axis.title.y = element_text(size = 16), 
+    axis.text.x = element_text(size = 8),  # Adjust size as needed
+    axis.title.x = element_text(size = 16)  # Also adjust y-axis title if desired
+  ) +
+  # Change the color scale to use light blue instead of red
+  scale_color_manual(
+    values = c("TRUE" = "black", "FALSE" = "lightgray"),  # Light blue for colorblind-friendly
+    name = "FDR < 0.05",
+    labels = c("TRUE" = "Significant", "FALSE" = "Not Significant")
+  ) +
+  # Wrap y-axis labels to multiple lines (alternative to angle)
+  scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 20))
+# Display the plot
+splicing_enrichment
+
 dev.off()
 
 splicing_enrichment <- extractSplicingEnrichment(
@@ -340,6 +333,23 @@ p <- extractConsequenceEnrichment(
   returnResult = F, # if TRUE returns a data.frame with the summary statistics
   countGenes = F
 )
+p <- p + 
+  # Change y-axis text size
+  theme(
+    axis.text.y = element_text(size = 8, angle = 30, hjust = 0.7, vjust = 1),   
+    axis.title.y = element_text(size = 16), 
+    axis.text.x = element_text(size = 8),  # Adjust size as needed
+    axis.title.x = element_text(size = 16)  # Also adjust y-axis title if desired
+  ) +
+  # Change the color scale to use light blue instead of red
+  scale_color_manual(
+    values = c("TRUE" = "black", "FALSE" = "lightgray"),  # Light blue for colorblind-friendly
+    name = "FDR < 0.05",
+    labels = c("TRUE" = "Significant", "FALSE" = "Not Significant")
+  ) +
+  # Wrap y-axis labels to multiple lines (alternative to angle)
+  scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 20))
+# Display the plot
 print(p)
 dev.off()
 
@@ -376,12 +386,13 @@ dev.off()
 
 consequence_comparison_data <- extractSplicingEnrichmentComparison(
   SwitchList_part2,
-  returnResult=TRUE
+  returnResult=FALSE
 )
 write_tsv(consequence_comparison_data, 
           file = file.path(plots_dir, "Consequence_Enrichment_Comparison.tsv"))
 
 genes <- c("PROM1", "RP1","CRB1","CRX") 
+
 for (gene in genes){
 switchPlot(
   ### Core arguments
@@ -389,5 +400,12 @@ switchPlot(
   gene = "CRB1", 
   condition1 = "Stage_2", condition2 = "Stage_3") 
 } 
+
+
+
+
+
+
+
 
 

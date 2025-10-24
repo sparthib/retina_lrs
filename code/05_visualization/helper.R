@@ -54,7 +54,7 @@ plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
     ylab(paste("PC2 (", round(pc$sdev[2]^2 / sum(pc$sdev^2) * 100, 2), "%)")) + 
     geom_label_repel(
       aes(label = rownames(pcr)),
-      size = 4,
+      size = 2,
       fill = "white",
       alpha = 0.7,
       max.overlaps = Inf,

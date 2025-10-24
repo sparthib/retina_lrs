@@ -188,24 +188,41 @@ splicing_summary <- extractSplicingSummary(SwitchList_part2,
                                            plot = F)
 write_tsv(splicing_summary, file = file.path(plots_dir, "Splicing_Summary.tsv"))
 
-pdf(file.path(plots_dir, "Splicing_Enrichment.pdf"))
-splicing_enrichment <- extractSplicingEnrichment(
-  SwitchList_part2,
-  returnResult = F ,
-  onlySigIsoforms = T,
-  countGenes = F
-)
-print(splicing_enrichment)
-dev.off()
-
 external_protein_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                            method, comparison, "external_protein_analyses")
-read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) |> 
-  write_tsv(file.path(external_protein_analyses_dir, "pfam_results.txt"))
 external_protein_ptc_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                            method, comparison, "protein_coding","external_protein_analyses")
 dir.create(external_protein_ptc_analyses_dir, showWarnings = FALSE, recursive =  TRUE)
+
+
+external_protein_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+                                           method, comparison, "external_protein_analyses")
+protein_analysis <- read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) 
+protein_analysis$`seq_id` <- gsub("\\..*", "", protein_analysis$`seq_id`)
+write_tsv(protein_analysis, 
+          file = file.path(external_protein_analyses_dir, "pfam_results.txt"), 
+          col_names = TRUE)
+#### CPC2 output ####
+cpc2_output <- read_tsv(file.path(external_protein_analyses_dir, "CPC2_output.txt"))
+cpc2_output$`#ID` <- gsub("\\..*", "", cpc2_output$`#ID`)
+write_tsv(cpc2_output, 
+          file = file.path(external_protein_analyses_dir, "CPC2_output.txt"), 
+          col_names = TRUE)
+
+#### SignalP output ####
+signalp_output <- read_tsv(file.path(external_protein_analyses_dir, "prediction_results.txt"),
+                           skip = 1)
+signalp_output$`# ID` <- gsub("\\..*", "", signalp_output$`# ID`)
+write_tsv(signalp_output, 
+          file = file.path(external_protein_analyses_dir, "prediction_results.txt"), 
+          col_names = TRUE)
+
+
+
+
+
 #### Consequence Switch Plots ####
+SwitchList_part2 <- readRDS(switchlist_part2_path)
 
 SwitchList_part2 <- isoformSwitchAnalysisPart2(
   switchAnalyzeRlist        = SwitchList_part2, 
@@ -233,7 +250,7 @@ SwitchList_part2$isoformFeatures <- SwitchList_part2$isoformFeatures |>
 
 write_tsv(SwitchList_part2$isoformFeatures, file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
                                                              method, comparison,"protein_coding", "isoformFeatures_part2.tsv"))
-
+SwitchList_part2 <- readRDS(switchlist_part2_path)
 
 pdf(file.path(plots_dir, "Splicing_Summary.pdf"))
 splicing_summary <- extractSplicingSummary(SwitchList_part2,
@@ -259,7 +276,25 @@ splicing_enrichment <- extractSplicingEnrichment(
   onlySigIsoforms = T,
   countGenes = F
 )
-print(splicing_enrichment)
+
+splicing_enrichment <- splicing_enrichment +
+  # Change y-axis text size
+  theme(
+    axis.text.y = element_text(size = 8, angle = 45, hjust = 0.7, vjust = 1),   
+    axis.title.y = element_text(size = 16), 
+    axis.text.x = element_text(size = 8),  # Adjust size as needed
+    axis.title.x = element_text(size = 16)  # Also adjust y-axis title if desired
+  ) +
+  # Change the color scale to use light blue instead of red
+  scale_color_manual(
+    values = c("TRUE" = "black", "FALSE" = "lightgray"),  # Light blue for colorblind-friendly
+    name = "FDR < 0.05",
+    labels = c("TRUE" = "Significant", "FALSE" = "Not Significant")
+  ) +
+  # Wrap y-axis labels to multiple lines (alternative to angle)
+  scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 20))
+# Display the plot
+splicing_enrichment
 dev.off()
 
 splicing_enrichment <- extractSplicingEnrichment(
@@ -289,6 +324,22 @@ p <- extractConsequenceEnrichment(
   returnResult = F, # if TRUE returns a data.frame with the summary statistics
   countGenes = F
 )
+p <- p +
+  # Change y-axis text size
+  theme(
+    axis.text.y = element_text(size = 8, angle = 30, hjust = 0.5, vjust = 1),   
+    axis.title.y = element_text(size = 16), 
+    axis.text.x = element_text(size = 8),  # Adjust size as needed
+    axis.title.x = element_text(size = 16)  # Also adjust y-axis title if desired
+  ) +
+  # Change the color scale to use light blue instead of red
+  scale_color_manual(
+    values = c("TRUE" = "black", "FALSE" = "lightgray"),  # Light blue for colorblind-friendly
+    name = "FDR < 0.05",
+    labels = c("TRUE" = "Significant", "FALSE" = "Not Significant")
+  ) +
+  # Wrap y-axis labels to multiple lines (alternative to angle)
+  scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 25))
 print(p)
 dev.off()
 
