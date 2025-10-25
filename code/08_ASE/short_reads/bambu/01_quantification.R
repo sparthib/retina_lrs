@@ -14,8 +14,8 @@ bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatsha
 h1_bam <- file.path(bam_dir, paste0(sample, "_hp1.bam"))
 h2_bam <- file.path(bam_dir, paste0(sample, "_hp2.bam"))
 
-se.quantOnly_h1 <- bambu(reads = h1_bam, annotations = gtf.file, genome = fa.file, discovery = FALSE)
-se.quantOnly_h2 <- bambu(reads = h2_bam, annotations = gtf.file, genome = fa.file, discovery = FALSE)
+se.quantOnly_h1 <- bambu(reads = h1_bam, annotations = annotation, genome = fa.file, discovery = FALSE)
+se.quantOnly_h2 <- bambu(reads = h2_bam, annotations = annotation, genome = fa.file, discovery = FALSE)
 writeBambuOutput(se.quantOnly_h1, path = file.path(outdir, sample, "hp1"))
 writeBambuOutput(se.quantOnly_h2, path = file.path(outdir, sample, "hp2"))
 
