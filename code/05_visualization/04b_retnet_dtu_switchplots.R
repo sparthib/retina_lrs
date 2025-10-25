@@ -25,10 +25,27 @@ gene_ids <- DGE_DTU_DTE |>
 most_switched_genes <- extractTopSwitches(
   switchAnalysisObject,
   filterForConsequences = TRUE,
-  n = 10000
+  n = 10000,
+  extractGenes=TRUE
 )
 
 retnet_switched_genes  <- most_switched_genes |> filter(gene_name %in% gene_names)
+
+most_switched_isoforms <- extractTopSwitches(
+  switchAnalysisObject,
+  filterForConsequences = TRUE,
+  n = 40000,
+  extractGenes=FALSE
+)
+retnet_switched_isoforms <- most_switched_isoforms |> filter(gene_name %in% gene_names)
+retnet_switched_isoforms$isoform_id
+# [1] "ENST00000636932" "ENST00000636932" "ENST00000220676" "ENST00000540805"
+# [5] "ENST00000447510" "ENST00000539194" "ENST00000508167" "ENST00000540805"
+# [9] "ENST00000220676" "ENST00000447510" "ENST00000613299" "ENST00000508167"
+# [13] "ENST00000221996" "ENST00000505450" "ENST00000505450" "ENST00000367397"
+# [17] "ENST00000513448" "ENST00000538660"
+
+# print as character vector 
 
 retnet_plot_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/protein_coding/plots/retnet"
 pdf(file = file.path(retnet_plot_dir, "switch_plots_with_consequences.pdf"), 
