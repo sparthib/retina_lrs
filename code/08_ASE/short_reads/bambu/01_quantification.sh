@@ -22,8 +22,8 @@ echo "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
-mkdir /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_bambu/$sample/h1
-mkdir /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_bambu/$sample/h2
+mkdir -p /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_bambu/$sample/h1
+mkdir -p /dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_bambu/$sample/h2
 
 echo "**** Processing sample $sample ****"
 
