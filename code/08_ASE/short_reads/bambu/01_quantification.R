@@ -6,7 +6,7 @@ library(dplyr)
 
 # gtf_file <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/extended_annotations.gtf"
 # annotations <- prepareAnnotations(gtf_file)
-# outdir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_bambu"
+outdir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/H9_EP1_bambu"
 # saveRDS(annotations, file.path(outdir, "annotations.rds"))
 
 annotation <- readRDS(file.path(outdir, "annotations.rds"))
