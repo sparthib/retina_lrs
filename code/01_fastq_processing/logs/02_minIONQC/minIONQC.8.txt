@@ -1,17 +1,17 @@
 Loading conda_R/4.3
 To install colorout use: remotes::install_github("jalvesaq/colorout")
-INFO [2025-07-02 23:55:13] Loading input file: /dcs04/hicks/data/sparthib/casey_round_2/input_fastqs/YZ-15T_hRGC/20231024_1154_2F_PAO15921_6d6f855b/sequencing_summary_PAO15921_6d6f855b_4f4f3940.txt
-INFO [2025-07-02 23:59:47] PromethION flowcell detected
-INFO [2025-07-03 00:03:21] 20231024_1154_2F_PAO15921_6d6f855b: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/YZ-15T_hRGC/20231024_1154_2F_PAO15921_6d6f855b
-INFO [2025-07-03 00:03:21] 20231024_1154_2F_PAO15921_6d6f855b: summarising input file for flowcell
-INFO [2025-07-03 00:03:55] 20231024_1154_2F_PAO15921_6d6f855b: plotting length histogram
-INFO [2025-07-03 00:04:23] 20231024_1154_2F_PAO15921_6d6f855b: plotting mean Q score histogram
-INFO [2025-07-03 00:04:46] 20231024_1154_2F_PAO15921_6d6f855b: plotting flowcell yield over time
-INFO [2025-07-03 00:06:37] 20231024_1154_2F_PAO15921_6d6f855b: plotting flowcell yield by read length
-INFO [2025-07-03 00:09:11] 20231024_1154_2F_PAO15921_6d6f855b: plotting sequence length over time
-INFO [2025-07-03 00:18:48] 20231024_1154_2F_PAO15921_6d6f855b: plotting Q score over time
-INFO [2025-07-03 00:28:05] 20231024_1154_2F_PAO15921_6d6f855b: plotting reads per hour
-INFO [2025-07-03 00:29:39] 20231024_1154_2F_PAO15921_6d6f855b: plotting flowcell channels summary histograms
-INFO [2025-07-03 00:30:01] 20231024_1154_2F_PAO15921_6d6f855b: plotting physical overview of output per channel
+INFO [2025-10-25 23:29:03] Loading input file: /dcs04/hicks/data/sparthib/casey_round_2/input_fastqs/YZ-15T_hRGC/20231024_1154_2F_PAO15921_6d6f855b/sequencing_summary_PAO15921_6d6f855b_4f4f3940.txt
+INFO [2025-10-25 23:31:08] PromethION flowcell detected
+INFO [2025-10-25 23:34:25] 20231024_1154_2F_PAO15921_6d6f855b: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/YZ-15T_hRGC/20231024_1154_2F_PAO15921_6d6f855b
+INFO [2025-10-25 23:34:25] 20231024_1154_2F_PAO15921_6d6f855b: summarising input file for flowcell
+INFO [2025-10-25 23:34:56] 20231024_1154_2F_PAO15921_6d6f855b: plotting length histogram
+INFO [2025-10-25 23:35:20] 20231024_1154_2F_PAO15921_6d6f855b: plotting mean Q score histogram
+INFO [2025-10-25 23:35:41] 20231024_1154_2F_PAO15921_6d6f855b: plotting flowcell yield over time
+INFO [2025-10-25 23:37:19] 20231024_1154_2F_PAO15921_6d6f855b: plotting flowcell yield by read length
+INFO [2025-10-25 23:39:34] 20231024_1154_2F_PAO15921_6d6f855b: plotting sequence length over time
+INFO [2025-10-25 23:49:41] 20231024_1154_2F_PAO15921_6d6f855b: plotting Q score over time
+INFO [2025-10-26 00:00:19] 20231024_1154_2F_PAO15921_6d6f855b: plotting reads per hour
+INFO [2025-10-26 00:01:40] 20231024_1154_2F_PAO15921_6d6f855b: plotting flowcell channels summary histograms
+INFO [2025-10-26 00:01:59] 20231024_1154_2F_PAO15921_6d6f855b: plotting physical overview of output per channel
 **** Job ends ****
-2025-07-03 00:30:04
+2025-10-26 00:02:00

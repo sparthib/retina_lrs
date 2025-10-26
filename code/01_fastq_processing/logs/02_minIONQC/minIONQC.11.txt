@@ -1,17 +1,17 @@
 Loading conda_R/4.3
 To install colorout use: remotes::install_github("jalvesaq/colorout")
-INFO [2025-07-02 23:55:15] Loading input file: /dcs04/hicks/data/sparthib/CK_01052024/H9-hRGC_1/20240105_1426_3E_PAQ23344_c8172461/sequencing_summary_PAQ23344_c8172461_f322be0e.txt
-INFO [2025-07-02 23:55:36] PromethION flowcell detected
-INFO [2025-07-02 23:57:18] 20240105_1426_3E_PAQ23344_c8172461: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/H9-hRGC_1/20240105_1426_3E_PAQ23344_c8172461
-INFO [2025-07-02 23:57:18] 20240105_1426_3E_PAQ23344_c8172461: summarising input file for flowcell
-INFO [2025-07-02 23:57:33] 20240105_1426_3E_PAQ23344_c8172461: plotting length histogram
-INFO [2025-07-02 23:57:47] 20240105_1426_3E_PAQ23344_c8172461: plotting mean Q score histogram
-INFO [2025-07-02 23:57:59] 20240105_1426_3E_PAQ23344_c8172461: plotting flowcell yield over time
-INFO [2025-07-02 23:58:54] 20240105_1426_3E_PAQ23344_c8172461: plotting flowcell yield by read length
-INFO [2025-07-03 00:00:10] 20240105_1426_3E_PAQ23344_c8172461: plotting sequence length over time
-INFO [2025-07-03 00:04:45] 20240105_1426_3E_PAQ23344_c8172461: plotting Q score over time
-INFO [2025-07-03 00:09:17] 20240105_1426_3E_PAQ23344_c8172461: plotting reads per hour
-INFO [2025-07-03 00:10:00] 20240105_1426_3E_PAQ23344_c8172461: plotting flowcell channels summary histograms
-INFO [2025-07-03 00:10:11] 20240105_1426_3E_PAQ23344_c8172461: plotting physical overview of output per channel
+INFO [2025-10-25 23:29:03] Loading input file: /dcs04/hicks/data/sparthib/CK_01052024/H9-hRGC_1/20240105_1426_3E_PAQ23344_c8172461/sequencing_summary_PAQ23344_c8172461_f322be0e.txt
+INFO [2025-10-25 23:29:53] PromethION flowcell detected
+INFO [2025-10-25 23:30:40] 20240105_1426_3E_PAQ23344_c8172461: creating output directory:/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/H9-hRGC_1/20240105_1426_3E_PAQ23344_c8172461
+INFO [2025-10-25 23:30:40] 20240105_1426_3E_PAQ23344_c8172461: summarising input file for flowcell
+INFO [2025-10-25 23:30:47] 20240105_1426_3E_PAQ23344_c8172461: plotting length histogram
+INFO [2025-10-25 23:30:53] 20240105_1426_3E_PAQ23344_c8172461: plotting mean Q score histogram
+INFO [2025-10-25 23:30:58] 20240105_1426_3E_PAQ23344_c8172461: plotting flowcell yield over time
+INFO [2025-10-25 23:31:21] 20240105_1426_3E_PAQ23344_c8172461: plotting flowcell yield by read length
+INFO [2025-10-25 23:31:53] 20240105_1426_3E_PAQ23344_c8172461: plotting sequence length over time
+INFO [2025-10-25 23:34:21] 20240105_1426_3E_PAQ23344_c8172461: plotting Q score over time
+INFO [2025-10-25 23:36:44] 20240105_1426_3E_PAQ23344_c8172461: plotting reads per hour
+INFO [2025-10-25 23:37:04] 20240105_1426_3E_PAQ23344_c8172461: plotting flowcell channels summary histograms
+INFO [2025-10-25 23:37:08] 20240105_1426_3E_PAQ23344_c8172461: plotting physical overview of output per channel
 **** Job ends ****
-2025-07-03 00:10:12
+2025-10-25 23:37:09
