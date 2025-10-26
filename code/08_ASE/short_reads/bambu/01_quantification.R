@@ -16,8 +16,8 @@ fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembl
 sample <- commandArgs(trailingOnly = TRUE)
 
 bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1"
-h1_bam <- file.path(bam_dir, paste0(sample, "_hp1.bam"))
-h2_bam <- file.path(bam_dir, paste0(sample, "_hp2.bam"))
+h1_bam <- file.path(bam_dir, paste0(sample, "_h1.bam"))
+h2_bam <- file.path(bam_dir, paste0(sample, "_h2.bam"))
 
 se.quantOnly_h1 <- bambu(reads = h1_bam, annotations = annotation, genome = fa.file, discovery = FALSE)
 se.quantOnly_h2 <- bambu(reads = h2_bam, annotations = annotation, genome = fa.file, discovery = FALSE)
