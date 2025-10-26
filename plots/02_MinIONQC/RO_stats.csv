@@ -1,8 +1,0 @@
-"sample","Mean Length of all reads","Median q value of all reads","Median N50 of all reads","Total number of reads"
-"EP1-BRN3B-ROs",1781.8,12.8,2459,35327603
-"EP1-WT_hRO_2",1504.4,11.8,2072,15833931
-"EP1-WT_ROs_D45",1914.5,13.6,2696,27803786
-"H9-BRN3B_hRO_2",1688.5,12.1,2382,18735944
-"H9-BRN3B-ROs",1667.8,12.9,2199,33104083
-"H9-CRX_hRO_2",1678.3,11.9,2459,18494663
-"H9-CRX_ROs_D45",1499.3,13.4,1956,29834419
