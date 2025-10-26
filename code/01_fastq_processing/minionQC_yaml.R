@@ -119,18 +119,18 @@ plot_metrics(RO_yaml_data, file = "/users/sparthib/retina_lrs/plots/02_MinIONQC/
 plot_metrics(FT_RGC_yaml_data, file = "/users/sparthib/retina_lrs/plots/02_MinIONQC/FT_RGC_combined_boxplots.pdf")
 
 
-###### Q > 7 ########
+###### Q > 10 ########
 
 yaml_data <- yaml_data |>
   rename(
-    "Mean Length of reads Q > 7" = "Q>=7.mean.length",
-    "Median q value of reads Q > 7" = "Q>=7.median.q",
-    "Median N50 of reads Q > 7" = "Q>=7.N50.length",
-    "Total number of reads Q > 7" = "Q>=7.total.reads"
+    "Mean Length of reads Q >= 10" = "Q>=10.mean.length",
+    "Median q value of reads Q >= 10" = "Q>=10.median.q",
+    "Median N50 of reads Q >= 10" = "Q>=10.N50.length",
+    "Total number of reads Q >= 10" = "Q>=10.total.reads"
   )
 
-columns_of_interest <- c("Mean Length of reads Q > 7", "Median q value of reads Q > 7", 
-                         "Median N50 of reads Q > 7", "Total number of reads Q > 7")
+columns_of_interest <- c("Mean Length of reads Q >= 10", "Median q value of reads Q >= 10", 
+                         "Median N50 of reads Q >= 10", "Total number of reads Q >= 10")
 
 
 
@@ -139,16 +139,16 @@ RO_yaml_data <- yaml_data %>%
 FT_RGC_yaml_data <- yaml_data %>%
   filter(sample %in% FT_RGC_samples)
 
-RO_yaml_data <- RO_yaml_data |> select(c("sample","Mean Length of reads Q > 7", "Median q value of reads Q > 7", 
-                                         "Median N50 of reads Q > 7", "Total number of reads Q > 7" ))
-FT_RGC_yaml_data <- FT_RGC_yaml_data |> select(c("sample","Mean Length of reads Q > 7", "Median q value of reads Q > 7", 
-                                                 "Median N50 of reads Q > 7", "Total number of reads Q > 7"))
+RO_yaml_data <- RO_yaml_data |> select(c("sample","Mean Length of reads Q >= 10", "Median q value of reads Q >= 10", 
+                                         "Median N50 of reads Q >= 10", "Total number of reads Q >= 10" ))
+FT_RGC_yaml_data <- FT_RGC_yaml_data |> select(c("sample","Mean Length of reads Q >= 10", "Median q value of reads Q >= 10", 
+                                                 "Median N50 of reads Q >= 10", "Total number of reads Q >= 10"))
 
-write.csv(RO_yaml_data, "/users/sparthib/retina_lrs/plots/02_MinIONQC/RO_stats_Q7.csv", row.names = FALSE)
-write.csv(FT_RGC_yaml_data, "/users/sparthib/retina_lrs/plots/02_MinIONQC/FT_RGC_stats_Q7.csv", row.names = FALSE)
+write.csv(RO_yaml_data, "/users/sparthib/retina_lrs/plots/02_MinIONQC/RO_stats_Q10.csv", row.names = FALSE)
+write.csv(FT_RGC_yaml_data, "/users/sparthib/retina_lrs/plots/02_MinIONQC/FT_RGC_stats_Q10.csv", row.names = FALSE)
 
 
-plot_metrics(RO_yaml_data, file = "/users/sparthib/retina_lrs/plots/02_MinIONQC/ROs_combined_boxplots_Q7.pdf")
-plot_metrics(FT_RGC_yaml_data, file = "/users/sparthib/retina_lrs/plots/02_MinIONQC/FT_RGC_combined_boxplots_Q7.pdf")
+plot_metrics(RO_yaml_data, file = "/users/sparthib/retina_lrs/plots/02_MinIONQC/ROs_combined_boxplots_Q10.pdf")
+plot_metrics(FT_RGC_yaml_data, file = "/users/sparthib/retina_lrs/plots/02_MinIONQC/FT_RGC_combined_boxplots_Q10.pdf")
 
 
