@@ -21,7 +21,8 @@ mkdir -p $minIONQC_OUTPUT
 
 module load conda_R/4.3
 
-Rscript 02_MinIONQC.R -i $guppy_summary_file -o $minIONQC_OUTPUT -p ${SLURM_CPUS_PER_TASK}
+Rscript 02_MinIONQC.R -i $guppy_summary_file  -o $minIONQC_OUTPUT \
+  -p ${SLURM_CPUS_PER_TASK} -q 10
 
 
 echo "**** Job ends ****"
