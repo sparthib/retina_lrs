@@ -1,0 +1,57 @@
+input file: /dcs04/hicks/data/sparthib/CK_D100-hRO_03112024/H9-BRN3B_hRO_2/20240318_1401_2C_PAW10741_2a40039d/sequencing_summary_PAW10741_2a40039d_0b45a4b9.txt
+All reads:
+  total.gigabases: 31.6354176
+  total.reads: 18735944
+  N50.length: 2382.0
+  mean.length: 1688.5
+  median.length: 1161.0
+  max.length: 1223485.0
+  mean.q: 11.3
+  median.q: 12.1
+  reads:
+    '>10kb': 83469
+    '>20kb': 15559
+    '>50kb': 6167
+    '>100kb': 3031
+    '>200kb': 1172
+    '>500kb': 165
+    '>1m': 6
+    ultralong: 25300.0
+  gigabases:
+    '>10kb': 2.0286929
+    '>20kb': 1.1603002
+    '>50kb': 0.8874721
+    '>100kb': 0.6651844
+    '>200kb': 0.407654
+    '>500kb': 0.1091173
+    '>1m': 0.0065149
+    ultralong: 1.3303701
+Q>=10:
+  total.gigabases: 23.4411825
+  total.reads: 13952814
+  N50.length: 2320.0
+  mean.length: 1680.0
+  median.length: 1208.0
+  max.length: 556093.0
+  mean.q: 12.9
+  median.q: 12.7
+  reads:
+    '>10kb': 51344
+    '>20kb': 2521
+    '>50kb': 18
+    '>100kb': 9
+    '>200kb': 2
+    '>500kb': 1
+    '>1m': 0
+    ultralong: 44.0
+  gigabases:
+    '>10kb': 0.6788705
+    '>20kb': 0.0617457
+    '>50kb': 0.0023466
+    '>100kb': 0.0017412
+    '>200kb': 0.0007637
+    '>500kb': 0.0005561
+    '>1m': 0.0
+    ultralong: 0.0034453
+notes: ultralong reads refers to the largest set of reads with N50>100KB
+

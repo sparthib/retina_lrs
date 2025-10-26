@@ -1,0 +1,57 @@
+input file: /dcs04/hicks/data/sparthib/CK_01052024/H9-hRGC_1/20240105_1426_3E_PAQ23344_c8172461/sequencing_summary_PAQ23344_c8172461_f322be0e.txt
+All reads:
+  total.gigabases: 9.3148374
+  total.reads: 5609841
+  N50.length: 2427.0
+  mean.length: 1660.4
+  median.length: 1154.0
+  max.length: 720308.0
+  mean.q: 12.3
+  median.q: 12.8
+  reads:
+    '>10kb': 23605
+    '>20kb': 1021
+    '>50kb': 130
+    '>100kb': 53
+    '>200kb': 19
+    '>500kb': 3
+    '>1m': 0
+    ultralong: 295.0
+  gigabases:
+    '>10kb': 0.3187686
+    '>20kb': 0.0386341
+    '>50kb': 0.0165284
+    '>100kb': 0.0110966
+    '>200kb': 0.0064615
+    '>500kb': 0.0019729
+    '>1m': 0.0
+    ultralong: 0.0221824
+Q>=10:
+  total.gigabases: 8.0065282
+  total.reads: 4715901
+  N50.length: 2445.0
+  mean.length: 1697.8
+  median.length: 1194.0
+  max.length: 42162.0
+  mean.q: 13.3
+  median.q: 13.2
+  reads:
+    '>10kb': 19963
+    '>20kb': 600
+    '>50kb': 0
+    '>100kb': 0
+    '>200kb': 0
+    '>500kb': 0
+    '>1m': 0
+    ultralong: 0.0
+  gigabases:
+    '>10kb': 0.2537427
+    '>20kb': 0.0140124
+    '>50kb': 0.0
+    '>100kb': 0.0
+    '>200kb': 0.0
+    '>500kb': 0.0
+    '>1m': 0.0
+    ultralong: 0.0
+notes: ultralong reads refers to the largest set of reads with N50>100KB
+

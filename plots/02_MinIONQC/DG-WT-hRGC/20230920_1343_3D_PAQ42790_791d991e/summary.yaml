@@ -1,0 +1,57 @@
+input file: /dcs04/hicks/data/globus/casey/230920_Casey/DG-WT-hRGCs/20230920_1343_3D_PAQ42790_791d991e/sequencing_summary_PAQ42790_791d991e_5ef7acc9.txt
+All reads:
+  total.gigabases: 60.7880404
+  total.reads: 29273693
+  N50.length: 2908.0
+  mean.length: 2076.5
+  median.length: 1516.0
+  max.length: 1151900.0
+  mean.q: 12.5
+  median.q: 13.0
+  reads:
+    '>10kb': 271653
+    '>20kb': 17584
+    '>50kb': 852
+    '>100kb': 353
+    '>200kb': 117
+    '>500kb': 15
+    '>1m': 1
+    ultralong: 1829.0
+  gigabases:
+    '>10kb': 3.7454912
+    '>20kb': 0.5206214
+    '>50kb': 0.1073192
+    '>100kb': 0.0731999
+    '>200kb': 0.0405413
+    '>500kb': 0.0105144
+    '>1m': 0.0011519
+    ultralong: 0.1463813
+Q>=10:
+  total.gigabases: 52.4780664
+  total.reads: 24862494
+  N50.length: 2921.0
+  mean.length: 2110.7
+  median.length: 1548.0
+  max.length: 143449.0
+  mean.q: 13.5
+  median.q: 13.4
+  reads:
+    '>10kb': 234855
+    '>20kb': 13479
+    '>50kb': 31
+    '>100kb': 2
+    '>200kb': 0
+    '>500kb': 0
+    '>1m': 0
+    ultralong: 5.0
+  gigabases:
+    '>10kb': 3.135867
+    '>20kb': 0.3264313
+    '>50kb': 0.001976
+    '>100kb': 0.0002521
+    '>200kb': 0.0
+    '>500kb': 0.0
+    '>1m': 0.0
+    ultralong: 0.0004997
+notes: ultralong reads refers to the largest set of reads with N50>100KB
+
