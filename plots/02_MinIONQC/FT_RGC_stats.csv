@@ -1,0 +1,5 @@
+"sample","Mean Length of all reads","Median q value of all reads","Median N50 of all reads","Total number of reads"
+"H9-FT_1",1938.9,12.8,2775,15425756
+"H9-FT_2",1951.6,12.9,2807,14788905
+"H9-hRGC_1",1660.4,12.8,2427,5609841
+"H9-hRGC_2",1938.9,13,2817,20264517

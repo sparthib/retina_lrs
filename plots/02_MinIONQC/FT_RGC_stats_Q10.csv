@@ -1,0 +1,5 @@
+"sample","Mean Length of reads Q >= 10","Median q value of reads Q >= 10","Median N50 of reads Q >= 10","Total number of reads Q >= 10"
+"H9-FT_1",1972,13.2,2777,12911269
+"H9-FT_2",1910.7,13.3,2673,12595798
+"H9-hRGC_1",1697.8,13.2,2445,4715901
+"H9-hRGC_2",1975.5,13.4,2810,17270137
