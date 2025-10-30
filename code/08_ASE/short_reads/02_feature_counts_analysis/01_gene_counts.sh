@@ -22,7 +22,7 @@ echo "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 module load conda_R/4.3.x
 # Rscript 06_gene_counts.R 
-Rscript 06_gene_counts.R 
+Rscript 01_gene_counts.R 
 
 echo "**** Job ends ****"
 date

@@ -168,7 +168,7 @@ for (i in seq_len(ncol(contrasts))) {
 }
 
 
-source("/users/sparthib/retina_lrs/code/08_ASE/short_reads/07_volcano_helper.R")
+source("/users/sparthib/retina_lrs/code/08_ASE/short_reads/02_feature_counts_analysis/volcano_helper.R")
 
 contrast_names <- c(
   "H1_Stage1_vs_H2_Stage1",
