@@ -148,10 +148,8 @@ y <- normLibSizes(y)
 
 # > nrow(y)
 # [1] 12503
-
-
 y <- estimateDisp(y, design, robust=TRUE)
-y$common.dispersion
+
 
 fit <- glmQLFit(y, design, robust=TRUE)
 
