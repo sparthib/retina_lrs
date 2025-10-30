@@ -66,6 +66,9 @@ volcano_plot <- function(data, x_col, y_col, gene_label_col = "gene_name",
       "H1_Stage1|H1_RGC" = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown", "Upregulation in condition 1" = "orange"),
       "H1_Stage2|H1_RGC" = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown", "Upregulation in condition 1" = "seagreen"),
       "H1_Stage3|H1_RGC" = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown", "Upregulation in condition 1" = "purple"),
+      "H2_Stage1|H2_RGC" = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown", "Upregulation in condition 1" = "orange"),
+      "H2_Stage2|H2_RGC" = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown", "Upregulation in condition 1" = "seagreen"),
+      "H2_Stage3|H2_RGC" = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown", "Upregulation in condition 1" = "purple"),
       # Add FT vs RGC comparisons within haplotypes
       "H1_FT|H1_RGC" = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown", "Upregulation in condition 1" = "skyblue"),
       "H2_FT|H2_RGC" = c("Not Significant" = "gray", "Upregulation in condition 2" = "brown", "Upregulation in condition 1" = "skyblue")
