@@ -120,3 +120,7 @@ readr::write_tsv(as.data.frame(filtered_counts_matrix) |>
                          mutate(gene_id = rownames(filtered_counts_matrix)),
                        file = "/users/sparthib/retina_lrs/processed_data/ASE/bambu_counts_matrices/bambu_ptc_gene_counts.tsv")
 
+
+counts <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/ASE/bambu_counts_matrices/bambu_ptc_gene_counts.tsv")
+
+cpm <- readr::read_tsv("/users/sparthib/retina_lrs/processed_data/ASE/bambu_counts_matrices/bambu_ptc_gene_cpm.tsv")
