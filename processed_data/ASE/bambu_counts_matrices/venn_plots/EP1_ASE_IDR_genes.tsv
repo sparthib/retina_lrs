@@ -1,0 +1,69 @@
+gene_name	disease_category	ensembl_gene_id
+BBIP1	Bardet-Biedl syndrome, autosomal recessive	ENSG00000214413
+BBS2	c("Bardet-Biedl syndrome, autosomal recessive", "Retinitis pigmentosa, autosomal recessive")	ENSG00000125124
+BBS4	Bardet-Biedl syndrome, autosomal recessive	ENSG00000140463
+BBS5	Bardet-Biedl syndrome, autosomal recessive	ENSG00000163093
+BBS7	Bardet-Biedl syndrome, autosomal recessive	ENSG00000138686
+BBS12	Bardet-Biedl syndrome, autosomal recessive	ENSG00000181004
+CEP19	Bardet-Biedl syndrome, autosomal recessive	ENSG00000174007
+IFT27	Bardet-Biedl syndrome, autosomal recessive	ENSG00000100360
+LZTFL1	Bardet-Biedl syndrome, autosomal recessive	ENSG00000163818
+PRDM13	c("Chorioretinal atrophy or degeneration, autosomal dominant", "Macular degeneration, autosomal dominant")	ENSG00000112238
+ATF6	Cone or cone-rod dystrophy, autosomal recessive	ENSG00000118217
+CDHR1	Cone or cone-rod dystrophy, autosomal recessive	ENSG00000148600
+CERKL	c("Cone or cone-rod dystrophy, autosomal recessive", "Retinitis pigmentosa, autosomal recessive")	ENSG00000188452
+PDE6H	Cone or cone-rod dystrophy, autosomal recessive	ENSG00000139053
+CACNA1F	c("Cone or cone-rod dystrophy, X-linked", "Congenital stationary night blindness, X-linked", "Other retinopathy, X-linked")	ENSG00000102001
+RPGR	c("Cone or cone-rod dystrophy, autosomal recessive", "Cone or cone-rod dystrophy, X-linked", "Leber congenital amaurosis, autosomal recessive", "Macular degeneration, X-linked", "Retinitis pigmentosa, X-linked", "Syndromic/systemic diseases with retinopathy, autosomal recessive")	ENSG00000156313
+PDE6B	c("Congenital stationary night blindness, autosomal dominant", "Retinitis pigmentosa, autosomal recessive")	ENSG00000133256
+SLC24A1	Congenital stationary night blindness, autosomal recessive	ENSG00000074621
+WFS1	c("Deafness alone or syndromic, autosomal dominant", "Syndromic/systemic diseases with retinopathy, autosomal recessive")	ENSG00000109501
+CIB2	c("Deafness alone or syndromic, autosomal recessive", "Usher syndrome, autosomal recessive")	ENSG00000136425
+OTX2	c("Leber congenital amaurosis, autosomal dominant", "Macular degeneration, autosomal dominant")	ENSG00000165588
+IQCB1	c("Leber congenital amaurosis, autosomal recessive", "Syndromic/systemic diseases with retinopathy, autosomal recessive")	ENSG00000173226
+KCNJ13	c("Leber congenital amaurosis, autosomal recessive", "Syndromic/systemic diseases with retinopathy, autosomal dominant")	ENSG00000115474
+RD3	Leber congenital amaurosis, autosomal recessive	ENSG00000198570
+C1QTNF5	Macular degeneration, autosomal dominant	ENSG00000223953
+CTNNA1	Macular degeneration, autosomal dominant	ENSG00000044115
+ELOVL4	c("Macular degeneration, autosomal dominant", "Syndromic/systemic diseases with retinopathy, autosomal recessive")	ENSG00000118402
+GUCA1B	c("Macular degeneration, autosomal dominant", "Retinitis pigmentosa, autosomal dominant")	ENSG00000112599
+MFN2	c("Optic atrophy, autosomal dominant", "Syndromic/systemic diseases with retinopathy, autosomal dominant")	ENSG00000116688
+NR2F1	Optic atrophy, autosomal dominant	ENSG00000175745
+RTN4IP1	Optic atrophy, autosomal recessive	ENSG00000130347
+ARL3	Retinitis pigmentosa, autosomal dominant	ENSG00000138175
+HK1	Retinitis pigmentosa, autosomal dominant	ENSG00000156515
+PRPF4	Retinitis pigmentosa, autosomal dominant	ENSG00000136875
+RP9	Retinitis pigmentosa, autosomal dominant	ENSG00000164610
+SNRNP200	Retinitis pigmentosa, autosomal dominant	ENSG00000144028
+AHR	Retinitis pigmentosa, autosomal recessive	ENSG00000106546
+CC2D2A	c("Retinitis pigmentosa, autosomal recessive", "Syndromic/systemic diseases with retinopathy, autosomal recessive")	ENSG00000048342
+COQ2	c("Retinitis pigmentosa, autosomal recessive", "Other retinopathy, autosomal recessive")	ENSG00000173085
+COQ4	Retinitis pigmentosa, autosomal recessive	ENSG00000167113
+COQ5	Retinitis pigmentosa, autosomal recessive	ENSG00000110871
+ENSA	Retinitis pigmentosa, autosomal recessive	ENSG00000143420
+MAK	Retinitis pigmentosa, autosomal recessive	ENSG00000111837
+PDSS1	c("Retinitis pigmentosa, autosomal recessive", "Syndromic/systemic diseases with retinopathy, autosomal recessive")	ENSG00000148459
+REEP6	Retinitis pigmentosa, autosomal recessive	ENSG00000115255
+SLC39A12	Retinitis pigmentosa, autosomal recessive	ENSG00000148482
+SLC66A1	Retinitis pigmentosa, autosomal recessive	ENSG00000040487
+TRNT1	c("Retinitis pigmentosa, autosomal recessive", "Syndromic/systemic diseases with retinopathy, autosomal recessive")	ENSG00000072756
+ZNF408	c("Retinitis pigmentosa, autosomal recessive", "Other retinopathy, autosomal dominant")	ENSG00000175213
+COL11A1	Syndromic/systemic diseases with retinopathy, autosomal dominant	ENSG00000060718
+OPA3	c("Syndromic/systemic diseases with retinopathy, autosomal dominant", "Syndromic/systemic diseases with retinopathy, autosomal recessive")	ENSG00000125741
+PAX2	Syndromic/systemic diseases with retinopathy, autosomal dominant	ENSG00000075891
+AHI1	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000135541
+ALMS1	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000116127
+CEP164	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000110274
+EXOSC2	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000130713
+INVS	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000119509
+PANK2	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000125779
+PEX2	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000164751
+PEX7	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000112357
+PHYH	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000107537
+PPT1	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000131238
+SLC25A46	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000164209
+TUB	Syndromic/systemic diseases with retinopathy, autosomal recessive	ENSG00000166402
+ASRGL1	Other retinopathy, autosomal recessive	ENSG00000162174
+MFRP	Other retinopathy, autosomal recessive	ENSG00000235718
+RBP4	Other retinopathy, autosomal recessive	ENSG00000138207
+PGK1	Other retinopathy, X-linked	ENSG00000102144
