@@ -4,7 +4,6 @@ remove_zero_var_rows <- function(mat) {
   mat[apply(mat, 1, function(x) min(x) != max(x)), ]
 }
 
-
 plot_pca <- function(tpm, samples, groups, output_name, output_dir) {
   pc <- prcomp(t(log2(tpm + 1)), scale = TRUE)
   pcr <- data.frame(pc$x[, 1:2], row.names = samples)  # PC scores
