@@ -20,15 +20,21 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
-LOGS_FOLDER=/users/sparthib/retina_lrs/code/01_fastq_processing/logs/bam_stats_transcriptome_gencode
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
-INPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/03a_nanofilt_fastqs
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_all_transcripts_short_header.fa
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
+LOGS_FOLDER=$retina_lrs_code/code/01_fastq_processing/logs/bam_stats_transcriptome_gencode
+INPUT_FOLDER=$retina_lrs_dir/03a_nanofilt_fastqs
+REFERENCE_FASTA=$references_dir/genome/GENCODE/primary_assembly/release_46_all_transcripts_short_header.fa
 
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
-SAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/04_sams/transcriptome/ver_46/
-BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/transcriptome/ver_46/
+SAM_FOLDER=$retina_lrs_dir/04_sams/transcriptome/ver_46/
+BAM_FOLDER=$retina_lrs_dir/05_bams/transcriptome/ver_46/
 mkdir -p ${SAM_FOLDER}
 mkdir -p ${BAM_FOLDER}
 
@@ -40,30 +46,19 @@ cd ~/minimap2
 ml load samtools
 
 samtools view -bS ${SAM_FOLDER}/${sample}.sam -o ${BAM_FOLDER}/${sample}.bam
+rm ${SAM_FOLDER}/${sample}.sam
 samtools sort ${BAM_FOLDER}/${sample}.bam -o ${BAM_FOLDER}/${sample}_sorted.bam
-# rm ${BAM_FOLDER}/${sample}.bam
+#rm ${BAM_FOLDER}/${sample}.bam
 samtools index ${BAM_FOLDER}/${sample}_sorted.bam ${BAM_FOLDER}/${sample}_sorted.bam.bai
 
-# echo "finished indexing bam"
+echo "finished indexing bam"
 index stats ${sample}_index_stats.txt
 samtools idxstats ${BAM_FOLDER}/${sample}_sorted.bam > ${LOGS_FOLDER}/${sample}_index_stats.txt
-
 
 echo "flagstat" > ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
 samtools flagstat ${BAM_FOLDER}/${sample}_sorted.bam >> ${LOGS_FOLDER}/${sample}_bam_flagstat.txt
 
 echo "finished computing flagstats: contains percentage mapped reads"
-# echo "depth of coverage" > ${LOGS_FOLDER}/${sample}_depth_stats.txt
-# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++;s+=$3}END{print s/c}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
-# 
-# echo "breadth of coverage" >> ${sample}_depth_stats.txt
-# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  | awk '{c++; if($3>0) total+=1}END{print (total/c)*100}' >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
-# 
-# echo "raw depth output" >> ${sample}_depth_stats.txt
-# samtools depth -a ${BAM_FOLDER}/${sample}_sorted.bam  >> ${LOGS_FOLDER}/${sample}_depth_stats.txt
-
-echo "finished computing depth stats"
-
 
 echo "**** Job ends ****"
 date +"%Y-%m-%d %T"

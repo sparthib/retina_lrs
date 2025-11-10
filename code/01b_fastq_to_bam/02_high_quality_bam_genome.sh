@@ -22,13 +22,12 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
-LOGS_FOLDER=/users/sparthib/retina_lrs/code/03_bam_QC/logs/primary_over_30/genome_splice
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
+LOGS_FOLDER=$retina_lrs_code/code/03_bam_QC/logs/primary_over_30/genome_splice
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 
-input_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly"
-output_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality"
+input_dir="$retina_lrs_dir/05_bams/genome/primary_assembly"
+output_dir="$retina_lrs_dir/05_bams/genome/primary_assembly/high_quality"
 bam=$input_dir/${sample}_sorted.bam
 
 ml load samtools 
