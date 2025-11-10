@@ -1,20 +1,34 @@
+# R Project Files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+*.rds
+
+# Environment & System Files
+.env
 .DS_Store
-plots/de/switch_analyzer/bambu/
+
+# Log Files
 code/01_fastq_processing/logs/
-code/coverage/H9-FT2_bam_paths.txt
-code/coverage/coverage_genes_of_interest.tsv
-code/coverage/log.txt
-code/coverage/logs/
 code/01_fastq_processing/temp/logs/
 code/02_quantification/04_flair2/logs/
-plots/plotCoverage/bedtools/
+code/coverage/logs/
+code/coverage/log.txt
+code/*/logs/*
+
+# Raw & Processed Data
 single_cell_raw_data/
 processed_data/bambu_sqanti_annotation/
 processed_data/coverage/
-code/*/logs/*
+
+# Analysis Output
+plots/de/switch_analyzer/bambu/
+plots/plotCoverage/bedtools/
+
+# Sequence Files
 *.fasta
-*.rds
+
+# Temporary & Generated Files
+code/coverage/H9-FT2_bam_paths.txt
+code/coverage/coverage_genes_of_interest.tsv
