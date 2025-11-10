@@ -11,10 +11,16 @@
 #SBATCH -e logs/02_minIONQC/minIONQC.%a.txt
 #SBATCH --array=1-15
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 guppy_summary_file=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $4}' $CONFIG)
-minIONQC_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC/${sample}
+minIONQC_OUTPUT=$retina_lrs_dir/02_MinIONQC/${sample}
 
 mkdir -p $minIONQC_OUTPUT
 

@@ -4,8 +4,8 @@ library(yaml)
 library(tidyr)
 library(patchwork)
 
-
-input_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/02_MinIONQC"
+data_dir <- Sys.getenv("retina_lrs_dir")
+input_dir <- file.path(data_dir, "02_MinIONQC")
 
 plot_metrics <- function(df, file){ 
   plots <- list()

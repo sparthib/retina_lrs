@@ -20,11 +20,17 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 source activate seqkit
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo $sample
-INPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/01a_seqkit_processed
+INPUT_FOLDER=$retina_lrs_dir/01_input_fastqs
+OUTPUT_FOLDER=$retina_lrs_dir/01a_seqkit_processed
 
 
 zcat $INPUT_FOLDER/${sample}.fastq.gz |  seqkit rmdup --dup-num-file $OUTPUT_FOLDER/$sample.dup_ids.txt  \

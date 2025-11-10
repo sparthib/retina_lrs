@@ -17,14 +17,20 @@ echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
 # Output file to store the results
-output_file="/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/read_counts.txt"
+output_file="$retina_lrs_dir/01_input_fastqs/read_counts.txt"
 
 # Clear the output file if it already exists
 > "$output_file"
 
 # Loop through all gzipped fastq files in the specified folder
-for file in /dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/*.fastq.gz; do
+for file in $retina_lrs_dir/01_input_fastqs/*.fastq.gz; do
     # Count the number of reads (4 lines per read)
     read_count=$(zcat "$file" | wc -l)
     total_reads=$((read_count / 4))

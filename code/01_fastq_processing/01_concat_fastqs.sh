@@ -18,12 +18,17 @@ echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 INPUT_FOLDER=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $3}' $CONFIG)
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo $sample
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs
+OUTPUT_FOLDER=$retina_lrs_dir/01_input_fastqs
 mkdir -p $OUTPUT_FOLDER
 
 cd $INPUT_FOLDER

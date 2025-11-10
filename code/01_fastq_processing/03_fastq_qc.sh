@@ -20,14 +20,21 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 
+
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
 source activate nanofilt 
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "$sample"
 
-input_fastq=/dcs04/hicks/data/sparthib/retina_lrs/01_input_fastqs/${sample}.fastq.gz
-fastq_qc_OUTPUT=/dcs04/hicks/data/sparthib/retina_lrs/03a_nanofilt_fastqs/${sample}.fastq.gz
+input_fastq=$retina_lrs_dir/01_input_fastqs/${sample}.fastq.gz
+fastq_qc_OUTPUT=$retina_lrs_dir/03a_nanofilt_fastqs/${sample}.fastq.gz
 guppy_summary_file=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $4}' $CONFIG)
 
 gunzip -c $input_fastq | NanoFilt -q 10 -s $guppy_summary_file | gzip > $fastq_qc_OUTPUT
