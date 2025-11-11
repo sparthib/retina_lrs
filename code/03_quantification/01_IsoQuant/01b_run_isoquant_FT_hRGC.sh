@@ -21,19 +21,25 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 source activate isoquant 
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
 sample=$(awk -v Index=$SLURM_ARRAY_TASK_ID '$1==Index {print $2}' $CONFIG)
 echo "${sample}"
-BAM_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality
-REFERENCE_GTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf.gz
-REFERENCE_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
+BAM_FOLDER=$retina_lrs_dir/05_bams/genome/primary_assembly/high_quality
+REFERENCE_GTF=$references_dir/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf.gz
+REFERENCE_FASTA=$references_dir/genome/GENCODE/primary_assembly/release_46_primary_genome.fa.gz
 
 H9_FT_1=$BAM_FOLDER/H9-FT_1_primary_over_30_sorted.bam
 H9_FT_2=$BAM_FOLDER/H9-FT_2_primary_over_30_sorted.bam
 H9_hRGC_1=$BAM_FOLDER/H9-hRGC_1_primary_over_30_sorted.bam
 H9_hRGC_2=$BAM_FOLDER/H9-hRGC_2_primary_over_30_sorted.bam
 
-OUTPUT_FOLDER=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/FT_RGC
+OUTPUT_FOLDER=$retina_lrs_dir/06_quantification/isoquant/high_quality/FT_RGC
 mkdir -p $OUTPUT_FOLDER
 
 isoquant.py --reference $REFERENCE_FASTA --data_type ont --genedb $REFERENCE_GTF \

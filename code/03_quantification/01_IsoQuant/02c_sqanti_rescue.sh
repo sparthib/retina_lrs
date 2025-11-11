@@ -23,11 +23,18 @@ echo "****"
 source activate /users/sparthib/.conda/envs/SQANTI3
 SQANTI_DIR=~/SQANTI3-5.2.1
 
-INPUT_DIR=/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/sqanti3_qc
-REFERENCE_GENOME_FASTA=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
+INPUT_DIR=$retina_lrs_dir/06_quantification/isoquant/high_quality/all_samples/sqanti3_qc
+REFERENCE_GENOME_FASTA=$references_dir/genome/GENCODE/primary_assembly/release_46_primary_genome.fa
 ISOFORMS=$INPUT_DIR/all_samples_corrected.fasta
 GTF=$INPUT_DIR/all_samples.filtered.gtf
-REFGTF=/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
+REFGTF=$references_dir/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf
 REFCLASSIF=$INPUT_DIR/all_samples_classification.txt
 FITLER_CLASSIFICATION=$INPUT_DIR/all_samples_MLresult_classification.txt
 
