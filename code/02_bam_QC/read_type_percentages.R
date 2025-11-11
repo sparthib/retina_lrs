@@ -3,6 +3,8 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
+retinalrs_repo <- Sys.getenv("retina_lrs_code")
+retinalrs_data <- Sys.getenv("retina_lrs_dir")
 # Define a function to extract total, primary mapped, and supplementary counts from flagstat output
 extract_flagstat <- function(flagstat_lines) {
   total <- as.numeric(sub(" .*", "", grep("in total", flagstat_lines, value = TRUE)))
@@ -12,7 +14,7 @@ extract_flagstat <- function(flagstat_lines) {
 }
 
 # Read the flagstat file (which contains concatenated outputs)
-flagstat_file <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/logs/all.flagstat.txt"  # Replace with actual path
+flagstat_file <- file.path(retinalrs_data, "05_bams/genome/primary_assembly/logs/all.flagstat.txt") # Replace with actual path
 flagstat_data <- readLines(flagstat_file)
 
 # Split flagstat data by samples (each sample has a block of lines, preceded by "Sample: <sample name>")
@@ -52,7 +54,7 @@ df_long <- df |> select(Sample, Primary_Mapped_Percent, Supplementary_Reads_Perc
                            Supplementary_Reads_Percent = "Supplementary"))
 
 # Plot the bar graph with percentage annotations
-output_dir <- "/users/sparthib/retina_lrs/plots/bam_qc"
+output_dir <- file.path(retinalrs_repo,"plots/bam_qc")
 pdf(file.path(output_dir, "sample_wise_primary_reads_percentage.pdf"), width = 10, height = 6)
 p <- ggplot(df_long, aes(x = Sample, y = Percentage, fill = Category)) +
   geom_bar(stat = "identity", position = "stack") +

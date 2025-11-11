@@ -21,19 +21,24 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Array job ID: ${SLURM_ARRAY_JOB_ID}"
 
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo $sample
 
-input_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/pomoxis_stats"
-output_dir="/users/sparthib/retina_lrs/plots/bam_qc/pomoxis_plots/"
+input_dir="$retina_lrs_dir/05_bams/genome/primary_assembly/pomoxis_stats"
+output_dir="$retina_lrs_code/plots/bam_qc/pomoxis_plots/"
 
 ml load python/3.10.13
 python3 bam_stats_plots.py $sample $input_dir $output_dir
 
-input_dir="/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/pomoxis_stats"
-output_dir="/users/sparthib/retina_lrs/plots/bam_qc/pomoxis_plots/high_quality"
+input_dir="$retina_lrs_dir/05_bams/genome/primary_assembly/high_quality/pomoxis_stats"
+output_dir="$retina_lrs_code/plots/bam_qc/pomoxis_plots/high_quality"
 
 mkdir -p $output_dir
 python3 bam_stats_plots.py $sample $input_dir $output_dir

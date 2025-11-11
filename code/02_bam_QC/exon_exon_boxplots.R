@@ -1,9 +1,8 @@
 library(reshape2)
 library(ggplot2)
 
-# Define the directory where the CSV files are stored
-data_dir <- "/users/sparthib/retina_lrs/processed_data/exon_exon"
-
+retinalrs_code <- Sys.getenv("retina_lrs_code")
+data_dir <- file.path(retinalrs_code ,"processed_data/exon_exon" )
 # List all the CSV files in the directory
 csv_files <- list.files(data_dir, pattern = "_junction_per_read.csv$", full.names = TRUE)
 
@@ -70,8 +69,7 @@ FT_RGC_combined_junction_data_long <- combined_junction_data_long |>
 df <- RO_combined_junction_data_long
 df$renamed_samples <- factor(df$sample, levels = RO_samples, labels = RO_samples_rename)
 
-file <- "/users/sparthib/retina_lrs/plots/exon_exon/RO_combined_boxplots.pdf"
-
+file <- file.path( retinalrs_code, "plots/exon_exon/RO_combined_boxplots.pdf")
 pdf(file)
 p <- ggplot(df, aes(x = junctions, y = percentage)) +
   geom_boxplot(outlier.shape = NA) +  # Box plot without outliers
@@ -82,19 +80,12 @@ p <- ggplot(df, aes(x = junctions, y = percentage)) +
     x = "Number of exon-exon junctions", 
     y = "percentage unique genes expressed"
   ) +
-  # theme(
-  #   axis.text.x = element_blank(), # Remove x-axis text
-  #   axis.ticks.x = element_blank() # Remove x-axis ticks
-  # ) +
-  scale_color_manual(values = custom_palette) +  # Use the custom palette
+  scale_color_manual(values = custom_palette) +  
   scale_y_continuous(
-    breaks = seq(0.01, 0.13, by = 0.01),  # Specify breaks from 0.01 to 0.13 by 0.01
-    limits = c(0.01, 0.13),  # Set y-axis limits from 0.01 to 0.13
-    labels = scales::number_format(accuracy = 0.01)  # Format labels to 2 decimal places
+    breaks = seq(0.01, 0.13, by = 0.01),  
+    limits = c(0.01, 0.13), 
+    labels = scales::number_format(accuracy = 0.01)
   )
 
 print(p)
 dev.off()
-
-# Remove the lines that blank out the x-axis text and ticks
-# theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())

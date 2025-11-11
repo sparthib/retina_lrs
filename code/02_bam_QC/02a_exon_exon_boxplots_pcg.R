@@ -2,7 +2,8 @@ library(reshape2)
 library(ggplot2)
 
 # Define the directory where the CSV files are stored
-data_dir <- "/users/sparthib/retina_lrs/processed_data/exon_exon"
+retinalrs_repo <- Sys.getenv("retina_lrs_code")
+data_dir <- file.path(retinalrs_repo, "processed_data/exon_exon")
 
 # List all the CSV files in the directory
 csv_files <- list.files(data_dir, pattern = "_junction_per_read.csv$", full.names = TRUE)
@@ -70,7 +71,7 @@ FT_RGC_combined_junction_data_long <- combined_junction_data_long |>
 df <- RO_combined_junction_data_long
 df$renamed_samples <- factor(df$sample, levels = RO_samples, labels = RO_samples_rename)
 
-file <- "/users/sparthib/retina_lrs/plots/exon_exon/RO_combined_boxplots_pcg.pdf"
+file <- file.path( retinalrs_repo, "/plots/exon_exon/RO_combined_boxplots_pcg.pdf")
 
 pdf(file)
 p <- ggplot(df, aes(x = junctions, y = percentage)) +

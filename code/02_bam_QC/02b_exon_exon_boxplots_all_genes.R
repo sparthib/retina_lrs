@@ -2,7 +2,9 @@ library(reshape2)
 library(ggplot2)
 
 # Define the directory where the CSV files are stored
-data_dir <- "/users/sparthib/retina_lrs/processed_data/exon_exon"
+retinalrs_repo <- Sys.getenv("retina_lrs_code")
+
+data_dir <- file.path(retinalrs_repo, "processed_data/exon_exon")
 
 # List all the CSV files in the directory
 csv_files <- list.files(data_dir, pattern = "_junction_per_read_all_genes.csv$", full.names = TRUE)
@@ -26,7 +28,9 @@ colnames(combined_junction_data) <- c("sample", "junctions_0", "junction_1",
 
 combined_junction_data$sample <- rownames(combined_junction_data)
 #save the combined data
-write.csv(combined_junction_data, file = "/users/sparthib/retina_lrs/processed_data/exon_exon/combined_junction_data_all_genes.csv", row.names = FALSE)
+write.csv(combined_junction_data, file = 
+            file.path(retinalrs_code,"processed_data/exon_exon/combined_junction_data_all_genes.csv"), 
+          row.names = FALSE)
 
 custom_palette <- c("#000000","#E69F00" ,"#56B4E9", "#009E73" ,"#F0E442", "#0072B2",
                     "#CC79A7", "#D55E00"  , "#999999")
@@ -73,7 +77,7 @@ FT_RGC_combined_junction_data_long <- combined_junction_data_long |>
 df <- RO_combined_junction_data_long
 df$renamed_samples <- factor(df$sample, levels = RO_samples, labels = RO_samples_rename)
 
-file <- "/users/sparthib/retina_lrs/plots/exon_exon/RO_combined_boxplots_all_genes.pdf"
+file <- file.path(retinalrs_repo, "plots/exon_exon/RO_combined_boxplots_all_genes.pdf")
 
 pdf(file)
 p <- ggplot(df, aes(x = junctions, y = percentage)) +
