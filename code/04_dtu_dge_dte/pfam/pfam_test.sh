@@ -21,8 +21,16 @@ echo "Task id: ${SLURM_ARRAY_TASK_ID}"
 echo "****"
 
 source activate pfam 
-cd /dcs04/hicks/data/sparthib/retina_lrs/PfamScan/pfam_scan
-input_dir=/users/sparthib/retina_lrs/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC
+
+ENV_FILE="../../../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
+cd $retina_lrs_dir/PfamScan/pfam_scan
+input_dir=$retina_lrs_code/processed_data/dtu/DTU_gandall/bambu/FT_vs_RGC
 ./pfam_scan.py $input_dir/isoformSwitchAnalyzeR_isoform_AA_complete.fasta \
 ../ -out $input_dir/pfam_results.csv -cpu 20
 

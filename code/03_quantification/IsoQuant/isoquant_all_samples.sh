@@ -21,7 +21,7 @@ echo "Node name: ${SLURMD_NODENAME}"
 
 source activate isoquant 
 
-ENV_FILE="../../.env"
+ENV_FILE="../../../.env"
 if [ -f $ENV_FILE ]; then
     set -a
     source $ENV_FILE

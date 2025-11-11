@@ -19,6 +19,13 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
 
+ENV_FILE="../../../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
 comparisons=("RO_vs_RGC")
 method="bambu"
 
@@ -26,8 +33,8 @@ source activate CPC2
 cd $CPC_HOME
 for item in ${comparisons[@]}; do
     echo $item
-    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/protein_coding/fastas
-    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/protein_coding/external_protein_analyses
+    INPUT_DIR=$retina_lrs_code/processed_data/dtu/$method/$item/protein_coding/fastas
+    OUTPUT_DIR=$retina_lrs_code/processed_data/dtu/$method/$item/protein_coding/external_protein_analyses
     mkdir $OUTPUT_DIR
     NT_FASTA=$INPUT_DIR/isoformSwitchAnalyzeR_isoform_nt.fasta
     CPC2_OUTPUT=$OUTPUT_DIR/CPC2_output
@@ -41,11 +48,11 @@ conda deactivate
 # https://vcru.wisc.edu/simonlab/bioinformatics/programs/install/pfamscan.htm
 
 source activate pfam
-cd /dcs04/hicks/data/sparthib/retina_lrs/PfamScan/pfam_scan
+cd $retina_lrs_dir/PfamScan/pfam_scan
 for item in ${comparisons[@]}; do
     echo $item
-    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/protein_coding/fastas
-    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/protein_coding/external_protein_analyses
+    INPUT_DIR=$retina_lrs_code/processed_data/dtu/$method/$item/protein_coding/fastas
+    OUTPUT_DIR=$retina_lrs_code/processed_data/dtu/$method/$item/protein_coding/external_protein_analyses
     ./pfam_scan.py $INPUT_DIR/isoformSwitchAnalyzeR_isoform_AA.fasta \
     ../ -out $OUTPUT_DIR/pfam_results.csv -cpu $SLURM_CPUS_PER_TASK
 done
@@ -56,8 +63,8 @@ conda deactivate
 source activate SignalP
 for item in ${comparisons[@]}; do
     echo $item
-    INPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/protein_coding/fastas
-    OUTPUT_DIR=/users/sparthib/retina_lrs/processed_data/dtu/$method/$item/protein_coding/external_protein_analyses
+    INPUT_DIR=$retina_lrs_code/processed_data/dtu/$method/$item/protein_coding/fastas
+    OUTPUT_DIR=$retina_lrs_code/processed_data/dtu/$method/$item/protein_coding/external_protein_analyses
     signalp6 --fastafile $INPUT_DIR/isoformSwitchAnalyzeR_isoform_AA.fasta \
     --organism eukarya --output_dir $OUTPUT_DIR --format txt --mode fast
 done

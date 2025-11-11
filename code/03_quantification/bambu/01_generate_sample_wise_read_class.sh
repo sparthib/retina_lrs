@@ -20,7 +20,7 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
-ENV_FILE="../../.env"
+ENV_FILE="../../../.env"
 if [ -f $ENV_FILE ]; then
     set -a
     source $ENV_FILE
