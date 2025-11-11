@@ -4,18 +4,23 @@ library(readr)
 library(sessioninfo)
 library(dplyr)
 
-# gtf.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf"
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+ref_dir <- Sys.getenv("references_dir")
+
+# gtf.file <- file.path(ref_dir, "genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf")
 # bambuAnnotations <- prepareAnnotations(gtf.file)
-# saveRDS(bambuAnnotations, "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/annotations.rds")
+# saveRDS(bambuAnnotations, file.path(data_dir, 
+#   06_quantification/bambu/primary_assembly/annotations.rds"))
 
 sample <- commandArgs(trailingOnly = TRUE)
 
-annotation <- readRDS("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/primary_assembly/annotations.rds")
-bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/"
+annotation <- readRDS(file.path(data_dir, "06_quantification/bambu/primary_assembly/annotations.rds"))
+bam_dir <- readRDS(file.path(data_dir, "05_bams/genome/primary_assembly/high_quality/"))
 bam_file <- paste0(bam_dir, sample, "_primary_over_30_chr_only_sorted.bam")
-fa.file <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_genome.fa"
+fa.file <- file.path(ref_dir, "genome/GENCODE/primary_assembly/release_46_primary_genome.fa")
 
-output_dir <- paste0("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/rc_output/",sample)
+output_dir <- file.path(data_dir, "06_quantification/bambu/rc_output/",sample)
 
 #check if bam file exists
 if (!file.exists(bam_file)){

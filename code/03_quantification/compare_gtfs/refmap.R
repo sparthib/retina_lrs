@@ -1,6 +1,11 @@
 ######
 
-refmap_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/OUT/"
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+ref_dir <- Sys.getenv("references_dir")
+
+
+refmap_dir <- file.path(data_dir, "06_quantification/isoquant/high_quality/all_samples/OUT/")
 refmap <- "bambu_ref_isoquant_ext.OUT.extended_annotation.gtf.refmap"
 
 refmap_path <- paste(refmap_dir, refmap, sep="")
@@ -28,6 +33,6 @@ data_split <- separate(bambu_novel_refmap, qry_id_list,
 
 #write out the refmap
 # /dcs04/hicks/data/sparthib/retina_lrs/06_quantification/gffcompare
-output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/"
+output_dir <- file.path(data_dir, "06_quantification/bambu/")
 write.table(data_split, file=paste(output_dir, "bambu_isoquant_refmap.txt", sep=""), sep="\t", quote=FALSE, row.names=FALSE)
 

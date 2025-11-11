@@ -3,8 +3,12 @@ library(tidyr)
 library(readr)
 library(rtracklayer)
 
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+ref_dir <- Sys.getenv("references_dir")
+
 gtf <- "extended_annotations_fa_contigs_only.gtf"
-gtf <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads",
+gtf <- file.path(data_dir, "06_quantification/bambu/all_samples_extended_annotation_track_reads",
                  gtf)
 gtf_gr <- import(gtf, format = "gtf")
 
@@ -16,9 +20,9 @@ head(gtf_df)
 gene_and_isoforms <- gtf_df |> select(c(gene_id, transcript_id)) |> distinct()
 nrow(gene_and_isoforms)
 
-RO_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs/filtered"
+RO_counts_dir <- file.path(data_dir, "06_quantification/counts_matrices/bambu/ROs/filtered")
 RO_counts <- readRDS(file.path(RO_counts_dir, "isoform_counts.RDS"))
-FT_vs_RGC_counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered"
+FT_vs_RGC_counts_dir <- file.path(data_dir, "06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered")
 FT_vs_RGC_counts <- readRDS(file.path(FT_vs_RGC_counts_dir, "isoform_counts.RDS"))
 
 
@@ -51,14 +55,6 @@ summary(FT_vs_RGC_gene_and_isoforms$n_isoforms)
 
 table(RO_gene_and_isoforms$n_isoforms)
 table(FT_vs_RGC_gene_and_isoforms$n_isoforms)
-
-
-# 48280 genes were expressed with mean number of isoforms per gene being 3.555 in ROs.
-# 171647 isoforms were expressed in ROs.
-# 37998 genes were expressed with mean number of isoforms per gene being 3.387 in FT_vs_RGC.
-# 128690 isoforms were expressed in FT_vs_RGC.
-
-
 
 
 

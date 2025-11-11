@@ -7,7 +7,11 @@ mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 method <- "bambu"
 comparison <- "ROs"
 
-counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+ref_dir <- Sys.getenv("references_dir")
+
+counts_dir <- file.path(data_dir, "06_quantification/counts_matrices")
 counts_dir <- file.path(counts_dir, method, comparison)
 
 RO_isoforms <- readRDS(file.path(counts_dir, "filtered", "isoform_counts.RDS"))
@@ -73,7 +77,7 @@ grouped_table$biotype_grouped <- factor(grouped_table$biotype_grouped,
 
 grouped_table$label <- paste0(grouped_table$biotype_grouped, "\n", grouped_table$percent_label)
 
-pdf("/users/sparthib/retina_lrs/plots/biotypes/RO_biotype_distribution_grouped_percent.pdf",
+pdf(file.path(code_dir,"plots/biotypes/RO_biotype_distribution_grouped_percent.pdf"),
     width = 8, height = 8)
 
 pie(grouped_table$percentage, 
@@ -86,9 +90,8 @@ pie(grouped_table$percentage,
 dev.off()
 
 
-
 comparison <- "FT_vs_RGC"
-counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+counts_dir <- file.path(data_dir, "06_quantification/counts_matrices")
 counts_dir <- file.path(counts_dir, method, comparison)
 
 FT_vs_RGC_isoforms <- readRDS(file.path(counts_dir, "filtered", "isoform_counts.RDS"))
@@ -150,7 +153,7 @@ grouped_table$biotype_grouped <- factor(grouped_table$biotype_grouped,
 grouped_table$label <- paste0(grouped_table$biotype_grouped,
                               "\n", grouped_table$percent_label)
 
-pdf("/users/sparthib/retina_lrs/plots/biotypes/FT_vs_RGC_biotype_distribution_grouped_percent.pdf",
+pdf(file.path(code_dir, "plots/biotypes/FT_vs_RGC_biotype_distribution_grouped_percent.pdf"),
     width = 8, height = 8)
 
 pie(grouped_table$percentage, 

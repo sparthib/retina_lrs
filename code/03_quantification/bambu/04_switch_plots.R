@@ -4,6 +4,9 @@ library(ggplot2)
 library(ggtranscript)
 library(biomaRt)
 
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+ref_dir <- Sys.getenv("references_dir")
 
 require("biomaRt")
 mart <- useMart("ENSEMBL_MART_ENSEMBL")
@@ -11,11 +14,11 @@ mart <- useDataset("hsapiens_gene_ensembl", mart)
 
 mart_attributes <- listAttributes(mart)
 #write to file
-write.table(mart_attributes, file = "/users/sparthib/retina_lrs/processed_data/mart_attributes.tsv",
+write.table(mart_attributes, file = file.path(data_dir, "processed_data/mart_attributes.tsv"),
             sep = "\t", quote = FALSE, row.names = FALSE)
 
 
-gtf <- read.table("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/RGC_FT_extended_annotation/extended_annotations.gtf",
+gtf <- read.table(file.path(data_dir, "06_quantification/bambu/RGC_FT_extended_annotation/extended_annotations.gtf"),
                   header = FALSE, sep = "\t")
 colnames(gtf) <- c("seqnames", "source", "feature", "start", "end", "score", "strand", "frame", "attribute")
 #split attribute column into multiple columns by semicolon
@@ -37,8 +40,8 @@ exon_gtf$transcript_id <- gsub(" ", "", exon_gtf$transcript_id)
 
 
 # extract exons
-switches_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/IsoformSwitchAnalyzeR/bambu/FT_vs_RGC"
-output_plot_dir <- "/users/sparthib/retina_lrs/plots/de/switch_analyzer/bambu/FT_vs_RGC"
+switches_dir <- file.path(code_dir, "processed_data/dtu/IsoformSwitchAnalyzeR/bambu/FT_vs_RGC")
+output_plot_dir <- file.path(code_dir,"plots/de/switch_analyzer/bambu/FT_vs_RGC")
 
 
 #read switches.tsv file

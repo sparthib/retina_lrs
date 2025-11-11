@@ -1,7 +1,11 @@
 library(biomaRt)
 library(readr)
 
-common_isoforms <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu",
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+ref_dir <- Sys.getenv("references_dir")
+
+common_isoforms <- file.path(data_dir,"06_quantification/bambu",
                              "bambu_isoquant_refmap.txt")
 common_isoforms <- read.table(common_isoforms, header=TRUE, sep="\t")
 head(common_isoforms)
@@ -34,7 +38,7 @@ common_isoforms <- merge(common_isoforms, gene_names,
                          by.y = "ensembl_gene_id", all.x = TRUE)
 
 write_tsv(common_isoforms, 
-          file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/bambu",
+          file = file.path(code_dir, "processed_data/dtu/bambu",
                            "common_isoforms_with_gene_names.tsv"),
           col_names = TRUE)
 
