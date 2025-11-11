@@ -10,22 +10,25 @@ mart <- useDataset("hsapiens_gene_ensembl", us_mart)
 method <- "bambu"
 comparison <- "RO_vs_RGC"
 
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+
 # Set directories
 #bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
 
-dge_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding", "DGE/")
-dte_output_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison,"protein_coding",  "DTE/")
+dge_output_dir <- file.path(code_dir,"processed_data/dtu/", method, comparison, "protein_coding", "DGE/")
+dte_output_dir <- file.path(code_dir,"processed_data/dtu/", method, comparison,"protein_coding",  "DTE/")
 dir.create(dge_output_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(dte_output_dir, showWarnings = FALSE, recursive = TRUE)
 #### DTE Analysis ####
 # Load data
-matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+matrix_dir <- file.path(data_dir,"06_quantification/counts_matrices/",
                         method, comparison, "filtered_by_counts_and_biotype")
 counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)
 nrow(counts)
 
-isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+isoformFeatures <- read_tsv(file.path(code_dir, "processed_data/dtu/",
                                       method, comparison,"protein_coding",  "isoformFeatures.tsv"))
 
 counts <- counts[rownames(counts) %in% isoformFeatures$isoform_id,]
@@ -39,7 +42,7 @@ y <- DGEList(counts = counts,
              genes = rownames(counts))
 
 y <- normLibSizes(y)
-plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding", "plots/")
+plots_dir <- file.path(code_dir, "processed_data/dtu/", method, comparison, "protein_coding", "plots/")
 dir.create(plots_dir, showWarnings = FALSE, recursive = TRUE)
 pdf(file = file.path(plots_dir, "isoform_MDS.pdf"))
 plotMDS(y, labels = y$samples$group, )

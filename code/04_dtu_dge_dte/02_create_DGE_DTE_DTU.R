@@ -2,15 +2,19 @@ library(dplyr)
 library(readr)
 library(IsoformSwitchAnalyzeR)
 library(biomaRt)
+
 method <- "bambu"
 comparison <- "RO_vs_RGC"
-#FT_vs_RGC
-#ROs
 
-isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+ref_dir <- Sys.getenv("references_dir")
+
+isoformFeatures <- read_tsv(file.path(code_dir, "processed_data/dtu/",
                                       method, comparison, "protein_coding", "isoformFeatures_part2.tsv"))
 
-matrix_dir <-  file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+matrix_dir <-  file.path(data_dir, "/06_quantification/counts_matrices/",
                         method, comparison, "filtered_by_counts_and_biotype")
 counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)
@@ -51,9 +55,9 @@ isoformFeatures$isoform_id <- ifelse(
 
 nrow(isoformFeatures)/3
 
-DTE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu",
+DTE_table <- read_tsv(file.path(code_dir, "processed_data/dtu",
                                  method, comparison, "protein_coding","DTE_table.tsv"))
-DGE_table <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu",
+DGE_table <- read_tsv(file.path(code_dir, "processed_data/dtu",
                                  method, comparison,"protein_coding","DGE_table.tsv"))
 
 DTE_table$isoform_id <- ifelse(
@@ -156,7 +160,7 @@ new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> dplyr::select(-c(gene_biotype, gene_name))
 
 new_DGE_DTE_DTU <- new_DGE_DTE_DTU |> distinct()
 
-input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method,
+input_data_dir <- file.path(code_dir, "processed_data/dtu/", method,
                             comparison, "protein_coding" )
 write_tsv(new_DGE_DTE_DTU, file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
 

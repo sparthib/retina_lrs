@@ -2,7 +2,10 @@ library(stringr)
 library(dplyr)
 library(rtracklayer)
 
-input_gtf_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+
+input_gtf_dir <- file.path(data_dir,"06_quantification/bambu/all_samples_extended_annotation_track_reads")
 input_gtf <- file.path(input_gtf_dir, "extended_annotations.gtf")
 
 #load gtf
@@ -17,7 +20,7 @@ transcript_ids_base <- str_replace(transcript_ids, "\\..*", "")  # Remove versio
 
 
 
-matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/RO_vs_RGC/filtered_by_counts_and_biotype")
+matrix_dir <- file.path(data_dir, "06_quantification/counts_matrices/bambu/RO_vs_RGC/filtered_by_counts_and_biotype")
 
 counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)

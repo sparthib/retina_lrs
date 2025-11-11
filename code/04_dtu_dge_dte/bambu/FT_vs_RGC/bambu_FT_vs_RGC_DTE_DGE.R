@@ -4,14 +4,18 @@ library(readr)
 method <- "bambu"
 comparison <- "FT_vs_RGC"
 groups <- c( "FT", "FT", "RGC", "RGC")
+
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+
 ##### DTE ######
-matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+matrix_dir <- file.path(data_dir, "06_quantification/counts_matrices/",
                         method, comparison, "filtered_by_counts_and_biotype")
 counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)
 nrow(counts)
 
-isoformFeatures <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+isoformFeatures <- read_tsv(file.path(code_dir, "processed_data/dtu/",
                                       method, comparison, "protein_coding", "isoformFeatures.tsv"))
 
 rownames(counts) <- gsub("\\..*", "", rownames(counts))
@@ -57,14 +61,14 @@ tt$table <- tt$table[order(tt$table$FDR),]
 tt$table$condition_1 <- names(contr[,1])[contr[,1] == -1]
 tt$table$condition_2 <- names(contr[,1])[contr[,1] == 1]
 
-output_path <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+output_path <- file.path(code_dir, "processed_data/dtu/",
                          method, comparison, "protein_coding","DTE_table.tsv" )
 
 write.table(tt$table, file = output_path,
             sep = "\t", quote = FALSE, row.names = FALSE)
 
 ##### DGE ######
-matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+matrix_dir <- file.path(data_dir, "06_quantification/counts_matrices/",
                         method, comparison, "filtered_by_counts_and_biotype")
 counts <- file.path(matrix_dir, "filtered_gene_counts.RDS") 
 counts <- readRDS(counts)
@@ -107,7 +111,7 @@ tt$table <- tt$table[order(tt$table$FDR),]
 tt$table$condition_1 <- names(contr[,1])[contr[,1] == -1]
 tt$table$condition_2 <- names(contr[,1])[contr[,1] == 1]
 
-output_path <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+output_path <- file.path(code_dir, "processed_data/dtu/",
                          method, comparison,"protein_coding", "DGE_table.tsv" )
 
 write.table(tt$table, file = output_path,

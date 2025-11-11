@@ -4,7 +4,10 @@ library(GenomicRanges)
 library(rtracklayer)
 library(dplyr)
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
+data_dir <- Sys.getenv("retina_lrs_dir")
+
+bambu_dir <- file.path(data_dir, 
+                       "/06_quantification/bambu/all_samples_extended_annotation_track_reads")
 # Define file paths
 gtf_file <- paste0(bambu_dir, "/extended_annotations.gtf")
 gtf <- import(gtf_file)
@@ -18,7 +21,7 @@ isoforms_and_genes$gene_id <- gsub("\\..*", "", isoforms_and_genes$gene_id)
 us_mart <- useEnsembl(biomart = "ensembl", mirror = "useast")
 mart <- useDataset("hsapiens_gene_ensembl", us_mart)  
 
-common_isoforms <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu",
+common_isoforms <- file.path(data_dir,"06_quantification/bambu",
                              "bambu_isoquant_refmap.txt")
 common_isoforms <- read.table(common_isoforms, header=TRUE, sep="\t")
 head(common_isoforms)
@@ -41,7 +44,8 @@ filter_genes <- function(counts_file, mart) {
   )
   
   # Keep only protein-coding genes
-  genes <- genes[genes$gene_nums %in% gene_annotLookup$ensembl_gene_id[gene_annotLookup$gene_biotype == "protein_coding"], ]
+  genes <- genes[genes$gene_nums %in% 
+                   gene_annotLookup$ensembl_gene_id[gene_annotLookup$gene_biotype == "protein_coding"], ]
   
   #remove genes$gene_nums column
   genes$gene_nums <- NULL
@@ -58,7 +62,9 @@ filter_isoforms <- function(counts_path, mart) {
   
   isoform_annotLookup <- getBM(
     mart = mart,
-    attributes = c("ensembl_transcript_id", "external_gene_name", "gene_biotype", "transcript_biotype"),
+    attributes = c("ensembl_transcript_id", 
+                   "external_gene_name", 
+                   "gene_biotype", "transcript_biotype"),
     filter = "ensembl_transcript_id",
     values =  isoforms$isoform_nums,
     uniqueRows = TRUE
@@ -126,7 +132,7 @@ FT_vs_RGC_group <- c("FT", "FT", "RGC", "RGC")
 
 ##### ROs filter genes and isoforms based on PTC #####
 
-counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+counts_dir <- file.path(data_dir,"06_quantification/counts_matrices")
 
 method <- "bambu"
 comparison <- "ROs"
@@ -166,7 +172,7 @@ nrow(ROs_genes_cpm)
 nrow(ROs_isoform_counts)
 nrow(ROs_gene_counts)
 
-ROs_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs/filtered_by_counts_and_biotype/"
+ROs_output_dir <- file.path(data_dir,"06_quantification/counts_matrices/bambu/ROs/filtered_by_counts_and_biotype/")
 
 saveRDS(ROs_isoforms_cpm, file.path(ROs_output_dir, "filtered_isoform_cpm.RDS"))
 saveRDS(ROs_genes_cpm, file.path(ROs_output_dir, "filtered_gene_counts_cpm.RDS"))
@@ -177,7 +183,7 @@ saveRDS(ROs_gene_counts, file.path(ROs_output_dir, "filtered_gene_counts.RDS"))
 
 method <- "bambu"
 comparison <- "FT_vs_RGC"
-counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+counts_dir <- file.path(data_dir,"06_quantification/counts_matrices")
 counts_dir <- file.path(counts_dir, method, comparison, "filtered")
 isoform_counts_path <- file.path(counts_dir, "isoform_counts.RDS")
 gene_counts_path <- file.path(counts_dir, "gene_counts.RDS")
@@ -209,7 +215,7 @@ FT_vs_RGC_isoform_cpm <- FT_vs_RGC_isoform_result$cpm
 nrow(FT_vs_RGC_isoform_counts)
 nrow(FT_vs_RGC_gene_counts)
 
-FT_vs_RGC_output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype/"
+FT_vs_RGC_output_dir <- file.path(data_dir,"06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype/")
 
 
 saveRDS(FT_vs_RGC_isoform_counts, file.path(FT_vs_RGC_output_dir, "filtered_isoform_counts.RDS"))
@@ -244,7 +250,7 @@ filter_gtf_by_counts <- function(gtf_file, counts_matrix, output_gtf) {
 
 
 # Apply function to your isoform counts matrix
-ROs_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/ROs/filtered_by_counts_and_biotype"
+ROs_dir <- file.path(data_dir,"06_quantification/counts_matrices/bambu/ROs/filtered_by_counts_and_biotype")
 ROs_counts <- readRDS(file.path(ROs_dir, "filtered_isoform_counts.RDS"))
 nrow(ROs_counts)
 
@@ -254,7 +260,7 @@ ROs_filtered_gtf <- filter_gtf_by_counts(gtf_file,
                                           ROs_counts,
                                           ROs_output_gtf)
 
-FT_vs_RGC_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype"
+FT_vs_RGC_dir <- file.path(data_dir,"06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype")
 FT_vs_RGC_counts <- readRDS(file.path(FT_vs_RGC_dir, "filtered_isoform_counts.RDS"))
 nrow(FT_vs_RGC_counts)
 
@@ -264,7 +270,7 @@ FT_vs_RGC_filtered_gtf <- filter_gtf_by_counts(gtf_file,
                                                 FT_vs_RGC_counts,
                                                 FT_vs_RGC_output_gtf)
 
-RO_vs_RGC_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/RO_vs_RGC/filtered_by_counts_and_biotype"
+RO_vs_RGC_dir <- file.path(data_dir,"06_quantification/counts_matrices/bambu/RO_vs_RGC/filtered_by_counts_and_biotype")
 RO_vs_RGC_counts <- readRDS(file.path(RO_vs_RGC_dir, "filtered_isoform_counts.RDS"))
 nrow(RO_vs_RGC_counts)
 

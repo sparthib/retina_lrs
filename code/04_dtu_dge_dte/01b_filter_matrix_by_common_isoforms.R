@@ -1,5 +1,6 @@
 
-common_isoforms <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu",
+data_dir <- Sys.getenv("retina_lrs_dir")
+common_isoforms <- file.path(data_dir,"06_quantification/bambu",
                              "bambu_isoquant_refmap.txt")
 common_isoforms <- read.table(common_isoforms, header=TRUE, sep="\t")
 head(common_isoforms)
@@ -13,7 +14,7 @@ nrow(common_isoforms)
 
 colnames(common_isoforms)
 
-counts_dir <-"/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+counts_dir <- file.path(data_dir,"06_quantification/counts_matrices")
 
 bambu_RO_genes <- readRDS(file.path(counts_dir, "bambu", "ROs", "gene_counts_ROs.RDS"))
 bambu_FT_vs_RGC_genes <- readRDS(file.path(counts_dir, "bambu", "FT_vs_RGC", "gene_counts_FT_vs_RGC.RDS"))
@@ -23,7 +24,7 @@ bambu_FT_vs_RGC_isoforms <- readRDS(file.path(counts_dir, "bambu", "FT_vs_RGC", 
 
 
 filter_counts <- function( method, comparison ) {
-    counts_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+    counts_dir <- file.path(data_dir,"06_quantification/counts_matrices")
     counts_dir <- file.path(counts_dir, method, comparison)
   
     for (file in list.files(counts_dir, full.names=TRUE)) {

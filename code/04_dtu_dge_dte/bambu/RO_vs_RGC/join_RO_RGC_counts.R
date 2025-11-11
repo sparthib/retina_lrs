@@ -4,7 +4,10 @@ library(GenomicRanges)
 library(rtracklayer)
 library(dplyr)
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+
+bambu_dir <- file.path(data_dir,"06_quantification/bambu/all_samples_extended_annotation_track_reads")
 # Define file paths
 gtf_file <- paste0(bambu_dir, "/extended_annotations.gtf")
 gtf <- import(gtf_file)
@@ -16,8 +19,8 @@ isoforms_and_genes$gene_id <- gsub("\\..*", "", isoforms_and_genes$gene_id)
 
 
 # Define directories
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
-output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/RO_vs_RGC/filtered_by_counts_and_biotype/"
+bambu_dir <- file.path(data_dir,"06_quantification/bambu/all_samples_extended_annotation_track_reads")
+output_dir <- file.path(data_dir,"06_quantification/counts_matrices/bambu/RO_vs_RGC/filtered_by_counts_and_biotype/")
 
 # Desired column order
 new_order <- c("H9_CRX_ROs_D45", "EP1_WT_ROs_D45", "EP1_WT_hRO_2", 
@@ -60,7 +63,7 @@ rownames(gene_counts) <- gsub("\\..*", "", rownames(gene_counts))
 ##### filter by common novel isoforms between bambu and isoquant ######
 ## common_isoforms only has the known gene related novel isoforms. 
 
-common_isoforms <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu",
+common_isoforms <- file.path(data_dir,"06_quantification/bambu",
                              "bambu_isoquant_refmap.txt")
 common_isoforms <- read.table(common_isoforms, header=TRUE, sep="\t")
 head(common_isoforms)

@@ -6,11 +6,13 @@ library(rtracklayer)
 library(edgeR)
 library(tidyr)
 library(dplyr)
-# library('BSgenome.Hsapiens.UCSC.hg38')
+
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
 
 method <- "bambu"
 comparison <- "FT_vs_RGC"
-matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype")
+matrix_dir <- file.path(data_dir, "06_quantification/counts_matrices/bambu/FT_vs_RGC/filtered_by_counts_and_biotype")
 counts <- file.path(matrix_dir, "filtered_isoform_counts.RDS") 
 counts <- readRDS(counts)
 cpm <- file.path(matrix_dir, "filtered_isoform_cpm.RDS")
@@ -23,11 +25,12 @@ myDesign  <- data.frame(sampleID = colnames(counts) ,
                         condition = c( "FT", "FT", "RGC", "RGC"),
                         stringsAsFactors = FALSE)
 
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
+bambu_dir <- file.path(data_dir, 
+                       "06_quantification/bambu/all_samples_extended_annotation_track_reads")
 
-rdata_path = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+rdata_path = file.path(code_dir, "processed_data/dtu/",
 method, comparison, "protein_coding", "rds", "SwitchList.rds")
-dir.create(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+dir.create(file.path(code_dir, "processed_data/dtu/",
                      method, comparison, "protein_coding", "rds"), showWarnings = FALSE, recursive =  TRUE)
 if(!file.exists(rdata_path)){ 
   SwitchList <- importRdata(isoformCountMatrix   = counts,
@@ -86,7 +89,7 @@ if(!file.exists(rdata_path)){
     distinct(across(-gene_name), .keep_all = TRUE)
   
   write_tsv(SwitchListFiltered$isoformFeatures,
-            file = file.path("/users/sparthib/retina_lrs/processed_data/dtu",
+            file = file.path(code_dir, "processed_data/dtu",
                              method, comparison, "protein_coding","isoformFeatures.tsv"))
   
   #save DEXSeq switchlist
@@ -98,15 +101,15 @@ if(!file.exists(rdata_path)){
 summary(SwitchListFiltered)
 
 #### DTE ####
-DTE_table <- readr::read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", 
+DTE_table <- readr::read_tsv(file.path(code_dir, "processed_data/dtu/", 
                              method, comparison, "protein_coding","DTE_table.tsv"))
 
 #### DGE ####
-DGE_table <- readr::read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", 
+DGE_table <- readr::read_tsv(file.path(code_dir, "processed_data/dtu/", 
                                          method, comparison, "protein_coding","DGE_table.tsv"))
 
 #### DEXSeq ####
-dtu_rdata_path  = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+dtu_rdata_path  = file.path(code_dir, "processed_data/dtu/",
                             method, comparison,"protein_coding", "rds/DexSeqDTUDGESwitchList.rds")
 if(!file.exists(dtu_rdata_path)){
   
@@ -129,12 +132,12 @@ if(!file.exists(dtu_rdata_path)){
   SwitchList_part1$aaSequence = NULL
  
   
-  if(!file.exists(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding","fastas"))){
-    dir.create(file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, comparison, "protein_coding","fastas"))
+  if(!file.exists(file.path(code_dir, "processed_data/dtu/", method, comparison, "protein_coding","fastas"))){
+    dir.create(file.path(code_dir,"processed_data/dtu/", method, comparison, "protein_coding","fastas"))
   }
   SwitchList_part1 <- extractSequence(
     switchAnalyzeRlist = SwitchList_part1,
-    pathToOutput       = file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, 
+    pathToOutput       = file.path(code_dir,"processed_data/dtu/", method, 
                                    comparison, "protein_coding","fastas"),
     extractNTseq       = TRUE,
     extractAAseq       = TRUE,
@@ -161,14 +164,14 @@ SwitchList_part2 <- analyzeAlternativeSplicing(
   switchAnalyzeRlist = SwitchList_part1
 )
 
-switchlist_part2_path = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+switchlist_part2_path = file.path(code_dir,"processed_data/dtu/",
                                   method, comparison,"protein_coding", "rds", "SwitchList_part2.rds")
 
 
 # 
 # SwitchList_part2 <- readRDS(switchlist_part2_path)
 
-plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+plots_dir <- file.path(code_dir,"processed_data/dtu/",
                        method, comparison,"protein_coding", "plots")
 if(!file.exists(plots_dir)){
   dir.create(plots_dir)
@@ -188,14 +191,14 @@ splicing_summary <- extractSplicingSummary(SwitchList_part2,
                                            plot = F)
 write_tsv(splicing_summary, file = file.path(plots_dir, "Splicing_Summary.tsv"))
 
-external_protein_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+external_protein_analyses_dir <- file.path(code_dir,"processed_data/dtu/",
                                            method, comparison, "external_protein_analyses")
-external_protein_ptc_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+external_protein_ptc_analyses_dir <- file.path(code_dir,"processed_data/dtu/",
                                            method, comparison, "protein_coding","external_protein_analyses")
 dir.create(external_protein_ptc_analyses_dir, showWarnings = FALSE, recursive =  TRUE)
 
 
-external_protein_analyses_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+external_protein_analyses_dir <- file.path(code_dir,"processed_data/dtu/",
                                            method, comparison, "external_protein_analyses")
 protein_analysis <- read_csv(file.path(external_protein_analyses_dir, "pfam_results.csv")) 
 protein_analysis$`seq_id` <- gsub("\\..*", "", protein_analysis$`seq_id`)
@@ -248,7 +251,7 @@ saveRDS(SwitchList_part2, file = switchlist_part2_path)
 SwitchList_part2$isoformFeatures <- SwitchList_part2$isoformFeatures |>
   distinct(across(-gene_name), .keep_all = TRUE)
 
-write_tsv(SwitchList_part2$isoformFeatures, file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+write_tsv(SwitchList_part2$isoformFeatures, file = file.path(code_dir,"processed_data/dtu/",
                                                              method, comparison,"protein_coding", "isoformFeatures_part2.tsv"))
 SwitchList_part2 <- readRDS(switchlist_part2_path)
 
@@ -365,7 +368,7 @@ write_tsv(consequences, file = file.path(plots_dir,
 
 
 write_tsv(SwitchList_part2$switchConsequence,
-           file = file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+           file = file.path(code_dir,"processed_data/dtu/",
                                       method, comparison, "protein_coding", "switchConsequence.tsv")
 )
 

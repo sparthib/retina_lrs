@@ -1,7 +1,11 @@
 # Define directories
-bambu_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads"
-isoquant_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/isoquant/high_quality/all_samples/OUT"
-output_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices"
+
+data_dir <- Sys.getenv("retina_lrs_dir")
+
+
+bambu_dir <- file.path(data_dir, "06_quantification/bambu/all_samples_extended_annotation_track_reads")
+isoquant_dir <- file.path( data_dir, "06_quantification/isoquant/high_quality/all_samples/OUT")
+output_dir <- file.path(data_dir, "06_quantification/counts_matrices")
 
 # Desired column order
 new_order <- c("H9_CRX_ROs_D45", "EP1_WT_ROs_D45", "EP1_WT_hRO_2", 
