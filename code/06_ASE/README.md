@@ -1,52 +1,63 @@
-# Allele-specific expression (ASE) analysis
+# Phasing Reads
 
-This directory contains code and data for the analysis of allele-specific expression (ASE) in human retinal development.
+All relevant code is [here](https://github.com/sparthib/retina_lrs/tree/main/code/08_ASE/short_reads).
 
-# Proposed plan 
+## Step 1:
 
-## Calling variants to get a VCF file
+-   3 H9 paired-end WGS samples were obtained from here: <https://www.ncbi.nlm.nih.gov/sra/?term=SRR1091092>
 
-The goal of this section is to have as output a VCF file with the variants for each sample. If we have **matched short-read DNA-seq** for the H9 cell lines, we have a few options: 
+-   SRR1091088, SRR1091091 and SRR1091092.
 
-- [GATK](): One of the most widely used tools for for calling SNVs from DNA-seq data. 
-- [monopogen](https://github.com/KChen-lab/Monopogen):  Calls SNVs from single-cell sequencing, including RNA-seq, ATAC-seq, and DNA-seq technologies
-- [DeepVariant](https://github.com/google/deepvariant): A deep learning-based variant caller that takes aligned reads (in BAM or CRAM format), produces pileup image tensors from them, classifies each tensor using a convolutional neural network, and finally reports the results in a standard VCF or gVCF file.
+## Step 2:
 
-If we don't have matched short-read DNA-seq, we can use the our own **long-read RNA-seq** data to call variants. Specifially, we can use the following algorithms: 
+-   Using `bowtie` these FASTQ files were aligned to this GENCODE v 46 primary assembly reference genome. Check `01_bowtie.sh`
 
-- [Claire3RNA](https://github.com/HKU-BAL/Clair3-RNA): tool to call variants from long-read RNA (mentions PCR-cDNA and direct RNA, not direct cDNA though).
+## Step 3:
 
-[More details here on softwares that can be used for VCF generation](https://docs.google.com/spreadsheets/d/1pfP4qprIkk7LFlwLUgiI0IDjMSSvInDqeaqIRpeLpek/edit?gid=0#gid=0)
+-   QC was performed on these BAM files using the GATK pipeline here `02_filter_bams.sh`
 
+## Step 4:
 
-## VC with RNA-Seq advantages
-- Low cost
-- Allele guaranteed to be expressed in contrast to DNA variant calling 
+-   This bam file was then used to create VCF file in `03_bam2vcf.sh` and QC.
 
-## Disadvantages:
-- Highly non-uniform coverage (coverage is assumed to be uniform across the genome for DNA-Seq) 
-    - For example, 10x coverage doesn’t really mean much for RNA-Seq because it is highly dependent on the genes that are actually expressed. 
-    - I don’t understand why this is the case yet, but extremely high coverage in a region can also lead to inaccurate variant calling. 
-- Allelic imbalance - can affect gene expression, lower coverage for a gene can be associated to just one allele being expressed. 
-    - Can also introduce false negatives for variants (especially coupled with low sequencing depth) . 
-- False positives: 
-    - High sequencing error rates (especially for cDNA with ONT based on Clair3 benchmark) 
-    - RNA editing events, especially A-to-I editing catalyzed by adenosine deaminases acting on RNA (ADAR), leading to A-to-G or T-to-C substitutions that can resemble genuine variants.
+## Step 5:
+
+-   The `04_whatshap_phase.sh` phases the VCF with the help of our H9 long read BAMs.
+
+-   `05_whatshap_haplotag.sh` runs the `haplotag` command to tag the reads in our long read BAMs with their haplotype, and splits the reads into two separate BAM files, one for each haplotyp using the `split` command.
 
 
-## Step 1: Most straightforward approach for VCF generation: 
-1. Use GATK and FreeBayes for  short-read WGS data. 
-2. Use monopogen for short-read single-cell data. 
+## Step 6: Number of HP reads per sample (based on VCF of merged bam file)
 
-## Step 2: Haplotype(phase) aligned reads using VCF
+| Sample         | HP1 reads | HP2 reads | Total aligned reads | Haplotyped Reads % |
+|--------------|--------------|--------------|---------------|---------------|
+| H9-BRN3B_hRO_2 | 1177170   | 1168236   | 9272631             | 23.04              |
+| H9-BRN3B-RO    | 2555844   | 2422337   | 19107701            | 26.05             |
+| H9-CRX_hRO_2   | 1084534   | 1072475   | 8385488             | 25.72             |
+| H9-CRX_ROs_D45 | 1571325   | 1572752   | 12980734            | 24.22             |
+| H9-FT_1        | 1266549   | 1266549   | 8664652             | 29.23              |
+| H9-FT_2        | 1168496   | 1131511   | 8184333             | 28.10              |
+| H9-hRGC_1      | 467341    | 453790    | 3425980             | 26.88              |
+| H9-hRGC_2      | 1825307   | 1770316   | 12780770            | 28.13  
 
-The goal of this section is to take as input (1) aligned reads e.g. a BAM file at the genome or transcriptome level and (2) the variants in the VCF and outputs variants that are phased to haplotypes (H1 or H2). However, it is important that the same reference genome/transcriptome that was used to align the reads be used again when assigning haplotypes. We can use the following tools:
+## 
 
-### Genome-level 
+## Step 7: Using `featureCounts` for gene expression estimation
 
-- [WhatsHap](https://whatshap.readthedocs.io/en/latest/index.html): A tool to phase genomic variants using DNA-seq reads, also called read-based phasing or haplotype assembly. It is especially suitable for long reads, but works also well with short reads.
+50 - 60% of these genome alignments were mapped to genes here `06_gene_counts.sh`
 
-### Transcriptome-level
+## Step 8: DE analysis on HP1 vs HP2
 
-- If we want to phase variants to a diploid transcriptome, we can use WASP to adjust/remove reads from BAM files that are not aligned to the transcriptome. This is useful if we want to phase variants to a diploid transcriptome, e.g. for ASE analysis.
-- Align reads from `oarfish` (aligns reads to a transcriptome) and then using the readIDs that were aligned in the BAM file, it will determine which haplotype the read belongs to.
+`07_allele_spec_expression_modeling.R` performs DGE analysis between the two haplotypes:
+
+-   Down-regulated in H2: 614
+
+-   NotSig 41063
+
+-   Up-regulated in H2: 291
+
+We may have to remove some `pseudogene biotypes`, but I've kept them all for now.
+
+Counts matrix can be found [here](https://github.com/sparthib/retina_lrs/blob/main/processed_data/ASE/H9_DNA_Seq_data_gene_counts.tsv).
+
+DE results [here](https://github.com/sparthib/retina_lrs/blob/main/processed_data/ASE/H9_DNA_Seq_data_DE_results.tsv).
