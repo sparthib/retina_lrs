@@ -105,24 +105,21 @@ ggplot(isoform_dist_per_sample, aes(x = factor(n), y = num_genes)) +
 dev.off()
 
 
-
-#4. plot barplot
+## group isoform_dist_per_sample by n 
 plots_dir <- file.path(code_dir,"processed_data/dtu/",
-                       method, comparison,"protein_coding", "plots")
-pdf(file.path(plots_dir, "isoform_per_gene.pdf"))
-isoform_per_gene |> 
-  ggplot(aes(x = n)) +
-  geom_bar() +
+                       "bambu", "ROs","protein_coding", "plots")
+pdf(file.path(plots_dir, "average_isoform_per_gene.pdf"))
+isoform_dist_summary |>
+  ggplot(aes(x = n, y = mean_num_genes)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = mean_num_genes), vjust = -0.3, size = 2) +
   theme_minimal() +
-  labs(title = "Number of isoforms per gene",
-       x = "Number of isoforms",
-       y = "Number of genes")
+  labs(
+    title = "Number of isoforms per gene",
+    x = "Number of isoforms",
+    y = "Number of genes"
+  ) +
+  theme(plot.title = element_text(hjust = 0.5))
 dev.off()
-
-
-
-
-
-
-
-
+write_tsv(isoform_dist_summary,
+          file.path(plots_dir, "average_isoform_per_gene.tsv"))

@@ -164,5 +164,3 @@ input_data_dir <- file.path(code_dir, "processed_data/dtu/", method,
                             comparison, "protein_coding" )
 write_tsv(new_DGE_DTE_DTU, file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
 
-
-
