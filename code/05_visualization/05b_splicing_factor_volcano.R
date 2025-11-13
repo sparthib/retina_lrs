@@ -141,7 +141,7 @@ generate_volcano_plots <- function(input_base_dir, comparison, table_type, condi
       filter(condition_1 == !!condition_1 & condition_2 == !!condition_2)
     
     output_file <- file.path(plots_dir, paste0(condition_1, "_vs_", condition_2, "_", table_type, "_volcano.pdf"))
-    
+    output_table <- file.path(plots_dir, paste0(condition_1, "_vs_", condition_2, "_", table_type, "_volcano_data.tsv"))
     if (table_type == "DTE"){ 
       filtered_table$log10DTE_qval <- -log10(filtered_table$DTE_qval)
       pdf(output_file)
@@ -151,6 +151,7 @@ generate_volcano_plots <- function(input_base_dir, comparison, table_type, condi
                         table_type = table_type)
       print(p)
       dev.off()
+      write_tsv(filtered_table, output_table)
       
     } else if (table_type == "DGE") {
       filtered_table$log10DGE_qval <- -log10(filtered_table$DGE_qval)
@@ -162,6 +163,7 @@ generate_volcano_plots <- function(input_base_dir, comparison, table_type, condi
                         table_type = table_type)
       print(p)
       dev.off()
+      write_tsv(filtered_table, output_table)
     } else if (table_type == "DTU") {
       filtered_table$log10DTU_qval <- -log10(filtered_table$DTU_qval)
       pdf(output_file)
@@ -171,8 +173,9 @@ generate_volcano_plots <- function(input_base_dir, comparison, table_type, condi
                         table_type = table_type)
       print(p)
       dev.off()
+      write_tsv(filtered_table, output_table)
+      
     }
-    
   }
 }
 
