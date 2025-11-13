@@ -17,7 +17,7 @@
 #similar to what Jianing did here 
 #https://github.com/JianingYao/scRNA-seq-genetic-ancestry/blob/main/Preprocessing/GATK_pipeline/part1_bams.sh
 
-ENV_FILE="../../.env"
+ENV_FILE="../../../.env"
 if [ -f $ENV_FILE ]; then
     set -a
     source $ENV_FILE
