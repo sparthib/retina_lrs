@@ -21,12 +21,18 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "Array job ID: ${SLURM_ARRAY_JOB_ID}"
 
 
-CONFIG=/users/sparthib/retina_lrs/raw_data/data_paths.config
+ENV_FILE="../../.env"
+if [ -f $ENV_FILE ]; then
+    set -a
+    source $ENV_FILE
+    set +a
+fi
+
 sample=$(awk -v Index=${SLURM_ARRAY_TASK_ID} '$1==Index {print $2}' $CONFIG)
 echo $sample
 
-bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality
-output_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/igv
+bam_dir=$retina_lrs_dir/05_bams/genome/primary_assembly/high_quality
+output_dir=$retina_lrs_dir/05_bams/genome/primary_assembly/high_quality/igv
 
 mkdir -p $output_dir
 

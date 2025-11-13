@@ -2,8 +2,10 @@ library(GenomicFeatures)
 library(rtracklayer)
 library(stringr)
 
+data_dir <- Sys.getenv("retina_lrs_dir")
+ref_dir <- Sys.getenv("references_dir")
 # Load the GTF file
-gtf_dir <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly"
+gtf_dir <- file.path(ref_dir,"genome/GENCODE/primary_assembly")
 gtf_file <- file.path(gtf_dir, "release_46_primary_assembly.gtf")
 
 gtf <- import(gtf_file)
