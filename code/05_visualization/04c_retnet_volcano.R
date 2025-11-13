@@ -13,8 +13,10 @@ library(grid)
 analysis_type <- "ROs"
 quant_method <- "bambu"
 
-retnet_df <- read_tsv( file = "/users/sparthib/retina_lrs/processed_data/dtu/retnet_disease_genes.tsv" ) 
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
 
+retnet_df <- read_tsv( file = file.path(code_dir, "processed_data/dtu/retnet_disease_genes.tsv" ))
 volcano_plot <- function(data, x_col, y_col, gene_label_col = "gene_name",
                          cutoff_log_qval =  1.30103, cutoff_logFC = 1, condition_1, condition_2, table_type) {
   # Classify points as significant or not
@@ -175,7 +177,7 @@ generate_volcano_plots <- function(input_base_dir, comparison, table_type, condi
 # Generate plots for each method and comparison
 methods <- c("bambu")
 comparisons <- c("ROs", "FT_vs_RGC", "RO_vs_RGC")
-input_base_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/"
+input_base_dir <- file.path(code_dir, "processed_data/dtu/")
 
 for (method in methods) {
   for (comparison in comparisons) {

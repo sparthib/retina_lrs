@@ -9,6 +9,8 @@ library(tidyr)
 ### GO Analysis of upregulated genes or genes associated to upregulated 
 ### DTE.
 
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
 
 get_dge_genelist <- function(df) {
   values <- df |> dplyr::select(DGE_log2FC, DGE, gene_id) |> distinct() |>
@@ -56,35 +58,12 @@ get_dte_genelist <- function(df) {
 }
 
 
-ora_plot <- function(genelist, ont, output_plot_dir, analysis_type, conditions){
-
-  ego <- enrichGO(gene          = names(genelist),
-                  OrgDb         = org.Hs.eg.db,
-                  keyType  = "ENSEMBL",
-                  ont           = ont,
-                  pAdjustMethod = "fdr",
-                  minGSSize     = 100,
-                  pvalueCutoff  = 0.01,
-                  qvalueCutoff  = 0.01,
-                  readable      = TRUE) 
-  if(nrow(as.data.frame(ego)) != 0){
-    write_tsv(as.data.frame(ego), file.path(output_plot_dir, paste0(conditions, analysis_type,"_ora_", ont, ".tsv")))
-    
-    
-    pdf(file.path(output_plot_dir, paste0(conditions, analysis_type,"_ora_", ont, ".pdf")))
-    print(dotplot(ego, showCategory = 15))
-    dev.off()
-    
-  }
-}
-
-  
 run_all_go <- function(method, comparison, ont = "BP"){ 
-  DGE_DTU_DTE <- read_tsv(file.path("/users", "sparthib", "retina_lrs", "processed_data","dtu",
+  DGE_DTU_DTE <- read_tsv(file.path(code_dir, "processed_data","dtu",
                                     method, comparison, "protein_coding",
                                     "DGE_DTE_DTU.tsv"))
   
-  output_plot_dir <- file.path("/users", "sparthib", "retina_lrs", "processed_data","dtu",
+  output_plot_dir <- file.path(code_dir,"processed_data","dtu",
                                method, comparison, "protein_coding",
                                "plots", "go_analysis")
   if (!dir.exists(output_plot_dir)) {

@@ -1,13 +1,16 @@
 library(IsoformSwitchAnalyzeR)
 library(biomaRt)
 
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
 
-switchlist_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/"
+switchlist_dir <- file.path(code_dir, "processed_data/dtu/bambu/")
 comparison <- "ROs"
-switchlist_dir <- file.path(switchlist_dir, comparison, "protein_coding", "rds", "SwitchList_part2.rds")
+switchlist_dir <- file.path(switchlist_dir, comparison, "protein_coding",
+                            "rds", "SwitchList_part2.rds")
 
 switchAnalysisObject <- readRDS(switchlist_dir)
-DGE_DTU_DTE_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/protein_coding/"
+DGE_DTU_DTE_dir <- file.path(code_dir, "processed_data/dtu/bambu/ROs/protein_coding/")
 DGE_DTU_DTE <- read_tsv(file.path(DGE_DTU_DTE_dir, "DGE_DTE_DTU.tsv"))
 
 
@@ -47,7 +50,7 @@ retnet_switched_isoforms$isoform_id
 
 # print as character vector 
 
-retnet_plot_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/bambu/ROs/protein_coding/plots/retnet"
+retnet_plot_dir <- file.path(code_dir, "processed_data/dtu/bambu/ROs/protein_coding/plots/retnet")
 pdf(file = file.path(retnet_plot_dir, "switch_plots_with_consequences.pdf"), 
     width = 8, height = 6)
 

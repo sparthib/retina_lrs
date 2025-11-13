@@ -1,11 +1,13 @@
 library(dplyr)
 library(ggplot2)
-library(here)
 library(httr)
 library(readr)
 library(jsonlite)
 library(stringr)
 library(reshape2)
+
+code_dir <- Sys.getenv("retina_lrs_code")
+data_dir <- Sys.getenv("retina_lrs_dir")
 
 url <- "https://raw.githubusercontent.com/WahlinLab/Organoid_RNAseq_SciData22/refs/heads/main/Normalized_counts_D0-D280.tabular"
 short_read_data <- read.table(url, header = TRUE, sep = "\t", row.names = 1)
@@ -15,9 +17,9 @@ day_extracted <- as.numeric(stringr::str_extract(colnames(short_read_data), "\\d
 column_order <- order(factor(day_extracted, levels = day_order))
 short_read_data <- short_read_data[, column_order]
 saveRDS(short_read_data,
-        file = here("raw_data/agarwal_short_norm_counts.RDS"))
+        file = file.path(code_dir,"raw_data/agarwal_short_norm_counts.RDS"))
 
-short_read_data <- readRDS(here("raw_data/agarwal_short_norm_counts.RDS"))
+short_read_data <- readRDS(file.path(code_dir,"raw_data/agarwal_short_norm_counts.RDS"))
 
 #### DGE Comparisons ####
 # 
@@ -75,12 +77,12 @@ short_read_data <- readRDS(here("raw_data/agarwal_short_norm_counts.RDS"))
 # DGE_data <- do.call(rbind, dataframes_list)
 # DGE_data$DGE = ifelse(DGE_data$adj_p_value < 0.05 & abs(DGE_data$log2_fold_change) >= 1, 
 #                       "TRUE", "FALSE")
-# saveRDS(DGE_data, file = here("raw_data/agarwal_DGE_data.RDS"))
+# saveRDS(DGE_data, file = file.path(code_dir,"raw_data/agarwal_DGE_data.RDS"))
 
 
 ##### load DGE_data ####
 
-DGE_data <- readRDS(here("raw_data/agarwal_DGE_data.RDS"))
+DGE_data <- readRDS(file.path(code_dir,"raw_data/agarwal_DGE_data.RDS"))
 
 DGE_genes <- DGE_data |> filter(DGE == TRUE) |> select(gene_id) |> unique()
 
@@ -91,7 +93,7 @@ short_read_data_DGE_counts <- short_read_data[DGE_genes$gene_id, ]
 #   mat[apply(mat, 1, function(x) min(x) != max(x)), ]
 # }
 # get_rownames <- function(method){
-#     long_read_counts <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+#     long_read_counts <- file.path(data_dir, "06_quantification/counts_matrices/",
 #                                   method, "ROs", "gene_cpm.RDS")
 #     
 #     long_read_counts <- readRDS(long_read_counts)
@@ -127,8 +129,9 @@ short_read_data_DGE_counts <- short_read_data[DGE_genes$gene_id, ]
 method <- "bambu"
 comparison <- "ROs"
 load_data <- function(method) {
-  long_read_counts <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
-                                method, comparison, "filtered_by_counts_and_biotype", "filtered_gene_cpm.RDS")
+  long_read_counts <- file.path(data_dir,"06_quantification/counts_matrices/",
+                                method, comparison, "filtered_by_counts_and_biotype", 
+                                "filtered_gene_cpm.RDS")
   
   long_read_counts <- readRDS(long_read_counts)
   
@@ -147,7 +150,7 @@ load_data <- function(method) {
     select(-rowname)
   #common rows with short reads matrix 
   
-  DTU_DTE_DGE <- read_tsv(file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+  DTU_DTE_DGE <- read_tsv(file.path(code_dir, "processed_data/dtu/",
                                     method, "ROs", "protein_coding" , "DGE_DTE_DTU.tsv"))
   DGE_genes <- DTU_DTE_DGE |> filter(DGE == TRUE) |> select(gene_id) |> unique()
   DGE_genes <- gsub("\\.\\d+$", "", DGE_genes$gene_id)
@@ -167,7 +170,7 @@ method <- "bambu"
 
 plot_scatter_plot <- function( method) { 
 
-  output_plot_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, "/ROs/protein_coding/plots/short_read_correlation/")
+  output_plot_dir <- file.path(code_dir,"processed_data/dtu/", method, "/ROs/protein_coding/plots/short_read_correlation/")
   if (!dir.exists(output_plot_dir)) {
     dir.create(output_plot_dir, recursive = TRUE)
   }
@@ -254,7 +257,7 @@ plot_correlation_heatmap <- function(method = "bambu", corr = "spearman") {
   
   
 
-  output_plot_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", method, "/ROs/protein_coding/plots/short_read_correlation/")
+  output_plot_dir <- file.path(code_dir,"processed_data/dtu/", method, "/ROs/protein_coding/plots/short_read_correlation/")
   if (!dir.exists(output_plot_dir)) {
     dir.create(output_plot_dir, recursive = TRUE)
   }

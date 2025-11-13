@@ -7,6 +7,8 @@ library(circlize)
 library("DGEobj.utils")
 library(grid)
 
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
 
 ###### ADD ENSEMBL ID TO THE DATA AND SAVE ######
 # head(splicing_factors)
@@ -34,9 +36,9 @@ remove_zero_var_rows <- function(mat) {
 analysis_type <- "FT_vs_RGC"
 quant_method <- "bambu"
 
-counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+counts_matrix_dir <- file.path(data_dir,"06_quantification/counts_matrices/",
                                quant_method, analysis_type, "filtered_by_counts_and_biotype")
-splicing_factors_path <- "/users/sparthib/retina_lrs/raw_data/GeneCards-Pathway-Splicing.csv"
+splicing_factors_path <- file.path(code_dir, "raw_data/GeneCards-Pathway-Splicing.csv")
 
 read_csv(splicing_factors_path) |> nrow()
 # Load gene counts matrix function
@@ -50,7 +52,7 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
     stop("Invalid quant_method. Choose 'bambu' or 'isoquant'.")
   }
   
-  counts_matrix_dir <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+  counts_matrix_dir <- file.path(data_dir,"06_quantification/counts_matrices/",
                                  quant_method, analysis_type, "filtered_by_counts_and_biotype")
   
   # Load splicing factors
@@ -63,7 +65,8 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
   isoform_tpm <- readRDS(isoform_file)
   rownames(isoform_tpm) <- gsub("\\..*", "", rownames(isoform_tpm))
   
-  input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/", quant_method, analysis_type, "protein_coding")
+  input_data_dir <- file.path(code_dir, "processed_data/dtu/", quant_method,
+                              analysis_type, "protein_coding")
   DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
   
   genes_and_isoforms <- DGE_DTE_DTU |> dplyr::select(c(gene_id, isoform_id)) |> distinct()
@@ -101,8 +104,9 @@ load_gene_counts_matrix <- function(analysis_type, quant_method, splicing_factor
   }
   
   
-  output_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu", 
-                                quant_method, analysis_type, "protein_coding", "plots", "splicing_factor_analysis")
+  output_plots_dir <- file.path(code_dir,"processed_data/dtu", 
+                                quant_method, analysis_type, 
+                                "protein_coding", "plots", "splicing_factor_analysis")
   dir.create(output_plots_dir, recursive = TRUE, showWarnings = FALSE)
   
   return(list(isoform_tpm = isoform_tpm,

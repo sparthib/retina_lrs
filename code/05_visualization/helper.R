@@ -1,4 +1,5 @@
-
+library(clusterProfiler)
+library(ggplot2)
 # Function to filter rows with zero variance
 remove_zero_var_rows <- function(mat) {
   mat[apply(mat, 1, function(x) min(x) != max(x)), ]
@@ -159,50 +160,28 @@ get_gene_list <- function(dge, fdr = 0.05, log2fc_cutoff = 1) {
 }
 
 # Function to perform over-representation analysis and save results
-run_ora <- function(genelist, ont, output_data_dir) {
-  ego <- enrichGO(
-    gene = names(genelist),
-    OrgDb = org.Hs.eg.db,
-    keyType = "ENSEMBL",
-    ont = ont,
-    pAdjustMethod = "fdr",
-    minGSSize = 100,
-    pvalueCutoff = 0.01,
-    qvalueCutoff = 0.01,
-    readable = TRUE
-  )
+ora_plot <- function(genelist, ont, output_plot_dir, analysis_type, conditions = NULL){
   
+  ego <- enrichGO(gene          = names(genelist),
+                  OrgDb         = org.Hs.eg.db,
+                  keyType  = "ENSEMBL",
+                  ont           = ont,
+                  pAdjustMethod = "fdr",
+                  minGSSize     = 100,
+                  pvalueCutoff  = 0.01,
+                  qvalueCutoff  = 0.01,
+                  readable      = TRUE) 
   if (!dir.exists(output_data_dir)) {
     dir.create(output_data_dir, recursive = TRUE)
   }
-  
-  write_tsv(as.data.frame(ego), file.path(output_data_dir, paste0("DGE_ora_", ont, ".tsv")))
-}
-
-
-# Function to generate plots for GO analysis
-run_ora_plots <- function(genelist, ont, output_plot_dir) {
-  ego <- enrichGO(
-    gene = names(genelist),
-    OrgDb = org.Hs.eg.db,
-    keyType = "ENSEMBL",
-    ont = ont,
-    pAdjustMethod = "fdr",
-    minGSSize = 100,
-    pvalueCutoff = 0.01,
-    qvalueCutoff = 0.01,
-    readable = TRUE
-  )
-  
-  if (!dir.exists(output_plot_dir)) {
-    dir.create(output_plot_dir, recursive = TRUE)
+  if(nrow(as.data.frame(ego)) != 0){
+    write_tsv(as.data.frame(ego), file.path(output_plot_dir, paste0(conditions, analysis_type,"_ora_", ont, ".tsv")))
+    
+    
+    pdf(file.path(output_plot_dir, paste0(conditions, analysis_type,"_ora_", ont, ".pdf")))
+    print(dotplot(ego, showCategory = 15))
+    dev.off()
+    
   }
-  
-  pdf(file.path(output_plot_dir, paste0("DGE_ora_dotplot_", ont, ".pdf")))
-  print(dotplot(ego, showCategory = 15))
-  dev.off()
 }
-
-
-
 

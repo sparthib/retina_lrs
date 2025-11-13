@@ -8,9 +8,13 @@ library(biomaRt)
 
 method = "bambu"
 comparison = "FT_vs_RGC"
-source("/users/sparthib/retina_lrs/code/05_visualization/helper.R")
 
-input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+
+source(file.path(code_dir, "code/05_visualization/helper.R"))
+
+input_data_dir <- file.path(code_dir, "processed_data/dtu/",
                             method, comparison, "protein_coding") 
 
 volcano_plot <- function(data, x_col, y_col, gene_label_col = "gene_name",
@@ -170,7 +174,7 @@ generate_volcano_plots <- function(input_base_dir, comparison, table_type, condi
 # Generate plots for each method and comparison
 methods <- c("bambu")
 comparisons <- c("ROs", "FT_vs_RGC", "RO_vs_RGC")
-input_base_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/"
+input_base_dir <- file.path(code_dir, "processed_data/dtu/")
 
 for (method in methods) {
   for (comparison in comparisons) {

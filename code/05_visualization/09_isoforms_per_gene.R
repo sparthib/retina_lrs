@@ -8,9 +8,13 @@ library(rtracklayer)
 method <- "bambu"
 comparison <- "ROs"
 
+
+code_dir <- Sys.getenv("retina_lrs_code")
+data_dir <- Sys.getenv("retina_lrs_dir")
+
 # 1. Load counts matrix
 
-long_read_counts <- file.path("/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/",
+long_read_counts <- file.path(data_dir, "06_quantification/counts_matrices/",
                               method, comparison, "filtered_by_counts_and_biotype", "filtered_isoform_cpm.RDS")
 
 long_read_counts <- readRDS(long_read_counts)
@@ -21,7 +25,9 @@ rownames(long_read_counts) <- gsub("\\.\\d+$", "",
                                    rownames(long_read_counts))
 
 #2. Load GTF file 
-gtf_file <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/bambu/all_samples_extended_annotation_track_reads/ROs_protein_coding_annotations.gtf"
+gtf_file <- file.path(data_dir,
+                      "06_quantification/bambu/",
+                      "all_samples_extended_annotation_track_reads/ROs_protein_coding_annotations.gtf")
 gtf <- import.gff(gtf_file)
 gtf_df <- as.data.frame(gtf)
 rm(gtf)
@@ -71,7 +77,7 @@ isoform_dist_per_sample <- isoform_dist_per_sample |>
 
 # Boxplot of isoforms per gene per sample
 
-plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+plots_dir <- file.path(code_dir,"processed_data/dtu/",
                        method, comparison,"protein_coding", "plots")
 
 write_tsv(isoform_dist_per_sample, 
@@ -101,7 +107,7 @@ dev.off()
 
 
 #4. plot barplot
-plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+plots_dir <- file.path(code_dir,"processed_data/dtu/",
                        method, comparison,"protein_coding", "plots")
 pdf(file.path(plots_dir, "isoform_per_gene.pdf"))
 isoform_per_gene |> 

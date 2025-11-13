@@ -13,9 +13,11 @@ library(tidyr)
 method <- "bambu"
 comparison <- "ROs"
 
-input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+code_dir <- Sys.getenv("retina_lrs_code")
+
+input_data_dir <- file.path(code_dir, "processed_data/dtu/",
                             method, comparison, "protein_coding")
-plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+plots_dir <- file.path(code_dir, "processed_data/dtu/",
                        method, comparison,"protein_coding", "plots", "upset")
 
 gene_overlaps <- readr::read_tsv( file.path(plots_dir,
@@ -55,30 +57,6 @@ get_dtu_genelist <- function(data) {
 
 dtu_genelist <- get_dtu_genelist(DGE_DTU_DTE)
 
-# Convert gene IDs to 
-
-ora_plot <- function(genelist, ont, output_plot_dir, analysis_type){
-  
-  ego <- enrichGO(gene          = names(genelist),
-                  OrgDb         = org.Hs.eg.db,
-                  keyType  = "ENSEMBL",
-                  ont           = ont,
-                  pAdjustMethod = "fdr",
-                  minGSSize     = 100,
-                  pvalueCutoff  = 0.01,
-                  qvalueCutoff  = 0.01,
-                  readable      = TRUE) 
-  if(nrow(as.data.frame(ego)) != 0){
-    write_tsv(as.data.frame(ego), file.path(output_plot_dir,
-                                            paste0("ORA_all_stage_DTU_genes_", ont, ".tsv")))
-    
-    
-    pdf(file.path(output_plot_dir, paste0("ORA_all_stage_DTU_genes_", ont, ".pdf")))
-    print(dotplot(ego, showCategory = 15))
-    dev.off()
-    
-  }
-}
-
+source(file.path(code_dir, "code/05_visualization/helper.R"))
 ora_plot(dtu_genelist, "BP", plots_dir, "DTU")
 

@@ -13,7 +13,10 @@ library(grid)
 analysis_type <- "ROs"
 quant_method <- "bambu"
 
-splicing_factors_path <- "/users/sparthib/retina_lrs/raw_data/GeneCards-Pathway-Splicing.csv"
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
+
+splicing_factors_path <- file.path(code_dir,"raw_data/GeneCards-Pathway-Splicing.csv")
 
 splicing_factors <- read_csv(splicing_factors_path) 
 
@@ -177,7 +180,7 @@ generate_volcano_plots <- function(input_base_dir, comparison, table_type, condi
 # Generate plots for each method and comparison
 methods <- c("bambu")
 comparisons <- c("ROs", "FT_vs_RGC", "RO_vs_RGC")
-input_base_dir <- "/users/sparthib/retina_lrs/processed_data/dtu/"
+input_base_dir <- file.path(code_dir, "processed_data/dtu/")
 
 for (method in methods) {
   for (comparison in comparisons) {

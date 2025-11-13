@@ -8,9 +8,10 @@ library(ggplot2)
 # save venn diagram as pdf 
 method = "bambu"
 comparison = "ROs"
-input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+code_dir <- Sys.getenv("retina_lrs_code")
+input_data_dir <- file.path(code_dir,"processed_data/dtu/",
                             method, comparison, "protein_coding")
-plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+plots_dir <- file.path(code_dir,"processed_data/dtu/",
                        method, comparison,"protein_coding", "plots", "upset")
 if (!dir.exists(plots_dir)){
   dir.create(plots_dir, recursive = TRUE, showWarnings = FALSE)

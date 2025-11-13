@@ -213,8 +213,10 @@ plot_DGE_heatmap <- function(input_data_dir, quant_name, compare, tpm, groups, o
   
 }
 
+data_dir <- Sys.getenv("retina_lrs_dir")
+code_dir <- Sys.getenv("retina_lrs_code")
 
-counts_matrix_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/06_quantification/counts_matrices/"
+counts_matrix_dir <- file.path(data_dir,"06_quantification/counts_matrices/")
 method <- "bambu"
 compare <- "FT_vs_RGC"
 
@@ -240,13 +242,13 @@ load_and_plot_data <- function(method,compare, counts_matrix_dir) {
                 "Stage_2", "Stage_3", "Stage_3", "RGC", "RGC")
   }
     
-    heatmap_plots_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+    heatmap_plots_dir <- file.path(code_dir, "processed_data/dtu/",
                                    method, compare, "protein_coding","plots", "heatmaps")
     if (!dir.exists(heatmap_plots_dir)) {
       dir.create(heatmap_plots_dir, recursive = TRUE)
     }
       
-    input_data_dir <- file.path("/users/sparthib/retina_lrs/processed_data/dtu/",
+    input_data_dir <- file.path(code_dir, "processed_data/dtu/",
                              method, compare,"protein_coding")
     
     DGE_DTE_DTU <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
