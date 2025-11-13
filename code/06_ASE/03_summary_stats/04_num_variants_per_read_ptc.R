@@ -7,9 +7,13 @@ library(biomaRt)
 library(readxl)
 library(dplyr)
 library(stringr)
-# Read in BAM and VCF
 
-vcf <- readVcf("/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output/all_samples_H9_and_EP1_phased.vcf",
+# Read in BAM and VCF
+code_dir <- Sys.getenv("retina_lrs_code")
+data_dir <- Sys.getenv("retina_lrs_dir")
+ref_dir <- Sys.getenv("references_dir")
+vcf <- readVcf(file.path(data_dir,
+                         "09_ASE/H9_DNA_Seq_data/whatshap_output/all_samples_H9_and_EP1_phased.vcf"),
                "hg38")
 variants <- rowRanges(vcf)
 
@@ -22,9 +26,10 @@ samples <- c(
 array_id <- as.integer(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
 # Define BAM directory
-genome_bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1"
+genome_bam_dir <- file.path(data_dir, "09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1")
 
-gtf_dir <- "/dcs04/hicks/data/sparthib/references/genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf"
+gtf_dir <- file.path(ref_dir,
+                     "genome/GENCODE/primary_assembly/release_46_primary_assembly.gtf")
 gtf <- import(gtf_dir)
 # Filter for protein-coding genes
 gtf <- gtf[gtf$type == "gene" & gtf$gene_type == "protein_coding"]
@@ -45,7 +50,7 @@ gtf <- gtf[gtf$type == "gene" & gtf$gene_type == "protein_coding"]
 
 # get gened 
 
-# readr::write_tsv(gene_variant_counts, file = "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/number_of_variants_per_ptc_gene.tsv")
+# readr::write_tsv(gene_variant_counts, file = file.path(code_dir,"processed_data/ASE/vcf_stats/number_of_variants_per_ptc_gene.tsv"))
 
 
 #### IRD Genes ######
@@ -96,7 +101,7 @@ gtf <- gtf[gtf$type == "gene" & gtf$gene_type == "protein_coding"]
 # nrow(disease_gene_variant_counts)
 # # 303
 # 
-# readr::write_tsv(disease_gene_variant_counts, file = "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/number_of_variants_per_ird_gene.tsv")
+# readr::write_tsv(disease_gene_variant_counts, file = file.path(code_dir, "processed_data/ASE/vcf_stats/number_of_variants_per_ird_gene.tsv"))
 
 
 # Create full BAM file paths
@@ -184,7 +189,8 @@ h2_variant_counts <- table(queryHits(h2_hits))
 h2_counts_per_read <- as.integer(h2_variant_counts)
 
 
-plot_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/H9_EP1/variants_per_read_ptc"
+plot_output_dir <- file.path(code_dir,
+                             "processed_data/ASE/vcf_stats/H9_EP1/variants_per_read_ptc")
 dir.create(plot_output_dir, showWarnings = FALSE, recursive = TRUE)
 
 write_tsv(data.frame(

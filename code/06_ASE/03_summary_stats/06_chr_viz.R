@@ -1,25 +1,20 @@
-
 library(readr)
 library(dplyr)
 library(ggplot2)
 
+code_dir <- Sys.getenv("retina_lrs_code")
+
+
 # Initialize an empty data frame to collect all data
 chrom_counts <- data.frame()
 
-
-comparisons <- c("H1_Stage1_vs_H2_Stage1", "H1_Stage2_vs_H2_Stage2",
-                 "H1_Stage3_vs_H2_Stage3","H1_Stage1_vs_H1_Stage2",
-                 "H1_Stage2_vs_H1_Stage3", "H1_Stage1_vs_H1_Stage3",
-                 "H2_Stage1_vs_H2_Stage2", "H2_Stage2_vs_H2_Stage3",
-                 "H2_Stage1_vs_H2_Stage3")
-
-dge_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/DGE/ROs/"
+dge_output_dir <- file.path(code_dir,"processed_data/ASE/bambu_counts_matrices/DGE/H1_vs_H2_contrasts")
 
 allele_comparisons <- c("H1_Stage1_vs_H2_Stage1", "H1_Stage2_vs_H2_Stage2",
                         "H1_Stage3_vs_H2_Stage3")
 
 for (i in seq_len(length(allele_comparisons))) {
-  read_file <- paste0(dge_output_dir, allele_comparisons[i], "_DGEs.tsv")
+  read_file <- file.path(dge_output_dir, paste0(allele_comparisons[i], "_DGEs.tsv"))
   tt <- read_tsv(read_file, show_col_types = FALSE)
   tt <- tt |> filter(significant == TRUE)
   
@@ -35,6 +30,7 @@ for (i in seq_len(length(allele_comparisons))) {
   chrom_counts <- bind_rows(chrom_counts, chrom_df)
 }
 
+write_tsv(chrom_counts, file.path(dge_output_dir, "chromosome_counts_summary.tsv"))
 pdf(file.path(dge_output_dir,"chromosome_counts.pdf"), width = 10, height = 6)
 ggplot(chrom_counts, aes(x = chromosome, y = count, fill = comparison)) +
   geom_col(position = "dodge") +

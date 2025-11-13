@@ -21,9 +21,8 @@ echo "Node name: ${SLURMD_NODENAME}"
 echo "Array ID: ${SLURM_ARRAY_TASK_ID}"
 
 module load conda_R/4.3.x
-# Rscript 06_gene_counts.R 
-#Rscript 08b_num_variants_per_read.R 
-Rscript 08c_num_variants_per_read_ptc.R
+
+Rscript 03_num_variants_per_read_ptc.R
 
 echo "**** Job ends ****"
 date

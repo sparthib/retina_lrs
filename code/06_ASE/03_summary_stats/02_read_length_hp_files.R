@@ -1,5 +1,6 @@
-# get read length for HP bam files 
-
+# get average read length for haplotagged sample files from whatshap
+code_dir <- Sys.getenv("retina_lrs_code")
+data_dir <- Sys.getenv("retina_lrs_dir")
 library(Rsamtools)
 library(dplyr)
 
@@ -7,7 +8,8 @@ samples <- c("H9-BRN3B_hRO_2", "H9-BRN3B-RO", "H9-CRX_hRO_2", "H9-CRX_ROs_D45",
              "EP1-WT_ROs_D45", "EP1-BRN3B-RO", "EP1-WT_hRO_2", "H9-FT_1", 
              "H9-FT_2", "H9-hRGC_1", "H9-hRGC_2")
 
-whatshap_out_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1"
+whatshap_out_dir <- file.path(data_dir,
+                              "09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1")
 
 results <- data.frame()
 
@@ -32,7 +34,7 @@ for (sample in samples) {
 print(results)
 
 # Save results to a TSV file
-output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/bam_stats"
+output_dir <- file.path(code_dir, "processed_data/ASE/bam_stats")
 file_name <- "mean_read_lengths_per_sample_haplotype.tsv"
 
 output_path <- file.path(output_dir, file_name)

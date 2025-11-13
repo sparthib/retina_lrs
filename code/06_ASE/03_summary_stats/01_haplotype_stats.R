@@ -1,6 +1,8 @@
-# Read the file
-url <- "https://raw.githubusercontent.com/sparthib/retina_lrs/refs/heads/main/code/08_ASE/short_reads/logs/haplotag_subset.txt?token=GHSAT0AAAAAADFHA3IZHYS22VX7FLWY6FYW2H3VSVQ"
-file_content <- readLines(url)
+# gets the percentage of haplotagged reads after whatshap haplotagging
+code_dir <- Sys.getenv("retina_lrs_code")
+
+txt <- file.path(code_dir, "/refs/heads/main/code/08_ASE/logs/haplotag_subset.txt")
+file_content <- readLines(txt)
 
 # Initialize empty vectors to store data
 sample_names <- c()
@@ -55,5 +57,6 @@ df$percent_hap <- df$percentage_hap1 + df$percentage_hap2
 print(df)
 
 # Save the dataframe to a CSV file
-readr::write_tsv(df, "/users/sparthib/retina_lrs/processed_data/ASE/bam_stats/haplotagging_summary_stats.tsv")
+readr::write_tsv(df, file.path(code_dir,
+                               "processed_data/ASE/bam_stats/haplotagging_summary_stats.tsv"))
 

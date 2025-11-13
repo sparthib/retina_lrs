@@ -3,9 +3,12 @@ library(Rsamtools)
 library(GenomicAlignments)
 library(readr)
 
-# Read in BAM and VCF
+# get number of variants per read in each of the haplotagged bam files
 
-vcf <- readVcf("/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output/all_samples_H9_and_EP1_phased.vcf",
+# Read in BAM and VCF
+code_dir <- Sys.getenv("retina_lrs_code")
+data_dir <- Sys.getenv("retina_lrs_dir")
+vcf <- readVcf(file.path(data_dir, "09_ASE/H9_DNA_Seq_data/whatshap_output/all_samples_H9_and_EP1_phased.vcf"),
                "hg38")
 variants <- rowRanges(vcf)
 
@@ -18,7 +21,7 @@ samples <- c(
 array_id <- as.integer(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
 # Define BAM directory
-genome_bam_dir <- "/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1"
+genome_bam_dir <- file.path(data_dir,"09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1")
 
 # Create full BAM file paths
 h1_bam_files <- file.path(genome_bam_dir, paste0(samples, "_h1.bam"))
@@ -66,7 +69,7 @@ h2_variant_counts <- table(queryHits(h2_hits))
 h2_counts_per_read <- as.integer(h2_variant_counts)
 
 
-plot_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/H9_EP1/variants_per_read"
+plot_output_dir <- file.path(code_dir,"processed_data/ASE/vcf_stats/H9_EP1/variants_per_read")
 
 write_tsv(data.frame(
   read_id = names(table(h1_counts_per_read)),

@@ -4,7 +4,8 @@ library(GenomicAlignments)
 library(readr)
 library(ggplot2)
 
-plot_output_dir <- "/users/sparthib/retina_lrs/processed_data/ASE/vcf_stats/H9_EP1/variants_per_read"
+code_dir <- Sys.getenv("retina_lrs_code")
+plot_output_dir <- file.path(code_dir, "processed_data/ASE/vcf_stats/H9_EP1/variants_per_read")
 
 tsv_files <- list.files(plot_output_dir, pattern = "tsv$", full.names = TRUE)
 
