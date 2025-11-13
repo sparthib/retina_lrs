@@ -26,7 +26,7 @@ if [ -f $ENV_FILE ]; then
     set +a
 fi
 
-output_dir=/dcs04/hicks/data/sparthib/retina_lrs/05_bams/genome/primary_assembly/high_quality/igv
+output_dir=$retina_lrs_dir/05_bams/genome/primary_assembly/high_quality/igv
 
 ml load samtools 
 
