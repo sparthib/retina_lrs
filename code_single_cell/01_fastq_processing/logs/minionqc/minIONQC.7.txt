@@ -1,9 +1,0 @@
-10X_D200-EP1-1_B1
-Loading conda_R/4.3
-To install colorout use: remotes::install_github("jalvesaq/colorout")
-INFO [2024-09-12 11:47:20] Loading input file: /dcs04/hicks/data/sparthib/CK_10x_D200-hRO_03252024/10X_D200-EP1-1_B1/20240325_1526_1H_PAU99329_4c0202a6/sequencing_summary_PAU99329_4c0202a6_94c47a24.txt
-INFO [2024-09-12 12:02:12] PromethION flowcell detected
-/var/spool/slurm/d/job9655891/slurm_script: line 29: 3908722 Killed                  Rscript minion_qc.R -i $guppy_summary_file -o $minion_qc_output -p ${SLURM_CPUS_PER_TASK}
-**** Job ends ****
-2024-09-12 12:24:46
-slurmstepd: error: Detected 1 oom-kill event(s) in StepId=9655891.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
