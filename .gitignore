@@ -1,34 +1,169 @@
-# R Project Files
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-*.rds
+############################
+# R / RStudio files
+############################
 
-# Environment & System Files
-.env
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+.RDataTmp
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token
+.httr-oauth
+
+# knitr and R markdown cache
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+# R environment variables
+.Renviron
+
+# pkgdown site
+docs/
+
+# translation temp files
+po/*~
+
+# RStudio Connect
+rsconnect/
+
+
+############################
+# Bioinformatics files
+############################
+
+# Raw sequencing reads
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# Alignment files
+*.bam
+*.bam.bai
+*.sam
+*.cram
+*.crai
+
+# Variant files
+*.vcf
+*.vcf.gz
+*.bcf
+*.bcf.gz
+*.tbi
+*.idx
+
+# FASTA and indices
+*.fa
+*.fasta
+*.fna
+*.fa.gz
+*.fasta.gz
+*.fai
+*.dict
+
+# BED and annotation files
+*.bed
+*.bed.gz
+*.bedGraph
+*.narrowPeak
+*.broadPeak
+
+# kallisto / salmon / alevin outputs
+*.h5
+*.idx
+*.sf
+*.json
+
+# Bowtie / Bowtie2 indices
+*.bt2
+*.bt2l
+*.1.bt2
+*.2.bt2
+*.3.bt2
+*.4.bt2
+*.rev.bt2
+
+# STAR indices & logs
+Log.out
+Log.progress.outd
+Log.final.out
+SJ.out.tab
+*.Genome
+*.STARtmp
+*/STARtmp/
+.log
+.log.txt
+
+# BWA indices
+*.amb
+*.ann
+*.bwt
+*.pac
+*.sa
+
+# minimap2 index
+*.mmi
+
+# Nextflow pipeline work dirs
+work/
+.nextflow*
+.nextflow.log*
+
+# Snakemake
+.snakemake/
+
+# Conda envs
+.env/
+.venv/
+*.snakemake_conda*
+
+# Docker / Singularity
+*.sif
+*.img
+
+# Misc logs + temporary files
+*.log
+*.err
+*.out
+*.tmp
+*.temp
+*.swp
+*.bak
+
+############################
+# Other useful patterns
+############################
+
+# macOS
 .DS_Store
 
-# Log Files
-code/01_fastq_processing/logs/
-code/01_fastq_processing/temp/logs/
-code/02_quantification/04_flair2/logs/
-code/coverage/logs/
-code/coverage/log.txt
-code/*/logs/*
+# Python caches
+__pycache__/
+*.pyc
 
-# Raw & Processed Data
-single_cell_raw_data/
-processed_data/bambu_sqanti_annotation/
-processed_data/coverage/
-
-# Analysis Output
-plots/de/switch_analyzer/bambu/
-plots/plotCoverage/bedtools/
-
-# Sequence Files
-*.fasta
-
-# Temporary & Generated Files
-code/coverage/H9-FT2_bam_paths.txt
-code/coverage/coverage_genes_of_interest.tsv
