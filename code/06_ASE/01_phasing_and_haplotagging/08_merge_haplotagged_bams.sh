@@ -18,13 +18,7 @@ echo "Job id: ${SLURM_JOB_ID}"
 echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 
-ENV_FILE="../../../.env"
-if [ -f $ENV_FILE ]; then
-    set -a
-    source $ENV_FILE
-    set +a
-fi
-
+retina_lrs_dir=/dcs04/hicks/data/sparthib/retina_lrs
 output_dir=$retina_lrs_dir/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1/igv
 bed_file=$output_dir/genes_of_interest.bed   # written by 06_genes_of_interest_to_bed.R
 
