@@ -20,12 +20,6 @@ echo "Job name: ${SLURM_JOB_NAME}"
 echo "Node name: ${SLURMD_NODENAME}"
 echo "Array job ID: ${SLURM_ARRAY_JOB_ID}"
 
-ENV_FILE="../../../.env"
-if [ -f $ENV_FILE ]; then
-    set -a
-    source $ENV_FILE
-    set +a
-fi
 
 # Samples match order used in 05_whatshap_haplotag.sh
 samples=(H9-BRN3B_hRO_2 H9-BRN3B-RO H9-CRX_hRO_2 H9-CRX_ROs_D45 \
@@ -34,7 +28,7 @@ samples=(H9-BRN3B_hRO_2 H9-BRN3B-RO H9-CRX_hRO_2 H9-CRX_ROs_D45 \
 sample=${samples[$SLURM_ARRAY_TASK_ID - 1]}
 echo "Processing sample: $sample"
 
-bam_dir=$retina_lrs_dir/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1
+bam_dir=/dcs04/hicks/data/sparthib/retina_lrs/09_ASE/H9_DNA_Seq_data/whatshap_output_phased_on_H9_and_EP1
 output_dir=$bam_dir/igv
 bed_file=$output_dir/genes_of_interest.bed   # written by 06_genes_of_interest_to_bed.R
 
