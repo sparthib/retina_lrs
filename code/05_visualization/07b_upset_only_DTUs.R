@@ -19,9 +19,28 @@ if (!dir.exists(plots_dir)){
 
 DGE_DTU_DTE <- read_tsv(file.path(input_data_dir, "DGE_DTE_DTU.tsv"))
 
-gene_overlaps = DGE_DTU_DTE |> dplyr::select( gene_id, isoform_id,
+isoforms_per_gene <- DGE_DTU_DTE |>                                                                                                                                                                          
+  dplyr::distinct(gene_id, isoform_id, gene_name) |>
+  dplyr::count(gene_name, name = "n_isoforms")                                                                                                                                                                        
+
+n_single  <- sum(isoforms_per_gene$n_isoforms == 1)
+n_multi   <- sum(isoforms_per_gene$n_isoforms > 1)
+
+retnet_genes <- readr::read_tsv(file = file.path(code_dir, "processed_data/dtu/retnet_disease_genes.tsv"))
+
+retnet_in_dtu <- isoforms_per_gene |> filter(gene_name %in% retnet_genes$gene_name) |> unique()
+#261 
+n_single <- isoforms_per_gene |> filter(gene_name %in% retnet_genes$gene_name) |> filter(n_isoforms == 1) |> nrow()
+n_multi <- isoforms_per_gene |> filter(gene_name %in% retnet_genes$gene_name) |> filter(n_isoforms > 1) |> nrow()
+
+gene_overlaps = DGE_DTU_DTE |> dplyr::select(gene_name, isoform_id,
                                               condition_1, condition_2,DGE, 
                                               DTU , DTE)
+
+DGE_DTU_DTE |> filter(gene_name %in% retnet_genes$gene_name) |> group_by(gene_name) |> filter(any(DTU == TRUE)) |> distinct(gene_name) |> nrow()
+
+#https://github.com/sparthib/retina_lrs/blob/main/processed_data/dtu/bambu/ROs/protein_coding/plots/retnet/ROs_DTU_retnet_heatmap.tsv 
+  
 
 gene_overlaps <- gene_overlaps |>
   mutate(condition = case_when(

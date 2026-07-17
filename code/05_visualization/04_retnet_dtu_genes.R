@@ -68,8 +68,9 @@ results_df <- data.frame(
 
 write.table(results_df, file = file.path(code_dir, "processed_data/dtu/retnet_disease_genes.tsv"), 
             sep = "\t", quote = FALSE, row.names = FALSE)
+results_df <- read_tsv(file.path(code_dir, "processed_data/dtu/retnet_disease_genes.tsv"))
 
-analysis_type <- "FT_vs_RGC"
+analysis_type <- "ROs"
 quant_method <- "bambu"
 table_type <- "DTE"
 
