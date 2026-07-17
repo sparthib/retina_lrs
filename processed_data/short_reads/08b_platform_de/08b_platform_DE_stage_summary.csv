@@ -1,4 +1,4 @@
-"window","mapping","n_LR","n_SR","genes_tested","sig_FDR05","up_in_LR","up_in_SR"
-"W_S1","Stage1_LRd45_vs_SR_D25_D65",2,8,13349,6893,4386,2507
-"W_S2","Stage2_LRd100_vs_SR_D65_D100",3,8,13554,9182,5821,3361
-"W_S3","Stage3_LRd200_vs_SR_D180_D280",2,9,14416,9364,5709,3655
+"window","mapping","n_LR","n_SR","genes_tested","sig_FDR05","sig_FDR05_absLFC1","up_in_LR_LFC1","up_in_SR_LFC1"
+"W_S1","Stage1_LRd45_vs_SR_D25_D65",2,8,13349,6893,5160,3535,1625
+"W_S2","Stage2_LRd100_vs_SR_D65_D100",3,8,13554,9182,5878,4094,1784
+"W_S3","Stage3_LRd200_vs_SR_D180_D280",2,9,14416,9364,7229,4680,2549
