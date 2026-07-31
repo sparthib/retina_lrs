@@ -66,6 +66,34 @@ plus the directional split (`up_in_LR_LFC1`, `up_in_SR_LFC1`):
 Per-stage full tables: `platform_DE_stage_W_S1/S2/S3.csv`.
 Scripts: `code/05_visualization/` (08b DE, 08d length/GC, 08e isoform GO).
 
+## Isoform quantification and detection (`04_isoforms/`)
+
+Isoforms are quantified at the transcript level on both platforms and compared
+over the known GENCODE (ENST) isoforms. Detection filter: >= 1 estimated count
+in >= 1 sample.
+
+Detected transcripts after the >= 1 count filter:
+
+| | Long read (7 samples) | Short read (28 samples) |
+|---|---|---|
+| Detected transcripts | 160,887 | 203,124 |
+| — known ENST | 160,392 | 203,124 |
+| — novel (Bambu) | 495 | 0 |
+
+Overlap of detected known (ENST) isoforms between platforms:
+
+| Set | Count |
+|---|---|
+| Detected in both | 141,906 |
+| LR-only (detected in LR, not SR) | 18,486 |
+| SR-only (detected in SR, not LR) | 61,218 |
+| Novel (Bambu), LR-only by construction | 495 |
+
+Only known ENST isoforms are comparable: the salmon index holds known GENCODE
+transcripts only, so short reads cannot report novel isoforms, whereas the bambu
+long-read annotation adds novel isoforms (Bambu... IDs). Outputs (LR-only isoform
+lists, per-gene summaries, GO enrichment) are in `04_isoforms/`.
+
 ## Full count matrices (not version-controlled, size)
 
   /dcs04/hicks/data/sparthib/retina_lrs/10_short_reads/salmon/
