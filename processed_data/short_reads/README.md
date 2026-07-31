@@ -15,14 +15,13 @@ against the long-read bambu quantification.
 
 1. Download. Paired FASTQs for the 28 samples pulled from ENA (SRR2118 re-deposit
    series, Oligo-dT SMART-Seq v4 libraries). Non-UMI, so no deduplication.
-2. Integrity. Every FASTQ verified with `gzip -t`; two corrupt files re-downloaded.
-3. Reference. GENCODE release 46 primary-assembly transcriptome — the same
+2. Reference. GENCODE release 46 primary-assembly transcriptome — the same
    annotation as the long-read bambu quantification, so Ensembl gene IDs are
    directly comparable across platforms.
-4. Index. Plain (decoy-free) salmon index, `salmon index -k 31`, 251,955 targets.
-5. Quantification. Each sample: `salmon quant -l A --validateMappings --gcBias
+3. Index. Plain (decoy-free) salmon index, `salmon index -k 31`. The index holds 251,955 targets (transcript sequences) = every isoform in the release-46 annotation.
+4. Quantification. Each sample: `salmon quant -l A --validateMappings --gcBias
    --seqBias` (no dedup). Mean mapping rate 72.3% (range 65-80%).
-6. Counts matrix. `tximport` aggregates the 28 quants to a gene matrix
+5. Counts matrix. `tximport` aggregates the 28 quants to a gene matrix
    (62,266 genes x 28) and, with `txOut=TRUE`, a transcript matrix
    (251,955 x 28). Column names are the sample IDs (e.g. D100_5).
 
