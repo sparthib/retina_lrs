@@ -95,11 +95,10 @@ Script: `code/05_visualization/08i_correlation_and_lengthgc_LRsalmon.R` (builds 
 
 ## Isoforms (`04_isoforms/`)
 
-The isoform-per-gene difference between platforms is largely a **quantifier**
-effect, not read length. Re-quantifying the long reads with salmon and putting both
-platforms through the identical isoform pipeline (protein-coding subset +
-`filterByExpr(min.count=2)` + TMM) isolates it. Detection filter throughout:
->= 1 count in >= 1 sample.
+Isoforms are compared with salmon on both platforms. The long reads are
+re-quantified with salmon (alignment mode) and both platforms go through the same
+isoform pipeline: protein-coding subset + `filterByExpr(min.count=2)` + TMM.
+Detection filter throughout: >= 1 count in >= 1 sample.
 
 Provenance from salmon quantification to the plotted per-gene distribution
 (`salmon_comparison/isoforms_per_gene_salmon_vs_bambu_provenance.csv`):
