@@ -121,7 +121,10 @@ Held constant (salmon on both), SR and LR give near-identical gene universes
 distributions; the bambu-vs-salmon gap (mean 3.55 vs 6.64) closes ~76% when the
 long reads are quantified with salmon (to 5.91). `salmon_comparison/` holds the
 per-sample dot plot (SR = red, LR = blue), its exact plot data, and the provenance
-table.
+table. The filtered PC + min.count=2 isoform matrices that the comparison is
+derived from are saved next to it: `SRsalmon_filtered_isoform_counts_PC_mincount2.csv`
+(117,762 isoforms x 28) and `LRsalmon_filtered_isoform_counts_PC_mincount2.csv`
+(103,949 x 7).
 
 LR-salmon-only isoforms: isoforms in the LR-salmon filtered matrix but not the
 SR-salmon filtered matrix = 15,316 isoforms across 7,500 genes (854 entirely
