@@ -1,0 +1,11 @@
+stage,description,SR_salmon_28s,LR_salmon_7s,LR_bambu_7s
+1. Annotation / index target,"Transcripts salmon quantifies against (release-46 transcriptome FASTA, 252,835 seqs; SR index collapses 880 dup seqs → 251,955 targets)","251,955","252,835","278,023 (GTF-based, incl. 1,118 novel Bambu)"
+2. Quantifier,How reads are assigned to isoforms,salmon quasi-map + EM (28 samples),salmon aln-mode (minimap2 BAM) + EM (7 samples),bambu 1-read→1-isoform (7 samples)
+"3. Isoform matrix (all detected, ≥1 in ≥1)",Unique isoforms with any assigned counts,"203,124","226,256","160,887"
+4. Genes with those isoforms (unfiltered),Unique genes represented in the detected isoform set,"45,533","58,248","48,088"
+5. Mean isoforms/gene (unfiltered),n_iso / n_genes,4.46,3.88,3.35
+6. PC + edgeR min.count=2 filter → isoforms,Isoforms surviving protein-coding subset + filterByExpr(min.count=2)+TMM,"117,762","103,949","55,708"
+7. Genes in filtered isoform matrix,Unique genes among filtered isoforms (= PC genes with ≥1 surviving isoform),"17,738","17,585","15,683"
+8. Mean isoforms/gene (filtered),The plotted quantity,6.64,5.91,3.55
+9. Median / q90 / max (filtered),Central + tail of per-gene isoform count,5 / 14 / 116,4 / 12 / 106,3 / 7 / 39
+10. Genes ≥10 isoforms (filtered),Heavy-tail count (share of genes),"3,908 (22.0%)","3,043 (17.3%)",788 (5.0%)

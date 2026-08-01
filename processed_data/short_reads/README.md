@@ -10,6 +10,7 @@ against the long-read bambu quantification.
 - `02_platform_DE/` — platform differential expression at matched stages, tables + summary.
 - `03_length_gc/` — length/GC of platform-DE genes.
 - `04_isoforms/` — isoform detection and SR-vs-LR isoform comparison (see that folder's outputs).
+  - `04_isoforms/salmon_comparison/` — quantifier-controlled SR-salmon vs LR-salmon isoforms-per-gene comparison.
 
 ## Short-read preprocessing and quantification
 
@@ -93,6 +94,53 @@ Only known ENST isoforms are comparable: the salmon index holds known GENCODE
 transcripts only, so short reads cannot report novel isoforms, whereas the bambu
 long-read annotation adds novel isoforms (Bambu... IDs). Outputs (LR-only isoform
 lists, per-gene summaries, GO enrichment) are in `04_isoforms/`.
+
+## LR-salmon quantification and the salmon-vs-salmon isoform comparison (`04_isoforms/salmon_comparison/`)
+
+The isoform-per-gene difference between platforms is largely a **quantifier**
+effect, not a read-length effect. To isolate it, the 7 retinal-organoid long-read
+samples were re-quantified with salmon in **alignment mode** (`salmon quant -a`)
+against the *same* release-46 transcriptome as the short reads, using the existing
+minimap2 transcriptome BAMs (`05_bams/transcriptome/ver_46`, `map-ont`). Salmon's
+EM then apportions long reads across compatible isoforms exactly as it does for
+short reads, so the only variable left is platform (SR vs LR), not the algorithm.
+
+Both platforms are then put through the identical isoform pipeline: protein-coding
+subset + `filterByExpr(min.count=2)` + TMM (the same `01c` recipe used for gene
+matrices). Detection filter throughout: >= 1 count in >= 1 sample.
+
+Provenance from salmon quantification to the plotted per-gene distribution
+(`isoforms_per_gene_salmon_vs_bambu_provenance.csv`):
+
+| Stage | SR-salmon (28s) | LR-salmon (7s) | LR-bambu (7s) |
+|---|---|---|---|
+| 1. Annotation / index target | 251,955 | 252,835 | 278,023 (GTF, +1,118 novel) |
+| 2. Quantifier | salmon quasi-map + EM | salmon aln-mode + EM | bambu 1-read to 1-isoform |
+| 3. Isoforms detected (>=1 in >=1) | 203,124 | 226,256 | 160,887 |
+| 4. Genes with those isoforms | 45,533 | 58,248 | 48,088 |
+| 5. Mean isoforms/gene (unfiltered) | 4.46 | 3.88 | 3.35 |
+| 6. Isoforms after PC + min.count=2 | 117,762 | 103,949 | 55,708 |
+| 7. Genes in filtered matrix | 17,738 | 17,585 | 15,683 |
+| 8. Mean isoforms/gene (filtered) | 6.64 | 5.91 | 3.55 |
+| 9. Median / q90 / max (filtered) | 5 / 14 / 116 | 4 / 12 / 106 | 3 / 7 / 39 |
+| 10. Genes >=10 isoforms (filtered) | 3,908 (22%) | 3,043 (17%) | 788 (5%) |
+
+Held constant (salmon on both), SR and LR give near-identical gene universes
+(17,738 vs 17,585 filtered genes) and closely tracking isoform-per-gene
+distributions; the bambu-vs-salmon gap (mean 3.55 vs 6.64) closes ~76% when the
+long reads are quantified with salmon (to 5.91). The apparent "short reads detect
+more isoforms per gene" was mostly the bambu-vs-salmon assignment difference.
+
+Files:
+- `isoforms_per_gene_salmon_SR_vs_LR_persample.png` — per-sample dot plot (SR = red,
+  LR = blue), isoforms/gene binned 1-10 and 10+, filtered matrices.
+- `isoforms_per_gene_salmon_SR_vs_LR_persample_plotdata.csv` — exact plotted data
+  (platform, sample, stage, bin, n_genes).
+- `isoforms_per_gene_salmon_vs_bambu_provenance.csv` — the funnel table above.
+
+Scripts: `code/11_short_reads_processing/11_salmon_quant_longreads.sh` (LR salmon
+alignment-mode quant), `12_LRsalmon_isoform_matrix_and_comparison.R` (filtering +
+comparison).
 
 ## Full count matrices (not version-controlled, size)
 
