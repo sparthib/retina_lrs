@@ -1,7 +1,7 @@
 "stage","direction","n","median_gc","median_len"
-"Stage 1 (LR D45 vs SR D25+D65)","Up in long read",3535,47.63,1459
-"Stage 1 (LR D45 vs SR D25+D65)","Down in long read",1625,53.58,1187
-"Stage 2 (LR D100 vs SR D65+D100)","Up in long read",4094,47.66,1502.5
-"Stage 2 (LR D100 vs SR D65+D100)","Down in long read",1784,54.3,1096.5
-"Stage 3 (LR D200 vs SR D180+D280)","Up in long read",4680,47.39,1618
-"Stage 3 (LR D200 vs SR D180+D280)","Down in long read",2549,54.3,1082
+"Stage 1 (LR D45 vs SR D25+D65)","Up in long read",2800,49.59,1346
+"Stage 1 (LR D45 vs SR D25+D65)","Down in long read",1724,52.92,1231
+"Stage 2 (LR D100 vs SR D65+D100)","Up in long read",3209,49.6,1448
+"Stage 2 (LR D100 vs SR D65+D100)","Down in long read",1854,53.75,1234.5
+"Stage 3 (LR D200 vs SR D180+D280)","Up in long read",3847,48.91,1529
+"Stage 3 (LR D200 vs SR D180+D280)","Down in long read",2471,53.7,1181
