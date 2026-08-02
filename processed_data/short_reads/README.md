@@ -17,6 +17,7 @@ the counting algorithm.
 - `04_isoforms/` — isoform-level comparison.
   - `04_isoforms/salmon_comparison/` — SR-salmon vs LR-salmon isoforms-per-gene comparison + provenance.
   - `04_isoforms/go/` — GO:BP of genes with isoforms detected only in LR-salmon (filtered).
+- `05_exon_junctions/` — exon-exon junctions spanned per read, short-read (STAR genome) vs long-read.
 
 ## Short-read preprocessing and quantification
 
@@ -142,3 +143,24 @@ Per-sample SR transcript detection: `transcript_detection_per_sample.csv`, `_per
     transcript_counts_matrix.csv      (251,955 transcripts x 28 samples, SR-salmon)
     LRsalmon_gene_counts_matrix.csv   (62,700 genes x 7 samples, LR-salmon)
     LRsalmon_transcript_counts_matrix.csv (252,835 transcripts x 7 samples, LR-salmon)
+
+
+## Exon-exon junctions per read (`05_exon_junctions/`)
+
+How many exon-exon junctions a single read spans is a direct read-length readout.
+Short reads were genome-aligned with STAR (release-46 primary assembly,
+`sjdbOverhang=149`); for each uniquely-mapped read (MAPQ=255) the number of
+CIGAR `N` operations (skipped introns = junctions crossed) was counted across
+21,877 multi-exon protein-coding gene regions, matching the long-read
+`code/02_bam_QC` pipeline. Long-read counts are the organoid samples from that
+pipeline (minimap2).
+
+Short reads are physically capped: ~99.5% of reads span 0-2 junctions and
+essentially none span >3 (a 150 bp read can only cross so many exon boundaries).
+Long reads carry a long tail — ~10% of reads at 3 junctions, ~7% at 4, with
+meaningful mass out to 10+. Files: `exon_junction_SR_vs_LR.png` (boxplot, junctions
+1-10, SR red / LR blue), `exon_junction_per_read_SR_vs_LR.csv` (per-sample
+fractions, 27 SR + 7 LR), `STAR_alignment_stats.csv` (raw/mapped read counts,
+781M pairs total, 86% mapped). One short-read sample (D280-A2) was excluded (its
+BAM stalled pysam fetch). Scripts: `code/11_short_reads_processing/13_exon_junction_per_read.py`,
+`14_exon_junction_SR_vs_LR_plot.py`.
