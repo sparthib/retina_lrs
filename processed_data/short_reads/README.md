@@ -39,8 +39,10 @@ The long reads are re-quantified with salmon in alignment mode
 then `tximport`ed to gene (62,700 x 7) and transcript (252,835 x 7) matrices.
 
 Pipeline scripts: `code/11_short_reads_processing/` (01 download, 02 manifests,
-03 integrity, 04 salmon index, 05 salmon quant, 06 tximport, 11 LR salmon quant,
-12 LR-salmon isoform matrix + comparison).
+03 integrity, 04 salmon index, 05 salmon quant, 06 tximport, 07 isoform detection,
+08 SR-vs-LR isoform comparison, 09 isoforms-per-gene, 10 PC/expression biotype filter,
+11 LR salmon quant, 12 LR-salmon isoform matrix + comparison, 13 exon-junction counting,
+14 exon-junction plot).
 
 ## Correlation (`01_correlation/`)
 
